@@ -74,6 +74,7 @@ def main() -> None:
     vw = float(rag_cfg.get("vector_weight", 0.65))
     bw = float(rag_cfg.get("bm25_weight", 0.35))
     graph_max = int(rag_cfg.get("graph_max", 5))
+    retrieval_scope = str(rag_cfg.get("retrieval_scope", "course")).strip().lower()
 
     helper = MMKGRAG(config, project_root=ROOT, mock=True)
     idx_path = helper._index_path(args.course_id, None)
@@ -99,7 +100,7 @@ def main() -> None:
                 index, mmkg, q, mode=mode, top_k=top_k, min_score=min_score,
                 vector_weight=vw, bm25_weight=bw, graph_max=graph_max,
             )
-            if lecture_id is None and effective:
+            if retrieval_scope != "course" and lecture_id is None and effective:
                 hits = _filter_hits_by_lecture(hits, effective)
             hits_total += len(hits)
             topics = row.get("expected_topics") or []

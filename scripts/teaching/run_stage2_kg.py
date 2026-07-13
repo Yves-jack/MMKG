@@ -49,6 +49,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--log-file", default=None)
     parser.add_argument("--log-level", default="INFO")
     parser.add_argument("--force", action="store_true", help="忽略已有 kg.json 并重建")
+    parser.add_argument(
+        "--input-filename",
+        default=None,
+        help="三元组文件名（默认 stage2.input_filename / triplets.jsonl）",
+    )
+    parser.add_argument(
+        "--output-filename",
+        default=None,
+        help="输出 kg 文件名（默认 kg.json）",
+    )
     return parser.parse_args()
 
 
@@ -69,7 +79,13 @@ def main() -> None:
         pipeline.use_existing = False
 
     try:
-        kg_path = pipeline.run(args.course_id, lecture_id=args.lecture_id, force=args.force)
+        kg_path = pipeline.run(
+            args.course_id,
+            lecture_id=args.lecture_id,
+            force=args.force,
+            input_filename=args.input_filename,
+            output_filename=args.output_filename,
+        )
         logger.info("Knowledge graph saved to: %s", kg_path)
         print(f"Knowledge graph saved to: {kg_path}")
         print(f"Log saved to: {log_file}")

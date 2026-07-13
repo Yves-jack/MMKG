@@ -58,6 +58,11 @@ def parse_args() -> argparse.Namespace:
         help="Mock LLM triplet extraction (no API calls)",
     )
     parser.add_argument(
+        "--hybrid",
+        action="store_true",
+        help="启用教材混合抽取（等同 textbook_kg.enabled=true）",
+    )
+    parser.add_argument(
         "--lecture-id",
         action="append",
         dest="lecture_ids",
@@ -77,6 +82,9 @@ def main() -> None:
     logger.info("Course ID: %s", args.course_id)
 
     config = TeachKGConfig.from_yaml(args.config)
+    if args.hybrid:
+        config.raw.setdefault("stage1", {}).setdefault("textbook_kg", {})["enabled"] = True
+        config.raw["stage1"].setdefault("llm_only", {})["sync_active_triplets"] = False
     pipeline = Stage1PreparePipeline(config, project_root=ROOT, mock=args.mock)
     if args.force:
         pipeline.use_existing = False

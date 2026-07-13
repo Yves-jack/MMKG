@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="MMKG RAG Q&A")
     parser.add_argument("--config", default=str(ROOT / "configs" / "teaching.yaml"))
     parser.add_argument("--course-id", required=True)
-    parser.add_argument("--lecture-id", default="1", help="讲次 ID；传 all 或省略时用课程级索引")
+    parser.add_argument("--lecture-id", default="all", help="讲次 ID；默认 all 使用课程级全课索引")
     parser.add_argument("--question", default=None, help="单次提问；省略时使用 --interactive")
     parser.add_argument("--interactive", "-i", action="store_true", help="交互式连续问答")
     parser.add_argument("--top-k", type=int, default=None)

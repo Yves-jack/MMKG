@@ -94,6 +94,7 @@ stage2:
   entity_merge:
     drop_related_with_when_specific: true   # 同实体对有更具体关系时丢弃 related_with
     min_subgraph_size: 0                  # 0=不过滤孤立小连通分量
+    textbook_canonical: true              # 合并时优先教材实体名作 canonical
     embedding_merge:
       enabled: false                      # 向量相似度合并不稳定，仅保留字符串规则合并
       similarity_threshold: 0.93
@@ -136,6 +137,8 @@ stage4:
     index_subdir: mmkg_index
     embedder_model: shibing624/text2vec-base-multilingual
     check_enabled: true
+    check_strict: true             # 启用规则后处理，收紧 supported 判定
+    check_min_confidence: 0.75     # LLM 判 supported 但置信度低于此值时降为 partial
     hybrid_enabled: true           # 向量 + BM25 混合检索
     vector_weight: 0.65
     bm25_weight: 0.35
@@ -148,7 +151,8 @@ stage4:
       max_context_turns: 2         # 检索改写参考最近 N 轮
       score_threshold: 2.0          # 多轮检索触发分数阈值
       show_analysis: true          # 交互模式打印检索决策
-    infer_lecture: true            # 未指定讲次时从问题推断
+    retrieval_scope: course        # course=全课索引；lecture=按讲次索引
+    infer_lecture: false           # course 模式下不按问题/标注讲次过滤命中
     reject_on_unsupported: false   # true 时校验 unsupported 则替换回答
     append_citations: true         # 回答末尾附加视频时间戳引用
     clap_downweight_threshold: 0.12  # CLAP 低于此值的命中降权
@@ -164,15 +168,47 @@ stage1:
   llm_only:
     enabled: true
     triplets_filename: llm_only/triplets.jsonl   # 纯 LLM 基线，教材融合不得覆盖
-    sync_active_triplets: true                   # true 时 Stage1 同步写入 triplets.jsonl
+    sync_active_triplets: false                  # 混合模式：不覆盖 llm_only 基线
 
-  # 教材知识图谱（AutoEduKG 导出，供后续子图检索 / 混合抽取）
+  # 教材知识图谱（AutoEduKG 导出，子图检索 + 混合增量抽取）
   textbook_kg:
-    enabled: false                               # 混合流水线启用后改为 true
+    enabled: false                               # 默认关闭；单讲重跑时临时改为 true
     path: data/textbook/CS2501-离散数学（数理逻辑与集合论）
     entity_file: entity_final.json
     relations_file: relations_final.json
     importance_file: entity_sorted.json
+    subgraph:
+      max_hops: 2
+      max_edges_per_cue: 18                    # cue 级 prompt 子图上限
+      max_edges_per_lecture: 60                  # 讲次级教材边池（去重后分配）
+      min_edges_per_cue: 1                       # 分配时保证每 cue 至少 1 条教材边
+      lecture_min_relation_score: 3.0            # 讲次边池最低相关度分（过滤弱召回如 AEIO）
+      lecture_dynamic_cap: true                  # 按 cue 数动态收紧边池上限
+      lecture_edges_per_cue_cap: 7.0             # 动态上限 ≈ cue数 × 此值
+      lecture_embedding_link_min_score: 0.86     # 讲次级向量种子阈值（高于 cue 级）
+      max_seed_entities: 20
+      lecture_dedupe_textbook: true              # 教材边按讲次去重再挂 cue
+      embedding_link_enabled: true               # 向量补召回种子实体
+      embedding_cache_enabled: true              # 预计算/缓存教材实体向量
+      embedding_link_top_k: 5
+      embedding_link_min_score: 0.82
+      embedder_model: shibing624/text2vec-base-multilingual
+      include_theorem_edges: true                # 将 entity.themorems[] 展开为 belong_to 边
+    entity_registry:
+      link_delta_entities: true                  # 增量边实体链接到教材 canonical
+      output_path: entity_registry.json
+    extract:
+      mode: constrained_delta
+      prompt: teaching/subgraph_hybrid_extract.txt
+      include_textbook_in_output: true         # 教材子图边写入 triplets.jsonl
+      dedupe_against_textbook: true              # LLM 增量与教材边去重
+      conceptual_focus: true                     # 增量偏概念，过滤编号公理/定理/例题
+      max_delta_per_cue: 4                       # 每 cue 最多概念增量条数
+      zero_coverage_fallback: true               # cue 零覆盖时回退 LLM 基线概念边
+      thin_coverage_fallback: true              # 混合条数显著少于 LLM 时部分补边
+      thin_coverage_ratio: 0.55                # hybrid < llm * ratio 触发
+      thin_coverage_min_llm: 3                   # LLM 基线至少 N 条才触发薄覆盖
+      llm_fallback_max: 5
 
   rules:
     require_clip: true

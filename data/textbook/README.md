@@ -12,4 +12,14 @@
 | `relations_final.json` | 2754 关系：`subject`, `predicate`, `object`, `description`, `context` |
 | `entity_sorted.json` | 实体 PageRank 重要性分数 |
 
-配置入口：`configs/teaching.yaml` → `stage1.textbook_kg.path`
+配置：`configs/teaching.yaml` → `stage1.textbook_kg`
+
+启用混合抽取：
+
+```yaml
+stage1:
+  textbook_kg:
+    enabled: true
+  llm_only:
+    sync_active_triplets: false   # 混合结果写 triplets.jsonl，不覆盖 llm_only 基线
+```

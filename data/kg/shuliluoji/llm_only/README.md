@@ -9,7 +9,8 @@
 
 **约定：**
 
-- Stage 1 增量/重跑时**只更新本目录**，不覆盖教材融合产物
-- 活跃三元组见上级目录 `../triplets.jsonl`（当前与 LLM 基线同步；混合模式启用后可只写融合结果）
+- Stage 1 增量/重跑时**只更新本目录**（纯 LLM 模式），不覆盖教材融合产物
+- 启用 `stage1.textbook_kg.enabled: true` 时，混合结果写入 `../triplets.jsonl`（`extract_source=textbook|lecture_delta`），**本目录保持不变**
+- 活跃三元组见上级目录 `../triplets.jsonl`
 
 配置：`configs/teaching.yaml` → `stage1.llm_only`

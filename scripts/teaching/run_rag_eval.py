@@ -40,17 +40,21 @@ def main() -> None:
     results: list[dict] = []
     hit_count = 0
     supported = 0
+    partial = 0
+    unsupported = 0
 
     for row in rows:
         q = row["question"]
-        lecture_id = row.get("lecture_id")
-        lid = None if lecture_id in (None, "all", "") else str(lecture_id)
-        ans = rag.answer(q, args.course_id, lecture_id=lid, use_history=False)
+        ans = rag.answer(q, args.course_id, use_history=False)
         has_hits = bool(ans.get("hits"))
         hit_count += int(has_hits)
         verdict = (ans.get("check") or {}).get("verdict")
         if verdict == "supported":
             supported += 1
+        elif verdict == "partial":
+            partial += 1
+        elif verdict == "unsupported":
+            unsupported += 1
         results.append(
             {
                 "id": row.get("id"),
@@ -62,10 +66,15 @@ def main() -> None:
             }
         )
 
+    rag.clear_cache()
+
+    n = max(len(rows), 1)
     summary = {
         "total": len(rows),
-        "hit_rate": round(hit_count / max(len(rows), 1), 3),
-        "supported_rate": round(supported / max(len(rows), 1), 3),
+        "hit_rate": round(hit_count / n, 3),
+        "supported_rate": round(supported / n, 3),
+        "partial_rate": round(partial / n, 3),
+        "unsupported_rate": round(unsupported / n, 3),
     }
     out = Path(args.output) if args.output else ROOT / "data" / "eval" / args.course_id / "qa_eval_results.json"
     out.parent.mkdir(parents=True, exist_ok=True)
