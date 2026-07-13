@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from teachkg.provenance import enrich_with_cue_index, primary_provenance
+
 
 def _dedupe_dicts(items: list[dict[str, Any]], key_fields: tuple[str, ...]) -> list[dict[str, Any]]:
     seen: set[tuple[Any, ...]] = set()
@@ -26,16 +28,24 @@ def build_cue_index(triplets: list[dict[str, Any]]) -> dict[str, dict[str, Any]]
         if not cue_id:
             continue
         if cue_id not in index:
+            ppt = str(row.get("ppt_frame_path") or row.get("evidence_ppt_frame_path") or "").strip()
+            page = row.get("ppt_page_index")
+            if page is None:
+                page = row.get("evidence_ppt_page_index")
             index[cue_id] = {
                 "cue_id": cue_id,
                 "lecture_id": row.get("lecture_id", ""),
                 "start_sec": row.get("start_sec"),
                 "end_sec": row.get("end_sec"),
                 "clip_path": row.get("clip_path", ""),
-                "ppt_frame_path": row.get("ppt_frame_path", ""),
-                "ppt_page_index": row.get("ppt_page_index"),
+                "ppt_frame_path": ppt,
+                "ppt_page_index": page,
                 "source_text": row.get("source_text", ""),
             }
+        else:
+            src = str(row.get("source_text") or "")
+            if len(src) > len(str(index[cue_id].get("source_text") or "")):
+                index[cue_id]["source_text"] = src
     return index
 
 
@@ -53,6 +63,7 @@ def _text_evidence_from_triplets(
             {
                 "cue_id": row.get("cue_id", ""),
                 "context": row.get("context", ""),
+                "source_text": row.get("source_text", ""),
                 "role": "subject" if sub == entity_id else "object",
             }
         )
@@ -113,17 +124,7 @@ def enrich_provenance(
     provenance: list[dict[str, Any]],
     cue_index: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    enriched: list[dict[str, Any]] = []
-    for prov in provenance:
-        cue_id = str(prov.get("cue_id", ""))
-        meta = cue_index.get(cue_id, {})
-        item = dict(prov)
-        if meta.get("clip_path"):
-            item["clip_path"] = meta["clip_path"]
-        if meta.get("ppt_frame_path"):
-            item["ppt_frame_path"] = meta["ppt_frame_path"]
-        enriched.append(item)
-    return enriched
+    return enrich_with_cue_index(provenance, cue_index)
 
 
 def attach_edge_grounding(
@@ -131,15 +132,19 @@ def attach_edge_grounding(
     cue_index: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     provenance = enrich_provenance(edge.get("provenance") or [], cue_index)
-    primary = provenance[0] if provenance else {}
+    primary = primary_provenance(provenance)
     grounding = {
         "clip_path": primary.get("clip_path", ""),
         "ppt_frame_path": primary.get("ppt_frame_path", ""),
         "cue_id": primary.get("cue_id", ""),
+        "lecture_id": primary.get("lecture_id"),
         "start_sec": primary.get("start_sec"),
         "end_sec": primary.get("end_sec"),
         "ppt_page_index": primary.get("ppt_page_index"),
         "natural_statement": edge.get("natural_statement", ""),
+        "context": primary.get("context", ""),
+        "source_text": str(primary.get("source_text", ""))[:500],
+        "extract_source": primary.get("extract_source", ""),
     }
     out = dict(edge)
     out["provenance"] = provenance
@@ -217,5 +222,11 @@ def attach_multimodal_evidence(
         "entity_image_refs": image_count,
         "edges_with_clip": sum(1 for e in edges_out if e.get("grounding", {}).get("clip_path")),
         "edges_with_slide": sum(1 for e in edges_out if e.get("grounding", {}).get("ppt_frame_path")),
+        "edges_with_source_text": sum(
+            1 for e in edges_out if (e.get("grounding") or {}).get("source_text")
+        ),
+        "edges_with_context": sum(
+            1 for e in edges_out if any(p.get("context") for p in (e.get("provenance") or []))
+        ),
     }
     return EvidenceAttachResult(entities=entities_out, edges=edges_out, stats=stats)

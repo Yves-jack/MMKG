@@ -47,6 +47,22 @@ def test_drop_related_with_when_specific_exists():
     assert result.edges[0].abstract_relation == "depend_on"
 
 
+def test_merge_triplets_preserves_provenance_fields():
+    rows = [
+        {
+            **_row("命题/proposition", "陈述句/sentence"),
+            "source_text": "字幕片段",
+            "clip_path": "data/clips/c1.mp4",
+            "extract_source": "lecture_delta",
+        }
+    ]
+    result = merge_triplets_to_kg(rows)
+    prov = result.edges[0].provenance[0]
+    assert prov["source_text"] == "字幕片段"
+    assert prov["clip_path"].endswith("c1.mp4")
+    assert prov["extract_source"] == "lecture_delta"
+
+
 def test_min_subgraph_size_filters_isolated_pair():
     rows = [
         _row("A/a", "B/b"),

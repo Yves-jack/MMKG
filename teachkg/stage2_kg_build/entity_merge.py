@@ -7,6 +7,8 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Any
 
+from teachkg.provenance import from_triplet
+
 
 def parse_entity(entity: str) -> tuple[str, str, str]:
     """解析实体为 (完整名, 中文, 英文)。"""
@@ -120,11 +122,23 @@ class EntityMergeResult:
         }
 
 
-def build_entity_merge_map(entity_names: list[str]) -> dict[str, str]:
-    """按中/英文主名合并实体，返回 alias → canonical。"""
+def build_entity_merge_map(
+    entity_names: list[str],
+    *,
+    textbook_entity_names: set[str] | None = None,
+) -> dict[str, str]:
+    """按中/英文主名合并实体，返回 alias → canonical；教材实体优先作 canonical。"""
+    textbook_entity_names = textbook_entity_names or set()
     zh_to_canonical: dict[str, str] = {}
     en_to_canonical: dict[str, str] = {}
     merge_map: dict[str, str] = {}
+
+    def prefer_canonical(current: str, candidate: str) -> str:
+        if current in textbook_entity_names and candidate not in textbook_entity_names:
+            return current
+        if candidate in textbook_entity_names and current not in textbook_entity_names:
+            return candidate
+        return current if len(current) <= len(candidate) else candidate
 
     for name in entity_names:
         canonical, zh, en = parse_entity(name)
@@ -133,14 +147,16 @@ def build_entity_merge_map(entity_names: list[str]) -> dict[str, str]:
         en_key = _normalize_lookup(en) if en else ""
 
         if zh_key and zh_key in zh_to_canonical:
-            match = zh_to_canonical[zh_key]
+            match = prefer_canonical(zh_to_canonical[zh_key], match)
         elif en_key and en_key in en_to_canonical:
-            match = en_to_canonical[en_key]
-        else:
-            if zh_key:
-                zh_to_canonical[zh_key] = match
-            if en_key:
-                en_to_canonical[en_key] = match
+            match = prefer_canonical(en_to_canonical[en_key], match)
+
+        if zh_key:
+            prev = zh_to_canonical.get(zh_key, match)
+            zh_to_canonical[zh_key] = prefer_canonical(prev, match)
+        if en_key:
+            prev = en_to_canonical.get(en_key, match)
+            en_to_canonical[en_key] = prefer_canonical(prev, match)
 
         if name != match:
             merge_map[name] = match
@@ -202,6 +218,7 @@ def merge_triplets_to_kg(
     drop_related_with_when_specific: bool = True,
     min_subgraph_size: int = 0,
     embedding_merge_map: dict[str, str] | None = None,
+    textbook_entity_names: set[str] | None = None,
 ) -> EntityMergeResult:
     """将 Stage 1 三元组列表合并为课程级知识图谱。"""
     raw_entity_names: list[str] = []
@@ -213,7 +230,21 @@ def merge_triplets_to_kg(
         if obj:
             raw_entity_names.append(obj)
 
-    merge_map = _compose_merge_map(build_entity_merge_map(raw_entity_names), embedding_merge_map)
+    if textbook_entity_names is None:
+        textbook_entity_names = {
+            str(row.get("subject", "")).strip()
+            for row in triplets
+            if row.get("extract_source") == "textbook" and str(row.get("subject", "")).strip()
+        } | {
+            str(row.get("object", "")).strip()
+            for row in triplets
+            if row.get("extract_source") == "textbook" and str(row.get("object", "")).strip()
+        }
+
+    merge_map = _compose_merge_map(
+        build_entity_merge_map(raw_entity_names, textbook_entity_names=textbook_entity_names),
+        embedding_merge_map,
+    )
 
     def canonical(name: str) -> str:
         return merge_map.get(name, name)
@@ -240,14 +271,7 @@ def merge_triplets_to_kg(
             natural_statement=str(row.get("natural_statement", "")).strip(),
             description=str(row.get("description", "")).strip(),
         )
-        prov = {
-            "cue_id": row.get("cue_id", ""),
-            "lecture_id": row.get("lecture_id", ""),
-            "context": row.get("context", ""),
-            "start_sec": row.get("start_sec"),
-            "end_sec": row.get("end_sec"),
-            "ppt_page_index": row.get("ppt_page_index"),
-        }
+        prov = from_triplet(row)
         key = edge.edge_key
         if key in edge_map:
             edge_map[key].provenance.append(prov)

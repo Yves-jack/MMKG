@@ -9,8 +9,9 @@ from pathlib import Path
 from typing import Any
 
 from teachkg.config import TeachKGConfig
+from teachkg.provenance import text_snippets
 from teachkg.stage3_mmkg.index_builder import MMKGIndex
-from teachkg.rag.answer_checker import check_answer, extract_evidence_citations, format_citations_text
+from teachkg.rag.answer_checker import check_answer, extract_evidence_citations, format_citations_text, format_citations_text
 from teachkg.rag.hybrid_retriever import hybrid_search
 from teachkg.rag.multi_turn import (
     ConversationTurn,
@@ -19,6 +20,7 @@ from teachkg.rag.multi_turn import (
     format_conversation_history,
     format_retrieval_analysis,
 )
+from teachkg.rag.answer_checker import check_answer
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
 
@@ -57,21 +59,40 @@ def format_hit_for_context(hit: dict[str, Any]) -> str:
     payload = hit.get("payload") or {}
     lines = [f"[{hit.get('type', 'item')}] score={hit.get('score', 0):.3f}"]
 
+    doc_text = str(hit.get("text") or "").strip()
+    if doc_text:
+        lines.append(f"检索文档：{doc_text}")
+
     if hit.get("type") == "entity":
-        lines.append(f"实体：{payload.get('entity_id', hit.get('entity_id', ''))}")
-        if payload.get("description"):
+        entity_id = payload.get("entity_id", hit.get("entity_id", ""))
+        if entity_id and entity_id not in doc_text:
+            lines.append(f"实体：{entity_id}")
+        if payload.get("description") and payload["description"] not in doc_text:
             lines.append(f"定义：{payload['description']}")
     elif hit.get("type") == "edge":
-        lines.append(f"关系：{payload.get('natural_statement', '')}")
-        lines.append(
-            f"({payload.get('subject', '')}) --[{payload.get('abstract_relation', '')}]--> "
-            f"({payload.get('object', '')})"
-        )
+        statement = payload.get("natural_statement", "")
+        if statement and statement not in doc_text:
+            lines.append(f"关系：{statement}")
+        subj, obj, rel = payload.get("subject", ""), payload.get("object", ""), payload.get("abstract_relation", "")
+        if subj or obj:
+            lines.append(f"({subj}) --[{rel}]--> ({obj})")
         grounding = payload.get("grounding") or {}
+        provenance = payload.get("provenance") or []
+        for i, snip in enumerate(text_snippets(provenance, max_items=2), 1):
+            if snip and snip not in doc_text:
+                lines.append(f"课程原文{i}：{snip[:500]}")
+        if grounding.get("context") and grounding["context"] not in doc_text:
+            lines.append(f"摘录：{grounding['context']}")
+        if grounding.get("source_text") and str(grounding["source_text"]) not in doc_text:
+            lines.append(f"字幕：{str(grounding['source_text'])[:500]}")
+        if grounding.get("natural_statement") and grounding["natural_statement"] not in doc_text:
+            lines.append(f"陈述：{grounding['natural_statement']}")
         if grounding.get("cue_id"):
             lines.append(f"cue：{grounding['cue_id']}")
         if grounding.get("clip_path"):
-            lines.append(f"视频证据：{grounding['clip_path']} ({grounding.get('start_sec')}s–{grounding.get('end_sec')}s)")
+            lines.append(
+                f"视频证据：{grounding['clip_path']} ({grounding.get('start_sec')}s–{grounding.get('end_sec')}s)"
+            )
         if grounding.get("ppt_frame_path"):
             lines.append(f"PPT证据：{grounding['ppt_frame_path']} (page {grounding.get('ppt_page_index')})")
         align = grounding.get("alignment") or {}
@@ -84,7 +105,7 @@ def format_hit_for_context(hit: dict[str, Any]) -> str:
             vscore = align.get("viclip_video_text")
         if vscore is not None:
             lines.append(f"视频-文本对齐分：{vscore:.3f}")
-    else:
+    elif not doc_text:
         lines.append(hit.get("text", ""))
 
     return "\n".join(lines)
@@ -113,6 +134,9 @@ class MMKGRAG:
             "embedder_model", "paraphrase-multilingual-MiniLM-L12-v2"
         )
         self.check_enabled = bool(rag_cfg.get("check_enabled", True))
+        self.check_strict = bool(rag_cfg.get("check_strict", False))
+        self.check_min_confidence = float(rag_cfg.get("check_min_confidence", 0.75))
+        self.check_enabled = bool(rag_cfg.get("check_enabled", True))
         self.hybrid_enabled = bool(rag_cfg.get("hybrid_enabled", True))
         self.vector_weight = float(rag_cfg.get("vector_weight", 0.65))
         self.bm25_weight = float(rag_cfg.get("bm25_weight", 0.35))
@@ -125,6 +149,7 @@ class MMKGRAG:
         self.auto_lecture_hint = bool(
             rag_cfg.get("auto_lecture_hint", rag_cfg.get("infer_lecture", True))
         )
+        self.retrieval_scope = str(rag_cfg.get("retrieval_scope", "course")).strip().lower()
         self.clap_downweight_threshold = float(rag_cfg.get("clap_downweight_threshold", 0.12))
         self.clap_downweight_factor = float(rag_cfg.get("clap_downweight_factor", 0.5))
         self.append_citations = bool(rag_cfg.get("append_citations", True))
@@ -134,9 +159,18 @@ class MMKGRAG:
         self.multi_turn_context_turns = int(mt_cfg.get("max_context_turns", 2))
         self.multi_turn_score_threshold = float(mt_cfg.get("score_threshold", 2.0))
         self.show_retrieval_analysis = bool(mt_cfg.get("show_analysis", True))
+        self.multi_turn_score_threshold = float(mt_cfg.get("score_threshold", 2.0))
+        self.show_retrieval_analysis = bool(mt_cfg.get("show_analysis", True))
         llm_cfg = config.get("llm", default={})
         self.llm_client = llm_client or LLMClient(**llm_settings_from_config(llm_cfg))
         self._history: list[ConversationTurn] = []
+        self._index_cache: dict[tuple[str, str | None], MMKGIndex] = {}
+        self._mmkg_cache: dict[tuple[str, str | None], dict[str, Any]] = {}
+
+    def clear_cache(self) -> None:
+        """释放索引/MMKG 缓存（批量评测结束后可调用）。"""
+        self._index_cache.clear()
+        self._mmkg_cache.clear()
 
     @property
     def kg_dir(self) -> Path:
@@ -153,6 +187,9 @@ class MMKGRAG:
         return base / "course" / self.index_subdir
 
     def _load_mmkg(self, course_id: str, lecture_id: str | None) -> dict[str, Any]:
+        key = (course_id, lecture_id)
+        if key in self._mmkg_cache:
+            return self._mmkg_cache[key]
         base = self.kg_dir / course_id
         if lecture_id:
             path = base / f"lecture_{lecture_id}" / "mmkg.json"
@@ -160,7 +197,18 @@ class MMKGRAG:
             path = base / "mmkg.json"
         if not path.is_file():
             raise FileNotFoundError(f"MMKG not found: {path}")
-        return json.loads(path.read_text(encoding="utf-8"))
+        mmkg = json.loads(path.read_text(encoding="utf-8"))
+        self._mmkg_cache[key] = mmkg
+        return mmkg
+
+    def _get_index(self, course_id: str, lecture_id: str | None) -> MMKGIndex:
+        key = (course_id, lecture_id)
+        if key not in self._index_cache:
+            idx_path = self._index_path(course_id, lecture_id)
+            if not idx_path.is_dir():
+                raise FileNotFoundError(f"Index not found: {idx_path}")
+            self._index_cache[key] = MMKGIndex.load(idx_path)
+        return self._index_cache[key]
 
     def _load_course_context(self, course_id: str) -> str:
         syllabus_dir = Path(self.config.get("project", "workspace_dir", default="data/raw")) / course_id / "syllabus"
@@ -179,6 +227,16 @@ class MMKGRAG:
         if self.auto_lecture_hint:
             return infer_lecture_hint(question)
         return None
+
+    def _index_lecture_id(self, lecture_id: str | None) -> str | None:
+        if self.retrieval_scope == "course":
+            return None
+        return lecture_id
+
+    def _should_filter_by_lecture(self, lecture_id: str | None, effective_lecture: str | None) -> bool:
+        if self.retrieval_scope == "course":
+            return False
+        return lecture_id is None and bool(effective_lecture)
 
     def _downweight_low_alignment(self, hits: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if self.clap_downweight_threshold <= 0:
@@ -206,20 +264,18 @@ class MMKGRAG:
         retrieval_query: str | None = None,
     ) -> list[dict[str, Any]]:
         effective_lecture = self._resolve_lecture_id(question, lecture_id)
-        idx_path = self._index_path(course_id, lecture_id)
-        if not idx_path.is_dir():
-            raise FileNotFoundError(f"Index not found: {idx_path}")
-
-        index = MMKGIndex.load(idx_path)
         k = top_k or self.top_k
         search_query = retrieval_query or question
         if retrieval_query is None and use_history:
             search_query, _ = self._resolve_retrieval_query(question, use_history=True)
 
+        index_lecture = self._index_lecture_id(lecture_id)
+        index = self._get_index(course_id, index_lecture)
+
         mmkg_for_graph = None
         if self.hybrid_enabled and self.graph_hops > 0:
             try:
-                mmkg_for_graph = self._load_mmkg(course_id, lecture_id)
+                mmkg_for_graph = self._load_mmkg(course_id, index_lecture)
             except FileNotFoundError:
                 pass
 
@@ -237,7 +293,7 @@ class MMKGRAG:
         else:
             hits = index.search(search_query, top_k=k)
 
-        if lecture_id is None and effective_lecture:
+        if self._should_filter_by_lecture(lecture_id, effective_lecture):
             hits = _filter_hits_by_lecture(hits, effective_lecture)
 
         hits = self._downweight_low_alignment(hits)
@@ -290,7 +346,7 @@ class MMKGRAG:
         hits = self.retrieve(
             question,
             course_id,
-            lecture_id=effective_lecture,
+            lecture_id=lecture_id,
             top_k=top_k,
             use_history=use_history,
             retrieval_query=retrieval_query if rewrite_meta.get("rewritten") else None,
@@ -356,6 +412,8 @@ class MMKGRAG:
                 retrieved_context=retrieved_context,
                 llm_client=self.llm_client,
                 mock=self.mock,
+                strict=self.check_strict,
+                min_confidence=self.check_min_confidence,
             )
             if self.reject_on_unsupported and result["check"].get("verdict") == "unsupported":
                 result["answer"] = (
@@ -429,6 +487,8 @@ class MMKGRAG:
                     if c.get("ppt_page") is not None:
                         parts.append(f"PPT p.{c['ppt_page']}")
                     print(" ".join(parts))
+            if result.get("retrieval_analysis") and self.show_retrieval_analysis:
+                print(f"\n{format_retrieval_analysis(result['retrieval_analysis'])}")
             if result.get("retrieval_analysis") and self.show_retrieval_analysis:
                 print(f"\n{format_retrieval_analysis(result['retrieval_analysis'])}")
             if result.get("hits"):

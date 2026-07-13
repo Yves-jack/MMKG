@@ -19,6 +19,11 @@ from teachkg.stage1_alignment.triplet_extract import (
     infer_attribute_category,
     infer_statement_direction,
     is_bad_entity,
+    is_placeholder_entity,
+    filter_delta_triplets,
+    is_awkward_delta_triplet,
+    is_near_duplicate_of_merged,
+    rank_llm_fallback_candidates,
     normalize_statement_direction,
     parse_triplet_response,
     parse_validation_response,
@@ -53,6 +58,7 @@ def test_parse_both_relations_required():
 
 def test_reject_bad_entities():
     assert is_bad_entity("P")
+    assert is_placeholder_entity("x,y,z.../x,y,z...")
     assert is_bad_entity("Q：今天有离散课")
     assert is_bad_entity("P(x)/P(x)")
     assert is_bad_entity("Big(x)/Big(x)")
@@ -63,6 +69,47 @@ def test_reject_bad_entities():
     assert not is_bad_entity("命题/proposition")
     assert not is_bad_entity("一元谓词/unary predicate")
     assert not is_bad_entity("x的父亲/father of x")
+
+
+def test_filter_delta_dedupes_semantic_key():
+    source = "零元谓词就是命题"
+    a = Triplet(
+        subject="零元谓词/zero-ary predicate",
+        object="命题/proposition",
+        abstract_relation="synonym_of",
+        concrete_relation="等同于",
+        statement_direction="subject_to_object",
+        context=source,
+    )
+    b = Triplet(
+        subject="零元谓词/zero-ary predicate",
+        object="命题/proposition",
+        abstract_relation="synonym_of",
+        concrete_relation="同义于",
+        statement_direction="subject_to_object",
+        context=source,
+        extract_source="lecture_delta",
+    )
+    kept = filter_delta_triplets([a, b], source, conceptual_focus=True)
+    assert len(kept) == 1
+
+
+def test_filter_delta_rejects_awkward_statement():
+    bad = Triplet(
+        subject="三段论/syllogism",
+        object="推理/inference",
+        abstract_relation="belong_to",
+        concrete_relation="是一种",
+        statement_direction="subject_to_object",
+        context="三段论是推理的一种推理",
+    )
+    assert is_awkward_delta_triplet(bad)
+    kept = filter_delta_triplets([bad], bad.context, conceptual_focus=True)
+    assert kept == []
+
+
+def test_reject_bad_entities_full():
+    assert is_placeholder_entity("p,q,r.../p,q,r...")
 
 
 def test_concrete_relation_effective_len_ignores_slot():
@@ -226,6 +273,99 @@ def test_build_flat_triplet_records():
     assert rows[0]["abstract_relation"] == "belong_to"
     assert rows[0]["statement_direction"] == "subject_to_object"
     assert rows[0]["natural_statement"] == "谓词逻辑属于离散数学"
+
+
+def test_build_flat_triplet_records_hybrid_attaches_clip():
+    cue = VideoSegment(
+        segment_id="c1",
+        course_id="test",
+        lecture_id="1",
+        source_video="v.mp4",
+        start_sec=1.0,
+        end_sec=2.0,
+        boundary_type="merged",
+        asr_text="hello",
+        clip_path="clip.mp4",
+    )
+    triplet = Triplet(
+        subject="谓词逻辑/predicate logic",
+        object="离散数学/discrete mathematics",
+        abstract_relation="belong_to",
+        concrete_relation="属于",
+        statement_direction="subject_to_object",
+        extract_source="textbook",
+    )
+    rows = build_flat_triplet_records(
+        cue,
+        [triplet],
+        course_id="test",
+        ppt_frame_path="frame.jpg",
+        ppt_page_index=2,
+        ground_textbook=False,
+    )
+    assert rows[0]["clip_path"] == "clip.mp4"
+    assert rows[0]["textbook_origin"] is True
+    assert rows[0]["grounding"] == "textbook_via_cue"
+    assert rows[0]["evidence_ppt_frame_path"] == "frame.jpg"
+
+
+def test_rank_llm_fallback_prefers_cue_relevant():
+    merged = [
+        Triplet(
+            subject="全称量词/universal quantifier",
+            object="量词/quantifier",
+            abstract_relation="belong_to",
+            concrete_relation="属于",
+            statement_direction="subject_to_object",
+        )
+    ]
+    rows = [
+        {
+            "subject": "量词的辖域/scope of quantifier",
+            "object": "量词/quantifier",
+            "abstract_relation": "depend_on",
+            "concrete_relation": "依赖",
+            "statement_direction": "subject_to_object",
+            "attribute_category": "关系属性",
+            "natural_statement": "量词的辖域依赖量词",
+        },
+        {
+            "subject": "无关概念/unrelated",
+            "object": "其他/other",
+            "abstract_relation": "related_with",
+            "concrete_relation": "相关",
+            "statement_direction": "subject_to_object",
+            "attribute_category": "关系属性",
+            "natural_statement": "无关概念与其他相关",
+        },
+    ]
+    ranked = rank_llm_fallback_candidates(
+        rows,
+        cue_text="今天讨论量词的辖域与约束变元",
+        merged=merged,
+        existing_keys=set(),
+    )
+    assert ranked
+    assert "辖域" in ranked[0]["subject"]
+
+
+def test_is_near_duplicate_of_merged():
+    merged = [
+        Triplet(
+            subject="自由变元/free variable",
+            object="变元/variable",
+            abstract_relation="belong_to",
+            concrete_relation="属于",
+            statement_direction="subject_to_object",
+        )
+    ]
+    row = {
+        "subject": "自由变元/free variable",
+        "object": "变元/variable",
+        "abstract_relation": "belong_to",
+        "natural_statement": "自由变元属于变元",
+    }
+    assert is_near_duplicate_of_merged(row, merged)
 
 
 def test_triplet_to_statement_subject_to_object():

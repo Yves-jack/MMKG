@@ -180,6 +180,134 @@ def _entity_has_formula_or_symbol(text: str) -> bool:
     )
 
 
+_OVERLY_SPECIFIC_ENTITY_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r"^公理\s*\d"),
+    re.compile(r"^定理\s*[\d\.一二三四五六七八九十]+"),
+    re.compile(r"^第[一二三四五六七八九十\d]+个?(命题|定理|公理|例题|步骤)"),
+    re.compile(r"^例题\s*\d"),
+    re.compile(r"^命题\s*\d"),
+    re.compile(r"^步骤\s*\d"),
+    re.compile(r"^公式\s*\d"),
+)
+
+_GENERIC_CONCEPT_HEADS = frozenset({
+    "公理",
+    "定理",
+    "命题",
+    "例题",
+    "公式",
+    "步骤",
+    "证明",
+})
+
+
+def is_placeholder_entity(entity: str) -> bool:
+    """符号占位/字母串不应作为知识实体（如 a,b,c...、p,q,r）。"""
+    primary, english = _entity_name_parts(entity)
+    for part in (primary, english):
+        if not part:
+            continue
+        if "..." in part or part.endswith("…"):
+            return True
+        compact = part.replace(" ", "")
+        if re.match(r"^[a-z](,[a-z])+\.{0,3}$", compact, re.I):
+            return True
+    if primary and not re.search(r"[\u4e00-\u9fff]", primary):
+        compact = primary.replace(" ", "")
+        if re.match(r"^[a-z,\.\s]+$", primary, re.I) and len(compact) <= 8:
+            return True
+    return False
+
+
+def is_awkward_delta_triplet(triplet: Triplet) -> bool:
+    """增量边自然语句重复实体或关系方向明显异常。"""
+    sub = entity_label(triplet.subject)
+    obj = entity_label(triplet.object)
+    texts = (
+        triplet.context,
+        triplet.description,
+        triplet_to_statement(triplet),
+    )
+    for text in texts:
+        if not text:
+            continue
+        for label in (sub, obj):
+            if len(label) >= 2 and text.count(label) >= 2:
+                return True
+    if triplet.abstract_relation == "part_of" and sub and obj:
+        if len(sub) > len(obj) and obj in sub:
+            return True
+    return False
+
+
+def is_redundant_delta_triplet(triplet: Triplet) -> bool:
+    """增量边冗余：同义自环、占位实体等。"""
+    if is_placeholder_entity(triplet.subject) or is_placeholder_entity(triplet.object):
+        return True
+    sub = entity_label(triplet.subject)
+    obj = entity_label(triplet.object)
+    if triplet.abstract_relation == "synonym_of" and sub == obj:
+        return True
+    return False
+
+
+def delta_semantic_key(triplet: Triplet) -> tuple[str, str, str]:
+    return (entity_label(triplet.subject), triplet.abstract_relation, entity_label(triplet.object))
+
+
+def filter_delta_triplets(
+    triplets: list[Triplet],
+    asr_text: str = "",
+    *,
+    conceptual_focus: bool = False,
+) -> list[Triplet]:
+    """增量三元组过滤 + 语义去重。"""
+    out: list[Triplet] = []
+    seen: set[tuple[str, str, str]] = set()
+    for t in triplets:
+        if is_redundant_delta_triplet(t) or is_awkward_delta_triplet(t):
+            continue
+        reason = validate_triplet(t, asr_text, conceptual_focus=conceptual_focus)
+        if reason:
+            continue
+        key = delta_semantic_key(t)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(t)
+    return out
+
+
+def is_overly_specific_entity(entity: str) -> bool:
+    """编号/序数/例题占位类实体，偏具体而非概念。"""
+    primary, _ = _entity_name_parts(entity)
+    if not primary:
+        return True
+    for pat in _OVERLY_SPECIFIC_ENTITY_PATTERNS:
+        if pat.search(primary):
+            return True
+    if re.match(r"^(公理|定理|命题|例题|公式|步骤)", primary) and re.search(r"\d", primary):
+        return True
+    if re.match(r"^第[一二三四五六七八九十\d]+", primary):
+        return True
+    return False
+
+
+def is_overly_specific_triplet(triplet: Triplet) -> bool:
+    """具体实例挂到泛化类名、或编号实体参与的关系。"""
+    if is_overly_specific_entity(triplet.subject) or is_overly_specific_entity(triplet.object):
+        return True
+    subj = entity_label(triplet.subject)
+    obj = entity_label(triplet.object)
+    if subj == obj:
+        return True
+    if re.search(r"\d", subj) and obj in _GENERIC_CONCEPT_HEADS:
+        return True
+    if re.search(r"\d", obj) and subj in _GENERIC_CONCEPT_HEADS:
+        return True
+    return False
+
+
 def is_bad_entity(entity: str) -> bool:
     """通用实体卫生：拒绝对象名过短、带标签符号、公式应用或数理符号串。"""
     primary, english = _entity_name_parts(entity)
@@ -234,10 +362,21 @@ def _normalize_abstract_relation(raw: str) -> str:
     return mapping.get(raw.strip(), key)
 
 
-def validate_triplet(triplet: Triplet, asr_text: str = "") -> str | None:
+def validate_triplet(
+    triplet: Triplet,
+    asr_text: str = "",
+    *,
+    conceptual_focus: bool = False,
+) -> str | None:
     """结构校验（字段完整、格式合法）；语义质量由 LLM 校验负责。"""
     if is_bad_entity(triplet.subject) or is_bad_entity(triplet.object):
         return "bad_entity"
+    if conceptual_focus and is_placeholder_entity(triplet.subject):
+        return "placeholder_entity"
+    if conceptual_focus and is_placeholder_entity(triplet.object):
+        return "placeholder_entity"
+    if conceptual_focus and is_overly_specific_triplet(triplet):
+        return "overly_specific"
     if triplet.subject.strip() == triplet.object.strip():
         return "self_loop"
     if not triplet.abstract_relation or not triplet.concrete_relation:
@@ -266,6 +405,7 @@ class Triplet:
     attribute_category: str = ""
     description: str = ""
     context: str = ""
+    extract_source: str = ""
 
     def __post_init__(self) -> None:
         if self.abstract_relation and self.abstract_relation not in VALID_ABSTRACT_RELATIONS:
@@ -301,7 +441,7 @@ class Triplet:
         return self.abstract_relation
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        data = {
             "subject": self.subject,
             "object": self.object,
             "abstract_relation": self.abstract_relation,
@@ -315,6 +455,9 @@ class Triplet:
             "description": self.description,
             "context": self.context,
         }
+        if self.extract_source:
+            data["extract_source"] = self.extract_source
+        return data
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Triplet | None:
@@ -360,6 +503,7 @@ class Triplet:
             attribute_category=attr_cat,
             description=str(data.get("description", "")).strip(),
             context=str(data.get("context", "")).strip(),
+            extract_source=str(data.get("extract_source", "")).strip(),
         )
 
     @property
@@ -472,11 +616,16 @@ def parse_triplet_response(raw: str) -> list[Triplet]:
     return triplets
 
 
-def filter_triplets(triplets: list[Triplet], asr_text: str = "") -> list[Triplet]:
+def filter_triplets(
+    triplets: list[Triplet],
+    asr_text: str = "",
+    *,
+    conceptual_focus: bool = False,
+) -> list[Triplet]:
     """解析后校验与过滤。"""
     out: list[Triplet] = []
     for t in triplets:
-        reason = validate_triplet(t, asr_text)
+        reason = validate_triplet(t, asr_text, conceptual_focus=conceptual_focus)
         if reason:
             logger.debug("Triplet rejected (%s): %s", reason, t.dedupe_key)
             continue
@@ -823,6 +972,7 @@ class TripletExtractor:
     base_url: str | None = None
     llm_model: str | None = None
     prompt_name: str = "teaching/subgraph_extract.txt"
+    hybrid_prompt_name: str = "teaching/subgraph_hybrid_extract.txt"
     temperature: float = 0.1
     max_triplets_per_cue: int = 12
     mock: bool = False
@@ -840,6 +990,8 @@ class TripletExtractor:
     max_reextract_attempts: int = 3
     fix_prompt: str = "teaching/triplet_fix.txt"
     reextract_prompt: str = "teaching/triplet_reextract.txt"
+    conceptual_focus: bool = False
+    max_hybrid_delta_per_cue: int = 6
 
     def _llm_extract_raw(
         self,
@@ -853,10 +1005,23 @@ class TripletExtractor:
         )
         return self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
 
-    def _parse_and_filter(self, raw: str, text: str) -> list[Triplet]:
-        triplets = filter_triplets(dedupe_triplets(parse_triplet_response(raw)), text)
-        if len(triplets) > self.max_triplets_per_cue:
-            triplets = triplets[: self.max_triplets_per_cue]
+    def _parse_and_filter(
+        self,
+        raw: str,
+        text: str,
+        *,
+        conceptual_focus: bool | None = None,
+        max_count: int | None = None,
+    ) -> list[Triplet]:
+        cf = self.conceptual_focus if conceptual_focus is None else conceptual_focus
+        cap = max_count if max_count is not None else self.max_triplets_per_cue
+        triplets = filter_triplets(
+            dedupe_triplets(parse_triplet_response(raw)),
+            text,
+            conceptual_focus=cf,
+        )
+        if len(triplets) > cap:
+            triplets = triplets[:cap]
         return triplets
 
     def _fix_triplet(self, item: ValidatedTriplet, text: str) -> Triplet | None:
@@ -1095,6 +1260,172 @@ class TripletExtractor:
                 logger.info("Triplet retry: %s", validation.retry)
         return TripletExtractResult(triplets=triplets, validation=validation)
 
+    def extract_hybrid(
+        self,
+        asr_text: str,
+        course_context: str,
+        *,
+        textbook_subgraph_json: str,
+        textbook_triplets: list[Triplet],
+        dedupe_against_textbook: bool = True,
+    ) -> TripletExtractResult:
+        """教材子图约束下的增量抽取（仅补课堂独有知识）。"""
+        text = asr_text.strip()
+        if not text:
+            return TripletExtractResult(triplets=[], error="empty_text")
+
+        textbook_keys = {t.dedupe_key for t in textbook_triplets} if dedupe_against_textbook else set()
+
+        if self.mock:
+            delta = [
+                Triplet(
+                    subject="课堂例题/classroom example",
+                    object="教材概念/textbook concept",
+                    abstract_relation="related_with",
+                    concrete_relation="举例说明",
+                    statement_direction="subject_to_object",
+                    attribute_category="关系属性",
+                    description="课堂对教材概念的例题说明。",
+                    context=text[:80],
+                    extract_source="lecture_delta",
+                )
+            ]
+            if dedupe_against_textbook:
+                delta = [t for t in delta if t.dedupe_key not in textbook_keys]
+            return TripletExtractResult(triplets=delta)
+
+        prompt = format_prompt(
+            self.hybrid_prompt_name,
+            course_context=course_context or "（无）",
+            textbook_subgraph_json=textbook_subgraph_json or "（无）",
+            asr_text=text,
+        )
+        try:
+            raw = self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
+        except Exception as exc:  # noqa: BLE001
+            logger.exception("Hybrid triplet LLM call failed")
+            return TripletExtractResult(triplets=[], error=str(exc))
+
+        triplets = self._parse_and_filter(
+            raw,
+            text,
+            conceptual_focus=self.conceptual_focus,
+            max_count=self.max_hybrid_delta_per_cue,
+        )
+        for triplet in triplets:
+            triplet.extract_source = "lecture_delta"
+
+        if dedupe_against_textbook:
+            triplets = [t for t in triplets if t.dedupe_key not in textbook_keys]
+
+        validation: TripletValidationResult | None = None
+        if self.validate_enabled and triplets:
+            validation = self.validator.validate_batch(triplets, text)
+            if self.retry_enabled and (validation.revise or validation.discarded):
+                validation = self._run_retry(text, course_context, validation)
+            triplets = validation.passed
+            for triplet in triplets:
+                triplet.extract_source = "lecture_delta"
+            if dedupe_against_textbook:
+                triplets = [t for t in triplets if t.dedupe_key not in textbook_keys]
+
+        if self.conceptual_focus:
+            triplets = [t for t in triplets if not is_overly_specific_triplet(t)]
+        triplets = filter_delta_triplets(
+            triplets,
+            text,
+            conceptual_focus=self.conceptual_focus,
+        )
+
+        return TripletExtractResult(triplets=triplets, validation=validation)
+
+
+def loose_triplet_key(subject: str, relation: str, object_: str) -> tuple[str, tuple[str, str]]:
+    """无序实体对 + 关系，用于语义近邻去重。"""
+    return (
+        relation,
+        tuple(sorted([entity_label(subject), entity_label(object_)])),
+    )
+
+
+def _statement_tokens(text: str) -> set[str]:
+    from teachkg.textbook_kg.alias import clean_text
+
+    stop = {"", "的", "是", "在", "与", "和", "为", "有", "对", "于"}
+    return {t for t in clean_text(text).split() if t not in stop and len(t) >= 2}
+
+
+def statement_jaccard(a: str, b: str) -> float:
+    sa, sb = _statement_tokens(a), _statement_tokens(b)
+    if not sa or not sb:
+        return 0.0
+    return len(sa & sb) / len(sa | sb)
+
+
+def is_near_duplicate_of_merged(
+    row: dict[str, Any],
+    merged: list[Triplet],
+    *,
+    jaccard_threshold: float = 0.72,
+) -> bool:
+    """LLM fallback 与已有 hybrid 边语义重复则跳过。"""
+    rel = str(row.get("abstract_relation") or row.get("relation", "").split("|")[0])
+    loose = loose_triplet_key(row.get("subject", ""), rel, row.get("object", ""))
+    stmt = str(row.get("natural_statement") or row.get("description") or "")
+    for t in merged:
+        if loose == loose_triplet_key(t.subject, t.abstract_relation, t.object):
+            return True
+        if rel == t.abstract_relation and statement_jaccard(stmt, triplet_to_statement(t)) >= jaccard_threshold:
+            return True
+    return False
+
+
+def rank_llm_fallback_candidates(
+    rows: list[dict[str, Any]],
+    *,
+    cue_text: str,
+    merged: list[Triplet],
+    existing_keys: set[tuple[str, str, str, str]],
+    max_candidates: int = 50,
+) -> list[dict[str, Any]]:
+    """按 cue 相关度排序 LLM 基线候选，优先补口语化但语义不重复的概念边。"""
+    from teachkg.textbook_kg.alias import clean_text
+
+    cue_clean = clean_text(cue_text)
+
+    def score_row(row: dict[str, Any]) -> float:
+        triplet = Triplet.from_dict(row)
+        if not triplet or triplet.dedupe_key in existing_keys:
+            return -1.0
+        if is_near_duplicate_of_merged(row, merged):
+            return -1.0
+        if is_overly_specific_triplet(triplet):
+            return -1.0
+        if is_placeholder_entity(triplet.subject) or is_placeholder_entity(triplet.object):
+            return -1.0
+        reason = validate_triplet(triplet, cue_text, conceptual_focus=True)
+        if reason:
+            return -1.0
+        score = 0.0
+        for part in (triplet.subject, triplet.object):
+            label = entity_label(part)
+            if label and label in cue_clean:
+                score += 3.0
+        stmt = str(row.get("natural_statement") or row.get("description") or "")
+        for tok in _statement_tokens(stmt):
+            if tok in cue_clean:
+                score += 0.5
+        if merged:
+            max_j = max(statement_jaccard(stmt, triplet_to_statement(t)) for t in merged)
+            if max_j >= 0.85:
+                return -1.0
+            if max_j >= 0.55:
+                score += 1.0
+        return score
+
+    ranked = sorted(rows, key=score_row, reverse=True)
+    return [r for r in ranked if score_row(r) >= 0][:max_candidates]
+
 
 def build_flat_triplet_records(
     cue: VideoSegment,
@@ -1103,6 +1434,9 @@ def build_flat_triplet_records(
     course_id: str,
     ppt_frame_path: str = "",
     ppt_page_index: int | None = None,
+    extract_source: str = "",
+    extract_mode: str = "",
+    ground_textbook: bool = True,
 ) -> list[dict[str, Any]]:
     """将 cue 级三元组展开为带溯源的 flat 记录。"""
     records: list[dict[str, Any]] = []
@@ -1114,12 +1448,29 @@ def build_flat_triplet_records(
             "lecture_id": cue.lecture_id,
             "start_sec": round(cue.start_sec, 3),
             "end_sec": round(cue.end_sec, 3),
-            "clip_path": cue.clip_path,
             "source_text": cue.asr_text[:500],
         }
+        source = t.extract_source or extract_source
+        if cue.clip_path:
+            rec["clip_path"] = cue.clip_path
+        if source == "textbook" and not ground_textbook:
+            rec["textbook_origin"] = True
+            rec["grounding"] = "textbook_via_cue"
+        elif source == "textbook":
+            rec["grounding"] = "textbook"
         if ppt_frame_path:
-            rec["ppt_frame_path"] = ppt_frame_path
+            if source == "textbook":
+                rec["evidence_ppt_frame_path"] = ppt_frame_path
+            else:
+                rec["ppt_frame_path"] = ppt_frame_path
         if ppt_page_index is not None:
-            rec["ppt_page_index"] = ppt_page_index
+            if source == "textbook":
+                rec["evidence_ppt_page_index"] = ppt_page_index
+            else:
+                rec["ppt_page_index"] = ppt_page_index
+        if source:
+            rec["extract_source"] = source
+        if extract_mode:
+            rec["extract_mode"] = extract_mode
         records.append(rec)
     return records

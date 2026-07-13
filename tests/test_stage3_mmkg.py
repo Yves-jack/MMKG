@@ -33,6 +33,7 @@ def _sample_triplets():
             "subject": "原子命题/atomic proposition",
             "object": "命题逻辑/propositional logic",
             "context": "最小单元是原子命题",
+            "source_text": "命题逻辑的最小单元是原子命题",
             "cue_id": "cue_a",
             "lecture_id": "1",
             "start_sec": 1.0,
@@ -57,6 +58,8 @@ def test_attach_multimodal_evidence():
     assert ent["modal_evidence"]["images"][0]["ppt_page_index"] == 0
     edge = result.edges[0]
     assert edge["grounding"]["clip_path"].endswith("cue_a.mp4")
+    assert edge["grounding"]["source_text"]
+    assert edge["grounding"]["context"]
     assert any(l["relation"] == "hasVideo" for l in ent["modal_links"])
 
 
@@ -72,6 +75,9 @@ def test_build_index_records_and_search():
     }
     records = build_index_records(mmkg)
     assert len(records) >= 2
+    edge_rec = next(r for r in records if r["type"] == "edge")
+    assert edge_rec["payload"].get("provenance")
+    assert "原子命题" in edge_rec["text"]
     index = MMKGIndex()
     index.build(mmkg)
     hits = index.search("propositional logic", top_k=3)

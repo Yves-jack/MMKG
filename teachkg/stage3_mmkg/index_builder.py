@@ -9,8 +9,9 @@ from typing import Any
 
 import numpy as np
 
-from teachkg.stage3_mmkg.text_embedder import TextEmbedder
+from teachkg.provenance import compact_payload, text_snippets
 from teachkg.rag.bm25 import BM25Index
+from teachkg.stage3_mmkg.text_embedder import TextEmbedder
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,12 @@ def _entity_doc(ent: dict[str, Any]) -> str:
         parts.append(str(zh))
     if en:
         parts.append(str(en))
+    modal = ent.get("modal_evidence") or {}
+    for t in modal.get("texts") or []:
+        if t.get("context"):
+            parts.append(str(t["context"]))
+        if t.get("source_text"):
+            parts.append(str(t["source_text"])[:400])
     return " ".join(p for p in parts if p)
 
 
@@ -36,9 +43,12 @@ def _edge_doc(edge: dict[str, Any]) -> str:
         edge.get("abstract_relation", ""),
         edge.get("concrete_relation", ""),
     ]
-    for prov in edge.get("provenance") or []:
-        if prov.get("context"):
-            parts.append(str(prov["context"]))
+    parts.extend(text_snippets(edge.get("provenance") or [], max_items=3))
+    grounding = edge.get("grounding") or {}
+    if grounding.get("context"):
+        parts.append(str(grounding["context"]))
+    if grounding.get("source_text"):
+        parts.append(str(grounding["source_text"]))
     return " ".join(p for p in parts if p)
 
 
@@ -78,7 +88,9 @@ def build_index_records(mmkg: dict[str, Any]) -> list[dict[str, Any]]:
                     "object": edge.get("object"),
                     "abstract_relation": edge.get("abstract_relation"),
                     "natural_statement": edge.get("natural_statement"),
+                    "description": edge.get("description", ""),
                     "grounding": edge.get("grounding"),
+                    "provenance": compact_payload(edge.get("provenance") or []),
                 },
             }
         )
