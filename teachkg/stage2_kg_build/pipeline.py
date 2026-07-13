@@ -67,9 +67,22 @@ class Stage2KGPipeline:
             return triplets
         return [t for t in triplets if str(t.get("lecture_id", "")) == str(lecture_id)]
 
-    def run(self, course_id: str, *, lecture_id: str | None = None, force: bool = False) -> Path:
-        input_path = self.kg_dir / course_id / self.input_filename
+    def run(
+        self,
+        course_id: str,
+        *,
+        lecture_id: str | None = None,
+        force: bool = False,
+        input_filename: str | None = None,
+        output_filename: str | None = None,
+    ) -> Path:
+        input_name = input_filename or self.input_filename
+        output_name = output_filename or self.output_filename
+        input_path = self.kg_dir / course_id / input_name
         kg_path, merge_path, report_path = self._output_paths(course_id, lecture_id)
+        if output_name != self.output_filename:
+            base = kg_path.parent
+            kg_path = base / output_name
 
         if not input_path.is_file():
             raise FileNotFoundError(f"Stage 1 triplets not found: {input_path}")
