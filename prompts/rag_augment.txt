@@ -1,0 +1,8 @@
+Hint: You are provided with a set of concepts and their descriptions in the form of key-value pairs.
+These concepts may or may not be directly related to the given video.
+When generating your answer, identify any concepts that appear to be relevant to the video's content,
+and incorporate their corresponding descriptions to enrich and elaborate your response.
+Below are concepts and their descriptions (concept: description).
+{concept_descriptions}
+
+Question: {question}

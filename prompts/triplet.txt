@@ -1,0 +1,21 @@
+You are an expert in extracting structured knowledge from text.
+Given a video caption, extract all possible subject-relationship-object triples in the form (h, r, t).
+Instruction
+- Extract multiple (h, r, t) triples if applicable.
+- Ensure each triple is meaningful and correctly represents the relationships in the text.
+- Format the output as a list of triples.
+Examples
+Caption: "A man is kicking a soccer ball."
+Output: (man, kicks, soccer ball)
+Caption: "A man is kicking a soccer ball while a dog is running nearby."
+Output:
+(man, kicks, soccer ball)
+(dog, runs, nearby)
+Caption: "A chef is cutting vegetables on a wooden board, and a waiter is bringing a dish."
+Output:
+(chef, cuts, vegetables)
+(chef, works_on, wooden board)
+(waiter, brings, dish)
+Caption: "{video_caption}"
+Output Format: (h, r, t), no explanation.
+Output:

@@ -1,0 +1,33 @@
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# 大体量运行产物（不入库）
+data/raw/
+data/segments/
+data/index/
+data/logs/
+data/eval/
+data/export/
+data/viz/
+data/processed/
+
+# 课程运行时 KG/MMKG（保留 llm_only 基线目录）
+data/kg/*
+!data/kg/*/
+data/kg/*/*
+!data/kg/*/llm_only/
+!data/kg/*/llm_only/**
+
+# 保留教材母图
+!data/textbook/
+!data/textbook/**

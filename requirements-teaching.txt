@@ -1,0 +1,31 @@
+# Stage 0 高精度 ASR 三阶段流水线依赖
+
+opencv-python>=4.8.0
+scikit-image>=0.22.0
+numpy>=1.24.0
+pysrt>=1.1.2
+openai>=1.0.0
+python-dotenv>=1.0.0
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# A: Silero VAD（pip install silero-vad）
+silero-vad>=5.0.0
+# B/C: DashScope qwen3-asr-flash + qwen-vl-ocr（teachkg/models/ 直接调用）
+
+# Stage 1: 多模态对齐
+laion-clap>=1.1.4
+transformers>=4.40.0
+pillow>=10.0.0
+# Stage 5 检索（推荐 sentence-transformers 多语模型）
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.4
+pytest>=7.0.0
+
+# 可选：Web 演示
+# gradio>=4.0.0
+
+# GPU（RTX 5070/5090 等 sm_120）：请单独安装 cu128 版 torch，勿用默认 CPU/cu124 包
+# pip install torch torchaudio torchvision --index-url https://download.pytorch.org/whl/cu128
+
+# 系统依赖：ffmpeg（必须在 PATH 中）

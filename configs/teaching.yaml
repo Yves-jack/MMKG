@@ -1,0 +1,222 @@
+# 教学长视频 VAT-KG 改造配置
+
+project:
+  name: TeachKG
+  workspace_dir: data/raw
+  segments_dir: data/segments
+  output_dir: data/processed
+  kg_dir: data/kg
+  index_dir: data/index
+
+# 全局 LLM（DashScope OpenAI 兼容；密钥见 .env 中 DASHSCOPE_API_KEY）
+llm:
+  api_key: null                  # null → DASHSCOPE_API_KEY
+  base_url: null                 # null → DASHSCOPE_BASE_URL / LLM_BASE_URL
+  model: deepseek-v4-flash       # deepseek-v4-flash / deepseek-v3 / qwen-plus
+  max_retry: 3
+  retry_pause_sec: 2
+
+# Stage 0: 视频语义切片（课堂录屏 + PPT 录屏必须成对）
+stage0:
+  ppt_detector:
+    sample_interval_sec: 1        # SSIM 采样间隔（秒），越小越不易漏检
+    ssim_threshold: 0.15          # 降低阈值，提高翻页灵敏度
+    min_gap_sec: 2.0              # 相邻采样重复触发去抖
+    min_page_sec: 5.0             # 短于此间隔的翻页点视为动画步骤并合并
+    resize: [320, 180]
+    title_cluster_enabled: true
+    title_similarity_threshold: 0.82   # 步骤2：标题相似 → 归入假翻页候选组
+    upper_half_similarity_threshold: 0.78  # 步骤3：上半区域相似 → 确认合并
+    title_crop: [0.0, 0.0, 0.65, 0.14]
+    upper_half_crop: [0.0, 0.0, 1.0, 0.5]  # 上半区
+    use_existing_seg: false       # false 时强制重新检测 PPT 翻页
+
+  # 三阶段高精度 ASR 流水线
+  asr_pipeline:
+    use_existing_artifacts: true   # 复用中间结果，便于断点续跑
+
+    # A: 预处理 + VAD（课堂长视频建议合并短段，减少 ASR 调用次数）
+    preprocess:
+      sample_rate: 16000
+      denoise: true
+      loudnorm: true
+      vad_threshold: 0.55       # 略提高，过滤低置信度语音
+      min_speech_sec: 0.8       # 短于 0.8s 的片段丢弃
+      min_silence_sec: 0.8      # 静音 <0.8s 不切开，合并相邻语音
+      max_segment_sec: 120.0    # 单段最长，超过再切（API 10MB 限制）
+
+    # B: Qwen3-ASR-Flash 主转写（DashScope API；密钥见项目根 .env）
+    primary_asr:
+      api_key: null                  # 或 .env 中 DASHSCOPE_API_KEY
+      base_url: null
+      model: qwen3-asr-flash
+      max_local_file_mb: 10
+      chunk_duration_sec: 120
+      language: zh
+      enable_itn: true
+      context: ""                    # 全局术语偏置；课程大纲见 workspace/syllabus/
+
+    # C: PPT OCR + LLM 校对
+    correction:
+      enabled: true
+      api_key: null                  # LLM 校对走全局 llm 配置；OCR 仍用 DashScope
+      base_url: null
+      llm_model: null                # null 时使用 llm.model（deepseek-v4-flash）
+      ocr_model: qwen-vl-ocr
+      page_overlap_ratio: 0.333      # cue 在某页重叠超过页时长该比例则纳入 OCR
+      group_consecutive_same_pages: true  # 连续且 PPT 页归属相同的 raw cue 合并一次 LLM 调用
+      min_page_duration_sec: 1.0
+      ocr_frame_margin_before_flip_sec: 3.0  # OCR 截帧：翻页前 N 秒（内容通常已展示完整）
+      ocr_frame_settle_after_flip_sec: 2.0   # 翻页后动画 settle，避免截到未出全的帧
+      ocr_frame_short_page_ratio: 0.85      # 页太短时按页时长比例取靠后位置
+
+  slicer:
+    min_duration_sec: 3
+    min_text_chars: 2
+    extract_clips: true
+    clip_subdir: cues               # 按 PPT 语义段切 clip 的目录
+    cleanup_orphan_clips: true       # 重跑后删除 cues.jsonl 未引用的旧 clip
+
+  time_filter:
+    enabled: false
+    min_sec: 0
+    max_sec: null
+
+# Stage 2 Recaption 已省略：直接使用 Stage 0 corrected_cues 文本
+
+# Stage 2: 实体合并 → 课程/单讲知识图谱
+stage2:
+  use_existing_artifacts: true
+  input_filename: triplets.jsonl
+  output_filename: kg.json
+  merge_map_filename: entity_merge_map.json
+  report_filename: stage2_report.json
+  entity_merge:
+    drop_related_with_when_specific: true   # 同实体对有更具体关系时丢弃 related_with
+    min_subgraph_size: 0                  # 0=不过滤孤立小连通分量
+    embedding_merge:
+      enabled: false                      # 向量相似度合并不稳定，仅保留字符串规则合并
+      similarity_threshold: 0.93
+      max_statements: 2
+      block_structural_pairs: true
+      embedder_model: shibing624/text2vec-base-multilingual
+
+# Stage 3–5: 多模态知识图谱（SciMKG 挂接 + VAT-KG 校验 + 描述 + FAISS 索引）
+stage3:
+  use_existing_artifacts: true
+  input_kg: kg.json
+  input_triplets: triplets.jsonl
+  output_filename: mmkg.json
+  report_filename: stage3_mmkg_report.json
+
+  evidence_attach:
+    enabled: true
+
+  alignment:
+    enabled: true
+    clap_min_score: 0.0          # 0=只打分不过滤；VAT-KG 参考 0.2
+    clip_min_score: 0.0
+    skip_if_encoders_unavailable: true
+    video_grounding_enabled: true    # 对 clip 视频采样 CLIP 打分
+    video_max_frames: 4
+
+  entity_describe:
+    enabled: true
+
+  index:
+    enabled: true
+    subdir: mmkg_index
+    embedder_model: shibing624/text2vec-base-multilingual
+
+# Stage 4: MMKG RAG 问答
+stage4:
+  rag:
+    top_k: 5
+    min_score: 0.15
+    index_subdir: mmkg_index
+    embedder_model: shibing624/text2vec-base-multilingual
+    check_enabled: true
+    hybrid_enabled: true           # 向量 + BM25 混合检索
+    vector_weight: 0.65
+    bm25_weight: 0.35
+    graph_hops: 1                  # 图谱邻域扩展跳数（0=关闭）
+    graph_max: 5
+    history_max_turns: 4           # 对话记忆轮数（生成阶段）
+    multi_turn:
+      enabled: true                 # 多轮对话
+      retrieval_rewrite: true      # 每轮分析后决定是否拼接历史 query
+      max_context_turns: 2         # 检索改写参考最近 N 轮
+      score_threshold: 2.0          # 多轮检索触发分数阈值
+      show_analysis: true          # 交互模式打印检索决策
+    infer_lecture: true            # 未指定讲次时从问题推断
+    reject_on_unsupported: false   # true 时校验 unsupported 则替换回答
+    append_citations: true         # 回答末尾附加视频时间戳引用
+    clap_downweight_threshold: 0.12  # CLAP 低于此值的命中降权
+    clap_downweight_factor: 0.5
+
+# Stage 1: cue 后处理 + 三元组抽取（原 Stage 3 合并于此）
+stage1:
+  use_existing_artifacts: true
+  input_filename: cues.jsonl
+  output_filename: filtered_cues.jsonl
+  rejected_filename: rejected_cues.jsonl
+  triplets_filename: triplets.jsonl          # 活跃三元组（后续教材融合/混合可写此文件）
+  llm_only:
+    enabled: true
+    triplets_filename: llm_only/triplets.jsonl   # 纯 LLM 基线，教材融合不得覆盖
+    sync_active_triplets: true                   # true 时 Stage1 同步写入 triplets.jsonl
+
+  # 教材知识图谱（AutoEduKG 导出，供后续子图检索 / 混合抽取）
+  textbook_kg:
+    enabled: false                               # 混合流水线启用后改为 true
+    path: data/textbook/CS2501-离散数学（数理逻辑与集合论）
+    entity_file: entity_final.json
+    relations_file: relations_final.json
+    importance_file: entity_sorted.json
+
+  rules:
+    require_clip: true
+    min_text_chars: 5
+
+  ppt_frame:
+    enabled: true
+    source: stage0_ocr           # 复用 Stage 0 的 asr_work/{lecture}/ocr/ppt_page_{idx}.jpg
+    min_page_duration_sec: 1.0
+
+  # 三元组抽取前文本预处理（参考 AutoEduKG markdown_process）
+  text_preprocess:
+    enabled: true
+    rules:
+      remove_markdown_noise: true
+      remove_classroom_admin: true
+      remove_example_labels: true
+      dedupe_paragraphs: true
+    llm:
+      enabled: false               # true 时调用 LLM 二次精炼（成本更高）
+      prompt: teaching/cue_text_preprocess.txt
+      llm_model: null
+      temperature: 0.1
+
+  triplet_extract:
+    enabled: true
+    prompt: teaching/subgraph_extract.txt
+    api_key: null                  # null 时使用全局 llm 配置
+    base_url: null
+    llm_model: null                # null → deepseek-v4-flash
+    temperature: 0.1
+    max_triplets_per_cue: 12
+    validate:
+      enabled: true
+      prompt: teaching/triplet_validate.txt   # 首轮：整 cue 批量校验
+      retry_prompt: null                      # 补救后单条校验；null 则与 prompt 相同
+      llm_model: null
+      temperature: 0.0
+      retry:
+        enabled: true
+        fix_enabled: true
+        reextract_enabled: true
+        fix_fallback_reextract: true   # fix 失败后对该条再尝试单条 re_extract
+        max_fix_attempts: 3
+        max_reextract_attempts: 3
+        fix_prompt: teaching/triplet_fix.txt
+        reextract_prompt: teaching/triplet_reextract.txt

@@ -1,0 +1,34 @@
+# VAT-KG reproduction dependencies
+# Core
+numpy>=1.24.0
+pyyaml>=6.0
+tqdm>=4.66.0
+pandas>=2.0.0
+
+# Deep learning & encoders
+torch>=2.0.0
+torchaudio>=2.0.0
+torchvision>=0.15.0
+transformers>=4.40.0
+accelerate>=0.27.0
+
+# Multimodal encoders (paper: CLAP Wu et al. 2023, ViCLIP Wang et al.)
+laion-clap>=1.1.4
+# ViCLIP weights: OpenGVLab/ViCLIP (loaded via custom wrapper)
+
+# Retrieval
+faiss-cpu>=1.7.4
+
+# Video / audio I/O
+opencv-python>=4.8.0
+av>=12.0.0
+librosa>=0.10.0
+soundfile>=0.12.0
+decord>=0.6.0
+
+# Knowledge base crawling (Stage 4)
+wikipedia>=1.4.0
+requests>=2.31.0
+
+# Evaluation (optional)
+# openai>=1.0.0  # for commercial MLLM baselines

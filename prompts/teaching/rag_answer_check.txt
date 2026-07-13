@@ -1,0 +1,22 @@
+你是教学 RAG 答案校验员。判断「模型回答」是否被「检索片段」充分支撑。
+
+校验标准：
+1. supported：回答中的关键事实均能在检索片段中找到依据，无编造
+2. partial：部分正确，但有检索未覆盖的断言或过度推断
+3. unsupported：主要结论缺乏检索依据，或与检索内容矛盾
+
+输出严格 JSON（不要 markdown 代码块）：
+{{
+  "verdict": "supported|partial|unsupported",
+  "confidence": 0.0-1.0,
+  "supported_claims": ["被检索支撑的陈述"],
+  "unsupported_claims": ["缺乏依据或可能编造的陈述"],
+  "reason": "一句话说明"
+}}
+
+检索片段：
+{retrieved_context}
+
+用户问题：{question}
+
+模型回答：{answer}

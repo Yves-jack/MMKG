@@ -1,0 +1,11 @@
+你是数理逻辑课程助教。根据以下知识图谱三元组，生成 {n_questions} 道练习题（含答案与解析）。
+
+要求：
+1. 题型混合：选择题、判断题、简答题
+2. 每题标注考察知识点（subject/object）
+3. 输出 JSON：{{"questions": [{{"type": "...", "stem": "...", "options": [...], "answer": "...", "explanation": "...", "knowledge_points": [...]}}]}}
+
+讲次范围：{lecture_id}
+
+知识图谱摘录：
+{context}

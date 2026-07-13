@@ -1,0 +1,82 @@
+# VAT-KG default configuration (paper: arXiv:2506.21556)
+
+project:
+  name: VAT-KG
+  output_dir: data/processed
+  kg_dir: data/kg
+  index_dir: data/index
+
+# Source datasets (place raw data under data/raw/<dataset>/)
+datasets:
+  - internvid_flt
+  - audiocaps
+  - avqa
+  - valor_32k
+
+# Stage 1: Multimodal Alignment Filtering
+stage1:
+  voiceover_filter:
+    enabled: true
+    top_k: 5
+    # Filter if both speech and music/sound-effect labels appear in top-k
+    speech_labels: ["Speech", "Male speech, man speaking", "Female speech, woman speaking", "Conversation"]
+    music_labels: ["Music", "Musical instrument", "Background music"]
+  audio_text_filter:
+    model: laion/clap-htsat-fused
+    min_cosine_similarity: 0.2  # paper C.1.1
+  video_text_filter:
+    model: OpenGVLab/ViCLIP
+    bottom_percentile: 0.10  # remove bottom 10%
+  audio_tagging:
+    model: MIT/ast-finetuned-audioset-10-10-0.4593  # Schmid et al. 2023 style
+  center_frame: true
+
+# Stage 2: Knowledge-Intensive Recaptioning
+stage2:
+  llm:
+    model: deepseek-ai/DeepSeek-R1-Distill-Llama-70B
+    max_new_tokens: 512
+    temperature: 0.2
+  require_youtube_metadata: true
+
+# Stage 3: Multimodal Triplet Grounding
+stage3:
+  llm:
+    model: deepseek-ai/DeepSeek-R1-Distill-Llama-70B
+    max_new_tokens: 256
+    temperature: 0.1
+  viclip_model: OpenGVLab/ViCLIP
+  selection: max_inner_product  # highest ViCLIP(text_triplet, video)
+
+# Stage 4: Cross-Modal Description Alignment
+stage4:
+  max_descriptions_per_concept: 5
+  knowledge_bases:
+    - wikipedia
+    - wiktionary
+    - llm
+  llm_kb:
+    model: deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+    max_new_tokens: 128
+  attention_weighted_video: true  # Chefer et al. 2021 + ViCLIP
+
+# Multimodal RAG Framework
+rag:
+  top_k: 5
+  l2_distance_threshold: 1.2  # configurable; not specified in paper
+  checker_cosine_threshold: 0.25  # configurable; not specified in paper
+  clap_model: laion/clap-htsat-fused
+  viclip_model: OpenGVLab/ViCLIP
+  avqa_fusion: concat  # concatenate audio + video embeddings
+  faiss:
+    index_type: IndexFlatL2
+    normalize: true
+
+# Evaluation benchmarks (place under data/qa/)
+evaluation:
+  benchmarks:
+  - audiocaps_qa
+  - vcgpt
+  - avqa
+  - valor
+  model_as_judge: true

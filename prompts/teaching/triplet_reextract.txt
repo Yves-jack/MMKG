@@ -1,0 +1,39 @@
+你是知识图谱三元组抽取专家。下方「失败三元组」质量不合格，请**放弃该条**，仅从原文**重新抽取 1 条**替代三元组。
+
+## 要求
+- 只输出 **1 条**（或无法抽取时输出空数组）
+- 不得编造原文没有的内容；context 必须是原文摘录
+- 实体格式：中文全称/英文全称；不要把公式符号放进实体名
+- 可更换 subject/object/关系，不必保留失败条目的实体
+- 关系类型：belong_to / part_of / depend_on / synonym_of / property_of / related_with
+
+## 输出格式（只输出 JSON）
+{{
+  "triples": [
+    {{
+      "subject": "规范实体A",
+      "object": "规范实体B",
+      "abstract_relation": "belong_to|part_of|depend_on|synonym_of|property_of|related_with",
+      "concrete_relation": "凝练动词或短语",
+      "statement_direction": "subject_to_object|object_to_subject",
+      "attribute_category": "内禀属性|关系属性",
+      "description": "一句说明",
+      "context": "原文摘录"
+    }}
+  ]
+}}
+
+---
+
+所属课程：{course_context}
+
+相关文本片段：
+{asr_text}
+
+失败三元组（请丢弃并替换，JSON）：
+{triplet_json}
+
+失败原因：{reason}
+{hint_line}
+
+输出：
