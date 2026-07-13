@@ -8,6 +8,7 @@ on:
       - "tests/**"
       - "configs/teaching.yaml"
       - "requirements-teaching.txt"
+      - "pytest.ini"
   pull_request:
     paths:
       - "teachkg/**"
@@ -15,6 +16,7 @@ on:
       - "tests/**"
       - "configs/teaching.yaml"
       - "requirements-teaching.txt"
+      - "pytest.ini"
 
 jobs:
   pytest:
@@ -31,4 +33,4 @@ jobs:
           pip install pytest
       - name: Run teaching smoke tests
         run: |
-          pytest tests/test_mmkg_rag.py tests/test_rag_checker_viz.py tests/test_hybrid_rag.py -q
+          python -m pytest tests/test_mmkg_rag.py tests/test_rag_checker_viz.py tests/test_hybrid_rag.py -q
