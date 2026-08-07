@@ -217,7 +217,7 @@ def check_answer(
         }
 
     prompt = format_prompt(
-        "teaching/rag_answer_check.txt",
+        "rag/rag_answer_check.txt",
         question=question,
         answer=answer,
         retrieved_context=retrieved_context,

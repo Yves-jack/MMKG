@@ -1,0 +1,154 @@
+{
+  "lecture_id": "25",
+  "root": {
+    "id": "__chapter__/实数集合与集合的基数",
+    "zh": "实数集合与集合的基数",
+    "importance": 0.410085,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "定理/theorem",
+        "zh": "定理",
+        "importance": 0.390557,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "证明/proof",
+            "zh": "证明",
+            "importance": 0.021061,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "公式/formula",
+                "zh": "公式",
+                "importance": 0.024351,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "假设/Hypothesis",
+                "zh": "假设",
+                "importance": 0.022464,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "结论/conclusion",
+                "zh": "结论",
+                "importance": 0.000267,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.383695,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "分离规则/rule of detachment",
+            "zh": "分离规则",
+            "importance": 0.074501,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "公理/axiom",
+        "zh": "公理",
+        "importance": 0.307545,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.194402,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "传递/transitive",
+            "zh": "传递",
+            "importance": 0.038615,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "一阶理论/First-order Theory",
+        "zh": "一阶理论",
+        "importance": 0.173932,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "初始符号/initial symbols",
+        "zh": "初始符号",
+        "importance": 0.16234,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "圆括号/parentheses",
+            "zh": "圆括号",
+            "importance": 0.037296,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题逻辑/propositional logic",
+        "zh": "命题逻辑",
+        "importance": 0.129432,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "析取/disjunction",
+        "zh": "析取",
+        "importance": 0.12891,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 16,
+  "max_depth": 4,
+  "orphan_count": 13,
+  "meta": {
+    "chapter": "第12章 实数集合与集合的基数",
+    "root_id": "__chapter__/实数集合与集合的基数",
+    "root_zh": "实数集合与集合的基数",
+    "virtual_root": true,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 28,
+    "n_edges_raw": 35,
+    "n_hierarchy_candidates": 41,
+    "attached_orphans": 2,
+    "alias_merged": 0
+  }
+}

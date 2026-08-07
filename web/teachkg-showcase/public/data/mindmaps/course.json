@@ -1,0 +1,849 @@
+{
+  "lecture_id": "course",
+  "root": {
+    "id": "__course__/数理逻辑与集合论",
+    "zh": "数理逻辑与集合论",
+    "importance": 0.545188,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/命题逻辑的基本概念",
+        "zh": "命题逻辑的基本概念",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "命题逻辑/propositional logic",
+            "zh": "命题逻辑",
+            "importance": 0.382698,
+            "relation": "chapter_topic",
+            "related": [
+              "命题"
+            ],
+            "children": [
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.420847,
+                "relation": "part_of",
+                "related": [
+                  "谓词逻辑",
+                  "集合关系符"
+                ],
+                "children": []
+              },
+              {
+                "id": "命题公式/propositional formula",
+                "zh": "命题公式",
+                "importance": 0.251522,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "合式公式/Well-formed formula(Wff)",
+                "zh": "合式公式",
+                "importance": 0.179379,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "推理规则/inference rule",
+                "zh": "推理规则",
+                "importance": 0.172451,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "命题逻辑符号/propositional logic symbol",
+                "zh": "命题逻辑符号",
+                "importance": 0.074186,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "等值式/equivalence formula",
+                "zh": "等值式",
+                "importance": 0.060225,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "规则/rule",
+                "zh": "规则",
+                "importance": 0.029928,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.292717,
+            "relation": "chapter_topic",
+            "related": [
+              "命题变项",
+              "命题逻辑",
+              "集合关系符"
+            ],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.203028,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "逻辑/logic",
+            "zh": "逻辑",
+            "importance": 0.113077,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/命题逻辑的等值和推理演算",
+        "zh": "命题逻辑的等值和推理演算",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "等值/equivalence",
+            "zh": "等值",
+            "importance": 0.154993,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.124879,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "证明过程/proof process",
+                "zh": "证明过程",
+                "importance": 0.019783,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "推理/inference",
+            "zh": "推理",
+            "importance": 0.083034,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/命题逻辑的公理化",
+        "zh": "命题逻辑的公理化",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "公理系统/axiomatic system",
+            "zh": "公理系统",
+            "importance": 0.301466,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "初始符号/initial symbols",
+                "zh": "初始符号",
+                "importance": 0.21843,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "变形规则/transformation rule",
+                "zh": "变形规则",
+                "importance": 0.078367,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "分离规则/分离规则",
+                "zh": "分离规则",
+                "importance": 0.021798,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "王浩算法/Wang's algorithm",
+                "zh": "王浩算法",
+                "importance": 0.020987,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "定理/定理",
+                "zh": "定理",
+                "importance": 0.020611,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "公理/axiom",
+            "zh": "公理",
+            "importance": 0.27303,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "自然数集/natural number set",
+                "zh": "自然数集",
+                "importance": 0.027415,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "理论/theory",
+            "zh": "理论",
+            "importance": 0.140308,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "重言式/tautology",
+            "zh": "重言式",
+            "importance": 0.103527,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的基本概念",
+        "zh": "谓词逻辑的基本概念",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "数理逻辑/Mathematical Logic",
+            "zh": "数理逻辑",
+            "importance": 0.495625,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "集合论/Set Theory",
+                "zh": "集合论",
+                "importance": 0.217947,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "命题演算/Propositional Calculus",
+                "zh": "命题演算",
+                "importance": 0.021194,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "论域/domain of discourse",
+            "zh": "论域",
+            "importance": 0.446346,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.358709,
+            "relation": "chapter_topic",
+            "related": [
+              "函数",
+              "联结词"
+            ],
+            "children": [
+              {
+                "id": "个体变项/individual variable",
+                "zh": "个体变项",
+                "importance": 0.095973,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "归结法/resolution method",
+                "zh": "归结法",
+                "importance": 0.067115,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "全称量词/universal quantifier",
+                "zh": "全称量词",
+                "importance": 0.048568,
+                "relation": "part_of",
+                "related": [
+                  "个体常项",
+                  "合取",
+                  "存在量词",
+                  "析取",
+                  "蕴含"
+                ],
+                "children": []
+              },
+              {
+                "id": "存在量词/existential quantifier",
+                "zh": "存在量词",
+                "importance": 0.046146,
+                "relation": "part_of",
+                "related": [
+                  "全称量词",
+                  "合取",
+                  "析取"
+                ],
+                "children": []
+              },
+              {
+                "id": "个体词/individual term",
+                "zh": "个体词",
+                "importance": 0.031925,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "量词/quantifier",
+            "zh": "量词",
+            "importance": 0.120063,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的等值和推理演算",
+        "zh": "谓词逻辑的等值和推理演算",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "关系/relation",
+            "zh": "关系",
+            "importance": 0.281716,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "二元关系/binary relation",
+                "zh": "二元关系",
+                "importance": 0.050927,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "等价关系/equivalence relation",
+                "zh": "等价关系",
+                "importance": 0.044197,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "有序对/ordered pair",
+                "zh": "有序对",
+                "importance": 0.034103,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.159634,
+            "relation": "chapter_topic",
+            "related": [
+              "谓词逻辑"
+            ],
+            "children": [
+              {
+                "id": "双射/bijective function",
+                "zh": "双射",
+                "importance": 0.074095,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "二元联结词/binary connective",
+            "zh": "二元联结词",
+            "importance": 0.127113,
+            "relation": "chapter_topic",
+            "related": [
+              "一元联结词"
+            ],
+            "children": [
+              {
+                "id": "析取/disjunction",
+                "zh": "析取",
+                "importance": 0.144633,
+                "relation": "belong_to",
+                "related": [
+                  "全称量词",
+                  "合取",
+                  "存在量词",
+                  "蕴含"
+                ],
+                "children": []
+              },
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.08001,
+                "relation": "belong_to",
+                "related": [
+                  "全称量词",
+                  "存在量词",
+                  "析取",
+                  "蕴含"
+                ],
+                "children": []
+              },
+              {
+                "id": "蕴含/implication",
+                "zh": "蕴含",
+                "importance": 0.068915,
+                "relation": "belong_to",
+                "related": [
+                  "交换律",
+                  "全称量词",
+                  "合取",
+                  "析取",
+                  "结合律"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "推理方法/inference method",
+            "zh": "推理方法",
+            "importance": 0.104032,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的公理化",
+        "zh": "谓词逻辑的公理化",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词变项/predicate variable",
+            "zh": "谓词变项",
+            "importance": 0.068309,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "性质/property",
+            "zh": "性质",
+            "importance": 0.053138,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "个体常项/individual constant",
+            "zh": "个体常项",
+            "importance": 0.048593,
+            "relation": "chapter_topic",
+            "related": [
+              "全称量词"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/一阶形式理论及模型",
+        "zh": "一阶形式理论及模型",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "模型/Model",
+            "zh": "模型",
+            "importance": 0.183927,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "语义/semantics",
+            "zh": "语义",
+            "importance": 0.028927,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/证明论中的逻辑系统",
+        "zh": "证明论中的逻辑系统",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "逻辑系统/Logic System",
+            "zh": "逻辑系统",
+            "importance": 0.068101,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/集合",
+        "zh": "集合",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "集合/set",
+            "zh": "集合",
+            "importance": 0.494486,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "整数集/set of integers",
+                "zh": "整数集",
+                "importance": 0.060209,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "无限集合/infinite set",
+                "zh": "无限集合",
+                "importance": 0.044677,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "全集/universal set",
+                "zh": "全集",
+                "importance": 0.039764,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "幂集/power set",
+                "zh": "幂集",
+                "importance": 0.037101,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "空集/empty set",
+                "zh": "空集",
+                "importance": 0.031661,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "有穷集合/Finite Set",
+            "zh": "有穷集合",
+            "importance": 0.04768,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "实数集合/set of real numbers",
+            "zh": "实数集合",
+            "importance": 0.046295,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "集合运算/set operation",
+            "zh": "集合运算",
+            "importance": 0.045289,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "笛卡儿积/Cartesian product",
+                "zh": "笛卡儿积",
+                "importance": 0.108387,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "交集/Intersection",
+                "zh": "交集",
+                "importance": 0.029703,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/关系",
+        "zh": "关系",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "集合关系符/set relational symbol",
+            "zh": "集合关系符",
+            "importance": 0.039178,
+            "relation": "chapter_topic",
+            "related": [
+              "一元联结词",
+              "命题",
+              "联结词"
+            ],
+            "children": []
+          },
+          {
+            "id": "偏序关系/partial order relation",
+            "zh": "偏序关系",
+            "importance": 0.03715,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "子集关系/subset relation",
+                "zh": "子集关系",
+                "importance": 0.022598,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "特殊关系/special relation",
+            "zh": "特殊关系",
+            "importance": 0.033695,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "恒等关系/identity relation",
+            "zh": "恒等关系",
+            "importance": 0.028526,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/函数",
+        "zh": "函数",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "特征函数/characteristic function",
+            "zh": "特征函数",
+            "importance": 0.023307,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/实数集合与集合的基数",
+        "zh": "实数集合与集合的基数",
+        "importance": 0.35,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "集合的基数/cardinality of a set",
+            "zh": "集合的基数",
+            "importance": 0.031585,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "实数/real number",
+            "zh": "实数",
+            "importance": 0.029854,
+            "relation": "chapter_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/其他要点",
+        "zh": "其他要点",
+        "importance": 0.2,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "一阶理论/First-order Theory",
+            "zh": "一阶理论",
+            "importance": 0.206745,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题变项/propositional variable",
+            "zh": "命题变项",
+            "importance": 0.205107,
+            "relation": "attach",
+            "related": [
+              "命题"
+            ],
+            "children": []
+          },
+          {
+            "id": "谓词公式的解释/interpretation of predicate formula",
+            "zh": "谓词公式的解释",
+            "importance": 0.180576,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "逻辑公式/logical formula",
+            "zh": "逻辑公式",
+            "importance": 0.174001,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+            "zh": "谓词逻辑的公理系统",
+            "importance": 0.172205,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "真值表/truth table",
+            "zh": "真值表",
+            "importance": 0.169551,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "真值/truth value",
+            "zh": "真值",
+            "importance": 0.148294,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "λ-演算/lambda calculus",
+            "zh": "λ-演算",
+            "importance": 0.136522,
+            "relation": "attach",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "n_nodes": 94,
+  "max_depth": 4,
+  "orphan_count": 67,
+  "meta": {
+    "scope": "course",
+    "course_title": "数理逻辑与集合论",
+    "root_zh": "数理逻辑与集合论",
+    "virtual_root": true,
+    "n_chapters": 12,
+    "max_nodes": 120,
+    "max_depth_cap": 4,
+    "max_nodes_per_chapter": 12,
+    "n_entities_raw": 520,
+    "n_edges_raw": 729,
+    "pool_size": 160,
+    "alias_merged": 32
+  }
+}

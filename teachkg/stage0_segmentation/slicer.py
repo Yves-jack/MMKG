@@ -18,7 +18,10 @@ from typing import Any
 from teachkg.config import TeachKGConfig
 from teachkg.schemas import BoundaryType, SubtitleCue, VideoSegment
 from teachkg.stage0_segmentation.asr_pipeline import HighAccuracyASRPipeline
+from teachkg.stage0_segmentation.cue_merge import CueMergeSettings, merge_adjacent_cues, settings_from_config
+from teachkg.stage0_segmentation.ppt_page_utils import build_ppt_pages
 from teachkg.utils.io import save_jsonl
+from teachkg.utils.time import parse_time_nodes_file
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +40,7 @@ class VideoSlicer:
         self.extract_clips = slicer_cfg.get("extract_clips", True)
         self.clip_subdir = slicer_cfg.get("clip_subdir", "cues")
         self.cleanup_orphan_clips = slicer_cfg.get("cleanup_orphan_clips", True)
+        self.cue_merge_settings: CueMergeSettings = settings_from_config(s0.get("cue_merge", {}))
 
         tf = s0.get("time_filter", {})
         self.time_filter_enabled = tf.get("enabled", False)
@@ -145,9 +149,31 @@ class VideoSlicer:
             return True
         return bool(_TRIVIAL_TEXT.match(cleaned))
 
-    def _prepare_cues(self, cues: list[SubtitleCue]) -> list[SubtitleCue]:
+    def _prepare_cues(
+        self,
+        cues: list[SubtitleCue],
+        ppt_boundaries: list[float] | None = None,
+        video_duration: float | None = None,
+    ) -> list[SubtitleCue]:
+        # 先按 PPT 主页合并 + 短口语段并入邻段，再按时长/字数过滤
+        working = list(cues)
+        if self.cue_merge_settings.enabled and len(working) >= 2:
+            pages = None
+            if ppt_boundaries is not None:
+                dur = float(video_duration or 0.0)
+                if dur <= 0 and working:
+                    dur = max(c.end_sec for c in working)
+                if dur > 0:
+                    pages = build_ppt_pages(ppt_boundaries, dur, min_page_duration_sec=1.0)
+            working = merge_adjacent_cues(
+                working,
+                settings=self.cue_merge_settings,
+                ppt_boundaries=ppt_boundaries,
+                ppt_pages=pages,
+            )
+
         final: list[SubtitleCue] = []
-        for cue in cues:
+        for cue in working:
             text = cue.text.strip()
             if self._is_trivial_text(text):
                 continue
@@ -219,7 +245,14 @@ class VideoSlicer:
             lecture_id=lecture_id,
             course_context=course_context,
         )
-        cues = self._prepare_cues(self._filter_cues(cues))
+        seg_txt = output_dir / "ppt_change" / f"{lecture_id}_seg.txt"
+        ppt_boundaries = parse_time_nodes_file(str(seg_txt)) if seg_txt.exists() else None
+        video_duration = max((c.end_sec for c in cues), default=0.0)
+        cues = self._prepare_cues(
+            self._filter_cues(cues),
+            ppt_boundaries=ppt_boundaries,
+            video_duration=video_duration,
+        )
 
         rel_srt = f"asr/{lecture_id}_0.srt"
         rel_corrected = f"asr_work/{lecture_id}/corrected_cues.json"

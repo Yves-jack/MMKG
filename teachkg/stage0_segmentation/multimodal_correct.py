@@ -1,7 +1,7 @@
 """
 阶段 C：PPT 关键帧 OCR + LLM 多模态校对。
 
-按 raw cue 归属 PPT 页（1/3 时长规则），跨页时合并多页 OCR 后统一校对。
+按 raw cue 时间窗取「盖住该片段的最小连续 PPT 页」做 OCR；跨页时合并多页 OCR 后统一校对。
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from teachkg.stage0_segmentation.ppt_page_utils import (
     PptPage,
     build_ppt_pages,
     ocr_timestamp_for_page,
-    select_pages_for_cue,
+    primary_page_for_cue,
 )
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
@@ -27,6 +27,84 @@ from teachkg.utils.prompts import format_prompt
 logger = logging.getLogger(__name__)
 
 _OCR_FRAME_FILE_RE = re.compile(r"^ppt_page_(\d{3})(?:_\d+)?\.jpg$")
+_WS_RE = re.compile(r"\s+")
+_SENT_END_RE = re.compile(r"[。！？；;.!?\n]")
+
+
+def _norm_with_index_map(s: str) -> tuple[str, list[int]]:
+    """去空白规范化，并记录每个规范字符对应原文结束下标（开区间）。"""
+    norm_chars: list[str] = []
+    ends: list[int] = []
+    for i, ch in enumerate(s or ""):
+        if ch.isspace():
+            continue
+        norm_chars.append(ch)
+        ends.append(i + 1)
+    return "".join(norm_chars), ends
+
+
+def strip_prev_ending_overlap(
+    text: str,
+    prev_tail: str,
+    *,
+    min_chars: int = 8,
+    max_chars: int = 160,
+    max_ratio: float = 0.55,
+) -> tuple[str, str]:
+    """去掉本段开头与上一段结尾重复的前缀。
+
+    返回 (清洗后文本, 被去掉的前缀)；无重复则第二项为空串。
+    匹配忽略空白差异；优先在句读处截断。
+    """
+    text = (text or "").strip()
+    prev = (prev_tail or "").strip()
+    if not text or not prev or prev in {"（无）", "(无)", "无"}:
+        return text, ""
+
+    text_n, text_ends = _norm_with_index_map(text)
+    prev_n, _ = _norm_with_index_map(prev)
+    if not text_n or not prev_n:
+        return text, ""
+
+    # 规范串上的最长可切长度（至少留 1 个规范字符给后文）
+    hard_max_n = min(len(text_n) - 1, int(max_chars), len(prev_n))
+    if hard_max_n < int(min_chars):
+        return text, ""
+
+    best_n = 0
+    for n_len in range(int(min_chars), hard_max_n + 1):
+        if prev_n.endswith(text_n[:n_len]):
+            best_n = n_len
+
+    if best_n < int(min_chars):
+        return text, ""
+
+    cut = text_ends[best_n - 1]
+    # 向左回落到最近句读（规范匹配仍成立）
+    window = text[:cut]
+    punct_ends = [m.end() for m in _SENT_END_RE.finditer(window)]
+    if punct_ends:
+        for snapped in reversed(punct_ends):
+            # snapped 对应的规范长度
+            snapped_n = len(_norm_with_index_map(text[:snapped])[0])
+            if snapped_n >= int(min_chars) and prev_n.endswith(text_n[:snapped_n]):
+                cut = snapped
+                best_n = snapped_n
+                break
+
+    ratio_cap = max(int(min_chars), int(len(text) * float(max_ratio)))
+    if cut > ratio_cap and not _SENT_END_RE.search(text[max(0, cut - 1) : cut]):
+        softer = [e for e in punct_ends if e <= ratio_cap]
+        if softer:
+            cut = softer[-1]
+        else:
+            return text, ""
+
+    stripped = text[:cut].strip()
+    rest = text[cut:].lstrip(" ，,、；;：:\n\r\t")
+    if not rest:
+        return text, ""
+    return rest, stripped
 
 
 class MultimodalCorrector:
@@ -44,6 +122,11 @@ class MultimodalCorrector:
         ocr_frame_margin_before_flip_sec: float = 3.0,
         ocr_frame_settle_after_flip_sec: float = 2.0,
         ocr_frame_short_page_ratio: float = 0.85,
+        strip_prev_overlap: bool = True,
+        prev_overlap_min_chars: int = 8,
+        prev_overlap_max_chars: int = 160,
+        prev_overlap_max_ratio: float = 0.55,
+        prev_context_chars: int = 120,
     ) -> None:
         self.api_key = api_key or os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("ASR_API_KEY")
         self.base_url = base_url or os.environ.get(
@@ -69,6 +152,11 @@ class MultimodalCorrector:
         self.ocr_frame_margin_before_flip_sec = ocr_frame_margin_before_flip_sec
         self.ocr_frame_settle_after_flip_sec = ocr_frame_settle_after_flip_sec
         self.ocr_frame_short_page_ratio = ocr_frame_short_page_ratio
+        self.strip_prev_overlap = strip_prev_overlap
+        self.prev_overlap_min_chars = prev_overlap_min_chars
+        self.prev_overlap_max_chars = prev_overlap_max_chars
+        self.prev_overlap_max_ratio = prev_overlap_max_ratio
+        self.prev_context_chars = max(40, int(prev_context_chars))
         self._llm = None
         self._ocr: QwenVLOCRModel | None = None
         if enabled:
@@ -110,14 +198,30 @@ class MultimodalCorrector:
             return asr_text
 
         prompt = format_prompt(
-            "asr_correct.txt",
+            "stage0/asr_correct.txt",
             course_context=course_context or "（无）",
             ocr_text=ocr_text or "（无）",
             asr_text=asr_text,
             prev_text=prev_text or "（无）",
         )
         raw = self.llm_client.chat(prompt, temperature=0.1)
-        return raw or asr_text
+        fixed = (raw or asr_text).strip()
+        if self.strip_prev_overlap and prev_text:
+            cleaned, stripped = strip_prev_ending_overlap(
+                fixed,
+                prev_text,
+                min_chars=self.prev_overlap_min_chars,
+                max_chars=self.prev_overlap_max_chars,
+                max_ratio=self.prev_overlap_max_ratio,
+            )
+            if stripped:
+                logger.info(
+                    "Stripped prev-ending overlap (%d chars): %s…",
+                    len(stripped),
+                    stripped[:40].replace("\n", " "),
+                )
+                fixed = cleaned
+        return fixed or asr_text
 
     def _ocr_frame_path_for_page(self, page: PptPage, work_dir: Path) -> Path:
         return work_dir / "ocr" / f"ppt_page_{page.index:03d}.jpg"
@@ -258,13 +362,16 @@ class MultimodalCorrector:
         groups: list[tuple[list[SubtitleCue], list[PptPage]]] = []
         current_cues: list[SubtitleCue] = []
         current_pages: list[PptPage] = []
-        current_key: frozenset[int] | None = None
+        current_key: int | None = None
 
         for cue in cues:
             if not cue.text.strip():
                 continue
-            selected = select_pages_for_cue(cue, pages, self.page_overlap_ratio)
-            page_key = frozenset(p.index for p in selected)
+            primary = primary_page_for_cue(cue, pages)
+            if primary is None:
+                continue
+            # 按主归属页分组，避免翻页缝的跨页 frozenset 把一页切成多段
+            page_key = primary.index
 
             if (
                 self.group_consecutive_same_pages
@@ -276,7 +383,7 @@ class MultimodalCorrector:
                 current_pages = []
 
             current_cues.append(cue)
-            current_pages = selected
+            current_pages = [primary]
             current_key = page_key
 
         if current_cues:
@@ -316,7 +423,8 @@ class MultimodalCorrector:
                     text=fixed,
                 )
             )
-            prev_text = fixed[-120:] if len(fixed) > 120 else fixed
+            n = self.prev_context_chars
+            prev_text = fixed[-n:] if len(fixed) > n else fixed
 
         logger.info(
             "Multimodal correct: %d raw cues → %d groups → %d corrected",

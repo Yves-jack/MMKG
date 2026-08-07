@@ -59,7 +59,7 @@ def relation_to_triplet(rel: TextbookRelation) -> Triplet:
     predicate = rel.predicate if rel.predicate in DEFAULT_CONCRETE_RELATION else "related_with"
     concrete = infer_concrete_from_description(rel.description, predicate)
     direction = infer_statement_direction(predicate)
-    context = rel.context or rel.description
+    context = (rel.classroom_evidence or rel.context or rel.description).strip()
     natural = (rel.description or "").strip()
     if not natural:
         natural = triplet_to_statement(

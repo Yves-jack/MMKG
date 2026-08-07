@@ -1,0 +1,450 @@
+/* Shared full-viewport app chrome for showcase pages */
+
+.shell {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 480px at 0% 0%, rgba(62, 207, 142, 0.07), transparent 55%),
+    radial-gradient(700px 420px at 100% 10%, rgba(91, 141, 239, 0.05), transparent 50%),
+    var(--bg);
+}
+
+.shellWide {
+  /* 三栏宽度由嵌套 ResizableSplit 控制 */
+}
+
+.shellInner {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  backdrop-filter: blur(8px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sideHead {
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 6px 12px 6px 8px;
+  max-width: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 10%, var(--bg-elev)),
+      color-mix(in srgb, var(--bg) 55%, var(--bg-elev))
+    );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.backIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.backBrand {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.backBrand em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.back:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 18%, var(--bg-elev)),
+      color-mix(in srgb, var(--bg-elev) 80%, var(--bg))
+    );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+  transform: translateX(-1px);
+}
+
+.back:hover .backIcon {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  transform: translateX(-2px);
+}
+
+.back:active {
+  transform: translateX(0);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sideTitle {
+  margin: 0 0 6px;
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.sideLead {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.navBlock {
+  padding: 14px 12px 8px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.navBlockGrow {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.navBlockCollapsible {
+  flex: 0 1 auto;
+  max-height: 42%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.navBlockCollapsed {
+  flex: 0 0 auto;
+  max-height: none;
+}
+
+.navLabel {
+  margin: 0 8px 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.navLabelToggle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  width: calc(100% - 8px);
+  margin: 0 4px 8px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.navLabelToggle:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navLabelToggle em {
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.navScroll {
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navScrollCap {
+  flex: 1 1 auto;
+  min-height: 72px;
+  max-height: 100%;
+}
+
+.navItem,
+.navItemActive {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.navItem:disabled,
+.navItemActive:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.navItem:disabled:hover {
+  background: transparent;
+}
+
+.navItemActive {
+  background: var(--accent-dim);
+  border-color: rgba(62, 207, 142, 0.28);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.navItem em,
+.navItemActive em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 48%;
+}
+
+.navItemActive em {
+  color: color-mix(in srgb, var(--accent) 70%, var(--muted));
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 70%, var(--bg-elev));
+  flex-shrink: 0;
+}
+
+.topbarText {
+  min-width: 160px;
+  flex: 1 1 180px;
+}
+
+.topbarText h2 {
+  margin: 0 0 2px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.topbarText p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stats > div {
+  min-width: 64px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stats strong {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.stats span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.toolBtn {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--bg-elev);
+}
+
+.toolBtn:hover {
+  color: var(--text);
+  border-color: #3d4a60;
+}
+
+.toolBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--muted);
+}
+
+.toolBtn:disabled:hover {
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.canvasWrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 28px 32px 48px;
+  background-image:
+    linear-gradient(rgba(42, 51, 68, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 51, 68, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+.canvasPlain {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px 24px 40px;
+}
+
+.detailPane {
+  border-left: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  backdrop-filter: blur(8px);
+  overflow: auto;
+  padding: 16px 14px 24px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailPane h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  /* 始终左右布局；栏宽由 ResizableSplit 随容器重算 */
+}
+
+@media (max-width: 960px) {
+  .navItem em,
+  .navItemActive em {
+    display: none;
+  }
+
+  .canvasWrap {
+    padding: 16px 12px 28px;
+  }
+
+  .canvasPlain {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    padding: 12px 14px;
+  }
+
+  .stats > div {
+    min-width: 56px;
+    padding: 6px 8px;
+  }
+
+  .sideTitle {
+    font-size: 22px;
+  }
+}

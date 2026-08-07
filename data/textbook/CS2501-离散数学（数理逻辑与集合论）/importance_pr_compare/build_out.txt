@@ -1,0 +1,28 @@
+﻿Built importance bundle
+  chapters=12 nodes=1482
+  -> D:\Yves\VAT-KG\data\textbook\CS2501-离散数学（数理逻辑与集合论）\importance_bundle.json
+  -> D:\Yves\VAT-KG\data\textbook\CS2501-离散数学（数理逻辑与集合论）\entity_sorted_ppr.json
+Top10:
+  0.9806  数理逻辑与集合论/Mathematical Logic and Set Theory
+  0.8014  离散数学/Discrete Mathematics
+  0.7634  谓词逻辑/Predicate Logic
+  0.7134  数理逻辑/Mathematical Logic
+  0.6831  命题逻辑/propositional logic
+  0.6562  集合/set
+  0.6483  公式/formula
+  0.5819  论域/domain of discourse
+  0.5449  集合论/Set Theory
+  0.5102  联结词/connective
+Chapters:
+  - 第1章 命题逻辑的基本概念
+  - 第2章 命题逻辑的等值和推理演算
+  - 第3章 命题逻辑的公理化
+  - 第4章 谓词逻辑的基本概念
+  - 第5章 谓词逻辑的等值和推理演算
+  - 第6章 谓词逻辑的公理化
+  - 第7章 一阶形式理论及模型
+  - 第8章 证明论中的逻辑系统
+  - 第9章 集合
+  - 第10章 关系
+  - 第11章 函数
+  - 第12章 实数集合与集合的基数

@@ -2,18 +2,21 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import logging
+import mimetypes
 import os
 import re
 import time
 from dataclasses import dataclass, field
-from typing import Any
+from pathlib import Path
+from typing import Any, Sequence
 
 logger = logging.getLogger(__name__)
 
 DEFAULT_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-DEFAULT_MODEL = "deepseek-v3"
+DEFAULT_MODEL = "deepseek-v4-flash-0731"
 DEFAULT_MAX_RETRY = 3
 DEFAULT_RETRY_PAUSE_SEC = 2.0
 
@@ -42,6 +45,23 @@ def resolve_llm_model(explicit: str | None = None) -> str:
     if explicit:
         return explicit
     return os.environ.get("LLM_MODEL", DEFAULT_MODEL)
+
+
+def file_to_data_url(path: str | Path) -> str:
+    """本地文件 → data URL（供多模态 chat content）。"""
+    image_path = Path(path)
+    mime_type, _ = mimetypes.guess_type(str(image_path))
+    if not mime_type or not mime_type.startswith("image/"):
+        mime_type = {
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".webp": "image/webp",
+            ".gif": "image/gif",
+            ".bmp": "image/bmp",
+        }.get(image_path.suffix.lower(), "image/png")
+    encoded = base64.b64encode(image_path.read_bytes()).decode("utf-8")
+    return f"data:{mime_type};base64,{encoded}"
 
 
 def llm_settings_from_config(
@@ -89,14 +109,34 @@ class LLMClient:
             self._client = OpenAI(api_key=self.api_key, base_url=self.base_url)
         return self._client
 
-    def chat(self, prompt: str, *, temperature: float | None = None) -> str:
+    def chat(
+        self,
+        prompt: str,
+        *,
+        temperature: float | None = None,
+        model: str | None = None,
+    ) -> str:
         """调用 chat.completions，失败时重试（同 AutoEduKG llm_max_retry）。"""
+        return self.chat_messages(
+            [{"role": "user", "content": prompt}],
+            temperature=temperature,
+            model=model,
+        )
+
+    def chat_messages(
+        self,
+        messages: list[dict[str, Any]],
+        *,
+        temperature: float | None = None,
+        model: str | None = None,
+    ) -> str:
+        """通用 messages 调用（支持多模态 content 列表）。"""
         last_err: Exception | None = None
         for attempt in range(1, self.max_retry + 1):
             try:
                 kwargs: dict[str, Any] = {
-                    "model": self.model,
-                    "messages": [{"role": "user", "content": prompt}],
+                    "model": model or self.model,
+                    "messages": messages,
                 }
                 if temperature is not None:
                     kwargs["temperature"] = temperature
@@ -106,8 +146,39 @@ class LLMClient:
                 last_err = exc
                 logger.warning("LLM call failed (%d/%d): %s", attempt, self.max_retry, exc)
                 if attempt < self.max_retry:
-                    time.sleep(self.retry_pause_sec)
+                    # 连接类错误拉长退避，减轻瞬时 SSL / 超时连挂
+                    pause = self.retry_pause_sec * (1.6 ** (attempt - 1))
+                    time.sleep(pause)
         raise RuntimeError(f"LLM call failed after {self.max_retry} retries: {last_err}") from last_err
+
+    def chat_multimodal(
+        self,
+        prompt: str,
+        *,
+        image_paths: Sequence[str | Path] | None = None,
+        temperature: float | None = None,
+        model: str | None = None,
+    ) -> str:
+        """文本 + 本地图片的多模态对话（OpenAI vision content 格式）。"""
+        content: list[dict[str, Any]] = [{"type": "text", "text": prompt}]
+        for raw in image_paths or []:
+            path = Path(raw)
+            if not path.is_file():
+                logger.warning("skip missing image for multimodal chat: %s", path)
+                continue
+            content.append(
+                {
+                    "type": "image_url",
+                    "image_url": {"url": file_to_data_url(path)},
+                }
+            )
+        if len(content) == 1:
+            return self.chat(prompt, temperature=temperature, model=model)
+        return self.chat_messages(
+            [{"role": "user", "content": content}],
+            temperature=temperature,
+            model=model,
+        )
 
     @staticmethod
     def parse_json_response(text: str) -> dict[str, Any]:

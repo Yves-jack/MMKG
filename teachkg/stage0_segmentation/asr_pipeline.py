@@ -80,6 +80,11 @@ class HighAccuracyASRPipeline:
             ocr_frame_margin_before_flip_sec=corr_cfg.get("ocr_frame_margin_before_flip_sec", 3.0),
             ocr_frame_settle_after_flip_sec=corr_cfg.get("ocr_frame_settle_after_flip_sec", 2.0),
             ocr_frame_short_page_ratio=corr_cfg.get("ocr_frame_short_page_ratio", 0.85),
+            strip_prev_overlap=bool(corr_cfg.get("strip_prev_overlap", True)),
+            prev_overlap_min_chars=int(corr_cfg.get("prev_overlap_min_chars", 8) or 8),
+            prev_overlap_max_chars=int(corr_cfg.get("prev_overlap_max_chars", 160) or 160),
+            prev_overlap_max_ratio=float(corr_cfg.get("prev_overlap_max_ratio", 0.55) or 0.55),
+            prev_context_chars=int(corr_cfg.get("prev_context_chars", 120) or 120),
         )
 
         ppt_cfg = s0.get("ppt_detector", {})

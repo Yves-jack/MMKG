@@ -1,0 +1,353 @@
+{
+  "lecture_id": "12",
+  "root": {
+    "id": "__chapter__/谓词逻辑的公理化",
+    "zh": "谓词逻辑的公理化",
+    "importance": 0.606188,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "集合/set",
+        "zh": "集合",
+        "importance": 0.577322,
+        "relation": "chapter_topic",
+        "related": [
+          "内涵法"
+        ],
+        "children": [
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.187151,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "笛卡儿积/Cartesian product",
+            "zh": "笛卡儿积",
+            "importance": 0.183258,
+            "relation": "depend_on",
+            "related": [
+              "矩形"
+            ],
+            "children": [
+              {
+                "id": "矩形/rectangle",
+                "zh": "矩形",
+                "importance": 0.074071,
+                "relation": "related_with",
+                "related": [
+                  "笛卡儿积"
+                ],
+                "children": []
+              },
+              {
+                "id": "笛卡儿平方/Cartesian square",
+                "zh": "笛卡儿平方",
+                "importance": 0.071369,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "自然数/natural number",
+            "zh": "自然数",
+            "importance": 0.11459,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "有限基数/finite cardinality",
+                "zh": "有限基数",
+                "importance": 0.018973,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "有限集合/有限集合",
+            "zh": "有限集合",
+            "importance": 0.066812,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "集合运算/set operation",
+            "zh": "集合运算",
+            "importance": 0.061403,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "交集/Intersection",
+                "zh": "交集",
+                "importance": 0.051204,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "补集/complement set",
+                "zh": "补集",
+                "importance": 0.045455,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "差集/Set Difference",
+                "zh": "差集",
+                "importance": 0.024698,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "对称差/Symmetric difference",
+                "zh": "对称差",
+                "importance": 0.017724,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "幂集/power set",
+            "zh": "幂集",
+            "importance": 0.045587,
+            "relation": "belong_to",
+            "related": [
+              "广义并"
+            ],
+            "children": [
+              {
+                "id": "空集/empty set",
+                "zh": "空集",
+                "importance": 0.037136,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "广义并/generalized union",
+                "zh": "广义并",
+                "importance": 0.022378,
+                "relation": "related_with",
+                "related": [
+                  "幂集"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "双射/bijective function",
+            "zh": "双射",
+            "importance": 0.034012,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "元素/Element",
+            "zh": "元素",
+            "importance": 0.011241,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "联结词/connective",
+        "zh": "联结词",
+        "importance": 0.312857,
+        "relation": "chapter_topic",
+        "related": [
+          "集合关系符"
+        ],
+        "children": [
+          {
+            "id": "集合关系符/set relational symbol",
+            "zh": "集合关系符",
+            "importance": 0.039112,
+            "relation": "related_with",
+            "related": [
+              "一元联结词",
+              "二元运算符",
+              "命题",
+              "联结词"
+            ],
+            "children": [
+              {
+                "id": "二元运算符/binary operator",
+                "zh": "二元运算符",
+                "importance": 0.03673,
+                "relation": "related_with",
+                "related": [
+                  "一元运算符",
+                  "集合关系符"
+                ],
+                "children": [
+                  {
+                    "id": "一元运算符/unary operator",
+                    "zh": "一元运算符",
+                    "importance": 0.024433,
+                    "relation": "related_with",
+                    "related": [
+                      "二元运算符"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.30866,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "命题演算的重言式/tautology of propositional calculus",
+            "zh": "命题演算的重言式",
+            "importance": 0.011895,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.301156,
+        "relation": "chapter_topic",
+        "related": [
+          "集合关系符"
+        ],
+        "children": []
+      },
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.282469,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "有序对/ordered pair",
+            "zh": "有序对",
+            "importance": 0.038238,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题逻辑/propositional logic",
+        "zh": "命题逻辑",
+        "importance": 0.270144,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.084918,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "规则/rule",
+            "zh": "规则",
+            "importance": 0.026763,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "公式/formula",
+            "zh": "公式",
+            "importance": 0.011438,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "蕴含/implication",
+                "zh": "蕴含",
+                "importance": 0.026639,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "等式/equation",
+                "zh": "等式",
+                "importance": 0.009677,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "概念/concept",
+            "zh": "概念",
+            "importance": 0.000294,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "等值/equivalence",
+        "zh": "等值",
+        "importance": 0.167289,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "集合论/Set Theory",
+        "zh": "集合论",
+        "importance": 0.11239,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 37,
+  "max_depth": 5,
+  "orphan_count": 47,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化",
+    "root_id": "__chapter__/谓词逻辑的公理化",
+    "root_zh": "谓词逻辑的公理化",
+    "virtual_root": true,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 85,
+    "n_edges_raw": 94,
+    "n_hierarchy_candidates": 81,
+    "attached_orphans": 7,
+    "alias_merged": 2
+  }
+}

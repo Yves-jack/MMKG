@@ -1,0 +1,2412 @@
+{
+  "courseId": "shuliluoji",
+  "title": "数理逻辑与集合论",
+  "subtitle": "教材先验 × 课堂时长融合 · 实体重要性",
+  "generatedAt": "2026-07-25T11:55:18.704815+00:00",
+  "meta": {
+    "n_lectures": 17,
+    "entity_count": 1731,
+    "alpha": 0.45,
+    "merge": "duration_weighted",
+    "method": "分章 Biased-PPR 先验 + 课堂反馈 + 自适应 α + IDF + 章外衰减"
+  },
+  "grade_counts": {
+    "好": 9,
+    "较好": 2,
+    "中": 5,
+    "中偏上": 1
+  },
+  "global": {
+    "top": [
+      {
+        "rank": 1,
+        "name": "集合/set",
+        "zh": "集合",
+        "score": 0.466061,
+        "base": 0.662541,
+        "classroom": 0.174176
+      },
+      {
+        "rank": 2,
+        "name": "数理逻辑/Mathematical Logic",
+        "zh": "数理逻辑",
+        "score": 0.457756,
+        "base": 0.699592,
+        "classroom": 0.099011
+      },
+      {
+        "rank": 3,
+        "name": "论域/domain of discourse",
+        "zh": "论域",
+        "score": 0.423223,
+        "base": 0.578724,
+        "classroom": 0.190024
+      },
+      {
+        "rank": 4,
+        "name": "联结词/connective",
+        "zh": "联结词",
+        "score": 0.401576,
+        "base": 0.533118,
+        "classroom": 0.208859
+      },
+      {
+        "rank": 5,
+        "name": "命题逻辑/propositional logic",
+        "zh": "命题逻辑",
+        "score": 0.361604,
+        "base": 0.693553,
+        "classroom": 0.19652
+      },
+      {
+        "rank": 6,
+        "name": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "score": 0.334599,
+        "base": 0.749905,
+        "classroom": 0.165631
+      },
+      {
+        "rank": 7,
+        "name": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "score": 0.28503,
+        "base": 0.388382,
+        "classroom": 0.128203
+      },
+      {
+        "rank": 8,
+        "name": "命题/proposition",
+        "zh": "命题",
+        "score": 0.282979,
+        "base": 0.342993,
+        "classroom": 0.192713
+      },
+      {
+        "rank": 9,
+        "name": "一阶语言/First-order Language",
+        "zh": "一阶语言",
+        "score": 0.268811,
+        "base": 0.450024,
+        "classroom": 0.0
+      },
+      {
+        "rank": 10,
+        "name": "关系/relation",
+        "zh": "关系",
+        "score": 0.265945,
+        "base": 0.38829,
+        "classroom": 0.111966
+      },
+      {
+        "rank": 11,
+        "name": "公理/axiom",
+        "zh": "公理",
+        "score": 0.253606,
+        "base": 0.376777,
+        "classroom": 0.067154
+      },
+      {
+        "rank": 12,
+        "name": "命题公式/propositional formula",
+        "zh": "命题公式",
+        "score": 0.246424,
+        "base": 0.286528,
+        "classroom": 0.187802
+      },
+      {
+        "rank": 13,
+        "name": "集合论/Set Theory",
+        "zh": "集合论",
+        "score": 0.201542,
+        "base": 0.556464,
+        "classroom": 0.031431
+      },
+      {
+        "rank": 14,
+        "name": "初始符号/initial symbols",
+        "zh": "初始符号",
+        "score": 0.200365,
+        "base": 0.323701,
+        "classroom": 0.017068
+      },
+      {
+        "rank": 15,
+        "name": "谓词/predicate",
+        "zh": "谓词",
+        "score": 0.195833,
+        "base": 0.26768,
+        "classroom": 0.136299
+      },
+      {
+        "rank": 16,
+        "name": "命题变项/propositional variable",
+        "zh": "命题变项",
+        "score": 0.19396,
+        "base": 0.275963,
+        "classroom": 0.072532
+      },
+      {
+        "rank": 17,
+        "name": "一阶理论/First-order Theory",
+        "zh": "一阶理论",
+        "score": 0.188632,
+        "base": 0.311251,
+        "classroom": 0.006389
+      },
+      {
+        "rank": 18,
+        "name": "公理系统的构成/components of an axiomatic system",
+        "zh": "公理系统的构成",
+        "score": 0.181537,
+        "base": 0.302909,
+        "classroom": 0.0
+      },
+      {
+        "rank": 19,
+        "name": "定理/theorem",
+        "zh": "定理",
+        "score": 0.179369,
+        "base": 0.209362,
+        "classroom": 0.184891
+      },
+      {
+        "rank": 20,
+        "name": "推理规则/inference rule",
+        "zh": "推理规则",
+        "score": 0.172079,
+        "base": 0.215423,
+        "classroom": 0.184176
+      },
+      {
+        "rank": 21,
+        "name": "合式公式/Well-formed formula(Wff)",
+        "zh": "合式公式",
+        "score": 0.171575,
+        "base": 0.22918,
+        "classroom": 0.086392
+      },
+      {
+        "rank": 22,
+        "name": "谓词公式的解释/interpretation of predicate formula",
+        "zh": "谓词公式的解释",
+        "score": 0.169701,
+        "base": 0.247121,
+        "classroom": 0.052533
+      },
+      {
+        "rank": 23,
+        "name": "模型/Model",
+        "zh": "模型",
+        "score": 0.167431,
+        "base": 0.277583,
+        "classroom": 0.003561
+      },
+      {
+        "rank": 24,
+        "name": "逻辑公式/logical formula",
+        "zh": "逻辑公式",
+        "score": 0.162419,
+        "base": 0.247834,
+        "classroom": 0.035539
+      },
+      {
+        "rank": 25,
+        "name": "真值表/truth table",
+        "zh": "真值表",
+        "score": 0.158394,
+        "base": 0.24843,
+        "classroom": 0.044981
+      },
+      {
+        "rank": 26,
+        "name": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+        "zh": "谓词逻辑的公理系统",
+        "score": 0.157347,
+        "base": 0.27044,
+        "classroom": 0.006063
+      },
+      {
+        "rank": 27,
+        "name": "函数/function",
+        "zh": "函数",
+        "score": 0.150818,
+        "base": 0.243493,
+        "classroom": 0.066701
+      },
+      {
+        "rank": 28,
+        "name": "逻辑联结词/logical connective",
+        "zh": "逻辑联结词",
+        "score": 0.145226,
+        "base": 0.249485,
+        "classroom": 0.0
+      },
+      {
+        "rank": 29,
+        "name": "真值/truth value",
+        "zh": "真值",
+        "score": 0.143483,
+        "base": 0.190167,
+        "classroom": 0.095881
+      },
+      {
+        "rank": 30,
+        "name": "等值/equivalence",
+        "zh": "等值",
+        "score": 0.142461,
+        "base": 0.229405,
+        "classroom": 0.013964
+      },
+      {
+        "rank": 31,
+        "name": "析取/disjunction",
+        "zh": "析取",
+        "score": 0.139285,
+        "base": 0.187499,
+        "classroom": 0.078124
+      },
+      {
+        "rank": 32,
+        "name": "理论/theory",
+        "zh": "理论",
+        "score": 0.12792,
+        "base": 0.245328,
+        "classroom": 0.004698
+      },
+      {
+        "rank": 33,
+        "name": "λ-演算/lambda calculus",
+        "zh": "λ-演算",
+        "score": 0.125249,
+        "base": 0.284473,
+        "classroom": 0.008324
+      },
+      {
+        "rank": 34,
+        "name": "量词/quantifier",
+        "zh": "量词",
+        "score": 0.119947,
+        "base": 0.162156,
+        "classroom": 0.129633
+      },
+      {
+        "rank": 35,
+        "name": "推理演算/inference calculus",
+        "zh": "推理演算",
+        "score": 0.118695,
+        "base": 0.224919,
+        "classroom": 0.072405
+      },
+      {
+        "rank": 36,
+        "name": "二元联结词/binary connective",
+        "zh": "二元联结词",
+        "score": 0.118082,
+        "base": 0.189068,
+        "classroom": 0.043217
+      },
+      {
+        "rank": 37,
+        "name": "自然演绎系统/natural deduction system",
+        "zh": "自然演绎系统",
+        "score": 0.11007,
+        "base": 0.228585,
+        "classroom": 0.0
+      },
+      {
+        "rank": 38,
+        "name": "字符表/character set",
+        "zh": "字符表",
+        "score": 0.104591,
+        "base": 0.202035,
+        "classroom": 0.0
+      },
+      {
+        "rank": 39,
+        "name": "推理公式/inference formula",
+        "zh": "推理公式",
+        "score": 0.103821,
+        "base": 0.19796,
+        "classroom": 0.036972
+      },
+      {
+        "rank": 40,
+        "name": "否定/Negation",
+        "zh": "否定",
+        "score": 0.103775,
+        "base": 0.135604,
+        "classroom": 0.07684
+      }
+    ]
+  },
+  "lectures": [
+    {
+      "id": "1",
+      "chapters": [
+        {
+          "name": "第1章 命题逻辑的基本概念",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "好",
+      "note": "命题逻辑居首，章主题明确",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "命题逻辑",
+          "score": 0.786434,
+          "base": 1.0,
+          "classroom": 0.384624
+        },
+        {
+          "rank": 2,
+          "zh": "联结词",
+          "score": 0.44864,
+          "base": 0.687096,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "谓词",
+          "score": 0.427513,
+          "base": 0.202958,
+          "classroom": 0.85
+        },
+        {
+          "rank": 4,
+          "zh": "数理逻辑",
+          "score": 0.415354,
+          "base": 0.636118,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "论域",
+          "score": 0.391395,
+          "base": 0.449612,
+          "classroom": 0.281863
+        },
+        {
+          "rank": 6,
+          "zh": "命题",
+          "score": 0.390085,
+          "base": 0.500881,
+          "classroom": 0.181628
+        },
+        {
+          "rank": 7,
+          "zh": "初始符号",
+          "score": 0.328286,
+          "base": 0.502773,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "集合",
+          "score": 0.287297,
+          "base": 0.439998,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "谓词逻辑",
+          "score": 0.280902,
+          "base": 0.672522,
+          "classroom": 0.533365
+        },
+        {
+          "rank": 10,
+          "zh": "一阶语言",
+          "score": 0.269228,
+          "base": 0.412325,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "公理系统",
+          "score": 0.224289,
+          "base": 0.3435,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "命题公式",
+          "score": 0.223666,
+          "base": 0.342546,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "chapters": [
+        {
+          "name": "第4章 谓词逻辑的基本概念",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "好",
+      "note": "谓词逻辑+论域+谓词，贴合第4章",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "谓词逻辑",
+          "score": 0.947943,
+          "base": 1.0,
+          "classroom": 0.85
+        },
+        {
+          "rank": 2,
+          "zh": "论域",
+          "score": 0.655584,
+          "base": 0.778954,
+          "classroom": 0.423472
+        },
+        {
+          "rank": 3,
+          "zh": "谓词",
+          "score": 0.493003,
+          "base": 0.395717,
+          "classroom": 0.676043
+        },
+        {
+          "rank": 4,
+          "zh": "一阶语言",
+          "score": 0.441319,
+          "base": 0.675883,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "命题",
+          "score": 0.440262,
+          "base": 0.379023,
+          "classroom": 0.555478
+        },
+        {
+          "rank": 6,
+          "zh": "量词",
+          "score": 0.398857,
+          "base": 0.259721,
+          "classroom": 0.660634
+        },
+        {
+          "rank": 7,
+          "zh": "数理逻辑",
+          "score": 0.398182,
+          "base": 0.609818,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "命题形式",
+          "score": 0.370056,
+          "base": 0.246738,
+          "classroom": 0.602071
+        },
+        {
+          "rank": 9,
+          "zh": "联结词",
+          "score": 0.370014,
+          "base": 0.566679,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "一阶理论",
+          "score": 0.267026,
+          "base": 0.408953,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "合式公式",
+          "score": 0.250276,
+          "base": 0.266946,
+          "classroom": 0.218911
+        },
+        {
+          "rank": 12,
+          "zh": "集合",
+          "score": 0.24882,
+          "base": 0.381069,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "chapters": [
+        {
+          "name": "第4章 谓词逻辑的基本概念",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.338,
+      "jaccard": 0.0811,
+      "grade": "较好",
+      "note": "论域/谓词逻辑/一阶语言均为谓词章核心",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "论域",
+          "score": 0.802952,
+          "base": 0.778954,
+          "classroom": 0.85
+        },
+        {
+          "rank": 2,
+          "zh": "谓词逻辑",
+          "score": 0.662215,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "一阶语言",
+          "score": 0.44758,
+          "base": 0.675883,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "谓词公式的解释",
+          "score": 0.419874,
+          "base": 0.265932,
+          "classroom": 0.721671
+        },
+        {
+          "rank": 5,
+          "zh": "数理逻辑",
+          "score": 0.403831,
+          "base": 0.609818,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "联结词",
+          "score": 0.375263,
+          "base": 0.566679,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "谓词",
+          "score": 0.360243,
+          "base": 0.395717,
+          "classroom": 0.290698
+        },
+        {
+          "rank": 8,
+          "zh": "量词",
+          "score": 0.312735,
+          "base": 0.259721,
+          "classroom": 0.416669
+        },
+        {
+          "rank": 9,
+          "zh": "个体域",
+          "score": 0.281556,
+          "base": 0.295213,
+          "classroom": 0.25478
+        },
+        {
+          "rank": 10,
+          "zh": "一阶理论",
+          "score": 0.270815,
+          "base": 0.408953,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "集合",
+          "score": 0.25235,
+          "base": 0.381069,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "命题",
+          "score": 0.250995,
+          "base": 0.379023,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "chapters": [
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.37,
+      "jaccard": 0.2121,
+      "grade": "好",
+      "note": "命题逻辑+联结词+命题公式",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "命题逻辑",
+          "score": 0.944481,
+          "base": 1.0,
+          "classroom": 0.85
+        },
+        {
+          "rank": 2,
+          "zh": "联结词",
+          "score": 0.548379,
+          "base": 0.870616,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "命题公式",
+          "score": 0.530502,
+          "base": 0.452632,
+          "classroom": 0.663021
+        },
+        {
+          "rank": 4,
+          "zh": "论域",
+          "score": 0.502286,
+          "base": 0.421159,
+          "classroom": 0.640346
+        },
+        {
+          "rank": 5,
+          "zh": "数理逻辑",
+          "score": 0.486966,
+          "base": 0.773115,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "定理",
+          "score": 0.4097,
+          "base": 0.267902,
+          "classroom": 0.651009
+        },
+        {
+          "rank": 7,
+          "zh": "推理演算",
+          "score": 0.353393,
+          "base": 0.355429,
+          "classroom": 0.349929
+        },
+        {
+          "rank": 8,
+          "zh": "λ-演算",
+          "score": 0.34773,
+          "base": 0.552063,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "一阶语言",
+          "score": 0.337834,
+          "base": 0.536352,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "谓词逻辑",
+          "score": 0.327177,
+          "base": 0.86486,
+          "classroom": 0.492554
+        },
+        {
+          "rank": 11,
+          "zh": "命题变项",
+          "score": 0.324506,
+          "base": 0.40645,
+          "classroom": 0.185056
+        },
+        {
+          "rank": 12,
+          "zh": "命题",
+          "score": 0.317792,
+          "base": 0.362682,
+          "classroom": 0.241398
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "chapters": [
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.363,
+      "jaccard": 0.1765,
+      "grade": "好",
+      "note": "命题逻辑居首",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "命题逻辑",
+          "score": 0.901481,
+          "base": 1.0,
+          "classroom": 0.728581
+        },
+        {
+          "rank": 2,
+          "zh": "数理逻辑",
+          "score": 0.709954,
+          "base": 0.773115,
+          "classroom": 0.599106
+        },
+        {
+          "rank": 3,
+          "zh": "联结词",
+          "score": 0.554603,
+          "base": 0.870616,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "推理规则",
+          "score": 0.485735,
+          "base": 0.278177,
+          "classroom": 0.85
+        },
+        {
+          "rank": 5,
+          "zh": "论域",
+          "score": 0.448495,
+          "base": 0.421159,
+          "classroom": 0.49647
+        },
+        {
+          "rank": 6,
+          "zh": "推理演算",
+          "score": 0.425539,
+          "base": 0.355429,
+          "classroom": 0.548582
+        },
+        {
+          "rank": 7,
+          "zh": "命题公式",
+          "score": 0.387928,
+          "base": 0.452632,
+          "classroom": 0.274371
+        },
+        {
+          "rank": 8,
+          "zh": "λ-演算",
+          "score": 0.351677,
+          "base": 0.552063,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "一阶语言",
+          "score": 0.341669,
+          "base": 0.536352,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "谓词逻辑",
+          "score": 0.335797,
+          "base": 0.86486,
+          "classroom": 0.537992
+        },
+        {
+          "rank": 11,
+          "zh": "初始符号",
+          "score": 0.268163,
+          "base": 0.420962,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "集合",
+          "score": 0.262538,
+          "base": 0.412132,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "chapters": [
+        {
+          "name": "第3章 命题逻辑的公理化",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.313,
+      "jaccard": 0.0256,
+      "grade": "好",
+      "note": "命题逻辑+公理+公理系统",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "命题逻辑",
+          "score": 0.686939,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "公理",
+          "score": 0.683806,
+          "base": 0.995439,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "公理系统",
+          "score": 0.659024,
+          "base": 0.959363,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "数理逻辑",
+          "score": 0.527041,
+          "base": 0.767231,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "推理规则",
+          "score": 0.436712,
+          "base": 0.248363,
+          "classroom": 0.85
+        },
+        {
+          "rank": 6,
+          "zh": "联结词",
+          "score": 0.431599,
+          "base": 0.628292,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "公理系统的构成",
+          "score": 0.427255,
+          "base": 0.62197,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "命题",
+          "score": 0.368857,
+          "base": 0.536958,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "谓词逻辑的公理系统",
+          "score": 0.364692,
+          "base": 0.530894,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "理论",
+          "score": 0.347349,
+          "base": 0.505647,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "集合",
+          "score": 0.345472,
+          "base": 0.502915,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "论域",
+          "score": 0.344077,
+          "base": 0.351519,
+          "classroom": 0.327748
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "chapters": [
+        {
+          "name": "第3章 命题逻辑的公理化",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.327,
+      "jaccard": 0.0526,
+      "grade": "好",
+      "note": "同公理化单元",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "命题逻辑",
+          "score": 0.673037,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "公理",
+          "score": 0.669968,
+          "base": 0.995439,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "公理系统",
+          "score": 0.645687,
+          "base": 0.959363,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "数理逻辑",
+          "score": 0.516375,
+          "base": 0.767231,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "命题",
+          "score": 0.492352,
+          "base": 0.536958,
+          "classroom": 0.400533
+        },
+        {
+          "rank": 6,
+          "zh": "推理规则",
+          "score": 0.445076,
+          "base": 0.248363,
+          "classroom": 0.85
+        },
+        {
+          "rank": 7,
+          "zh": "联结词",
+          "score": 0.422864,
+          "base": 0.628292,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "公理系统的构成",
+          "score": 0.418609,
+          "base": 0.62197,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "谓词逻辑的公理系统",
+          "score": 0.394049,
+          "base": 0.530894,
+          "classroom": 0.112362
+        },
+        {
+          "rank": 10,
+          "zh": "理论",
+          "score": 0.340319,
+          "base": 0.505647,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "集合",
+          "score": 0.33848,
+          "base": 0.502915,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "一阶语言",
+          "score": 0.326462,
+          "base": 0.485059,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "chapters": [
+        {
+          "name": "第5章 谓词逻辑的等值和推理演算",
+          "weight": 0.8403361344537815
+        },
+        {
+          "name": "第12章 实数集合与集合的基数",
+          "weight": 0.15966386554621848
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "中",
+      "note": "谓词逻辑对，集合挤进 Top2",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "谓词逻辑",
+          "score": 0.722087,
+          "base": 1.0,
+          "classroom": 0.199212
+        },
+        {
+          "rank": 2,
+          "zh": "集合",
+          "score": 0.603587,
+          "base": 0.472616,
+          "classroom": 0.85
+        },
+        {
+          "rank": 3,
+          "zh": "数理逻辑",
+          "score": 0.583585,
+          "base": 0.806605,
+          "classroom": 0.163985
+        },
+        {
+          "rank": 4,
+          "zh": "联结词",
+          "score": 0.38612,
+          "base": 0.591346,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "λ-演算",
+          "score": 0.371086,
+          "base": 0.568322,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "论域",
+          "score": 0.353314,
+          "base": 0.541103,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "一阶语言",
+          "score": 0.30892,
+          "base": 0.473113,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "定理",
+          "score": 0.300086,
+          "base": 0.270808,
+          "classroom": 0.355169
+        },
+        {
+          "rank": 9,
+          "zh": "公理系统",
+          "score": 0.289571,
+          "base": 0.290362,
+          "classroom": 0.288084
+        },
+        {
+          "rank": 10,
+          "zh": "关系",
+          "score": 0.271825,
+          "base": 0.30171,
+          "classroom": 0.215597
+        },
+        {
+          "rank": 11,
+          "zh": "推理演算",
+          "score": 0.270005,
+          "base": 0.413515,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "命题",
+          "score": 0.240867,
+          "base": 0.309092,
+          "classroom": 0.112505
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "chapters": [
+        {
+          "name": "第5章 谓词逻辑的等值和推理演算",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.327,
+      "jaccard": 0.0526,
+      "grade": "中",
+      "note": "谓词逻辑对，书名 hub 偏高",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "谓词逻辑",
+          "score": 0.673037,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "数理逻辑",
+          "score": 0.518326,
+          "base": 0.77013,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "集合",
+          "score": 0.498594,
+          "base": 0.327881,
+          "classroom": 0.85
+        },
+        {
+          "rank": 4,
+          "zh": "联结词",
+          "score": 0.396323,
+          "base": 0.588858,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "λ-演算",
+          "score": 0.392904,
+          "base": 0.583778,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "论域",
+          "score": 0.320625,
+          "base": 0.476385,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "一阶语言",
+          "score": 0.309575,
+          "base": 0.459968,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "推理演算",
+          "score": 0.282324,
+          "base": 0.419478,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "关系",
+          "score": 0.270821,
+          "base": 0.28211,
+          "classroom": 0.247583
+        },
+        {
+          "rank": 10,
+          "zh": "谓词",
+          "score": 0.260585,
+          "base": 0.337928,
+          "classroom": 0.101378
+        },
+        {
+          "rank": 11,
+          "zh": "命题",
+          "score": 0.23751,
+          "base": 0.296613,
+          "classroom": 0.11585
+        },
+        {
+          "rank": 12,
+          "zh": "定理",
+          "score": 0.237097,
+          "base": 0.265017,
+          "classroom": 0.179624
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "chapters": [
+        {
+          "name": "第6章 谓词逻辑的公理化",
+          "weight": 0.75
+        },
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "weight": 0.25
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.338,
+      "jaccard": 0.0811,
+      "grade": "中偏上",
+      "note": "谓词逻辑居首，集合略高",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "谓词逻辑",
+          "score": 0.662215,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "集合",
+          "score": 0.577322,
+          "base": 0.438233,
+          "classroom": 0.85
+        },
+        {
+          "rank": 3,
+          "zh": "数理逻辑",
+          "score": 0.473184,
+          "base": 0.714548,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "论域",
+          "score": 0.413194,
+          "base": 0.623957,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "公理",
+          "score": 0.345499,
+          "base": 0.521732,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "联结词",
+          "score": 0.312857,
+          "base": 0.453468,
+          "classroom": 0.037194
+        },
+        {
+          "rank": 7,
+          "zh": "谓词",
+          "score": 0.312259,
+          "base": 0.471538,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "公理系统",
+          "score": 0.30866,
+          "base": 0.446708,
+          "classroom": 0.038024
+        },
+        {
+          "rank": 9,
+          "zh": "命题",
+          "score": 0.301156,
+          "base": 0.381559,
+          "classroom": 0.143529
+        },
+        {
+          "rank": 10,
+          "zh": "一阶语言",
+          "score": 0.298778,
+          "base": 0.45118,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "关系",
+          "score": 0.282469,
+          "base": 0.369184,
+          "classroom": 0.112468
+        },
+        {
+          "rank": 12,
+          "zh": "命题逻辑",
+          "score": 0.270144,
+          "base": 0.635042,
+          "classroom": 0.087945
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "chapters": [
+        {
+          "name": "第9章 集合",
+          "weight": 0.75
+        },
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "weight": 0.25
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.37,
+      "jaccard": 0.2121,
+      "grade": "中",
+      "note": "集合论进 Top2，数理逻辑占 Top1",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "数理逻辑",
+          "score": 0.83953,
+          "base": 0.833378,
+          "classroom": 0.85
+        },
+        {
+          "rank": 2,
+          "zh": "集合论",
+          "score": 0.739799,
+          "base": 1.0,
+          "classroom": 0.296994
+        },
+        {
+          "rank": 3,
+          "zh": "集合",
+          "score": 0.584876,
+          "base": 0.92856,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "论域",
+          "score": 0.432842,
+          "base": 0.687188,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "公理系统",
+          "score": 0.349545,
+          "base": 0.371219,
+          "classroom": 0.312661
+        },
+        {
+          "rank": 6,
+          "zh": "命题",
+          "score": 0.346026,
+          "base": 0.293311,
+          "classroom": 0.435736
+        },
+        {
+          "rank": 7,
+          "zh": "联结词",
+          "score": 0.321755,
+          "base": 0.510824,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "命题逻辑",
+          "score": 0.291116,
+          "base": 0.613465,
+          "classroom": 0.266902
+        },
+        {
+          "rank": 9,
+          "zh": "公理",
+          "score": 0.285848,
+          "base": 0.36149,
+          "classroom": 0.157122
+        },
+        {
+          "rank": 10,
+          "zh": "一阶语言",
+          "score": 0.26785,
+          "base": 0.425244,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "正则公理",
+          "score": 0.247311,
+          "base": 0.392635,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "关系",
+          "score": 0.243307,
+          "base": 0.305114,
+          "classroom": 0.138125
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "chapters": [
+        {
+          "name": "第9章 集合",
+          "weight": 0.75
+        },
+        {
+          "name": "第1章 命题逻辑的基本概念",
+          "weight": 0.25
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "好",
+      "note": "集合论→集合，已纠正命题污染",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "集合论",
+          "score": 0.652951,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "集合",
+          "score": 0.620511,
+          "base": 0.950318,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "联结词",
+          "score": 0.595284,
+          "base": 0.4599,
+          "classroom": 0.85
+        },
+        {
+          "rank": 4,
+          "zh": "论域",
+          "score": 0.537338,
+          "base": 0.705766,
+          "classroom": 0.220453
+        },
+        {
+          "rank": 5,
+          "zh": "数理逻辑",
+          "score": 0.523448,
+          "base": 0.801664,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "命题",
+          "score": 0.372675,
+          "base": 0.34111,
+          "classroom": 0.432063
+        },
+        {
+          "rank": 7,
+          "zh": "命题逻辑",
+          "score": 0.283078,
+          "base": 0.622017,
+          "classroom": 0.189165
+        },
+        {
+          "rank": 8,
+          "zh": "正则公理",
+          "score": 0.260308,
+          "base": 0.398664,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "真值表",
+          "score": 0.256484,
+          "base": 0.23556,
+          "classroom": 0.295851
+        },
+        {
+          "rank": 10,
+          "zh": "一阶语言",
+          "score": 0.25592,
+          "base": 0.391943,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "公理系统",
+          "score": 0.246177,
+          "base": 0.377023,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "公理",
+          "score": 0.237973,
+          "base": 0.364458,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "chapters": [
+        {
+          "name": "第10章 关系",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.338,
+      "jaccard": 0.0811,
+      "grade": "好",
+      "note": "关系居首",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "关系",
+          "score": 0.733701,
+          "base": 1.0,
+          "classroom": 0.211633
+        },
+        {
+          "rank": 2,
+          "zh": "集合",
+          "score": 0.727643,
+          "base": 0.966546,
+          "classroom": 0.259283
+        },
+        {
+          "rank": 3,
+          "zh": "联结词",
+          "score": 0.46873,
+          "base": 0.287578,
+          "classroom": 0.823871
+        },
+        {
+          "rank": 4,
+          "zh": "命题公式",
+          "score": 0.415853,
+          "base": 0.194402,
+          "classroom": 0.85
+        },
+        {
+          "rank": 5,
+          "zh": "数理逻辑",
+          "score": 0.367214,
+          "base": 0.554524,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "笛卡儿积",
+          "score": 0.339118,
+          "base": 0.512097,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "论域",
+          "score": 0.337761,
+          "base": 0.510047,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "整数集",
+          "score": 0.272714,
+          "base": 0.41182,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "命题变项",
+          "score": 0.268856,
+          "base": 0.194427,
+          "classroom": 0.414771
+        },
+        {
+          "rank": 10,
+          "zh": "正则性",
+          "score": 0.255002,
+          "base": 0.385075,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "合式公式",
+          "score": 0.241873,
+          "base": 0.168314,
+          "classroom": 0.386082
+        },
+        {
+          "rank": 12,
+          "zh": "集合论",
+          "score": 0.22961,
+          "base": 0.77051,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "chapters": [
+        {
+          "name": "第10章 关系",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.313,
+      "jaccard": 0.0256,
+      "grade": "好",
+      "note": "关系居首",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "关系",
+          "score": 0.765658,
+          "base": 1.0,
+          "classroom": 0.251449
+        },
+        {
+          "rank": 2,
+          "zh": "集合",
+          "score": 0.663959,
+          "base": 0.966546,
+          "classroom": 0.0
+        },
+        {
+          "rank": 3,
+          "zh": "命题公式",
+          "score": 0.399644,
+          "base": 0.194402,
+          "classroom": 0.85
+        },
+        {
+          "rank": 4,
+          "zh": "数理逻辑",
+          "score": 0.380924,
+          "base": 0.554524,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "笛卡儿积",
+          "score": 0.351779,
+          "base": 0.512097,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "论域",
+          "score": 0.350371,
+          "base": 0.510047,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "等值公式",
+          "score": 0.345011,
+          "base": 0.147344,
+          "classroom": 0.778745
+        },
+        {
+          "rank": 8,
+          "zh": "逻辑公式",
+          "score": 0.310703,
+          "base": 0.187132,
+          "classroom": 0.581852
+        },
+        {
+          "rank": 9,
+          "zh": "整数集",
+          "score": 0.282896,
+          "base": 0.41182,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "命题变项",
+          "score": 0.27142,
+          "base": 0.194427,
+          "classroom": 0.440362
+        },
+        {
+          "rank": 11,
+          "zh": "正则性",
+          "score": 0.264523,
+          "base": 0.385075,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "重言式",
+          "score": 0.244347,
+          "base": 0.097389,
+          "classroom": 0.566813
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "chapters": [
+        {
+          "name": "第11章 函数",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.338,
+      "jaccard": 0.0811,
+      "grade": "较好",
+      "note": "函数在 Top2，集合作基础词合理",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "集合",
+          "score": 0.764506,
+          "base": 0.992639,
+          "classroom": 0.317262
+        },
+        {
+          "rank": 2,
+          "zh": "函数",
+          "score": 0.730081,
+          "base": 0.97012,
+          "classroom": 0.259495
+        },
+        {
+          "rank": 3,
+          "zh": "论域",
+          "score": 0.662215,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "关系",
+          "score": 0.584929,
+          "base": 0.7199,
+          "classroom": 0.320323
+        },
+        {
+          "rank": 5,
+          "zh": "联结词",
+          "score": 0.505557,
+          "base": 0.329862,
+          "classroom": 0.85
+        },
+        {
+          "rank": 6,
+          "zh": "递归规则",
+          "score": 0.475664,
+          "base": 0.718292,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "数理逻辑",
+          "score": 0.440971,
+          "base": 0.665903,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "谓词公式的解释",
+          "score": 0.426608,
+          "base": 0.644214,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "谓词",
+          "score": 0.379478,
+          "base": 0.573044,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "命题公式",
+          "score": 0.316893,
+          "base": 0.252068,
+          "classroom": 0.44398
+        },
+        {
+          "rank": 11,
+          "zh": "变项",
+          "score": 0.309998,
+          "base": 0.468122,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "代入规则",
+          "score": 0.308752,
+          "base": 0.466242,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "chapters": [
+        {
+          "name": "第12章 实数集合与集合的基数",
+          "weight": 1.0
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "中",
+      "note": "集合对；定理/公理系统偏泛",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "集合",
+          "score": 0.652951,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "定理",
+          "score": 0.390557,
+          "base": 0.146359,
+          "classroom": 0.85
+        },
+        {
+          "rank": 3,
+          "zh": "公理系统",
+          "score": 0.383695,
+          "base": 0.242833,
+          "classroom": 0.648718
+        },
+        {
+          "rank": 4,
+          "zh": "论域",
+          "score": 0.382872,
+          "base": 0.586371,
+          "classroom": 0.0
+        },
+        {
+          "rank": 5,
+          "zh": "数理逻辑",
+          "score": 0.354075,
+          "base": 0.542269,
+          "classroom": 0.0
+        },
+        {
+          "rank": 6,
+          "zh": "公理",
+          "score": 0.307545,
+          "base": 0.225229,
+          "classroom": 0.462418
+        },
+        {
+          "rank": 7,
+          "zh": "集合论",
+          "score": 0.228298,
+          "base": 0.776979,
+          "classroom": 0.0
+        },
+        {
+          "rank": 8,
+          "zh": "实数集合",
+          "score": 0.196721,
+          "base": 0.301279,
+          "classroom": 0.0
+        },
+        {
+          "rank": 9,
+          "zh": "关系",
+          "score": 0.194402,
+          "base": 0.235781,
+          "classroom": 0.11655
+        },
+        {
+          "rank": 10,
+          "zh": "双射",
+          "score": 0.194217,
+          "base": 0.297445,
+          "classroom": 0.0
+        },
+        {
+          "rank": 11,
+          "zh": "基数",
+          "score": 0.189978,
+          "base": 0.290953,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "正则公理",
+          "score": 0.189507,
+          "base": 0.290231,
+          "classroom": 0.0
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "chapters": [
+        {
+          "name": "第12章 实数集合与集合的基数",
+          "weight": 0.75
+        },
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "weight": 0.25
+        }
+      ],
+      "alpha_base": 0.45,
+      "alpha_used": 0.347,
+      "jaccard": 0.1111,
+      "grade": "中",
+      "note": "集合对，联结词噪声仍在",
+      "top": [
+        {
+          "rank": 1,
+          "zh": "集合",
+          "score": 0.652951,
+          "base": 1.0,
+          "classroom": 0.0
+        },
+        {
+          "rank": 2,
+          "zh": "联结词",
+          "score": 0.598067,
+          "base": 0.493386,
+          "classroom": 0.795018
+        },
+        {
+          "rank": 3,
+          "zh": "数理逻辑",
+          "score": 0.462376,
+          "base": 0.708133,
+          "classroom": 0.0
+        },
+        {
+          "rank": 4,
+          "zh": "公理系统",
+          "score": 0.454829,
+          "base": 0.31569,
+          "classroom": 0.716611
+        },
+        {
+          "rank": 5,
+          "zh": "定理",
+          "score": 0.43146,
+          "base": 0.209003,
+          "classroom": 0.85
+        },
+        {
+          "rank": 6,
+          "zh": "论域",
+          "score": 0.418241,
+          "base": 0.640539,
+          "classroom": 0.0
+        },
+        {
+          "rank": 7,
+          "zh": "合式公式",
+          "score": 0.302935,
+          "base": 0.223185,
+          "classroom": 0.45298
+        },
+        {
+          "rank": 8,
+          "zh": "公理",
+          "score": 0.299288,
+          "base": 0.283964,
+          "classroom": 0.328118
+        },
+        {
+          "rank": 9,
+          "zh": "一阶语言",
+          "score": 0.261452,
+          "base": 0.400416,
+          "classroom": 0.0
+        },
+        {
+          "rank": 10,
+          "zh": "命题",
+          "score": 0.257448,
+          "base": 0.284147,
+          "classroom": 0.207217
+        },
+        {
+          "rank": 11,
+          "zh": "命题逻辑",
+          "score": 0.231578,
+          "base": 0.591107,
+          "classroom": 0.0
+        },
+        {
+          "rank": 12,
+          "zh": "集合论",
+          "score": 0.228881,
+          "base": 0.778961,
+          "classroom": 0.0
+        }
+      ]
+    }
+  ],
+  "toc": {
+    "chapters": [
+      {
+        "chapter": "第1章 命题逻辑的基本概念",
+        "keywords": [
+          "命题逻辑的基本概念",
+          "命题逻辑"
+        ],
+        "hits": [
+          {
+            "rank": 5,
+            "zh": "命题逻辑",
+            "score": 0.361604
+          },
+          {
+            "rank": 8,
+            "zh": "命题",
+            "score": 0.282979
+          }
+        ],
+        "hit_count": 2,
+        "best_rank": 5
+      },
+      {
+        "chapter": "第2章 命题逻辑的等值和推理演算",
+        "keywords": [
+          "命题逻辑的等值和推理演算",
+          "命题逻辑的等值",
+          "推理演算",
+          "命题逻辑",
+          "等值",
+          "推理"
+        ],
+        "hits": [
+          {
+            "rank": 5,
+            "zh": "命题逻辑",
+            "score": 0.361604
+          },
+          {
+            "rank": 8,
+            "zh": "命题",
+            "score": 0.282979
+          },
+          {
+            "rank": 20,
+            "zh": "推理规则",
+            "score": 0.172079
+          },
+          {
+            "rank": 30,
+            "zh": "等值",
+            "score": 0.142461
+          },
+          {
+            "rank": 35,
+            "zh": "推理演算",
+            "score": 0.118695
+          },
+          {
+            "rank": 39,
+            "zh": "推理公式",
+            "score": 0.103821
+          }
+        ],
+        "hit_count": 6,
+        "best_rank": 5
+      },
+      {
+        "chapter": "第3章 命题逻辑的公理化",
+        "keywords": [
+          "命题逻辑的公理化",
+          "命题逻辑",
+          "公理"
+        ],
+        "hits": [
+          {
+            "rank": 5,
+            "zh": "命题逻辑",
+            "score": 0.361604
+          },
+          {
+            "rank": 7,
+            "zh": "公理系统",
+            "score": 0.28503
+          },
+          {
+            "rank": 8,
+            "zh": "命题",
+            "score": 0.282979
+          },
+          {
+            "rank": 11,
+            "zh": "公理",
+            "score": 0.253606
+          },
+          {
+            "rank": 18,
+            "zh": "公理系统的构成",
+            "score": 0.181537
+          },
+          {
+            "rank": 26,
+            "zh": "谓词逻辑的公理系统",
+            "score": 0.157347
+          }
+        ],
+        "hit_count": 6,
+        "best_rank": 5
+      },
+      {
+        "chapter": "第4章 谓词逻辑的基本概念",
+        "keywords": [
+          "谓词逻辑的基本概念",
+          "谓词逻辑"
+        ],
+        "hits": [
+          {
+            "rank": 6,
+            "zh": "谓词逻辑",
+            "score": 0.334599
+          },
+          {
+            "rank": 15,
+            "zh": "谓词",
+            "score": 0.195833
+          },
+          {
+            "rank": 26,
+            "zh": "谓词逻辑的公理系统",
+            "score": 0.157347
+          }
+        ],
+        "hit_count": 3,
+        "best_rank": 6
+      },
+      {
+        "chapter": "第5章 谓词逻辑的等值和推理演算",
+        "keywords": [
+          "谓词逻辑的等值和推理演算",
+          "谓词逻辑的等值",
+          "推理演算",
+          "谓词逻辑",
+          "等值",
+          "推理"
+        ],
+        "hits": [
+          {
+            "rank": 6,
+            "zh": "谓词逻辑",
+            "score": 0.334599
+          },
+          {
+            "rank": 15,
+            "zh": "谓词",
+            "score": 0.195833
+          },
+          {
+            "rank": 20,
+            "zh": "推理规则",
+            "score": 0.172079
+          },
+          {
+            "rank": 26,
+            "zh": "谓词逻辑的公理系统",
+            "score": 0.157347
+          },
+          {
+            "rank": 30,
+            "zh": "等值",
+            "score": 0.142461
+          },
+          {
+            "rank": 35,
+            "zh": "推理演算",
+            "score": 0.118695
+          }
+        ],
+        "hit_count": 7,
+        "best_rank": 6
+      },
+      {
+        "chapter": "第6章 谓词逻辑的公理化",
+        "keywords": [
+          "谓词逻辑的公理化",
+          "谓词逻辑",
+          "公理"
+        ],
+        "hits": [
+          {
+            "rank": 6,
+            "zh": "谓词逻辑",
+            "score": 0.334599
+          },
+          {
+            "rank": 7,
+            "zh": "公理系统",
+            "score": 0.28503
+          },
+          {
+            "rank": 11,
+            "zh": "公理",
+            "score": 0.253606
+          },
+          {
+            "rank": 15,
+            "zh": "谓词",
+            "score": 0.195833
+          },
+          {
+            "rank": 18,
+            "zh": "公理系统的构成",
+            "score": 0.181537
+          },
+          {
+            "rank": 26,
+            "zh": "谓词逻辑的公理系统",
+            "score": 0.157347
+          }
+        ],
+        "hit_count": 6,
+        "best_rank": 6
+      },
+      {
+        "chapter": "第7章 一阶形式理论及模型",
+        "keywords": [
+          "一阶形式理论及模型",
+          "一阶形式理论",
+          "模型",
+          "一阶"
+        ],
+        "hits": [
+          {
+            "rank": 9,
+            "zh": "一阶语言",
+            "score": 0.268811
+          },
+          {
+            "rank": 17,
+            "zh": "一阶理论",
+            "score": 0.188632
+          },
+          {
+            "rank": 23,
+            "zh": "模型",
+            "score": 0.167431
+          },
+          {
+            "rank": 32,
+            "zh": "理论",
+            "score": 0.12792
+          }
+        ],
+        "hit_count": 4,
+        "best_rank": 9
+      },
+      {
+        "chapter": "第8章 证明论中的逻辑系统",
+        "keywords": [
+          "证明论中的逻辑系统"
+        ],
+        "hits": [],
+        "hit_count": 0,
+        "best_rank": null
+      },
+      {
+        "chapter": "第9章 集合",
+        "keywords": [
+          "集合",
+          "集合论"
+        ],
+        "hits": [
+          {
+            "rank": 1,
+            "zh": "集合",
+            "score": 0.466061
+          },
+          {
+            "rank": 13,
+            "zh": "集合论",
+            "score": 0.201542
+          }
+        ],
+        "hit_count": 2,
+        "best_rank": 1
+      },
+      {
+        "chapter": "第10章 关系",
+        "keywords": [
+          "关系"
+        ],
+        "hits": [
+          {
+            "rank": 10,
+            "zh": "关系",
+            "score": 0.265945
+          }
+        ],
+        "hit_count": 1,
+        "best_rank": 10
+      },
+      {
+        "chapter": "第11章 函数",
+        "keywords": [
+          "函数"
+        ],
+        "hits": [
+          {
+            "rank": 27,
+            "zh": "函数",
+            "score": 0.150818
+          }
+        ],
+        "hit_count": 1,
+        "best_rank": 27
+      },
+      {
+        "chapter": "第12章 实数集合与集合的基数",
+        "keywords": [
+          "实数集合与集合的基数",
+          "实数集合",
+          "集合的基数",
+          "集合",
+          "基数",
+          "实数"
+        ],
+        "hits": [
+          {
+            "rank": 1,
+            "zh": "集合",
+            "score": 0.466061
+          },
+          {
+            "rank": 13,
+            "zh": "集合论",
+            "score": 0.201542
+          }
+        ],
+        "hit_count": 2,
+        "best_rank": 1
+      }
+    ]
+  },
+  "notes": [
+    "分讲次视图按主章对齐；全局视图为 17 讲时长加权合并，贯穿词会自然抬高。",
+    "与目录比：命题/谓词/集合/关系主脊梁对齐；函数与基数偏弱；证明论章几乎未单独体现。"
+  ]
+}

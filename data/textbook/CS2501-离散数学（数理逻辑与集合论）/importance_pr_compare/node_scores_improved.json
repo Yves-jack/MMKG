@@ -1,0 +1,522 @@
+[
+  {
+    "node": "逻辑/logic",
+    "score": 220.0
+  },
+  {
+    "node": "集合/set",
+    "score": 160.0
+  },
+  {
+    "node": "命题/proposition",
+    "score": 130.0
+  },
+  {
+    "node": "关系/relation",
+    "score": 130.0
+  },
+  {
+    "node": "推理/inference",
+    "score": 110.0
+  },
+  {
+    "node": "公理/axiom",
+    "score": 110.0
+  },
+  {
+    "node": "谓词/predicate",
+    "score": 100.0
+  },
+  {
+    "node": "命题逻辑/propositional logic",
+    "score": 90.0
+  },
+  {
+    "node": "谓词逻辑/Predicate Logic",
+    "score": 90.0
+  },
+  {
+    "node": "公式/formula",
+    "score": 80.0
+  },
+  {
+    "node": "λ-演算/lambda calculus",
+    "score": 80.0
+  },
+  {
+    "node": "等值/equivalence",
+    "score": 80.0
+  },
+  {
+    "node": "π-演算/pi-calculus",
+    "score": 80.0
+  },
+  {
+    "node": "χ-演算/chi-calculus",
+    "score": 80.0
+  },
+  {
+    "node": "函数/function",
+    "score": 70.0
+  },
+  {
+    "node": "推理演算/inference calculus",
+    "score": 60.0
+  },
+  {
+    "node": "公理系统/axiomatic system",
+    "score": 60.0
+  },
+  {
+    "node": "基数/cardinal number",
+    "score": 60.0
+  },
+  {
+    "node": "定理/theorem",
+    "score": 50.0
+  },
+  {
+    "node": "理论/theory",
+    "score": 50.0
+  },
+  {
+    "node": "模型/Model",
+    "score": 40.0
+  },
+  {
+    "node": "集合的基数/cardinality of a set",
+    "score": 40.0
+  },
+  {
+    "node": "一阶形式理论/first-order formal theory",
+    "score": 30.0
+  },
+  {
+    "node": "运算/operation",
+    "score": 30.0
+  },
+  {
+    "node": "性质/property",
+    "score": 30.0
+  },
+  {
+    "node": "实数集合/set of real numbers",
+    "score": 30.0
+  },
+  {
+    "node": "实数/real number",
+    "score": 30.0
+  },
+  {
+    "node": "实数集/real numbers",
+    "score": 30.0
+  },
+  {
+    "node": "命题逻辑的基本概念/basic concepts of propositional logic",
+    "score": 20.0
+  },
+  {
+    "node": "真值/truth value",
+    "score": 20.0
+  },
+  {
+    "node": "真值表/truth table",
+    "score": 20.0
+  },
+  {
+    "node": "联结词/connective",
+    "score": 20.0
+  },
+  {
+    "node": "合式公式/Well-formed formula(Wff)",
+    "score": 20.0
+  },
+  {
+    "node": "形式化/formalization",
+    "score": 20.0
+  },
+  {
+    "node": "范式/normal form",
+    "score": 20.0
+  },
+  {
+    "node": "基本的推理公式/basic inference formula",
+    "score": 20.0
+  },
+  {
+    "node": "推理公式/inference formula",
+    "score": 20.0
+  },
+  {
+    "node": "归结/resolution",
+    "score": 20.0
+  },
+  {
+    "node": "归结推理法/resolution inference method",
+    "score": 20.0
+  },
+  {
+    "node": "结构/Structure",
+    "score": 20.0
+  },
+  {
+    "node": "自然演绎系统/natural deduction system",
+    "score": 20.0
+  },
+  {
+    "node": "自然演绎/natural deduction",
+    "score": 20.0
+  },
+  {
+    "node": "量词/quantifier",
+    "score": 20.0
+  },
+  {
+    "node": "谓词逻辑的等值和推理演算/predicate logic equivalence and inference calculus",
+    "score": 20.0
+  },
+  {
+    "node": "等值式/equivalence formula",
+    "score": 20.0
+  },
+  {
+    "node": "谓词逻辑的公理化/axiomatization of predicate logic",
+    "score": 20.0
+  },
+  {
+    "node": "完全性定理/completeness theorem",
+    "score": 20.0
+  },
+  {
+    "node": "逻辑系统/Logic System",
+    "score": 20.0
+  },
+  {
+    "node": "证明论中的逻辑系统/logic systems in proof theory",
+    "score": 20.0
+  },
+  {
+    "node": "证明论/Proof Theory",
+    "score": 20.0
+  },
+  {
+    "node": "合成/composition",
+    "score": 20.0
+  },
+  {
+    "node": "命题联结词/propositional connective",
+    "score": 10.0
+  },
+  {
+    "node": "重言式/tautology",
+    "score": 10.0
+  },
+  {
+    "node": "命题形式/propositional form",
+    "score": 10.0
+  },
+  {
+    "node": "表达式/expression",
+    "score": 10.0
+  },
+  {
+    "node": "波兰表达式/Polish notation",
+    "score": 10.0
+  },
+  {
+    "node": "等值定理/Equivalence Theorem",
+    "score": 10.0
+  },
+  {
+    "node": "等值公式/equivalent formula",
+    "score": 10.0
+  },
+  {
+    "node": "命题公式/propositional formula",
+    "score": 10.0
+  },
+  {
+    "node": "联结词的完备集/complete set of logical connectives",
+    "score": 10.0
+  },
+  {
+    "node": "完备集/complete set",
+    "score": 10.0
+  },
+  {
+    "node": "对偶式/dual formula",
+    "score": 10.0
+  },
+  {
+    "node": "推理形式/inference form",
+    "score": 10.0
+  },
+  {
+    "node": "演绎定理/Deduction Theorem",
+    "score": 10.0
+  },
+  {
+    "node": "完备性/completeness",
+    "score": 10.0
+  },
+  {
+    "node": "算法/algorithm",
+    "score": 10.0
+  },
+  {
+    "node": "王浩算法/Wang's algorithm",
+    "score": 10.0
+  },
+  {
+    "node": "标准逻辑/standard logic",
+    "score": 10.0
+  },
+  {
+    "node": "非标准逻辑/non-standard logic",
+    "score": 10.0
+  },
+  {
+    "node": "个体词/individual term",
+    "score": 10.0
+  },
+  {
+    "node": "个体/Individual",
+    "score": 10.0
+  },
+  {
+    "node": "自然语句/natural language statement",
+    "score": 10.0
+  },
+  {
+    "node": "自然语句的形式化/formalization of natural language statements",
+    "score": 10.0
+  },
+  {
+    "node": "语句/Sentence",
+    "score": 10.0
+  },
+  {
+    "node": "有限域/finite domain",
+    "score": 10.0
+  },
+  {
+    "node": "判定问题/decidability problem",
+    "score": 10.0
+  },
+  {
+    "node": "普遍有效性/universal validity",
+    "score": 10.0
+  },
+  {
+    "node": "普遍有效/universally valid",
+    "score": 10.0
+  },
+  {
+    "node": "有效性/Validity",
+    "score": 10.0
+  },
+  {
+    "node": "否定型等值式/negative equivalence formula",
+    "score": 10.0
+  },
+  {
+    "node": "否定/Negation",
+    "score": 10.0
+  },
+  {
+    "node": "量词分配等值式/quantifier distribution equivalence",
+    "score": 10.0
+  },
+  {
+    "node": "分配等值式/Distributive Equivalences",
+    "score": 10.0
+  },
+  {
+    "node": "谓词逻辑的归结推理法/resolution inference for predicate logic",
+    "score": 10.0
+  },
+  {
+    "node": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+    "score": 10.0
+  },
+  {
+    "node": "谓词逻辑的自然演绎系统/natural deduction system for predicate logic",
+    "score": 10.0
+  },
+  {
+    "node": "递归函数/recursive function",
+    "score": 10.0
+  },
+  {
+    "node": "摹状词/definite description",
+    "score": 10.0
+  },
+  {
+    "node": "一阶语言/First-order Language",
+    "score": 10.0
+  },
+  {
+    "node": "一阶理论/First-order Theory",
+    "score": 10.0
+  },
+  {
+    "node": "赋值/Assignment",
+    "score": 10.0
+  },
+  {
+    "node": "Herbrand 方法/Herbrand's Method",
+    "score": 10.0
+  },
+  {
+    "node": "Lowenheim-Skolem 定理/Lowenheim-Skolem Theorem",
+    "score": 10.0
+  },
+  {
+    "node": "Scott 域/Scott domain",
+    "score": 10.0
+  },
+  {
+    "node": "Gentzen串形演算/Gentzen's sequent calculus",
+    "score": 10.0
+  },
+  {
+    "node": "Gentzen 串形演算/Gentzen Sequent Calculus",
+    "score": 10.0
+  },
+  {
+    "node": "串形演算/sequent calculus",
+    "score": 10.0
+  },
+  {
+    "node": "线性逻辑/linear logic",
+    "score": 10.0
+  },
+  {
+    "node": "表示方法/Representation method",
+    "score": 10.0
+  },
+  {
+    "node": "特殊集合/special set",
+    "score": 10.0
+  },
+  {
+    "node": "集合间的关系/relations between sets",
+    "score": 10.0
+  },
+  {
+    "node": "集合的图形表示法/Graphical representation of sets",
+    "score": 10.0
+  },
+  {
+    "node": "集合运算的性质/Properties of set operations",
+    "score": 10.0
+  },
+  {
+    "node": "集合运算/set operation",
+    "score": 10.0
+  },
+  {
+    "node": "有限集合的基数/Cardinality of finite sets",
+    "score": 10.0
+  },
+  {
+    "node": "集合论/Set Theory",
+    "score": 10.0
+  },
+  {
+    "node": "集合论公理系统/Axiomatic Set Theory",
+    "score": 10.0
+  },
+  {
+    "node": "集合论公理/axioms of set theory",
+    "score": 10.0
+  },
+  {
+    "node": "元关系/Arity Relation",
+    "score": 10.0
+  },
+  {
+    "node": "二元关系/binary relation",
+    "score": 10.0
+  },
+  {
+    "node": "关系图/relation graph",
+    "score": 10.0
+  },
+  {
+    "node": "关系矩阵/relation matrix",
+    "score": 10.0
+  },
+  {
+    "node": "闭包/closure",
+    "score": 10.0
+  },
+  {
+    "node": "等价关系/equivalence relation",
+    "score": 10.0
+  },
+  {
+    "node": "划分/partition",
+    "score": 10.0
+  },
+  {
+    "node": "相容关系/compatibility relation",
+    "score": 10.0
+  },
+  {
+    "node": "覆盖/covering",
+    "score": 10.0
+  },
+  {
+    "node": "偏序关系/partial order relation",
+    "score": 10.0
+  },
+  {
+    "node": "序关系/order relation",
+    "score": 10.0
+  },
+  {
+    "node": "偏序/Partial Order",
+    "score": 10.0
+  },
+  {
+    "node": "选择公理/Axiom of Choice",
+    "score": 10.0
+  },
+  {
+    "node": "闭集/closed set",
+    "score": 10.0
+  },
+  {
+    "node": "开集/open set",
+    "score": 10.0
+  },
+  {
+    "node": "模糊子集/fuzzy subset",
+    "score": 10.0
+  },
+  {
+    "node": "等势/equipotency",
+    "score": 10.0
+  },
+  {
+    "node": "无限集合/infinite set",
+    "score": 10.0
+  },
+  {
+    "node": "基数的算术运算/cardinal arithmetic operation",
+    "score": 10.0
+  },
+  {
+    "node": "可数集合/countable set",
+    "score": 10.0
+  },
+  {
+    "node": "假设/Hypothesis",
+    "score": 10.0
+  },
+  {
+    "node": "连续统假设/continuum hypothesis",
+    "score": 10.0
+  }
+]

@@ -1,0 +1,260 @@
+{
+  "lecture_id": "26",
+  "root": {
+    "id": "__chapter__/实数集合与集合的基数",
+    "zh": "实数集合与集合的基数",
+    "importance": 0.62797,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "联结词/connective",
+        "zh": "联结词",
+        "importance": 0.598067,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.1105,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "定理证明/theorem proving",
+            "zh": "定理证明",
+            "importance": 0.027371,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "与非/NAND",
+            "zh": "与非",
+            "importance": 0.016805,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.454829,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "变形规则/transformation rule",
+            "zh": "变形规则",
+            "importance": 0.118316,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "公理1/公理_1",
+                "zh": "公理1",
+                "importance": 0.034657,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "传递律/transitivity law",
+                "zh": "传递律",
+                "importance": 0.024948,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "肯定前提律/affirmation of premise law",
+                "zh": "肯定前提律",
+                "importance": 0.02423,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "反证律/proof by contradiction law",
+                "zh": "反证律",
+                "importance": 0.018513,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "分离规则/rule of detachment",
+            "zh": "分离规则",
+            "importance": 0.045385,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "王浩算法/Wang's algorithm",
+            "zh": "王浩算法",
+            "importance": 0.043711,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "定理/theorem",
+        "zh": "定理",
+        "importance": 0.43146,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "推理公式/inference formula",
+            "zh": "推理公式",
+            "importance": 0.124033,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.034084,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "证明/proof",
+            "zh": "证明",
+            "importance": 0.017482,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "归结法/resolution method",
+                "zh": "归结法",
+                "importance": 0.049253,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "假设/Hypothesis",
+                "zh": "假设",
+                "importance": 0.019044,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "结论/conclusion",
+                "zh": "结论",
+                "importance": 0.000491,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "合式公式/Well-formed formula(Wff)",
+        "zh": "合式公式",
+        "importance": 0.302935,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "原子语句/Atomic Sentence",
+            "zh": "原子语句",
+            "importance": 0.024948,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "可证明/Provable",
+            "zh": "可证明",
+            "importance": 0.023572,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前提/premise",
+            "zh": "前提",
+            "importance": 0.002438,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.140689,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "公理/axiom",
+        "zh": "公理",
+        "importance": 0.299288,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.257448,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "初始符号/initial symbols",
+        "zh": "初始符号",
+        "importance": 0.21085,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "析取/disjunction",
+        "zh": "析取",
+        "importance": 0.159068,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 29,
+  "max_depth": 4,
+  "orphan_count": 12,
+  "meta": {
+    "chapter": "第12章 实数集合与集合的基数",
+    "root_id": "__chapter__/实数集合与集合的基数",
+    "root_zh": "实数集合与集合的基数",
+    "virtual_root": true,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 41,
+    "n_edges_raw": 59,
+    "n_hierarchy_candidates": 63,
+    "attached_orphans": 2,
+    "alias_merged": 1
+  }
+}

@@ -46,7 +46,7 @@ def generate_quiz(
 ) -> dict[str, Any]:
     context = build_quiz_context(mmkg)
     prompt = format_prompt(
-        "teaching/quiz_generate.txt",
+        "rag/quiz_generate.txt",
         n_questions=str(n_questions),
         context=context,
         lecture_id=str(lecture_id or "all"),

@@ -191,35 +191,65 @@ def retrieve_lecture_subgraph(
         return set(), []
 
     seeds: set[str] = set()
+    candidate_pool: set[str] = set()
+    alias_pool: set[str] = set()
+    emb_pool: set[str] = set()
     for text in texts:
-        seeds |= retriever._find_seed_entities(text)  # noqa: SLF001
+        expand_seeds, alias_seeds, embedding_seeds = retriever.resolve_seed_sets(text)
+        seeds |= expand_seeds
+        alias_pool |= alias_seeds
+        emb_pool |= embedding_seeds
+        candidate_pool |= alias_seeds | embedding_seeds
     if retriever.embedding_link_enabled:
         emb_min = (
             retriever.lecture_embedding_link_min_score
             if retriever.lecture_embedding_link_min_score is not None
             else retriever.embedding_link_min_score
         )
-        seeds |= retriever._embedding_link(  # noqa: SLF001
+        extra_emb = retriever._embedding_link(  # noqa: SLF001
             combined,
-            exclude=seeds,
+            exclude=candidate_pool,
             min_score=emb_min,
         )
+        emb_pool |= extra_emb
+        candidate_pool |= extra_emb
+        seeds |= extra_emb
+    # 讲次合并后又补了向量种子时，再统一 LLM 筛选一次
+    seeds = retriever.apply_seed_llm_filter(
+        combined,
+        seeds,
+        alias_seeds=alias_pool,
+        embedding_seeds=emb_pool,
+    )
     if not seeds:
         return set(), []
 
-    entities, candidate_relations = retriever._expand_subgraph(seeds)  # noqa: SLF001
-    scored = retriever.rank_relations_scored(candidate_relations, combined, seeds)
-    filtered = [
-        rel for rel, score in scored if score >= retriever.lecture_min_relation_score
-    ]
+    scored = retriever.expand_scored(
+        seeds, combined, candidate_seed_pool=candidate_pool
+    )
+    if retriever.score_prune_edges:
+        filtered = [
+            rel
+            for rel, score in scored
+            if score >= retriever.lecture_min_relation_score
+        ]
+    else:
+        filtered = [rel for rel, _score in scored]
 
     limit = retriever.max_edges_per_lecture
-    if retriever.lecture_dynamic_cap and texts:
-        dynamic = int(len(texts) * retriever.lecture_edges_per_cue_cap)
-        limit = min(limit, max(dynamic, len(texts)))
+    if limit is not None and int(limit) > 0:
+        if retriever.lecture_dynamic_cap and texts:
+            dynamic = int(len(texts) * retriever.lecture_edges_per_cue_cap)
+            limit = min(int(limit), max(dynamic, len(texts)))
+        selected = filtered[: int(limit)]
+    else:
+        selected = filtered
 
-    selected = filtered[:limit]
-    for rel in selected:
-        entities.add(rel.subject)
-        entities.add(rel.object)
+    edge_filt = getattr(retriever, "edge_llm_filter", None)
+    if edge_filt is not None and getattr(edge_filt, "enabled", False) and selected:
+        selected = edge_filt.filter(
+            combined,
+            selected,
+            expansion_seeds=seeds,
+        )
     return seeds, selected

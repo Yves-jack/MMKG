@@ -1,4 +1,4 @@
-"""Stage 2：实体合并 → 课程/单讲知识图谱。"""
+"""Stage 2：实体分流 → 实体合并 → 课程/单讲知识图谱。"""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ from typing import Any
 
 from teachkg.config import TeachKGConfig
 from teachkg.stage2_kg_build.entity_merge import merge_triplets_to_kg
+from teachkg.stage2_kg_build.entity_triage import EntityTriageConfig, triage_triplets
 from teachkg.utils.io import load_jsonl
 
 logger = logging.getLogger(__name__)
@@ -29,6 +30,7 @@ class Stage2KGPipeline:
         merge_cfg = s2.get("entity_merge", {})
         self.drop_related_with = merge_cfg.get("drop_related_with_when_specific", True)
         self.min_subgraph_size = merge_cfg.get("min_subgraph_size", 0)
+        self.merge_synonym_of = bool(merge_cfg.get("merge_synonym_of", True))
         embed_cfg = merge_cfg.get("embedding_merge", {})
         self.embedding_merge_enabled = bool(embed_cfg.get("enabled", False))
         self.embedding_merge_threshold = float(embed_cfg.get("similarity_threshold", 0.93))
@@ -37,6 +39,8 @@ class Stage2KGPipeline:
         ).get("embedder_model", "shibing624/text2vec-base-multilingual")
         self.embedding_merge_max_statements = int(embed_cfg.get("max_statements", 2))
         self.embedding_merge_block_structural = bool(embed_cfg.get("block_structural_pairs", True))
+
+        self.triage_cfg = EntityTriageConfig.from_dict(s2.get("entity_triage") or {})
 
     @property
     def kg_dir(self) -> Path:
@@ -66,6 +70,28 @@ class Stage2KGPipeline:
         if not lecture_id:
             return triplets
         return [t for t in triplets if str(t.get("lecture_id", "")) == str(lecture_id)]
+
+    def _load_entity_registry(self):
+        """加载教材实体注册表（分流 merge 依赖）；无教材路径则返回 None。"""
+        tb_cfg = self.config.get("stage1", "textbook_kg", default={}) or {}
+        raw_path = tb_cfg.get("path") or ""
+        if not raw_path:
+            return None, set()
+        path = Path(raw_path)
+        if not path.is_absolute():
+            path = self.project_root / path
+        if not path.exists():
+            logger.warning("entity_triage: textbook path missing: %s", path)
+            return None, set()
+        from teachkg.textbook_kg.entity_registry import EntityRegistry
+        from teachkg.textbook_kg.loader import TextbookKG
+
+        kg = TextbookKG.load(
+            path,
+            entity_file=tb_cfg.get("entity_file", "entity_final.json"),
+            relations_file=tb_cfg.get("relations_file", "relations_final.json"),
+        )
+        return EntityRegistry.from_textbook_kg(kg), set(kg.entity_names)
 
     def run(
         self,
@@ -106,6 +132,49 @@ class Stage2KGPipeline:
             lecture_id or "all",
         )
 
+        triage_stats: dict[str, Any] = {"enabled": False}
+        textbook_entity_names: set[str] | None = None
+        working = filtered
+        if self.triage_cfg.enabled:
+            registry, textbook_entity_names = self._load_entity_registry()
+            if registry is None:
+                logger.warning("entity_triage enabled but no textbook registry; skip triage")
+            else:
+                triage = triage_triplets(
+                    working,
+                    registry,
+                    cfg=self.triage_cfg,
+                    lecture_id=lecture_id,
+                )
+                working = triage.triplets
+                triage_stats = dict(triage.stats)
+                triage_path = self.processed_dir / course_id
+                if lecture_id:
+                    triage_path = triage_path / f"entity_triage_lecture_{lecture_id}.json"
+                else:
+                    triage_path = triage_path / "entity_triage.json"
+                triage_path.parent.mkdir(parents=True, exist_ok=True)
+                triage_path.write_text(
+                    json.dumps(
+                        {
+                            "course_id": course_id,
+                            "lecture_id": lecture_id,
+                            "stats": triage_stats,
+                            "decisions": [d.to_dict() for d in triage.decisions],
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    ),
+                    encoding="utf-8",
+                )
+                logger.info(
+                    "entity_triage: %s → %s triplets; decisions=%s; wrote %s",
+                    triage_stats.get("input_triplets"),
+                    triage_stats.get("output_triplets"),
+                    triage_stats.get("decision_counts"),
+                    triage_path,
+                )
+
         embedding_merge_map: dict[str, str] = {}
         if self.embedding_merge_enabled:
             from teachkg.quality.entity_embedding_merge import merge_map_by_embedding
@@ -114,12 +183,12 @@ class Stage2KGPipeline:
             names = sorted(
                 {
                     str(t.get("subject", "")).strip()
-                    for t in filtered
+                    for t in working
                     if str(t.get("subject", "")).strip()
                 }
                 | {
                     str(t.get("object", "")).strip()
-                    for t in filtered
+                    for t in working
                     if str(t.get("object", "")).strip()
                 }
             )
@@ -128,7 +197,7 @@ class Stage2KGPipeline:
                 names,
                 embedder=embedder,
                 similarity_threshold=self.embedding_merge_threshold,
-                triplets=filtered,
+                triplets=working,
                 max_statements=self.embedding_merge_max_statements,
                 block_structural_pairs=self.embedding_merge_block_structural,
             )
@@ -136,16 +205,20 @@ class Stage2KGPipeline:
                 logger.info("Embedding merge: %d alias pairs", len(embedding_merge_map))
 
         result = merge_triplets_to_kg(
-            filtered,
+            working,
             drop_related_with_when_specific=self.drop_related_with,
             min_subgraph_size=self.min_subgraph_size,
             embedding_merge_map=embedding_merge_map or None,
+            textbook_entity_names=textbook_entity_names,
+            merge_synonym_of=self.merge_synonym_of,
         )
 
         payload = {
             "course_id": course_id,
             "lecture_id": lecture_id,
-            "triplet_count": len(filtered),
+            "triplet_count": len(working),
+            "triplet_count_before_triage": len(filtered),
+            "entity_triage": triage_stats,
             **result.to_dict(),
         }
 
@@ -173,6 +246,8 @@ class Stage2KGPipeline:
                     "course_id": course_id,
                     "lecture_id": lecture_id,
                     "input_triplets": len(filtered),
+                    "triplets_after_triage": len(working),
+                    "entity_triage": triage_stats,
                     "entity_count": len(result.entities),
                     "edge_count": len(result.edges),
                     "merged_alias_count": len(result.merge_map),

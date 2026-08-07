@@ -25,6 +25,7 @@ from teachkg.textbook_kg import (
     relation_to_triplet,
     relations_to_triplets,
 )
+from teachkg.textbook_kg.alias import is_weak_alias
 from teachkg.textbook_kg.entity_registry import EntityRegistry
 from teachkg.textbook_kg.loader import TextbookRelation
 from teachkg.textbook_kg.theorem_edges import augment_textbook_kg, expand_theorem_relations
@@ -47,7 +48,7 @@ def test_clean_text_strips_punctuation():
     assert clean_text("命题逻辑 (Propositional Logic)") == "命题逻辑propositionallogic"
 
 
-def test_alias_longest_match_priority():
+def test_alias_keeps_long_and_short_matches():
     entities = [
         "命题逻辑/propositional logic",
         "逻辑/logic",
@@ -56,7 +57,68 @@ def test_alias_longest_match_priority():
     text = "今天复习命题逻辑的基本概念"
     matched = extract_entities_from_text(text, alias_map)
     assert "命题逻辑/propositional logic" in matched
-    assert "逻辑/logic" not in matched
+    assert "逻辑/logic" in matched
+    # 可选：仍支持最长优先压制短别名
+    longest_only = extract_entities_from_text(
+        text, alias_map, prefer_longest_only=True
+    )
+    assert "命题逻辑/propositional logic" in longest_only
+    assert "逻辑/logic" not in longest_only
+
+
+def test_weak_short_alias_not_used_as_seed():
+    assert is_weak_alias("上")
+    assert is_weak_alias("证明")
+    assert not is_weak_alias("命题逻辑")
+    entities = [
+        "上/top element",
+        "点/point",
+        "真/true",
+        "谓词逻辑/Predicate Logic",
+        "关系/relation",
+    ]
+    alias_map = build_alias_map(entities)
+    # 单字别名不应再进入 alias_map
+    assert "上" not in alias_map
+    assert "点" not in alias_map
+    text = "真点上都要加快速度。接下来讲谓词逻辑。"
+    matched = extract_entities_from_text(text, alias_map)
+    assert "谓词逻辑/Predicate Logic" in matched
+    assert "上/top element" not in matched
+    assert "点/point" not in matched
+    assert "真/true" not in matched
+    # 「没关系」不应命中「关系」
+    assert "关系/relation" not in extract_entities_from_text(
+        "没关系，反正最后成绩公平。", alias_map
+    )
+
+
+def test_retrieve_prunes_unanchored_hub_edges(textbook_kg: TextbookKG):
+    retriever = TextbookSubgraphRetriever(
+        textbook_kg,
+        max_hops=2,
+        max_edges_per_cue=18,
+        cue_min_relation_score=4.0,
+        require_text_anchor=True,
+        embedding_link_enabled=False,
+    )
+    cue = "谓词逻辑将命题细分为主语和谓语，论域是个体变项的变化范围。"
+    result = retriever.retrieve(cue)
+    assert result.seed_entities
+    assert result.relations
+    # 实体集应来自选中边，而非整片 2-hop 邻域
+    assert result.entity_count <= len(result.seed_entities) + 2 * len(result.relations)
+    cue_clean = clean_text(cue)
+    both_miss = 0
+    for rel in result.relations:
+        parts_s = [clean_text(p) for p in rel.subject.split("/")]
+        parts_o = [clean_text(p) for p in rel.object.split("/")]
+        s_hit = any(p and p in cue_clean for p in parts_s)
+        o_hit = any(p and p in cue_clean for p in parts_o)
+        seed_touch = rel.subject in result.seed_entities or rel.object in result.seed_entities
+        if not (s_hit or o_hit or seed_touch):
+            both_miss += 1
+    assert both_miss == 0
 
 
 def test_load_textbook_kg(textbook_kg: TextbookKG):

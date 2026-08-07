@@ -1,0 +1,245 @@
+{
+  "lecture_id": "1",
+  "root": {
+    "id": "命题逻辑/propositional logic",
+    "zh": "命题逻辑",
+    "importance": 0.786434,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "谓词/predicate",
+        "zh": "谓词",
+        "importance": 0.427513,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词变项/predicate variable",
+            "zh": "谓词变项",
+            "importance": 0.073588,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "二元谓词/binary predicate",
+            "zh": "二元谓词",
+            "importance": 0.055883,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "一元谓词/unary predicate",
+            "zh": "一元谓词",
+            "importance": 0.053346,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词常项/predicate constant",
+            "zh": "谓词常项",
+            "importance": 0.026423,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "多元谓词/n-ary predicate",
+            "zh": "多元谓词",
+            "importance": 0.017911,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.391395,
+        "relation": "chapter_topic",
+        "related": [
+          "个体"
+        ],
+        "children": []
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.390085,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "主语/subject",
+            "zh": "主语",
+            "importance": 0.013886,
+            "relation": "part_of",
+            "related": [
+              "个体"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "importance": 0.280902,
+        "relation": "chapter_topic",
+        "related": [
+          "函数"
+        ],
+        "children": [
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.140092,
+            "relation": "related_with",
+            "related": [
+              "谓词逻辑"
+            ],
+            "children": []
+          },
+          {
+            "id": "个体函数/individual function",
+            "zh": "个体函数",
+            "importance": 0.118099,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "全称命题/universal proposition",
+            "zh": "全称命题",
+            "importance": 0.08391,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "特称命题/particular proposition",
+            "zh": "特称命题",
+            "importance": 0.08391,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "存在量词/existential quantifier",
+            "zh": "存在量词",
+            "importance": 0.041262,
+            "relation": "part_of",
+            "related": [
+              "全称量词"
+            ],
+            "children": []
+          },
+          {
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.039293,
+            "relation": "part_of",
+            "related": [
+              "存在量词"
+            ],
+            "children": []
+          },
+          {
+            "id": "一阶谓词逻辑/first-order predicate logic",
+            "zh": "一阶谓词逻辑",
+            "importance": 0.020175,
+            "relation": "belong_to",
+            "related": [
+              "高阶谓词逻辑"
+            ],
+            "children": [
+              {
+                "id": "高阶谓词逻辑/higher-order predicate logic",
+                "zh": "高阶谓词逻辑",
+                "importance": 0.086252,
+                "relation": "related_with",
+                "related": [
+                  "一阶谓词逻辑"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "个体/Individual",
+            "zh": "个体",
+            "importance": 0.014798,
+            "relation": "part_of",
+            "related": [
+              "主语",
+              "论域"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "个体常项/individual constant",
+        "zh": "个体常项",
+        "importance": 0.191332,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "a,b,c.../a,b,c...",
+            "zh": "a,b,c...",
+            "importance": 0.009298,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "量词/quantifier",
+        "zh": "量词",
+        "importance": 0.19113,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "个体变项/individual variable",
+        "zh": "个体变项",
+        "importance": 0.186055,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "简单命题/simple proposition",
+        "zh": "简单命题",
+        "importance": 0.165496,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 25,
+  "max_depth": 4,
+  "orphan_count": 8,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "命题逻辑/propositional logic",
+    "root_zh": "命题逻辑",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 39,
+    "n_edges_raw": 53,
+    "n_hierarchy_candidates": 48,
+    "attached_orphans": 4,
+    "alias_merged": 6
+  }
+}

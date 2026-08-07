@@ -1,0 +1,184 @@
+{
+  "lecture_id": "9",
+  "root": {
+    "id": "命题/proposition",
+    "zh": "命题",
+    "importance": 0.492352,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "推理规则/inference rule",
+        "zh": "推理规则",
+        "importance": 0.445076,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "分离规则/分离规则",
+            "zh": "分离规则",
+            "importance": 0.083945,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前件存在规则/existential introduction of the antecedent rule",
+            "zh": "前件存在规则",
+            "importance": 0.0584,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "后件概括规则/generalization of the consequent rule",
+            "zh": "后件概括规则",
+            "importance": 0.057428,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "三段论/syllogism",
+            "zh": "三段论",
+            "importance": 0.022862,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+        "zh": "谓词逻辑的公理系统",
+        "importance": 0.394049,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "变形规则/transformation rule",
+        "zh": "变形规则",
+        "importance": 0.268483,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "析取/disjunction",
+        "zh": "析取",
+        "importance": 0.238768,
+        "relation": "chapter_topic",
+        "related": [
+          "全称量词",
+          "存在量词",
+          "蕴含"
+        ],
+        "children": [
+          {
+            "id": "存在量词/existential quantifier",
+            "zh": "存在量词",
+            "importance": 0.056802,
+            "relation": "related_with",
+            "related": [
+              "全称量词",
+              "合取",
+              "析取"
+            ],
+            "children": [
+              {
+                "id": "全称量词/universal quantifier",
+                "zh": "全称量词",
+                "importance": 0.054251,
+                "relation": "related_with",
+                "related": [
+                  "合取",
+                  "存在量词",
+                  "析取"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.048973,
+            "relation": "related_with",
+            "related": [
+              "合取",
+              "析取"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "基本的推理公式/basic inference formula",
+        "zh": "基本的推理公式",
+        "importance": 0.219566,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "(1)/1",
+            "zh": "(1)",
+            "importance": 0.099241,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "(2)/2",
+            "zh": "(2)",
+            "importance": 0.099241,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "加头规则/Δ rule",
+        "zh": "加头规则",
+        "importance": 0.115519,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "双重否定消去/double negation elimination",
+        "zh": "双重否定消去",
+        "importance": 0.115519,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "否定/Negation",
+        "zh": "否定",
+        "importance": 0.102741,
+        "relation": "property_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 18,
+  "max_depth": 4,
+  "orphan_count": 8,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化",
+    "root_id": "命题/proposition",
+    "root_zh": "命题",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 27,
+    "n_edges_raw": 29,
+    "n_hierarchy_candidates": 26,
+    "attached_orphans": 4,
+    "alias_merged": 1
+  }
+}

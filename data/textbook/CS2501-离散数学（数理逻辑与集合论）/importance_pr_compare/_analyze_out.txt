@@ -1,0 +1,50 @@
+﻿=== metrics ===
+n_toc_items 87
+n_seeds_baseline 141
+n_seeds_improved 130
+seed_jaccard 0.9219858156028369
+spearman_top100_baseline_vs_improved 0.812681669010783
+spearman_top100_classic_vs_improved 0.8122534182235674
+overlap b-i {'top10': 0.7, 'top20': 0.85, 'top50': 0.84, 'top100': 0.8}
+overlap c-i {'top10': 0.7, 'top20': 0.85, 'top50': 0.74, 'top100': 0.66}
+chapters ['命题逻辑的基本概念', '命题逻辑的等值和推理演算', '命题逻辑的公理化', '谓词逻辑的基本概念', '谓词逻辑的等值和推理演算', '谓词逻辑的公理化', '一阶形式理论及模型', '证明论中的逻辑系统', '集合', '关系', '函数', '实数集合与集合的基数']
+--- top15 improved ---
+0.9342 集合/set
+0.7582 数理逻辑与集合论/Mathematical Logic and Set Theory
+0.6103 离散数学/Discrete Mathematics
+0.5819 谓词逻辑/Predicate Logic
+0.5635 公式/formula
+0.5571 命题逻辑/propositional logic
+0.5522 关系/relation
+0.5319 数理逻辑/Mathematical Logic
+0.4888 集合论/Set Theory
+0.4644 论域/domain of discourse
+0.4040 谓词/predicate
+0.3683 函数/function
+0.3676 联结词/connective
+0.3576 一阶语言/First-order Language
+0.3348 公理/axiom
+classic top20 missing from improved top50:
+  逻辑公式/logical formula
+=== chapter tops ===
+命题逻辑的基本概念 -> ['命题逻辑', '公式', '联结词', '数理逻辑与集合论', '命题', '谓词逻辑']
+命题逻辑的等值和推理演算 -> ['公式', '命题逻辑', '联结词', '数理逻辑与集合论', '谓词逻辑', '数理逻辑']
+命题逻辑的公理化 -> ['命题逻辑', '公理', '公理系统', '数理逻辑与集合论', '公式', '谓词逻辑']
+谓词逻辑的基本概念 -> ['公式', '谓词逻辑', '谓词', '数理逻辑与集合论', '论域', '命题逻辑']
+谓词逻辑的等值和推理演算 -> ['谓词逻辑', '谓词', '数理逻辑与集合论', '命题逻辑', '公式', '数理逻辑']
+谓词逻辑的公理化 -> ['谓词', '谓词逻辑', '公理', '数理逻辑与集合论', '论域', '数理逻辑']
+一阶形式理论及模型 -> ['一阶理论', '一阶语言', '模型', '语句', '公式', '定理']
+证明论中的逻辑系统 -> ['λ-演算', '逻辑系统', '形式逻辑系统', '并发程序理论工具', '证明论中的逻辑系统', '形式系统']
+集合 -> ['集合', '集合论', '数理逻辑与集合论', '离散数学', '论域', '关系']
+关系 -> ['关系', '集合', '集合论', '数理逻辑与集合论', '笛卡儿积', '二元关系']
+函数 -> ['函数', '集合', '论域', '集合论', '关系', '数理逻辑与集合论']
+实数集合与集合的基数 -> ['集合', '集合论', '数理逻辑与集合论', '论域', '离散数学', '数理逻辑']
+--- improved top30 with worst classic rank ---
+imp#22 classic#75 谓词逻辑的公理系统/axiomatic system for predicate logic
+imp#24 classic#73 公理系统的构成/components of an axiomatic system
+imp#29 classic#49 解释/interpretation(logic)
+imp#23 classic#46 定理/theorem
+imp#28 classic#38 推理演算/inference calculus
+imp#27 classic#33 笛卡儿积/Cartesian product
+imp#30 classic#30 自然演绎系统/natural deduction system
+imp#15 classic#29 公理/axiom

@@ -1,4 +1,8 @@
-"""教学多模态知识图谱 RAG 问答。"""
+"""教学多模态知识图谱 RAG 问答。
+
+流水线：媒体解析 → 路由 → 检索 → 证据加权 → 生成 → 校验 → 引用
+对外仍暴露 MMKGRAG.answer / retrieve，保持脚本与评测兼容。
+"""
 
 from __future__ import annotations
 
@@ -9,24 +13,37 @@ from pathlib import Path
 from typing import Any
 
 from teachkg.config import TeachKGConfig
-from teachkg.provenance import text_snippets
-from teachkg.stage3_mmkg.index_builder import MMKGIndex
-from teachkg.rag.answer_checker import check_answer, extract_evidence_citations, format_citations_text, format_citations_text
+from teachkg.rag.answer_checker import (
+    check_answer,
+    extract_evidence_citations,
+    format_citations_text,
+)
+from teachkg.rag.evidence import (
+    boost_grounded_hits,
+    collect_evidence_image_paths,
+    format_hit_for_context,
+    merge_image_paths,
+)
 from teachkg.rag.hybrid_retriever import hybrid_search
 from teachkg.rag.multi_turn import (
     ConversationTurn,
     analyze_multi_turn_retrieval,
     build_retrieval_query,
     format_conversation_history,
-    format_retrieval_analysis,
 )
-from teachkg.rag.answer_checker import check_answer
+from teachkg.rag.query_media import MediaBundle, build_media_bundle, normalize_upload_paths
+from teachkg.rag.router import plan_route
+from teachkg.rag.types import PipelineTrace
+from teachkg.stage3_mmkg.index_builder import MMKGIndex
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
 
 logger = logging.getLogger(__name__)
 
 _LECTURE_HINT = re.compile(r"(?:第\s*([0-9一二三四五六七八九十]+)\s*讲|lecture\s*([0-9]+))", re.I)
+
+# 兼容旧 import 路径
+__all__ = ["MMKGRAG", "format_hit_for_context", "infer_lecture_hint"]
 
 
 def infer_lecture_hint(question: str) -> str | None:
@@ -47,68 +64,9 @@ def _filter_hits_by_lecture(hits: list[dict[str, Any]], lecture_id: str | None) 
     filtered: list[dict[str, Any]] = []
     for h in hits:
         h_lid = h.get("lecture_id")
-        if h_lid is None:
-            filtered.append(h)
-            continue
-        if str(h_lid) == lid:
+        if h_lid is None or str(h_lid) == lid:
             filtered.append(h)
     return filtered
-
-
-def format_hit_for_context(hit: dict[str, Any]) -> str:
-    payload = hit.get("payload") or {}
-    lines = [f"[{hit.get('type', 'item')}] score={hit.get('score', 0):.3f}"]
-
-    doc_text = str(hit.get("text") or "").strip()
-    if doc_text:
-        lines.append(f"检索文档：{doc_text}")
-
-    if hit.get("type") == "entity":
-        entity_id = payload.get("entity_id", hit.get("entity_id", ""))
-        if entity_id and entity_id not in doc_text:
-            lines.append(f"实体：{entity_id}")
-        if payload.get("description") and payload["description"] not in doc_text:
-            lines.append(f"定义：{payload['description']}")
-    elif hit.get("type") == "edge":
-        statement = payload.get("natural_statement", "")
-        if statement and statement not in doc_text:
-            lines.append(f"关系：{statement}")
-        subj, obj, rel = payload.get("subject", ""), payload.get("object", ""), payload.get("abstract_relation", "")
-        if subj or obj:
-            lines.append(f"({subj}) --[{rel}]--> ({obj})")
-        grounding = payload.get("grounding") or {}
-        provenance = payload.get("provenance") or []
-        for i, snip in enumerate(text_snippets(provenance, max_items=2), 1):
-            if snip and snip not in doc_text:
-                lines.append(f"课程原文{i}：{snip[:500]}")
-        if grounding.get("context") and grounding["context"] not in doc_text:
-            lines.append(f"摘录：{grounding['context']}")
-        if grounding.get("source_text") and str(grounding["source_text"]) not in doc_text:
-            lines.append(f"字幕：{str(grounding['source_text'])[:500]}")
-        if grounding.get("natural_statement") and grounding["natural_statement"] not in doc_text:
-            lines.append(f"陈述：{grounding['natural_statement']}")
-        if grounding.get("cue_id"):
-            lines.append(f"cue：{grounding['cue_id']}")
-        if grounding.get("clip_path"):
-            lines.append(
-                f"视频证据：{grounding['clip_path']} ({grounding.get('start_sec')}s–{grounding.get('end_sec')}s)"
-            )
-        if grounding.get("ppt_frame_path"):
-            lines.append(f"PPT证据：{grounding['ppt_frame_path']} (page {grounding.get('ppt_page_index')})")
-        align = grounding.get("alignment") or {}
-        if align.get("clap_audio_text") is not None:
-            lines.append(f"音频-文本对齐分：{align['clap_audio_text']:.3f}")
-        if align.get("clip_image_text") is not None:
-            lines.append(f"图像-文本对齐分：{align['clip_image_text']:.3f}")
-        vscore = align.get("clip_video_text")
-        if vscore is None:
-            vscore = align.get("viclip_video_text")
-        if vscore is not None:
-            lines.append(f"视频-文本对齐分：{vscore:.3f}")
-    elif not doc_text:
-        lines.append(hit.get("text", ""))
-
-    return "\n".join(lines)
 
 
 class MMKGRAG:
@@ -136,7 +94,6 @@ class MMKGRAG:
         self.check_enabled = bool(rag_cfg.get("check_enabled", True))
         self.check_strict = bool(rag_cfg.get("check_strict", False))
         self.check_min_confidence = float(rag_cfg.get("check_min_confidence", 0.75))
-        self.check_enabled = bool(rag_cfg.get("check_enabled", True))
         self.hybrid_enabled = bool(rag_cfg.get("hybrid_enabled", True))
         self.vector_weight = float(rag_cfg.get("vector_weight", 0.65))
         self.bm25_weight = float(rag_cfg.get("bm25_weight", 0.35))
@@ -153,14 +110,26 @@ class MMKGRAG:
         self.clap_downweight_threshold = float(rag_cfg.get("clap_downweight_threshold", 0.12))
         self.clap_downweight_factor = float(rag_cfg.get("clap_downweight_factor", 0.5))
         self.append_citations = bool(rag_cfg.get("append_citations", True))
-        mt_cfg = rag_cfg.get("multi_turn", {})
+        mt_cfg = rag_cfg.get("multi_turn", {}) or {}
         self.multi_turn_enabled = bool(mt_cfg.get("enabled", True))
         self.multi_turn_retrieval_rewrite = bool(mt_cfg.get("retrieval_rewrite", True))
         self.multi_turn_context_turns = int(mt_cfg.get("max_context_turns", 2))
         self.multi_turn_score_threshold = float(mt_cfg.get("score_threshold", 2.0))
         self.show_retrieval_analysis = bool(mt_cfg.get("show_analysis", True))
-        self.multi_turn_score_threshold = float(mt_cfg.get("score_threshold", 2.0))
-        self.show_retrieval_analysis = bool(mt_cfg.get("show_analysis", True))
+        mq_cfg = rag_cfg.get("multimodal_query", {}) or {}
+        self.multimodal_query_enabled = bool(mq_cfg.get("enabled", True))
+        self.vision_model = mq_cfg.get("vision_model") or "qwen-vl-plus"
+        self.vision_for_answer = bool(mq_cfg.get("vision_for_answer", True))
+        self.media_max_file_chars = int(mq_cfg.get("max_file_chars", 8000))
+        self.media_video_max_frames = int(mq_cfg.get("video_max_frames", 3))
+        self.media_video_interval = float(mq_cfg.get("video_frame_interval_sec", 5.0))
+        self.media_work_dir = self.project_root / ".cache" / "rag_query_media"
+        pipe_cfg = rag_cfg.get("pipeline", {}) or {}
+        self.evidence_boost = bool(pipe_cfg.get("evidence_boost", True))
+        self.evidence_boost_factor = float(pipe_cfg.get("evidence_boost_factor", 1.15))
+        self.attach_hit_images = bool(pipe_cfg.get("attach_hit_images", True))
+        self.max_evidence_images = int(pipe_cfg.get("max_evidence_images", 4))
+        self.max_vision_images = int(pipe_cfg.get("max_vision_images", 6))
         llm_cfg = config.get("llm", default={})
         self.llm_client = llm_client or LLMClient(**llm_settings_from_config(llm_cfg))
         self._history: list[ConversationTurn] = []
@@ -168,7 +137,6 @@ class MMKGRAG:
         self._mmkg_cache: dict[tuple[str, str | None], dict[str, Any]] = {}
 
     def clear_cache(self) -> None:
-        """释放索引/MMKG 缓存（批量评测结束后可调用）。"""
         self._index_cache.clear()
         self._mmkg_cache.clear()
 
@@ -191,10 +159,7 @@ class MMKGRAG:
         if key in self._mmkg_cache:
             return self._mmkg_cache[key]
         base = self.kg_dir / course_id
-        if lecture_id:
-            path = base / f"lecture_{lecture_id}" / "mmkg.json"
-        else:
-            path = base / "mmkg.json"
+        path = base / f"lecture_{lecture_id}" / "mmkg.json" if lecture_id else base / "mmkg.json"
         if not path.is_file():
             raise FileNotFoundError(f"MMKG not found: {path}")
         mmkg = json.loads(path.read_text(encoding="utf-8"))
@@ -211,7 +176,11 @@ class MMKGRAG:
         return self._index_cache[key]
 
     def _load_course_context(self, course_id: str) -> str:
-        syllabus_dir = Path(self.config.get("project", "workspace_dir", default="data/raw")) / course_id / "syllabus"
+        syllabus_dir = (
+            Path(self.config.get("project", "workspace_dir", default="data/raw"))
+            / course_id
+            / "syllabus"
+        )
         if syllabus_dir.is_dir():
             parts = []
             for p in sorted(syllabus_dir.glob("*")):
@@ -233,7 +202,9 @@ class MMKGRAG:
             return None
         return lecture_id
 
-    def _should_filter_by_lecture(self, lecture_id: str | None, effective_lecture: str | None) -> bool:
+    def _should_filter_by_lecture(
+        self, lecture_id: str | None, effective_lecture: str | None
+    ) -> bool:
         if self.retrieval_scope == "course":
             return False
         return lecture_id is None and bool(effective_lecture)
@@ -327,6 +298,38 @@ class MMKGRAG:
             return ""
         return format_conversation_history(self._history, max_turns=self.conversation_turns)
 
+    def prepare_media(
+        self,
+        *,
+        image: str | Path | None = None,
+        files: list[str | Path] | None = None,
+        video: str | Path | None = None,
+        media_paths: list[str | Path] | None = None,
+    ) -> MediaBundle:
+        if not self.multimodal_query_enabled:
+            return MediaBundle()
+        paths = list(media_paths or [])
+        paths.extend(normalize_upload_paths(image=image, files=files, video=video))
+        uniq: list[Path] = []
+        seen: set[str] = set()
+        for p in paths:
+            key = str(Path(p).resolve()) if Path(p).exists() else str(p)
+            if key in seen:
+                continue
+            seen.add(key)
+            uniq.append(Path(p))
+        if not uniq:
+            return MediaBundle()
+        return build_media_bundle(
+            uniq,
+            llm_client=None if self.mock else self.llm_client,
+            vision_model=None if self.mock else self.vision_model,
+            max_file_chars=self.media_max_file_chars,
+            video_max_frames=self.media_video_max_frames,
+            video_frame_interval_sec=self.media_video_interval,
+            work_dir=self.media_work_dir,
+        )
+
     def answer(
         self,
         question: str,
@@ -336,29 +339,87 @@ class MMKGRAG:
         top_k: int | None = None,
         check: bool | None = None,
         use_history: bool = True,
+        image: str | Path | None = None,
+        files: list[str | Path] | None = None,
+        video: str | Path | None = None,
+        media_paths: list[str | Path] | None = None,
+        media: MediaBundle | None = None,
     ) -> dict[str, Any]:
-        effective_lecture = self._resolve_lecture_id(question, lecture_id)
-        rewrite_meta: dict[str, Any] = {"original_question": question, "rewritten": False}
-        if use_history and self.multi_turn_enabled and self.multi_turn_retrieval_rewrite:
-            _, rewrite_meta = self._resolve_retrieval_query(question, use_history=True)
-        retrieval_query = rewrite_meta.get("retrieval_query", question) if rewrite_meta.get("rewritten") else question
+        trace = PipelineTrace()
 
+        # 1) 媒体解析
+        media_bundle = media or self.prepare_media(
+            image=image, files=files, video=video, media_paths=media_paths
+        )
+        trace.mark("media", f"attachments={len(media_bundle.attachments)}")
+
+        user_question = (question or "").strip()
+        if not user_question and media_bundle.has_media:
+            user_question = "请结合我上传的附件，结合课程知识说明其中的关键内容。"
+        if not user_question:
+            return {
+                "question": "",
+                "answer": "请输入问题，或上传图片/文件/视频后再提问。",
+                "hits": [],
+                "citations": [],
+                "media": media_bundle.to_dict(),
+                "pipeline": trace.to_dict(),
+            }
+
+        # 2) 路由
+        route = plan_route(
+            user_question,
+            media_bundle,
+            multimodal_enabled=self.multimodal_query_enabled,
+            vision_for_answer=self.vision_for_answer,
+            attach_hit_images=self.attach_hit_images,
+            boost_grounded_hits=self.evidence_boost,
+        )
+        trace.route = route.to_dict()
+        trace.mark("route", route.reason)
+
+        # 3) 多轮改写 + 媒体增强 query
+        effective_lecture = self._resolve_lecture_id(user_question, lecture_id)
+        rewrite_meta: dict[str, Any] = {"original_question": user_question, "rewritten": False}
+        if use_history and self.multi_turn_enabled and self.multi_turn_retrieval_rewrite:
+            _, rewrite_meta = self._resolve_retrieval_query(user_question, use_history=True)
+        retrieval_query = (
+            rewrite_meta.get("retrieval_query", user_question)
+            if rewrite_meta.get("rewritten")
+            else user_question
+        )
+        if route.parse_user_media and media_bundle.retrieval_extra:
+            retrieval_query = f"{retrieval_query}\n\n{media_bundle.retrieval_extra}".strip()
+        trace.mark("query", f"rewritten={bool(rewrite_meta.get('rewritten'))}")
+
+        # 4) 检索
         hits = self.retrieve(
-            question,
+            user_question,
             course_id,
             lecture_id=lecture_id,
             top_k=top_k,
             use_history=use_history,
-            retrieval_query=retrieval_query if rewrite_meta.get("rewritten") else None,
+            retrieval_query=retrieval_query,
         )
+        trace.mark("retrieve", f"hits={len(hits)}")
+
+        # 5) 证据加权（缓解纯文本偏见）
+        if route.boost_grounded_hits and hits:
+            hits = boost_grounded_hits(hits, factor=self.evidence_boost_factor)
+            if self.top_k:
+                hits = hits[: max(self.top_k + self.graph_max, self.top_k)]
+            trace.mark("evidence_boost", f"factor={self.evidence_boost_factor}")
+
         if not hits:
             return {
-                "question": question,
+                "question": user_question,
                 "answer": "依据现有知识图谱索引，未检索到相关内容。",
                 "hits": [],
                 "citations": [],
                 "retrieval_query": retrieval_query,
                 "retrieval_analysis": rewrite_meta,
+                "media": media_bundle.to_dict(),
+                "pipeline": trace.to_dict(),
                 "check": {
                     "verdict": "unsupported",
                     "confidence": 1.0,
@@ -368,22 +429,65 @@ class MMKGRAG:
                 },
             }
 
+        # 6) 组装上下文 + 证据图
         context_blocks = [format_hit_for_context(h) for h in hits]
         retrieved_context = "\n\n---\n\n".join(context_blocks)
         course_context = self._load_course_context(course_id)
         history = self._format_history() if use_history else ""
+        media_context = media_bundle.question_extra or "（无）"
+        display_question = user_question
+        if media_bundle.question_extra:
+            display_question = (
+                f"{user_question}\n\n—— 用户附件解析 ——\n{media_bundle.question_extra}"
+            )
 
+        evidence_imgs: list[Path] = []
+        if route.attach_hit_images:
+            evidence_imgs = collect_evidence_image_paths(
+                hits,
+                project_root=self.project_root,
+                max_images=self.max_evidence_images,
+            )
+        vision_images = merge_image_paths(
+            list(media_bundle.image_paths),
+            evidence_imgs,
+            max_images=self.max_vision_images,
+        )
+        trace.mark(
+            "evidence_images",
+            f"user={len(media_bundle.image_paths)} hit={len(evidence_imgs)} merged={len(vision_images)}",
+        )
+
+        # 7) 生成
         if self.mock:
             answer = f"[mock] 基于 {len(hits)} 条检索结果：{hits[0].get('text', '')[:200]}"
+            trace.mark("generate", "mock")
         else:
             prompt = format_prompt(
-                "teaching/mmkg_rag.txt",
+                "rag/mmkg_rag.txt",
                 course_context=course_context,
                 retrieved_context=retrieved_context,
-                question=question,
+                question=display_question,
                 conversation_history=history or "（无）",
+                media_context=media_context,
             )
-            answer = self.llm_client.chat(prompt, temperature=0.2)
+            use_vision = route.use_vision_answer and bool(vision_images) and bool(self.vision_model)
+            if use_vision:
+                try:
+                    answer = self.llm_client.chat_multimodal(
+                        prompt,
+                        image_paths=vision_images,
+                        temperature=0.2,
+                        model=self.vision_model,
+                    )
+                    trace.mark("generate", f"vision:{self.vision_model}")
+                except Exception as exc:  # noqa: BLE001
+                    logger.warning("vision answer failed, fallback text LLM: %s", exc)
+                    answer = self.llm_client.chat(prompt, temperature=0.2)
+                    trace.mark("generate", "text_fallback")
+            else:
+                answer = self.llm_client.chat(prompt, temperature=0.2)
+                trace.mark("generate", "text")
 
         citations = extract_evidence_citations(hits)
         answer_text = answer.strip()
@@ -392,7 +496,7 @@ class MMKGRAG:
             answer_text = f"{answer_text}\n\n{cite_footer}"
 
         result: dict[str, Any] = {
-            "question": question,
+            "question": user_question,
             "answer": answer_text,
             "hits": hits,
             "citations": citations,
@@ -402,12 +506,17 @@ class MMKGRAG:
             "retrieval_query": retrieval_query,
             "retrieval_rewrite": rewrite_meta,
             "retrieval_analysis": rewrite_meta,
+            "media": media_bundle.to_dict(),
+            "route": route.to_dict(),
+            "pipeline": trace.to_dict(),
+            "evidence_images": [str(p) for p in vision_images],
         }
 
+        # 8) 校验
         do_check = self.check_enabled if check is None else check
         if do_check:
             result["check"] = check_answer(
-                question=question,
+                question=user_question,
                 answer=result["answer"],
                 retrieved_context=retrieved_context,
                 llm_client=self.llm_client,
@@ -415,6 +524,8 @@ class MMKGRAG:
                 strict=self.check_strict,
                 min_confidence=self.check_min_confidence,
             )
+            trace.mark("check", str(result["check"].get("verdict")))
+            result["pipeline"] = trace.to_dict()
             if self.reject_on_unsupported and result["check"].get("verdict") == "unsupported":
                 result["answer"] = (
                     "抱歉，当前检索证据不足以可靠回答该问题。"
@@ -424,7 +535,7 @@ class MMKGRAG:
         if use_history:
             self._history.append(
                 ConversationTurn(
-                    question=question,
+                    question=user_question,
                     answer=result["answer"],
                     retrieval_query=retrieval_query,
                     hits=hits,
@@ -446,7 +557,6 @@ class MMKGRAG:
         lecture_id: str | None = None,
         check: bool | None = None,
     ) -> None:
-        """交互式问答 REPL。"""
         banner = f"MMKG RAG · course={course_id} · lecture={lecture_id or 'all'}"
         print(banner)
         print("输入问题，空行或 quit/exit 退出；输入 /reset 清空对话历史。\n")
@@ -470,6 +580,10 @@ class MMKGRAG:
                 check=check,
             )
             print(f"\n答> {result['answer']}")
+            if result.get("pipeline"):
+                stages = " → ".join(result["pipeline"].get("stages") or [])
+                if stages:
+                    print(f"[流水线] {stages}")
             if result.get("check"):
                 chk = result["check"]
                 print(
@@ -487,12 +601,8 @@ class MMKGRAG:
                     if c.get("ppt_page") is not None:
                         parts.append(f"PPT p.{c['ppt_page']}")
                     print(" ".join(parts))
-            if result.get("retrieval_analysis") and self.show_retrieval_analysis:
+            if self.show_retrieval_analysis and result.get("retrieval_analysis"):
+                from teachkg.rag.multi_turn import format_retrieval_analysis
+
                 print(f"\n{format_retrieval_analysis(result['retrieval_analysis'])}")
-            if result.get("retrieval_analysis") and self.show_retrieval_analysis:
-                print(f"\n{format_retrieval_analysis(result['retrieval_analysis'])}")
-            if result.get("hits"):
-                print("\n--- 检索命中 ---")
-                for i, hit in enumerate(result["hits"], 1):
-                    print(f"{i}. [{hit.get('type')}] score={hit.get('score', 0):.3f} id={hit.get('id', '')}")
             print()

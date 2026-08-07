@@ -28,6 +28,21 @@ def entity_en(name: str) -> str:
     return parts[1].strip() if len(parts) > 1 else ""
 
 
+def format_known_entities_for_prompt(
+    entity_names: set[str] | list[str],
+    *,
+    max_entities: int = 40,
+) -> str:
+    """将子图已知实体格式化为抽取 prompt 列表。"""
+    names = sorted({n for n in entity_names if (n or "").strip()})
+    if not names:
+        return "（无；本段子图未召回教材实体，增量实体均视为新实体）"
+    lines = [f"{i}. {name}" for i, name in enumerate(names[:max_entities], start=1)]
+    if len(names) > max_entities:
+        lines.append(f"... 另有 {len(names) - max_entities} 个未列出")
+    return "\n".join(lines)
+
+
 @dataclass
 class EntityRegistry:
     textbook_entity_names: set[str] = field(default_factory=set)
@@ -125,25 +140,67 @@ class EntityRegistry:
                 return canonical
         return None
 
+    def resolve_against_known(
+        self,
+        name: str,
+        known_entities: set[str],
+    ) -> tuple[str, str]:
+        """相对本段已知教材实体解析。返回 (规范名或原名, textbook|new)。
+
+        仅关联到 known_entities 内的教材实体；列表外保留为新实体。
+        """
+        if not name.strip() or self.should_skip_link(name):
+            return name, "new"
+        if name in known_entities:
+            return name, "textbook"
+        zh = entity_primary(name)
+        zh_l = zh.lower()
+        en = entity_en(name).lower()
+        for canonical in known_entities:
+            if entity_primary(canonical).lower() == zh_l and zh_l:
+                return canonical, "textbook"
+            if en and entity_en(canonical).lower() == en:
+                return canonical, "textbook"
+        hit = self.lookup(name)
+        if hit and hit in known_entities:
+            return hit, "textbook"
+        return name, "new"
+
     def link_triplet(
         self,
         subject: str,
         object_: str,
         *,
         cue_text: str = "",
+        known_entities: set[str] | None = None,
         embedder=None,
         query_text: str = "",
         min_score: float = 0.88,
-    ) -> tuple[str, str]:
-        sub = self.canonicalize(subject, cue_text=cue_text)
-        obj = self.canonicalize(object_, cue_text=cue_text)
+    ) -> tuple[str, str, str, str]:
+        """返回 (subject, object, subject_ref, object_ref)，ref 为 textbook|new。"""
+        known = set(known_entities or [])
+
+        def _resolve(name: str) -> tuple[str, str]:
+            if known:
+                return self.resolve_against_known(name, known)
+            canon = self.canonicalize(name, cue_text=cue_text)
+            if canon in self.textbook_entity_names or self.lookup(name):
+                return canon, "textbook"
+            return canon, "new"
+
+        sub, sub_ref = _resolve(subject)
+        obj, obj_ref = _resolve(object_)
 
         if embedder is not None and query_text.strip():
-            if sub == subject and not self.should_skip_link(subject):
-                sub = self._link_by_embedding(subject, embedder, query_text, min_score) or sub
-            if obj == object_ and not self.should_skip_link(object_):
-                obj = self._link_by_embedding(object_, embedder, query_text, min_score) or obj
-        return sub, obj
+            if sub_ref == "new" and not self.should_skip_link(subject):
+                emb = self._link_by_embedding(subject, embedder, query_text, min_score)
+                if emb and (not known or emb in known):
+                    sub, sub_ref = emb, "textbook"
+            if obj_ref == "new" and not self.should_skip_link(object_):
+                emb = self._link_by_embedding(object_, embedder, query_text, min_score)
+                if emb and (not known or emb in known):
+                    obj, obj_ref = emb, "textbook"
+        return sub, obj, sub_ref, obj_ref
 
     def _link_by_embedding(self, name: str, embedder, query_text: str, min_score: float) -> str | None:
         try:

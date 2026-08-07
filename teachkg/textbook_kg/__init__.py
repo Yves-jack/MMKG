@@ -6,6 +6,7 @@ from teachkg.textbook_kg.convert import (
     relation_to_triplet,
     relations_to_triplets,
 )
+from teachkg.textbook_kg.entity_registry import format_known_entities_for_prompt
 from teachkg.textbook_kg.loader import TextbookEntity, TextbookKG, TextbookRelation
 from teachkg.textbook_kg.subgraph import SubgraphResult, TextbookSubgraphRetriever
 
@@ -18,6 +19,7 @@ __all__ = [
     "build_alias_map",
     "clean_text",
     "extract_entities_from_text",
+    "format_known_entities_for_prompt",
     "format_subgraph_for_prompt",
     "relation_to_triplet",
     "relations_to_triplets",

@@ -113,24 +113,48 @@ def select_pages_for_cue(
     overlap_ratio: float = 1.0 / 3.0,
 ) -> list[PptPage]:
     """
-    为跨页 cue 选择 PPT 页：
-    - 与页重叠时长 > 页时长 * overlap_ratio 则纳入；
-    - 若无一达标，取重叠时长最大的那一页。
+    取能完整盖住 cue 时间窗的最小连续 PPT 页区间。
+
+    - 先找与 cue 有任意重叠的页，再取「最左重叠页 … 最右重叠页」闭区间；
+    - 若 cue 落在页缝/无重叠，则回退到时间中点最近的一页。
+
+    ``overlap_ratio`` 保留兼容旧调用，已不再参与筛选。
     """
+    del overlap_ratio  # 兼容旧签名
     if not pages:
         return []
 
-    scored = [
-        (page, overlap_sec(cue.start_sec, cue.end_sec, page.start_sec, page.end_sec))
+    overlapping = [
+        page
         for page in pages
+        if overlap_sec(cue.start_sec, cue.end_sec, page.start_sec, page.end_sec) > 0
     ]
-    qualified = [page for page, ov in scored if ov > page.duration_sec * overlap_ratio]
-    if qualified:
-        return sorted(qualified, key=lambda p: p.index)
+    if overlapping:
+        lo = min(p.index for p in overlapping)
+        hi = max(p.index for p in overlapping)
+        by_index = {p.index: p for p in pages}
+        return [by_index[i] for i in range(lo, hi + 1) if i in by_index]
 
-    best_page, best_ov = max(scored, key=lambda item: item[1])
-    if best_ov <= 0:
-        mid = (cue.start_sec + cue.end_sec) / 2.0
-        fallback = min(pages, key=lambda p: abs((p.start_sec + p.end_sec) / 2.0 - mid))
-        return [fallback]
-    return [best_page]
+    mid = (cue.start_sec + cue.end_sec) / 2.0
+    fallback = min(pages, key=lambda p: abs((p.start_sec + p.end_sec) / 2.0 - mid))
+    return [fallback]
+
+
+def primary_page_for_cue(cue: SubtitleCue, pages: list[PptPage]) -> PptPage | None:
+    """cue 的主归属页：与 cue 时间重叠最长的 PPT 页；无重叠则取中点最近页。"""
+    if not pages:
+        return None
+
+    best: PptPage | None = None
+    best_ov = -1.0
+    for page in pages:
+        ov = overlap_sec(cue.start_sec, cue.end_sec, page.start_sec, page.end_sec)
+        if ov > best_ov:
+            best_ov = ov
+            best = page
+    if best is not None and best_ov > 0:
+        return best
+
+    mid = (cue.start_sec + cue.end_sec) / 2.0
+    return min(pages, key=lambda p: abs((p.start_sec + p.end_sec) / 2.0 - mid))
+

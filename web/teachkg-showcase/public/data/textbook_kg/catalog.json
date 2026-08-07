@@ -1,0 +1,23 @@
+{
+  "brand": "TeachKG",
+  "product": "教材知识图谱",
+  "generated_at": "2026-07-31T14:43:44",
+  "processed_dir": "D:\\Yves\\AutoEduKG\\data\\processed-former",
+  "default_file_id": "CS2501-离散数学(数理逻辑与集合论)",
+  "files": [
+    {
+      "id": "CS2501-离散数学(数理逻辑与集合论)",
+      "title": "CS2501-离散数学（数理逻辑与集合论）",
+      "path": "D:\\Yves\\AutoEduKG\\data\\processed-former\\CS2501-离散数学（数理逻辑与集合论）",
+      "extract_path": "D:\\Yves\\AutoEduKG\\output\\output-former\\CS2501-离散数学（数理逻辑与集合论）\\result\\extract\\extract.json",
+      "chapter_count": 12,
+      "available": true,
+      "reason": "",
+      "dataUrl": "/data/textbook_kg/CS2501-离散数学(数理逻辑与集合论).json",
+      "stats": {
+        "aligned_triples": 2899,
+        "relations": 2756
+      }
+    }
+  ]
+}

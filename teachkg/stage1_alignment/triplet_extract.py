@@ -7,13 +7,16 @@ import logging
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from teachkg.schemas import VideoSegment
+from teachkg.utils.text import count_text_words
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
 
 logger = logging.getLogger(__name__)
+
+_PARSE_DEFAULT_CAP = object()
 
 _JSON_BLOCK_RE = re.compile(r"```(?:json)?\s*(.*?)\s*```", re.DOTALL | re.IGNORECASE)
 
@@ -99,6 +102,103 @@ def infer_statement_direction(abstract_relation: str) -> str:
     if abstract_relation == "property_of":
         return "object_to_subject"
     return "subject_to_object"
+
+
+# property_of：concrete ↔ 唯一合法 statement_direction（只改拼读，不改 A→B 角色）
+PROPERTY_OF_CONCRETE_DIR: dict[str, str] = {
+    "表示": "subject_to_object",
+    "用…表示": "object_to_subject",
+    "用...表示": "object_to_subject",
+    "具有": "object_to_subject",
+    "具有属性": "object_to_subject",
+    "具有性质": "object_to_subject",
+    "是…的属性": "subject_to_object",
+    "是...的属性": "subject_to_object",
+    "是…的性质": "subject_to_object",
+    "是...的性质": "subject_to_object",
+}
+
+_HAS_PROPERTY_CONCRETES = frozenset({"具有", "具有属性", "具有性质"})
+
+# 记号串作属性侧时，课堂常说「Y 用 X 表示」，优先客→主 + 用…表示
+_NOTATION_SUBJECT_RE = re.compile(
+    r"(?:^[a-zA-Z](?:,[a-zA-Z]){1,}(?:\.\.\.|…)?(?:/[a-zA-Z].*)?$)"
+    r"|(?:\.\.\.|…)"
+)
+
+
+def norm_concrete_relation(concrete: str) -> str:
+    return (concrete or "").strip().replace("...", "…")
+
+
+def is_has_property_concrete(concrete: str) -> bool:
+    """concrete 是否为「具有*」族（具有 / 具有性质 / 具有约束 / 具有…性质 …）。"""
+    c = norm_concrete_relation(concrete)
+    if not c:
+        return False
+    if c in _HAS_PROPERTY_CONCRETES:
+        return True
+    return c.startswith("具有")
+
+
+def _looks_like_notation_subject(subject: str) -> bool:
+    s = (subject or "").strip()
+    if not s:
+        return False
+    primary = s.split("/", 1)[0].strip()
+    if _NOTATION_SUBJECT_RE.search(primary) or _NOTATION_SUBJECT_RE.search(s):
+        return True
+    # a,b,c... / x,y,z... / P,Q,R...
+    return bool(re.match(r"^[A-Za-z](,[A-Za-z])+\.\.\.?$", primary.replace("…", "...")))
+
+
+def align_property_of_fields(
+    *,
+    subject: str,
+    object_: str,
+    concrete_relation: str,
+    statement_direction: str,
+    abstract_relation: str = "property_of",
+) -> tuple[str, str, str, str, list[str]]:
+    """纠偏 property_of 的角色反置与 concrete↔direction 错配。
+
+    约定：`A —property_of→ B` = A 是 B 的属性；箭头/拼读跟 statement_direction。
+    - 「具有*」+ 主→客：通常把拥有者放在了 S（中文「S具有O」），交换 S/O 并改为客→主。
+    - 「表示」+ 客→主：改 concrete 为「用…表示」（保留客→主，贴合「Y用X表示」）。
+    - 记号串 S +「表示」：统一为「用…表示」+ 客→主。
+    - 其余：按 PROPERTY_OF_CONCRETE_DIR 对齐 direction。
+    """
+    changes: list[str] = []
+    if (abstract_relation or "").strip() != "property_of":
+        return subject, object_, concrete_relation, statement_direction, changes
+
+    concrete = norm_concrete_relation(concrete_relation)
+    direction = normalize_statement_direction(statement_direction) or infer_statement_direction(
+        "property_of"
+    )
+
+    if is_has_property_concrete(concrete) and direction == "subject_to_object":
+        subject, object_ = object_, subject
+        direction = "object_to_subject"
+        changes.append("swap_roles_for_具有")
+
+    # 记号约定：课堂多说「概念用记号表示」→ 用…表示 + 客→主
+    if concrete == "表示" and (
+        direction == "object_to_subject" or _looks_like_notation_subject(subject)
+    ):
+        concrete = "用…表示"
+        direction = "object_to_subject"
+        changes.append("表示→用…表示")
+
+    expect = PROPERTY_OF_CONCRETE_DIR.get(concrete)
+    if expect is None and is_has_property_concrete(concrete):
+        expect = "object_to_subject"
+    if expect and direction != expect:
+        direction = expect
+        changes.append("align_direction_to_concrete")
+
+    out_concrete = concrete if concrete else concrete_relation
+    return subject, object_, out_concrete, direction, changes
 
 
 def _join_natural(head: str, relation: str, tail: str) -> str:
@@ -406,6 +506,8 @@ class Triplet:
     description: str = ""
     context: str = ""
     extract_source: str = ""
+    subject_entity_ref: str = ""  # textbook | new
+    object_entity_ref: str = ""
 
     def __post_init__(self) -> None:
         if self.abstract_relation and self.abstract_relation not in VALID_ABSTRACT_RELATIONS:
@@ -416,6 +518,17 @@ class Triplet:
         if not direction and self.abstract_relation:
             direction = infer_statement_direction(self.abstract_relation)
         self.statement_direction = direction
+        if self.abstract_relation == "property_of":
+            s, o, c, d, _ = align_property_of_fields(
+                subject=self.subject,
+                object_=self.object,
+                concrete_relation=self.concrete_relation,
+                statement_direction=self.statement_direction,
+                abstract_relation=self.abstract_relation,
+            )
+            self.subject, self.object = s, o
+            self.concrete_relation = c
+            self.statement_direction = d
         if not self.attribute_category:
             if self.abstract_relation:
                 self.attribute_category = infer_attribute_category(self.abstract_relation)
@@ -457,6 +570,10 @@ class Triplet:
         }
         if self.extract_source:
             data["extract_source"] = self.extract_source
+        if self.subject_entity_ref:
+            data["subject_entity_ref"] = self.subject_entity_ref
+        if self.object_entity_ref:
+            data["object_entity_ref"] = self.object_entity_ref
         return data
 
     @classmethod
@@ -504,11 +621,27 @@ class Triplet:
             description=str(data.get("description", "")).strip(),
             context=str(data.get("context", "")).strip(),
             extract_source=str(data.get("extract_source", "")).strip(),
+            subject_entity_ref=str(data.get("subject_entity_ref", "")).strip(),
+            object_entity_ref=str(data.get("object_entity_ref", "")).strip(),
         )
 
     @property
     def dedupe_key(self) -> tuple[str, str, str, str]:
         return (self.subject, self.abstract_relation, self.concrete_relation, self.object)
+
+    @property
+    def spo_dedupe_key(self) -> tuple[str, str, str]:
+        """与教材子图去重用：忽略 concrete_relation。"""
+        return (self.subject, self.abstract_relation, self.object)
+
+    @property
+    def spo_label_key(self) -> tuple[str, str, str]:
+        """中文主名 + 抽象关系，兼容「谓词」vs「谓词/predicate」。"""
+        return (
+            entity_label(self.subject),
+            self.abstract_relation,
+            entity_label(self.object),
+        )
 
 
 @dataclass
@@ -642,6 +775,175 @@ def dedupe_triplets(triplets: list[Triplet]) -> list[Triplet]:
         seen.add(t.dedupe_key)
         out.append(t)
     return out
+
+
+def is_cross_cue_extract_source(source: str) -> bool:
+    """识别跨段边来源：legacy `cross_cue` 或「第N讲的第a段到第b段」。"""
+    s = (source or "").strip()
+    if not s:
+        return False
+    if s == "cross_cue" or s.startswith("cross_cue"):
+        return True
+    return "讲的第" in s and "段到第" in s and s.endswith("段")
+
+
+def lecture_ordinal_from_id(lecture_id: str) -> str:
+    """L1 / lecture_01 / 1 → 用于「第N讲」的序号字符串。"""
+    m = re.search(r"(\d+)", str(lecture_id or "").strip())
+    if m:
+        return str(int(m.group(1)))
+    return str(lecture_id or "?").strip() or "?"
+
+
+def format_cross_cue_source_span(
+    lecture_id: str,
+    start_seg_1based: int,
+    end_seg_1based: int,
+) -> str:
+    """跨段边来源字段：第N讲的第a段到第b段。"""
+    n = lecture_ordinal_from_id(lecture_id)
+    a = max(1, int(start_seg_1based))
+    b = max(a, int(end_seg_1based))
+    return f"第{n}讲的第{a}段到第{b}段"
+
+
+def build_char_half_windows(
+    lengths: Sequence[int],
+    *,
+    char_budget: int = 1500,
+) -> list[tuple[int, int]]:
+    """按字数阈值建窗，半窗滑动（下一窗从中间字符所在段落起）。
+
+    返回 inclusive 起止下标列表 ``[(start, end), ...]``。
+    - 仅含至少 2 段的窗口（单段无跨段意义；首段超阈值也会再拼一段）
+    - 一旦某窗已覆盖最后一段，停止再滑（后续小窗必为子集）
+    """
+    n = len(lengths)
+    if n < 2:
+        return []
+    budget = max(1, int(char_budget or 1500))
+    windows: list[tuple[int, int]] = []
+    start = 0
+    guard = 0
+    while start < n - 1 and guard < n * 4:
+        guard += 1
+        end = start
+        total = 0
+        while end < n:
+            total += max(0, int(lengths[end]))
+            end += 1
+            # 至少 2 段后，达到字数阈值即可停
+            if end - start >= 2 and total >= budget:
+                break
+        # [start, end) → inclusive last
+        last = end - 1
+        if last <= start:
+            # 单段不成跨段；已无后续可拼则结束
+            break
+        windows.append((start, last))
+
+        # 已含最后一段：再滑只会得到被包含的小窗，停止
+        if last >= n - 1:
+            break
+
+        mid_target = total // 2
+        acc = 0
+        mid_idx = start
+        for i in range(start, end):
+            acc += max(0, int(lengths[i]))
+            if acc >= mid_target:
+                mid_idx = i
+                break
+        next_start = mid_idx if mid_idx > start else start + 1
+        if next_start <= start:
+            next_start = start + 1
+        # 下一窗还需至少还能再拼一段
+        if next_start >= n - 1:
+            break
+        start = next_start
+    return windows
+
+
+def resolve_hybrid_delta_cap(
+    text: str,
+    *,
+    words_per_item: int = 20,
+    min_items: int = 1,
+    max_items: int | None = None,
+) -> int | None:
+    """按文本长度计算增量条数上限；返回 None 表示不设上限。
+
+    - words_per_item>0：每 N 词 +1，再与 max_items 取较小（max_items 为正时）
+    - words_per_item<=0：不按长度动态限制；若 max_items>0 则用其作固定上限，否则不封顶
+    """
+    max_n = int(max_items) if max_items is not None and int(max_items) > 0 else None
+    if words_per_item is None or int(words_per_item) <= 0:
+        return max_n
+    k = max(int(min_items), count_text_words(text) // int(words_per_item))
+    if max_n is not None:
+        k = min(k, max_n)
+    return k
+
+
+def hybrid_delta_limit_instruction(cap: int | None, *, words_per_item: int = 20) -> str:
+    if cap is None:
+        return (
+            "本段**不设条数上限，要求抽全**：逐句扫完并对照触发清单；"
+            "一句多关系拆多条；教材边少时更要充分抽取；"
+            "仍禁止编造，且勿与教材子图全名 SPO 重复；不要只抽前几条或过早输出空列表"
+        )
+    wp = int(words_per_item) if words_per_item and int(words_per_item) > 0 else 20
+    return (
+        f"本段建议最多输出 **{cap}** 条概念增量"
+        f"（随课堂文本长度动态：约每 {wp} 词 +1；在上限内仍尽量抽全，禁止编造）"
+    )
+
+
+def build_textbook_spo_keys(
+    textbook_triplets: Sequence[Triplet],
+    *,
+    match: str = "exact_fullname",
+) -> set[tuple[str, str, str]]:
+    """教材边 SPO 键集合。
+
+    match:
+      - exact_fullname：仅全名 SPO（默认，去重更松）
+      - label：全名 + 中文主名（更严，易误伤近义表述）
+    """
+    keys: set[tuple[str, str, str]] = set()
+    use_label = str(match or "exact_fullname").lower() in {"label", "zh", "label_or_full"}
+    for t in textbook_triplets:
+        keys.add(t.spo_dedupe_key)
+        if use_label:
+            keys.add(t.spo_label_key)
+    return keys
+
+
+def overlaps_textbook_spo(
+    triplet: Triplet,
+    textbook_spo_keys: set[tuple[str, str, str]],
+    *,
+    match: str = "exact_fullname",
+) -> bool:
+    if triplet.spo_dedupe_key in textbook_spo_keys:
+        return True
+    use_label = str(match or "exact_fullname").lower() in {"label", "zh", "label_or_full"}
+    if use_label and triplet.spo_label_key in textbook_spo_keys:
+        return True
+    return False
+
+
+def filter_deltas_against_textbook(
+    deltas: list[Triplet],
+    textbook_triplets: Sequence[Triplet],
+    *,
+    match: str = "exact_fullname",
+) -> list[Triplet]:
+    """去掉与教材子图同 SPO 的增量（忽略 concrete_relation）。"""
+    if not deltas or not textbook_triplets:
+        return list(deltas)
+    keys = build_textbook_spo_keys(textbook_triplets, match=match)
+    return [t for t in deltas if not overlaps_textbook_spo(t, keys, match=match)]
 
 
 def load_course_context(workspace_dir: Path, course_id: str, cue: VideoSegment | None = None) -> str:
@@ -862,7 +1164,7 @@ class TripletValidator:
     api_key: str | None = None
     base_url: str | None = None
     llm_model: str | None = None
-    prompt_name: str = "teaching/triplet_validate.txt"
+    prompt_name: str = "stage1/triplet_validate.txt"
     retry_prompt_name: str | None = None
     temperature: float = 0.0
     mock: bool = False
@@ -971,13 +1273,13 @@ class TripletExtractor:
     api_key: str | None = None
     base_url: str | None = None
     llm_model: str | None = None
-    prompt_name: str = "teaching/subgraph_extract.txt"
-    hybrid_prompt_name: str = "teaching/subgraph_hybrid_extract.txt"
+    prompt_name: str = "stage1/subgraph_extract.txt"
+    hybrid_prompt_name: str = "stage1/subgraph_hybrid_extract.txt"
     temperature: float = 0.1
     max_triplets_per_cue: int = 12
     mock: bool = False
     validate_enabled: bool = True
-    validate_prompt: str = "teaching/triplet_validate.txt"
+    validate_prompt: str = "stage1/triplet_validate.txt"
     retry_validate_prompt: str | None = None
     validate_client: LLMClient | None = None
     validate_model: str | None = None
@@ -986,12 +1288,27 @@ class TripletExtractor:
     retry_fix_enabled: bool = True
     retry_reextract_enabled: bool = True
     retry_fix_fallback_reextract: bool = True
-    max_fix_attempts: int = 3
-    max_reextract_attempts: int = 3
-    fix_prompt: str = "teaching/triplet_fix.txt"
-    reextract_prompt: str = "teaching/triplet_reextract.txt"
+    max_fix_attempts: int = 3  # 每条 revise 最多 fix 次数（非整批上限）
+    max_reextract_attempts: int = 3  # 每条 revise 最多 re_extract 次数
+    # fix/re_extract 失败时：若原边通过结构校验则保留，避免「抽全后又被校验清零」
+    retry_keep_original_on_fail: bool = True
+    fix_prompt: str = "stage1/triplet_fix.txt"
+    reextract_prompt: str = "stage1/triplet_reextract.txt"
     conceptual_focus: bool = False
-    max_hybrid_delta_per_cue: int = 6
+    max_hybrid_delta_per_cue: int | None = None
+    hybrid_delta_words_per_item: int = 20
+    hybrid_delta_min_per_cue: int = 1
+    # exact_fullname：仅全名 SPO 去重；label：全名+中文主名（更严）
+    dedupe_textbook_match: str = "exact_fullname"
+    # 第二轮补漏：对照已抽增量再扫一遍课堂文本
+    hybrid_completeness_pass: bool = True
+    hybrid_completeness_prompt_name: str = "stage1/subgraph_hybrid_extract_complete.txt"
+    # 跨段抽取（单段之外的额外 pass；不改单段结果）
+    cross_cue_extract_enabled: bool = False
+    cross_cue_prompt_name: str = "stage1/subgraph_cross_cue_extract.txt"
+    cross_cue_max_triples: int = 6
+    # 字数滑动窗：累计字符阈值；半窗从中间字符所在段起（不再用相邻对 window）
+    cross_cue_char_budget: int = 1500
 
     def _llm_extract_raw(
         self,
@@ -1011,16 +1328,19 @@ class TripletExtractor:
         text: str,
         *,
         conceptual_focus: bool | None = None,
-        max_count: int | None = None,
+        max_count: int | None | object = _PARSE_DEFAULT_CAP,
     ) -> list[Triplet]:
         cf = self.conceptual_focus if conceptual_focus is None else conceptual_focus
-        cap = max_count if max_count is not None else self.max_triplets_per_cue
         triplets = filter_triplets(
             dedupe_triplets(parse_triplet_response(raw)),
             text,
             conceptual_focus=cf,
         )
-        if len(triplets) > cap:
+        if max_count is _PARSE_DEFAULT_CAP:
+            cap: int | None = int(self.max_triplets_per_cue)
+        else:
+            cap = None if max_count is None else int(max_count)  # type: ignore[arg-type]
+        if cap is not None and cap > 0 and len(triplets) > cap:
             triplets = triplets[:cap]
         return triplets
 
@@ -1087,18 +1407,15 @@ class TripletExtractor:
         passed_keys: set[tuple[str, str, str, str]],
         retry_results: list[TripletValidationResult],
         retry_meta: dict[str, Any],
+        action_override: str | None = None,
     ) -> bool:
         """单条补救（fix 或 re_extract），成功则写入 passed。返回是否救回。"""
-        action = item.verdict.action
+        action = (action_override or item.verdict.action or REVISE_ACTION_FIX).strip().lower()
         if action == REVISE_ACTION_FIX and self.retry_fix_enabled:
-            if retry_meta["fix_attempted"] >= self.max_fix_attempts:
-                return False
             retry_meta["fix_attempted"] += 1
             candidate = self._fix_triplet(item, text)
             kind = "fix"
         elif action == REVISE_ACTION_REEXTRACT and self.retry_reextract_enabled:
-            if retry_meta["reextract_attempted"] >= self.max_reextract_attempts:
-                return False
             retry_meta["reextract_attempted"] += 1
             candidate = self._reextract_triplet(item, text, course_context)
             kind = "reextract"
@@ -1122,13 +1439,37 @@ class TripletExtractor:
         retry_meta[f"{kind}_failed"] += 1
         return False
 
+    def _keep_original_if_structural(
+        self,
+        item: ValidatedTriplet,
+        text: str,
+        *,
+        passed: list[Triplet],
+        passed_keys: set[tuple[str, str, str, str]],
+        retry_meta: dict[str, Any],
+    ) -> bool:
+        """补救失败时保留结构合法的原边，避免增量被整批清零。"""
+        if not self.retry_keep_original_on_fail:
+            return False
+        trip = item.triplet
+        if trip.dedupe_key in passed_keys:
+            return False
+        if validate_triplet(trip, text, conceptual_focus=self.conceptual_focus):
+            return False
+        passed.append(trip)
+        passed_keys.add(trip.dedupe_key)
+        retry_meta["kept_original"] = int(retry_meta.get("kept_original") or 0) + 1
+        return True
+
     def _run_retry(
         self,
         text: str,
         course_context: str,
         validation: TripletValidationResult,
+        *,
+        max_passed: int | None | object = _PARSE_DEFAULT_CAP,
     ) -> TripletValidationResult:
-        """对 revise 条目逐条执行 fix 或单条 re_extract。"""
+        """对 revise 条目逐条执行 fix 或单条 re_extract（每条独立尝试上限）。"""
         retry_meta: dict[str, Any] = {
             "fix_attempted": 0,
             "fix_passed": 0,
@@ -1136,51 +1477,225 @@ class TripletExtractor:
             "reextract_attempted": 0,
             "reextract_passed": 0,
             "reextract_failed": 0,
+            "kept_original": 0,
         }
         passed = list(validation.passed)
         passed_keys = {t.dedupe_key for t in passed}
         retry_results: list[TripletValidationResult] = [validation]
 
         for item in validation.revise:
-            recovered = self._try_recover_triplet(
-                item,
-                text,
-                course_context,
-                passed=passed,
-                passed_keys=passed_keys,
-                retry_results=retry_results,
-                retry_meta=retry_meta,
-            )
-            if recovered:
-                continue
-            if (
-                item.verdict.action == REVISE_ACTION_FIX
-                and self.retry_fix_fallback_reextract
-                and self.retry_reextract_enabled
-            ):
-                fallback = ValidatedTriplet(
-                    triplet=item.triplet,
-                    verdict=ValidationVerdict(
-                        verdict=VALIDATION_VERDICT_REVISE,
-                        action=REVISE_ACTION_REEXTRACT,
-                        reason=item.verdict.reason,
-                        suggestion=item.verdict.suggestion or "fix 失败，单条重抽",
-                    ),
-                )
-                self._try_recover_triplet(
-                    fallback,
+            action = (item.verdict.action or REVISE_ACTION_FIX).strip().lower()
+            if action not in REVISE_ACTIONS:
+                action = REVISE_ACTION_FIX
+            # 每条 revise 先尝试 1 次主动作；失败再走 fallback / 保留原边
+            # max_*_attempts 保留为同条额外重试次数（默认 3 → 实际最多试 1 次主动作以免爆炸）
+            per_item_cap = 1
+            recovered = False
+            for _ in range(per_item_cap):
+                if self._try_recover_triplet(
+                    item,
                     text,
                     course_context,
                     passed=passed,
                     passed_keys=passed_keys,
                     retry_results=retry_results,
                     retry_meta=retry_meta,
+                    action_override=action,
+                ):
+                    recovered = True
+                    break
+            if recovered:
+                continue
+            if (
+                action == REVISE_ACTION_FIX
+                and self.retry_fix_fallback_reextract
+                and self.retry_reextract_enabled
+            ):
+                if self._try_recover_triplet(
+                    item,
+                    text,
+                    course_context,
+                    passed=passed,
+                    passed_keys=passed_keys,
+                    retry_results=retry_results,
+                    retry_meta=retry_meta,
+                    action_override=REVISE_ACTION_REEXTRACT,
+                ):
+                    recovered = True
+            if not recovered:
+                self._keep_original_if_structural(
+                    item,
+                    text,
+                    passed=passed,
+                    passed_keys=passed_keys,
+                    retry_meta=retry_meta,
                 )
 
         merged = merge_validation_results(*retry_results)
-        merged.passed = passed[: self.max_triplets_per_cue]
+        if max_passed is _PARSE_DEFAULT_CAP:
+            cap: int | None = int(self.max_triplets_per_cue)
+        else:
+            cap = None if max_passed is None else int(max_passed)  # type: ignore[arg-type]
+        merged.passed = passed if cap is None or cap <= 0 else passed[:cap]
         merged.retry = retry_meta
         return merged
+
+    def _format_delta_json_for_prompt(self, triplets: Sequence[Triplet]) -> str:
+        if not triplets:
+            return "（无）"
+        rows = [
+            {
+                "subject": t.subject,
+                "object": t.object,
+                "abstract_relation": t.abstract_relation,
+                "concrete_relation": t.concrete_relation,
+            }
+            for t in triplets
+        ]
+        return json.dumps(rows, ensure_ascii=False, indent=2)
+
+    def _hybrid_completeness_extract(
+        self,
+        text: str,
+        course_context: str,
+        *,
+        textbook_subgraph_json: str,
+        known_entities_text: str,
+        already: list[Triplet],
+        textbook_spo_keys: set[tuple[str, str, str]],
+        dedupe_against_textbook: bool,
+    ) -> list[Triplet]:
+        """第二轮补漏：在已有增量基础上再扫课堂文本。"""
+        if self.mock or not self.hybrid_completeness_pass:
+            return []
+        prompt = format_prompt(
+            self.hybrid_completeness_prompt_name,
+            course_context=course_context or "（无）",
+            textbook_subgraph_json=textbook_subgraph_json or "（无）",
+            known_entities=known_entities_text or "（无）",
+            asr_text=text,
+            already_extracted_json=self._format_delta_json_for_prompt(already),
+        )
+        try:
+            raw = self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Hybrid completeness LLM failed: %s", exc)
+            return []
+
+        extra = self._parse_and_filter(
+            raw,
+            text,
+            conceptual_focus=self.conceptual_focus,
+            max_count=None,
+        )
+        seen = {t.spo_dedupe_key for t in already}
+        out: list[Triplet] = []
+        for triplet in extra:
+            triplet.extract_source = "lecture_delta"
+            if triplet.spo_dedupe_key in seen:
+                continue
+            if dedupe_against_textbook and overlaps_textbook_spo(
+                triplet, textbook_spo_keys, match=self.dedupe_textbook_match
+            ):
+                continue
+            seen.add(triplet.spo_dedupe_key)
+            out.append(triplet)
+        if out:
+            logger.info(
+                "Hybrid completeness pass added %d delta(s) (had %d)",
+                len(out),
+                len(already),
+            )
+        return out
+
+    def extract_cross_cue(
+        self,
+        *,
+        window_segments: list[tuple[str, str]],
+        source_span: str,
+        course_context: str,
+        already: list[Triplet],
+        known_entities_text: str = "",
+        max_triples: int | None = None,
+        # 兼容旧调用（相邻对）；优先使用 window_segments
+        prev_text: str = "",
+        next_text: str = "",
+        prev_cue_id: str = "",
+        next_cue_id: str = "",
+    ) -> list[Triplet]:
+        """字数窗跨段增量：不依赖原文 context，不替代单段抽取。"""
+        segs = list(window_segments or [])
+        if len(segs) < 2 and (prev_text or "").strip() and (next_text or "").strip():
+            segs = [
+                (prev_cue_id or "prev", (prev_text or "").strip()),
+                (next_cue_id or "next", (next_text or "").strip()),
+            ]
+            if not source_span:
+                source_span = f"{prev_cue_id}→{next_cue_id}"
+        cleaned: list[tuple[str, str]] = []
+        for cue_id, text in segs:
+            t = (text or "").strip()
+            if t:
+                cleaned.append((str(cue_id or ""), t))
+        if len(cleaned) < 2:
+            return []
+        if self.mock:
+            return []
+        cap = int(max_triples if max_triples is not None else self.cross_cue_max_triples)
+        if cap <= 0:
+            cap = 6
+        span = (source_span or "").strip() or "跨段窗口"
+        window_parts = [
+            f"### 第{i}段\n{txt}" for i, (_cid, txt) in enumerate(cleaned, 1)
+        ]
+        window_text = "\n\n".join(window_parts)
+        joined = "\n".join(txt for _, txt in cleaned)
+        already_json = self._format_delta_json_for_prompt(already)
+        prompt = format_prompt(
+            self.cross_cue_prompt_name,
+            course_context=course_context or "（无）",
+            known_entities=known_entities_text or "（无）",
+            already_extracted_json=already_json,
+            source_span=span,
+            window_text=window_text,
+            max_triples=str(cap),
+            # 旧 prompt 占位兼容（若仍引用）
+            prev_cue_id=cleaned[0][0],
+            next_cue_id=cleaned[-1][0],
+            prev_text=cleaned[0][1],
+            next_text=cleaned[-1][1],
+        )
+        try:
+            raw = self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Cross-cue extract LLM failed: %s", exc)
+            return []
+
+        # 用拼接文本做结构过滤；跨段边强制清空 context，故不会因摘录校验失败
+        parsed = self._parse_and_filter(
+            raw,
+            joined,
+            conceptual_focus=self.conceptual_focus,
+            max_count=cap,
+        )
+        seen = {t.spo_dedupe_key for t in already}
+        out: list[Triplet] = []
+        for triplet in parsed:
+            triplet.context = ""
+            triplet.extract_source = span
+            if not (triplet.description or "").strip():
+                triplet.description = f"跨段衔接（{span}）"
+            if triplet.spo_dedupe_key in seen:
+                continue
+            seen.add(triplet.spo_dedupe_key)
+            out.append(triplet)
+        if out:
+            logger.info(
+                "Cross-cue extract %s added %d",
+                span,
+                len(out),
+            )
+        return out
 
     def __post_init__(self) -> None:
         if self.llm_client is None:
@@ -1268,13 +1783,20 @@ class TripletExtractor:
         textbook_subgraph_json: str,
         textbook_triplets: list[Triplet],
         dedupe_against_textbook: bool = True,
+        known_entities_text: str = "",
     ) -> TripletExtractResult:
         """教材子图约束下的增量抽取（仅补课堂独有知识）。"""
         text = asr_text.strip()
         if not text:
             return TripletExtractResult(triplets=[], error="empty_text")
 
-        textbook_keys = {t.dedupe_key for t in textbook_triplets} if dedupe_against_textbook else set()
+        textbook_spo_keys = (
+            build_textbook_spo_keys(
+                textbook_triplets, match=self.dedupe_textbook_match
+            )
+            if dedupe_against_textbook
+            else set()
+        )
 
         if self.mock:
             delta = [
@@ -1291,14 +1813,27 @@ class TripletExtractor:
                 )
             ]
             if dedupe_against_textbook:
-                delta = [t for t in delta if t.dedupe_key not in textbook_keys]
+                delta = [
+                    t
+                    for t in delta
+                    if not overlaps_textbook_spo(
+                        t, textbook_spo_keys, match=self.dedupe_textbook_match
+                    )
+                ]
             return TripletExtractResult(triplets=delta)
 
+        # 增量提示词不设条数上限（忽略动态/固定封顶配置）
+        cap = None
         prompt = format_prompt(
             self.hybrid_prompt_name,
             course_context=course_context or "（无）",
             textbook_subgraph_json=textbook_subgraph_json or "（无）",
+            known_entities=known_entities_text or "（无）",
             asr_text=text,
+            max_delta_instruction=hybrid_delta_limit_instruction(
+                None, words_per_item=self.hybrid_delta_words_per_item
+            ),
+            max_delta="",
         )
         try:
             raw = self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
@@ -1306,36 +1841,106 @@ class TripletExtractor:
             logger.exception("Hybrid triplet LLM call failed")
             return TripletExtractResult(triplets=[], error=str(exc))
 
+        logger.info("Hybrid delta cap for cue text: words≈%d cap=%s", count_text_words(text), cap)
         triplets = self._parse_and_filter(
             raw,
             text,
             conceptual_focus=self.conceptual_focus,
-            max_count=self.max_hybrid_delta_per_cue,
+            max_count=None,
         )
+        if not triplets and (raw or "").strip():
+            logger.warning(
+                "Hybrid first-pass parsed 0 triples from non-empty LLM output (%d chars)",
+                len(raw),
+            )
+        else:
+            logger.info("Hybrid first-pass after parse/filter: %d", len(triplets))
         for triplet in triplets:
             triplet.extract_source = "lecture_delta"
 
         if dedupe_against_textbook:
-            triplets = [t for t in triplets if t.dedupe_key not in textbook_keys]
+            before = len(triplets)
+            triplets = [
+                t
+                for t in triplets
+                if not overlaps_textbook_spo(
+                    t, textbook_spo_keys, match=self.dedupe_textbook_match
+                )
+            ]
+            if before != len(triplets):
+                logger.info(
+                    "Hybrid textbook SPO dedupe: %d -> %d", before, len(triplets)
+                )
+
+        # 第二轮补漏：对照已抽结果再扫全文，保证抽全
+        if self.hybrid_completeness_pass:
+            extras = self._hybrid_completeness_extract(
+                text,
+                course_context,
+                textbook_subgraph_json=textbook_subgraph_json or "",
+                known_entities_text=known_entities_text or "",
+                already=triplets,
+                textbook_spo_keys=textbook_spo_keys,
+                dedupe_against_textbook=dedupe_against_textbook,
+            )
+            if extras:
+                triplets = dedupe_triplets(triplets + extras)
+            logger.info(
+                "Hybrid before validate: %d (completeness added %d)",
+                len(triplets),
+                len(extras) if extras else 0,
+            )
 
         validation: TripletValidationResult | None = None
         if self.validate_enabled and triplets:
             validation = self.validator.validate_batch(triplets, text)
+            logger.info(
+                "Hybrid validate: pass=%d revise=%d discard=%d",
+                len(validation.passed),
+                len(validation.revise),
+                len(validation.discarded),
+            )
             if self.retry_enabled and (validation.revise or validation.discarded):
-                validation = self._run_retry(text, course_context, validation)
+                validation = self._run_retry(
+                    text, course_context, validation, max_passed=None
+                )
+                logger.info(
+                    "Hybrid after retry: pass=%d kept_original=%s",
+                    len(validation.passed),
+                    (validation.retry or {}).get("kept_original"),
+                )
             triplets = validation.passed
             for triplet in triplets:
                 triplet.extract_source = "lecture_delta"
             if dedupe_against_textbook:
-                triplets = [t for t in triplets if t.dedupe_key not in textbook_keys]
+                triplets = [
+                    t
+                    for t in triplets
+                    if not overlaps_textbook_spo(
+                        t, textbook_spo_keys, match=self.dedupe_textbook_match
+                    )
+                ]
 
         if self.conceptual_focus:
             triplets = [t for t in triplets if not is_overly_specific_triplet(t)]
+        before_delta_filter = len(triplets)
         triplets = filter_delta_triplets(
             triplets,
             text,
             conceptual_focus=self.conceptual_focus,
         )
+        if before_delta_filter != len(triplets):
+            logger.info(
+                "Hybrid filter_delta_triplets: %d -> %d",
+                before_delta_filter,
+                len(triplets),
+            )
+        if dedupe_against_textbook:
+            triplets = filter_deltas_against_textbook(
+                triplets,
+                textbook_triplets,
+                match=self.dedupe_textbook_match,
+            )
 
         return TripletExtractResult(triplets=triplets, validation=validation)
 
@@ -1386,16 +1991,20 @@ def rank_llm_fallback_candidates(
     cue_text: str,
     merged: list[Triplet],
     existing_keys: set[tuple[str, str, str, str]],
+    textbook_spo_keys: set[tuple[str, str, str]] | None = None,
     max_candidates: int = 50,
 ) -> list[dict[str, Any]]:
     """按 cue 相关度排序 LLM 基线候选，优先补口语化但语义不重复的概念边。"""
     from teachkg.textbook_kg.alias import clean_text
 
     cue_clean = clean_text(cue_text)
+    spo_keys = textbook_spo_keys or set()
 
     def score_row(row: dict[str, Any]) -> float:
         triplet = Triplet.from_dict(row)
         if not triplet or triplet.dedupe_key in existing_keys:
+            return -1.0
+        if overlaps_textbook_spo(triplet, spo_keys):
             return -1.0
         if is_near_duplicate_of_merged(row, merged):
             return -1.0
@@ -1451,6 +2060,18 @@ def build_flat_triplet_records(
             "source_text": cue.asr_text[:500],
         }
         source = t.extract_source or extract_source
+        if is_cross_cue_extract_source(source):
+            # 跨段隐含边：不挂 clip / PPT / 原文摘录（时间戳仅作讲次归属，不绑媒体）
+            rec["grounding"] = "cross_cue_implicit"
+            rec["source_text"] = ""
+            rec["context"] = ""
+            rec.pop("clip_path", None)
+            if source:
+                rec["extract_source"] = source
+            if extract_mode:
+                rec["extract_mode"] = extract_mode
+            records.append(rec)
+            continue
         if cue.clip_path:
             rec["clip_path"] = cue.clip_path
         if source == "textbook" and not ground_textbook:

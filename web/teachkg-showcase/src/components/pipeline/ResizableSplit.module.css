@@ -1,0 +1,96 @@
+.split {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.single {
+  display: flex;
+}
+
+.stacked {
+  flex-direction: column;
+}
+
+/* 上栏受限、下栏伸展（导航 / 文本对照） */
+.stackedGrowSecond > .pane:first-child {
+  flex: 0 0 auto;
+  max-height: min(40vh, 320px);
+  width: 100% !important;
+  border-bottom: 1px solid var(--line, #2a3344);
+  overflow: auto;
+}
+
+.stackedGrowSecond > .paneGrow {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100% !important;
+}
+
+/* 上栏伸展、下栏受限（主区 / 详情） */
+.stackedGrowFirst > .pane:first-child {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  width: 100% !important;
+}
+
+.stackedGrowFirst > .paneGrow {
+  flex: 0 0 auto;
+  max-height: min(42vh, 360px);
+  width: 100% !important;
+  border-top: 1px solid var(--line, #2a3344);
+  overflow: auto;
+}
+
+.pane {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.paneGrow {
+  flex: 1 1 auto;
+}
+
+.handle {
+  flex: 0 0 7px;
+  position: relative;
+  cursor: col-resize;
+  z-index: 5;
+  touch-action: none;
+  background: transparent;
+  align-self: stretch;
+}
+
+.handle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--line, #2a3344);
+  opacity: 0.75;
+  transition: background 0.12s ease, opacity 0.12s ease, width 0.12s ease, left 0.12s ease;
+}
+
+.handle:hover::before,
+.handle:focus-visible::before,
+.handle:active::before {
+  left: 1px;
+  width: 5px;
+  opacity: 1;
+  background: var(--accent, #3ecf8e);
+}
+
+.handle:focus-visible {
+  outline: none;
+}

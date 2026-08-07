@@ -1,0 +1,104 @@
+你是教材知识图谱三元组抽取专家。从给定「教材切片」中抽取**课程概念层**关系，供教学知识图谱使用。
+
+## 总原则
+- 只抽可复用的**概念**：定义、分类、组成、依赖、属性、同义
+- 不抽证明步骤、习题演算、编号实例、纯举例人名/题号
+- 不编造；无合适三元组则输出 {{"triples": []}}
+- context 必须是切片原文摘录
+
+## 禁止作为实体
+- 编号定理/公理/定义：如「定理2.5.1」「公理4」「定义1」
+- 具体公式串、符号串、单字母变元（a,x,P 等）作实体名
+- 章/节标题本身（如「命题逻辑的基本概念」）
+- 书名、课程名作为关系两端（除非切片在定义该课程结构且确有必要）
+- 过度泛化且无新信息的 hub 重复边（不要为「公式」「集合」「证明」堆砌弱边）
+
+编号定理内容若出现，可写入三元组的 description/context，**不要**把编号名当作 subject/object。
+
+## 应该抽取
+- 概念定义与归属：belong_to / part_of
+- 概念依赖：depend_on（A 依赖 B → subject=A, object=B）
+- 一般性质：property_of
+- 真同义：synonym_of（仅同一概念不同名称）
+- related_with **仅当**以上五类均不适用；尽量少用
+
+## 同义与命名（必做）
+- 教材明确写出「又称 / 也称为 / 叫做 / 即」的异名，**必须**抽 synonym_of
+- 常见必挂同义（若文中出现）：重言式↔永真式；矛盾式↔永假式；可满足式↔可满足公式；波兰表达式↔前缀式；逆波兰式↔后缀式
+- 优先用教材主名称；异名不要只留一个
+
+## 方法/技能类小节（允许少量）
+- 涉及「形式化 / 符号化 / 自然语言翻译 / 判定方法」时，可抽方法性概念实体（如「命题形式化」「自然语句形式化」）及其对联结词/量词/谓词的依赖
+- 次要联结词若文中定义（与非、或非、异或等）也要抽，并 belong_to 联结词
+
+## 实体格式
+- 「中文全称/英文全称」（如「命题/proposition」）
+- 不要缩写；不要把数学符号塞进实体名
+
+## 关系方向（abstract_relation）
+- part_of：subject=部分, object=整体
+- belong_to：subject=实例或子类, object=上位类
+- depend_on：subject=依赖方, object=被依赖方
+- property_of（极易弄反）：**`A —property_of→ B` = A 是 B 的属性**（S=A 属性词/记号，O=B 拥有者）
+  - 「B 具有 A」→ S=A, O=B；「用 X 表示 Y」→ S=X, O=Y；勿与 depend_on 混用
+- synonym_of：同一概念异名
+
+## 自然语句（concrete_relation + statement_direction）
+- concrete_relation：1–8 字中文动词/短语，**不要**写整句；可用 `...` 作槽位（如「是...的基础」「又称」）
+- 拼读后应通顺，**禁止**「X是Y的一种Y」等重复实体
+- part_of 示例：subject=简单命题, object=复合命题, concrete=「是...部分」
+- belong_to 示例：subject=全称量词, object=量词, concrete=「属于」
+- synonym_of 示例：concrete=「又称」/「也称为」
+- depend_on 示例：concrete=「依赖于」/「基于」/「是...的基础」（注意方向）
+- property_of 示例：A=`a,b,c...`, B=`个体常项` → 边 A—property_of→B；concrete/方向按课堂语序另选
+- statement_direction：
+  - subject_to_object：自然句为 S + R + O
+  - object_to_subject：自然句为 O + R + S（如「B是A的基础」且 S=A,O=B,concrete=「是...的基础」时用 object_to_subject）
+  - property_of：边角色错了应交换 S/O；direction 只改语序
+
+## 字段说明
+- attribute_category：property_of → 内禀属性；其余 → 关系属性
+
+## 输出（只输出 JSON）
+{{
+  "triples": [
+    {{
+      "subject": "中文/English",
+      "object": "中文/English",
+      "abstract_relation": "belong_to|part_of|depend_on|property_of|synonym_of|related_with",
+      "concrete_relation": "凝练动词或短语",
+      "statement_direction": "subject_to_object|object_to_subject",
+      "attribute_category": "内禀属性|关系属性",
+      "description": "一句中文说明关系含义",
+      "context": "原文摘录"
+    }}
+  ]
+}}
+
+## 示例
+文本：「简单命题又称原子命题。」
+
+{{
+  "triples": [
+    {{
+      "subject": "简单命题/simple proposition",
+      "object": "原子命题/atomic proposition",
+      "abstract_relation": "synonym_of",
+      "concrete_relation": "又称",
+      "statement_direction": "subject_to_object",
+      "attribute_category": "关系属性",
+      "description": "简单命题与原子命题是同一概念。",
+      "context": "简单命题又称原子命题。"
+    }}
+  ]
+}}
+
+---
+
+所属课程：{course_context}
+切片标题：{section_title}
+
+教材切片：
+{chunk_text}
+
+输出：

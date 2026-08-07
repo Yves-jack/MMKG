@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VAT-KG · Pipeline Showcase</title>
+  <!-- 本地 vendor，避免 unpkg/Google Fonts 在国内一直转圈 -->
+  <script src="./vis-network.min.js"></script>
+  <style>
+    :root {
+      --bg: #0e1116;
+      --bg-elev: #161b22;
+      --bg-soft: #1c2330;
+      --line: #2a3344;
+      --text: #e8edf5;
+      --muted: #8b97a8;
+      --accent: #3ecf8e;
+      --accent-dim: rgba(62, 207, 142, 0.14);
+      --warn: #f0b429;
+      --delta: #5b8def;
+      --new: #e879a9;
+      --textbook: #3ecf8e;
+      --radius: 14px;
+      --font: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --display: Georgia, "Songti SC", "SimSun", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(62, 207, 142, 0.08), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(91, 141, 239, 0.07), transparent 50%),
+        var(--bg);
+    }
+
+    /* —— Top bar (Linear-like) —— */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      background: rgba(14, 17, 22, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+    .brand-mark {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .brand-mark span { color: var(--accent); }
+    .brand-sub {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    select, button {
+      font: inherit;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--bg-elev);
+      color: var(--text);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    select:hover, button:hover { border-color: #3d4a60; }
+    button.primary {
+      background: var(--accent);
+      color: #062416;
+      border-color: transparent;
+      font-weight: 600;
+    }
+    button.primary:hover { filter: brightness(1.05); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* —— Layout —— */
+    .shell {
+      display: grid;
+      grid-template-columns: 280px 1fr 340px;
+      min-height: 0;
+      height: calc(100vh - 61px);
+    }
+    @media (max-width: 1100px) {
+      .shell { grid-template-columns: 1fr; height: auto; }
+      .steps, .side { max-height: none; }
+      #graph { height: 420px !important; }
+    }
+
+    /* —— Steps rail —— */
+    .steps {
+      border-right: 1px solid var(--line);
+      padding: 20px 14px 24px;
+      overflow: auto;
+      background: rgba(22, 27, 34, 0.55);
+    }
+    .steps h2 {
+      margin: 0 12px 14px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .step {
+      width: 100%;
+      text-align: left;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding: 12px;
+      margin-bottom: 6px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: inherit;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .step:hover { background: var(--bg-soft); }
+    .step.active {
+      background: var(--accent-dim);
+      border-color: rgba(62, 207, 142, 0.35);
+    }
+    .step-idx {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--bg-soft);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+    .step.active .step-idx {
+      background: var(--accent);
+      color: #062416;
+      border-color: transparent;
+    }
+    .step-title { font-size: 14px; font-weight: 600; }
+    .step-sub { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+
+    /* —— Main stage —— */
+    .main {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 0;
+      min-height: 0;
+    }
+    .stage-head {
+      padding: 22px 28px 10px;
+    }
+    .stage-head h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .stage-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 52ch;
+      line-height: 1.55;
+    }
+    .stage-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .chip {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg-elev);
+      color: var(--muted);
+    }
+    .chip strong { color: var(--text); font-weight: 600; }
+
+    .viewport {
+      position: relative;
+      margin: 0 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%),
+        var(--bg-elev);
+      overflow: hidden;
+      min-height: 360px;
+      height: 100%;
+    }
+    #graph { width: 100%; height: 100%; min-height: 360px; }
+    .text-panel {
+      display: none;
+      padding: 28px 32px;
+      overflow: auto;
+      height: 100%;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #d5dde8;
+      white-space: pre-wrap;
+    }
+    .text-panel.visible { display: block; }
+    #graph.hidden { display: none; }
+
+    .legend {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      pointer-events: auto;
+      max-width: calc(100% - 28px);
+      z-index: 5;
+    }
+    .legend .hl-hint {
+      font-size: 10px;
+      color: var(--muted);
+      padding: 2px 4px;
+      pointer-events: none;
+    }
+    .legend button.hl-btn {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: rgba(14, 17, 22, 0.88);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      line-height: 1.2;
+    }
+    .legend button.hl-btn:hover {
+      border-color: #3d4a60;
+      color: var(--text);
+    }
+    .legend button.hl-btn.active {
+      color: #0e1116;
+      font-weight: 600;
+      border-color: transparent;
+      background: var(--hl-color, var(--accent));
+    }
+    .legend button.hl-btn.all-btn.active {
+      background: #c5cedb;
+      color: #0e1116;
+    }
+    #btnToggleFiltered.hidden-ctrl {
+      display: none;
+    }
+    #btnToggleFiltered.active {
+      border-color: rgba(62, 207, 142, 0.55);
+      color: #062416;
+      background: var(--accent);
+    }
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .trip.dimmed {
+      opacity: 0.28;
+    }
+
+    .transport {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 28px 18px;
+    }
+    .transport-left, .transport-right { display: flex; gap: 8px; align-items: center; }
+    .progress {
+      flex: 1;
+      height: 4px;
+      background: var(--bg-soft);
+      border-radius: 999px;
+      overflow: hidden;
+      max-width: 280px;
+    }
+    .progress > i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    /* —— Side panel —— */
+    .side {
+      border-left: 1px solid var(--line);
+      background: rgba(22, 27, 34, 0.7);
+      overflow: auto;
+      padding: 18px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg-elev);
+      padding: 14px;
+    }
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .cue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 180px;
+      overflow: auto;
+    }
+    .cue-btn {
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+    .cue-btn.active {
+      border-color: rgba(62, 207, 142, 0.4);
+      background: var(--accent-dim);
+    }
+    .trip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 220px;
+      overflow: auto;
+    }
+    .trip {
+      font-size: 12px;
+      line-height: 1.45;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--bg-soft);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .trip:hover { border-color: #3d4a60; }
+    .trip.active {
+      border-color: rgba(62, 207, 142, 0.45);
+      background: var(--accent-dim);
+    }
+    .trip .src {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .trip-detail {
+      display: none;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      color: #c5cedb;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .trip.active .trip-detail { display: block; }
+    .trip-detail .field {
+      margin-top: 6px;
+    }
+    .trip-detail .field:first-child { margin-top: 0; }
+    .trip-detail .field-label {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .node-detail {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--bg-soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .node-detail .name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .node-detail .id-line {
+      color: var(--muted);
+      font-size: 11px;
+      margin: -4px 0 10px;
+      word-break: break-all;
+    }
+    .node-detail .metric-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .node-detail .metric {
+      flex: 1;
+      min-width: 90px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(62, 207, 142, 0.08);
+      border: 1px solid rgba(62, 207, 142, 0.22);
+    }
+    .node-detail .metric .k {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .node-detail .metric .v {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .node-detail .metric.up .v { color: #3ecf8e; }
+    .node-detail .metric.down .v { color: #e879a9; }
+    .node-detail .metric.flat .v { color: var(--muted); }
+    .node-detail .hint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .src.textbook { color: var(--textbook); }
+    .src.lecture_delta { color: var(--delta); }
+    .src.llm_fallback { color: var(--warn); }
+    .src.filtered { color: #9ca3af; }
+    .src.new { color: var(--new); }
+
+    /* multimodal */
+    .mm-grid {
+      display: grid;
+      gap: 10px;
+    }
+    .mm-media {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #000;
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .mm-media video, .mm-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #0a0c10;
+    }
+    .mm-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .empty-hint {
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">VAT<span>-</span>KG</div>
+      <div class="brand-sub" id="pageSub">TeachKG Pipeline</div>
+    </div>
+    <div class="top-actions">
+      <select id="cueSelect" aria-label="选择片段"></select>
+      <button type="button" id="btnPrev">上一步</button>
+      <button type="button" class="primary" id="btnNext">下一步</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="steps" id="stepList"></aside>
+
+    <section class="main">
+      <div class="stage-head">
+        <h1 id="stageTitle">加载中…</h1>
+        <p id="stageBlurb"></p>
+        <div class="stage-stats" id="stageStats"></div>
+      </div>
+      <div class="viewport">
+        <div id="graph"></div>
+        <div class="text-panel" id="textPanel"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="transport">
+        <div class="transport-left">
+          <span class="chip" id="stageCounter">1 / 6</span>
+        </div>
+        <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+        <div class="transport-right">
+          <button type="button" id="btnToggleFiltered" class="hidden-ctrl" title="单讲图谱：显示/隐藏教材过滤边">隐藏过滤边</button>
+          <button type="button" id="btnPlay">自动播放</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="panel">
+        <h3>本讲片段</h3>
+        <div class="cue-list" id="cueList"></div>
+      </div>
+      <div class="panel">
+        <h3>选中实体</h3>
+        <div id="nodeDetail" class="empty-hint" style="text-align:left">点击图中节点，查看重要性与显示大小</div>
+      </div>
+      <div class="panel">
+        <h3>当前关系</h3>
+        <div class="empty-hint" style="padding:0 0 8px;text-align:left">点击图中边或下方条目，展开描述与依据</div>
+        <div class="trip-list" id="tripList"></div>
+      </div>
+      <div class="panel" id="mmPanel">
+        <h3>多模态证据</h3>
+        <div class="mm-grid">
+          <div>
+            <div class="mm-label">课堂切片</div>
+            <div class="mm-media" id="mmVideo"><div class="empty-hint">暂无视频</div></div>
+          </div>
+          <div>
+            <div class="mm-label">板书 / PPT 帧</div>
+            <div class="mm-media" id="mmPpt"><div class="empty-hint">暂无帧图</div></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    /*__PIPELINE_PAYLOAD__*/
+    const data = window.PIPELINE_DATA;
+    if (!data || !Array.isArray(data.items)) {
+      document.getElementById("stageTitle").textContent = "数据未加载";
+      document.getElementById("stageBlurb").textContent =
+        "缺少 PIPELINE_DATA，请重新运行 export_pipeline_showcase.py 导出。";
+      throw new Error("PIPELINE_DATA missing");
+    }
+    if (typeof vis === "undefined") {
+      document.getElementById("stageTitle").textContent = "图谱库未加载";
+      document.getElementById("stageBlurb").textContent =
+        "请确认同目录存在 vis-network.min.js（勿删），或改用本地文件打开。";
+      throw new Error("vis-network missing");
+    }
+
+    const SOURCE_EDGE_COLOR = {
+      textbook: "#3ecf8e",
+      lecture_delta: "#5b8def",
+      llm_fallback: "#f0b429",
+      llm_only: "#f0b429",
+      filtered: "#6b7280",
+      both: "#3ecf8e",
+      lecture_1: "#5b8def",
+      lecture_2: "#e879a9",
+      lecture_3: "#5b8def",
+      lecture_4: "#e879a9",
+    };
+
+    const REL_COLOR = {
+      belong_to: "#3ecf8e",
+      part_of: "#5b8def",
+      depend_on: "#f0b429",
+      synonym_of: "#e879a9",
+      property_of: "#9b8afb",
+      related_with: "#8b97a8",
+    };
+
+    const KIND_STYLE = {
+      seed: { background: "#1a2a22", border: "#3ecf8e" },
+      seed_alias: { background: "#1a2a22", border: "#3ecf8e" },
+      seed_embedding: { background: "#14262e", border: "#2dd4bf" },
+      seed_filtered_alias: { background: "#243028", border: "#7a8f82" },
+      seed_filtered_embedding: { background: "#1e2c32", border: "#6a8a92" },
+      seed_filtered: { background: "#2a2e35", border: "#6b7280" },
+      textbook: { background: "#1a2a22", border: "#3ecf8e" },
+      delta: { background: "#1a2333", border: "#5b8def" },
+      mixed: { background: "#142a32", border: "#2dd4bf" },
+      final: { background: "#1a2333", border: "#5b8def" },
+      both: { background: "#163528", border: "#3ecf8e" },
+      lecture_1: { background: "#152238", border: "#5b8def" },
+      lecture_2: { background: "#2a1a28", border: "#e879a9" },
+      lecture_3: { background: "#152238", border: "#5b8def" },
+      lecture_4: { background: "#2a1a28", border: "#e879a9" },
+      /* 融合步节点：教材 / 上课 / 共有 — 实心色 */
+      tb_only: { background: "#3ecf8e", border: "#2a9f68", solid: true },
+      class_only: { background: "#5b8def", border: "#3d6fd4", solid: true },
+      shared: { background: "#d4a017", border: "#b8860b", solid: true },
+      fallback: { background: "#2a2418", border: "#f0b429" },
+      new: { background: "#2a1a24", border: "#e879a9" },
+      entity: { background: "#1c2330", border: "#3d4a60" },
+    };
+
+    function kindStyle(kind) {
+      if (KIND_STYLE[kind]) return KIND_STYLE[kind];
+      if (kind && String(kind).startsWith("lecture_")) {
+        const n = Number(String(kind).replace("lecture_", ""));
+        if (!Number.isNaN(n)) {
+          return n % 2 === 1
+            ? { background: "#152238", border: "#5b8def" }
+            : { background: "#2a1a28", border: "#e879a9" };
+        }
+      }
+      return KIND_STYLE.entity;
+    }
+
+    function edgeSourceColor(src, relation) {
+      if (SOURCE_EDGE_COLOR[src]) return SOURCE_EDGE_COLOR[src];
+      if (src && String(src).startsWith("lecture_")) {
+        const n = Number(String(src).replace("lecture_", ""));
+        if (!Number.isNaN(n)) return n % 2 === 1 ? "#5b8def" : "#e879a9";
+      }
+      return REL_COLOR[relation] || "#8b97a8";
+    }
+    let cueIndex = 0;
+    let stageIndex = 0;
+    let network = null;
+    let playTimer = null;
+    /** 单讲步骤：是否隐藏 source=filtered 的灰虚线边 */
+    let hideFilteredEdges = false;
+    /** 当前高亮筛选 key；null / "all" = 全部显示 */
+    let highlightKey = null;
+    let highlightStageId = null;
+    let graphNodeDS = null;
+    let graphEdgeDS = null;
+    /** 节点坐标缓存：隐藏过滤边后恢复位置 */
+    let nodePosCache = {};
+
+    function currentCue() {
+      return data.items[cueIndex];
+    }
+
+    function currentStage() {
+      return currentCue().stages[stageIndex];
+    }
+
+    function initCueSelect() {
+      const sel = document.getElementById("cueSelect");
+      const list = document.getElementById("cueList");
+      const sideTitle = document.querySelector(".side .panel h3");
+      const isSession = data.mode === "session";
+      if (sideTitle) {
+        sideTitle.textContent = isSession ? "融合步骤" : "本讲片段";
+      }
+      sel.innerHTML = "";
+      list.innerHTML = "";
+      data.items.forEach((it, i) => {
+        let label;
+        if (isSession) {
+          label = it.stages && it.stages[0]
+            ? `一堂课 · ${data.lecture_ids ? data.lecture_ids.join("+") : data.lecture_id}`
+            : `会话 ${i + 1}`;
+        } else {
+          label = `片段 ${i + 1} · ${Math.round(it.start_sec || 0)}s`;
+        }
+        const opt = document.createElement("option");
+        opt.value = String(i);
+        opt.textContent = label;
+        sel.appendChild(opt);
+
+        if (isSession && it.stages) {
+          // session: list stages as navigation shortcuts
+          it.stages.forEach((st, si) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "cue-btn" + (i === cueIndex && si === stageIndex ? " active" : "");
+            btn.textContent = `${si + 1}. ${st.title}`;
+            btn.addEventListener("click", () => {
+              cueIndex = i;
+              stageIndex = si;
+              sel.value = String(i);
+              stopPlay();
+              renderAll();
+            });
+            list.appendChild(btn);
+          });
+        } else {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "cue-btn" + (i === cueIndex ? " active" : "");
+          btn.textContent = label;
+          btn.addEventListener("click", () => {
+            cueIndex = i;
+            stageIndex = 0;
+            sel.value = String(i);
+            stopPlay();
+            renderAll();
+          });
+          list.appendChild(btn);
+        }
+      });
+      sel.value = String(cueIndex);
+      sel.addEventListener("change", () => {
+        cueIndex = Number(sel.value);
+        stageIndex = 0;
+        stopPlay();
+        renderAll();
+      });
+    }
+
+    function renderSteps() {
+      const cue = currentCue();
+      const root = document.getElementById("stepList");
+      root.innerHTML = "<h2>构建步骤</h2>";
+      cue.stages.forEach((st, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "step" + (i === stageIndex ? " active" : "");
+        btn.innerHTML = `
+          <div class="step-idx">${i + 1}</div>
+          <div>
+            <div class="step-title">${st.title}</div>
+            <div class="step-sub">${st.subtitle}</div>
+          </div>`;
+        btn.addEventListener("click", () => {
+          stageIndex = i;
+          stopPlay();
+          renderStage();
+        });
+        root.appendChild(btn);
+      });
+    }
+
+    function renderStats(stage) {
+      const box = document.getElementById("stageStats");
+      box.innerHTML = "";
+      const stats = stage.stats || {};
+      Object.entries(stats).forEach(([k, v]) => {
+        if (v == null) return;
+        const el = document.createElement("div");
+        el.className = "chip";
+        el.innerHTML = `${k}: <strong>${v}</strong>`;
+        box.appendChild(el);
+      });
+      if (stage.new_entities && stage.new_entities.length) {
+        const el = document.createElement("div");
+        el.className = "chip";
+        el.innerHTML = `新实体: <strong>${stage.new_entities.map(n => n.split("/")[0]).join("、")}</strong>`;
+        box.appendChild(el);
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function tripDetailHtml(e) {
+      const statement = e.statement || e.title || "";
+      const description = e.description || "";
+      const context = e.context || "";
+      const parts = [];
+      if (statement) {
+        parts.push(
+          `<div class="field"><div class="field-label">陈述</div><div>${escapeHtml(statement)}</div></div>`
+        );
+      }
+      parts.push(
+        `<div class="field"><div class="field-label">描述</div><div>${
+          description ? escapeHtml(description) : "（无）"
+        }</div></div>`
+      );
+      parts.push(
+        `<div class="field"><div class="field-label">依据上下文</div><div>${
+          context ? escapeHtml(context) : "（无）"
+        }</div></div>`
+      );
+      return `<div class="trip-detail">${parts.join("")}</div>`;
+    }
+
+    function clearNodeDetail() {
+      const box = document.getElementById("nodeDetail");
+      if (!box) return;
+      box.className = "empty-hint";
+      box.style.textAlign = "left";
+      box.textContent = "点击图中节点，查看重要性与显示大小";
+    }
+
+    function selectNode(nodeId) {
+      const box = document.getElementById("nodeDetail");
+      if (!box) return;
+      const stage = currentStage();
+      const raw = (stage.nodes || []).find((n) => n.id === nodeId);
+      let importance = raw && raw.importance != null ? Number(raw.importance) : null;
+      let importanceBase =
+        raw && raw.importance_base != null ? Number(raw.importance_base) : null;
+      let importanceDelta =
+        raw && raw.importance_delta != null ? Number(raw.importance_delta) : null;
+      let size = raw && raw.size != null ? Number(raw.size) : null;
+      const label = (raw && raw.label) || String(nodeId || "").split("/")[0];
+      if (network) {
+        try {
+          network.selectNodes([nodeId]);
+          const visNode = network.body.data.nodes.get(nodeId);
+          if (importance == null && visNode && visNode.importance != null) {
+            importance = Number(visNode.importance);
+          }
+          if (importanceBase == null && visNode && visNode.importance_base != null) {
+            importanceBase = Number(visNode.importance_base);
+          }
+          if (importanceDelta == null && visNode && visNode.importance_delta != null) {
+            importanceDelta = Number(visNode.importance_delta);
+          }
+          if (size == null && visNode && visNode.size != null) {
+            size = Number(visNode.size);
+          }
+        } catch (_) {
+          /* ignore */
+        }
+      }
+      if (
+        importanceDelta == null &&
+        importance != null &&
+        importanceBase != null &&
+        !Number.isNaN(importance) &&
+        !Number.isNaN(importanceBase)
+      ) {
+        importanceDelta = importance - importanceBase;
+      }
+      const fmt = (x) =>
+        x != null && !Number.isNaN(x) ? Number(x).toFixed(3) : "—";
+      const fmtDelta = (x) => {
+        if (x == null || Number.isNaN(x)) return "—";
+        const n = Number(x);
+        return (n >= 0 ? "+" : "") + n.toFixed(3);
+      };
+      const sizeText =
+        size != null && !Number.isNaN(size) ? size.toFixed(1) : "—";
+      const deltaClass =
+        importanceDelta == null || Number.isNaN(importanceDelta)
+          ? ""
+          : importanceDelta > 0.0005
+            ? "up"
+            : importanceDelta < -0.0005
+              ? "down"
+              : "flat";
+      box.className = "node-detail";
+      box.style.textAlign = "";
+      box.innerHTML = `
+        <div class="name">${escapeHtml(label)}</div>
+        <div class="id-line">${escapeHtml(nodeId)}</div>
+        <div class="metric-row">
+          <div class="metric"><span class="k">教材先验</span><span class="v">${fmt(importanceBase)}</span></div>
+          <div class="metric"><span class="k">反馈后</span><span class="v">${fmt(importance)}</span></div>
+          <div class="metric ${deltaClass}"><span class="k">变化 Δ</span><span class="v">${fmtDelta(importanceDelta)}</span></div>
+          <div class="metric"><span class="k">节点大小</span><span class="v">${sizeText}</span></div>
+        </div>
+        <div class="hint">教材先验为归一化后的原教材重要性；反馈后 = (1−α)·先验 + α·课堂信号。</div>`;
+    }
+
+    function isSessionLectureStage(stage) {
+      return (
+        data.mode === "session" &&
+        stage &&
+        stage.id &&
+        String(stage.id).startsWith("lecture_")
+      );
+    }
+
+    function stageEdgesForDisplay(stage) {
+      const edges = stage.edges || [];
+      if (isSessionLectureStage(stage) && hideFilteredEdges) {
+        return edges.filter((e) => (e.source || "") !== "filtered");
+      }
+      return edges;
+    }
+
+    function stageNodesForDisplay(stage, edges) {
+      const nodes = stage.nodes || [];
+      if (!(isSessionLectureStage(stage) && hideFilteredEdges)) {
+        return nodes;
+      }
+      // 隐藏过滤边后：仅保留仍有（非过滤）边相连的节点
+      const keep = new Set();
+      edges.forEach((e) => {
+        if (e.from) keep.add(e.from);
+        if (e.to) keep.add(e.to);
+      });
+      return nodes.filter((n) => keep.has(n.id));
+    }
+
+    function syncFilteredToggle(stage) {
+      const btn = document.getElementById("btnToggleFiltered");
+      if (!btn) return;
+      const show = isSessionLectureStage(stage);
+      btn.classList.toggle("hidden-ctrl", !show);
+      btn.classList.toggle("active", show && hideFilteredEdges);
+      btn.textContent = hideFilteredEdges ? "显示过滤边" : "隐藏过滤边";
+      btn.setAttribute("aria-pressed", hideFilteredEdges ? "true" : "false");
+    }
+
+    const HL_DIM = 0.18;
+    const HL_EDGE_DIM = 0.12;
+    const HL_EDGE_SOFT = 0.38;
+    const HL_NODE_FADE_BG = "#252a33";
+    const HL_NODE_FADE_BORDER = "#3a4250";
+    const HL_EDGE_FADE = "#2a3038";
+    const HL_FONT_FADE = "#4a5568";
+
+    function lecturePairIds() {
+      const ids = data.lecture_ids || [];
+      return [ids[0] || "A", ids[1] || "B"];
+    }
+
+    /** 当前步骤可用的颜色高亮筛选（与图例一致） */
+    function stageHighlightFilters(stage) {
+      if (!stage || stage.focus === "text") return [];
+      const [a, b] = lecturePairIds();
+      if (stage.id === "seeds") {
+        return [
+          { key: "seed_alias", label: "别名种子", color: "#3ecf8e", nodeKinds: ["seed", "seed_alias"] },
+          { key: "seed_emb", label: "向量种子", color: "#2dd4bf", nodeKinds: ["seed_embedding"] },
+          { key: "seed_f_alias", label: "已筛·别名", color: "#7a8f82", nodeKinds: ["seed_filtered_alias"] },
+          { key: "seed_f_emb", label: "已筛·向量", color: "#6a8a92", nodeKinds: ["seed_filtered_embedding"] },
+        ];
+      }
+      if (stage.id === "textbook") {
+        return [
+          { key: "e_tb", label: "写入教材边", color: "#3ecf8e", edgeSources: ["textbook"] },
+          { key: "e_filt", label: "过滤边", color: "#6b7280", edgeSources: ["filtered"] },
+        ];
+      }
+      if (stage.id === "delta") {
+        // 本步边全是增量，按节点角色高亮（与 blurb 一致）
+        return [
+          { key: "n_tb", label: "教材实体", color: "#3ecf8e", nodeKinds: ["textbook"] },
+          { key: "n_new", label: "新实体", color: "#e879a9", nodeKinds: ["new"] },
+          { key: "n_delta", label: "其他增量节点", color: "#5b8def", nodeKinds: ["delta"] },
+        ];
+      }
+      if (stage.id === "merge") {
+        return [
+          { key: "e_tb", label: "教材边", color: "#3ecf8e", edgeSources: ["textbook"] },
+          { key: "e_delta", label: "课堂增量", color: "#5b8def", edgeSources: ["lecture_delta"] },
+          { key: "e_fb", label: "LLM回退", color: "#f0b429", edgeSources: ["llm_fallback", "llm_only"] },
+          { key: "n_new", label: "新实体", color: "#e879a9", nodeKinds: ["new"] },
+          { key: "n_delta", label: "增量节点", color: "#7dd3fc", nodeKinds: ["delta"] },
+          { key: "n_fb", label: "回退节点", color: "#fbbf24", nodeKinds: ["fallback"] },
+        ];
+      }
+      if (stage.id === "session_merge") {
+        // 节点三类实心色；边用不同浅色，避免与节点按钮撞色
+        return [
+          { key: "n_tb", label: "教材独有", color: "#3ecf8e", nodeKinds: ["tb_only"] },
+          { key: "n_class", label: "上课独有", color: "#5b8def", nodeKinds: ["class_only"] },
+          { key: "n_shared", label: "两者共有", color: "#d4a017", nodeKinds: ["shared"] },
+          { key: "e_both", label: "边·两讲共有", color: "#86efac", edgeSources: ["both"] },
+          { key: "e_lec_a", label: `边·仅第${a}讲`, color: "#93c5fd", edgeSources: [`lecture_${a}`] },
+          { key: "e_lec_b", label: `边·仅第${b}讲`, color: "#f9a8d4", edgeSources: [`lecture_${b}`] },
+        ];
+      }
+      if (isSessionLectureStage(stage)) {
+        return [
+          { key: "e_tb", label: "教材边", color: "#3ecf8e", edgeSources: ["textbook"] },
+          { key: "e_delta", label: "增量边", color: "#5b8def", edgeSources: ["lecture_delta"] },
+          { key: "e_filt", label: "过滤边", color: "#6b7280", edgeSources: ["filtered"] },
+          { key: "n_tb", label: "仅教材节点", color: "#86efac", nodeKinds: ["textbook"] },
+          { key: "n_mixed", label: "教材+增量节点", color: "#2dd4bf", nodeKinds: ["mixed"] },
+          { key: "n_delta", label: "仅增量节点", color: "#93c5fd", nodeKinds: ["delta"] },
+          { key: "n_new", label: "新实体", color: "#e879a9", nodeKinds: ["new"] },
+        ];
+      }
+      return [
+        { key: "e_tb", label: "边·教材", color: "#3ecf8e", edgeSources: ["textbook"] },
+        { key: "e_delta", label: "边·增量", color: "#5b8def", edgeSources: ["lecture_delta"] },
+        { key: "e_filt", label: "边·过滤", color: "#6b7280", edgeSources: ["filtered"] },
+        { key: "n_new", label: "节点·新实体", color: "#e879a9", nodeKinds: ["new"] },
+      ];
+    }
+
+    function filterHasMatches(stage, filter) {
+      const nodes = stage.nodes || [];
+      const edges = stageEdgesForDisplay(stage);
+      if (filter.nodeKinds && filter.nodeKinds.length) {
+        if (nodes.some((n) => filter.nodeKinds.indexOf(n.kind) >= 0)) return true;
+      }
+      if (filter.edgeSources && filter.edgeSources.length) {
+        if (edges.some((e) => filter.edgeSources.indexOf(e.source || "") >= 0)) return true;
+      }
+      return false;
+    }
+
+    function activeHighlightFilters(stage) {
+      return stageHighlightFilters(stage).filter((f) => filterHasMatches(stage, f));
+    }
+
+    function findHighlightFilter(key) {
+      if (!key || key === "all") return null;
+      return activeHighlightFilters(currentStage()).find((f) => f.key === key) || null;
+    }
+
+    function applyGraphHighlight() {
+      if (!graphNodeDS || !graphEdgeDS) return;
+      const filter = findHighlightFilter(highlightKey);
+      const allNodes = graphNodeDS.get();
+      const allEdges = graphEdgeDS.get();
+
+      if (!filter) {
+        const nUp = allNodes.map((n) => ({
+          id: n.id,
+          opacity: n._baseOpacity != null ? n._baseOpacity : 1,
+          color: {
+            background: n._bg,
+            border: n._border,
+            highlight: { background: n._bg, border: "#fff" },
+          },
+          font: Object.assign({}, n.font || {}, { color: n._fontColor || "#e8edf5" }),
+        }));
+        const eUp = allEdges.map((e) => ({
+          id: e.id,
+          opacity: 1,
+          color: {
+            color: e._edgeColor,
+            highlight: "#fff",
+          },
+          font: Object.assign({}, e.font || {}, {
+            color: e._fontColor || "#8b97a8",
+          }),
+        }));
+        if (nUp.length) graphNodeDS.update(nUp);
+        if (eUp.length) graphEdgeDS.update(eUp);
+        dimTripList(null);
+        return;
+      }
+
+      const matchNodeIds = new Set();
+      const matchEdgeIds = new Set();
+
+      if (filter.nodeKinds && filter.nodeKinds.length) {
+        allNodes.forEach((n) => {
+          if (filter.nodeKinds.indexOf(n._kind) >= 0) matchNodeIds.add(n.id);
+        });
+        allEdges.forEach((e) => {
+          if (matchNodeIds.has(e.from) || matchNodeIds.has(e.to)) {
+            matchEdgeIds.add(e.id);
+          }
+        });
+      }
+      if (filter.edgeSources && filter.edgeSources.length) {
+        allEdges.forEach((e) => {
+          if (filter.edgeSources.indexOf(e._source) >= 0) {
+            matchEdgeIds.add(e.id);
+            if (e.from) matchNodeIds.add(e.from);
+            if (e.to) matchNodeIds.add(e.to);
+          }
+        });
+      }
+
+      const nUp = allNodes.map((n) => {
+        const hit = matchNodeIds.has(n.id);
+        return {
+          id: n.id,
+          opacity: hit ? (n._baseOpacity != null ? n._baseOpacity : 1) : HL_DIM,
+          color: {
+            background: hit ? n._bg : HL_NODE_FADE_BG,
+            border: hit ? n._border : HL_NODE_FADE_BORDER,
+            highlight: {
+              background: hit ? n._bg : HL_NODE_FADE_BG,
+              border: "#fff",
+            },
+          },
+          font: Object.assign({}, n.font || {}, {
+            color: hit ? n._fontColor || "#e8edf5" : HL_FONT_FADE,
+          }),
+        };
+      });
+      const eUp = allEdges.map((e) => {
+        const hit = matchEdgeIds.has(e.id);
+        const soft =
+          !hit && (matchNodeIds.has(e.from) || matchNodeIds.has(e.to));
+        const op = hit ? 1 : soft ? HL_EDGE_SOFT : HL_EDGE_DIM;
+        return {
+          id: e.id,
+          opacity: op,
+          color: {
+            color: hit ? e._edgeColor : HL_EDGE_FADE,
+            highlight: "#fff",
+          },
+          font: Object.assign({}, e.font || {}, {
+            color: hit ? e._fontColor || "#8b97a8" : HL_FONT_FADE,
+          }),
+        };
+      });
+      if (nUp.length) graphNodeDS.update(nUp);
+      if (eUp.length) graphEdgeDS.update(eUp);
+      dimTripList(matchEdgeIds);
+    }
+
+    function dimTripList(matchEdgeIds) {
+      [...document.querySelectorAll(".trip")].forEach((el) => {
+        if (!matchEdgeIds) {
+          el.classList.remove("dimmed");
+          return;
+        }
+        el.classList.toggle("dimmed", !matchEdgeIds.has(el.dataset.edgeId));
+      });
+    }
+
+    function renderHighlightLegend(stage) {
+      const legend = document.getElementById("legend");
+      const filters = activeHighlightFilters(stage);
+      if (highlightKey && highlightKey !== "all" && !filters.some((f) => f.key === highlightKey)) {
+        highlightKey = null;
+      }
+      if (!filters.length) {
+        legend.innerHTML = "";
+        return;
+      }
+      const parts = [
+        `<span class="hl-hint">点击高亮</span>`,
+        `<button type="button" class="hl-btn all-btn${
+          !highlightKey || highlightKey === "all" ? " active" : ""
+        }" data-hl="all">全部</button>`,
+      ];
+      filters.forEach((f) => {
+        const on = highlightKey === f.key ? " active" : "";
+        parts.push(
+          `<button type="button" class="hl-btn${on}" data-hl="${escapeHtml(
+            f.key
+          )}" style="--hl-color:${f.color}"><i class="dot" style="background:${
+            f.color
+          }"></i>${escapeHtml(f.label)}</button>`
+        );
+      });
+      legend.innerHTML = parts.join("");
+      legend.querySelectorAll("button.hl-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.getAttribute("data-hl");
+          if (key === "all" || highlightKey === key) {
+            highlightKey = null;
+          } else {
+            highlightKey = key;
+          }
+          renderHighlightLegend(stage);
+          applyGraphHighlight();
+        });
+      });
+    }
+
+    function selectTrip(edgeId) {
+      [...document.querySelectorAll(".trip")].forEach((el) => {
+        const on = el.dataset.edgeId === String(edgeId);
+        el.classList.toggle("active", on);
+        if (on) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      });
+      if (network && edgeId != null) {
+        try {
+          network.selectEdges([edgeId]);
+        } catch (_) {
+          /* ignore */
+        }
+      }
+    }
+
+    function renderTrips(stage) {
+      const root = document.getElementById("tripList");
+      root.innerHTML = "";
+      const edges = stageEdgesForDisplay(stage);
+      if (!edges.length) {
+        root.innerHTML = `<div class="empty-hint">${stage.focus === "text" ? "本步以文本为主" : "暂无关系边"}</div>`;
+        return;
+      }
+      edges.forEach((e) => {
+        const div = document.createElement("div");
+        div.className = "trip";
+        div.dataset.edgeId = e.id;
+        const sRef = e.subject_ref === "new" ? '<span class="src new">new</span>' : "";
+        const oRef = e.object_ref === "new" ? '<span class="src new">new</span>' : "";
+        div.innerHTML = `
+          <div><strong>${escapeHtml((e.from || "").split("/")[0])}</strong> ${sRef}
+          —[${escapeHtml(e.label)}]→
+          <strong>${escapeHtml((e.to || "").split("/")[0])}</strong> ${oRef}</div>
+          <div class="src ${escapeHtml(e.source || "")}">${escapeHtml(e.source || "")} · ${escapeHtml(e.concrete || "")}</div>
+          ${tripDetailHtml(e)}`;
+        div.addEventListener("click", () => selectTrip(e.id));
+        root.appendChild(div);
+      });
+    }
+
+    function renderMedia(cue, stage) {
+      const videoBox = document.getElementById("mmVideo");
+      const pptBox = document.getElementById("mmPpt");
+      const show = stage.focus === "multimodal" || stage.id === "merge" || stage.id === "delta";
+      document.getElementById("mmPanel").style.opacity = show ? "1" : "0.55";
+
+      videoBox.innerHTML = "";
+      pptBox.innerHTML = "";
+      if (cue.media && cue.media.clip) {
+        const v = document.createElement("video");
+        v.controls = true;
+        v.src = cue.media.clip;
+        v.preload = "metadata";
+        videoBox.appendChild(v);
+      } else {
+        videoBox.innerHTML = '<div class="empty-hint">暂无视频切片</div>';
+      }
+      if (cue.media && cue.media.ppt) {
+        const img = document.createElement("img");
+        img.src = cue.media.ppt;
+        img.alt = "PPT frame";
+        pptBox.appendChild(img);
+      } else {
+        pptBox.innerHTML = '<div class="empty-hint">暂无板书帧</div>';
+      }
+    }
+
+    function assignParallelCurves(edges) {
+      const groups = {};
+      edges.forEach((e) => {
+        const key = [e.from, e.to].slice().sort().join("||");
+        (groups[key] || (groups[key] = [])).push(e);
+      });
+      Object.values(groups).forEach((list) => {
+        if (list.length === 1) {
+          list[0].smooth = { enabled: true, type: "continuous", roundness: 0.35 };
+          return;
+        }
+        list.forEach((e, i) => {
+          const roundness = Math.min(0.8, 0.2 + i * 0.18);
+          e.smooth = {
+            enabled: true,
+            type: i % 2 === 0 ? "curvedCW" : "curvedCCW",
+            roundness,
+          };
+        });
+      });
+    }
+
+    function snapshotNodePositions() {
+      if (!network || !graphNodeDS) return;
+      try {
+        const ids = graphNodeDS.getIds();
+        if (!ids.length) return;
+        const pos = network.getPositions(ids);
+        Object.keys(pos).forEach((id) => {
+          nodePosCache[id] = { x: pos[id].x, y: pos[id].y };
+        });
+      } catch (_) {
+        /* ignore */
+      }
+    }
+
+    function buildVisNodes(stage, rawNodes) {
+      const isSeeds = stage.id === "seeds";
+      return rawNodes.map((n) => {
+        const style = kindStyle(n.kind);
+        const isSolid = !!style.solid;
+        const baseSize = isSeeds
+          ? (String(n.kind || "").startsWith("seed_filtered")
+              ? 14
+              : n.kind === "seed_embedding"
+                ? 22
+                : 20)
+          : n.kind === "new" || n.kind === "class_only"
+            ? 22
+            : 16;
+        const size = n.size != null ? Number(n.size) : baseSize;
+        const fontSize = isSeeds
+          ? (String(n.kind || "").startsWith("seed_filtered") ? 12 : 17)
+          : Math.max(11, Math.min(18, Math.round(11 + (size - 10) * 0.35)));
+        const isFilteredSeed = String(n.kind || "").startsWith("seed_filtered");
+        const isFilteredAlias = n.kind === "seed_filtered_alias";
+        const isFilteredEmb = n.kind === "seed_filtered_embedding";
+        const fontColor = isSolid
+          ? "#0e1116"
+          : isFilteredAlias
+            ? "#a8bdb0"
+            : isFilteredEmb
+              ? "#9eb8c0"
+              : "#e8edf5";
+        return {
+          id: n.id,
+          label: n.label,
+          title: n.title,
+          shape: "dot",
+          size,
+          _kind: n.kind || "",
+          _bg: style.background,
+          _border: style.border,
+          _fontColor: fontColor,
+          _baseOpacity: isFilteredSeed ? 0.65 : 1,
+          importance: n.importance != null ? Number(n.importance) : null,
+          importance_base: n.importance_base != null ? Number(n.importance_base) : null,
+          importance_delta: n.importance_delta != null ? Number(n.importance_delta) : null,
+          font: {
+            size: fontSize,
+            color: fontColor,
+            face: "Segoe UI, Microsoft YaHei, sans-serif",
+            strokeWidth: isSeeds && !isFilteredSeed ? 3 : isSolid ? 2 : 0,
+            strokeColor: isSeeds && !isFilteredSeed
+              ? "#0e1116"
+              : isSolid
+                ? "#f5f7fa"
+                : undefined,
+          },
+          color: {
+            background: style.background,
+            border: style.border,
+            highlight: { background: style.background, border: "#fff" },
+          },
+          borderWidth: isFilteredSeed ? 1.5 : isSolid ? 2 : isSeeds ? 3 : 2,
+          opacity: isFilteredSeed ? 0.65 : 1,
+        };
+      });
+    }
+
+    function buildVisEdges(rawEdges) {
+      const SOURCE_LABEL = {
+        textbook: "教材边",
+        lecture_delta: "课堂增量",
+        llm_fallback: "LLM回退",
+        llm_only: "LLM-only",
+        filtered: "过滤边",
+        both: "两讲共有",
+      };
+      return rawEdges.map((e) => {
+        const src = e.source || "";
+        const isDelta = src === "lecture_delta";
+        const edgeColor = edgeSourceColor(src, e.relation);
+        const srcZh =
+          SOURCE_LABEL[src] ||
+          (src && String(src).startsWith("lecture_")
+            ? `仅第${String(src).replace("lecture_", "")}讲`
+            : src);
+        const tipParts = [];
+        if (e.statement || e.title) tipParts.push(e.statement || e.title);
+        if (e.description) tipParts.push("描述: " + e.description);
+        if (e.context) tipParts.push("依据: " + e.context);
+        if (srcZh) tipParts.push("来源: " + srcZh);
+        const fontColor = isDelta
+          ? "#93c5fd"
+          : src === "filtered"
+            ? "#6b7280"
+            : "#8b97a8";
+        return {
+          id: e.id,
+          from: e.from,
+          to: e.to,
+          label: isDelta && e.label ? "增量·" + e.label : e.label,
+          title: tipParts.join("\n"),
+          arrows: "to",
+          _source: src,
+          _edgeColor: edgeColor,
+          _fontColor: fontColor,
+          color: {
+            color: edgeColor,
+            highlight: "#fff",
+          },
+          width: isDelta ? 3.0 : src === "textbook" ? 1.6 : src === "filtered" ? 1.0 : 1.4,
+          dashes: src === "llm_fallback" || src === "llm_only" || src === "filtered",
+          font: {
+            size: isDelta ? 11 : 10,
+            color: fontColor,
+            strokeWidth: 0,
+            align: "horizontal",
+            bold: isDelta,
+          },
+        };
+      });
+    }
+
+    function isSessionGraphStage(stage) {
+      return data.mode === "session" && stage && stage.focus !== "text";
+    }
+
+    function applyCachedPositions(visNodes) {
+      visNodes.forEach((n) => {
+        const p = nodePosCache[String(n.id)] || nodePosCache[n.id];
+        if (p && p.x != null && p.y != null) {
+          n.x = p.x;
+          n.y = p.y;
+        }
+      });
+    }
+
+    function hashStr(s) {
+      let h = 0;
+      const str = String(s || "");
+      for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
+      return h;
+    }
+
+    function nodeSepRadius(n) {
+      return Math.max(20, Number(n.size) || 16) * 2.2 + 16;
+    }
+
+    function isTooClose(x, y, visNodes, selfId, minExtra) {
+      const extra = minExtra || 0;
+      for (let i = 0; i < visNodes.length; i++) {
+        const o = visNodes[i];
+        if (!o || String(o.id) === String(selfId)) continue;
+        if (o.x == null || o.y == null) continue;
+        const need =
+          nodeSepRadius({ size: o.size }) + nodeSepRadius({ size: 16 }) + extra;
+        if (Math.hypot(o.x - x, o.y - y) < need) return true;
+      }
+      return false;
+    }
+
+    function findFreePosition(cx, cy, visNodes, selfId, seedAng) {
+      const base = 90;
+      for (let ring = 0; ring < 10; ring++) {
+        const rad = base + ring * 48;
+        const steps = 8 + ring * 4;
+        for (let i = 0; i < steps; i++) {
+          const ang = seedAng + (2 * Math.PI * i) / steps;
+          const x = cx + rad * Math.cos(ang);
+          const y = cy + rad * Math.sin(ang);
+          if (!isTooClose(x, y, visNodes, selfId, 4)) return { x, y };
+        }
+      }
+      const ang = seedAng;
+      return {
+        x: cx + (base + 420) * Math.cos(ang),
+        y: cy + (base + 420) * Math.sin(ang),
+      };
+    }
+
+    /** 无缓存坐标的新节点：贴到已有邻居旁并避开重叠，否则环形排布 */
+    function placeUncachedNodes(visNodes, visEdges) {
+      const byId = {};
+      visNodes.forEach((n) => {
+        byId[String(n.id)] = n;
+      });
+      const placed = new Set();
+      visNodes.forEach((n) => {
+        if (n.x != null && n.y != null) placed.add(String(n.id));
+      });
+      for (let guard = 0; guard < visNodes.length + 2; guard++) {
+        let progressed = false;
+        visEdges.forEach((e) => {
+          const a = String(e.from);
+          const b = String(e.to);
+          const na = byId[a];
+          const nb = byId[b];
+          if (!na || !nb) return;
+          if (placed.has(a) && !placed.has(b)) {
+            const seed = ((hashStr(b) % 360) * Math.PI) / 180;
+            const pos = findFreePosition(na.x, na.y, visNodes, b, seed);
+            nb.x = pos.x;
+            nb.y = pos.y;
+            placed.add(b);
+            progressed = true;
+          } else if (placed.has(b) && !placed.has(a)) {
+            const seed = ((hashStr(a) % 360) * Math.PI) / 180;
+            const pos = findFreePosition(nb.x, nb.y, visNodes, a, seed);
+            na.x = pos.x;
+            na.y = pos.y;
+            placed.add(a);
+            progressed = true;
+          }
+        });
+        if (!progressed) break;
+      }
+      const missing = visNodes.filter((n) => n.x == null || n.y == null);
+      missing.forEach((n, i) => {
+        const seed = (2 * Math.PI * i) / Math.max(1, missing.length);
+        const pos = findFreePosition(0, 0, visNodes, n.id, seed);
+        n.x = pos.x;
+        n.y = pos.y;
+      });
+    }
+
+    /**
+     * 推开重叠节点。movableIds 优先被移动；两者都固定时仍轻推以免叠死。
+     */
+    function resolveNodeOverlaps(visNodes, movableIds) {
+      const nodes = visNodes.filter((n) => n && n.x != null && n.y != null);
+      for (let iter = 0; iter < 50; iter++) {
+        let moved = false;
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i];
+            const b = nodes[j];
+            let dx = b.x - a.x;
+            let dy = b.y - a.y;
+            let dist = Math.hypot(dx, dy);
+            const minD = nodeSepRadius(a) + nodeSepRadius(b);
+            if (dist >= minD) continue;
+            if (dist < 1e-3) {
+              const ang =
+                (((hashStr(a.id) + hashStr(b.id)) % 360) * Math.PI) / 180;
+              dx = Math.cos(ang);
+              dy = Math.sin(ang);
+              dist = 1;
+            }
+            const push = (minD - dist) / 2 + 3;
+            const ux = dx / dist;
+            const uy = dy / dist;
+            const aMov = !movableIds || movableIds.has(String(a.id));
+            const bMov = !movableIds || movableIds.has(String(b.id));
+            if (aMov && bMov) {
+              a.x -= ux * push;
+              a.y -= uy * push;
+              b.x += ux * push;
+              b.y += uy * push;
+            } else if (aMov) {
+              a.x -= ux * push * 2;
+              a.y -= uy * push * 2;
+            } else if (bMov) {
+              b.x += ux * push * 2;
+              b.y += uy * push * 2;
+            } else {
+              a.x -= ux * push * 0.6;
+              a.y -= uy * push * 0.6;
+              b.x += ux * push * 0.6;
+              b.y += uy * push * 0.6;
+            }
+            moved = true;
+          }
+        }
+        if (!moved) break;
+      }
+    }
+
+    function nodeStyleUpdate(n) {
+      return {
+        id: n.id,
+        label: n.label,
+        title: n.title,
+        size: n.size,
+        shape: n.shape,
+        _kind: n._kind,
+        _bg: n._bg,
+        _border: n._border,
+        _fontColor: n._fontColor,
+        _baseOpacity: n._baseOpacity,
+        importance: n.importance,
+        importance_base: n.importance_base,
+        importance_delta: n.importance_delta,
+        font: n.font,
+        color: n.color,
+        borderWidth: n.borderWidth,
+        opacity: n.opacity,
+      };
+    }
+
+    /** 就地换图：保留已有节点坐标（讲次切换 / 过滤边显隐） */
+    function syncGraphInPlace(stage) {
+      if (!network || !graphNodeDS || !graphEdgeDS) {
+        renderGraph(stage, { freshLayout: true });
+        return;
+      }
+      snapshotNodePositions();
+      network.setOptions({ physics: false });
+
+      const rawEdges = stageEdgesForDisplay(stage);
+      const visNodes = buildVisNodes(stage, stageNodesForDisplay(stage, rawEdges));
+      const visEdges = buildVisEdges(rawEdges);
+      assignParallelCurves(visEdges);
+
+      const uncachedIds = new Set(
+        visNodes
+          .filter((n) => {
+            const p = nodePosCache[String(n.id)] || nodePosCache[n.id];
+            return !(p && p.x != null && p.y != null);
+          })
+          .map((n) => String(n.id))
+      );
+      applyCachedPositions(visNodes);
+      placeUncachedNodes(visNodes, visEdges);
+      // 优先挪新节点；再兜底推开残留重叠
+      resolveNodeOverlaps(visNodes, uncachedIds);
+      resolveNodeOverlaps(visNodes, null);
+
+      const wantN = new Set(visNodes.map((n) => String(n.id)));
+      const wantE = new Set(visEdges.map((e) => String(e.id)));
+
+      graphEdgeDS.remove(
+        graphEdgeDS.getIds().filter((id) => !wantE.has(String(id)))
+      );
+      graphNodeDS.remove(
+        graphNodeDS.getIds().filter((id) => !wantN.has(String(id)))
+      );
+
+      const haveN = new Set(graphNodeDS.getIds().map(String));
+      const haveE = new Set(graphEdgeDS.getIds().map(String));
+
+      const addNodes = [];
+      const updNodes = [];
+      visNodes.forEach((n) => {
+        if (haveN.has(String(n.id))) {
+          const u = nodeStyleUpdate(n);
+          u.x = n.x;
+          u.y = n.y;
+          updNodes.push(u);
+        } else {
+          addNodes.push(n);
+        }
+      });
+      if (updNodes.length) graphNodeDS.update(updNodes);
+      if (addNodes.length) graphNodeDS.add(addNodes);
+
+      const addEdges = [];
+      const updEdges = [];
+      visEdges.forEach((e) => {
+        if (haveE.has(String(e.id))) {
+          updEdges.push({
+            id: e.id,
+            label: e.label,
+            title: e.title,
+            color: e.color,
+            width: e.width,
+            dashes: e.dashes,
+            font: e.font,
+            smooth: e.smooth,
+            _source: e._source,
+            _edgeColor: e._edgeColor,
+            _fontColor: e._fontColor,
+          });
+        } else {
+          addEdges.push(e);
+        }
+      });
+      if (updEdges.length) graphEdgeDS.update(updEdges);
+      if (addEdges.length) graphEdgeDS.add(addEdges);
+
+      snapshotNodePositions();
+      renderHighlightLegend(stage);
+      applyGraphHighlight();
+    }
+
+    /** 隐藏/显示过滤边：就地增删，保留其余节点坐标 */
+    function syncLectureFilteredView(stage) {
+      if (!isSessionLectureStage(stage)) {
+        renderGraph(stage);
+        return;
+      }
+      syncGraphInPlace(stage);
+    }
+
+    function graphLayoutOptions(stage, { physicsEnabled = true } = {}) {
+      const isSeeds = stage.id === "seeds";
+      if (isSeeds) {
+        return {
+          physics: {
+            enabled: physicsEnabled,
+            barnesHut: {
+              gravitationalConstant: -2800,
+              centralGravity: 0.45,
+              springLength: 55,
+              springConstant: 0.12,
+              damping: 0.5,
+            avoidOverlap: 0.85,
+          },
+          stabilization: { iterations: physicsEnabled ? 100 : 0 },
+        },
+        interaction: { hover: true, tooltipDelay: 80 },
+        layout: { improvedLayout: physicsEnabled },
+      };
+      }
+      return {
+        physics: {
+          enabled: physicsEnabled,
+          barnesHut: {
+            gravitationalConstant: -9000,
+            centralGravity: 0.2,
+            springLength: 120,
+            springConstant: 0.04,
+            damping: 0.4,
+            avoidOverlap: 0.85,
+          },
+          stabilization: { iterations: physicsEnabled ? 120 : 0 },
+        },
+        interaction: { hover: true, tooltipDelay: 80 },
+        layout: { improvedLayout: physicsEnabled },
+      };
+    }
+
+    function bindNetworkHandlers(stage, { skipPhysicsWait = false } = {}) {
+      const isSeeds = stage.id === "seeds";
+      network.on("click", (params) => {
+        if (params.nodes && params.nodes.length) {
+          selectNode(params.nodes[0]);
+          return;
+        }
+        if (params.edges && params.edges.length) {
+          selectTrip(params.edges[0]);
+          return;
+        }
+        clearNodeDetail();
+      });
+      network.on("dragEnd", () => {
+        snapshotNodePositions();
+      });
+      if (skipPhysicsWait) {
+        snapshotNodePositions();
+        return;
+      }
+      network.once("stabilizationIterationsDone", () => {
+        network.setOptions({ physics: false });
+        snapshotNodePositions();
+        // 力导向结束后再做一次硬推开，消除残留重叠
+        try {
+          const live = graphNodeDS.get();
+          const pos = network.getPositions(live.map((n) => n.id));
+          live.forEach((n) => {
+            const p = pos[n.id];
+            if (p) {
+              n.x = p.x;
+              n.y = p.y;
+            }
+          });
+          resolveNodeOverlaps(live, null);
+          graphNodeDS.update(
+            live
+              .filter((n) => n.x != null && n.y != null)
+              .map((n) => ({ id: n.id, x: n.x, y: n.y }))
+          );
+          snapshotNodePositions();
+        } catch (_) {
+          /* ignore */
+        }
+        if (isSeeds) {
+          network.fit({
+            animation: { duration: 280, easingFunction: "easeInOutQuad" },
+          });
+        }
+      });
+    }
+
+    function renderGraph(stage, opts = {}) {
+      const graphEl = document.getElementById("graph");
+      const textEl = document.getElementById("textPanel");
+      const legend = document.getElementById("legend");
+
+      if (stage.focus === "text") {
+        graphEl.classList.add("hidden");
+        textEl.classList.add("visible");
+        textEl.textContent = stage.text || "";
+        legend.innerHTML = "";
+        if (network) {
+          network.destroy();
+          network = null;
+        }
+        graphNodeDS = null;
+        graphEdgeDS = null;
+        return;
+      }
+
+      graphEl.classList.remove("hidden");
+      textEl.classList.remove("visible");
+
+      // 会话模式讲次切换：就地换图，保留坐标
+      if (
+        !opts.freshLayout &&
+        isSessionGraphStage(stage) &&
+        network &&
+        graphNodeDS &&
+        graphEdgeDS
+      ) {
+        syncGraphInPlace(stage);
+        return;
+      }
+
+      const isSeeds = stage.id === "seeds";
+      const rawEdges = stageEdgesForDisplay(stage);
+      const nodes = buildVisNodes(stage, stageNodesForDisplay(stage, rawEdges));
+      const edges = buildVisEdges(rawEdges);
+      assignParallelCurves(edges);
+
+      const reuseSessionLayout =
+        isSessionGraphStage(stage) && Object.keys(nodePosCache).length > 0;
+      if (reuseSessionLayout) {
+        applyCachedPositions(nodes);
+        placeUncachedNodes(nodes, edges);
+        resolveNodeOverlaps(nodes, null);
+      }
+
+      renderHighlightLegend(stage);
+
+      if (network) {
+        network.destroy();
+        network = null;
+      }
+      // 非会话模式每次重布局；会话模式跨讲保留坐标缓存
+      if (!isSessionGraphStage(stage)) {
+        nodePosCache = {};
+      }
+      graphNodeDS = new vis.DataSet(nodes);
+      graphEdgeDS = new vis.DataSet(edges);
+      network = new vis.Network(
+        graphEl,
+        {
+          nodes: graphNodeDS,
+          edges: graphEdgeDS,
+        },
+        graphLayoutOptions(stage, { physicsEnabled: !reuseSessionLayout })
+      );
+      applyGraphHighlight();
+      bindNetworkHandlers(stage, { skipPhysicsWait: reuseSessionLayout });
+      if (reuseSessionLayout) {
+        network.setOptions({ physics: false });
+        snapshotNodePositions();
+      }
+    }
+
+    function renderStage() {
+      const cue = currentCue();
+      const stage = currentStage();
+      if (stage.id !== highlightStageId) {
+        highlightKey = null;
+        highlightStageId = stage.id;
+      }
+      document.getElementById("pageSub").textContent =
+        `${data.title} · ${cue.cue_id}`;
+      document.getElementById("stageTitle").textContent = stage.title;
+      document.getElementById("stageBlurb").textContent = stage.blurb;
+      document.getElementById("stageCounter").textContent =
+        `${stageIndex + 1} / ${cue.stages.length}`;
+      document.getElementById("progressBar").style.width =
+        `${((stageIndex + 1) / cue.stages.length) * 100}%`;
+
+      document.getElementById("btnPrev").disabled = stageIndex <= 0;
+      document.getElementById("btnNext").disabled =
+        stageIndex >= cue.stages.length - 1;
+
+      renderSteps();
+      renderStats(stage);
+      syncFilteredToggle(stage);
+      renderTrips(stage);
+      clearNodeDetail();
+      renderGraph(stage);
+      renderMedia(cue, stage);
+
+      // sync cue list active
+      if (data.mode === "session") {
+        [...document.querySelectorAll(".cue-btn")].forEach((b, i) => {
+          b.classList.toggle("active", i === stageIndex);
+        });
+      } else {
+        [...document.querySelectorAll(".cue-btn")].forEach((b, i) => {
+          b.classList.toggle("active", i === cueIndex);
+        });
+      }
+    }
+
+    function renderAll() {
+      initCueSelect();
+      renderStage();
+    }
+
+    function stopPlay() {
+      if (playTimer) {
+        clearInterval(playTimer);
+        playTimer = null;
+        document.getElementById("btnPlay").textContent = "自动播放";
+      }
+    }
+
+    document.getElementById("btnPrev").addEventListener("click", () => {
+      if (stageIndex > 0) {
+        stageIndex -= 1;
+        stopPlay();
+        renderStage();
+      }
+    });
+    document.getElementById("btnNext").addEventListener("click", () => {
+      const cue = currentCue();
+      if (stageIndex < cue.stages.length - 1) {
+        stageIndex += 1;
+        stopPlay();
+        renderStage();
+      }
+    });
+    document.getElementById("btnPlay").addEventListener("click", () => {
+      if (playTimer) {
+        stopPlay();
+        return;
+      }
+      document.getElementById("btnPlay").textContent = "暂停";
+      playTimer = setInterval(() => {
+        const cue = currentCue();
+        if (stageIndex >= cue.stages.length - 1) {
+          if (cueIndex < data.items.length - 1) {
+            cueIndex += 1;
+            stageIndex = 0;
+            document.getElementById("cueSelect").value = String(cueIndex);
+            renderAll();
+          } else {
+            stopPlay();
+          }
+          return;
+        }
+        stageIndex += 1;
+        renderStage();
+      }, 2800);
+    });
+
+    document.getElementById("btnToggleFiltered").addEventListener("click", () => {
+      hideFilteredEdges = !hideFilteredEdges;
+      stopPlay();
+      const stage = currentStage();
+      syncFilteredToggle(stage);
+      renderTrips(stage);
+      syncLectureFilteredView(stage);
+    });
+
+    // keyboard
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " ") {
+        e.preventDefault();
+        document.getElementById("btnNext").click();
+      } else if (e.key === "ArrowLeft") {
+        document.getElementById("btnPrev").click();
+      }
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>

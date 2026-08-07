@@ -1,0 +1,57 @@
+你是知识图谱三元组抽取专家。下面给出**同一讲次内一段连续课堂文本窗口**（由多段按时间顺序拼接）。单段内关系已另行抽过；你只补**跨段/跨窗口合起来才成立**的概念关系。
+
+## 任务
+- 找出「前文引入 / 后文承接」或窗口内多段合起来才清楚的概念层关系（定义衔接、分类归属、依赖、同义、属性）
+- **不要**重复抽取仅在某一单段内就完整成立的关系
+- 允许关系是**隐含衔接**（口语指代、承上启下），不必有连续 verbatim 依据
+
+## 不要抽取
+- 编号公理/定理实例、例题推导链、作业题号
+- 字母串实体 a,b,c / x,y,z
+- 与「已有边」列表同全名 SPO 的边
+
+## 关系方向
+- depend_on / part_of / belong_to / property_of / synonym_of / related_with（少用）
+- property_of：属性→拥有者；「具有*」必须 object_to_subject
+
+## 输出约束（重要）
+- **context 必须输出空字符串 `""`**（跨段边不绑原文摘录）
+- description 用一句话说明跨段衔接，勿抄长文
+- subject/object：能对应「已知实体」时**原样复制全名**；否则「中文/英文」
+
+## 字段
+- abstract_relation, concrete_relation（1–8字）, statement_direction, attribute_category
+- 每个窗口最多 {max_triples} 条；没有跨段关系则 {{"triples": []}}
+
+## 输出（只输出 JSON）
+{{
+  "triples": [
+    {{
+      "subject": "规范实体A",
+      "object": "规范实体B",
+      "abstract_relation": "belong_to|part_of|depend_on|synonym_of|property_of|related_with",
+      "concrete_relation": "凝练动词或短语",
+      "statement_direction": "subject_to_object|object_to_subject",
+      "attribute_category": "内禀属性|关系属性",
+      "description": "跨段衔接说明",
+      "context": ""
+    }}
+  ]
+}}
+
+## 已知教材实体（优先复用）
+{known_entities}
+
+## 已有边（勿重复；含本窗各段已抽结果）
+{already_extracted_json}
+
+---
+
+所属课程：{course_context}
+
+窗口来源：{source_span}
+
+### 窗口文本（按段落顺序）
+{window_text}
+
+输出：

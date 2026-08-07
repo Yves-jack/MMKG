@@ -6,6 +6,7 @@ from teachkg.stage1_alignment.triplet_extract import (
     TripletValidationResult,
     ValidatedTriplet,
     ValidationVerdict,
+    align_property_of_fields,
     build_revision_feedback,
     build_flat_triplet_records,
     VALIDATION_VERDICT_PASS,
@@ -19,6 +20,7 @@ from teachkg.stage1_alignment.triplet_extract import (
     infer_attribute_category,
     infer_statement_direction,
     is_bad_entity,
+    is_has_property_concrete,
     is_placeholder_entity,
     filter_delta_triplets,
     is_awkward_delta_triplet,
@@ -445,6 +447,46 @@ def test_triplet_infers_direction_when_missing():
     assert triplet_to_statement(t) == "命题具有非真即假"
 
 
+def test_is_has_property_concrete_covers_variants():
+    assert is_has_property_concrete("具有")
+    assert is_has_property_concrete("具有性质")
+    assert is_has_property_concrete("具有约束")
+    assert is_has_property_concrete("具有…性质")
+    assert is_has_property_concrete("具有...性质")
+    assert not is_has_property_concrete("表示")
+    assert not is_has_property_concrete("属于")
+
+
+def test_align_property_of_swaps_owner_first_具有约束():
+    """Round1：具有约束 + subject_to_object 也曾漏网，须交换角色并改客→主。"""
+    s, o, c, d, changes = align_property_of_fields(
+        subject="集合/set",
+        object_="确定性/determinacy",
+        concrete_relation="具有约束",
+        statement_direction="subject_to_object",
+    )
+    assert s == "确定性/determinacy"
+    assert o == "集合/set"
+    assert c == "具有约束"
+    assert d == "object_to_subject"
+    assert "swap_roles_for_具有" in changes
+
+
+def test_triplet_post_init_auto_fixes_具有_ellipsis_wrong_dir():
+    t = Triplet(
+        subject="等值关系/equivalence relation",
+        object="对称性/Symmetry",
+        abstract_relation="property_of",
+        concrete_relation="具有…性质",
+        statement_direction="subject_to_object",
+    )
+    assert t.subject == "对称性/Symmetry"
+    assert t.object == "等值关系/equivalence relation"
+    assert t.statement_direction == "object_to_subject"
+    # 槽位展开：拥有者 + 具有{属性}性质
+    assert triplet_to_statement(t) == "等值关系具有对称性性质"
+
+
 def test_parse_validation_response_three_verdicts():
     raw = """{
   "results": [
@@ -522,7 +564,7 @@ def test_build_revision_feedback():
 
 def test_triplet_extractor_defaults_single_reextract_prompt():
     extractor = TripletExtractor(mock=True)
-    assert extractor.reextract_prompt == "teaching/triplet_reextract.txt"
+    assert extractor.reextract_prompt == "stage1/triplet_reextract.txt"
 
 
 def test_rule_validate_fallback_matches_structural():

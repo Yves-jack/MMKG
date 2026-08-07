@@ -1,0 +1,175 @@
+{
+  "lecture_id": "3",
+  "root": {
+    "id": "谓词/predicate",
+    "zh": "谓词",
+    "importance": 0.360243,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.802952,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "个体常项/individual constant",
+            "zh": "个体常项",
+            "importance": 0.120748,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "谓词公式的解释/interpretation of predicate formula",
+        "zh": "谓词公式的解释",
+        "importance": 0.419874,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词变项/predicate variable",
+            "zh": "谓词变项",
+            "importance": 0.042044,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "自由个体/free individual",
+            "zh": "自由个体",
+            "importance": 0.024165,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "量词/quantifier",
+        "zh": "量词",
+        "importance": 0.312735,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "存在量词/existential quantifier",
+            "zh": "存在量词",
+            "importance": 0.04895,
+            "relation": "belong_to",
+            "related": [
+              "全称量词",
+              "合取"
+            ],
+            "children": []
+          },
+          {
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.046081,
+            "relation": "belong_to",
+            "related": [
+              "合取",
+              "存在量词"
+            ],
+            "children": [
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.025339,
+                "relation": "related_with",
+                "related": [
+                  "全称量词",
+                  "存在量词"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "矛盾式/contradiction",
+        "zh": "矛盾式",
+        "importance": 0.248855,
+        "relation": "chapter_topic",
+        "related": [
+          "可满足式"
+        ],
+        "children": [
+          {
+            "id": "可满足式/satisfiable formula",
+            "zh": "可满足式",
+            "importance": 0.064899,
+            "relation": "related_with",
+            "related": [
+              "矛盾式"
+            ],
+            "children": []
+          },
+          {
+            "id": "真值恒为假/always false truth value",
+            "zh": "真值恒为假",
+            "importance": 0.016174,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "函数/function",
+        "zh": "函数",
+        "importance": 0.22977,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "命题变项/propositional variable",
+        "zh": "命题变项",
+        "importance": 0.200526,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "真值/truth value",
+        "zh": "真值",
+        "importance": 0.129447,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "个体化/instantiation",
+        "zh": "个体化",
+        "importance": 0.106659,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 17,
+  "max_depth": 4,
+  "orphan_count": 9,
+  "meta": {
+    "chapter": "第4章 谓词逻辑的基本概念",
+    "root_id": "谓词/predicate",
+    "root_zh": "谓词",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 29,
+    "n_edges_raw": 29,
+    "n_hierarchy_candidates": 28,
+    "attached_orphans": 4,
+    "alias_merged": 3
+  }
+}

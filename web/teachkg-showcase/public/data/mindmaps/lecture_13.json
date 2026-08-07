@@ -1,0 +1,325 @@
+{
+  "lecture_id": "13",
+  "root": {
+    "id": "集合论/Set Theory",
+    "zh": "集合论",
+    "importance": 0.739799,
+    "relation": null,
+    "related": [
+      "数学"
+    ],
+    "children": [
+      {
+        "id": "数理逻辑/Mathematical Logic",
+        "zh": "数理逻辑",
+        "importance": 0.83953,
+        "relation": "chapter_topic",
+        "related": [
+          "数学"
+        ],
+        "children": [
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.224846,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "一阶谓词逻辑/first-order predicate logic",
+                "zh": "一阶谓词逻辑",
+                "importance": 0.026591,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "递归论/Recursion Theory",
+            "zh": "递归论",
+            "importance": 0.084527,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "模型论/Model Theory",
+            "zh": "模型论",
+            "importance": 0.045656,
+            "relation": "part_of",
+            "related": [
+              "语义",
+              "语法"
+            ],
+            "children": [
+              {
+                "id": "语义/semantics",
+                "zh": "语义",
+                "importance": 0.054523,
+                "relation": "related_with",
+                "related": [
+                  "模型论"
+                ],
+                "children": []
+              },
+              {
+                "id": "语法/Syntax",
+                "zh": "语法",
+                "importance": 0.031762,
+                "relation": "related_with",
+                "related": [
+                  "模型论"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题演算/Propositional Calculus",
+            "zh": "命题演算",
+            "importance": 0.037805,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "证明论/Proof Theory",
+            "zh": "证明论",
+            "importance": 0.02692,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词演算/Predicate Calculus",
+            "zh": "谓词演算",
+            "importance": 0.026563,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.349545,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "完备性/completeness",
+            "zh": "完备性",
+            "importance": 0.050985,
+            "relation": "property_of",
+            "related": [
+              "哥德尔"
+            ],
+            "children": [
+              {
+                "id": "哥德尔/Kurt Gödel",
+                "zh": "哥德尔",
+                "importance": 0.137519,
+                "relation": "related_with",
+                "related": [
+                  "不完备性定理",
+                  "完备性",
+                  "莱布尼茨的梦想"
+                ],
+                "children": [
+                  {
+                    "id": "莱布尼茨的梦想/Leibniz's dream",
+                    "zh": "莱布尼茨的梦想",
+                    "importance": 0.113282,
+                    "relation": "related_with",
+                    "related": [
+                      "哥德尔",
+                      "布尔逻辑"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "不完备性定理/Incompleteness Theorem",
+                    "zh": "不完备性定理",
+                    "importance": 0.080642,
+                    "relation": "related_with",
+                    "related": [
+                      "哥德尔"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "证明过程/proof process",
+            "zh": "证明过程",
+            "importance": 0.029905,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "独立性/independence",
+            "zh": "独立性",
+            "importance": 0.021655,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.346026,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "真/true",
+            "zh": "真",
+            "importance": 0.035211,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "假/false",
+            "zh": "假",
+            "importance": 0.033946,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题逻辑/propositional logic",
+        "zh": "命题逻辑",
+        "importance": 0.291116,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.055937,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题逻辑符号/propositional logic symbol",
+            "zh": "命题逻辑符号",
+            "importance": 0.044959,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "标准命题逻辑/standard propositional logic",
+            "zh": "标准命题逻辑",
+            "importance": 0.023435,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "公式/formula",
+            "zh": "公式",
+            "importance": 0.018466,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "前提/premise",
+                "zh": "前提",
+                "importance": 0.001354,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题逻辑的基本概念/basic concepts of propositional logic",
+            "zh": "命题逻辑的基本概念",
+            "importance": 0.008603,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "概念/concept",
+            "zh": "概念",
+            "importance": 0.000382,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "公理/axiom",
+        "zh": "公理",
+        "importance": 0.285848,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.243307,
+        "relation": "belong_to",
+        "related": [],
+        "children": [
+          {
+            "id": "域/field",
+            "zh": "域",
+            "importance": 0.02362,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "真值/truth value",
+        "zh": "真值",
+        "importance": 0.202768,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "模型/Model",
+        "zh": "模型",
+        "importance": 0.199766,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 34,
+  "max_depth": 5,
+  "orphan_count": 55,
+  "meta": {
+    "chapter": "第9章 集合",
+    "root_id": "集合论/Set Theory",
+    "root_zh": "集合论",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 95,
+    "n_edges_raw": 100,
+    "n_hierarchy_candidates": 82,
+    "attached_orphans": 7,
+    "alias_merged": 5
+  }
+}

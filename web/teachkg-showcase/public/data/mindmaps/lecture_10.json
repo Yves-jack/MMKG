@@ -1,0 +1,254 @@
+{
+  "lecture_id": "10",
+  "root": {
+    "id": "谓词逻辑/Predicate Logic",
+    "zh": "谓词逻辑",
+    "importance": 0.722087,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "集合/set",
+        "zh": "集合",
+        "importance": 0.603587,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.091814,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "象/image",
+                "zh": "象",
+                "importance": 0.012882,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "双射/bijective function",
+            "zh": "双射",
+            "importance": 0.059789,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "集合的基数/cardinality of a set",
+                "zh": "集合的基数",
+                "importance": 0.038278,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "幂集/power set",
+            "zh": "幂集",
+            "importance": 0.057288,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "空集/empty set",
+            "zh": "空集",
+            "importance": 0.044314,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "实数集合/set of real numbers",
+            "zh": "实数集合",
+            "importance": 0.041434,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "无限集合/infinite set",
+            "zh": "无限集合",
+            "importance": 0.039526,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "有理数集/set of rational numbers",
+            "zh": "有理数集",
+            "importance": 0.025838,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "元素/Element",
+            "zh": "元素",
+            "importance": 0.017195,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "数理逻辑/Mathematical Logic",
+        "zh": "数理逻辑",
+        "importance": 0.583585,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "集合论/Set Theory",
+            "zh": "集合论",
+            "importance": 0.139816,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "数学/mathematics",
+                "zh": "数学",
+                "importance": 0.005966,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.289571,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "定理/定理",
+            "zh": "定理",
+            "importance": 0.061174,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "证明过程/proof process",
+                "zh": "证明过程",
+                "importance": 0.028715,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "证明/proof",
+                "zh": "证明",
+                "importance": 0.005014,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "连续统假设/continuum hypothesis",
+            "zh": "连续统假设",
+            "importance": 0.038708,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.271825,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "选择公理/选择公理",
+            "zh": "选择公理",
+            "importance": 0.075457,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "域/field",
+            "zh": "域",
+            "importance": 0.016381,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.240867,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.030259,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "映射/mapping",
+        "zh": "映射",
+        "importance": 0.171208,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "替换公理模式/替换公理模式",
+        "zh": "替换公理模式",
+        "importance": 0.073951,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "全称量词/universal quantifier",
+        "zh": "全称量词",
+        "importance": 0.027717,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 28,
+  "max_depth": 4,
+  "orphan_count": 10,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_id": "谓词逻辑/Predicate Logic",
+    "root_zh": "谓词逻辑",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 38,
+    "n_edges_raw": 56,
+    "n_hierarchy_candidates": 62,
+    "attached_orphans": 1,
+    "alias_merged": 0
+  }
+}

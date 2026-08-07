@@ -1,0 +1,116 @@
+"""[已停用] 教材子图课堂修正旧提示词。
+
+教材修正已统一为与增量相同的链路：
+  stage1/triplet_validate.txt →（需改时）stage1/triplet_fix.txt
+
+本文件仅保留作历史参考，勿再接入 run_textbook_correct_pilot.py。
+"""
+
+# --- 以下为归档正文 ---
+你是教学知识图谱修正专家。给定「课堂处理原文（extract_text）」与「已写入的教材子图三元组」，请用课堂内容**严格核实并修正**教材边。
+
+## 目标
+- **纠正**：课堂表述与教材边明显不符时，修正实体名、关系类型或方向
+- **删除**：本段课堂未支撑、无法用原文依据证明、被否定，或与抽取规范冲突的边
+- **保留**：仅当处理原文能**直接支撑**该关系时才 keep
+- 本步**只修正教材子图**，禁止抽取全新课堂增量（留给下一步）
+
+## 严格原则（必须遵守）
+1. **无原文依据不得保留**：keep / revise 必须能从 extract_text 摘录连续原文作为 `evidence`，且 evidence 必须是 extract_text 的子串（允许轻微空白差异）
+2. 禁止「课堂未复述，沿用教材边」——本段未讲清的边一律 **drop**
+3. 不编造课堂未出现的概念；禁止补外部知识
+4. 实体格式保持「中文全称/英文全称」；若修正实体，优先与原文表述一致，勿改成近义别名
+5. `abstract_relation` 仅限：belong_to|part_of|depend_on|property_of|synonym_of|related_with
+6. `concrete_relation`：1–8 字中文动词/短语，不要整句
+7. 与抽取规范一致，遇到下列情况应 **drop**（即使教材边存在）：
+   - 编号/序数实例边（公理50、定理3.2.1 等）
+   - 单次证明推导链、课堂举例占位
+   - 仅实体同现、关系被课堂否定或说成「仅举例」
+8. 宁少勿滥：宁可多 drop，也不要保留勉强相关的边
+9. 无教材边时输出空列表
+
+## property_of 方向（极易弄反，必须逐条核对）
+**核心定义（边方向，与 statement_direction 无关）：**
+`A —property_of→ B` **表示 A 是 B 的属性**（subject=A 属性侧，object=B 拥有者）。
+
+固定约定（**先定主客体，再定 statement_direction，最后写 concrete**）：
+- **subject = A = 属性侧**（属性词、记号/字母串、表示形式、特征）
+- **object = B = 拥有该属性的概念实体**
+- 课堂说法对照：
+  - 「B 具有 A / A 是 B 的属性」→ S=A, O=B（边仍是 A→B）
+  - 「用 X 表示 Y / X 表示 Y / Y 以 X 表示」→ S=X（记号）, O=Y（概念）
+
+### concrete 与 statement_direction 必须配对（只改拼读，不改 A→B 角色）
+| concrete（示例） | 应用场景 | 正确 statement_direction | 拼读 |
+|---|---|---|---|
+| 表示 | 「X 表示 Y」且 X=A,Y=B | **subject_to_object** | A 表示 B |
+| 用…表示 | 「Y 用 X 表示」且 X=A,Y=B | **object_to_subject** | B 用…表示 A |
+| 具有 | 「Y 具有 X」且 X=A,Y=B | **object_to_subject** | B 具有 A |
+| 是…的属性 | 「X 是 Y 的属性」 | **subject_to_object** | A 是…的属性 B |
+
+常见错误（见到就改）：
+- 把「A 是 B 的属性」写成 B—property_of→A（主客体对调）→ **交换 S/O**
+- concrete=「表示」却配 object_to_subject → 会读成「B 表示 A」→ 应改为 subject_to_object，或改 concrete 为「用…表示」
+- 理由里写「A 表示 B」，但 `statement_direction` 仍是 object_to_subject → **字段与理由矛盾，必须 revise 方向**
+- 教材边自带的 direction **不可盲从**；以 evidence 拼读为准；**边方向始终 A(属性)→B(主体)**
+
+### 修正规则
+1. 先确认边是 A—property_of→B（A 是 B 的属性）；不对就交换主客体
+2. 再按上表选 concrete + statement_direction，拼读须与 evidence 一致
+3. **禁止**「听起来顺」就随意翻转 direction 或对调 S/O；property_of 的 keep/revise 须在 `reason_detail` 写明：**改前拼读 → 改后拼读**
+4. 勿与 depend_on 混淆：依赖/先修用 depend_on；属性/记号/表示约定才用 property_of
+5. 「称为 / 定义为」类命名句：仅当确属属性归属时才用 property_of；此时优先「具有」(客→主拼读) 或「是…的属性」(主→客拼读)，**不要用「表示」**
+
+## 理由要求
+每条 action 都要可复核，禁止空话：
+- `reason`：≤30 字摘要
+- `reason_detail`：2–4 句，须含：对照课堂哪句、为何 keep/drop/revise、revise 时改前→改后
+- `evidence`：keep/revise 必填，且为 extract_text 原样子串；drop 尽量给否定/无关依据，若整段无关可写「本段未讲授该关系」
+
+## 输出（只输出 JSON）
+{{
+  "actions": [
+    {{
+      "action": "keep|drop|revise",
+      "reason": "≤30字摘要",
+      "reason_detail": "2–4句详细理由",
+      "evidence": "课堂原文摘录",
+      "original": {{
+        "subject": "...",
+        "predicate": "belong_to|...",
+        "object": "..."
+      }},
+      "revised": {{
+        "subject": "中文/English",
+        "object": "中文/English",
+        "abstract_relation": "belong_to|part_of|depend_on|property_of|synonym_of|related_with",
+        "concrete_relation": "凝练动词",
+        "statement_direction": "subject_to_object|object_to_subject",
+        "attribute_category": "内禀属性|关系属性",
+        "description": "一句说明",
+        "context": "与 evidence 相同的课堂原文摘录"
+      }}
+    }}
+  ]
+}}
+
+说明：
+- keep：可不填 revised；drop：不填 revised；revise：必须填 revised，且 revised.context = evidence
+- 每条输入教材边恰好对应一条 action（不要合并、不要漏）
+- drop / revise / keep 的 reason_detail 与 evidence 均必填（按上列规则）
+- 输入边为 property_of 时：
+  - keep 也须在 reason_detail 写清当前拼读，并确认与 evidence 一致
+  - 若输入自带 direction/concrete 与上表冲突，不得 keep，必须 revise
+  - 理由中的自然语言方向必须与输出字段 `statement_direction` 一致（禁止理由写「A表示B」却输出 object_to_subject）
+
+---
+
+所属课程：{course_context}
+
+课堂处理原文（extract_text）：
+{asr_text}
+
+教材子图三元组（JSON 数组）：
+{textbook_triples_json}
+
+输出：

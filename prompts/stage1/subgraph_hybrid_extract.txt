@@ -1,0 +1,84 @@
+你是知识图谱三元组抽取专家。下方已给出**教材知识子图**与**已知教材实体列表**。请从课堂文本抽取**概念层增量**：凡课堂明确讲到、且教材子图尚无同全名 SPO 的关系，都应抽出。
+
+若子图 JSON 含 `note` 且标明「经课堂核实」，以核实后边为准（已 drop = 未覆盖，可再抽；已 revise 以修正后 SPO 为准）。
+
+## 目标
+- 建**课程概念体系**：定义、分类、组成、依赖、属性、同义、推广/特殊化
+- **抽全优先**：宁可多几条有原文依据的概念边，也不要漏掉整句里的关系
+- 教材子图为空或很少时，**更要**按课堂文本充分抽取（不是「无教材边就少抽」）
+- 教材子图只表示「已覆盖、勿重复」的边；**未出现在子图中的课堂概念关系必须抽取**
+- 禁止编造；context 必须是能支撑该关系的课堂原文摘录（尽量短句原文，勿改写）
+
+## 强制扫描流程（必须执行）
+1. 按句号/分号/换行切句，**逐句**检查；一句含多个关系则拆成多条
+2. 扫完全文后再输出；禁止只抽开头几条就停
+3. **下属概念补全**：出现「个体函数 / 个体常项 / 个体变元（变量）」等时，必须抽子→父 `belong_to` 或 `part_of`（有原文依据）；禁止只用 related_with「是基本概念」
+4. **论域归属**：原文定义论域/个体域为所有个体的全集/集合时，优先 `个体 —belong_to→ 论域/个体域`
+5. 仅当全文确无任何概念层关系时，才输出 {{"triples": []}}
+
+## 实体关联（必须遵守）
+1. 一端对应「已知教材实体」时，subject/object **原样复制全名**（含 `/` 英文），禁止近义改写
+2. 课堂新引入且列表确无时，才新建实体；格式「中文全称/英文全称」
+3. 用类型概念代替编号：写「公理/axiom」不写「公理50」
+
+## 不要抽取
+- 编号/序数实例：公理12、定理3.2.1、第一个命题
+- 单次证明推导链、具体人名例题、作业题号
+- 「公理50 belong_to 公理」这类编号实例边
+- 字母串实体 a,b,c... / x,y,z...（应抽 property_of：「用…表示」+ 概念侧如「个体常项」）
+
+## 关系方向（abstract_relation）
+- depend_on：依赖方指向基础方（A 依赖 B → S=A, O=B）
+- part_of：部分指向整体
+- belong_to：实例/子类指向类
+- property_of：属性指向拥有者
+- synonym_of：同一概念的不同名称(双向)
+- related_with：仅当以上都不贴切时（少用；能判 property_of/belong_to 勿滥用以 related_with）
+注意：整体方向不固定
+
+## 自然语句（concrete_relation + statement_direction）
+- concrete_relation：1–8 字中文动词/短语，可用 `…` 槽位；不要整句
+- 拼读须通顺；禁止「X是Y的一种Y」等实体重复
+- property_of：边方向固定属性→拥有者；`statement_direction` 只改语序
+  - subject_to_object：A + R + B；object_to_subject：B + R + A
+  - 「具有*」（具有/具有性质/具有约束/具有…性质等）：**必须** object_to_subject（拼读「拥有者 具有 属性」）；S=属性侧，O=拥有者
+  - 「表示」↔ subject_to_object；「用…表示」↔ object_to_subject；记号约定优先「用…表示」+客→主（如「个体常项用a,b,c表示」）
+  - 「X 要求/只能/不能 P」→ S=P（约束/性质）, O=X（体系/概念）, concrete=具有性质, direction=object_to_subject
+  - 禁止「表示」+客→主；禁止「具有*」+ subject_to_object；禁止把拥有者放在 S 再配「具有*」+主→客硬凑语序
+
+## 字段与上限
+- statement_direction：subject_to_object | object_to_subject
+- attribute_category：property_of→内禀属性；其余→关系属性
+- {max_delta_instruction}
+- 与教材子图「实体全名+abstract_relation」完全相同的不要重复；全名不同可保留
+
+## 输出格式（只输出 JSON）
+{{
+  "triples": [
+    {{
+      "subject": "规范实体A",
+      "object": "规范实体B",
+      "abstract_relation": "belong_to|part_of|depend_on|synonym_of|property_of|related_with",
+      "concrete_relation": "凝练动词或短语",
+      "statement_direction": "subject_to_object|object_to_subject",
+      "attribute_category": "内禀属性|关系属性",
+      "description": "一句说明",
+      "context": "原文摘录"
+    }}
+  ]
+}}
+
+## 已知教材实体（优先复用全名）
+{known_entities}
+
+## 教材知识子图（勿重复抽取）
+{textbook_subgraph_json}
+
+---
+
+所属课程：{course_context}
+
+课堂文本：
+{asr_text}
+
+输出：

@@ -1,0 +1,282 @@
+{
+  "lecture_id": "6",
+  "root": {
+    "id": "命题逻辑/propositional logic",
+    "zh": "命题逻辑",
+    "importance": 0.901481,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "数理逻辑/Mathematical Logic",
+        "zh": "数理逻辑",
+        "importance": 0.709954,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "推理规则/inference rule",
+        "zh": "推理规则",
+        "importance": 0.485735,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "个体变量的代入规则/Rule of Individual Variable Substitution",
+            "zh": "个体变量的代入规则",
+            "importance": 0.117766,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "代入规则/代入规则",
+            "zh": "代入规则",
+            "importance": 0.091789,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "分离规则/分离规则",
+            "zh": "分离规则",
+            "importance": 0.076169,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "三段论/syllogism",
+            "zh": "三段论",
+            "importance": 0.020847,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前提引入规则/Premise Introduction Rule",
+            "zh": "前提引入规则",
+            "importance": 0.020275,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前提引入/premise introduction",
+            "zh": "前提引入",
+            "importance": 0.020275,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.448495,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "推理演算/inference calculus",
+        "zh": "推理演算",
+        "importance": 0.425539,
+        "relation": "belong_to",
+        "related": [],
+        "children": [
+          {
+            "id": "全称消去规则/universal instantiation rule",
+            "zh": "全称消去规则",
+            "importance": 0.106138,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题公式/propositional formula",
+        "zh": "命题公式",
+        "importance": 0.387928,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "合取/conjunction",
+            "zh": "合取",
+            "importance": 0.093817,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题演算/Propositional Calculus",
+        "zh": "命题演算",
+        "importance": 0.040146,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "规则/rule",
+        "zh": "规则",
+        "importance": 0.039919,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "公式/formula",
+        "zh": "公式",
+        "importance": 0.036566,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "量词/quantifier",
+            "zh": "量词",
+            "importance": 0.226883,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "全称量词/universal quantifier",
+                "zh": "全称量词",
+                "importance": 0.05237,
+                "relation": "belong_to",
+                "related": [
+                  "与运算"
+                ],
+                "children": [
+                  {
+                    "id": "与运算/AND operation",
+                    "zh": "与运算",
+                    "importance": 0.097009,
+                    "relation": "related_with",
+                    "related": [
+                      "全称量词"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "Skolem范式/Skolem Standard Form",
+            "zh": "Skolem范式",
+            "importance": 0.163641,
+            "relation": "belong_to",
+            "related": [
+              "前束范式"
+            ],
+            "children": []
+          },
+          {
+            "id": "自由变量/free variable",
+            "zh": "自由变量",
+            "importance": 0.096039,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前束范式/Prenex Normal Form",
+            "zh": "前束范式",
+            "importance": 0.069429,
+            "relation": "belong_to",
+            "related": [
+              "Skolem范式"
+            ],
+            "children": [
+              {
+                "id": "Skolem范式/Skolem Normal Form",
+                "zh": "Skolem范式",
+                "importance": 0.097009,
+                "relation": "belong_to",
+                "related": [
+                  "原公式"
+                ],
+                "children": [
+                  {
+                    "id": "原公式/original formula",
+                    "zh": "原公式",
+                    "importance": 0.097009,
+                    "relation": "related_with",
+                    "related": [
+                      "Skolem范式"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.035002,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "前件/antecedent",
+                "zh": "前件",
+                "importance": 0.018967,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "母式/Matrix",
+            "zh": "母式",
+            "importance": 0.028936,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "自由变元/free variable",
+            "zh": "自由变元",
+            "importance": 0.020452,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "前提/premise",
+            "zh": "前提",
+            "importance": 0.006516,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "n_nodes": 30,
+  "max_depth": 5,
+  "orphan_count": 42,
+  "meta": {
+    "chapter": "第2章 命题逻辑的等值和推理演算",
+    "root_id": "命题逻辑/propositional logic",
+    "root_zh": "命题逻辑",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 72,
+    "n_edges_raw": 87,
+    "n_hierarchy_candidates": 81,
+    "attached_orphans": 4,
+    "alias_merged": 0
+  }
+}

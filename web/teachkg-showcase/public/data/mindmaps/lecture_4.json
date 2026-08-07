@@ -1,0 +1,241 @@
+{
+  "lecture_id": "4",
+  "root": {
+    "id": "命题逻辑/propositional logic",
+    "zh": "命题逻辑",
+    "importance": 0.944481,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "命题公式/propositional formula",
+        "zh": "命题公式",
+        "importance": 0.530502,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "命题变项/propositional variable",
+            "zh": "命题变项",
+            "importance": 0.324506,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "否定/Negation",
+            "zh": "否定",
+            "importance": 0.190293,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "合取范式/conjunctive normal form",
+            "zh": "合取范式",
+            "importance": 0.045159,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "析取式/disjunctive form",
+                "zh": "析取式",
+                "importance": 0.035355,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "析取范式/disjunctive normal form",
+            "zh": "析取范式",
+            "importance": 0.033996,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.502286,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "推理演算/inference calculus",
+        "zh": "推理演算",
+        "importance": 0.353393,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "importance": 0.327177,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "等值式/equivalence formula",
+        "zh": "等值式",
+        "importance": 0.235108,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "重言式/tautology",
+        "zh": "重言式",
+        "importance": 0.22866,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "公式/formula",
+        "zh": "公式",
+        "importance": 0.044274,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.317792,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.127907,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "量词/quantifier",
+            "zh": "量词",
+            "importance": 0.256412,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "推理式/inference formula",
+                "zh": "推理式",
+                "importance": 0.095182,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "前束范式/Prenex Normal Form",
+            "zh": "前束范式",
+            "importance": 0.066297,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "Skolem范式/Skolem normal form",
+                "zh": "Skolem范式",
+                "importance": 0.123475,
+                "relation": "depend_on",
+                "related": [
+                  "原公式"
+                ],
+                "children": [
+                  {
+                    "id": "原公式/Original Formula",
+                    "zh": "原公式",
+                    "importance": 0.03,
+                    "relation": "related_with",
+                    "related": [
+                      "Skolem范式"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "否定型等值式/negative equivalence formula",
+            "zh": "否定型等值式",
+            "importance": 0.036585,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "一元谓词变项/unary predicate variable",
+            "zh": "一元谓词变项",
+            "importance": 0.03202,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词公式/predicate formula",
+            "zh": "谓词公式",
+            "importance": 0.022325,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "语句/Sentence",
+            "zh": "语句",
+            "importance": 0.005977,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "定理/定理",
+                "zh": "定理",
+                "importance": 0.080182,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "概念/concept",
+        "zh": "概念",
+        "importance": 6.2e-05,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 26,
+  "max_depth": 5,
+  "orphan_count": 37,
+  "meta": {
+    "chapter": "第2章 命题逻辑的等值和推理演算",
+    "root_id": "命题逻辑/propositional logic",
+    "root_zh": "命题逻辑",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 63,
+    "n_edges_raw": 74,
+    "n_hierarchy_candidates": 72,
+    "attached_orphans": 3,
+    "alias_merged": 0
+  }
+}

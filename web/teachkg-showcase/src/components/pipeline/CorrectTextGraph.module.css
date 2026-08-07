@@ -1,0 +1,246 @@
+.split {
+  /* 旧 grid 布局由 ResizableSplit 接管；保留类名以免外部引用报错 */
+  display: contents;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  border-right: none;
+  background: rgba(14, 17, 22, 0.35);
+}
+
+.textLabel {
+  flex-shrink: 0;
+  padding: 10px 16px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted, #8b97a8);
+}
+
+.textBody {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 8px 16px;
+}
+
+.textBody :global(.text-panel) {
+  padding: 12px 14px;
+  margin: 0;
+}
+
+.hlRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+
+.hlLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 0 14px;
+  font-size: 11px;
+  color: var(--muted, #8b97a8);
+}
+
+.legBefore::before,
+.legAfter::before,
+.legBoth::before,
+.legEvidence::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.legBefore::before {
+  background: rgba(245, 158, 11, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.9);
+}
+
+.legAfter::before {
+  background: rgba(34, 197, 94, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.85);
+}
+
+.legEvidence::before {
+  background: rgba(91, 141, 239, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(91, 141, 239, 0.95);
+}
+
+.legBoth::before {
+  background: rgba(167, 139, 250, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.95);
+}
+
+.legMiss {
+  color: #c4a484;
+}
+
+.legHint {
+  opacity: 0.85;
+}
+
+.quoteChip {
+  margin: 0 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #e8edf5;
+}
+
+.quoteBefore {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.quoteAfter {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.quoteEvidence {
+  background: rgba(91, 141, 239, 0.1);
+  border: 1px solid rgba(91, 141, 239, 0.35);
+}
+
+.quoteTag {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted, #8b97a8);
+}
+
+.textBodyInner {
+  padding: 12px 14px;
+  margin: 0;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.hlBefore,
+.hlAfter,
+.hlBoth,
+.hlEvidence {
+  border-radius: 3px;
+  padding: 1px 2px;
+  color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hlBefore {
+  background: rgba(245, 158, 11, 0.38);
+  box-shadow: inset 0 -2px 0 rgba(245, 158, 11, 0.75);
+}
+
+.hlAfter {
+  background: rgba(34, 197, 94, 0.32);
+  box-shadow: inset 0 -2px 0 rgba(34, 197, 94, 0.7);
+}
+
+.hlBoth {
+  background: rgba(167, 139, 250, 0.4);
+  box-shadow: inset 0 -2px 0 rgba(167, 139, 250, 0.85);
+}
+
+.hlEvidence {
+  background: rgba(91, 141, 239, 0.38);
+  box-shadow: inset 0 -2px 0 rgba(91, 141, 239, 0.85);
+}
+
+/* KaTeX inline-block 吃不到父级 inset 下划线，单独补底边 */
+.hlBefore :global(.katex) {
+  background: rgba(245, 158, 11, 0.38);
+  border-bottom: 2px solid rgba(245, 158, 11, 0.9);
+  padding: 0 1px 1px;
+  border-radius: 2px;
+}
+
+.hlAfter :global(.katex) {
+  background: rgba(34, 197, 94, 0.32);
+  border-bottom: 2px solid rgba(34, 197, 94, 0.85);
+  padding: 0 1px 1px;
+  border-radius: 2px;
+}
+
+.hlBoth :global(.katex) {
+  background: rgba(167, 139, 250, 0.4);
+  border-bottom: 2px solid rgba(167, 139, 250, 0.95);
+  padding: 0 1px 1px;
+  border-radius: 2px;
+}
+
+.hlEvidence :global(.katex) {
+  background: rgba(91, 141, 239, 0.38);
+  border-bottom: 2px solid rgba(91, 141, 239, 0.95);
+  padding: 0 1px 1px;
+  border-radius: 2px;
+}
+
+.empty {
+  padding: 12px 14px;
+  color: var(--muted, #8b97a8);
+  margin: 0;
+}
+
+.graphCol {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.graphCol :global(.graph-host) {
+  width: 100%;
+  height: 100%;
+}
+
+.lecSection {
+  margin: 0 0 28px;
+}
+
+.lecSection:last-child {
+  margin-bottom: 8px;
+}
+
+.lecHeading {
+  margin: 0 8px 14px;
+  padding: 14px 6px 12px;
+  font-family: "Source Serif 4", "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  color: #f3f4f6;
+  border-bottom: 2px solid rgba(62, 207, 142, 0.45);
+}
+
+.lecHeading em {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted, #8b97a8);
+  margin-left: 10px;
+}
+
+@media (max-width: 960px) {
+  .textCol {
+    border-bottom: 1px solid var(--line, #2a3344);
+  }
+}

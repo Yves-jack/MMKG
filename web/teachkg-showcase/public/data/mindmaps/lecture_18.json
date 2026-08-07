@@ -1,0 +1,247 @@
+{
+  "lecture_id": "18",
+  "root": {
+    "id": "关系/relation",
+    "zh": "关系",
+    "importance": 0.765658,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "命题公式/propositional formula",
+        "zh": "命题公式",
+        "importance": 0.399644,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "合取/conjunction",
+            "zh": "合取",
+            "importance": 0.207669,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "否定/Negation",
+            "zh": "否定",
+            "importance": 0.201101,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "析取/disjunction",
+            "zh": "析取",
+            "importance": 0.17785,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "合取范式/conjunctive normal form",
+            "zh": "合取范式",
+            "importance": 0.031167,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "等值公式/equivalent formula",
+        "zh": "等值公式",
+        "importance": 0.345011,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "双条件式/Biconditional",
+            "zh": "双条件式",
+            "importance": 0.169554,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "结合律/associative law",
+            "zh": "结合律",
+            "importance": 0.149602,
+            "relation": "belong_to",
+            "related": [
+              "蕴含"
+            ],
+            "children": []
+          },
+          {
+            "id": "交换律/commutative law",
+            "zh": "交换律",
+            "importance": 0.123498,
+            "relation": "belong_to",
+            "related": [
+              "蕴含"
+            ],
+            "children": []
+          },
+          {
+            "id": "分配律/distributive law",
+            "zh": "分配律",
+            "importance": 0.065015,
+            "relation": "belong_to",
+            "related": [
+              "等价运算"
+            ],
+            "children": [
+              {
+                "id": "分配律等值式/distributive law equivalence",
+                "zh": "分配律等值式",
+                "importance": 0.103856,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "等价运算/equivalence operation",
+                "zh": "等价运算",
+                "importance": 0.103856,
+                "relation": "related_with",
+                "related": [
+                  "分配律"
+                ],
+                "children": []
+              },
+              {
+                "id": "吸收律/Absorption law",
+                "zh": "吸收律",
+                "importance": 0.022587,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "双重否定律/double negation law",
+            "zh": "双重否定律",
+            "importance": 0.024956,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "逻辑公式/logical formula",
+        "zh": "逻辑公式",
+        "importance": 0.310703,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "命题变项/propositional variable",
+        "zh": "命题变项",
+        "importance": 0.27142,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "p,q,r.../p,q,r...",
+            "zh": "p,q,r...",
+            "importance": 0.022917,
+            "relation": "property_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "重言式/tautology",
+        "zh": "重言式",
+        "importance": 0.244347,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.071967,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "合取前提公式/conjunctive premise formula",
+                "zh": "合取前提公式",
+                "importance": 0.095955,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "交换前提公式/swap premise formula",
+                "zh": "交换前提公式",
+                "importance": 0.095955,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "蕴含/implication",
+        "zh": "蕴含",
+        "importance": 0.236464,
+        "relation": "chapter_topic",
+        "related": [
+          "交换律",
+          "结合律"
+        ],
+        "children": []
+      },
+      {
+        "id": "等价关系/equivalence relation",
+        "zh": "等价关系",
+        "importance": 0.192663,
+        "relation": "belong_to",
+        "related": [],
+        "children": [
+          {
+            "id": "等势/equipotency",
+            "zh": "等势",
+            "importance": 0.098416,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "偏序关系/partial order relation",
+        "zh": "偏序关系",
+        "importance": 0.151461,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 26,
+  "max_depth": 4,
+  "orphan_count": 57,
+  "meta": {
+    "chapter": "第10章 关系",
+    "root_id": "关系/relation",
+    "root_zh": "关系",
+    "virtual_root": false,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 88,
+    "n_edges_raw": 95,
+    "n_hierarchy_candidates": 88,
+    "attached_orphans": 1,
+    "alias_merged": 5
+  }
+}

@@ -34,25 +34,28 @@ def test_segment_sample_timestamp_for_cue():
     assert segment_sample_timestamp(774.0, 807.3) == 804.3
 
 
-def test_select_pages_by_one_third_rule():
+def test_select_pages_minimal_cover_range():
     pages = build_ppt_pages([100.0, 200.0], video_duration=300.0)
-    # cue 80-120: page0 (0-100) overlap 20, page1 (100-200) overlap 20
-    # page0 dur=100, need >33.3 for page0; page1 dur=100, need >33.3 for page1
-    # overlaps 20 each - neither qualifies -> pick max (tie -> one page)
+    # cue 80-120：横跨 page0 末与 page1 初 → 最小覆盖为 [0, 1]
     cue = SubtitleCue(start_sec=80, end_sec=120, text="x")
-    selected = select_pages_for_cue(cue, pages, overlap_ratio=1 / 3)
-    assert len(selected) == 1
+    selected = select_pages_for_cue(cue, pages)
+    assert [p.index for p in selected] == [0, 1]
 
-    # cue 10-50 on page0: overlap 40 > 33.3
+    # cue 全在 page0 内 → 仅 page0
     cue2 = SubtitleCue(start_sec=10, end_sec=50, text="y")
-    selected2 = select_pages_for_cue(cue2, pages, overlap_ratio=1 / 3)
-    assert len(selected2) == 1
-    assert selected2[0].index == 0
+    selected2 = select_pages_for_cue(cue2, pages)
+    assert [p.index for p in selected2] == [0]
 
-    # cue 90-180 spans page0 end and page1: page0 overlap 10, page1 overlap 80 > 33.3
+    # cue 主要在 page1，但起点仍落在 page0 → 覆盖 [0, 1]
     cue3 = SubtitleCue(start_sec=90, end_sec=180, text="z")
-    selected3 = select_pages_for_cue(cue3, pages, overlap_ratio=1 / 3)
-    assert any(p.index == 1 for p in selected3)
+    selected3 = select_pages_for_cue(cue3, pages)
+    assert [p.index for p in selected3] == [0, 1]
+
+    # 三页：cue 只盖住 page0 末到 page2 初，中间页一并纳入
+    pages3 = build_ppt_pages([100.0, 200.0, 300.0], video_duration=400.0)
+    cue4 = SubtitleCue(start_sec=95, end_sec=210, text="w")
+    selected4 = select_pages_for_cue(cue4, pages3)
+    assert [p.index for p in selected4] == [0, 1, 2]
 
 
 def test_grouped_cues_no_time_overlap():

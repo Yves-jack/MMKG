@@ -2,7 +2,9 @@ from teachkg.stage1_alignment.text_preprocess import (
     CueTextPreprocessor,
     remove_classroom_admin,
     remove_example_label_lines,
+    remove_non_knowledge,
     rule_preprocess_cue_text,
+    sentence_knowledge_score,
 )
 
 
@@ -53,3 +55,29 @@ def test_preprocessor_mock_llm_uses_rules_only():
     out = p.process(SAMPLE_CUE, "数理逻辑")
     assert "P：今天是周二" not in out
     assert "命题逻辑" in out
+
+
+def test_knowledge_score_prefers_exposition_over_chatter():
+    knowledge = "谓词逻辑将命题细分为主语和谓语，论域是个体变项的变化范围。"
+    chatter = "大家先准备好手机，签到一下，休息五分钟再开始。"
+    assert sentence_knowledge_score(knowledge) > sentence_knowledge_score(chatter)
+    assert sentence_knowledge_score(knowledge) >= 1.0
+    assert sentence_knowledge_score(chatter) < 1.0
+
+
+def test_remove_non_knowledge_keeps_teaching_drops_interaction():
+    text = (
+        "大家先到齐了吗？谁还没来？我们稍等一下。"
+        "集合的并运算定义为取同时属于任一集合的元素。"
+        "好的，课件打开了吧？"
+    )
+    out = remove_non_knowledge(text)
+    assert "集合的并运算定义为" in out
+    assert "谁还没来" not in out
+    assert "课件打开了吧" not in out
+
+
+def test_rule_preprocess_drops_low_knowledge_only_cue():
+    text = "大家稍等一下。谁带电脑了？我们休息五分钟再开始。"
+    out = rule_preprocess_cue_text(text)
+    assert out == ""

@@ -1,0 +1,2426 @@
+{
+  "第1章 命题逻辑的基本概念": [
+    [
+      "命题逻辑/propositional logic",
+      0.9638888888888889
+    ],
+    [
+      "公式/formula",
+      0.7019821195184882
+    ],
+    [
+      "联结词/connective",
+      0.6447652012192631
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.6210246381911423
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.5179510915470249
+    ],
+    [
+      "初始符号/initial symbols",
+      0.5000872505784708
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.4936057891032165
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.4929273907390977
+    ],
+    [
+      "命题/proposition",
+      0.4891431588991458
+    ],
+    [
+      "前提/premise",
+      0.3262665069947061
+    ],
+    [
+      "命题公式/propositional formula",
+      0.31784369285301517
+    ],
+    [
+      "论域/domain of discourse",
+      0.3156183440856102
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.3047863424350329
+    ],
+    [
+      "命题变项/propositional variable",
+      0.30135296113205157
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.2818919983031713
+    ],
+    [
+      "集合/set",
+      0.2716686974200352
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.2685063698877217
+    ],
+    [
+      "真值/truth value",
+      0.26278249260238484
+    ],
+    [
+      "真值表/truth table",
+      0.25550077483030587
+    ],
+    [
+      "二值逻辑/two-valued logic",
+      0.24735964639818003
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.2393022751411836
+    ],
+    [
+      "自然演绎系统/natural deduction system",
+      0.23536925262256825
+    ],
+    [
+      "一元联结词/unary connective",
+      0.22244724764881327
+    ],
+    [
+      "简单命题/simple proposition",
+      0.2170140609712962
+    ],
+    [
+      "陈述句/declarative sentence",
+      0.21540821053075832
+    ],
+    [
+      "集合关系符/set relational symbol",
+      0.21436708431798318
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.20915404468638654
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.20373021865458157
+    ],
+    [
+      "命题逻辑符号/propositional logic symbol",
+      0.19429631739048187
+    ],
+    [
+      "公理/axiom",
+      0.19405067591114902
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.18396833953811811
+    ],
+    [
+      "析取/disjunction",
+      0.1829928684752747
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.1812913964515245
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.17592081275810256
+    ],
+    [
+      "证明/proof",
+      0.16671000284954332
+    ],
+    [
+      "极小项/minterm",
+      0.16564515764699497
+    ],
+    [
+      "字符表/character set",
+      0.15951739532915052
+    ],
+    [
+      "谓词符号/predicate symbol",
+      0.1588984523625804
+    ],
+    [
+      "重言式/tautology",
+      0.15727939043361247
+    ],
+    [
+      "推理公式/inference formula",
+      0.15634721082753864
+    ],
+    [
+      "定理/theorem",
+      0.15272111273704353
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.1515490219882574
+    ],
+    [
+      "等值/equivalence",
+      0.14794382876033943
+    ],
+    [
+      "模型/Model",
+      0.1436199068013973
+    ],
+    [
+      "矛盾式/contradiction",
+      0.1422411002267376
+    ],
+    [
+      "谓词/predicate",
+      0.14213141443640104
+    ],
+    [
+      "命题形式/propositional form",
+      0.13610379940990952
+    ],
+    [
+      "逻辑/logic",
+      0.13603539439120793
+    ],
+    [
+      "命题逻辑的基本概念/basic concepts of propositional logic",
+      0.1356575182956768
+    ],
+    [
+      "相继式/sequent",
+      0.13542401486900763
+    ]
+  ],
+  "第2章 命题逻辑的等值和推理演算": [
+    [
+      "命题逻辑/propositional logic",
+      0.9638888888888889
+    ],
+    [
+      "联结词/connective",
+      0.8753815596635409
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.7596491000644827
+    ],
+    [
+      "公式/formula",
+      0.7382162559713628
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.7365215796729779
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.6657602764921519
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.5930929498192958
+    ],
+    [
+      "λ-演算/lambda calculus",
+      0.5607215736032816
+    ],
+    [
+      "逻辑系统/Logic System",
+      0.47206270066367745
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.46064296668556987
+    ],
+    [
+      "命题公式/propositional formula",
+      0.4561808908137283
+    ],
+    [
+      "命题变项/propositional variable",
+      0.40231052363784214
+    ],
+    [
+      "初始符号/initial symbols",
+      0.3972818397996188
+    ],
+    [
+      "真值表/truth table",
+      0.389684416224348
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.3647562774068399
+    ],
+    [
+      "推理/inference",
+      0.3642527134468365
+    ],
+    [
+      "推理演算/inference calculus",
+      0.3573467301745607
+    ],
+    [
+      "等值/equivalence",
+      0.35539965938880586
+    ],
+    [
+      "并发程序理论工具/concurrent programming theoretical tool",
+      0.3279442710203098
+    ],
+    [
+      "形式逻辑系统/formal logic system",
+      0.3274750025930152
+    ],
+    [
+      "命题/proposition",
+      0.3154791284158967
+    ],
+    [
+      "形式系统/formal system",
+      0.30054810726118586
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.29044140868759716
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.2887789161670823
+    ],
+    [
+      "论域/domain of discourse",
+      0.2798636190518274
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.2701330049299804
+    ],
+    [
+      "基本的推理公式/basic inference formula",
+      0.26832187961348786
+    ],
+    [
+      "前提/premise",
+      0.26799202161168145
+    ],
+    [
+      "二元联结词/binary connective",
+      0.2677341411243782
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.2660041163546447
+    ],
+    [
+      "推理公式/inference formula",
+      0.26463197084180656
+    ],
+    [
+      "证明/proof",
+      0.2638093587699702
+    ],
+    [
+      "推理规则/inference rule",
+      0.2605064596557495
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.25921981162458646
+    ],
+    [
+      "定理/theorem",
+      0.2474280608848043
+    ],
+    [
+      "谓词符号/predicate symbol",
+      0.23997413047473215
+    ],
+    [
+      "自然演绎系统/natural deduction system",
+      0.23974362249144432
+    ],
+    [
+      "集合/set",
+      0.23665054144873487
+    ],
+    [
+      "字符表/character set",
+      0.23645001614178673
+    ],
+    [
+      "命题逻辑符号/propositional logic symbol",
+      0.22701972856208102
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.22550327981344326
+    ],
+    [
+      "析取/disjunction",
+      0.22518267058046
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.21883271585408326
+    ],
+    [
+      "矛盾式/contradiction",
+      0.21811941513776006
+    ],
+    [
+      "命题逻辑公理系统/Propositional Logic Axiom System",
+      0.21034119066368648
+    ],
+    [
+      "真值/truth value",
+      0.20410035183264383
+    ],
+    [
+      "公理/axiom",
+      0.20227797873111486
+    ],
+    [
+      "字母表/alphabet",
+      0.1874628174238754
+    ],
+    [
+      "模型/Model",
+      0.1860565661555981
+    ],
+    [
+      "相继式/sequent",
+      0.18166920182002078
+    ]
+  ],
+  "第3章 命题逻辑的公理化": [
+    [
+      "公理/axiom",
+      0.9614814814814815
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.9166779267286811
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.8328226909946348
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.7064051019731762
+    ],
+    [
+      "公式/formula",
+      0.6537340088954217
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.5965061398517614
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.5729884665550813
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.5654627324795766
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.5578073276942478
+    ],
+    [
+      "联结词/connective",
+      0.48852299826382856
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.4840936938827691
+    ],
+    [
+      "命题/proposition",
+      0.4641017071621013
+    ],
+    [
+      "理论/theory",
+      0.4504619481964159
+    ],
+    [
+      "语句/Sentence",
+      0.4376930334715867
+    ],
+    [
+      "逻辑/logic",
+      0.41958011173867554
+    ],
+    [
+      "前提/premise",
+      0.40604373625551915
+    ],
+    [
+      "演绎规则/deduction rule",
+      0.39575084405961447
+    ],
+    [
+      "理论演算/theoretical calculus",
+      0.37491447889649804
+    ],
+    [
+      "初始符号/initial symbols",
+      0.3740973668036401
+    ],
+    [
+      "形式理论Z/Formal Theory Z",
+      0.37143703797138705
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.33261116728236934
+    ],
+    [
+      "自然演绎系统/natural deduction system",
+      0.3174860040641299
+    ],
+    [
+      "非负整数/non-negative integer",
+      0.30493501589362104
+    ],
+    [
+      "集合/set",
+      0.28481583652379094
+    ],
+    [
+      "二值逻辑/two-valued logic",
+      0.26278392380269766
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.24719448350453563
+    ],
+    [
+      "命题逻辑公理系统/Propositional Logic Axiom System",
+      0.243241972587815
+    ],
+    [
+      "一元联结词/unary connective",
+      0.23368154111955486
+    ],
+    [
+      "陈述句/declarative sentence",
+      0.23091865708278725
+    ],
+    [
+      "集合关系符/set relational symbol",
+      0.23083859323566386
+    ],
+    [
+      "真值/truth value",
+      0.20724904343824416
+    ],
+    [
+      "推理方法/inference method",
+      0.20552431330155893
+    ],
+    [
+      "模型/Model",
+      0.20455470413333013
+    ],
+    [
+      "定理/theorem",
+      0.19753975889230738
+    ],
+    [
+      "命题变项/propositional variable",
+      0.197462048812604
+    ],
+    [
+      "推理规则/inference rule",
+      0.19048921952010897
+    ],
+    [
+      "命题公式/propositional formula",
+      0.18179381710413664
+    ],
+    [
+      "变形规则/transformation rule",
+      0.1815507870219346
+    ],
+    [
+      "推理公式/inference formula",
+      0.17579909778997235
+    ],
+    [
+      "相继式/sequent",
+      0.16422493228509802
+    ],
+    [
+      "算法/algorithm",
+      0.1636079367286433
+    ],
+    [
+      "演绎体系/deductive system",
+      0.16353448408803353
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.16268890871798733
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.161218413061724
+    ],
+    [
+      "非标准逻辑/non-standard logic",
+      0.15962735480732598
+    ],
+    [
+      "基本的推理公式/basic inference formula",
+      0.15304233074145626
+    ],
+    [
+      "证明/proof",
+      0.15180905602657044
+    ],
+    [
+      "演绎定理/Deduction Theorem",
+      0.14714145030803108
+    ],
+    [
+      "论域/domain of discourse",
+      0.14627984450758955
+    ],
+    [
+      "符号系统/Symbol System",
+      0.1436393962776895
+    ]
+  ],
+  "第4章 谓词逻辑的基本概念": [
+    [
+      "谓词逻辑/Predicate Logic",
+      0.95
+    ],
+    [
+      "公式/formula",
+      0.7550250706364952
+    ],
+    [
+      "论域/domain of discourse",
+      0.7454714329303075
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.6498581513367102
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.6196339240358207
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.5855128672284595
+    ],
+    [
+      "联结词/connective",
+      0.5050799658424122
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.4923864234201761
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.4730764621102554
+    ],
+    [
+      "谓词/predicate",
+      0.39248134506628174
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.3629818066817833
+    ],
+    [
+      "命题/proposition",
+      0.3437952588370599
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.32868540477412855
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.31942840735931555
+    ],
+    [
+      "个体域/domain of individuals",
+      0.303386268926987
+    ],
+    [
+      "字符表/character set",
+      0.30171510609697727
+    ],
+    [
+      "映射/mapping",
+      0.2997803625650687
+    ],
+    [
+      "谓词符号/predicate symbol",
+      0.2914082561514275
+    ],
+    [
+      "模型/Model",
+      0.2872003835772375
+    ],
+    [
+      "初始符号/initial symbols",
+      0.27858566122464035
+    ],
+    [
+      "量词/quantifier",
+      0.26613650500856767
+    ],
+    [
+      "单一对象层次/Single Object Level",
+      0.25856468912777597
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.25343843094432106
+    ],
+    [
+      "命题形式/propositional form",
+      0.24917624983255834
+    ],
+    [
+      "关系/relation",
+      0.2489980932088157
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.24861433846090544
+    ],
+    [
+      "证明/proof",
+      0.2477139023995621
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.242181396031155
+    ],
+    [
+      "推理方法/inference method",
+      0.23937018299378826
+    ],
+    [
+      "语句/Sentence",
+      0.2372089874724298
+    ],
+    [
+      "命题变项/propositional variable",
+      0.22775986669843162
+    ],
+    [
+      "真值表/truth table",
+      0.22497753955346145
+    ],
+    [
+      "命题公式/propositional formula",
+      0.2242717289848061
+    ],
+    [
+      "知识表示方法/knowledge representation method",
+      0.2227035163271216
+    ],
+    [
+      "析取/disjunction",
+      0.2218079608630457
+    ],
+    [
+      "矛盾式/contradiction",
+      0.2130005742272036
+    ],
+    [
+      "推理过程/inference process",
+      0.20545262969864586
+    ],
+    [
+      "集合/set",
+      0.2054402382069412
+    ],
+    [
+      "极小项/minterm",
+      0.20535007196123803
+    ],
+    [
+      "个体/Individual",
+      0.20496925356331458
+    ],
+    [
+      "相继式/sequent",
+      0.20446424834497767
+    ],
+    [
+      "前提/premise",
+      0.20229221551600096
+    ],
+    [
+      "多值逻辑/multi-valued logic",
+      0.20161963983906883
+    ],
+    [
+      "集合论/Set Theory",
+      0.1948209366589946
+    ],
+    [
+      "非标准逻辑/non-standard logic",
+      0.19023486499618197
+    ],
+    [
+      "函数/function",
+      0.1868946771567558
+    ],
+    [
+      "有限域/finite domain",
+      0.1859892615123881
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.18356244525473786
+    ],
+    [
+      "简单命题/simple proposition",
+      0.1793691372785075
+    ],
+    [
+      "个体变项/individual variable",
+      0.1768932412412849
+    ]
+  ],
+  "第5章 谓词逻辑的等值和推理演算": [
+    [
+      "谓词逻辑/Predicate Logic",
+      0.95
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.7245422885486669
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.67781976725835
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.675077779017735
+    ],
+    [
+      "λ-演算/lambda calculus",
+      0.6125613442382603
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.58271192158714
+    ],
+    [
+      "公式/formula",
+      0.5335274933300838
+    ],
+    [
+      "联结词/connective",
+      0.533406638032257
+    ],
+    [
+      "推理演算/inference calculus",
+      0.4464447581299837
+    ],
+    [
+      "逻辑系统/Logic System",
+      0.44035089449816134
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.3740994945615818
+    ],
+    [
+      "并发程序理论工具/concurrent programming theoretical tool",
+      0.36105774199753043
+    ],
+    [
+      "论域/domain of discourse",
+      0.3590428392924222
+    ],
+    [
+      "形式逻辑系统/formal logic system",
+      0.3537373940041887
+    ],
+    [
+      "等值/equivalence",
+      0.3493319975621846
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.3404277663516401
+    ],
+    [
+      "推理/inference",
+      0.3400118422072761
+    ],
+    [
+      "形式系统/formal system",
+      0.33013448140331597
+    ],
+    [
+      "谓词/predicate",
+      0.31867575857753155
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.2861902159045794
+    ],
+    [
+      "命题公式/propositional formula",
+      0.28070924101348727
+    ],
+    [
+      "真值表/truth table",
+      0.2687594652550777
+    ],
+    [
+      "基本的推理公式/basic inference formula",
+      0.2646526146992048
+    ],
+    [
+      "命题变项/propositional variable",
+      0.2573367929464773
+    ],
+    [
+      "二元联结词/binary connective",
+      0.25589917892942254
+    ],
+    [
+      "推理方法/inference method",
+      0.2535155749893427
+    ],
+    [
+      "定理/theorem",
+      0.24924377867878605
+    ],
+    [
+      "推理公式/inference formula",
+      0.24101826250866396
+    ],
+    [
+      "命题/proposition",
+      0.23854423038144862
+    ],
+    [
+      "知识表示方法/knowledge representation method",
+      0.236848908322676
+    ],
+    [
+      "推理规则/inference rule",
+      0.2361113215936911
+    ],
+    [
+      "初始符号/initial symbols",
+      0.2356793308449965
+    ],
+    [
+      "命题逻辑公理系统/Propositional Logic Axiom System",
+      0.2350649771714022
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.22788588811710953
+    ],
+    [
+      "映射/mapping",
+      0.22581544087231595
+    ],
+    [
+      "字符表/character set",
+      0.2132631179733203
+    ],
+    [
+      "命题形式/propositional form",
+      0.2038530705255304
+    ],
+    [
+      "个体域/domain of individuals",
+      0.20021860369051475
+    ],
+    [
+      "关系/relation",
+      0.19813748029444675
+    ],
+    [
+      "字母表/alphabet",
+      0.1972889068648961
+    ],
+    [
+      "等值式/equivalence formula",
+      0.19644067989342812
+    ],
+    [
+      "归结法/resolution method",
+      0.19512136528841373
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.19465582306380072
+    ],
+    [
+      "π-演算/pi-calculus",
+      0.19448618856105312
+    ],
+    [
+      "χ-演算/chi-calculus",
+      0.19448618856105312
+    ],
+    [
+      "量词/quantifier",
+      0.1889806593134347
+    ],
+    [
+      "模型/Model",
+      0.1804631698040427
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.17992473398507777
+    ],
+    [
+      "逻辑/logic",
+      0.17890603691428061
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.17843865442138251
+    ]
+  ],
+  "第6章 谓词逻辑的公理化": [
+    [
+      "谓词逻辑/Predicate Logic",
+      0.95
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.6999772106009422
+    ],
+    [
+      "论域/domain of discourse",
+      0.5971427094073918
+    ],
+    [
+      "谓词/predicate",
+      0.5866519377970012
+    ],
+    [
+      "公理/axiom",
+      0.5759861489564455
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.5597577573052128
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.5418521501972647
+    ],
+    [
+      "推理方法/inference method",
+      0.4591947401700649
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.4261502558575535
+    ],
+    [
+      "形式理论Z/Formal Theory Z",
+      0.4153702958557184
+    ],
+    [
+      "映射/mapping",
+      0.36770717980947165
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.36069543050125485
+    ],
+    [
+      "逻辑/logic",
+      0.35907926207057506
+    ],
+    [
+      "关系/relation",
+      0.3432877070529662
+    ],
+    [
+      "非负整数/non-negative integer",
+      0.3424358759950186
+    ],
+    [
+      "命题/proposition",
+      0.3333412642376834
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.32948960953592377
+    ],
+    [
+      "知识表示方法/knowledge representation method",
+      0.3269612424132499
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.3245843185991286
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.32269635097759813
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.30165899081716435
+    ],
+    [
+      "公式/formula",
+      0.2957066926075305
+    ],
+    [
+      "理论/theory",
+      0.288167133931834
+    ],
+    [
+      "命题形式/propositional form",
+      0.28093150994671146
+    ],
+    [
+      "谓词逻辑的公理化/axiomatization of predicate logic",
+      0.2741477841050493
+    ],
+    [
+      "语句/Sentence",
+      0.2740562435537625
+    ],
+    [
+      "多值逻辑/multi-valued logic",
+      0.27004494113791505
+    ],
+    [
+      "个体域/domain of individuals",
+      0.26786141283806725
+    ],
+    [
+      "集合/set",
+      0.2645738329959525
+    ],
+    [
+      "语言L/Language L",
+      0.2418089015957782
+    ],
+    [
+      "性质/property",
+      0.24172842297520894
+    ],
+    [
+      "理论演算/theoretical calculus",
+      0.23982352113240676
+    ],
+    [
+      "非标准逻辑/non-standard logic",
+      0.23000973592809743
+    ],
+    [
+      "集合论/Set Theory",
+      0.22178453073459983
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.2118085135376907
+    ],
+    [
+      "个体/Individual",
+      0.2104756413695462
+    ],
+    [
+      "模型/Model",
+      0.20741233680852
+    ],
+    [
+      "自然演绎系统/natural deduction system",
+      0.20321073971011033
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.1940328258770862
+    ],
+    [
+      "递归规则/recursion rule",
+      0.18915311133470925
+    ],
+    [
+      "函数/function",
+      0.18151291424586208
+    ],
+    [
+      "代入规则/substitution rule",
+      0.18047661296232143
+    ],
+    [
+      "推理规则/inference rule",
+      0.17714456979867524
+    ],
+    [
+      "赋值/Assignment",
+      0.17544276229492678
+    ],
+    [
+      "前提/premise",
+      0.16828790359262355
+    ],
+    [
+      "命题逻辑公理系统/Propositional Logic Axiom System",
+      0.16437300154364523
+    ],
+    [
+      "演绎规则/deduction rule",
+      0.16053264734215503
+    ],
+    [
+      "联结词/connective",
+      0.16008871948351613
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.15943783881291881
+    ],
+    [
+      "个体变项/individual variable",
+      0.15921863192415273
+    ]
+  ],
+  "第7章 一阶形式理论及模型": [
+    [
+      "一阶理论/First-order Theory",
+      0.9612962962962963
+    ],
+    [
+      "模型/Model",
+      0.8929656123172272
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.8639703928818131
+    ],
+    [
+      "语句/Sentence",
+      0.8630430536924691
+    ],
+    [
+      "公式/formula",
+      0.6471659807037407
+    ],
+    [
+      "理论/theory",
+      0.6359506339329185
+    ],
+    [
+      "语法/Syntax",
+      0.3573940586533427
+    ],
+    [
+      "单一对象层次/Single Object Level",
+      0.3499572567309831
+    ],
+    [
+      "语义/semantics",
+      0.34703763821878775
+    ],
+    [
+      "一致性/Consistency",
+      0.3077797652802467
+    ],
+    [
+      "定理/theorem",
+      0.30180057181973113
+    ],
+    [
+      "协调/consistent",
+      0.2986881110097165
+    ],
+    [
+      "一阶形式理论/first-order formal theory",
+      0.28642076523411764
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.28125370665249716
+    ],
+    [
+      "非逻辑公理/Non-logical Axiom",
+      0.2793447215286041
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.27651111317520205
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.2740605210845992
+    ],
+    [
+      "公理/axiom",
+      0.27089048063641497
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.26546988199736066
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.2308641067879039
+    ],
+    [
+      "推理规则/inference rule",
+      0.22602671379123443
+    ],
+    [
+      "命题逻辑公理系统/Propositional Logic Axiom System",
+      0.22424879510138981
+    ],
+    [
+      "自然演绎系统/natural deduction system",
+      0.22239598116073958
+    ],
+    [
+      "证明/proof",
+      0.21348318271169775
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.20725033408629434
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.20291454767041114
+    ],
+    [
+      "变形规则/transformation rule",
+      0.20278336980067885
+    ],
+    [
+      "逻辑系统/Logic System",
+      0.19989280389387037
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.18529239001823458
+    ],
+    [
+      "论域/domain of discourse",
+      0.1847594876541033
+    ],
+    [
+      "结构/Structure",
+      0.1841074690202235
+    ],
+    [
+      "Lowenheim-Skolem 定理/Lowenheim-Skolem Theorem",
+      0.16830231048787295
+    ],
+    [
+      "λ-演算/lambda calculus",
+      0.16602394724194725
+    ],
+    [
+      "集合/set",
+      0.15805016055102303
+    ],
+    [
+      "完全性定理/completeness theorem",
+      0.15709127989085991
+    ],
+    [
+      "联结词/connective",
+      0.14973706122351774
+    ],
+    [
+      "关系/relation",
+      0.14735166036541786
+    ],
+    [
+      "推理公式/inference formula",
+      0.1468726555813372
+    ],
+    [
+      "集合论/Set Theory",
+      0.14619294809285996
+    ],
+    [
+      "基本的推理公式/basic inference formula",
+      0.13937257938796313
+    ],
+    [
+      "合式公式/Well-formed formula(Wff)",
+      0.13903121936911894
+    ],
+    [
+      "非确定算法/Non-Deterministic Algorithm",
+      0.13213605410191265
+    ],
+    [
+      "赋值/Assignment",
+      0.13150702557768226
+    ],
+    [
+      "符号系统/Symbol System",
+      0.12869720114321953
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.12461143989210195
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.12336116924695033
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.12255867077848637
+    ],
+    [
+      "证明推理公式的方法/methods for proving inference formulas",
+      0.12192763270214663
+    ],
+    [
+      "推理体系/Inference System",
+      0.12114189794796765
+    ],
+    [
+      "笛卡儿积/Cartesian product",
+      0.12060807442224374
+    ]
+  ],
+  "第8章 证明论中的逻辑系统": [
+    [
+      "λ-演算/lambda calculus",
+      0.9394444444444445
+    ],
+    [
+      "形式逻辑系统/formal logic system",
+      0.6714409066899021
+    ],
+    [
+      "并发程序理论工具/concurrent programming theoretical tool",
+      0.6693907383522192
+    ],
+    [
+      "逻辑系统/Logic System",
+      0.5607142366790957
+    ],
+    [
+      "形式系统/formal system",
+      0.5411754881829086
+    ],
+    [
+      "证明论中的逻辑系统/logic systems in proof theory",
+      0.5339691547267016
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.5006180371050677
+    ],
+    [
+      "逻辑/logic",
+      0.48907431072772856
+    ],
+    [
+      "证明论/Proof Theory",
+      0.3474157315616657
+    ],
+    [
+      "π-演算/pi-calculus",
+      0.3463369195812226
+    ],
+    [
+      "χ-演算/chi-calculus",
+      0.3463369195812226
+    ],
+    [
+      "串形演算/sequent calculus",
+      0.3026711702905093
+    ],
+    [
+      "直觉主义逻辑系统/intuitionistic logic system",
+      0.26288100571674133
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.2505254762743463
+    ],
+    [
+      "线性逻辑/linear logic",
+      0.2280522846435335
+    ],
+    [
+      "Gentzen串形演算/Gentzen's sequent calculus",
+      0.18936219891246456
+    ],
+    [
+      "Scott 域/Scott domain",
+      0.18550247724201083
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.17614304549744214
+    ],
+    [
+      "Gentzen 串形演算/Gentzen Sequent Calculus",
+      0.17414518974511076
+    ],
+    [
+      "近邻空间/neighborhood space",
+      0.16150357850938155
+    ],
+    [
+      "线性映射/linear mapping",
+      0.14648482028507248
+    ],
+    [
+      "结构规则/structural rule",
+      0.146076784573972
+    ],
+    [
+      "公式/formula",
+      0.13235422021983978
+    ],
+    [
+      "数学的符号化方法/mathematical symbolization method",
+      0.12185299841712174
+    ],
+    [
+      "简单命题/simple proposition",
+      0.11450439480554274
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.10996954447365712
+    ],
+    [
+      "命题/proposition",
+      0.10443543665464823
+    ],
+    [
+      "命题公式/propositional formula",
+      0.10389789927310253
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.10108230646138884
+    ],
+    [
+      "联结词/connective",
+      0.10106872054456575
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.10035903285536919
+    ],
+    [
+      "析取/disjunction",
+      0.10028541937363539
+    ],
+    [
+      "命题变项/propositional variable",
+      0.09993224248688763
+    ],
+    [
+      "等值/equivalence",
+      0.09981697022480847
+    ],
+    [
+      "二元联结词/binary connective",
+      0.09947411844586851
+    ],
+    [
+      "逻辑联结词/logical connective",
+      0.09919442387224062
+    ],
+    [
+      "复合命题/compound proposition",
+      0.09835516781837415
+    ],
+    [
+      "等值公式/equivalent formula",
+      0.09812094595340956
+    ],
+    [
+      "否定/Negation",
+      0.0978594526450085
+    ],
+    [
+      "合取/conjunction",
+      0.09778681209045875
+    ],
+    [
+      "真值表/truth table",
+      0.09744878303917331
+    ],
+    [
+      "双条件式/Biconditional",
+      0.0969587433528016
+    ],
+    [
+      "真值/truth value",
+      0.0966911428483448
+    ],
+    [
+      "存在量词/existential quantifier",
+      0.09527779837116626
+    ],
+    [
+      "蕴含/implication",
+      0.09500216993994293
+    ],
+    [
+      "全称量词/universal quantifier",
+      0.09500142921831989
+    ],
+    [
+      "重言式/tautology",
+      0.09166613246015703
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.08856983033480662
+    ],
+    [
+      "字符表/character set",
+      0.08503325992636901
+    ],
+    [
+      "初始符号/initial symbols",
+      0.08450460827432532
+    ]
+  ],
+  "第9章 集合": [
+    [
+      "集合论/Set Theory",
+      0.9724074074074075
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.9245437587511316
+    ],
+    [
+      "集合/set",
+      0.7930112536166305
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.7561534401225862
+    ],
+    [
+      "论域/domain of discourse",
+      0.4969788250603269
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.48947796495103757
+    ],
+    [
+      "正则公理/Axiom of Regularity",
+      0.4100747971365998
+    ],
+    [
+      "Kripke模型/Kripke Model",
+      0.36896749035865983
+    ],
+    [
+      "数学对象/mathematical object",
+      0.35540139083786426
+    ],
+    [
+      "公理/axiom",
+      0.20605930508258585
+    ],
+    [
+      "集合论公理/axioms of set theory",
+      0.20398122178265637
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.19835734653036138
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.19228471739573066
+    ],
+    [
+      "集合论公理系统/Axiomatic Set Theory",
+      0.1884669112861871
+    ],
+    [
+      "双射/bijective function",
+      0.1605730657329556
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.15327268989053527
+    ],
+    [
+      "集合运算/set operation",
+      0.1525435076103922
+    ],
+    [
+      "运算/operation",
+      0.14842943597230412
+    ],
+    [
+      "关系/relation",
+      0.1477500986905381
+    ],
+    [
+      "ZF 公理系统/ZF Axiom System",
+      0.1474622287163591
+    ],
+    [
+      "有穷集合/Finite Set",
+      0.14717859268364394
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.13721632725461075
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.1369378345726319
+    ],
+    [
+      "集合的表示法/Representation of sets",
+      0.13349899369048066
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.13300775847969815
+    ],
+    [
+      "公式/formula",
+      0.13169715475465446
+    ],
+    [
+      "函数/function",
+      0.1303755271139017
+    ],
+    [
+      "模型/Model",
+      0.12716506016808102
+    ],
+    [
+      "谓词变项/predicate variable",
+      0.12620399372529328
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.125192896931686
+    ],
+    [
+      "基数/cardinal number",
+      0.12372697265358351
+    ],
+    [
+      "结构/Structure",
+      0.12163802602944669
+    ],
+    [
+      "理论/theory",
+      0.12145756880193462
+    ],
+    [
+      "数学的符号化方法/mathematical symbolization method",
+      0.11903602915283387
+    ],
+    [
+      "笛卡儿积/Cartesian product",
+      0.11847555953759138
+    ],
+    [
+      "集合的图形表示法/Graphical representation of sets",
+      0.1165265220532321
+    ],
+    [
+      "语句/Sentence",
+      0.1138676330945691
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.1121578308748
+    ],
+    [
+      "描述集合性质的公理/Axiom Describing Set Properties",
+      0.11213342207592042
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.10972588771968257
+    ],
+    [
+      "个体变项/individual variable",
+      0.10868277954541945
+    ],
+    [
+      "表示方法/Representation method",
+      0.1077921894512288
+    ],
+    [
+      "隶属函数/membership function",
+      0.1076554840268295
+    ],
+    [
+      "集合论公理化/axiomatization of set theory",
+      0.10733340197228351
+    ],
+    [
+      "命题变项/propositional variable",
+      0.10595425594867532
+    ],
+    [
+      "联结词/connective",
+      0.10260526448560586
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.10258993071013352
+    ],
+    [
+      "命题公式/propositional formula",
+      0.10195055824022728
+    ],
+    [
+      "命题/proposition",
+      0.10166725764948144
+    ],
+    [
+      "逻辑连接词/Logical connectives",
+      0.1005783016776732
+    ]
+  ],
+  "第10章 关系": [
+    [
+      "关系/relation",
+      0.95875
+    ],
+    [
+      "集合/set",
+      0.8021672283268966
+    ],
+    [
+      "集合论/Set Theory",
+      0.6301439146039125
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.5265154322038681
+    ],
+    [
+      "笛卡儿积/Cartesian product",
+      0.4937721786714938
+    ],
+    [
+      "非空集合/non-empty set",
+      0.48181820548216586
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.41120044177529863
+    ],
+    [
+      "整数集/set of integers",
+      0.40069027612738534
+    ],
+    [
+      "正则性/regularity",
+      0.38477291777442857
+    ],
+    [
+      "论域/domain of discourse",
+      0.3223408917966361
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.31581334968075225
+    ],
+    [
+      "二元关系/binary relation",
+      0.26964739462008536
+    ],
+    [
+      "相容关系/compatibility relation",
+      0.21225891912568104
+    ],
+    [
+      "可数集合/countable set",
+      0.20641708312539148
+    ],
+    [
+      "结构/Structure",
+      0.20384283446392967
+    ],
+    [
+      "无限可数集合/infinite countable set",
+      0.20268481244456027
+    ],
+    [
+      "Kripke模型/Kripke Model",
+      0.17497618613115679
+    ],
+    [
+      "子集合/Subset",
+      0.1692455195021949
+    ],
+    [
+      "有穷集合/Finite Set",
+      0.1664786108552551
+    ],
+    [
+      "集合运算/set operation",
+      0.16580688225952095
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.1547685752425617
+    ],
+    [
+      "偏序关系/partial order relation",
+      0.14622925810061305
+    ],
+    [
+      "函数/function",
+      0.14616035700176633
+    ],
+    [
+      "模型/Model",
+      0.14480770159280634
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.1420685403831103
+    ],
+    [
+      "等价关系/equivalence relation",
+      0.1345212780548205
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.13353633815163635
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.13203901389083228
+    ],
+    [
+      "关系矩阵/relation matrix",
+      0.13083961274847417
+    ],
+    [
+      "偏序集/poset",
+      0.12925853362920273
+    ],
+    [
+      "谓词变项/predicate variable",
+      0.12724918566396629
+    ],
+    [
+      "幂集/power set",
+      0.12719990997844874
+    ],
+    [
+      "覆盖/covering",
+      0.12546885885943626
+    ],
+    [
+      "真值/truth value",
+      0.12528660713115644
+    ],
+    [
+      "二元运算/binary operation",
+      0.11867620355980782
+    ],
+    [
+      "有序对/ordered pair",
+      0.11751562071323032
+    ],
+    [
+      "公式/formula",
+      0.11564706997027517
+    ],
+    [
+      "闭包/closure",
+      0.11550100877300748
+    ],
+    [
+      "等值公式/equivalent formula",
+      0.11457258404515339
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.10989630578066771
+    ],
+    [
+      "无限集合/infinite set",
+      0.10963038508728427
+    ],
+    [
+      "命题变项/propositional variable",
+      0.1094898467785167
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.10887676261136321
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.10666002201875185
+    ],
+    [
+      "命题公式/propositional formula",
+      0.10529816466284588
+    ],
+    [
+      "命题/proposition",
+      0.10463955943893379
+    ],
+    [
+      "子集公理模式/Axiom Schema of Separation",
+      0.10421346200914153
+    ],
+    [
+      "联结词/connective",
+      0.10369075484247704
+    ],
+    [
+      "正则公理/Axiom of Regularity",
+      0.10214871890890952
+    ],
+    [
+      "析取/disjunction",
+      0.10194828500964549
+    ]
+  ],
+  "第11章 函数": [
+    [
+      "函数/function",
+      0.9396296296296297
+    ],
+    [
+      "论域/domain of discourse",
+      0.8159078495284724
+    ],
+    [
+      "集合/set",
+      0.7761966745134722
+    ],
+    [
+      "递归规则/recursion rule",
+      0.7112458940550572
+    ],
+    [
+      "集合论/Set Theory",
+      0.7095886593574753
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.6294141194193903
+    ],
+    [
+      "关系/relation",
+      0.6047365120146801
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.5888151947893662
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.4991992695129454
+    ],
+    [
+      "谓词/predicate",
+      0.49754329443686296
+    ],
+    [
+      "变项/variable",
+      0.4441133129571952
+    ],
+    [
+      "代入规则/substitution rule",
+      0.44065973615518444
+    ],
+    [
+      "特殊关系/special relation",
+      0.43945510844142344
+    ],
+    [
+      "原始递归规则/primitive recursion rule",
+      0.4376770187398335
+    ],
+    [
+      "一般递归规则/general recursion rule",
+      0.4376770187398335
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.40361745998410303
+    ],
+    [
+      "集合A/set A",
+      0.4000434630983041
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.37827051588843535
+    ],
+    [
+      "开集/open set",
+      0.3085905995559684
+    ],
+    [
+      "公理/axiom",
+      0.2804359088514139
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.2606576388910585
+    ],
+    [
+      "距离/distance",
+      0.2605183231701141
+    ],
+    [
+      "闭集/closed set",
+      0.2459154894567465
+    ],
+    [
+      "区间/interval",
+      0.22949404264786274
+    ],
+    [
+      "选择公理/Axiom of Choice",
+      0.2258050836938062
+    ],
+    [
+      "全集/universal set",
+      0.21843982924772537
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.21637715849119116
+    ],
+    [
+      "公式/formula",
+      0.2058158094346729
+    ],
+    [
+      "公理系统的构成/components of an axiomatic system",
+      0.20384342728288107
+    ],
+    [
+      "性质/property",
+      0.19251079946387895
+    ],
+    [
+      "模型/Model",
+      0.19196422132875526
+    ],
+    [
+      "模糊子集/fuzzy subset",
+      0.189549076125552
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.18833397045343483
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.18334009085946756
+    ],
+    [
+      "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      0.18016126724002796
+    ],
+    [
+      "ZF 公理系统/ZF Axiom System",
+      0.17878452415108692
+    ],
+    [
+      "理论/theory",
+      0.1751668646093078
+    ],
+    [
+      "结构/Structure",
+      0.17486046911061578
+    ],
+    [
+      "个体/Individual",
+      0.16863149852825257
+    ],
+    [
+      "有条件的存在公理/Conditional Existence Axiom",
+      0.16564471379635032
+    ],
+    [
+      "内点/interior point",
+      0.16390942942250647
+    ],
+    [
+      "语句/Sentence",
+      0.16367181649638576
+    ],
+    [
+      "命题变项/propositional variable",
+      0.1577384268212547
+    ],
+    [
+      "命题公式/propositional formula",
+      0.155915028966336
+    ],
+    [
+      "形式理论Z/Formal Theory Z",
+      0.15468075469080658
+    ],
+    [
+      "笛卡儿积/Cartesian product",
+      0.1539645627825745
+    ],
+    [
+      "一阶理论/First-order Theory",
+      0.1531525221881068
+    ],
+    [
+      "推理规则/inference rule",
+      0.15129818828699668
+    ],
+    [
+      "模糊集合论/fuzzy set theory",
+      0.15102623858537242
+    ],
+    [
+      "开区间/open interval",
+      0.14774561384109555
+    ]
+  ],
+  "第12章 实数集合与集合的基数": [
+    [
+      "集合/set",
+      0.9341666666666667
+    ],
+    [
+      "集合论/Set Theory",
+      0.7108205491223736
+    ],
+    [
+      "数理逻辑与集合论/Mathematical Logic and Set Theory",
+      0.6701832824743533
+    ],
+    [
+      "离散数学/Discrete Mathematics",
+      0.5360159630403578
+    ],
+    [
+      "论域/domain of discourse",
+      0.4633062265290769
+    ],
+    [
+      "数理逻辑/Mathematical Logic",
+      0.3533218379712106
+    ],
+    [
+      "实数集合/set of real numbers",
+      0.3211370315468876
+    ],
+    [
+      "基数/cardinal number",
+      0.30303716495725247
+    ],
+    [
+      "无限集合/infinite set",
+      0.3009170206615718
+    ],
+    [
+      "双射/bijective function",
+      0.2963925658356233
+    ],
+    [
+      "Kripke模型/Kripke Model",
+      0.2882709270057823
+    ],
+    [
+      "正则公理/Axiom of Regularity",
+      0.2802071366876072
+    ],
+    [
+      "数学对象/mathematical object",
+      0.27402670510387006
+    ],
+    [
+      "有穷集合/Finite Set",
+      0.20645218865922374
+    ],
+    [
+      "实数/real number",
+      0.19057886702101096
+    ],
+    [
+      "实数集/real numbers",
+      0.19021804700123782
+    ],
+    [
+      "函数/function",
+      0.18688030853040802
+    ],
+    [
+      "谓词逻辑/Predicate Logic",
+      0.18597460766187435
+    ],
+    [
+      "集合的基数/cardinality of a set",
+      0.1750690143368275
+    ],
+    [
+      "等势/equipotency",
+      0.15967442439593282
+    ],
+    [
+      "谓词公式的解释/interpretation of predicate formula",
+      0.1559670628130871
+    ],
+    [
+      "不可数集合/uncountable set",
+      0.15213102399033207
+    ],
+    [
+      "证明/proof",
+      0.1483513745042322
+    ],
+    [
+      "可数集合/countable set",
+      0.14501417734059951
+    ],
+    [
+      "ZF 公理系统/ZF Axiom System",
+      0.14216502930382266
+    ],
+    [
+      "等价关系/equivalence relation",
+      0.14188003946993522
+    ],
+    [
+      "解释/interpretation(logic)",
+      0.13952153857372884
+    ],
+    [
+      "谓词变项/predicate variable",
+      0.13390562779658963
+    ],
+    [
+      "公理系统/axiomatic system",
+      0.1319972301233942
+    ],
+    [
+      "集合论公理/axioms of set theory",
+      0.12555957814233232
+    ],
+    [
+      "关系/relation",
+      0.12440981363532948
+    ],
+    [
+      "模型/Model",
+      0.12212363822694271
+    ],
+    [
+      "结构/Structure",
+      0.12019704726663172
+    ],
+    [
+      "一阶语言/First-order Language",
+      0.11777686164698421
+    ],
+    [
+      "公理/axiom",
+      0.11479832687600976
+    ],
+    [
+      "公式/formula",
+      0.11397054530608584
+    ],
+    [
+      "商集/Quotient Set",
+      0.11233745915624944
+    ],
+    [
+      "开集/open set",
+      0.11070159969436079
+    ],
+    [
+      "命题逻辑/propositional logic",
+      0.10886734459111927
+    ],
+    [
+      "闭集/closed set",
+      0.10778929723725461
+    ],
+    [
+      "逻辑公式/logical formula",
+      0.10705959932451858
+    ],
+    [
+      "命题变项/propositional variable",
+      0.10668297013296311
+    ],
+    [
+      "个体变项/individual variable",
+      0.10646584480903198
+    ],
+    [
+      "无穷公理/Axiom of Infinity",
+      0.10604455978541548
+    ],
+    [
+      "单射/injective function",
+      0.10422052607768768
+    ],
+    [
+      "满射/surjective function",
+      0.1036399103335223
+    ],
+    [
+      "命题公式/propositional formula",
+      0.10239679713911017
+    ],
+    [
+      "命题/proposition",
+      0.10221190758146867
+    ],
+    [
+      "真值/truth value",
+      0.10190569630411254
+    ],
+    [
+      "联结词/connective",
+      0.10150207332069525
+    ]
+  ]
+}

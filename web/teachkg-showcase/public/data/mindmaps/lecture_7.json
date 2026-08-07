@@ -1,0 +1,305 @@
+{
+  "lecture_id": "7",
+  "root": {
+    "id": "__chapter__/命题逻辑的公理化",
+    "zh": "命题逻辑的公理化",
+    "importance": 0.458548,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "推理规则/inference rule",
+        "zh": "推理规则",
+        "importance": 0.436712,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "全称引入规则/universal introduction rule",
+            "zh": "全称引入规则",
+            "importance": 0.098363,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "全称消去规则/universal elimination rule",
+            "zh": "全称消去规则",
+            "importance": 0.098363,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "存在引入规则/existential introduction rule",
+            "zh": "存在引入规则",
+            "importance": 0.098363,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "存在消去规则/Existential Elimination Rule",
+            "zh": "存在消去规则",
+            "importance": 0.091886,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.072774,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "证明过程/proof process",
+                "zh": "证明过程",
+                "importance": 0.031086,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "推演/derivation",
+            "zh": "推演",
+            "importance": 0.020612,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "条件证明规则/Conditional Proof Rule",
+            "zh": "条件证明规则",
+            "importance": 0.018308,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "证明/proof",
+            "zh": "证明",
+            "importance": 0.014796,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "定理2.8.2/定理_2_8_2",
+                "zh": "定理2.8.2",
+                "importance": 0.034657,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "假设/Hypothesis",
+                "zh": "假设",
+                "importance": 0.012773,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "结论/conclusion",
+                "zh": "结论",
+                "importance": 0.000319,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.344077,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "个体/Individual",
+            "zh": "个体",
+            "importance": 0.026523,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.016798,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "矛盾式/contradiction",
+        "zh": "矛盾式",
+        "importance": 0.189132,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "公式/formula",
+            "zh": "公式",
+            "importance": 0.037941,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "否定/Negation",
+                "zh": "否定",
+                "importance": 0.101019,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "量词/quantifier",
+                "zh": "量词",
+                "importance": 0.081885,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "母式/Matrix",
+                "zh": "母式",
+                "importance": 0.048165,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "谓词公式/predicate formula",
+                "zh": "谓词公式",
+                "importance": 0.040992,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "自由变元/free variable",
+                "zh": "自由变元",
+                "importance": 0.039375,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "蕴含/implication",
+                "zh": "蕴含",
+                "importance": 0.036374,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "前提/premise",
+                "zh": "前提",
+                "importance": 0.011672,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "等式/equation",
+                "zh": "等式",
+                "importance": 0.009724,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "合一/unification",
+        "zh": "合一",
+        "importance": 0.138354,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "归结/resolution",
+            "zh": "归结",
+            "importance": 0.038895,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "假设引入/Assumption Introduction",
+        "zh": "假设引入",
+        "importance": 0.107171,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "矛盾消去/Contradiction Elimination",
+        "zh": "矛盾消去",
+        "importance": 0.107171,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "个体变元/individual variable",
+        "zh": "个体变元",
+        "importance": 0.105078,
+        "relation": "attach",
+        "related": [
+          "代入"
+        ],
+        "children": [
+          {
+            "id": "代入/instantiation",
+            "zh": "代入",
+            "importance": 0.032621,
+            "relation": "related_with",
+            "related": [
+              "个体变元"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "子句集/clause set",
+        "zh": "子句集",
+        "importance": 0.081153,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 34,
+  "max_depth": 4,
+  "orphan_count": 21,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化",
+    "root_id": "__chapter__/命题逻辑的公理化",
+    "root_zh": "命题逻辑的公理化",
+    "virtual_root": true,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 54,
+    "n_edges_raw": 59,
+    "n_hierarchy_candidates": 64,
+    "attached_orphans": 3,
+    "alias_merged": 0
+  }
+}

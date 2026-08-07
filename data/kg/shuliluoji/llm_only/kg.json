@@ -1,9 +1,9 @@
 {
   "course_id": "shuliluoji",
   "lecture_id": null,
-  "triplet_count": 770,
-  "entity_count": 686,
-  "edge_count": 739,
+  "triplet_count": 737,
+  "entity_count": 682,
+  "edge_count": 737,
   "entities": [
     {
       "id": "1+101=110/proposition1+101=110",
@@ -6005,17 +6005,6 @@
       "mention_count": 1
     },
     {
-      "id": "积分/积分",
-      "name": "积分/积分",
-      "zh": "积分",
-      "en": "积分",
-      "aliases": [],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
-      ],
-      "mention_count": 1
-    },
-    {
       "id": "空子句/Empty clause",
       "name": "空子句/Empty clause",
       "zh": "空子句",
@@ -6485,17 +6474,6 @@
       "mention_count": 1
     },
     {
-      "id": "签到/签到",
-      "name": "签到/签到",
-      "zh": "签到",
-      "en": "签到",
-      "aliases": [],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
-      ],
-      "mention_count": 1
-    },
-    {
       "id": "简单命题/simple proposition",
       "name": "简单命题/simple proposition",
       "zh": "简单命题",
@@ -6683,17 +6661,6 @@
         "shuliluoji_2_1362600_1567300"
       ],
       "mention_count": 2
-    },
-    {
-      "id": "考试/考试",
-      "name": "考试/考试",
-      "zh": "考试",
-      "en": "考试",
-      "aliases": [],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
-      ],
-      "mention_count": 1
     },
     {
       "id": "联结词/logical connective",
@@ -7552,17 +7519,6 @@
       "aliases": [],
       "cue_ids": [
         "shuliluoji_16_691600_749700"
-      ],
-      "mention_count": 1
-    },
-    {
-      "id": "选择题/选择题",
-      "name": "选择题/选择题",
-      "zh": "选择题",
-      "en": "选择题",
-      "aliases": [],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
       ],
       "mention_count": 1
     },
@@ -17296,52 +17252,6 @@
       ]
     },
     {
-      "subject": "考试/考试",
-      "object": "选择题/选择题",
-      "abstract_relation": "part_of",
-      "concrete_relation": "包含",
-      "statement_direction": "subject_to_object",
-      "attribute_category": "关系属性",
-      "natural_statement": "考试包含选择题",
-      "description": "考试包含50道选择题。",
-      "provenance": [
-        {
-          "cue_id": "shuliluoji_17_115500_150600",
-          "lecture_id": "17",
-          "context": "共50道选择题。",
-          "start_sec": 115.5,
-          "end_sec": 150.6,
-          "ppt_page_index": 3
-        }
-      ],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
-      ]
-    },
-    {
-      "subject": "积分/积分",
-      "object": "签到/签到",
-      "abstract_relation": "depend_on",
-      "concrete_relation": "依赖于",
-      "statement_direction": "subject_to_object",
-      "attribute_category": "关系属性",
-      "natural_statement": "积分依赖于签到",
-      "description": "积分依赖于签到，只有签到的人才能获得积分。",
-      "provenance": [
-        {
-          "cue_id": "shuliluoji_17_115500_150600",
-          "lecture_id": "17",
-          "context": "只有签到的人才能获得积分",
-          "start_sec": 115.5,
-          "end_sec": 150.6,
-          "ppt_page_index": 3
-        }
-      ],
-      "cue_ids": [
-        "shuliluoji_17_115500_150600"
-      ]
-    },
-    {
       "subject": "等值演算/equivalent calculus",
       "object": "命题逻辑的演算/propositional logic calculus",
       "abstract_relation": "part_of",
@@ -25607,6 +25517,8 @@
       "property_of": 90,
       "belong_to": 171,
       "synonym_of": 102
-    }
+    },
+    "entity_count": 682,
+    "edge_count": 737
   }
 }

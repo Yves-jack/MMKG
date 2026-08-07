@@ -47,7 +47,7 @@ def describe_entity(
         return f"{entity_id.split('/')[0]}是{course_context or '本课程'}中的重要概念。"
 
     prompt = format_prompt(
-        "teaching/entity_define.txt",
+        "stage3/entity_define.txt",
         course_context=course_context or "（无）",
         entity_name=entity_id,
         contexts=contexts,

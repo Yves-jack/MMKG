@@ -122,6 +122,55 @@ class EntityMergeResult:
         }
 
 
+def _zh_hits_textbook(name: str, textbook_entity_names: set[str]) -> bool:
+    """完整名或中文主名命中教材实体。"""
+    if name in textbook_entity_names:
+        return True
+    _, zh, _ = parse_entity(name)
+    if not zh:
+        return False
+    zh_key = _normalize_lookup(zh)
+    for tb in textbook_entity_names:
+        _, tb_zh, _ = parse_entity(tb)
+        if tb_zh and _normalize_lookup(tb_zh) == zh_key:
+            return True
+    return False
+
+
+def prefer_formal_name(
+    current: str,
+    candidate: str,
+    *,
+    textbook_entity_names: set[str] | None = None,
+) -> str:
+    """在两个等价名中选更正式、更合适的 canonical。
+
+    优先级：教材实体 > 中英双语 > 非口语 > 更短中文主名（术语头词）> 更短全名
+    > 字典序更小（稳定）。
+    """
+    textbook_entity_names = textbook_entity_names or set()
+
+    def score(name: str) -> tuple:
+        _, zh, en = parse_entity(name)
+        informal = any(tok in (zh or "") for tok in ("东西", "那个", "这种", "啥"))
+        return (
+            1 if _zh_hits_textbook(name, textbook_entity_names) else 0,
+            1 if zh and en else 0,
+            1 if zh else 0,
+            0 if informal else 1,
+            # 更短的中文主名通常是标准术语（谓词 vs 命题函数；论域 vs 个体域）
+            -(len(zh) if zh else 10**6),
+            -len(name),
+        )
+
+    sc, cc = score(current), score(candidate)
+    if sc > cc:
+        return current
+    if cc > sc:
+        return candidate
+    return current if current <= candidate else candidate
+
+
 def build_entity_merge_map(
     entity_names: list[str],
     *,
@@ -134,11 +183,9 @@ def build_entity_merge_map(
     merge_map: dict[str, str] = {}
 
     def prefer_canonical(current: str, candidate: str) -> str:
-        if current in textbook_entity_names and candidate not in textbook_entity_names:
-            return current
-        if candidate in textbook_entity_names and current not in textbook_entity_names:
-            return candidate
-        return current if len(current) <= len(candidate) else candidate
+        return prefer_formal_name(
+            current, candidate, textbook_entity_names=textbook_entity_names
+        )
 
     for name in entity_names:
         canonical, zh, en = parse_entity(name)
@@ -158,10 +205,64 @@ def build_entity_merge_map(
             prev = en_to_canonical.get(en_key, match)
             en_to_canonical[en_key] = prefer_canonical(prev, match)
 
-        if name != match:
-            merge_map[name] = match
+    # 二次回填：正式名可能在后续候选中被替换，需把早期出现的别名一并改写
+    for name in entity_names:
+        _, zh, en = parse_entity(name)
+        zh_key = _normalize_lookup(zh) if zh else ""
+        en_key = _normalize_lookup(en) if en else ""
+        target = name
+        if zh_key and zh_key in zh_to_canonical:
+            target = zh_to_canonical[zh_key]
+        elif en_key and en_key in en_to_canonical:
+            target = en_to_canonical[en_key]
+        if name != target:
+            merge_map[name] = target
 
     return merge_map
+
+
+def build_synonym_merge_map(
+    triplets: list[dict[str, Any]],
+    *,
+    textbook_entity_names: set[str] | None = None,
+) -> dict[str, str]:
+    """按 synonym_of（等价/同义）连通分量合并，返回 alias → 正式 canonical。"""
+    textbook_entity_names = textbook_entity_names or set()
+    parent: dict[str, str] = {}
+
+    def find(x: str) -> str:
+        parent.setdefault(x, x)
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: str, b: str) -> None:
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return
+        keep = prefer_formal_name(
+            ra, rb, textbook_entity_names=textbook_entity_names
+        )
+        drop = rb if keep == ra else ra
+        parent[drop] = keep
+
+    for row in triplets:
+        rel = str(row.get("abstract_relation") or "").split("|")[0].strip()
+        if rel != "synonym_of":
+            continue
+        sub = str(row.get("subject") or "").strip()
+        obj = str(row.get("object") or "").strip()
+        if not sub or not obj or sub == obj:
+            continue
+        union(sub, obj)
+
+    out: dict[str, str] = {}
+    for name in list(parent):
+        root = find(name)
+        if name != root:
+            out[name] = root
+    return out
 
 
 def _connected_components(nodes: set[str], edges: list[MergedEdge]) -> list[set[str]]:
@@ -219,8 +320,13 @@ def merge_triplets_to_kg(
     min_subgraph_size: int = 0,
     embedding_merge_map: dict[str, str] | None = None,
     textbook_entity_names: set[str] | None = None,
+    merge_synonym_of: bool = True,
 ) -> EntityMergeResult:
-    """将 Stage 1 三元组列表合并为课程级知识图谱。"""
+    """将 Stage 1 三元组列表合并为课程级知识图谱。
+
+    ``merge_synonym_of=True`` 时：``synonym_of`` 连通的实体合并为一点，
+    正式名作 canonical，其余写入 ``aliases``；同义边因自环被丢弃。
+    """
     raw_entity_names: list[str] = []
     for row in triplets:
         sub = str(row.get("subject", "")).strip()
@@ -241,8 +347,28 @@ def merge_triplets_to_kg(
             if row.get("extract_source") == "textbook" and str(row.get("object", "")).strip()
         }
 
+    string_map = build_entity_merge_map(
+        raw_entity_names, textbook_entity_names=textbook_entity_names
+    )
+
+    def _string_canonical(name: str) -> str:
+        return string_map.get(name, name)
+
+    synonym_map: dict[str, str] = {}
+    if merge_synonym_of:
+        # 先落到字符串归一名，再按 synonym_of 连通，避免双语大小写与同义边交叉
+        synonym_rows = []
+        for row in triplets:
+            syn_row = dict(row)
+            syn_row["subject"] = _string_canonical(str(row.get("subject", "")).strip())
+            syn_row["object"] = _string_canonical(str(row.get("object", "")).strip())
+            synonym_rows.append(syn_row)
+        synonym_map = build_synonym_merge_map(
+            synonym_rows, textbook_entity_names=textbook_entity_names
+        )
+
     merge_map = _compose_merge_map(
-        build_entity_merge_map(raw_entity_names, textbook_entity_names=textbook_entity_names),
+        _compose_merge_map(string_map, synonym_map),
         embedding_merge_map,
     )
 
@@ -350,6 +476,7 @@ def merge_triplets_to_kg(
         "raw_entity_mentions": len(raw_entity_names),
         "merged_entity_count": len(entities),
         "merged_alias_count": len(merge_map),
+        "synonym_merge_count": len(synonym_map),
         "output_edge_count": len(edges),
         "relation_counts": dict(Counter(e.abstract_relation for e in edges)),
     }

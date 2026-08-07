@@ -1,0 +1,367 @@
+{
+  "lecture_id": "14",
+  "root": {
+    "id": "__chapter__/集合",
+    "zh": "集合",
+    "importance": 0.625048,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "联结词/connective",
+        "zh": "联结词",
+        "importance": 0.595284,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "二元联结词/binary connective",
+            "zh": "二元联结词",
+            "importance": 0.193305,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "析取/disjunction",
+            "zh": "析取",
+            "importance": 0.182207,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "合取/conjunction",
+            "zh": "合取",
+            "importance": 0.149187,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "否定/Negation",
+            "zh": "否定",
+            "importance": 0.142725,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.116985,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "异或/exclusive or",
+            "zh": "异或",
+            "importance": 0.018632,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "否定联结词/negation connective",
+            "zh": "否定联结词",
+            "importance": 0.015114,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "一元二元联结词/unary and binary logical connectives",
+            "zh": "一元二元联结词",
+            "importance": 0.01222,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "论域/domain of discourse",
+        "zh": "论域",
+        "importance": 0.537338,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.196977,
+            "relation": "depend_on",
+            "related": [],
+            "children": [
+              {
+                "id": "解释/interpretation(logic)",
+                "zh": "解释",
+                "importance": 0.007828,
+                "relation": "depend_on",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.372675,
+        "relation": "chapter_topic",
+        "related": [
+          "命题变项"
+        ],
+        "children": [
+          {
+            "id": "复合命题/compound proposition",
+            "zh": "复合命题",
+            "importance": 0.113649,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题常项/proposition constant",
+            "zh": "命题常项",
+            "importance": 0.078868,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题变项/proposition variable",
+            "zh": "命题变项",
+            "importance": 0.078868,
+            "relation": "related_with",
+            "related": [
+              "命题"
+            ],
+            "children": []
+          },
+          {
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.064724,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题逻辑/propositional logic",
+        "zh": "命题逻辑",
+        "importance": 0.283078,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": [
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.059539,
+            "relation": "belong_to",
+            "related": [
+              "蕴涵词"
+            ],
+            "children": [
+              {
+                "id": "蕴涵词/implication operator",
+                "zh": "蕴涵词",
+                "importance": 0.043973,
+                "relation": "related_with",
+                "related": [
+                  "推理演算"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题联结词/propositional connective",
+            "zh": "命题联结词",
+            "importance": 0.04792,
+            "relation": "part_of",
+            "related": [
+              "运算符"
+            ],
+            "children": [
+              {
+                "id": "等价/equivalence",
+                "zh": "等价",
+                "importance": 0.06777,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "运算符/operator",
+                "zh": "运算符",
+                "importance": 0.017527,
+                "relation": "related_with",
+                "related": [
+                  "命题联结词"
+                ],
+                "children": []
+              },
+              {
+                "id": "蕴含的析取否定形式/disjunctive negation form of implication",
+                "zh": "蕴含的析取否定形式",
+                "importance": 0.01247,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题演算/Propositional Calculus",
+            "zh": "命题演算",
+            "importance": 0.034616,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "真值表法/Truth Table Method",
+            "zh": "真值表法",
+            "importance": 0.03005,
+            "relation": "depend_on",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题逻辑的基本概念/basic concepts of propositional logic",
+            "zh": "命题逻辑的基本概念",
+            "importance": 0.026463,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "公式/formula",
+            "zh": "公式",
+            "importance": 0.023801,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "等式/equation",
+                "zh": "等式",
+                "importance": 0.011325,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "前提/premise",
+                "zh": "前提",
+                "importance": 0.00163,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "真值表/truth table",
+        "zh": "真值表",
+        "importance": 0.256484,
+        "relation": "chapter_topic",
+        "related": [
+          "命题P的否定与命题P的真值关系"
+        ],
+        "children": [
+          {
+            "id": "真值/truth value",
+            "zh": "真值",
+            "importance": 0.205433,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "真/true",
+                "zh": "真",
+                "importance": 0.025298,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "假/false",
+                "zh": "假",
+                "importance": 0.024717,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "成真指派/true assignment",
+            "zh": "成真指派",
+            "importance": 0.084613,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "命题P的否定与命题P的真值关系/truth relation between negation of proposition P and proposition P",
+            "zh": "命题P的否定与命题P的真值关系",
+            "importance": 0.067217,
+            "relation": "related_with",
+            "related": [
+              "真值表"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "初始符号/initial symbols",
+        "zh": "初始符号",
+        "importance": 0.232664,
+        "relation": "chapter_topic",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.207859,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "P与Q的合取/conjunction of P and Q",
+        "zh": "P与Q的合取",
+        "importance": 0.09731,
+        "relation": "attach",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "n_nodes": 40,
+  "max_depth": 4,
+  "orphan_count": 22,
+  "meta": {
+    "chapter": "第9章 集合",
+    "root_id": "__chapter__/集合",
+    "root_zh": "集合",
+    "virtual_root": true,
+    "max_nodes": 40,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 65,
+    "n_edges_raw": 82,
+    "n_hierarchy_candidates": 80,
+    "attached_orphans": 6,
+    "alias_merged": 4
+  }
+}

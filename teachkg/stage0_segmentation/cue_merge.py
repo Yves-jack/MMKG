@@ -13,6 +13,7 @@ import statistics
 from dataclasses import dataclass
 
 from teachkg.schemas import SubtitleCue
+from teachkg.stage0_segmentation.ppt_page_utils import PptPage, primary_page_for_cue
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +43,11 @@ class CueMergeSettings:
     incomplete_sentence_weight: float = 0.25
     max_passes: int = 3
     absorb_short_duration_sec: float = 3.0
-    absorb_short_chars: int = 8
+    absorb_short_chars: int = 20
+    # 短口语段吸收邻段时允许的最大间隔（不按 PPT 跨页收紧）
+    absorb_max_gap_sec: float = 3.0
+    # 同一主归属 PPT 页的 cue 合并为一段（与截图大致一一对应）
+    merge_by_ppt_page: bool = True
 
 
 @dataclass
@@ -65,7 +70,9 @@ def settings_from_config(cfg: dict) -> CueMergeSettings:
         incomplete_sentence_weight=cfg.get("incomplete_sentence_weight", 0.25),
         max_passes=cfg.get("max_passes", 3),
         absorb_short_duration_sec=cfg.get("absorb_short_duration_sec", 3.0),
-        absorb_short_chars=cfg.get("absorb_short_chars", 8),
+        absorb_short_chars=cfg.get("absorb_short_chars", 20),
+        absorb_max_gap_sec=cfg.get("absorb_max_gap_sec", 3.0),
+        merge_by_ppt_page=cfg.get("merge_by_ppt_page", True),
     )
 
 
@@ -280,6 +287,8 @@ def absorb_subthreshold_cues(
 
             best_neighbor = -1
             best_gap = float("inf")
+            # 短口语段：用 absorb_max_gap，不因跨 PPT 页把间隔压到 0.5s
+            max_gap = float(settings.absorb_max_gap_sec)
             for neighbor_idx in (idx - 1, idx + 1):
                 if neighbor_idx < 0 or neighbor_idx >= len(result):
                     continue
@@ -289,7 +298,6 @@ def absorb_subthreshold_cues(
                 else:
                     left, right = cue, neighbor
                 gap = _gap_sec(left, right)
-                max_gap = _effective_max_gap(left, right, settings, boundaries)
                 if gap <= max_gap and gap < best_gap:
                     best_gap = gap
                     best_neighbor = neighbor_idx
@@ -354,10 +362,44 @@ def merge_overlapping_cues(
     return sorted(kept, key=lambda c: c.start_sec)
 
 
+def merge_cues_by_primary_page(
+    cues: list[SubtitleCue],
+    pages: list[PptPage],
+) -> list[SubtitleCue]:
+    """将主归属同一 PPT 页的 cue 合并为一段，使片段与截图大致一一对应。"""
+    if not pages or len(cues) < 2:
+        return list(cues)
+
+    buckets: dict[int, list[SubtitleCue]] = {}
+    for cue in sorted(cues, key=lambda c: (c.start_sec, c.end_sec)):
+        page = primary_page_for_cue(cue, pages)
+        if page is None:
+            continue
+        buckets.setdefault(page.index, []).append(cue)
+
+    merged: list[SubtitleCue] = []
+    for page_idx in sorted(buckets):
+        group = buckets[page_idx]
+        combined = group[0]
+        for nxt in group[1:]:
+            combined = _combine(combined, nxt)
+        merged.append(combined)
+
+    logger.info(
+        "PPT-page merge: %d cues → %d (pages with speech=%d / %d)",
+        len(cues),
+        len(merged),
+        len(merged),
+        len(pages),
+    )
+    return merged
+
+
 def merge_adjacent_cues(
     cues: list[SubtitleCue],
     settings: CueMergeSettings | None = None,
     ppt_boundaries: list[float] | None = None,
+    ppt_pages: list[PptPage] | None = None,
 ) -> list[SubtitleCue]:
     settings = settings or CueMergeSettings()
     if not settings.enabled or len(cues) < 2:
@@ -365,6 +407,10 @@ def merge_adjacent_cues(
 
     sorted_cues = sorted(cues, key=lambda c: c.start_sec)
     current = sorted_cues
+
+    if settings.merge_by_ppt_page and ppt_pages:
+        current = merge_cues_by_primary_page(current, ppt_pages)
+
     for _ in range(max(settings.max_passes, 1)):
         nxt = _single_pass_merge(current, settings, ppt_boundaries)
         if len(nxt) == len(current):

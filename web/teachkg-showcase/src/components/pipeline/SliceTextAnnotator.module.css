@@ -1,0 +1,202 @@
+.root {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #d5dde8;
+  font-family: var(--font);
+  font-size: 13.5px;
+  line-height: 1.95;
+}
+
+.toneNew {
+  --ann-fallback: #3ecf8e;
+}
+
+.toneOld {
+  --ann-fallback: #f0b429;
+}
+
+.meta {
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 完全行内，不打断正文排版 */
+.ann {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.annSrc {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  white-space: inherit;
+  word-break: inherit;
+  vertical-align: baseline;
+}
+
+/* 仅着色/划线，不改盒模型 */
+.uw {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 16%, transparent);
+  text-decoration: underline;
+  text-decoration-color: var(--ann-color, var(--ann-fallback, #3ecf8e));
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: none;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/*
+ * KaTeX 根节点是 inline-block，父级 text-decoration 画不到公式上；
+ * 给 .katex 单独补背景 + 底边，视觉上与正文下划线对齐。
+ */
+.uw :global(.katex) {
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 16%, transparent);
+  border-bottom: 2px solid var(--ann-color, var(--ann-fallback, #3ecf8e));
+  padding: 0 1px 1px;
+  margin: 0 1px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.annSrc:hover .uw,
+.ann:hover .uw,
+.annHot .uw {
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 26%, transparent);
+}
+
+.annSrc:hover .uw :global(.katex),
+.ann:hover .uw :global(.katex),
+.annHot .uw :global(.katex) {
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 26%, transparent);
+}
+
+.annActive .uw,
+.annHot.annActive .uw {
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 32%, transparent);
+  text-decoration-thickness: 2.5px;
+}
+
+.annActive .uw :global(.katex),
+.annHot.annActive .uw :global(.katex) {
+  background: color-mix(in srgb, var(--ann-color, var(--ann-fallback, #3ecf8e)) 32%, transparent);
+  border-bottom-width: 2.5px;
+}
+
+/* 浮层与划线联动：同色描边 + 指向高亮的小三角 */
+.annLabels {
+  position: fixed;
+  z-index: 10050;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  max-width: min(420px, calc(100vw - 16px));
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--ann-color, var(--accent, #3ecf8e)) 55%, var(--line, #2a3344));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-elev, #151a21) 96%, #000);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--ann-color, #3ecf8e) 18%, transparent);
+  pointer-events: auto;
+  white-space: normal;
+}
+
+.annLabels::before {
+  content: "";
+  position: absolute;
+  left: var(--caret-x, 16px);
+  width: 10px;
+  height: 10px;
+  background: color-mix(in srgb, var(--bg-elev, #151a21) 96%, #000);
+  border-left: 1px solid color-mix(in srgb, var(--ann-color, var(--accent, #3ecf8e)) 55%, var(--line, #2a3344));
+  border-top: 1px solid color-mix(in srgb, var(--ann-color, var(--accent, #3ecf8e)) 55%, var(--line, #2a3344));
+  transform: rotate(45deg);
+}
+
+.annLabelsBelow::before {
+  top: -6px;
+}
+
+.annLabelsAbove {
+  transform: translateY(-100%);
+}
+
+.annLabelsAbove::before {
+  bottom: -6px;
+  top: auto;
+  transform: rotate(225deg);
+}
+
+.annLabelsHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 2px;
+  padding: 0 0 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--line, #2a3344) 80%, transparent);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--muted, #8b97a8);
+}
+
+.annLabelsHeadMark {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--ann-color, var(--accent, #3ecf8e));
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ann-color, #3ecf8e) 70%, #000);
+  flex-shrink: 0;
+}
+
+.annLabel {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 3px 2px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Microsoft YaHei", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+  opacity: 0.92;
+}
+
+.annLabel:hover,
+.annLabelOn {
+  opacity: 1;
+  background: color-mix(in srgb, var(--ann-color, #3ecf8e) 14%, transparent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

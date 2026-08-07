@@ -1,0 +1,45 @@
+﻿TOC extracted from OCR: D:\Yves\AutoEduKG\data\md-former\CS2501-离散数学（数理逻辑与集合论）\数理逻辑与集合论.md
+=== Importance PR Compare ===
+nodes=1482 rels=2754 toc=87
+seeds baseline=141 improved=130 jaccard=0.922
+overlap baseline vs improved: {'top10': 0.7, 'top20': 0.8, 'top50': 0.84, 'top100': 0.71}
+overlap classic vs improved: {'top10': 0.7, 'top20': 0.75, 'top50': 0.72, 'top100': 0.6}
+spearman@100 baseline vs improved: 0.854
+
+--- Top10 baseline ---
+  0.9500  集合/set
+  0.8906  命题逻辑/propositional logic
+  0.8395  谓词逻辑/Predicate Logic
+  0.8167  公式/formula
+  0.7168  数理逻辑与集合论/Mathematical Logic and Set Theory
+  0.6823  命题/proposition
+  0.6727  关系/relation
+  0.6299  数理逻辑/Mathematical Logic
+  0.5700  公理/axiom
+  0.5654  联结词/connective
+
+--- Top10 improved ---
+  0.9806  数理逻辑与集合论/Mathematical Logic and Set Theory
+  0.8014  离散数学/Discrete Mathematics
+  0.7634  谓词逻辑/Predicate Logic
+  0.7134  数理逻辑/Mathematical Logic
+  0.6831  命题逻辑/propositional logic
+  0.6562  集合/set
+  0.6483  公式/formula
+  0.5819  论域/domain of discourse
+  0.5449  集合论/Set Theory
+  0.5102  联结词/connective
+
+--- Top10 classic entity_sorted ---
+  0.0201  集合/set
+  0.0163  公式/formula
+  0.0120  命题逻辑/propositional logic
+  0.0110  关系/relation
+  0.0110  谓词逻辑/Predicate Logic
+  0.0104  一阶语言/First-order Language
+  0.0104  数理逻辑与集合论/Mathematical Logic and Set Theory
+  0.0100  离散数学/Discrete Mathematics
+  0.0096  函数/function
+  0.0092  联结词/connective
+
+Wrote → D:\Yves\VAT-KG\data\textbook\CS2501-离散数学（数理逻辑与集合论）\importance_pr_compare

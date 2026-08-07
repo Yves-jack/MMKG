@@ -10,7 +10,18 @@
 |------|------|
 | `entity_final.json` | 1482 实体：`name`, `definition`, `theorems[]`, `importance` |
 | `relations_final.json` | 2754 关系：`subject`, `predicate`, `object`, `description`, `context` |
-| `entity_sorted.json` | 实体 PageRank 重要性分数 |
+| `entity_sorted.json` | 当前与 `entity_sorted_ppr.json` 同步（`--promote` 后） |
+| `entity_sorted_ppr.json` | 改进 Biased-PPR 全局分 |
+| `entity_sorted_classic_pr.json` | 原经典 PageRank 备份 |
+| `importance_bundle.json` | 全局 + 分章 PPR |
+| `toc.md` / `toc_source.txt` | OCR 目录提取 |
+
+```bash
+python scripts/teaching/run_importance_pr_build.py --promote
+python scripts/teaching/run_importance_feedback.py --lecture 1   # α 消融
+python scripts/teaching/run_importance_feedback.py --write       # 整课正式反馈
+python scripts/teaching/run_importance_feedback.py --suggest-map
+```
 
 配置：`configs/teaching.yaml` → `stage1.textbook_kg`
 

@@ -32,6 +32,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--mock", action="store_true")
     parser.add_argument("--no-check", action="store_true", help="跳过 Retrieval Checker")
     parser.add_argument("--json", action="store_true", help="输出完整 JSON")
+    parser.add_argument("--image", default=None, help="附带图片路径")
+    parser.add_argument("--video", default=None, help="附带视频路径（采样帧理解）")
+    parser.add_argument(
+        "--file",
+        dest="files",
+        action="append",
+        default=None,
+        help="附带文件路径，可重复传入（txt/md/pdf/docx 等）",
+    )
     return parser.parse_args()
 
 
@@ -57,8 +66,11 @@ def _print_result(result: dict, *, as_json: bool) -> None:
 
 def main() -> None:
     args = parse_args()
-    if not args.interactive and not args.question:
-        raise SystemExit("请提供 --question 或使用 --interactive")
+    has_media = bool(args.image or args.video or args.files)
+    if not args.interactive and not args.question and not has_media:
+        raise SystemExit(
+            "请提供 --question，或至少提供 --image/--video/--file，或使用 --interactive"
+        )
 
     config = TeachKGConfig.from_yaml(args.config)
     rag = MMKGRAG(config, project_root=ROOT, mock=args.mock)
@@ -70,11 +82,14 @@ def main() -> None:
         return
 
     result = rag.answer(
-        args.question,
+        args.question or "",
         args.course_id,
         lecture_id=lecture_id,
         top_k=args.top_k,
         check=check,
+        image=args.image,
+        files=args.files,
+        video=args.video,
     )
     _print_result(result, as_json=args.json)
 
