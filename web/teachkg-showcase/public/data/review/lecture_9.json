@@ -1,0 +1,965 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "9",
+  "title": "第9讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/9_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/9_1.mp4",
+  "duration_sec": 3045.3,
+  "segments": [
+    {
+      "id": "数理逻辑_9_334600_1464300",
+      "index": 1,
+      "start_sec": 334.6,
+      "end_sec": 1464.3,
+      "title": "我们今天继续讲完第六章的内容"
+    },
+    {
+      "id": "数理逻辑_9_1466000_2326400",
+      "index": 2,
+      "start_sec": 1466.0,
+      "end_sec": 2326.4,
+      "title": "定理1：|— (∀x)(∀y)P(x,y)…"
+    },
+    {
+      "id": "数理逻辑_9_2328200_2352900",
+      "index": 3,
+      "start_sec": 2328.2,
+      "end_sec": 2352.9,
+      "title": "这是伽马，这是阿尔法，这是贝塔"
+    },
+    {
+      "id": "数理逻辑_9_2357200_3045300",
+      "index": 4,
+      "start_sec": 2357.2,
+      "end_sec": 3045.3,
+      "title": "现在我们需要证明后件，即证明伽马蕴含阿尔法和…"
+    }
+  ],
+  "points": [
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.492352,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "命题属于前提"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "具有属性",
+          "natural_statement": "命题具有属性否定"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_2357200_3045300",
+          "text": "现在我们需要证明后件，即证明伽马蕴含阿尔法和伽马蕴含贝塔。具体而言，需要证明以下两个命题：\n1. (∀x)(P(x)∧Q(x)) → P(x)\n2. (∀x)(P(x)∧Q(x)) → Q(x)\n\n这两个命题是对称的，我们以第一个为例进行证明：\n第一步：根据公理50，将全称量词去掉，得到 (∀x)(P(x)∧Q(x)) → (P(x)∧Q(x))\n第二步：使用公理17，即 (P(x)∧Q(x)) → P(x)\n第三步：应用三段论（公理12）作用于前两步，得到 (∀x)(P(x)∧Q(x)) → P(x)\n第四步：重新添加全称量词，完成证明\n\n同理可证第二个命题。得到这两个结果后，运用公理19即可证明原定理。\n\n接下来证明定理4：\n(∀x)P(x) ∧ (∀x)Q(x) → (∀x)(P(x)∧Q(x))\n证明步骤：\n1. 使用公理17得到 (∀x)P(x) ∧ (∀x)Q(x) → (∀x",
+          "start_sec": 2357.2,
+          "end_sec": 3045.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_2357200_3045300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 1
+    },
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.445076,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。",
+      "definition": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。它们与基本推理公式配合使用，确保逻辑的严谨性。例如，前提引入规则允许在推理过程中随时引入前提，而条件证明规则则建立了条件句推导的等价性。推理规则的有效性是逻辑系统的基石，能够保持普遍有效性，并广泛应用于命题逻辑和谓词逻辑的证明演算中。",
+      "neighbors": [
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于推理规则"
+        },
+        {
+          "subject": "三段论/syllogism",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "具有",
+          "natural_statement": "三段论具有推理规则"
+        },
+        {
+          "subject": "前件存在规则/existential introduction of the antecedent rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "前件存在规则属于推理规则"
+        },
+        {
+          "subject": "后件概括规则/generalization of the consequent rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "后件概括规则属于推理规则"
+        },
+        {
+          "subject": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "谓词逻辑的公理系统依赖推理规则"
+        },
+        {
+          "subject": "加头规则/Δ rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "加头规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+      "zh": "谓词逻辑的公理系统",
+      "importance": 0.394049,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "谓词逻辑的公理系统是数理逻辑中一种完全形式化的理论体系，它从若干普遍有效式的公理出发，结合推理…",
+      "definition": "谓词逻辑的公理系统是数理逻辑中一种完全形式化的理论体系，它从若干普遍有效式的公理出发，结合推理规则来推导逻辑真理。该系统建立在命题逻辑公理系统之上，要求具有一致性（无矛盾）和语义完备性（所有真命题皆可证明）。",
+      "neighbors": [
+        {
+          "subject": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "谓词逻辑的公理系统依赖推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "变形规则/transformation rule",
+      "zh": "变形规则",
+      "importance": 0.268483,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "变形规则是公理系统中用于推理的规则，是证明过程中符号变换的依据。",
+      "definition": "变形规则是公理系统中用于推理的规则，是证明过程中符号变换的依据。通过反复使用变形规则，可以从前提推导出结论，甚至消去所有联结词得到相继式。它包括肯定前提律、传递律、反证律、蕴涵词消去律（分离规则）和蕴涵词引入律等，是自然演绎系统的核心组成部分。",
+      "neighbors": [
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于变形规则"
+        },
+        {
+          "subject": "前件存在规则/existential introduction of the antecedent rule",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "前件存在规则属于变形规则"
+        },
+        {
+          "subject": "后件概括规则/generalization of the consequent rule",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "后件概括规则属于变形规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "析取/disjunction",
+      "zh": "析取",
+      "importance": 0.238768,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真…",
+      "definition": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更复杂的逻辑公式，例如将蕴含转化为只含否定、析取和合取的公式。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "表示",
+          "natural_statement": "蕴含表示析取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于析取"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "等价于",
+          "natural_statement": "存在量词等价于析取"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "基本的推理公式/basic inference formula",
+      "zh": "基本的推理公式",
+      "importance": 0.219566,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "基本的推理公式是数理逻辑中的基本重言蕴涵式，它们是进行推理演算的基石。",
+      "definition": "基本的推理公式是数理逻辑中的基本重言蕴涵式，它们是进行推理演算的基石。这些公式可以通过真值表法验证，并具有直观的语义解释。推理规则与这些基本公式配合使用，共同构成了证明命题逻辑蕴涵关系的方法，例如分离规则（Modus Ponens）即为一个基本推理公式。",
+      "neighbors": [
+        {
+          "subject": "(1)/1",
+          "predicate": "belong_to",
+          "object": "基本的推理公式/basic inference formula",
+          "label": "属于",
+          "natural_statement": "(1)属于基本的推理公式"
+        },
+        {
+          "subject": "(2)/2",
+          "predicate": "belong_to",
+          "object": "基本的推理公式/basic inference formula",
+          "label": "属于",
+          "natural_statement": "(2)属于基本的推理公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "加头规则/Δ rule",
+      "zh": "加头规则",
+      "importance": 0.115519,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们今天继续讲完第六章的内容。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "加头规则/Δ rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "加头规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "双重否定消去/double negation elimination",
+      "zh": "双重否定消去",
+      "importance": 0.115519,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们今天继续讲完第六章的内容。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "经典逻辑/classical logic",
+          "predicate": "property_of",
+          "object": "双重否定消去/double negation elimination",
+          "label": "具有性质",
+          "natural_statement": "经典逻辑具有性质双重否定消去"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.102741,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "具有属性",
+          "natural_statement": "命题具有属性否定"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_2357200_3045300",
+          "text": "现在我们需要证明后件，即证明伽马蕴含阿尔法和伽马蕴含贝塔。具体而言，需要证明以下两个命题：\n1. (∀x)(P(x)∧Q(x)) → P(x)\n2. (∀x)(P(x)∧Q(x)) → Q(x)\n\n这两个命题是对称的，我们以第一个为例进行证明：\n第一步：根据公理50，将全称量词去掉，得到 (∀x)(P(x)∧Q(x)) → (P(x)∧Q(x))\n第二步：使用公理17，即 (P(x)∧Q(x)) → P(x)\n第三步：应用三段论（公理12）作用于前两步，得到 (∀x)(P(x)∧Q(x)) → P(x)\n第四步：重新添加全称量词，完成证明\n\n同理可证第二个命题。得到这两个结果后，运用公理19即可证明原定理。\n\n接下来证明定理4：\n(∀x)P(x) ∧ (∀x)Q(x) → (∀x)(P(x)∧Q(x))\n证明步骤：\n1. 使用公理17得到 (∀x)P(x) ∧ (∀x)Q(x) → (∀x",
+          "start_sec": 2357.2,
+          "end_sec": 3045.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_2357200_3045300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_特称否定命题翻译模板_8700_1951300",
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 9
+    },
+    {
+      "id": "(1)/1",
+      "zh": "(1)",
+      "importance": 0.099241,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们今天继续讲完第六章的内容。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "(1)/1",
+          "predicate": "belong_to",
+          "object": "基本的推理公式/basic inference formula",
+          "label": "属于",
+          "natural_statement": "(1)属于基本的推理公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "(2)/2",
+      "zh": "(2)",
+      "importance": 0.099241,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们今天继续讲完第六章的内容。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "(2)/2",
+          "predicate": "belong_to",
+          "object": "基本的推理公式/basic inference formula",
+          "label": "属于",
+          "natural_statement": "(2)属于基本的推理公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "经典逻辑/classical logic",
+      "zh": "经典逻辑",
+      "importance": 0.099241,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们今天继续讲完第六章的内容。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "经典逻辑/classical logic",
+          "predicate": "property_of",
+          "object": "双重否定消去/double negation elimination",
+          "label": "具有性质",
+          "natural_statement": "经典逻辑具有性质双重否定消去"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "分离规则/分离规则",
+      "zh": "分离规则",
+      "importance": 0.083945,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "分离规则（也称蕴涵词消去律）是数理逻辑与集合论中的一种基本推理规则，它表明若在一个论证中，假言…",
+      "definition": "分离规则（也称蕴涵词消去律）是数理逻辑与集合论中的一种基本推理规则，它表明若在一个论证中，假言命题“若A则B”（$A \\rightarrow B$）为真且其前件A也为真，则可以推断出其后件B为真，即从 $A \\rightarrow B$ 和 $A$ 可以分离出 $B$。该规则是进行逻辑推导的关键步骤。",
+      "neighbors": [
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于变形规则"
+        },
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于推理规则"
+        },
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖",
+          "natural_statement": "分离规则依赖前提"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "合取/conjunction",
+      "zh": "合取",
+      "importance": 0.058907,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或…",
+      "definition": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$ 等价于 $\\neg (\\neg A \\vee \\neg B)$。它在命题逻辑和谓词逻辑中都扮演着基础角色，并且与析取（∨）、蕴含（→）、双条件（↔）等共同构成了逻辑系统的基本运算。",
+      "neighbors": [
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "合取属于前提"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "表示",
+          "natural_statement": "蕴含表示合取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于合取"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "等价于",
+          "natural_statement": "存在量词等价于合取"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词与联结词配对法则_3700_1917600"
+      ],
+      "rank": 14
+    },
+    {
+      "id": "前件存在规则/existential introduction of the antecedent rule",
+      "zh": "前件存在规则",
+      "importance": 0.0584,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "前件存在规则是数理逻辑中一种证明规则，它允许在证明蕴涵式 $A \\rightarrow B$…",
+      "definition": "前件存在规则是数理逻辑中一种证明规则，它允许在证明蕴涵式 $A \\rightarrow B$ 时，如果能够证明 $B$ 成立，并且 $A$ 被自由地引入到证明中，那么就可以推导出 $A \\rightarrow B$。该规则的运用需要注意避免前提（前件）的自由引入，以防止出现对整个命题的错误概括。",
+      "neighbors": [
+        {
+          "subject": "前件存在规则/existential introduction of the antecedent rule",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "前件存在规则属于变形规则"
+        },
+        {
+          "subject": "前件存在规则/existential introduction of the antecedent rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "前件存在规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "后件概括规则/generalization of the consequent rule",
+      "zh": "后件概括规则",
+      "importance": 0.057428,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "后件概括规则（Generalization of the Consequent Rule）是命…",
+      "definition": "后件概括规则（Generalization of the Consequent Rule）是命题逻辑中一种无效的推理形式，其错误在于从前件的真和后件的真推导出蕴涵式的前件真。尽管$A \\rightarrow B$为真且$B$为真，但不能因此断定$A$为真，这可能导致逻辑谬误。",
+      "neighbors": [
+        {
+          "subject": "后件概括规则/generalization of the consequent rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "后件概括规则属于推理规则"
+        },
+        {
+          "subject": "后件概括规则/generalization of the consequent rule",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "后件概括规则属于变形规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "存在量词/existential quantifier",
+      "zh": "存在量词",
+      "importance": 0.056802,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变…",
+      "definition": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变量至少存在一个使其命题为真的量词。它通常用符号“∃”表示，表示“至少存在一个”或“有些”。例如，命题(∃x)Q(x)为真，当且仅当在论域中至少存在一个元素x0，使得Q(x0)为真。存在量词∃是析取词∨的推广，在有限域下，(∃x)P(x)可以表示为命题逻辑中由析取词描述的公式。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "等价于",
+          "natural_statement": "存在量词等价于析取"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "等价于",
+          "natural_statement": "存在量词等价于合取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于存在量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square",
+        "tech_finite_domain_expand",
+        "tech_overlap_quantifier_order"
+      ],
+      "rank": 17
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.054251,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于析取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于合取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于存在量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_theo_量词与联结词配对法则_3700_1917600",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square"
+      ],
+      "rank": 18
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.048973,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。",
+      "definition": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提条件的顺序交换（如 P → (Q → R) = Q → (P → R)），同时其逆否形式 ¬Q → ¬P 与原蕴含式等值。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "property_of",
+          "object": "前提/premise",
+          "label": "具有属性",
+          "natural_statement": "前提具有属性蕴含"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "表示",
+          "natural_statement": "蕴含表示析取"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "表示",
+          "natural_statement": "蕴含表示合取"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "推理过程/inference process",
+      "zh": "推理过程",
+      "importance": 0.038414,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明…",
+      "definition": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明A⇒B的形式。它由一系列公式序列组成，每个公式要么是前提，要么是通过推理规则（如肯定前件、否定后件）从前面公式推导而来，直至得出最终结论。",
+      "neighbors": [
+        {
+          "subject": "推理过程/inference process",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖",
+          "natural_statement": "推理过程依赖前提"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "等价关系/equivalence relation",
+      "zh": "等价关系",
+      "importance": 0.033777,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系…",
+      "definition": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系R，它具有自反性、对称性和传递性。等价关系将集合A中的元素划分为若干个互不相交的子集（等价类），这些等价类的全体构成A的划分。例如，在有理数域$Q$上，定义$a/b \\simeq c/d$当且仅当$a \\cdot d = b \\cdot c$，这构成了一个等价关系。",
+      "neighbors": [
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "depend_on",
+          "object": "对称/symmetric",
+          "label": "等价于",
+          "natural_statement": "等价关系等价于对称"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_2357200_3045300",
+          "text": "现在我们需要证明后件，即证明伽马蕴含阿尔法和伽马蕴含贝塔。具体而言，需要证明以下两个命题：\n1. (∀x)(P(x)∧Q(x)) → P(x)\n2. (∀x)(P(x)∧Q(x)) → Q(x)\n\n这两个命题是对称的，我们以第一个为例进行证明：\n第一步：根据公理50，将全称量词去掉，得到 (∀x)(P(x)∧Q(x)) → (P(x)∧Q(x))\n第二步：使用公理17，即 (P(x)∧Q(x)) → P(x)\n第三步：应用三段论（公理12）作用于前两步，得到 (∀x)(P(x)∧Q(x)) → P(x)\n第四步：重新添加全称量词，完成证明\n\n同理可证第二个命题。得到这两个结果后，运用公理19即可证明原定理。\n\n接下来证明定理4：\n(∀x)P(x) ∧ (∀x)Q(x) → (∀x)(P(x)∧Q(x))\n证明步骤：\n1. 使用公理17得到 (∀x)P(x) ∧ (∀x)Q(x) → (∀x",
+          "start_sec": 2357.2,
+          "end_sec": 3045.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_2357200_3045300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "对称/symmetric",
+      "zh": "对称",
+      "importance": 0.031011,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "对称（symmetric）是二元关系中的一个性质，在数学和逻辑学中描述关系 R 在集合 A 上…",
+      "definition": "对称（symmetric）是二元关系中的一个性质，在数学和逻辑学中描述关系 R 在集合 A 上的反转不变性。如果对于集合 A 中的任意元素 x 和 y，当 x R y 成立时，y R x 也一定成立，则称关系 R 是对称的。对称性是构建等价关系（等价关系是自反、对称、传递关系）的必要条件之一，常用于分析数学结构和逻辑推理的性质。",
+      "neighbors": [
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "depend_on",
+          "object": "对称/symmetric",
+          "label": "等价于",
+          "natural_statement": "等价关系等价于对称"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_2357200_3045300",
+          "text": "现在我们需要证明后件，即证明伽马蕴含阿尔法和伽马蕴含贝塔。具体而言，需要证明以下两个命题：\n1. (∀x)(P(x)∧Q(x)) → P(x)\n2. (∀x)(P(x)∧Q(x)) → Q(x)\n\n这两个命题是对称的，我们以第一个为例进行证明：\n第一步：根据公理50，将全称量词去掉，得到 (∀x)(P(x)∧Q(x)) → (P(x)∧Q(x))\n第二步：使用公理17，即 (P(x)∧Q(x)) → P(x)\n第三步：应用三段论（公理12）作用于前两步，得到 (∀x)(P(x)∧Q(x)) → P(x)\n第四步：重新添加全称量词，完成证明\n\n同理可证第二个命题。得到这两个结果后，运用公理19即可证明原定理。\n\n接下来证明定理4：\n(∀x)P(x) ∧ (∀x)Q(x) → (∀x)(P(x)∧Q(x))\n证明步骤：\n1. 使用公理17得到 (∀x)P(x) ∧ (∀x)Q(x) → (∀x",
+          "start_sec": 2357.2,
+          "end_sec": 3045.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_2357200_3045300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "后件/succedent",
+      "zh": "后件",
+      "importance": 0.022955,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "后件(succedent)是数理逻辑与集合论中用于表示逻辑推导关系的相继式 (sequent)…",
+      "definition": "后件(succedent)是数理逻辑与集合论中用于表示逻辑推导关系的相继式 (sequent) 的组成部分，特指相继式 $\\alpha \\stackrel{s}{\\rightarrow} \\beta$ 中位于箭头右侧的公式串 $\\beta$。它代表了在给定前件 $\\alpha$ (即前提条件) 下可以推导出的结论。",
+      "neighbors": [
+        {
+          "subject": "后件/succedent",
+          "predicate": "synonym_of",
+          "object": "结论/conclusion",
+          "label": "称为",
+          "natural_statement": "后件称为结论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_1466000_2326400",
+          "text": "定理1：|— (∀x)(∀y)P(x,y) ↔ (∀y)(∀x)P(x,y)\n证明过程如下：\n\n首先证明(∀x)(∀y)P(x,y) → (∀y)(∀x)P(x,y)方向：\n1. (∀x)(∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∀x)P(x,y) （后件概括规则）\n3. (∀x)P(x,y) ⊢ (∀y)(∀x)P(x,y) （后件概括规则）\n\n再证明(∀y)(∀x)P(x,y) → (∀x)(∀y)P(x,y)方向：\n采用类似方法，通过两次应用公理50去除全称量词，再通过后件概括规则重新添加。\n\n最后使用公理16将两个方向的证明结果组合，得到双向等价关系。\n\n定理2：|— (∃x)(∀y)P(x,y) → (∀y)(∃x)P(x,y)\n证明步骤：\n1. (∀y)P(x,y) ⊢ P(x,y) （公理50）\n2. P(x,y) ⊢ (∃x)P(x,y",
+          "start_sec": 1466.0,
+          "end_sec": 2326.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_1466000_2326400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "三段论/syllogism",
+      "zh": "三段论",
+      "importance": 0.022862,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "三段论（Syllogism）是数理逻辑中一种推理形式，表示为若前件命题蕴含后件命题，则可以推导…",
+      "definition": "三段论（Syllogism）是数理逻辑中一种推理形式，表示为若前件命题蕴含后件命题，则可以推导出该蕴含关系。例如，在命题逻辑中，形式$(P\\rightarrow Q)$ $\\wedge$ $(Q\\rightarrow R)$ $\\Rightarrow$ $P\\rightarrow R$ 被称为三段论；在其他语境下，如命题 $(C \\vee D) \\rightarrow (A \\wedge \\neg B)$ ((1)(2)三段论) 也属于此类推理结构。",
+      "neighbors": [
+        {
+          "subject": "三段论/syllogism",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "具有",
+          "natural_statement": "三段论具有推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_9_334600_1464300",
+          "text": "我们今天继续讲完第六章的内容。通过一些例子来证明这套系统，帮助大家深入理解谓词逻辑的公理系统。在证明之前，我们先列出相关公理：\n\n第10条公理：α蕴含α（非独立公理，可通过公理19和17证明）\n第11条公理：Γ有两个前提α和β，可以互相调换位置\n第12条公理：三段论（若α蕴含β且β蕴含γ，则可证α蕴含γ）\n第13条公理：合并相同前提（若结论中有两个相同前提，可合并为一个）\n第14条公理：等价推出蕴含（若α等价于β，则可推出α蕴含β）\n第15条公理：等价推出反向蕴含（若α等价于β，则可推出β蕴含α）\n第16条公理：双向蕴含推出等价（若α蕴含β且β蕴含α，则可推出α等价于β）\n第17条公理：合取推出（α与β可推出α）\n第19条公理：合取引入（若α和β已证，则可推出α与β）\n第20条公理：析取引入（α蕴含α或β）\n第21条公理：析取引入（β蕴含α或β）\n第22条公理：析取三段论（若α蕴含γ且β蕴",
+          "start_sec": 334.6,
+          "end_sec": 1464.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_9_334600_1464300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

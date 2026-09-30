@@ -24,7 +24,9 @@ DEFAULT_RETRY_PAUSE_SEC = 2.0
 def resolve_llm_api_key(explicit: str | None = None) -> str | None:
     if explicit:
         return explicit
-    for key in ("DASHSCOPE_API_KEY", "LLM_API_KEY", "SJTU_LLM_API_KEY", "ASR_API_KEY"):
+    # Prefer dedicated LLM / SJTU keys so Stage1 text calls can use SJTU
+    # while ASR/OCR keep DASHSCOPE_API_KEY.
+    for key in ("LLM_API_KEY", "SJTU_LLM_API_KEY", "DASHSCOPE_API_KEY", "ASR_API_KEY"):
         value = os.environ.get(key)
         if value:
             return value
@@ -91,6 +93,10 @@ class LLMClient:
     model: str | None = None
     max_retry: int = DEFAULT_MAX_RETRY
     retry_pause_sec: float = DEFAULT_RETRY_PAUSE_SEC
+    timeout_sec: float = 120.0
+    """单次 HTTP 请求超时（秒），避免 API 挂起无日志。"""
+    sdk_max_retries: int = 2
+    """OpenAI SDK 内置重试次数（429/网络错误）；过大易长时间无输出。"""
     _client: Any = field(default=None, repr=False, init=False)
 
     def __post_init__(self) -> None:
@@ -99,6 +105,7 @@ class LLMClient:
         self.model = resolve_llm_model(self.model)
 
     def _get_client(self):
+        """懒创建带 timeout / max_retries 的 OpenAI 客户端。"""
         if self._client is None:
             from openai import OpenAI
 
@@ -106,7 +113,12 @@ class LLMClient:
                 raise RuntimeError(
                     "LLM API key required (SJTU_LLM_API_KEY / LLM_API_KEY / DASHSCOPE_API_KEY)"
                 )
-            self._client = OpenAI(api_key=self.api_key, base_url=self.base_url)
+            self._client = OpenAI(
+                api_key=self.api_key,
+                base_url=self.base_url,
+                timeout=float(self.timeout_sec),
+                max_retries=int(self.sdk_max_retries),
+            )
         return self._client
 
     def chat(

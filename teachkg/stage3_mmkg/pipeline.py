@@ -13,6 +13,12 @@ from teachkg.stage3_mmkg.entity_describe import enrich_entity_descriptions
 from teachkg.stage3_mmkg.evidence_attach import attach_multimodal_evidence
 from teachkg.stage3_mmkg.index_builder import MMKGIndex, build_and_save_index
 from teachkg.stage3_mmkg.text_embedder import TextEmbedder
+from teachkg.utils.artifact_fingerprint import (
+    can_reuse,
+    file_identity,
+    hash_jsonl_rows,
+    save_meta,
+)
 from teachkg.utils.io import load_jsonl
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 
@@ -132,13 +138,20 @@ class Stage3MMKGPipeline:
                 return clap_encoder, clip_encoder
 
             clap = ClapEncoder()
-            if not clap.warmup() and self.alignment_skip_if_unavailable:
-                clap = None
-            else:
+            if clap.warmup():
                 clap_encoder = clap
+            elif not self.alignment_skip_if_unavailable:
+                clap_encoder = clap
+            else:
+                logger.warning("CLAP warmup failed; skip CLAP scoring")
+
             clip = ChineseClipEncoder()
-            clip.warmup()
-            clip_encoder = clip
+            if clip.warmup():
+                clip_encoder = clip
+            elif not self.alignment_skip_if_unavailable:
+                clip_encoder = clip
+            else:
+                logger.warning("Chinese-CLIP warmup failed; skip CLIP scoring")
         except Exception as exc:  # noqa: BLE001
             logger.warning("Multimodal encoders unavailable: %s", exc)
         return clap_encoder, clip_encoder
@@ -169,7 +182,26 @@ class Stage3MMKGPipeline:
         else:
             step_list = list(steps)
 
-        if self.use_existing and not force and mmkg_path.is_file() and step_list == ["evidence", "alignment", "describe", "index"]:
+        kg_path = base / self.input_kg
+        triplets_path = self.kg_dir / course_id / self.input_triplets
+        meta_path = mmkg_path.with_name(mmkg_path.stem + "_input_meta.json")
+        expected_meta = {
+            "course_id": course_id,
+            "lecture_id": str(lecture_id) if lecture_id else None,
+            "kg_file": file_identity(kg_path),
+            "triplets_file": file_identity(triplets_path),
+            "triplets_fp": hash_jsonl_rows(triplets_path, lecture_id=lecture_id),
+            "clap_min_score": self.clap_min_score,
+            "clip_min_score": self.clip_min_score,
+            "describe_enabled": bool(self.describe_enabled),
+            "alignment_enabled": bool(self.alignment_enabled),
+        }
+        if (
+            self.use_existing
+            and not force
+            and step_list == ["evidence", "alignment", "describe", "index"]
+            and can_reuse(mmkg_path, meta_path, expected_meta)
+        ):
             logger.info("Reuse existing MMKG: %s", mmkg_path)
             return mmkg_path
 
@@ -222,7 +254,7 @@ class Stage3MMKGPipeline:
             report["alignment_stats"] = mmkg.get("stats", {}).get("alignment")
 
         if "describe" in step_list and self.describe_enabled:
-            logger.info("Stage 4: generating entity descriptions")
+            logger.info("Stage 3c: generating entity descriptions")
             course_context = self._load_course_context(course_id)
             llm = None if self.mock else self._make_llm_client()
             mmkg = enrich_entity_descriptions(
@@ -240,7 +272,7 @@ class Stage3MMKGPipeline:
         report["mmkg_path"] = str(mmkg_path)
 
         if "index" in step_list and self.index_enabled:
-            logger.info("Stage 5: building FAISS text index")
+            logger.info("Stage 3d: building FAISS text index")
             from teachkg.stage3_mmkg.index_builder import MMKGIndex
 
             idx_dir = self.index_dir / course_id
@@ -266,6 +298,8 @@ class Stage3MMKGPipeline:
 
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        if step_list == ["evidence", "alignment", "describe", "index"]:
+            save_meta(meta_path, expected_meta)
 
         logger.info("MMKG pipeline done → %s", mmkg_path)
         return mmkg_path

@@ -15,14 +15,18 @@ def _collect_entity_contexts(
     entity_id: str,
     triplets: list[dict[str, Any]],
     *,
+    alias_lookup: dict[str, set[str]] | None = None,
     max_chars: int = 2000,
 ) -> str:
+    from teachkg.stage3_mmkg.name_resolve import entity_name_matches
+
     parts: list[str] = []
     seen: set[str] = set()
+    lookup = alias_lookup or {entity_id: {entity_id}}
     for row in triplets:
         sub = str(row.get("subject", "")).strip()
         obj = str(row.get("object", "")).strip()
-        if entity_id not in {sub, obj}:
+        if not entity_name_matches(entity_id, sub, obj, lookup):
             continue
         ctx = str(row.get("context", "")).strip()
         if not ctx or ctx in seen:
@@ -71,6 +75,13 @@ def enrich_entity_descriptions(
     if llm_client is None and not mock:
         llm_client = LLMClient()
 
+    from teachkg.stage3_mmkg.name_resolve import build_alias_lookup
+
+    alias_lookup = build_alias_lookup(
+        list(mmkg.get("entities") or []),
+        merge_map=mmkg.get("merge_map") if isinstance(mmkg.get("merge_map"), dict) else None,
+    )
+
     entities_out: list[dict[str, Any]] = []
     described = 0
     for ent in mmkg.get("entities") or []:
@@ -79,7 +90,9 @@ def enrich_entity_descriptions(
         if item.get("description"):
             entities_out.append(item)
             continue
-        contexts = _collect_entity_contexts(entity_id, triplets)
+        contexts = _collect_entity_contexts(
+            entity_id, triplets, alias_lookup=alias_lookup
+        )
         try:
             definition = describe_entity(
                 entity_id,

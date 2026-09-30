@@ -1,0 +1,578 @@
+{
+  "lecture_id": "chapter:第9章 集合",
+  "root": {
+    "id": "__chapter__/第9章 集合",
+    "zh": "第9章 集合",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/数理逻辑",
+        "zh": "数理逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/集合论",
+        "zh": "集合论",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/公理系统",
+        "zh": "公理系统",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "公理/axiom",
+            "zh": "公理",
+            "importance": 0.271866,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题",
+        "zh": "命题",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.072955,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "复合命题/compound proposition",
+            "zh": "复合命题",
+            "importance": 0.066246,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "标准命题逻辑/standard propositional logic",
+            "zh": "标准命题逻辑",
+            "importance": 0.011498,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题逻辑",
+        "zh": "命题逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/公理",
+        "zh": "公理",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑",
+        "zh": "谓词逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "一阶谓词逻辑/first-order predicate logic",
+            "zh": "一阶谓词逻辑",
+            "importance": 0.020495,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/真值",
+        "zh": "真值",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/模型",
+        "zh": "模型",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "模型论/Model Theory",
+            "zh": "模型论",
+            "importance": 0.008183,
+            "relation": "part_of",
+            "related": [
+              "语义",
+              "语法"
+            ],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/真值表",
+        "zh": "真值表",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/理论",
+        "zh": "理论",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/布尔逻辑",
+        "zh": "布尔逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/哥德尔",
+        "zh": "哥德尔",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第9章 集合/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.46983,
+            "relation": "chapter_topic",
+            "related": [
+              "公式",
+              "命题逻辑",
+              "真值表"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "论域/domain of discourse",
+            "zh": "论域",
+            "importance": 0.445832,
+            "relation": "chapter_topic",
+            "related": [
+              "公式",
+              "函数"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "初始符号/initial symbols",
+            "zh": "初始符号",
+            "importance": 0.254034,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.172354,
+            "relation": "belong_to",
+            "related": [
+              "解释",
+              "论域"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "析取/disjunction",
+            "zh": "析取",
+            "importance": 0.162589,
+            "relation": "belong_to",
+            "related": [
+              "公式"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "二元联结词/binary connective",
+            "zh": "二元联结词",
+            "importance": 0.135931,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.123725,
+            "relation": "belong_to",
+            "related": [
+              "蕴涵词"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "否定/Negation",
+            "zh": "否定",
+            "importance": 0.119153,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第9章 集合",
+      "zh": "第9章 集合",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/数理逻辑",
+          "zh": "数理逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/集合论",
+          "zh": "集合论",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/公理系统",
+          "zh": "公理系统",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "公理/axiom",
+              "zh": "公理",
+              "importance": 0.271866,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题",
+          "zh": "命题",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "简单命题/simple proposition",
+              "zh": "简单命题",
+              "importance": 0.072955,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "复合命题/compound proposition",
+              "zh": "复合命题",
+              "importance": 0.066246,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "标准命题逻辑/standard propositional logic",
+              "zh": "标准命题逻辑",
+              "importance": 0.011498,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题逻辑",
+          "zh": "命题逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/公理",
+          "zh": "公理",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑",
+          "zh": "谓词逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "一阶谓词逻辑/first-order predicate logic",
+              "zh": "一阶谓词逻辑",
+              "importance": 0.020495,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/真值",
+          "zh": "真值",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/模型",
+          "zh": "模型",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "模型论/Model Theory",
+              "zh": "模型论",
+              "importance": 0.008183,
+              "relation": "part_of",
+              "related": [
+                "语义",
+                "语法"
+              ],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/真值表",
+          "zh": "真值表",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/理论",
+          "zh": "理论",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/布尔逻辑",
+          "zh": "布尔逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/哥德尔",
+          "zh": "哥德尔",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第9章 集合/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.46983,
+              "relation": "chapter_topic",
+              "related": [
+                "公式",
+                "命题逻辑",
+                "真值表"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "论域/domain of discourse",
+              "zh": "论域",
+              "importance": 0.445832,
+              "relation": "chapter_topic",
+              "related": [
+                "公式",
+                "函数"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "初始符号/initial symbols",
+              "zh": "初始符号",
+              "importance": 0.254034,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "函数/function",
+              "zh": "函数",
+              "importance": 0.172354,
+              "relation": "belong_to",
+              "related": [
+                "解释",
+                "论域"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "析取/disjunction",
+              "zh": "析取",
+              "importance": 0.162589,
+              "relation": "belong_to",
+              "related": [
+                "公式"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "二元联结词/binary connective",
+              "zh": "二元联结词",
+              "importance": 0.135931,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.123725,
+              "relation": "belong_to",
+              "related": [
+                "蕴涵词"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "否定/Negation",
+              "zh": "否定",
+              "importance": 0.119153,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 30,
+  "max_depth": 2,
+  "orphan_count": 23,
+  "meta": {
+    "chapter": "第9章 集合",
+    "root_zh": "第9章 集合",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "13",
+      "14"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

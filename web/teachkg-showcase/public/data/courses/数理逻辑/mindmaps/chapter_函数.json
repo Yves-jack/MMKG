@@ -1,0 +1,1055 @@
+{
+  "lecture_id": "chapter:第11章 函数",
+  "root": {
+    "id": "__chapter__/第11章 函数",
+    "zh": "第11章 函数",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/集合",
+        "zh": "集合",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数",
+        "zh": "函数",
+        "importance": 0.421174,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/函数/集合",
+            "zh": "集合",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/函数/关系",
+            "zh": "关系",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "关系/relation",
+                "zh": "关系",
+                "importance": 0.298633,
+                "relation": "chapter_topic",
+                "related": [
+                  "集合"
+                ],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "二元关系/binary relation",
+                "zh": "二元关系",
+                "importance": 0.048549,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/联结词",
+            "zh": "联结词",
+            "importance": 0.421174,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.421174,
+                "relation": "chapter_topic",
+                "related": [
+                  "公式"
+                ],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "二元联结词/binary connective",
+                "zh": "二元联结词",
+                "importance": 0.13111,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "N元联结词/n-ary connective",
+                "zh": "N元联结词",
+                "importance": 0.014762,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "二元命题联结词/binary propositional connective",
+                "zh": "二元命题联结词",
+                "importance": 0.024549,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/命题公式",
+            "zh": "命题公式",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "命题公式/propositional formula",
+                "zh": "命题公式",
+                "importance": 0.279287,
+                "relation": "chapter_topic",
+                "related": [],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "命题/proposition",
+                "zh": "命题",
+                "importance": 0.310285,
+                "relation": "chapter_topic",
+                "related": [
+                  "集合"
+                ],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/命题",
+            "zh": "命题",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "复合命题/compound proposition",
+                "zh": "复合命题",
+                "importance": 0.066246,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/n元真值函数",
+            "zh": "n元真值函数",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "真值/truth value",
+                "zh": "真值",
+                "importance": 0.176368,
+                "relation": "chapter_topic",
+                "related": [],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "函数/function",
+                "zh": "函数",
+                "importance": 0.169847,
+                "relation": null,
+                "related": [
+                  "集合"
+                ],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "真/true",
+                "zh": "真",
+                "importance": 0.02368,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/等值",
+            "zh": "等值",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "等值/equivalence",
+                "zh": "等值",
+                "importance": 0.160786,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/全集",
+            "zh": "全集",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "全集/universal set",
+                "zh": "全集",
+                "importance": 0.037956,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/函数值",
+            "zh": "函数值",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/函数/析取式",
+            "zh": "析取式",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "析取/disjunction",
+                "zh": "析取",
+                "importance": 0.162052,
+                "relation": "part_of",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/合取式",
+            "zh": "合取式",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "合取式/conjunctive form",
+                "zh": "合取式",
+                "importance": 0.031974,
+                "relation": "part_of",
+                "related": [],
+                "deps": [],
+                "children": []
+              },
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.103909,
+                "relation": "part_of",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/等价",
+            "zh": "等价",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "等价/equivalence",
+                "zh": "等价",
+                "importance": 0.008006,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/函数/析取范式",
+            "zh": "析取范式",
+            "importance": 0.35,
+            "relation": "toc_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "析取范式/disjunctive normal form",
+                "zh": "析取范式",
+                "importance": 0.029074,
+                "relation": "belong_to",
+                "related": [],
+                "deps": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "特征函数/characteristic function",
+            "zh": "特征函数",
+            "importance": 0.022862,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/联结词",
+        "zh": "联结词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "一元二元联结词/unary and binary logical connectives",
+            "zh": "一元二元联结词",
+            "importance": 0.007137,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题公式",
+        "zh": "命题公式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题",
+        "zh": "命题",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/n元真值函数",
+        "zh": "n元真值函数",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/等值",
+        "zh": "等值",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/全集",
+        "zh": "全集",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数值",
+        "zh": "函数值",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/析取式",
+        "zh": "析取式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/合取式",
+        "zh": "合取式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/等价",
+        "zh": "等价",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/析取范式",
+        "zh": "析取范式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第11章 函数/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "否定/Negation",
+            "zh": "否定",
+            "importance": 0.119153,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.092276,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "假/false",
+            "zh": "假",
+            "importance": 0.022702,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "析取词/disjunction(logical connective)",
+            "zh": "析取词",
+            "importance": 0.019288,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "值域/range",
+            "zh": "值域",
+            "importance": 0.014921,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "定义域/Domain(dom)",
+            "zh": "定义域",
+            "importance": 0.014433,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "元素/Element",
+            "zh": "元素",
+            "importance": 0.01369,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "异或/exclusive or",
+            "zh": "异或",
+            "importance": 0.010689,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第11章 函数",
+      "zh": "第11章 函数",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/集合",
+          "zh": "集合",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数",
+          "zh": "函数",
+          "importance": 0.421174,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/函数/集合",
+              "zh": "集合",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/函数/关系",
+              "zh": "关系",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "关系/relation",
+                  "zh": "关系",
+                  "importance": 0.298633,
+                  "relation": "chapter_topic",
+                  "related": [
+                    "集合"
+                  ],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "二元关系/binary relation",
+                  "zh": "二元关系",
+                  "importance": 0.048549,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/联结词",
+              "zh": "联结词",
+              "importance": 0.421174,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "联结词/connective",
+                  "zh": "联结词",
+                  "importance": 0.421174,
+                  "relation": "chapter_topic",
+                  "related": [
+                    "公式"
+                  ],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "二元联结词/binary connective",
+                  "zh": "二元联结词",
+                  "importance": 0.13111,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "N元联结词/n-ary connective",
+                  "zh": "N元联结词",
+                  "importance": 0.014762,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "二元命题联结词/binary propositional connective",
+                  "zh": "二元命题联结词",
+                  "importance": 0.024549,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/命题公式",
+              "zh": "命题公式",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "命题公式/propositional formula",
+                  "zh": "命题公式",
+                  "importance": 0.279287,
+                  "relation": "chapter_topic",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "命题/proposition",
+                  "zh": "命题",
+                  "importance": 0.310285,
+                  "relation": "chapter_topic",
+                  "related": [
+                    "集合"
+                  ],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/命题",
+              "zh": "命题",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "复合命题/compound proposition",
+                  "zh": "复合命题",
+                  "importance": 0.066246,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/n元真值函数",
+              "zh": "n元真值函数",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "真值/truth value",
+                  "zh": "真值",
+                  "importance": 0.176368,
+                  "relation": "chapter_topic",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "函数/function",
+                  "zh": "函数",
+                  "importance": 0.169847,
+                  "relation": null,
+                  "related": [
+                    "集合"
+                  ],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "真/true",
+                  "zh": "真",
+                  "importance": 0.02368,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/等值",
+              "zh": "等值",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "等值/equivalence",
+                  "zh": "等值",
+                  "importance": 0.160786,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/全集",
+              "zh": "全集",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "全集/universal set",
+                  "zh": "全集",
+                  "importance": 0.037956,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/函数值",
+              "zh": "函数值",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/函数/析取式",
+              "zh": "析取式",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "析取/disjunction",
+                  "zh": "析取",
+                  "importance": 0.162052,
+                  "relation": "part_of",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/合取式",
+              "zh": "合取式",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "合取式/conjunctive form",
+                  "zh": "合取式",
+                  "importance": 0.031974,
+                  "relation": "part_of",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                },
+                {
+                  "id": "合取/conjunction",
+                  "zh": "合取",
+                  "importance": 0.103909,
+                  "relation": "part_of",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/等价",
+              "zh": "等价",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "等价/equivalence",
+                  "zh": "等价",
+                  "importance": 0.008006,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/函数/析取范式",
+              "zh": "析取范式",
+              "importance": 0.35,
+              "relation": "toc_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "析取范式/disjunctive normal form",
+                  "zh": "析取范式",
+                  "importance": 0.029074,
+                  "relation": "belong_to",
+                  "related": [],
+                  "deps": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "特征函数/characteristic function",
+              "zh": "特征函数",
+              "importance": 0.022862,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/联结词",
+          "zh": "联结词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "一元二元联结词/unary and binary logical connectives",
+              "zh": "一元二元联结词",
+              "importance": 0.007137,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题公式",
+          "zh": "命题公式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题",
+          "zh": "命题",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/n元真值函数",
+          "zh": "n元真值函数",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/等值",
+          "zh": "等值",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/全集",
+          "zh": "全集",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数值",
+          "zh": "函数值",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/析取式",
+          "zh": "析取式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/合取式",
+          "zh": "合取式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/等价",
+          "zh": "等价",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/析取范式",
+          "zh": "析取范式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第11章 函数/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "否定/Negation",
+              "zh": "否定",
+              "importance": 0.119153,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "蕴含/implication",
+              "zh": "蕴含",
+              "importance": 0.092276,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "假/false",
+              "zh": "假",
+              "importance": 0.022702,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "析取词/disjunction(logical connective)",
+              "zh": "析取词",
+              "importance": 0.019288,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "值域/range",
+              "zh": "值域",
+              "importance": 0.014921,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "定义域/Domain(dom)",
+              "zh": "定义域",
+              "importance": 0.014433,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "元素/Element",
+              "zh": "元素",
+              "importance": 0.01369,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "异或/exclusive or",
+              "zh": "异或",
+              "importance": 0.010689,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 58,
+  "max_depth": 3,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第11章 函数",
+    "root_zh": "第11章 函数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "19"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

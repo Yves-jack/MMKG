@@ -1,5 +1,6 @@
 .env
 .env.*
+!.env.example
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -11,7 +12,17 @@ build/
 .venv/
 venv/
 
-# 大体量运行产物（不入库）
+# 密钥与本地配置
+*.pem
+*.key
+
+# 媒体与大体量运行产物（不入库）
+*.mp4
+*.avi
+*.mkv
+*.webm
+*.mov
+*.wav
 data/raw/
 data/segments/
 data/index/
@@ -20,6 +31,13 @@ data/eval/
 data/export/
 data/viz/
 data/processed/
+data/pretty_view/
+data/experiments/
+data/kg_edits/
+**/entity_embeddings.npy
+web/teachkg-showcase/.sim/
+web/teachkg-showcase/tmp/
+tmp_*/
 
 # 课程运行时 KG/MMKG（保留 llm_only 基线目录）
 data/kg/*
@@ -28,6 +46,8 @@ data/kg/*/*
 !data/kg/*/llm_only/
 !data/kg/*/llm_only/**
 
-# 保留教材母图
+# 保留教材母图（但排除 embeddings 等大文件）
 !data/textbook/
 !data/textbook/**
+data/textbook/**/entity_embeddings.npy
+*.npy

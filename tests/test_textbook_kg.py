@@ -287,7 +287,7 @@ def test_pipeline_hybrid_mock():
     cues = [
         VideoSegment(
             segment_id="test_a",
-            course_id="shuliluoji",
+            course_id="数理逻辑",
             lecture_id="10",
             source_video="",
             start_sec=0.0,
@@ -298,7 +298,7 @@ def test_pipeline_hybrid_mock():
         ),
         VideoSegment(
             segment_id="test_b",
-            course_id="shuliluoji",
+            course_id="数理逻辑",
             lecture_id="10",
             source_video="",
             start_sec=10.0,
@@ -312,7 +312,7 @@ def test_pipeline_hybrid_mock():
         PreparedCue(cue=c, check=CueCheckResult(passed=True), extract_text=c.asr_text)
         for c in cues
     ]
-    pipeline._extract_hybrid_lecture(prepared, "shuliluoji", "数理逻辑")
+    pipeline._extract_hybrid_lecture(prepared, "数理逻辑", "数理逻辑")
 
     total_tb = sum(
         int(p.triplet_validation.get("assigned_textbook_edges", 0)) for p in prepared

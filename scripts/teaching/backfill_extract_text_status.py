@@ -54,7 +54,7 @@ def annotate_row(row: dict, rule_options: dict | None = None) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default=str(ROOT / "configs/teaching.yaml"))
-    parser.add_argument("--course-id", default="shuliluoji")
+    parser.add_argument("--course-id", default="数理逻辑")
     parser.add_argument(
         "--lecture-id",
         action="append",

@@ -1,0 +1,26 @@
+.bar {
+  display: flex;
+  gap: 2px;
+}
+
+.item,
+.itemActive {
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--muted);
+  border: none;
+  background: transparent;
+}
+
+.item:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.itemActive {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}

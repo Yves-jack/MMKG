@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "sync-data": "node scripts/sync-data.mjs",
+    "build-chapter-mindmaps": "node scripts/build-chapter-mindmaps.mjs",
     "predev": "node scripts/sync-data.mjs",
     "dev": "vite",
     "prebuild": "node scripts/sync-data.mjs",

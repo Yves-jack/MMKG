@@ -14,7 +14,7 @@
   python scripts/teaching/run_textbook_correct_pilot.py --lecture 1 --write
   python scripts/teaching/run_textbook_correct_pilot.py --lecture 1 --dry-run
   python scripts/teaching/run_textbook_correct_pilot.py --lecture 1 --restore-only --write
-  python scripts/teaching/run_textbook_correct_pilot.py --lecture 1 --cue-id shuliluoji_1_808300_888100 --write
+  python scripts/teaching/run_textbook_correct_pilot.py --lecture 1 --cue-id 数理逻辑_1_808300_888100 --write
 """
 
 from __future__ import annotations
@@ -804,7 +804,7 @@ def correct_cue(
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--course", default="shuliluoji")
+    parser.add_argument("--course", default="数理逻辑")
     parser.add_argument("--lecture", default="1")
     parser.add_argument("--limit", type=int, default=0, help="仅处理前 N 个有教材边的 cue（0=全部）")
     parser.add_argument("--temperature", type=float, default=0.1)

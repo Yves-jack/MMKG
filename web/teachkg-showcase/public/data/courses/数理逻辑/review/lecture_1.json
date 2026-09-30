@@ -1,0 +1,1196 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "1",
+  "title": "第1讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/1_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/1_1.mp4",
+  "duration_sec": 3270.1,
+  "segments": [
+    {
+      "id": "数理逻辑_1_339500_773000",
+      "index": 1,
+      "start_sec": 339.5,
+      "end_sec": 773.0,
+      "title": "片段 1"
+    },
+    {
+      "id": "数理逻辑_1_774000_807300",
+      "index": 2,
+      "start_sec": 774.0,
+      "end_sec": 807.3,
+      "title": "表达更多更丰富的语义"
+    },
+    {
+      "id": "数理逻辑_1_808300_888100",
+      "index": 3,
+      "start_sec": 808.3,
+      "end_sec": 888.1,
+      "title": "好，刚才我们已经讲过了，为什么需要谓词逻辑？…"
+    },
+    {
+      "id": "数理逻辑_1_889100_980600",
+      "index": 4,
+      "start_sec": 889.1,
+      "end_sec": 980.6,
+      "title": "我们后面要介绍个体词"
+    },
+    {
+      "id": "数理逻辑_1_981600_1224300",
+      "index": 5,
+      "start_sec": 981.6,
+      "end_sec": 1224.3,
+      "title": "好，那么我们讲谓词"
+    },
+    {
+      "id": "数理逻辑_1_1225700_1312300",
+      "index": 6,
+      "start_sec": 1225.7,
+      "end_sec": 1312.3,
+      "title": "好，那么谓词的变元个数，我们刚才已经说了"
+    },
+    {
+      "id": "数理逻辑_1_1313500_1575900",
+      "index": 7,
+      "start_sec": 1313.5,
+      "end_sec": 1575.9,
+      "title": "我们其实可以把谓词叫做命题函数"
+    },
+    {
+      "id": "数理逻辑_1_1577500_1694100",
+      "index": 8,
+      "start_sec": 1577.5,
+      "end_sec": 1694.1,
+      "title": "好，接下来简单讲一下，我就不写了"
+    },
+    {
+      "id": "数理逻辑_1_1697500_2258100",
+      "index": 9,
+      "start_sec": 1697.5,
+      "end_sec": 2258.1,
+      "title": "好，我们来看个例子，谓词公式的翻译"
+    },
+    {
+      "id": "数理逻辑_1_2259300_2687400",
+      "index": 10,
+      "start_sec": 2259.3,
+      "end_sec": 2687.4,
+      "title": "但是绝不仅于此，我们在谓词逻辑里面还加上了一…"
+    },
+    {
+      "id": "数理逻辑_1_2688600_2756600",
+      "index": 11,
+      "start_sec": 2688.6,
+      "end_sec": 2756.6,
+      "title": "例如，任何事物都是运动的"
+    },
+    {
+      "id": "数理逻辑_1_2757600_3270100",
+      "index": 12,
+      "start_sec": 2757.6,
+      "end_sec": 3270.1,
+      "title": "比如(∃x)P(x)和(∀x)P(x)中的x…"
+    }
+  ],
+  "points": [
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.786434,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1225700_1312300",
+          "text": "好，那么谓词的变元个数，我们刚才已经说了。有一元谓词、二元谓词，一直到n元谓词，用来描述个体或个体间的关系。那么有没有零元谓词呢？零元谓词表明什么呢？零元谓词就是命题，它独立于任何个体变元，是一个陈述句。所以谓词逻辑是命题逻辑的推广，命题逻辑是谓词逻辑的特殊情形。 我们前面讲的命题逻辑里面的所有的等值演算和推理演算，都可以非常自然地移植到谓词逻辑里面来。",
+          "start_sec": 1225.7,
+          "end_sec": 1312.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1225700_1312300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_339500_773000",
+          "text": "上课。现在两个班合在一块上，所以我们换了一个更大的教室。以后我们当然希望陈老师能够尽快回来，那么我们这个学期都会在这儿上离散数学课程。幸好我们这两个班级的进度，我跟陈老师是完全一致的，在节前就把命题逻辑讲完了。那么从节后开始，从今天开始，我们讲谓词逻辑。命题逻辑是谓词逻辑的基础，前面讲命题逻辑非常重要，但在我们所有的学科里面，大部分都用到谓词逻辑，90%多都是谓词逻辑。稍微回忆一下命题逻辑。在命题逻辑里面，最小的原子命题，不能再分的最小单元是一个陈述句，是非真即假的陈述句。我们的推理通常也是基于陈述句之间的关系来进行推理的。比如这里有 p，p 等于今天是周二，Q 等于今天有离散课。然后 p 蕴含 q，再以上 p，我们推出 q。我们的推理基本上都是基于命题和命题之间的关系，以及一些假设，然后推出结论。在公元前300多年前，亚里士多德的著名三段论：人终有一死，苏格拉底是人，推出苏格拉底会死。如",
+          "start_sec": 339.5,
+          "end_sec": 773.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_339500_773000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "谓词/predicate",
+      "zh": "谓词",
+      "importance": 0.427513,
+      "mention_count": 7,
+      "origin": "shared",
+      "summary": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x,…",
+      "definition": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕获了不同命题的共同结构，并通过量词与个体变量结合形成合式公式。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "谓词属于谓词逻辑"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "谓词属于命题"
+        },
+        {
+          "subject": "多元谓词/n-ary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "多元谓词表示谓词"
+        },
+        {
+          "subject": "一元谓词/unary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "一元谓词属于谓词"
+        },
+        {
+          "subject": "谓词常项/predicate constant",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词常项表示谓词"
+        },
+        {
+          "subject": "谓词变项/predicate variable",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词变项表示谓词"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "属于",
+          "natural_statement": "谓词属于映射"
+        },
+        {
+          "subject": "多元谓词/n-ary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "n元谓词属于命题函数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1577500_1694100",
+          "text": "好，接下来简单讲一下，我就不写了。个体也有函数。 个体函数。个体域到个体域的映射，即个体函数。不同于谓词，谓词是将个体映射为真假值。个体函数，例如 father(x) 表示 x 的父亲，teacher(x) 表示 x 的老师。命题函数 P(x) 表示 x 是教师，则 P(father(John)) 表达了 John 的父亲是教师。这样表达就更丰富了。 这个比较容易，就是我们个体域到个体域的映射。",
+          "start_sec": 1577.5,
+          "end_sec": 1694.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1577500_1694100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1697500_2258100",
+          "text": "好，我们来看个例子，谓词公式的翻译。这位小弟弟抱住了那只大的红气球。它应该是一个什么样的？这位小弟弟，抱住了，那只红气球。这里面我们先说，哪些是我们的个体呢？哪些是谓词呢？首先谓词抱住肯定是谓词，叫Embrace(x, y)，x抱住了y。像这种形容词，我们通常也把它当作谓词，大的、红的、气球其实也可以，因为气球就是一个大的红的，这三个其实都是表明一元谓词：Big(x)表明x是大的，Red(x)表明x是红的，Balloon(x)表明x是气球。小弟弟其实可以放成一个，有些书上把它放成两个，把小看成是little，弟弟看成brother，但我更认同这里小弟弟是指一个谓词，所以我们就可以把这个小弟弟写成LittleBrother(x)。个体就是这位a，那只b，因为是常量，不是变量。所以最后这个句子翻译成谓词逻辑就是：Embrace(a, b) ∧ LittleBrother(a) ∧ Big(b)",
+          "start_sec": 1697.5,
+          "end_sec": 2258.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1697500_2258100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_predicate_interpretation",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 2
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.391395,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "论域属于谓词逻辑"
+        },
+        {
+          "subject": "多元谓词/n-ary predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖于",
+          "natural_statement": "n元谓词依赖于个体域"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "related_with",
+          "object": "论域/domain of discourse",
+          "label": "定义于",
+          "natural_statement": "谓词定义于个体域"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1577500_1694100",
+          "text": "好，接下来简单讲一下，我就不写了。个体也有函数。 个体函数。个体域到个体域的映射，即个体函数。不同于谓词，谓词是将个体映射为真假值。个体函数，例如 father(x) 表示 x 的父亲，teacher(x) 表示 x 的老师。命题函数 P(x) 表示 x 是教师，则 P(father(John)) 表达了 John 的父亲是教师。这样表达就更丰富了。 这个比较容易，就是我们个体域到个体域的映射。",
+          "start_sec": 1577.5,
+          "end_sec": 1694.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1577500_1694100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.390085,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "谓词属于命题"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "陈述句/declarative sentence",
+          "label": "是",
+          "natural_statement": "零元谓词是陈述句"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "属于",
+          "natural_statement": "命题属于映射"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1225700_1312300",
+          "text": "好，那么谓词的变元个数，我们刚才已经说了。有一元谓词、二元谓词，一直到n元谓词，用来描述个体或个体间的关系。那么有没有零元谓词呢？零元谓词表明什么呢？零元谓词就是命题，它独立于任何个体变元，是一个陈述句。所以谓词逻辑是命题逻辑的推广，命题逻辑是谓词逻辑的特殊情形。 我们前面讲的命题逻辑里面的所有的等值演算和推理演算，都可以非常自然地移植到谓词逻辑里面来。",
+          "start_sec": 1225.7,
+          "end_sec": 1312.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1225700_1312300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_774000_807300",
+          "text": "表达更多更丰富的语义。所以今天介绍的就是这样的一种谓词逻辑。谓词逻辑就是把一个简单的命题更精细地分成主语和谓语两部分，这就是我们的谓词逻辑。",
+          "start_sec": 774.0,
+          "end_sec": 807.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_774000_807300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.280902,
+      "mention_count": 8,
+      "origin": "shared",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "谓词属于谓词逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "一阶谓词逻辑/first-order predicate logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "推理形式/inference form",
+          "predicate": "property_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "具有属性",
+          "natural_statement": "谓词逻辑具有属性推理形式"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "个体变项属于谓词逻辑"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "论域属于谓词逻辑"
+        },
+        {
+          "subject": "个体/Individual",
+          "predicate": "related_with",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是…的基本概念",
+          "natural_statement": "个体是谓词逻辑的基本概念"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1225700_1312300",
+          "text": "好，那么谓词的变元个数，我们刚才已经说了。有一元谓词、二元谓词，一直到n元谓词，用来描述个体或个体间的关系。那么有没有零元谓词呢？零元谓词表明什么呢？零元谓词就是命题，它独立于任何个体变元，是一个陈述句。所以谓词逻辑是命题逻辑的推广，命题逻辑是谓词逻辑的特殊情形。 我们前面讲的命题逻辑里面的所有的等值演算和推理演算，都可以非常自然地移植到谓词逻辑里面来。",
+          "start_sec": 1225.7,
+          "end_sec": 1312.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1225700_1312300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1697500_2258100",
+          "text": "好，我们来看个例子，谓词公式的翻译。这位小弟弟抱住了那只大的红气球。它应该是一个什么样的？这位小弟弟，抱住了，那只红气球。这里面我们先说，哪些是我们的个体呢？哪些是谓词呢？首先谓词抱住肯定是谓词，叫Embrace(x, y)，x抱住了y。像这种形容词，我们通常也把它当作谓词，大的、红的、气球其实也可以，因为气球就是一个大的红的，这三个其实都是表明一元谓词：Big(x)表明x是大的，Red(x)表明x是红的，Balloon(x)表明x是气球。小弟弟其实可以放成一个，有些书上把它放成两个，把小看成是little，弟弟看成brother，但我更认同这里小弟弟是指一个谓词，所以我们就可以把这个小弟弟写成LittleBrother(x)。个体就是这位a，那只b，因为是常量，不是变量。所以最后这个句子翻译成谓词逻辑就是：Embrace(a, b) ∧ LittleBrother(a) ∧ Big(b)",
+          "start_sec": 1697.5,
+          "end_sec": 2258.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1697500_2258100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "个体常项/individual constant",
+      "zh": "个体常项",
+      "importance": 0.191332,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定…",
+      "definition": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定、固定个体的符号，类似于一个具有特定名称的个体（如“张三”）或一个代表论域中特定元素的符号（如“c”）。个体常项是逻辑语言中的基本成分，不同于个体变项，它不接受量词的量化，且一旦被指定，就始终代表论域中的同一对象。在构成命题时，个体常项与谓词常项或谓词变项结合，将命题形式转化为具体的命题。",
+      "neighbors": [
+        {
+          "subject": "a,b,c.../a,b,c...",
+          "predicate": "property_of",
+          "object": "个体常项/individual constant",
+          "label": "用…表示",
+          "natural_statement": "个体常项用a,b,c...表示"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_981600_1224300",
+          "text": "好，那么我们讲谓词。个体讲完了，个体就是我们的对象，所有个体集合就叫论域。谓词分一元、二元等，描述个体属性。一元谓词描述个体属性，二元、三元、四元、n元谓词描述个体之间的关系。一元谓词如“苏格拉底是人”“柏拉图是人”，表明个体属性。二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。三元谓词如“A在B和C之间”。谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。个体通常用小写字母a、b、c表示。谓词常项有确切意义，谓词变项用大写字母P、Q、R表示。命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。个体常项用A、B、C，个体变项用x、y、z。 这样表示个体的变项。这是一些符号的约定。",
+          "start_sec": 981.6,
+          "end_sec": 1224.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_981600_1224300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_propositionalize_predicate",
+        "tech_substitution_instance"
+      ],
+      "rank": 6
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.19113,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "related_with",
+          "object": "量词/quantifier",
+          "label": "受…约束",
+          "natural_statement": "约束变元受量词约束"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_2757600_3270100",
+          "text": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。P(x)中的x如果没有受到量词约束，称为自由变元。约束出现和自由出现：设量词后面为任意公式A，在A中同一个变元可能出现多次，从而可能既是约束变元又是自由变元，这时常说变元的约束出现和自由出现。例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。变元易名规则：约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。约束变元可以任意改名，比如改成y，但自由变元不能改。",
+          "start_sec": 2757.6,
+          "end_sec": 3270.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2757600_3270100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_形式化是推理的第一步_4500_3036300",
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "prin_domain_of_discourse",
+        "tech_bound_free_split",
+        "tech_quantifier_negation",
+        "tech_rename_bound_var"
+      ],
+      "rank": 7
+    },
+    {
+      "id": "个体变项/individual variable",
+      "zh": "个体变项",
+      "importance": 0.186055,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通…",
+      "definition": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通常以小写字母 x, y, z 等表示。个体变项可以被量词（如全称量词∀和存在量词∃）所约束，形成约束变项，也可以不受量词约束。个体变项是构建逻辑公式、进行代入以及定义合式公式的关键要素，其变化范围限定为个体域或论域。",
+      "neighbors": [
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "个体变项属于谓词逻辑"
+        },
+        {
+          "subject": "x,y,z.../x,y,z...",
+          "predicate": "property_of",
+          "object": "个体变项/individual variable",
+          "label": "用…表示",
+          "natural_statement": "个体变项用x,y,z...表示"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_981600_1224300",
+          "text": "好，那么我们讲谓词。个体讲完了，个体就是我们的对象，所有个体集合就叫论域。谓词分一元、二元等，描述个体属性。一元谓词描述个体属性，二元、三元、四元、n元谓词描述个体之间的关系。一元谓词如“苏格拉底是人”“柏拉图是人”，表明个体属性。二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。三元谓词如“A在B和C之间”。谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。个体通常用小写字母a、b、c表示。谓词常项有确切意义，谓词变项用大写字母P、Q、R表示。命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。个体常项用A、B、C，个体变项用x、y、z。 这样表示个体的变项。这是一些符号的约定。",
+          "start_sec": 981.6,
+          "end_sec": 1224.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_981600_1224300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_bound_free_split",
+        "tech_rename_bound_var"
+      ],
+      "rank": 8
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.174499,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含存在量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含全称量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 9
+    },
+    {
+      "id": "陈述句/declarative sentence",
+      "zh": "陈述句",
+      "importance": 0.134717,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "陈述句是命题在日常语言中的表达形式，指一个可以在逻辑上被判定为真或假，但不能同时为真又为假（不…",
+      "definition": "陈述句是命题在日常语言中的表达形式，指一个可以在逻辑上被判定为真或假，但不能同时为真又为假（不可兼）的叙述性语句。它构成了数理逻辑研究的基本单元，是形式化推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "陈述句/declarative sentence",
+          "label": "是",
+          "natural_statement": "零元谓词是陈述句"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1225700_1312300",
+          "text": "好，那么谓词的变元个数，我们刚才已经说了。有一元谓词、二元谓词，一直到n元谓词，用来描述个体或个体间的关系。那么有没有零元谓词呢？零元谓词表明什么呢？零元谓词就是命题，它独立于任何个体变元，是一个陈述句。所以谓词逻辑是命题逻辑的推广，命题逻辑是谓词逻辑的特殊情形。 我们前面讲的命题逻辑里面的所有的等值演算和推理演算，都可以非常自然地移植到谓词逻辑里面来。",
+          "start_sec": 1225.7,
+          "end_sec": 1312.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1225700_1312300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "谓词变项/predicate variable",
+      "zh": "谓词变项",
+      "importance": 0.073588,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "谓词变项是数理逻辑中用于表示关系或性质的符号，通常以大写字母 P, Q 等表示。",
+      "definition": "谓词变项是数理逻辑中用于表示关系或性质的符号，通常以大写字母 P, Q 等表示。它们在公式中可以接受一个或多个个体变项作为参数，形成形如 P(x) 或 Q(x, y) 的谓词公式。谓词变项的变化范围指一切关系或性质的集合。其解释需要对该变项设定一个具体的谓词，例如在论域下，P(x) 可以表示“x 是偶数”这一性质。",
+      "neighbors": [
+        {
+          "subject": "谓词变项/predicate variable",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词变项表示谓词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_981600_1224300",
+          "text": "好，那么我们讲谓词。个体讲完了，个体就是我们的对象，所有个体集合就叫论域。谓词分一元、二元等，描述个体属性。一元谓词描述个体属性，二元、三元、四元、n元谓词描述个体之间的关系。一元谓词如“苏格拉底是人”“柏拉图是人”，表明个体属性。二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。三元谓词如“A在B和C之间”。谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。个体通常用小写字母a、b、c表示。谓词常项有确切意义，谓词变项用大写字母P、Q、R表示。命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。个体常项用A、B、C，个体变项用x、y、z。 这样表示个体的变项。这是一些符号的约定。",
+          "start_sec": 981.6,
+          "end_sec": 1224.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_981600_1224300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "映射/mapping",
+      "zh": "映射",
+      "importance": 0.069747,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的…",
+      "definition": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的规则，它将定义域中的每个元素唯一地关联到值域中的一个元素。在逻辑学语境下，谓词可以被视为从个体域到集合 {T, F} 的一个映射。函数是映射的一种，可以将一个体域的元素映射到另一个体域的元素，例如将自然数集映射到 [0,1] 区间。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "属于",
+          "natural_statement": "谓词属于映射"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "属于",
+          "natural_statement": "命题属于映射"
+        },
+        {
+          "subject": "多元谓词/n-ary predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "属于",
+          "natural_statement": "n元谓词属于映射"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_1577500_1694100",
+          "text": "好，接下来简单讲一下，我就不写了。个体也有函数。 个体函数。个体域到个体域的映射，即个体函数。不同于谓词，谓词是将个体映射为真假值。个体函数，例如 father(x) 表示 x 的父亲，teacher(x) 表示 x 的老师。命题函数 P(x) 表示 x 是教师，则 P(father(John)) 表达了 John 的父亲是教师。这样表达就更丰富了。 这个比较容易，就是我们个体域到个体域的映射。",
+          "start_sec": 1577.5,
+          "end_sec": 1694.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1577500_1694100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+      ],
+      "rank": 12
+    },
+    {
+      "id": "推理形式/inference form",
+      "zh": "推理形式",
+      "importance": 0.060052,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理形式是数理逻辑中，由前提和结论经蕴涵词联结而成的抽象化条件式表示。",
+      "definition": "推理形式是数理逻辑中，由前提和结论经蕴涵词联结而成的抽象化条件式表示。它将自然语句描述的推理关系引入符号，形成具有逻辑意义的推理骨架。只有正确的推理形式才构成逻辑规律，可用于推演，尤其在谓词逻辑中，它能够处理命题逻辑无法描述的复杂推理关系。",
+      "neighbors": [
+        {
+          "subject": "推理形式/inference form",
+          "predicate": "property_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "具有属性",
+          "natural_statement": "谓词逻辑具有属性推理形式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_808300_888100",
+          "text": "好，刚才我们已经讲过了，为什么需要谓词逻辑？因为谓词逻辑可以描述更丰富的推理形式。例如，有些推理用命题演算无法描述，比如苏格拉底三段论：所有人都会死，苏格拉底是人，所以苏格拉底会死。而一阶谓词逻辑基本上覆盖了人们在数学和日常生活中用到的推理。",
+          "start_sec": 808.3,
+          "end_sec": 888.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_808300_888100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "二元谓词/binary predicate",
+      "zh": "二元谓词",
+      "importance": 0.055883,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "二元谓词是数理逻辑中的一种命题函数，其参数个数为二，代表两个对象之间的关系。",
+      "definition": "二元谓词是数理逻辑中的一种命题函数，其参数个数为二，代表两个对象之间的关系。例如，可以将相等词“=”视为一个二元谓词，表示两个对象是否相等。二元谓词可以用于构建更复杂的逻辑表达式，是形式化表达关系和推理的基础。",
+      "neighbors": [
+        {
+          "subject": "二元谓词/binary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "二元谓词属于命题函数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "一元谓词/unary predicate",
+      "zh": "一元谓词",
+      "importance": 0.053346,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "一元谓词（unary predicate）是数理逻辑与集合论中，用于表示一个主词（对象）的性质…",
+      "definition": "一元谓词（unary predicate）是数理逻辑与集合论中，用于表示一个主词（对象）的性质或属性的逻辑表达。在一个命题中，如果仅有一个主词，则描述该主词性质或属性的部分即为一元谓词。",
+      "neighbors": [
+        {
+          "subject": "一元谓词/unary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "一元谓词属于谓词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1313500_1575900",
+          "text": "我们其实可以把谓词叫做命题函数。任意一个谓词，比如用大写P表示，它是从个体域（论域）到{T,F}的映射。对于n元谓词，则是个体域的n次笛卡尔积到{T,F}的映射。所以n元谓词也是如此，它包含个体变元。通常，零元谓词就是命题，而一元、二元、n元谓词称为命题函数。例如，P(x,y)定义为x+y=2，它是不是命题？非真即假，但因为有变元，我们不知道真假。当x=1,y=2时，1+2=2就是一个命题，值为假。所以当个体变元取定后，它就变成命题。因此，谓词是一种命题函数，而零元个体变元时就是命题。后续我们还会看到，命题本身也是一个函数，即从{T,F}到{T,F}的映射，它是一个真值函数。",
+          "start_sec": 1313.5,
+          "end_sec": 1575.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1313500_1575900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_981600_1224300",
+          "text": "好，那么我们讲谓词。个体讲完了，个体就是我们的对象，所有个体集合就叫论域。谓词分一元、二元等，描述个体属性。一元谓词描述个体属性，二元、三元、四元、n元谓词描述个体之间的关系。一元谓词如“苏格拉底是人”“柏拉图是人”，表明个体属性。二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。三元谓词如“A在B和C之间”。谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。个体通常用小写字母a、b、c表示。谓词常项有确切意义，谓词变项用大写字母P、Q、R表示。命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。个体常项用A、B、C，个体变项用x、y、z。 这样表示个体的变项。这是一些符号的约定。",
+          "start_sec": 981.6,
+          "end_sec": 1224.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_981600_1224300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "改名保持真值/truth-preserving under renaming",
+      "zh": "改名保持真值",
+      "importance": 0.044657,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "改名保持真值/truth-preserving under renaming",
+          "predicate": "property_of",
+          "object": "约束变元/bound variable",
+          "label": "具有",
+          "natural_statement": "约束变元具有改名保持真值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2757600_3270100",
+          "text": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。P(x)中的x如果没有受到量词约束，称为自由变元。约束出现和自由出现：设量词后面为任意公式A，在A中同一个变元可能出现多次，从而可能既是约束变元又是自由变元，这时常说变元的约束出现和自由出现。例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。变元易名规则：约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。约束变元可以任意改名，比如改成y，但自由变元不能改。",
+          "start_sec": 2757.6,
+          "end_sec": 3270.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2757600_3270100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_rename_bound_var"
+      ],
+      "rank": 16
+    },
+    {
+      "id": "存在量词/existential quantifier",
+      "zh": "存在量词",
+      "importance": 0.041262,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变…",
+      "definition": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变量至少存在一个使其命题为真的量词。它通常用符号“∃”表示，表示“至少存在一个”或“有些”。例如，命题(∃x)Q(x)为真，当且仅当在论域中至少存在一个元素x0，使得Q(x0)为真。存在量词∃是析取词∨的推广，在有限域下，(∃x)P(x)可以表示为命题逻辑中由析取词描述的公式。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含存在量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square",
+        "tech_finite_domain_expand",
+        "tech_overlap_quantifier_order"
+      ],
+      "rank": 17
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.039293,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含全称量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2259300_2687400",
+          "text": "但是绝不仅于此，我们在谓词逻辑里面还加上了一个非常重要的概念，叫量词。 量词是对个体数量进行约束的，在谓词逻辑中，除了个体谓词，我们还增加了一个非常重要的概念——量词。量词用来对个体进行约束，例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。常用的量词有两个：全称量词∀和存在量词∃。全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。(∀x)P(x)为真当且仅当对论域中所有个体x，P(x)都为真；(∀x)P(x)为假当且仅当存在一个x₀，使得P(x₀)为假。存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。(∃x)P(x)为真当且仅当论域中至少存在一个个体x₀，使P(x₀)为真；(∃x)P(x)为假当且仅当对论域中所有个体x，P(x)都为假。虽然现在看起来比较简单，但做题时还是容易混淆。这些就是关于全称量词和存在量词的定义。在谓词逻辑中，其他部分可",
+          "start_sec": 2259.3,
+          "end_sec": 2687.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2259300_2687400.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_theo_量词与联结词配对法则_3700_1917600",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square"
+      ],
+      "rank": 18
+    },
+    {
+      "id": "变项/variable",
+      "zh": "变项",
+      "importance": 0.034475,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。",
+      "definition": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。在逻辑推理中，变项可以被特定个体或个体集合替代，其自由出现或被量词约束的状态对于公式的解释和真值判断至关重要。例如，在谓词逻辑中，$P(x)$ 表示 '$x$ 是学生'，这里的 $x$ 是一个变项。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "自由变元属于变项"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "约束变元属于变项"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "property_of",
+          "object": "变项/variable",
+          "label": "具有",
+          "natural_statement": "变项具有约束出现"
+        },
+        {
+          "subject": "自由出现/free occurrence",
+          "predicate": "property_of",
+          "object": "变项/variable",
+          "label": "具有",
+          "natural_statement": "变项具有自由出现"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2757600_3270100",
+          "text": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。P(x)中的x如果没有受到量词约束，称为自由变元。约束出现和自由出现：设量词后面为任意公式A，在A中同一个变元可能出现多次，从而可能既是约束变元又是自由变元，这时常说变元的约束出现和自由出现。例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。变元易名规则：约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。约束变元可以任意改名，比如改成y，但自由变元不能改。",
+          "start_sec": 2757.6,
+          "end_sec": 3270.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2757600_3270100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "约束变元/bound variable",
+      "zh": "约束变元",
+      "importance": 0.033019,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "约束变元是在数理逻辑中，由量词（如全称量词 $\\forall$ 和存在量词 $\\exists$…",
+      "definition": "约束变元是在数理逻辑中，由量词（如全称量词 $\\forall$ 和存在量词 $\\exists$）作用的变量，它们在公式中出现时，其指派值受到量词的限制。例如，在公式 $(\\forall x)P(x)$ 中，变量 $x$ 就是一个约束变元，其取值范围被全称量词 $\\forall$ 所限定，也被称为被量词量化的变元。",
+      "neighbors": [
+        {
+          "subject": "受量词约束/bound by quantifier",
+          "predicate": "property_of",
+          "object": "约束变元/bound variable",
+          "label": "具有",
+          "natural_statement": "约束变元具有受量词约束"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "约束变元属于变项"
+        },
+        {
+          "subject": "改名保持真值/truth-preserving under renaming",
+          "predicate": "property_of",
+          "object": "约束变元/bound variable",
+          "label": "具有",
+          "natural_statement": "约束变元具有改名保持真值"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "property_of",
+          "object": "变项/variable",
+          "label": "具有",
+          "natural_statement": "变项具有约束出现"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "related_with",
+          "object": "量词/quantifier",
+          "label": "受…约束",
+          "natural_statement": "约束变元受量词约束"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2757600_3270100",
+          "text": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。P(x)中的x如果没有受到量词约束，称为自由变元。约束出现和自由出现：设量词后面为任意公式A，在A中同一个变元可能出现多次，从而可能既是约束变元又是自由变元，这时常说变元的约束出现和自由出现。例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。变元易名规则：约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。约束变元可以任意改名，比如改成y，但自由变元不能改。",
+          "start_sec": 2757.6,
+          "end_sec": 3270.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2757600_3270100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_约束变元改名定理_43300_422900",
+        "llm_theo_约束变元改名等价定理_7600_3270100"
+      ],
+      "rank": 20
+    },
+    {
+      "id": "常项/constant term",
+      "zh": "常项",
+      "importance": 0.028654,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "常项（constant term）是数理逻辑和集合论中的基本概念，指代论域（domain）中某…",
+      "definition": "常项（constant term）是数理逻辑和集合论中的基本概念，指代论域（domain）中某个固定的、特定的个体元素，其指派在任何模型或解释中都不改变。在谓词逻辑中，常项用于替换变元，且不能被全称量词量化。例如，线性逻辑中包含1、⊥、⊤、0等常项。",
+      "neighbors": [
+        {
+          "subject": "常项/constant term",
+          "predicate": "belong_to",
+          "object": "个体/Individual",
+          "label": "属于",
+          "natural_statement": "常量属于个体"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1697500_2258100",
+          "text": "好，我们来看个例子，谓词公式的翻译。这位小弟弟抱住了那只大的红气球。它应该是一个什么样的？这位小弟弟，抱住了，那只红气球。这里面我们先说，哪些是我们的个体呢？哪些是谓词呢？首先谓词抱住肯定是谓词，叫Embrace(x, y)，x抱住了y。像这种形容词，我们通常也把它当作谓词，大的、红的、气球其实也可以，因为气球就是一个大的红的，这三个其实都是表明一元谓词：Big(x)表明x是大的，Red(x)表明x是红的，Balloon(x)表明x是气球。小弟弟其实可以放成一个，有些书上把它放成两个，把小看成是little，弟弟看成brother，但我更认同这里小弟弟是指一个谓词，所以我们就可以把这个小弟弟写成LittleBrother(x)。个体就是这位a，那只b，因为是常量，不是变量。所以最后这个句子翻译成谓词逻辑就是：Embrace(a, b) ∧ LittleBrother(a) ∧ Big(b)",
+          "start_sec": 1697.5,
+          "end_sec": 2258.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1697500_2258100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "自由变元/free variable",
+      "zh": "自由变元",
+      "importance": 0.027853,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量…",
+      "definition": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量词∃）约束的变量。例如，在谓词公式P(x)中，如果x没有被任何量词限定，则x是自由变元。自由变元的值可以被自由地选择，其在公式中的含义会随着个体域的选择而变化。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "自由变元属于变项"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_2757600_3270100",
+          "text": "比如(∃x)P(x)和(∀x)P(x)中的x处于量词的限制之下，称为约束变元。P(x)中的x如果没有受到量词约束，称为自由变元。约束出现和自由出现：设量词后面为任意公式A，在A中同一个变元可能出现多次，从而可能既是约束变元又是自由变元，这时常说变元的约束出现和自由出现。例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。变元易名规则：约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。约束变元可以任意改名，比如改成y，但自由变元不能改。",
+          "start_sec": 2757.6,
+          "end_sec": 3270.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_2757600_3270100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_约束变元改名等价定理_7600_3270100"
+      ],
+      "rank": 22
+    },
+    {
+      "id": "谓词常项/predicate constant",
+      "zh": "谓词常项",
+      "importance": 0.026423,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "谓词常项是数理逻辑中已赋有确定含义的谓词，是谓词的一个特例。",
+      "definition": "谓词常项是数理逻辑中已赋有确定含义的谓词，是谓词的一个特例。当谓词变项被指定为某个谓词常项，且个体词被指定为个体常项时，命题形式才被确切地转化为一个命题。这使得逻辑表达式能够被赋予具体的真值，从而进行有效的推理和证明。",
+      "neighbors": [
+        {
+          "subject": "谓词常项/predicate constant",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词常项表示谓词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_981600_1224300",
+          "text": "好，那么我们讲谓词。个体讲完了，个体就是我们的对象，所有个体集合就叫论域。谓词分一元、二元等，描述个体属性。一元谓词描述个体属性，二元、三元、四元、n元谓词描述个体之间的关系。一元谓词如“苏格拉底是人”“柏拉图是人”，表明个体属性。二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。三元谓词如“A在B和C之间”。谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。个体通常用小写字母a、b、c表示。谓词常项有确切意义，谓词变项用大写字母P、Q、R表示。命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。个体常项用A、B、C，个体变项用x、y、z。 这样表示个体的变项。这是一些符号的约定。",
+          "start_sec": 981.6,
+          "end_sec": 1224.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_981600_1224300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "一阶谓词逻辑/first-order predicate logic",
+      "zh": "一阶谓词逻辑",
+      "importance": 0.020175,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "一阶谓词逻辑（First-order Predicate Logic），又称狭谓词逻辑，是命题…",
+      "definition": "一阶谓词逻辑（First-order Predicate Logic），又称狭谓词逻辑，是命题逻辑的扩展，在数理逻辑与集合论中，它是一种形式化系统，其核心特征在于量词（如全称量词和存在量词）仅作用于个体变项，而不作用于命题变项或谓词变项，并且不允许出现谓词的谓词。这种限定使得它能够更精确地表达和推理关于个体及其性质和关系的主张。",
+      "neighbors": [
+        {
+          "subject": "一阶谓词逻辑/first-order predicate logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_1_1697500_2258100",
+          "text": "好，我们来看个例子，谓词公式的翻译。这位小弟弟抱住了那只大的红气球。它应该是一个什么样的？这位小弟弟，抱住了，那只红气球。这里面我们先说，哪些是我们的个体呢？哪些是谓词呢？首先谓词抱住肯定是谓词，叫Embrace(x, y)，x抱住了y。像这种形容词，我们通常也把它当作谓词，大的、红的、气球其实也可以，因为气球就是一个大的红的，这三个其实都是表明一元谓词：Big(x)表明x是大的，Red(x)表明x是红的，Balloon(x)表明x是气球。小弟弟其实可以放成一个，有些书上把它放成两个，把小看成是little，弟弟看成brother，但我更认同这里小弟弟是指一个谓词，所以我们就可以把这个小弟弟写成LittleBrother(x)。个体就是这位a，那只b，因为是常量，不是变量。所以最后这个句子翻译成谓词逻辑就是：Embrace(a, b) ∧ LittleBrother(a) ∧ Big(b)",
+          "start_sec": 1697.5,
+          "end_sec": 2258.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_1697500_2258100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_1_808300_888100",
+          "text": "好，刚才我们已经讲过了，为什么需要谓词逻辑？因为谓词逻辑可以描述更丰富的推理形式。例如，有些推理用命题演算无法描述，比如苏格拉底三段论：所有人都会死，苏格拉底是人，所以苏格拉底会死。而一阶谓词逻辑基本上覆盖了人们在数学和日常生活中用到的推理。",
+          "start_sec": 808.3,
+          "end_sec": 888.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_1_808300_888100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_八股文翻译法_2600_1567300"
+      ],
+      "rank": 24
+    }
+  ]
+}

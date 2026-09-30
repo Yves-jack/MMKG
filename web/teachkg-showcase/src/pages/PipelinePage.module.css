@@ -127,9 +127,39 @@
   bottom: 12px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
   max-width: calc(100% - 24px);
   z-index: 5;
+}
+
+.hlGroup {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 8px;
+  background: rgba(14, 17, 22, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hlBreak {
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hlGroupLabel {
+  font-size: 10px;
+  color: var(--muted);
+  padding: 0 4px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .hlHint {
@@ -288,7 +318,52 @@
   padding: 12px;
 }
 
-.panel h3 {
+.panelCollapsed {
+  padding-bottom: 8px;
+}
+
+.panelToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.panelToggle:hover h3 {
+  color: var(--text);
+}
+
+.panelToggle h3 {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.panelChevron {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.panelBody {
+  margin-top: 8px;
+  min-width: 0;
+}
+
+/* 非折叠面板（若仍有手写 h3） */
+.panel > h3 {
   margin: 0 0 8px;
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -352,27 +427,166 @@
   border: 1px solid rgba(93, 141, 239, 0.35);
 }
 
+.kgEditBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(250, 204, 21, 0.28);
+  background: rgba(250, 204, 21, 0.06);
+}
+
+.kgEditLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fde68a;
+  letter-spacing: 0.02em;
+}
+
+.kgEditFieldLabel {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.kgEditPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.kgEditPreview code {
+  font-size: 12px;
+  color: #e2e8f0;
+  word-break: break-all;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.kgEditInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.28);
+  color: #e5e7eb;
+  font-size: 12px;
+}
+
+.kgEditActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.kgEditBtn,
+.kgEditBtnGhost {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.kgEditBtn {
+  background: rgba(93, 141, 239, 0.28);
+  color: #dbeafe;
+}
+
+.kgEditBtn:disabled,
+.kgEditBtnGhost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.kgEditBtnGhost {
+  background: transparent;
+  color: #cbd5e1;
+}
+
+.kgEditBtnDanger {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+}
+
+.kgEditBtnDanger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.kgDeletedRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.kgDeletedRow code {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #e2e8f0;
+}
+
+.kgEditHint {
+  font-size: 11px;
+  color: #fcd34d;
+}
+
 .assetList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .assetCard {
-  padding: 8px 10px;
-  border: 1px solid var(--line);
+  padding: 7px 8px;
   border-radius: 8px;
-  background: rgba(22, 27, 34, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+}
+
+.assetHeadRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
 }
 
 .assetHead {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.assetHead:hover .assetTitle {
+  color: #c8f0d8;
 }
 
 .assetKind {
@@ -386,10 +600,29 @@
   border: 1px solid rgba(176, 122, 161, 0.35);
 }
 
+.assetSource {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(88, 166, 255, 0.12);
+  color: #9ecbff;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
 .assetTitle {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text, #e8eaed);
+  min-width: 0;
+  word-break: break-word;
+}
+
+.assetChev {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted, #9aa0a6);
 }
 
 .assetEn {
@@ -397,10 +630,67 @@
   color: var(--muted);
 }
 
+.assetField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.assetFieldLabel {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--muted, #9aa0a6);
+}
+
 .assetSummary {
   font-size: 12px;
   line-height: 1.45;
   color: #c4cdd8;
+}
+
+.assetEvidence {
+  margin-top: 2px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(62, 207, 142, 0.06);
+  border: 1px solid rgba(62, 207, 142, 0.2);
+  font-size: 11px;
+  color: #b6c2b0;
+  line-height: 1.45;
+}
+
+.assetEvidenceLabel {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6ee7b7;
+  margin-bottom: 2px;
+}
+
+.assetPeers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.assetPeersLabel {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted, #9aa0a6);
+}
+
+.assetPeerChip {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(91, 141, 239, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(91, 141, 239, 0.28);
 }
 
 .assetToggle {
@@ -421,10 +711,10 @@
 .assetBody {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 2px;
   padding-top: 6px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .assetStatement {
@@ -512,6 +802,35 @@
   font-weight: 500;
 }
 
+.fieldToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.fieldToggle:hover {
+  color: var(--text);
+}
+
+.fieldChevron {
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.fieldCollapsedHint {
+  color: var(--muted) !important;
+  font-size: 11px;
+  font-style: italic;
+}
+
 .detailRow dd {
   margin: 0;
   color: #d7dee8;
@@ -538,7 +857,8 @@
 .metrics {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
+  gap: 4px;
+  margin-top: 8px;
 }
 
 .metrics:has(> :only-child) {
@@ -546,17 +866,19 @@
 }
 
 .metrics div {
-  padding: 8px;
-  border-radius: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
   background: rgba(62, 207, 142, 0.08);
   border: 1px solid rgba(62, 207, 142, 0.22);
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 .metrics span {
   display: block;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--muted);
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .contribBlock {
@@ -573,9 +895,24 @@
   margin-bottom: 6px;
 }
 
+.contribSubTitle {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 8px 0 4px;
+  opacity: 0.9;
+}
+
+.contribHelp {
+  font-size: 10px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0 0 8px;
+  white-space: pre-line;
+}
+
 .contribRow {
   display: grid;
-  grid-template-columns: 64px 1fr 42px;
+  grid-template-columns: 72px 1fr 42px;
   gap: 6px;
   align-items: center;
   font-size: 11px;

@@ -1,0 +1,69 @@
+{
+  "courseId": "离散数学(图论+数理逻辑与集合论)",
+  "title": "思维导图",
+  "items": [
+    {
+      "lecture_id": "course",
+      "chapter": "离散数学",
+      "root_zh": "离散数学",
+      "n_nodes": 18,
+      "max_depth": 2,
+      "orphan_count": 0,
+      "path": "mindmaps/course.json",
+      "scope": "course",
+      "source": "summary+kg"
+    },
+    {
+      "lecture_id": "chapter:第1章 图的基本概念与表示",
+      "chapter": "第1章 图的基本概念与表示",
+      "chapter_id": "第1章 图的基本概念与表示",
+      "root_zh": "图的基本概念与表示",
+      "n_nodes": 13,
+      "max_depth": 2,
+      "orphan_count": 10,
+      "path": "mindmaps/chapter_图的基本概念与表示.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "2"
+      ],
+      "source": "summary+kg"
+    },
+    {
+      "lecture_id": "chapter:第2章 道路与回路",
+      "chapter": "第2章 道路与回路",
+      "chapter_id": "第2章 道路与回路",
+      "root_zh": "道路与回路",
+      "n_nodes": 15,
+      "max_depth": 2,
+      "orphan_count": 0,
+      "path": "mindmaps/chapter_道路与回路.json",
+      "scope": "chapter",
+      "lecture_ids": [],
+      "source": "summary+kg"
+    },
+    {
+      "lecture_id": "1",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "root_zh": "逻辑",
+      "n_nodes": 16,
+      "max_depth": 4,
+      "orphan_count": 36,
+      "path": "mindmaps/lecture_1.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第1章 命题逻辑的基本概念"
+    },
+    {
+      "lecture_id": "2",
+      "chapter": "第1章 图的基本概念与表示",
+      "root_zh": "图",
+      "n_nodes": 19,
+      "max_depth": 4,
+      "orphan_count": 60,
+      "path": "mindmaps/lecture_2.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第1章 图的基本概念与表示"
+    }
+  ]
+}

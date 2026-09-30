@@ -1,0 +1,1381 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "6",
+  "title": "第6讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/6_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/6_1.mp4",
+  "duration_sec": 3295.6,
+  "segments": [
+    {
+      "id": "数理逻辑_6_157100_348400",
+      "index": 1,
+      "start_sec": 157.1,
+      "end_sec": 348.4,
+      "title": "关于逻辑章节的文档，我的PPT都放在Ipsh…"
+    },
+    {
+      "id": "数理逻辑_6_349200_608800",
+      "index": 2,
+      "start_sec": 349.2,
+      "end_sec": 608.8,
+      "title": "Skolem范式与原始公式X并不一定等值，但…"
+    },
+    {
+      "id": "数理逻辑_6_609800_622300",
+      "index": 3,
+      "start_sec": 609.8,
+      "end_sec": 622.3,
+      "title": "根据我们刚才绘制的表格，假设我已经求得了这个…"
+    },
+    {
+      "id": "数理逻辑_6_623300_1319800",
+      "index": 4,
+      "start_sec": 623.3,
+      "end_sec": 1319.8,
+      "title": "前面我们有这样的前束范式：存在x任意y任意z…"
+    },
+    {
+      "id": "数理逻辑_6_1320600_1516900",
+      "index": 5,
+      "start_sec": 1320.6,
+      "end_sec": 1516.9,
+      "title": "关于量词的等值演算主要分为两大类：摩根律和分…"
+    },
+    {
+      "id": "数理逻辑_6_1518300_1693800",
+      "index": 6,
+      "start_sec": 1518.3,
+      "end_sec": 1693.8,
+      "title": "第二章中的推理形式同样适用于当前内容"
+    },
+    {
+      "id": "数理逻辑_6_1695400_1836600",
+      "index": 7,
+      "start_sec": 1695.4,
+      "end_sec": 1836.6,
+      "title": "推理形式"
+    },
+    {
+      "id": "数理逻辑_6_1837400_2262800",
+      "index": 8,
+      "start_sec": 1837.4,
+      "end_sec": 2262.8,
+      "title": "前面这两个式子原本是不等值的"
+    },
+    {
+      "id": "数理逻辑_6_2264300_2278900",
+      "index": 9,
+      "start_sec": 2264.3,
+      "end_sec": 2278.9,
+      "title": "如何证明公式A推出B？在命题演算中可以使用真…"
+    },
+    {
+      "id": "数理逻辑_6_2279700_2315100",
+      "index": 10,
+      "start_sec": 2279.7,
+      "end_sec": 2315.1,
+      "title": "这些公式我们都会用上，包括第二章的公式和加头…"
+    },
+    {
+      "id": "数理逻辑_6_2316000_2360300",
+      "index": 11,
+      "start_sec": 2316.0,
+      "end_sec": 2360.3,
+      "title": "在推理过程中，我们使用以下规则进行推理"
+    },
+    {
+      "id": "数理逻辑_6_2361600_2491400",
+      "index": 12,
+      "start_sec": 2361.6,
+      "end_sec": 2491.4,
+      "title": "除了命题逻辑的等值演算规则外，谓词逻辑还需引…"
+    },
+    {
+      "id": "数理逻辑_6_2492400_2515000",
+      "index": 13,
+      "start_sec": 2492.4,
+      "end_sec": 2515.0,
+      "title": "此外，若A(c)为真，则可推出(∃x)A(x…"
+    },
+    {
+      "id": "数理逻辑_6_2516400_2539800",
+      "index": 14,
+      "start_sec": 2516.4,
+      "end_sec": 2539.8,
+      "title": "推理演算这一章的内容其实非常简单，只需运用四…"
+    },
+    {
+      "id": "数理逻辑_6_2540800_2712200",
+      "index": 15,
+      "start_sec": 2540.8,
+      "end_sec": 2712.2,
+      "title": "例3：推理演算 前提：(∃x)P(x)→(∀…"
+    },
+    {
+      "id": "数理逻辑_6_2713200_2730300",
+      "index": 16,
+      "start_sec": 2713.2,
+      "end_sec": 2730.3,
+      "title": "第二章的内容"
+    },
+    {
+      "id": "数理逻辑_6_2731100_3295600",
+      "index": 17,
+      "start_sec": 2731.1,
+      "end_sec": 3295.6,
+      "title": "我们引入这四条规则"
+    }
+  ],
+  "points": [
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.901481,
+      "mention_count": 6,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题公式属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于数理逻辑"
+        },
+        {
+          "subject": "规则/rule",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "规则属于命题逻辑"
+        },
+        {
+          "subject": "命题演算/Propositional Calculus",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题演算属于命题逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理规则属于命题逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2279700_2315100",
+          "text": "这些公式我们都会用上，包括第二章的公式和加头定理等。推理演算就是从前提出发，逐步产生中间结论。前提和中间结论可以被重复使用多次，最终推出结论B。这是一个逐步推进的过程。",
+          "start_sec": 2279.7,
+          "end_sec": 2315.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2279700_2315100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "数理逻辑/Mathematical Logic",
+      "zh": "数理逻辑",
+      "importance": 0.709954,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "数理逻辑，亦称符号逻辑，是数学的一个分支，它采用数学的符号化方法研究命题间最一般的真值规律。",
+      "definition": "数理逻辑，亦称符号逻辑，是数学的一个分支，它采用数学的符号化方法研究命题间最一般的真值规律。其研究内容广泛，包括命题演算、谓词演算、集合论、模型论、递归论和证明论。数理逻辑通过符号化表达和形式化的推理规则，对推理形式和推理演化进行严谨分析，这使得其在计算机科学等领域得到了广泛应用。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于数理逻辑"
+        },
+        {
+          "subject": "推理形式/inference form",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "推理形式属于数理逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于数理逻辑"
+        },
+        {
+          "subject": "谓词演算/Predicate Calculus",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词演算属于数理逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        },
+        {
+          "subject": "命题演算/Propositional Calculus",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "命题演算属于数理逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2361600_2491400",
+          "text": "除了命题逻辑的等值演算规则外，谓词逻辑还需引入四条关于量词的推理规则：\n\n1. 全称量词消去规则（∀-）：若(∀x)A(x)为真，则可推出A(y)为真。这意味着我们可以去掉全称量词，用自由变元y代替x。\n\n2. 全称量词引入规则（∀+）：若A(y)为真，且y是自由变元，则可推出(∀x)A(x)为真。\n\n3. 存在量词消去规则（∃-）：若(∃x)A(x)为真，则可推出A(c)为真，其中c是特定常元。\n\n4. 存在量词引入规则（∃+）：若A(c)为真，则可推出(∃x)A(x)为真。\n\n需要注意的是，在应用这些规则时，必须确保x在公式中没有自由出现。具体细节将在下节课详细讲解。",
+          "start_sec": 2361.6,
+          "end_sec": 2491.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2361600_2491400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.485735,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。",
+      "definition": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。它们与基本推理公式配合使用，确保逻辑的严谨性。例如，前提引入规则允许在推理过程中随时引入前提，而条件证明规则则建立了条件句推导的等价性。推理规则的有效性是逻辑系统的基石，能够保持普遍有效性，并广泛应用于命题逻辑和谓词逻辑的证明演算中。",
+      "neighbors": [
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于推理规则"
+        },
+        {
+          "subject": "代入规则/代入规则",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "代入规则属于推理规则"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "belong_to",
+          "object": "推理/inference",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理"
+        },
+        {
+          "subject": "三段论/syllogism",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "具有",
+          "natural_statement": "三段论具有推理规则"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "个体变量的代入规则/Rule of Individual Variable Substitution",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "个体变量的代入规则属于推理规则"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理规则属于命题逻辑"
+        },
+        {
+          "subject": "前提引入规则/Premise Introduction Rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "前提引入规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2316000_2360300",
+          "text": "在推理过程中，我们使用以下规则进行推理。在谓词逻辑中，新增了一条规则称为个体变量的代入规则。例如，若∀x A(x)为真，则对于任意个体b，A(b)也为真。其余规则均与第二章命题演算相同。推理演算即从前提出发，逐步推导中间结论，最终推出结论B。",
+          "start_sec": 2316.0,
+          "end_sec": 2360.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2316000_2360300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.448495,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "公式依赖论域"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "结构/Structure",
+          "label": "属于",
+          "natural_statement": "论域属于结构"
+        },
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "解释/interpretation(logic)",
+          "label": "属于",
+          "natural_statement": "论域属于解释"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "论域属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_623300_1319800",
+          "text": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(x,y,z,u,v,w)表示。现在需要将这个前束范式转化为Skolem范式，即去掉存在量词。\n\n首先去掉存在x：由于存在一个x，可以用常量a代替x。接着处理存在u：由于u依赖于y和z，应该用函数f(y,z)代替u。同理，存在w应替换为g(y,z,v)的函数。这样处理后，公式中所有存在量词都被消除，得到Skolem范式。\n\n举例说明Skolem范式与原式不等值但等不可满足。比较两个公式：\n1. 原式：(∀x)(∃y)P(x,y)\n2. Skolem范式：(∀x)P(x,f(x))\n\n在{1,2}域上展开：\n原式 = (P(1,1)∨P(1,2))∧(P(2,1)∨P(2,2))\nSkolem范式 = P(1,f(1))∧P(2,f(2))\n\n显然两者不等值。但当P(1,1)和P(1,2)同假，或P(",
+          "start_sec": 623.3,
+          "end_sec": 1319.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_623300_1319800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "推理演算/inference calculus",
+      "zh": "推理演算",
+      "importance": 0.425539,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。",
+      "definition": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实现逻辑证明的关键手段。例如，在谓词逻辑中，结合归结法进行推理演算，可以高效地进行逻辑推导。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于数理逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖于",
+          "natural_statement": "推理演算依赖于前提"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        },
+        {
+          "subject": "全称消去规则/universal instantiation rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "是…部分",
+          "natural_statement": "全称消去规则是推理演算部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2279700_2315100",
+          "text": "这些公式我们都会用上，包括第二章的公式和加头定理等。推理演算就是从前提出发，逐步产生中间结论。前提和中间结论可以被重复使用多次，最终推出结论B。这是一个逐步推进的过程。",
+          "start_sec": 2279.7,
+          "end_sec": 2315.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2279700_2315100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2316000_2360300",
+          "text": "在推理过程中，我们使用以下规则进行推理。在谓词逻辑中，新增了一条规则称为个体变量的代入规则。例如，若∀x A(x)为真，则对于任意个体b，A(b)也为真。其余规则均与第二章命题演算相同。推理演算即从前提出发，逐步推导中间结论，最终推出结论B。",
+          "start_sec": 2316.0,
+          "end_sec": 2360.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2316000_2360300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2516400_2539800",
+          "text": "推理演算这一章的内容其实非常简单，只需运用四条基本规则即可。以离散数学CS2501课程为例，给定前提条件(∀x)(P(x)→Q(x))和(∀x)(Q(x)→R(x))，我们可以进行如下推理。",
+          "start_sec": 2516.4,
+          "end_sec": 2539.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2516400_2539800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "命题公式/propositional formula",
+      "zh": "命题公式",
+      "importance": 0.387928,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和…",
+      "definition": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和括号构成。在给定的命题变项的解释下，命题公式可以确定一个唯一的真值，常用于判断公式的等值性、重言式和矛盾式，且任何命题公式都存在与之等值的合取范式和析取范式。",
+      "neighbors": [
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题公式包含公式"
+        },
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题公式属于命题逻辑"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_623300_1319800",
+          "text": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(x,y,z,u,v,w)表示。现在需要将这个前束范式转化为Skolem范式，即去掉存在量词。\n\n首先去掉存在x：由于存在一个x，可以用常量a代替x。接着处理存在u：由于u依赖于y和z，应该用函数f(y,z)代替u。同理，存在w应替换为g(y,z,v)的函数。这样处理后，公式中所有存在量词都被消除，得到Skolem范式。\n\n举例说明Skolem范式与原式不等值但等不可满足。比较两个公式：\n1. 原式：(∀x)(∃y)P(x,y)\n2. Skolem范式：(∀x)P(x,f(x))\n\n在{1,2}域上展开：\n原式 = (P(1,1)∨P(1,2))∧(P(2,1)∨P(2,2))\nSkolem范式 = P(1,f(1))∧P(2,f(2))\n\n显然两者不等值。但当P(1,1)和P(1,2)同假，或P(",
+          "start_sec": 623.3,
+          "end_sec": 1319.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_623300_1319800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.335797,
+      "mention_count": 6,
+      "origin": "shared",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "存在量词表示谓词逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "belong_to",
+          "object": "推理方法/inference method",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于推理方法"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是…部分",
+          "natural_statement": "全称量词是谓词逻辑部分"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2316000_2360300",
+          "text": "在推理过程中，我们使用以下规则进行推理。在谓词逻辑中，新增了一条规则称为个体变量的代入规则。例如，若∀x A(x)为真，则对于任意个体b，A(b)也为真。其余规则均与第二章命题演算相同。推理演算即从前提出发，逐步推导中间结论，最终推出结论B。",
+          "start_sec": 2316.0,
+          "end_sec": 2360.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2316000_2360300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "推理/inference",
+      "zh": "推理",
+      "importance": 0.258566,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理是在数理逻辑与集合论中，用于描述命题之间必然真假关系的演绎过程，其本质是将真实的前提转化为…",
+      "definition": "推理是在数理逻辑与集合论中，用于描述命题之间必然真假关系的演绎过程，其本质是将真实的前提转化为必然真实的结论。在自然推理系统中，推理可以被形式化地表示为一系列命题的有序序列，其因果关系明了，并与函数项存在一一对应关系，例如，在特定逻辑系统中，若 $\\Sigma$, $\\neg A \\vdash B$ 同时 $\\Sigma$, $\\neg A \\vdash \\neg B$，则可推断出 $\\Sigma \\vdash A$。",
+      "neighbors": [
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "belong_to",
+          "object": "推理/inference",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "推理公式/inference formula",
+      "zh": "推理公式",
+      "importance": 0.234771,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理公式是数理逻辑中的基本结构，表示从一组前提推导出结论的有效模式。",
+      "definition": "推理公式是数理逻辑中的基本结构，表示从一组前提推导出结论的有效模式。例如，假言推理（Modus Ponens）的推理公式 P $\\wedge$ (P $\\rightarrow$ Q) $\\Rightarrow$ Q，以及三段论 (P $\\rightarrow$ Q) $\\wedge$ (Q $\\rightarrow$ R) $\\Rightarrow$ P $\\rightarrow$ R，都是逻辑系统中的重要组成部分，它们均是逻辑有效性的体现，即在任何解释下，若前提为真，则结论必真。",
+      "neighbors": [
+        {
+          "subject": "前提/premise",
+          "predicate": "part_of",
+          "object": "推理公式/inference formula",
+          "label": "属于",
+          "natural_statement": "前提属于推理公式"
+        },
+        {
+          "subject": "推理公式/inference formula",
+          "predicate": "belong_to",
+          "object": "定理/theorem",
+          "label": "属于",
+          "natural_statement": "推理公式属于定理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2540800_2712200",
+          "text": "例3：推理演算\n\n前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))，(∃x)P(x)\n结论：(∃x)(∃y)(R(x)∧R(y))\n\n证明过程如下：\n(1) 引入前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))\n(2) 引入前提：(∃x)P(x)\n(3) 对(1)(2)进行分离规则，得到(∀x)((P(x)∨Q(x))→R(x))\n(4) 对(2)进行存在量词消去，得到P(c)\n(5) 对(3)进行全称量词消去，得到(P(x)∨Q(x))→R(x)\n(6) 将(5)中的x替换为c，得到(P(c)∨Q(c))→R(c)\n(7) 由(4)可得P(c)∨Q(c)\n(8) 对(6)(7)应用分离规则，得到R(c)\n(9) 对(8)进行存在量词引入，得到(∃x)R(x)\n(10) 对(8)进行存在量词引入，得到(∃y)R(y)\n(11) 将(9)(10)合取，",
+          "start_sec": 2540.8,
+          "end_sec": 2712.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2540800_2712200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "定理/theorem",
+      "zh": "定理",
+      "importance": 0.233517,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则…",
+      "definition": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则）从公理或预设前提中推导出的普遍有效（永真）的陈述或公式。定理的证明过程构成了公理系统的演绎体系，其成立与否与系统的完备性紧密相关，例如自然演绎系统为定理的证明提供了便利。",
+      "neighbors": [
+        {
+          "subject": "证明/proof",
+          "predicate": "part_of",
+          "object": "定理/theorem",
+          "label": "属于",
+          "natural_statement": "证明属于定理"
+        },
+        {
+          "subject": "推理公式/inference formula",
+          "predicate": "belong_to",
+          "object": "定理/theorem",
+          "label": "属于",
+          "natural_statement": "推理公式属于定理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2540800_2712200",
+          "text": "例3：推理演算\n\n前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))，(∃x)P(x)\n结论：(∃x)(∃y)(R(x)∧R(y))\n\n证明过程如下：\n(1) 引入前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))\n(2) 引入前提：(∃x)P(x)\n(3) 对(1)(2)进行分离规则，得到(∀x)((P(x)∨Q(x))→R(x))\n(4) 对(2)进行存在量词消去，得到P(c)\n(5) 对(3)进行全称量词消去，得到(P(x)∨Q(x))→R(x)\n(6) 将(5)中的x替换为c，得到(P(c)∨Q(c))→R(c)\n(7) 由(4)可得P(c)∨Q(c)\n(8) 对(6)(7)应用分离规则，得到R(c)\n(9) 对(8)进行存在量词引入，得到(∃x)R(x)\n(10) 对(8)进行存在量词引入，得到(∃y)R(y)\n(11) 将(9)(10)合取，",
+          "start_sec": 2540.8,
+          "end_sec": 2712.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2540800_2712200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_349200_608800",
+          "text": "Skolem范式与原始公式X并不一定等值，但它们是等不可满足的，即A不可满足当且仅当A′不可满足。为了表述简洁，这里用\"不可满足\"代替\"永假\"。\n\n我们主要介绍两种Skolem范式：\n1. ∃-前束范式：在前束范式中至少有一个存在量词，且所有存在量词都位于全称量词左边，形如(∃x₁)...(∃xᵢ)(∀xᵢ₊₁)...(∀xₙ)M(x₁,...,xₙ)。在将存在量词前移的过程中，公式可能不再与原式等值，但保持等永真性。\n\n2. 全称前束范式（Skolem范式）：在前束范式中消去所有存在量词，仅保留全称量词，形如(∀x₁)(∀x₂)...(∀xₙ)M(x₁,...,xₙ)。这种变换通常不等值，但保持等不可满足性。\n\n在归结法中，我们通过反证法证明公式的不可满足性：要证明A蕴含B，只需证明A∧¬B的Skolem范式不可满足。因为Skolem范式与原式等不可满足，所以这种方法是有效的。",
+          "start_sec": 349.2,
+          "end_sec": 608.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_349200_608800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.226883,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "量词属于公式"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1320600_1516900",
+          "text": "关于量词的等值演算主要分为两大类：摩根律和分配律。摩根律处理量词前有否定词的情况，当否定词内移或深入时，需要进行变号转换：全称变特称，特称变全称；任意变存在，存在变任意。\n\n分配律的适用条件需要注意：当公式中不包含自由变量x时，与、或、蕴含运算满足分配律。但在蕴含关系中，若p(x)作为前件出现时，由于摩根律的变号要求，需要进行转换。当与、或运算同时作用于p(x)和q(x)时，全称量词仅对与运算有分配律，存在量词仅对或运算有分配律。\n\n在求范式过程中，若需要将量词左移，可通过变量改名的方式满足分配律要求。量词等值演算的核心就是摩根律和分配律这两个基本规则。\n\n前束范式的求解步骤包括：首先消除蕴含和等价关系，然后进行否定词深入，最后利用分配律实现量词左移。前束范式与原公式在等值性、永真性和永假性上保持一致。而Skolem范式是一种特殊的前束范式，它通过消除所有存在量词得到，虽然与原公式不等值，",
+          "start_sec": 1320.6,
+          "end_sec": 1516.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1320600_1516900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1837400_2262800",
+          "text": "前面这两个式子原本是不等值的。我将其写在这里：(∀x)P(x) ∨ (∀x)Q(x) 与 (∀x)(P(x) ∨ Q(x))。我们之前讨论过，从右边可以推出左边，但在分配律中，存在量词的情况是从左边可以推出右边，反之则不行。\n\n对于分配律，当蕴含式的前件或后件不含x时，分配律成立；若前后件都含有x，则不满足分配律。因此只能满足单向推导，即从左到右。同理，将全称量词改为存在量词也成立。等价关系同样遵循从左到右的推导规则。这六个式子（1-6）都属于量词分配律的范畴，当P(x)和Q(x)都含有x时，仅存在单向推理。\n\n来看第七个式子，它类似于第二章的三段论。去掉全称量词后，其结构依然呈现三段论形式。第八个式子则是全称实例化规则：给定(∀x)P(x)和个体常量a，可推出P(a)。这是谓词演算中的个体代入规则，正如用\"苏格拉底\"这个特例来验证三段论。\n\n第九个式子表明：(∀x)(∀y)P(x,y)为",
+          "start_sec": 1837.4,
+          "end_sec": 2262.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1837400_2262800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_623300_1319800",
+          "text": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(x,y,z,u,v,w)表示。现在需要将这个前束范式转化为Skolem范式，即去掉存在量词。\n\n首先去掉存在x：由于存在一个x，可以用常量a代替x。接着处理存在u：由于u依赖于y和z，应该用函数f(y,z)代替u。同理，存在w应替换为g(y,z,v)的函数。这样处理后，公式中所有存在量词都被消除，得到Skolem范式。\n\n举例说明Skolem范式与原式不等值但等不可满足。比较两个公式：\n1. 原式：(∀x)(∃y)P(x,y)\n2. Skolem范式：(∀x)P(x,f(x))\n\n在{1,2}域上展开：\n原式 = (P(1,1)∨P(1,2))∧(P(2,1)∨P(2,2))\nSkolem范式 = P(1,f(1))∧P(2,f(2))\n\n显然两者不等值。但当P(1,1)和P(1,2)同假，或P(",
+          "start_sec": 623.3,
+          "end_sec": 1319.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_623300_1319800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_形式化是推理的第一步_4500_3036300",
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "prin_domain_of_discourse",
+        "tech_bound_free_split",
+        "tech_quantifier_negation",
+        "tech_rename_bound_var"
+      ],
+      "rank": 11
+    },
+    {
+      "id": "归结法/resolution method",
+      "zh": "归结法",
+      "importance": 0.224649,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "归结法（resolution method）是数理逻辑与集合论中一种重要的自动推理和证明方法，…",
+      "definition": "归结法（resolution method）是数理逻辑与集合论中一种重要的自动推理和证明方法，它通过将公式转化为子句集，并反复应用归结规则来推导出矛盾，从而证明原公式的可满足性或不可满足性。该方法相较于其他推理演算，因其机械性和标准化，更易于计算机实现。归结法可推广至谓词逻辑，但需处理量词和变元带来的复杂性。",
+      "neighbors": [
+        {
+          "subject": "归结法/resolution method",
+          "predicate": "belong_to",
+          "object": "证明/proof",
+          "label": "属于",
+          "natural_statement": "归结法属于证明"
+        },
+        {
+          "subject": "归结法/resolution method",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "归结法属于谓词逻辑"
+        },
+        {
+          "subject": "归结法/resolution method",
+          "predicate": "depend_on",
+          "object": "斯柯伦范式/Skolem normal form",
+          "label": "采用",
+          "natural_statement": "归结法采用斯柯伦范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_349200_608800",
+          "text": "Skolem范式与原始公式X并不一定等值，但它们是等不可满足的，即A不可满足当且仅当A′不可满足。为了表述简洁，这里用\"不可满足\"代替\"永假\"。\n\n我们主要介绍两种Skolem范式：\n1. ∃-前束范式：在前束范式中至少有一个存在量词，且所有存在量词都位于全称量词左边，形如(∃x₁)...(∃xᵢ)(∀xᵢ₊₁)...(∀xₙ)M(x₁,...,xₙ)。在将存在量词前移的过程中，公式可能不再与原式等值，但保持等永真性。\n\n2. 全称前束范式（Skolem范式）：在前束范式中消去所有存在量词，仅保留全称量词，形如(∀x₁)(∀x₂)...(∀xₙ)M(x₁,...,xₙ)。这种变换通常不等值，但保持等不可满足性。\n\n在归结法中，我们通过反证法证明公式的不可满足性：要证明A蕴含B，只需证明A∧¬B的Skolem范式不可满足。因为Skolem范式与原式等不可满足，所以这种方法是有效的。",
+          "start_sec": 349.2,
+          "end_sec": 608.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_349200_608800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "等值演算/Equivalence calculus",
+      "zh": "等值演算",
+      "importance": 0.217084,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "等值演算（Equivalence Calculus）是数理逻辑中用于简化和转换逻辑表达式的一种…",
+      "definition": "等值演算（Equivalence Calculus）是数理逻辑中用于简化和转换逻辑表达式的一种方法，可视为推理演算的一部分。它通过应用逻辑定律（如蕴含律、分配律等）来改写逻辑公式，以达到寻找最简表达式的目的。在数字电路设计等领域，等值演算提供了有力的技术手段，其核心在于利用逻辑公式之间的等价关系进行推理和化简。",
+      "neighbors": [
+        {
+          "subject": "全称消去规则/Universal elimination rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "全称消去规则是等值演算的组成部分"
+        },
+        {
+          "subject": "存在消去规则/Existential elimination rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "存在消去规则是等值演算的组成部分"
+        },
+        {
+          "subject": "全称引入规则/Universal introduction rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "全称引入规则是等值演算的组成部分"
+        },
+        {
+          "subject": "存在引入规则/Existential introduction rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "存在引入规则是等值演算的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "推理过程/inference process",
+      "zh": "推理过程",
+      "importance": 0.17985,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明…",
+      "definition": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明A⇒B的形式。它由一系列公式序列组成，每个公式要么是前提，要么是通过推理规则（如肯定前件、否定后件）从前面公式推导而来，直至得出最终结论。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "part_of",
+          "object": "推理过程/inference process",
+          "label": "属于",
+          "natural_statement": "公式属于推理过程"
+        },
+        {
+          "subject": "中间结论/intermediate conclusion",
+          "predicate": "part_of",
+          "object": "推理过程/inference process",
+          "label": "是…部分",
+          "natural_statement": "中间结论是推理过程部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2316000_2360300",
+          "text": "在推理过程中，我们使用以下规则进行推理。在谓词逻辑中，新增了一条规则称为个体变量的代入规则。例如，若∀x A(x)为真，则对于任意个体b，A(b)也为真。其余规则均与第二章命题演算相同。推理演算即从前提出发，逐步推导中间结论，最终推出结论B。",
+          "start_sec": 2316.0,
+          "end_sec": 2360.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2316000_2360300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_623300_1319800",
+          "text": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(x,y,z,u,v,w)表示。现在需要将这个前束范式转化为Skolem范式，即去掉存在量词。\n\n首先去掉存在x：由于存在一个x，可以用常量a代替x。接着处理存在u：由于u依赖于y和z，应该用函数f(y,z)代替u。同理，存在w应替换为g(y,z,v)的函数。这样处理后，公式中所有存在量词都被消除，得到Skolem范式。\n\n举例说明Skolem范式与原式不等值但等不可满足。比较两个公式：\n1. 原式：(∀x)(∃y)P(x,y)\n2. Skolem范式：(∀x)P(x,f(x))\n\n在{1,2}域上展开：\n原式 = (P(1,1)∨P(1,2))∧(P(2,1)∨P(2,2))\nSkolem范式 = P(1,f(1))∧P(2,f(2))\n\n显然两者不等值。但当P(1,1)和P(1,2)同假，或P(",
+          "start_sec": 623.3,
+          "end_sec": 1319.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_623300_1319800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "Skolem范式/Skolem Standard Form",
+      "zh": "Skolem范式",
+      "importance": 0.163641,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "Skolem范式/Skolem Standard Form",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "Skolem范式属于公式"
+        },
+        {
+          "subject": "Skolem范式/Skolem Standard Form",
+          "predicate": "related_with",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "与…等不可满足",
+          "natural_statement": "Skolem范式与前束范式等不可满足"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_623300_1319800",
+          "text": "前面我们有这样的前束范式：存在x任意y任意z存在u任意v存在w，共六个量词，后面是母式，用P(x,y,z,u,v,w)表示。现在需要将这个前束范式转化为Skolem范式，即去掉存在量词。\n\n首先去掉存在x：由于存在一个x，可以用常量a代替x。接着处理存在u：由于u依赖于y和z，应该用函数f(y,z)代替u。同理，存在w应替换为g(y,z,v)的函数。这样处理后，公式中所有存在量词都被消除，得到Skolem范式。\n\n举例说明Skolem范式与原式不等值但等不可满足。比较两个公式：\n1. 原式：(∀x)(∃y)P(x,y)\n2. Skolem范式：(∀x)P(x,f(x))\n\n在{1,2}域上展开：\n原式 = (P(1,1)∨P(1,2))∧(P(2,1)∨P(2,2))\nSkolem范式 = P(1,f(1))∧P(2,f(2))\n\n显然两者不等值。但当P(1,1)和P(1,2)同假，或P(",
+          "start_sec": 623.3,
+          "end_sec": 1319.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_623300_1319800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "斯柯伦范式/Skolem normal form",
+      "zh": "斯柯伦范式",
+      "importance": 0.160185,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们引入这四条规则。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "归结法/resolution method",
+          "predicate": "depend_on",
+          "object": "斯柯伦范式/Skolem normal form",
+          "label": "采用",
+          "natural_statement": "归结法采用斯柯伦范式"
+        },
+        {
+          "subject": "归结推理/Resolution",
+          "predicate": "depend_on",
+          "object": "斯柯伦范式/Skolem normal form",
+          "label": "采用",
+          "natural_statement": "归结推理采用斯柯伦范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "变形规则/transformation rule",
+      "zh": "变形规则",
+      "importance": 0.158478,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "变形规则是公理系统中用于推理的规则，是证明过程中符号变换的依据。",
+      "definition": "变形规则是公理系统中用于推理的规则，是证明过程中符号变换的依据。通过反复使用变形规则，可以从前提推导出结论，甚至消去所有联结词得到相继式。它包括肯定前提律、传递律、反证律、蕴涵词消去律（分离规则）和蕴涵词引入律等，是自然演绎系统的核心组成部分。",
+      "neighbors": [
+        {
+          "subject": "代入规则/代入规则",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "代入规则属于变形规则"
+        },
+        {
+          "subject": "分离规则/分离规则",
+          "predicate": "belong_to",
+          "object": "变形规则/transformation rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于变形规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_157100_348400",
+          "text": "关于逻辑章节的文档，我的PPT都放在Ipshen目录下，需要可以自行下载。",
+          "start_sec": 157.1,
+          "end_sec": 348.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_157100_348400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_2540800_2712200",
+          "text": "例3：推理演算\n\n前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))，(∃x)P(x)\n结论：(∃x)(∃y)(R(x)∧R(y))\n\n证明过程如下：\n(1) 引入前提：(∃x)P(x)→(∀x)((P(x)∨Q(x))→R(x))\n(2) 引入前提：(∃x)P(x)\n(3) 对(1)(2)进行分离规则，得到(∀x)((P(x)∨Q(x))→R(x))\n(4) 对(2)进行存在量词消去，得到P(c)\n(5) 对(3)进行全称量词消去，得到(P(x)∨Q(x))→R(x)\n(6) 将(5)中的x替换为c，得到(P(c)∨Q(c))→R(c)\n(7) 由(4)可得P(c)∨Q(c)\n(8) 对(6)(7)应用分离规则，得到R(c)\n(9) 对(8)进行存在量词引入，得到(∃x)R(x)\n(10) 对(8)进行存在量词引入，得到(∃y)R(y)\n(11) 将(9)(10)合取，",
+          "start_sec": 2540.8,
+          "end_sec": 2712.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2540800_2712200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "推理形式/inference form",
+      "zh": "推理形式",
+      "importance": 0.158391,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "推理形式是数理逻辑中，由前提和结论经蕴涵词联结而成的抽象化条件式表示。",
+      "definition": "推理形式是数理逻辑中，由前提和结论经蕴涵词联结而成的抽象化条件式表示。它将自然语句描述的推理关系引入符号，形成具有逻辑意义的推理骨架。只有正确的推理形式才构成逻辑规律，可用于推演，尤其在谓词逻辑中，它能够处理命题逻辑无法描述的复杂推理关系。",
+      "neighbors": [
+        {
+          "subject": "推理形式/inference form",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "推理形式属于数理逻辑"
+        },
+        {
+          "subject": "推理形式/inference form",
+          "predicate": "related_with",
+          "object": "推理定理/inference theorems",
+          "label": "相关于",
+          "natural_statement": "推理形式相关于推理定理"
+        },
+        {
+          "subject": "10个基本推理式",
+          "predicate": "belong_to",
+          "object": "推理形式/inference form",
+          "label": "是...的子类",
+          "natural_statement": "10个基本推理式是推理形式的子类"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_6_1695400_1836600",
+          "text": "推理形式。我们来看第一个例子：人皆有死，孔子是人，所以孔子有死。这是一个正确的推理。第二个例子：若有一个又高又胖的人，则存在一个高个子且存在一个胖子。这个方向的推理是正确的。再看第三个例子：若某个体a具有性质E，则所有个体x都具有性质E。这是一个错误的推理形式。就像班上有人跑步特别快，不能推出所有人跑步都快，这是强盗逻辑。本章将探讨如何区分正确与错误的推理形式。正如Leibniz所说，我们应该用数学方法来判断推理的正确性，而不是无谓争论。这里列出了10个基本推理式。",
+          "start_sec": 1695.4,
+          "end_sec": 1836.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1695400_1836600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "推理方法/inference method",
+      "zh": "推理方法",
+      "importance": 0.144858,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理方法是在数理逻辑和人工智能学科中，用于从已知事实或公理出发，推导出新结论的系统化过程。",
+      "definition": "推理方法是在数理逻辑和人工智能学科中，用于从已知事实或公理出发，推导出新结论的系统化过程。自然演绎是一种常见的推理方法，其特点是使用推理规则直接进行推导。在人工智能领域，谓词逻辑被视为一种基础的知识表示和推理方法，广泛应用于构建智能系统。",
+      "neighbors": [
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "belong_to",
+          "object": "推理方法/inference method",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于推理方法"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1518300_1693800",
+          "text": "第二章中的推理形式同样适用于当前内容。推理形式可以表示为 A 推出 B，或 A 重言蕴含 B。根据推理定理，A 推出 B 当且仅当 A 蕴含 B 永真。\n\n以亚里士多德三段论为例：所有人都会死。若 x 是自由变量，则可省略 ∀x 的写法。在谓词逻辑中，只要 x 不受约束，就默认为 ∀x。例如将 x 代入为苏格拉底，可推出苏格拉底也会死。\n\n谓词推理与命题公式推理的本质区别在于变量 x 的存在。若将 x 替换为特定常量 s，则转化为命题公式的推理。这实际上就是命题逻辑中的分离规则（肯定前件式）。谓词推理与命题公式推理在本质上是一致的，区别仅在于变量的引入。",
+          "start_sec": 1518.3,
+          "end_sec": 1693.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1518300_1693800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "量词等值演算/quantifier equivalence calculus",
+      "zh": "量词等值演算",
+      "importance": 0.14268,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "关于量词的等值演算主要分为两大类：摩根律和分配律。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "摩根律/Morgan's law",
+          "predicate": "belong_to",
+          "object": "量词等值演算/quantifier equivalence calculus",
+          "label": "是...的子类",
+          "natural_statement": "摩根律是量词等值演算的子类"
+        },
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "belong_to",
+          "object": "量词等值演算/quantifier equivalence calculus",
+          "label": "是...的子类",
+          "natural_statement": "分配律是量词等值演算的子类"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1320600_1516900",
+          "text": "关于量词的等值演算主要分为两大类：摩根律和分配律。摩根律处理量词前有否定词的情况，当否定词内移或深入时，需要进行变号转换：全称变特称，特称变全称；任意变存在，存在变任意。\n\n分配律的适用条件需要注意：当公式中不包含自由变量x时，与、或、蕴含运算满足分配律。但在蕴含关系中，若p(x)作为前件出现时，由于摩根律的变号要求，需要进行转换。当与、或运算同时作用于p(x)和q(x)时，全称量词仅对与运算有分配律，存在量词仅对或运算有分配律。\n\n在求范式过程中，若需要将量词左移，可通过变量改名的方式满足分配律要求。量词等值演算的核心就是摩根律和分配律这两个基本规则。\n\n前束范式的求解步骤包括：首先消除蕴含和等价关系，然后进行否定词深入，最后利用分配律实现量词左移。前束范式与原公式在等值性、永真性和永假性上保持一致。而Skolem范式是一种特殊的前束范式，它通过消除所有存在量词得到，虽然与原公式不等值，",
+          "start_sec": 1320.6,
+          "end_sec": 1516.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1320600_1516900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "正确推理形式",
+      "zh": "正确推理形式",
+      "importance": 0.13718,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "推理形式。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "人皆有死，孔子是人，所以孔子有死",
+          "predicate": "belong_to",
+          "object": "正确推理形式",
+          "label": "是...的实例",
+          "natural_statement": "人皆有死，孔子是人，所以孔子有死是正确推理形式的实例"
+        },
+        {
+          "subject": "若有一个又高又胖的人，则存在一个高个子且存在一个胖子",
+          "predicate": "belong_to",
+          "object": "正确推理形式",
+          "label": "是...的实例",
+          "natural_statement": "若有一个又高又胖的人，则存在一个高个子且存在一个胖子是正确推理形式的实例"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_1695400_1836600",
+          "text": "推理形式。我们来看第一个例子：人皆有死，孔子是人，所以孔子有死。这是一个正确的推理。第二个例子：若有一个又高又胖的人，则存在一个高个子且存在一个胖子。这个方向的推理是正确的。再看第三个例子：若某个体a具有性质E，则所有个体x都具有性质E。这是一个错误的推理形式。就像班上有人跑步特别快，不能推出所有人跑步都快，这是强盗逻辑。本章将探讨如何区分正确与错误的推理形式。正如Leibniz所说，我们应该用数学方法来判断推理的正确性，而不是无谓争论。这里列出了10个基本推理式。",
+          "start_sec": 1695.4,
+          "end_sec": 1836.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_1695400_1836600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "个体变量的代入规则/Rule of Individual Variable Substitution",
+      "zh": "个体变量的代入规则",
+      "importance": 0.117766,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "在推理过程中，我们使用以下规则进行推理。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "个体变量的代入规则/Rule of Individual Variable Substitution",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "个体变量的代入规则属于推理规则"
+        },
+        {
+          "subject": "个体变量的代入规则/Rule of Individual Variable Substitution",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "个体变量的代入规则属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2316000_2360300",
+          "text": "在推理过程中，我们使用以下规则进行推理。在谓词逻辑中，新增了一条规则称为个体变量的代入规则。例如，若∀x A(x)为真，则对于任意个体b，A(b)也为真。其余规则均与第二章命题演算相同。推理演算即从前提出发，逐步推导中间结论，最终推出结论B。",
+          "start_sec": 2316.0,
+          "end_sec": 2360.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2316000_2360300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "全称引入规则/Universal introduction rule",
+      "zh": "全称引入规则",
+      "importance": 0.106138,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们引入这四条规则。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称引入规则/Universal introduction rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "全称引入规则是等值演算的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "全称消去规则/Universal elimination rule",
+      "zh": "全称消去规则",
+      "importance": 0.106138,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们引入这四条规则。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称消去规则/Universal elimination rule",
+          "predicate": "part_of",
+          "object": "等值演算/Equivalence calculus",
+          "label": "是...的组成部分",
+          "natural_statement": "全称消去规则是等值演算的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_6_2731100_3295600",
+          "text": "我们引入这四条规则。最后再讲一下归结推理，归结推理采用斯柯伦范式即可。第二章的内容其实很简单，第五章就是在第二章基础上，加上摩根律、分配律以及这四条规则。所有内容都在黑板上了。\n\n具体规则包括：\n1. 全称消去规则：∀x A(x) ⇒ A(y)\n2. 存在消去规则：∃x A(x) ⇒ A(c) \n3. 全称引入规则：若所有x A(x)为真，则可推出∀x A(x)\n4. 存在引入规则：若A(c)为真，则可推出∃x A(x)\n\n等值演算和推理演算只需增加这几条规则。归结推理使用范式即可，考试时很多人喜欢用归结推理，因为不容易出错。\n\n关于作业安排：今天会布置部分作业，后续会进行调整。陈老师班上的作业保持不变。\n\n在讨论谓词公式时需要注意：常谓词虽然符合课本定义，但在解释时需要特别注意。例如谓词\"x是偶数\"在不同论域下的可满足性可能不同。这个问题可以通过将常谓词视为二阶公式来解决。",
+          "start_sec": 2731.1,
+          "end_sec": 3295.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_6_2731100_3295600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

@@ -1,441 +1,699 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { CollapsiblePanel } from "@/components/pipeline/CollapsiblePanel";
+import { RelatedAssetsPanel } from "@/components/pipeline/SelectionPanels";
 import { ResizableShell } from "@/components/pipeline/ResizableShell";
+import {
+  MindmapTree,
+  type MindmapDoc,
+  type MindmapTreeNode,
+} from "@/components/mindmap/MindmapTree";
+import { firstAssetWatch, type AssetsLibrary } from "@/lib/kg/assetsLibrary";
+import { loadReviewLectureMindmap } from "@/lib/apps/loadReviewClassroomGraph";
+import { reviewWatchPath } from "@/lib/apps/reviewSeek";
+import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
+import { ChapterOutlinePanel } from "@/components/mindmap/ChapterOutlinePanel";
+import { MindmapHistoryPanel } from "@/components/mindmap/MindmapHistoryPanel";
+import {
+  buildChapterMindmapDoc,
+  mergeMindmapIndexWithChapters,
+} from "@/lib/kg/mindmapChapterMerge";
+import { loadCourseMindmapStitched } from "@/lib/kg/mindmapComposeLoad";
+import {
+  buildChapterMindmapFromSkeleton,
+  leavesFromReviewPoints,
+  parseOutlineText,
+} from "@/lib/kg/mindmapChapterSkeleton";
+import { withBase } from "@/lib/withBase";
+import {
+  applyMindmapEditPatch,
+  loadMindmapEditPatch,
+  type MindmapHistoryItem,
+} from "@/lib/apps/mindmapEdits";
+import {
+  chapterFileSlug,
+  chapterNavId,
+  isCourseNavId,
+  parseChapterNavId,
+  type MindmapIndexDoc,
+  type MindmapIndexItem,
+} from "@/lib/kg/mindmapTypes";
+import pipe from "@/pages/PipelinePage.module.css";
 import shell from "@/styles/shell.module.css";
-import styles from "./MindmapPage.module.css";
 
-type TreeNode = {
-  id: string;
-  zh: string;
-  importance: number;
-  relation?: string | null;
-  related?: string[];
-  children: TreeNode[];
-};
+async function loadMindmapDoc(
+  courseId: string,
+  navId: string,
+  items: MindmapIndexItem[]
+): Promise<MindmapDoc> {
+  if (isCourseNavId(navId)) {
+    return loadCourseMindmapStitched(courseId, items);
+  }
 
-type MindmapDoc = {
-  lecture_id: string;
-  root: TreeNode;
-  n_nodes: number;
-  max_depth: number;
-  orphan_count: number;
-  meta: {
-    chapter?: string;
-    root_zh?: string;
-    virtual_root?: boolean;
-    n_entities_raw?: number;
-    n_edges_raw?: number;
-    attached_orphans?: number;
-    n_chapters?: number;
-  };
-};
-
-type IndexItem = {
-  lecture_id: string;
-  chapter?: string;
-  root_zh?: string;
-  n_nodes: number;
-  max_depth: number;
-  orphan_count: number;
-  path: string;
-  scope?: string;
-};
-
-type IndexDoc = {
-  courseId: string;
-  title: string;
-  items: IndexItem[];
-};
-
-function relLabel(rel?: string | null) {
-  if (!rel || rel === "attach") return "";
-  const map: Record<string, string> = {
-    part_of: "组成",
-    belong_to: "属于",
-    property_of: "属性",
-    depend_on: "依赖",
-    related_with: "相关",
-    chapter_topic: "主题",
-    toc_chapter: "章节",
-  };
-  return map[rel] || rel;
-}
-
-function nodeKind(id: string, depth: number): "root" | "chapter" | "topic" | "leaf" {
-  if (id.startsWith("__course__/") || depth === 0) return "root";
-  if (id.startsWith("__chapter__/")) return "chapter";
-  if (depth <= 2) return "topic";
-  return "leaf";
-}
-
-function collectMaxImp(node: TreeNode): number {
-  let m = node.importance || 0;
-  for (const c of node.children || []) m = Math.max(m, collectMaxImp(c));
-  return m;
-}
-
-/** 画布整体拖动；移动超过阈值时吞掉随后的 click，避免误触展开 */
-function PanViewport({
-  children,
-  resetKey,
-}: {
-  children: ReactNode;
-  resetKey: string | number;
-}) {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [dragging, setDragging] = useState(false);
-  const [moved, setMoved] = useState(false);
-  const dragRef = useRef<{
-    pointerId: number;
-    startX: number;
-    startY: number;
-    origX: number;
-    origY: number;
-    moved: boolean;
-  } | null>(null);
-  const suppressClickRef = useRef(false);
-
-  useEffect(() => {
-    setOffset({ x: 0, y: 0 });
-    dragRef.current = null;
-    setDragging(false);
-    setMoved(false);
-  }, [resetKey]);
-
-  useEffect(() => {
-    const block = (e: MouseEvent) => {
-      if (!suppressClickRef.current) return;
-      e.preventDefault();
-      e.stopPropagation();
-      suppressClickRef.current = false;
-    };
-    document.addEventListener("click", block, true);
-    return () => document.removeEventListener("click", block, true);
-  }, []);
-
-  return (
-    <div
-      className={[
-        styles.panViewport,
-        dragging ? styles.panDragging : "",
-        moved ? styles.panMoved : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      onPointerDown={(e) => {
-        if (e.button !== 0) return;
-        dragRef.current = {
-          pointerId: e.pointerId,
-          startX: e.clientX,
-          startY: e.clientY,
-          origX: offset.x,
-          origY: offset.y,
-          moved: false,
+  const chapterTitle = parseChapterNavId(navId);
+  if (chapterTitle) {
+    const item = items.find(
+      (i) =>
+        i.lecture_id === navId ||
+        ((i.scope === "chapter" || String(i.lecture_id).startsWith("chapter:")) &&
+          i.chapter === chapterTitle)
+    );
+    const path =
+      item?.path ||
+      `mindmaps/chapter_${chapterFileSlug(chapterTitle)}.json`;
+    try {
+      const r = await fetch(`${courseDataUrl(courseId, path)}?t=${Date.now()}`, {
+        cache: "no-store",
+      });
+      if (r.ok) {
+        const d = (await r.json()) as MindmapDoc;
+        return {
+          ...d,
+          meta: {
+            ...d.meta,
+            scope: "chapter",
+            chapter: chapterTitle,
+            lecture_ids: d.meta?.lecture_ids || item?.lecture_ids,
+            source: d.meta?.source || item?.source || "kg",
+          },
         };
-        setDragging(true);
-        setMoved(false);
-        e.currentTarget.setPointerCapture(e.pointerId);
-      }}
-      onPointerMove={(e) => {
-        const d = dragRef.current;
-        if (!d || d.pointerId !== e.pointerId) return;
-        const dx = e.clientX - d.startX;
-        const dy = e.clientY - d.startY;
-        if (!d.moved && Math.hypot(dx, dy) > 5) {
-          d.moved = true;
-          setMoved(true);
-        }
-        setOffset({ x: d.origX + dx, y: d.origY + dy });
-      }}
-      onPointerUp={(e) => {
-        const d = dragRef.current;
-        if (!d || d.pointerId !== e.pointerId) return;
-        if (d.moved) suppressClickRef.current = true;
-        dragRef.current = null;
-        setDragging(false);
-        setMoved(false);
-        try {
-          e.currentTarget.releasePointerCapture(e.pointerId);
-        } catch {
-          /* ignore */
-        }
-      }}
-      onPointerCancel={() => {
-        dragRef.current = null;
-        setDragging(false);
-        setMoved(false);
-      }}
-      onDoubleClick={() => setOffset({ x: 0, y: 0 })}
-      title="拖动平移画布 · 双击复位"
-    >
-      <div
-        className={styles.panLayer}
-        style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}
-      >
-        {children}
-      </div>
-    </div>
-  );
+      }
+    } catch {
+      /* fall through to runtime merge */
+    }
+
+    const lids =
+      item?.lecture_ids ||
+      items
+        .filter(
+          (i) =>
+            i.scope !== "course" &&
+            i.scope !== "chapter" &&
+            i.chapter === chapterTitle
+        )
+        .map((i) => i.lecture_id)
+        .sort((a, b) => Number(a) - Number(b) || a.localeCompare(b));
+
+    // 无讲次且章文件也读不到时，给可编辑空骨架，避免整页报错
+    if (!lids.length) {
+      return {
+        lecture_id: chapterNavId(chapterTitle),
+        root: {
+          id: `__chapter__/${chapterTitle}`,
+          zh: chapterTitle,
+          importance: 0.75,
+          relation: null,
+          related: [],
+          children: [],
+        },
+        roots: [
+          {
+            id: `__chapter__/${chapterTitle}`,
+            zh: chapterTitle,
+            importance: 0.75,
+            relation: null,
+            related: [],
+            children: [],
+          },
+        ],
+        n_nodes: 1,
+        max_depth: 0,
+        orphan_count: 0,
+        meta: {
+          chapter: chapterTitle,
+          root_zh: chapterTitle,
+          virtual_root: true,
+          scope: "chapter",
+          lecture_ids: [],
+          source: "summary+kg",
+        },
+      } satisfies MindmapDoc;
+    }
+
+    const lectures: { lectureId: string; doc: MindmapDoc }[] = [];
+    for (const lid of lids) {
+      const doc = await loadReviewLectureMindmap(courseId, lid, {
+        chapter: chapterTitle,
+        preferChapterSlice: false,
+      });
+      lectures.push({ lectureId: lid, doc });
+    }
+    const hasReview = lectures.some((l) => l.doc.meta?.source === "review+kg");
+    return buildChapterMindmapDoc(chapterTitle, lectures, {
+      source: hasReview ? "review+kg" : "kg",
+    });
+  }
+
+  const lectureItem = items.find((i) => i.lecture_id === navId);
+  return loadReviewLectureMindmap(courseId, navId, {
+    chapter: lectureItem?.chapter,
+  });
 }
 
-function MapBranch({
-  node,
-  depth,
-  maxImp,
-  defaultOpen,
-  expandDepth,
-}: {
-  node: TreeNode;
-  depth: number;
-  maxImp: number;
-  defaultOpen: boolean;
-  expandDepth: number;
-}) {
-  const [open, setOpen] = useState(defaultOpen);
-  const hasKids = (node.children?.length || 0) > 0;
-  const kind = nodeKind(node.id, depth);
-  const imp = Math.max(0.15, Math.min(1, (node.importance || 0) / (maxImp || 1)));
-  const rel = relLabel(node.relation);
-
-  return (
-    <div className={styles.branch} data-depth={depth} data-kind={kind}>
-      <div className={styles.branchMain}>
-        <button
-          type="button"
-          className={styles.bubble}
-          style={{ ["--imp" as string]: String(imp) }}
-          data-kind={kind}
-          onClick={() => hasKids && setOpen((v) => !v)}
-          title={hasKids ? (open ? "折叠" : "展开") : node.zh}
-        >
-          <span className={styles.bubbleText}>{node.zh}</span>
-          {rel ? <span className={styles.bubbleRel}>{rel}</span> : null}
-          {hasKids ? (
-            <span className={styles.bubbleMeta}>
-              {open ? "−" : "+"}
-              {node.children.length}
-            </span>
-          ) : (
-            <span className={styles.bubbleScore}>{node.importance.toFixed(2)}</span>
-          )}
-        </button>
-        {hasKids && open ? <span className={styles.elbow} aria-hidden /> : null}
-      </div>
-
-      {hasKids && open ? (
-        <div className={styles.childCol}>
-          {node.children.map((c, i) => (
-            <div
-              key={`${c.id}-${c.relation || ""}-${i}`}
-              className={styles.childRow}
-              data-first={i === 0 ? "1" : "0"}
-              data-last={i === node.children.length - 1 ? "1" : "0"}
-            >
-              <span className={styles.rail} aria-hidden />
-              <MapBranch
-                node={c}
-                depth={depth + 1}
-                maxImp={maxImp}
-                defaultOpen={depth + 1 < expandDepth}
-                expandDepth={expandDepth}
-              />
-            </div>
-          ))}
-        </div>
-      ) : null}
-    </div>
-  );
+function sourceLabel(src?: string, composedFrom?: string) {
+  if (composedFrom === "chapters") return "章拼接";
+  if (composedFrom === "chapter_slice") return "章裁剪";
+  if (src === "summary+kg") return "大纲+图谱";
+  if (src === "review+kg") return "课堂复习+图谱";
+  return "图谱投影";
 }
 
 export function MindmapPage() {
+  const courseId = useCourseId();
   const [sp, setSp] = useSearchParams();
-  const [index, setIndex] = useState<IndexDoc | null>(null);
+  const [index, setIndex] = useState<MindmapIndexDoc | null>(null);
   const [doc, setDoc] = useState<MindmapDoc | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [expandAll, setExpandAll] = useState(false);
   const [mapKey, setMapKey] = useState(0);
+  const [selected, setSelected] = useState<MindmapTreeNode | null>(null);
+  const [library, setLibrary] = useState<AssetsLibrary | null>(null);
+  const [historyItems, setHistoryItems] = useState<MindmapHistoryItem[]>([]);
+  const mindUndoRef = useRef<(() => void) | null>(null);
+  /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
+  const skipNextDocLoadRef = useRef(false);
 
-  const lecture = sp.get("lecture") || "";
+  const navId = sp.get("lecture") || "";
+  const items = index?.items || [];
+
+  const courseItems = useMemo(
+    () => items.filter((i) => i.scope === "course" || i.lecture_id === "course"),
+    [items]
+  );
+  const chapterItems = useMemo(
+    () =>
+      items.filter(
+        (i) => i.scope === "chapter" || String(i.lecture_id).startsWith("chapter:")
+      ),
+    [items]
+  );
+  const lectureItems = useMemo(
+    () =>
+      items.filter(
+        (i) =>
+          i.lecture_id !== "course" &&
+          i.scope !== "course" &&
+          i.scope !== "chapter" &&
+          !String(i.lecture_id).startsWith("chapter:")
+      ),
+    [items]
+  );
+
+  const activeChapter =
+    parseChapterNavId(navId) ||
+    items.find((i) => i.lecture_id === navId)?.chapter ||
+    "";
+
+  const lecturesForNav = useMemo(() => {
+    if (!activeChapter) return lectureItems;
+    const inChapter = lectureItems.filter((i) => i.chapter === activeChapter);
+    return inChapter.length ? inChapter : lectureItems;
+  }, [lectureItems, activeChapter]);
+
+  const lectureIdForLinks = useMemo(() => {
+    if (!navId || isCourseNavId(navId) || parseChapterNavId(navId)) {
+      const lids = doc?.meta?.lecture_ids;
+      return lids?.[0] || "";
+    }
+    return navId;
+  }, [navId, doc]);
 
   useEffect(() => {
-    fetch("/data/mindmap_showcase.json")
+    fetch(`${courseDataUrl(courseId, "assets_library.json")}?t=${Date.now()}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setLibrary(d && Array.isArray(d.cards) ? d : null))
+      .catch(() => setLibrary(null));
+  }, [courseId]);
+
+  useEffect(() => {
+    fetch(courseDataUrl(courseId, "mindmap_showcase.json"))
       .then((r) => {
         if (!r.ok) throw new Error("缺少 mindmap_showcase.json，请先运行 run_mindmap_tree.py");
         return r.json();
       })
-      .then((d: IndexDoc) => {
-        setIndex(d);
+      .then((d: MindmapIndexDoc) => {
+        const merged: MindmapIndexDoc = {
+          ...d,
+          items: mergeMindmapIndexWithChapters(d.items || []),
+        };
+        setIndex(merged);
         const preferred =
-          lecture ||
-          d.items.find((i) => i.lecture_id === "course")?.lecture_id ||
-          d.items[0]?.lecture_id;
-        if (preferred && !lecture) {
+          navId ||
+          merged.items.find((i) => i.lecture_id === "course")?.lecture_id ||
+          merged.items.find((i) => i.scope === "chapter")?.lecture_id ||
+          merged.items[0]?.lecture_id;
+        if (preferred && !navId) {
           setSp({ lecture: preferred }, { replace: true });
         }
       })
       .catch((e) => setError(String(e.message || e)));
-  }, []);
+  }, [courseId]);
 
   useEffect(() => {
-    if (!lecture) return;
+    if (!navId || !index) return;
+    if (skipNextDocLoadRef.current) {
+      skipNextDocLoadRef.current = false;
+      return;
+    }
     setError(null);
     setExpandAll(false);
     setMapKey((k) => k + 1);
-    fetch(`/data/mindmaps/${lecture === "course" ? "course" : `lecture_${lecture}`}.json`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`加载 ${lecture} 思维导图失败`);
-        return r.json();
+    setSelected(null);
+    let cancelled = false;
+    loadMindmapDoc(courseId, navId, index.items)
+      .then((d) => {
+        if (cancelled) return;
+        const patched = applyMindmapEditPatch(
+          d,
+          loadMindmapEditPatch(courseId, navId)
+        );
+        setDoc(patched);
       })
-      .then(setDoc)
       .catch((e) => {
+        if (cancelled) return;
         setDoc(null);
         setError(String(e.message || e));
       });
-  }, [lecture]);
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId, navId, index]);
 
-  const maxImp = useMemo(() => (doc ? collectMaxImp(doc.root) : 1), [doc]);
-  const current = index?.items.find((i) => i.lecture_id === lecture);
-  const courseItems = index?.items.filter((i) => i.lecture_id === "course") || [];
-  const lectureItems = index?.items.filter((i) => i.lecture_id !== "course") || [];
+  const current = items.find((i) => i.lecture_id === navId);
+  const chapterForOutline =
+    parseChapterNavId(navId) ||
+    (current?.scope === "chapter" ? current.chapter : "") ||
+    current?.chapter ||
+    "";
+  const nodeWatch = useMemo(
+    () =>
+      selected && lectureIdForLinks
+        ? firstAssetWatch(library, selected.id, {
+            lectureId: lectureIdForLinks,
+            lectureOnly: true,
+          })
+        : null,
+    [selected, library, lectureIdForLinks]
+  );
+
+  const titleText = (() => {
+    if (isCourseNavId(navId)) return "整课思维导图";
+    const ch = parseChapterNavId(navId);
+    if (ch) return ch;
+    if (navId) return `第 ${navId} 讲`;
+    return "思维导图";
+  })();
+
+  const rebuildChapterFromOutline = async (
+    outlineText: string,
+    meta?: { source?: string | null }
+  ) => {
+    if (!chapterForOutline || !index) {
+      throw new Error("请先在左侧选中具体「章」（不是整课总览）再更新大纲");
+    }
+    const item = index.items.find(
+      (i) =>
+        i.lecture_id === navId ||
+        (i.scope === "chapter" && i.chapter === chapterForOutline) ||
+        i.chapter === chapterForOutline
+    );
+    const lids =
+      item?.lecture_ids ||
+      index.items
+        .filter(
+          (i) =>
+            i.scope !== "course" &&
+            i.scope !== "chapter" &&
+            i.chapter === chapterForOutline
+        )
+        .map((i) => i.lecture_id);
+
+    const lectures: { lectureId: string; doc: MindmapDoc }[] = [];
+    const extraLeaves: MindmapTreeNode[] = [];
+    for (const lid of lids) {
+      try {
+        const d = await loadReviewLectureMindmap(courseId, lid, {
+          chapter: chapterForOutline,
+          preferChapterSlice: false,
+        });
+        lectures.push({ lectureId: String(lid), doc: d });
+      } catch {
+        /* skip */
+      }
+      try {
+        const rr = await fetch(
+          `${courseDataUrl(courseId, `review/lecture_${lid}.json`)}?t=${Date.now()}`,
+          { cache: "no-store" }
+        );
+        if (rr.ok) {
+          const rev = await rr.json();
+          extraLeaves.push(...leavesFromReviewPoints(rev?.points));
+        }
+      } catch {
+        /* skip */
+      }
+    }
+    if (!lectures.length && doc) {
+      lectures.push({ lectureId: "0", doc });
+    }
+    const skSource =
+      meta?.source === "manual_llm" || meta?.source === "manual"
+        ? (meta.source as "manual" | "manual_llm")
+        : "manual";
+    const sk = parseOutlineText(chapterForOutline, outlineText, skSource);
+    const next = buildChapterMindmapFromSkeleton(sk, lectures, {
+      source: "summary+kg",
+      extraLeaves,
+    });
+    setDoc(next);
+    setMapKey((k) => k + 1);
+    setSelected(null);
+
+    // 落盘章导图（与 summaries 一并持久化，不依赖浏览器缓存）
+    try {
+      const r = await fetch(withBase("/api/mindmap-outline"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          courseId,
+          chapter: chapterForOutline,
+          mindmap: next,
+          persist_mindmap: true,
+          mindmap_only: true,
+        }),
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        console.warn("persist chapter mindmap failed", err);
+        throw new Error(
+          String((err as { error?: string })?.error || "章导图写入磁盘失败")
+        );
+      } else if (index) {
+        skipNextDocLoadRef.current = true;
+        setIndex({
+          ...index,
+          items: index.items.map((it) =>
+            it.lecture_id === next.lecture_id ||
+            (it.scope === "chapter" && it.chapter === chapterForOutline)
+              ? {
+                  ...it,
+                  n_nodes: next.n_nodes,
+                  max_depth: next.max_depth,
+                  orphan_count: next.orphan_count,
+                  source: next.meta?.source || it.source,
+                  lecture_ids: next.meta?.lecture_ids || it.lecture_ids,
+                }
+              : it
+          ),
+        });
+      }
+    } catch (e) {
+      console.warn("persist chapter mindmap failed", e);
+      throw e;
+    }
+  };
+
+  const isLeafish =
+    selected &&
+    !selected.id.startsWith("__") &&
+    (selected.children?.length || 0) <= 2;
 
   return (
     <ResizableShell
       storagePrefix="shell-mindmap"
       nav={
-      <aside className={shell.sidebar}>
-        <div className={shell.sideHead}>
-          <Link className={shell.back} to="/">
-            <span className={shell.backIcon} aria-hidden>
-              ←
-            </span>
-            <span className={shell.backBrand}>
-              Teach<em>KG</em>
-            </span>
-          </Link>
-          <p className={shell.eyebrow}>Mindmap</p>
-          <h1 className={shell.sideTitle}>知识导图</h1>
-          <p className={shell.sideLead}>图谱投影为树 · 按讲次 / 整课浏览</p>
-        </div>
-
-        {courseItems.length > 0 && (
-          <div className={shell.navBlock}>
-            <p className={shell.navLabel}>课程</p>
-            {courseItems.map((it) => (
-              <button
-                key={it.lecture_id}
-                type="button"
-                className={
-                  it.lecture_id === lecture ? shell.navItemActive : shell.navItem
-                }
-                onClick={() => setSp({ lecture: it.lecture_id })}
-              >
-                <span>整课总览</span>
-                <em>{it.n_nodes} 点</em>
-              </button>
-            ))}
+        <aside className={shell.sidebar}>
+          <div className={shell.sideHead}>
+            <Link className={shell.back} to={coursePath(courseId)}>
+              <span className={shell.backIcon} aria-hidden>
+                ←
+              </span>
+              <span className={shell.backBrand}>
+                Edu<em>KG</em>
+              </span>
+            </Link>
+            <p className={shell.eyebrow}>Mindmap</p>
+            <h1 className={shell.sideTitle}>知识导图</h1>
           </div>
-        )}
 
-        {lectureItems.length > 0 && (
-          <div className={`${shell.navBlock} ${shell.navBlockGrow}`}>
-            <p className={shell.navLabel}>讲次</p>
-            <div className={shell.navScroll}>
-              {lectureItems.map((it) => (
+          {courseItems.length > 0 && (
+            <div className={shell.navBlock}>
+              <p className={shell.navLabel}>课程</p>
+              {courseItems.map((it) => (
                 <button
                   key={it.lecture_id}
                   type="button"
                   className={
-                    it.lecture_id === lecture ? shell.navItemActive : shell.navItem
+                    it.lecture_id === navId ? shell.navItemActive : shell.navItem
                   }
                   onClick={() => setSp({ lecture: it.lecture_id })}
                 >
-                  <span>第 {it.lecture_id} 讲</span>
-                  <em>{it.root_zh || `${it.n_nodes}点`}</em>
+                  <span>整课总览</span>
                 </button>
               ))}
             </div>
-          </div>
-        )}
-      </aside>
-      }
-      main={
-      <main className={shell.main}>
-        <header className={shell.topbar}>
-          <div className={shell.topbarText}>
-            <h2>
-              {lecture === "course"
-                ? "整课思维导图"
-                : lecture
-                  ? `第 ${lecture} 讲`
-                  : "思维导图"}
-            </h2>
-            {current?.chapter ? <p>{current.chapter}</p> : null}
-          </div>
+          )}
 
-          {doc && (
-            <div className={shell.stats}>
-              <div>
-                <strong>{doc.n_nodes}</strong>
-                <span>节点</span>
-              </div>
-              <div>
-                <strong>{doc.max_depth}</strong>
-                <span>深度</span>
-              </div>
-              <div>
-                <strong>{doc.meta.n_entities_raw ?? "—"}</strong>
-                <span>原实体</span>
-              </div>
-              <div>
-                <strong>{doc.orphan_count}</strong>
-                <span>未挂入</span>
+          {chapterItems.length > 0 && (
+            <div className={shell.navBlock}>
+              <p className={shell.navLabel}>章</p>
+              <div className={shell.navScroll} style={{ maxHeight: 220 }}>
+                {chapterItems.map((it) => (
+                  <button
+                    key={it.lecture_id}
+                    type="button"
+                    className={
+                      it.lecture_id === navId || it.chapter === activeChapter
+                        ? shell.navItemActive
+                        : shell.navItem
+                    }
+                    onClick={() =>
+                      setSp({
+                        lecture: it.lecture_id.startsWith("chapter:")
+                          ? it.lecture_id
+                          : chapterNavId(it.chapter || it.root_zh || ""),
+                      })
+                    }
+                  >
+                    <span>{it.root_zh || it.chapter || it.lecture_id}</span>
+                  </button>
+                ))}
               </div>
             </div>
           )}
 
-          <div className={shell.tools}>
-            <button
-              type="button"
-              className={shell.toolBtn}
-              onClick={() => {
-                setExpandAll(true);
-                setMapKey((k) => k + 1);
-              }}
-            >
-              展开下层
-            </button>
-            <button
-              type="button"
-              className={shell.toolBtn}
-              onClick={() => {
-                setExpandAll(false);
-                setMapKey((k) => k + 1);
-              }}
-            >
-              收起
-            </button>
-          </div>
-        </header>
-
-        {error && <p className="empty-hint">{error}</p>}
-        {!doc && !error && <p className="empty-hint">加载导图…</p>}
-
-        {doc && (
-          <div className={`${shell.canvasWrap} ${styles.mindCanvasWrap}`}>
-            <PanViewport resetKey={`${lecture}-${mapKey}`}>
-              <div className={styles.canvas} key={mapKey}>
-                <MapBranch
-                  node={doc.root}
-                  depth={0}
-                  maxImp={maxImp}
-                  defaultOpen
-                  expandDepth={expandAll ? 4 : 1}
-                />
+          {lecturesForNav.length > 0 && (
+            <div className={`${shell.navBlock} ${shell.navBlockGrow}`}>
+              <p className={shell.navLabel}>
+                讲次{activeChapter ? ` · ${activeChapter.replace(/^第\s*\d+\s*章\s*/, "")}` : ""}
+              </p>
+              <div className={shell.navScroll}>
+                {lecturesForNav.map((it) => (
+                  <button
+                    key={it.lecture_id}
+                    type="button"
+                    className={
+                      it.lecture_id === navId ? shell.navItemActive : shell.navItem
+                    }
+                    onClick={() => setSp({ lecture: it.lecture_id })}
+                  >
+                    <span>第 {it.lecture_id} 讲</span>
+                  </button>
+                ))}
               </div>
-            </PanViewport>
-          </div>
-        )}
-      </main>
+            </div>
+          )}
+        </aside>
+      }
+      main={
+        <main className={shell.main}>
+          <header className={shell.topbar}>
+            <div className={shell.topbarText}>
+              <h2>{titleText}</h2>
+              <p>
+                {current?.chapter && !parseChapterNavId(navId)
+                  ? current.chapter
+                  : null}
+                {doc?.meta?.source || doc?.meta?.composed_from ? (
+                  <span style={{ marginLeft: current?.chapter ? 8 : 0, opacity: 0.75 }}>
+                    {sourceLabel(doc.meta?.source, doc.meta?.composed_from)}
+                  </span>
+                ) : null}
+              </p>
+            </div>
+
+            {doc && (
+              <div className={shell.stats}>
+                <div>
+                  <strong>{doc.n_nodes}</strong>
+                  <span>节点</span>
+                </div>
+                <div>
+                  <strong>{doc.max_depth}</strong>
+                  <span>深度</span>
+                </div>
+              </div>
+            )}
+
+            <div className={shell.tools}>
+              <button
+                type="button"
+                className={shell.toolBtn}
+                onClick={() => setExpandAll((v) => !v)}
+              >
+                {expandAll ? "收起导图" : "展开导图"}
+              </button>
+            </div>
+          </header>
+
+          {error && <p className="empty-hint">{error}</p>}
+          {!doc && !error && <p className="empty-hint">加载导图…</p>}
+
+          {doc && (
+            <div className={shell.canvasWrap}>
+              <MindmapTree
+                doc={doc}
+                resetKey={mapKey}
+                expandAll={expandAll}
+                selectedId={selected?.id || null}
+                onSelect={setSelected}
+                editEnabled
+                courseId={courseId}
+                lectureId={navId}
+                onDocChange={setDoc}
+                onHistoryChange={setHistoryItems}
+                undoRef={mindUndoRef}
+                onResetEdits={() => {
+                  setMapKey((k) => k + 1);
+                  if (!index) return;
+                  loadMindmapDoc(courseId, navId, index.items)
+                    .then((d) => setDoc(d))
+                    .catch(() => null);
+                }}
+              />
+            </div>
+          )}
+        </main>
+      }
+      detail={
+        <aside className={pipe.side}>
+          <CollapsiblePanel title="选中节点" storageKey="mindmap-panel-node" defaultOpen>
+            {selected ? (
+              <div className={pipe.detailCard}>
+                <div className={pipe.detailBadge}>实体</div>
+                <p style={{ margin: "8px 0 4px" }}>
+                  <strong>{selected.zh}</strong>
+                </p>
+                <p className={pipe.sideEmpty} style={{ padding: 0 }}>
+                  {selected.id}
+                  {selected.relation ? ` · ${selected.relation}` : ""}
+                </p>
+                {lectureIdForLinks ? (
+                  <div className={pipe.cueList} style={{ marginTop: 10 }}>
+                    <Link
+                      className={pipe.cueBtn}
+                      to={reviewWatchPath(courseId, lectureIdForLinks, {
+                        kp: selected.id,
+                        t: nodeWatch?.startSec,
+                      })}
+                    >
+                      在单课复习中查看
+                    </Link>
+                    <Link
+                      className={pipe.cueBtn}
+                      to={coursePath(
+                        courseId,
+                        `/kg/lecture/${lectureIdForLinks}?focus=${encodeURIComponent(selected.id)}`
+                      )}
+                    >
+                      在课堂图谱中打开
+                    </Link>
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className={pipe.sideEmpty}>点击导图节点查看详情与资源</div>
+            )}
+          </CollapsiblePanel>
+
+          <CollapsiblePanel
+            title="操作历史"
+            storageKey="mindmap-panel-history"
+            defaultOpen
+          >
+            <MindmapHistoryPanel
+              items={historyItems}
+              onUndo={() => mindUndoRef.current?.()}
+            />
+          </CollapsiblePanel>
+
+          {chapterForOutline ? (
+            <CollapsiblePanel
+              title="大纲 / 总结输入"
+              storageKey="mindmap-panel-outline"
+              defaultOpen
+            >
+              <ChapterOutlinePanel
+                courseId={courseId}
+                chapter={chapterForOutline}
+                onApplied={async (outlineText, meta) => {
+                  await rebuildChapterFromOutline(outlineText, meta);
+                }}
+              />
+            </CollapsiblePanel>
+          ) : null}
+
+          <CollapsiblePanel
+            title="局部关联"
+            storageKey="mindmap-panel-local"
+            defaultOpen={Boolean(isLeafish)}
+          >
+            {selected && !selected.id.startsWith("__") ? (
+              <div className={pipe.detailCard}>
+                {selected.deps?.length ? (
+                  <div style={{ marginBottom: 10 }}>
+                    <div className={pipe.detailBadge}>依赖</div>
+                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
+                      {selected.deps.join("、")}
+                    </p>
+                  </div>
+                ) : null}
+                {selected.related?.length ? (
+                  <div style={{ marginBottom: 10 }}>
+                    <div className={pipe.detailBadge}>相关</div>
+                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
+                      {selected.related.join("、")}
+                    </p>
+                  </div>
+                ) : null}
+                {selected.children?.length ? (
+                  <div>
+                    <div className={pipe.detailBadge}>树下附属</div>
+                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
+                      {selected.children.map((c) => c.zh).join("、")}
+                    </p>
+                  </div>
+                ) : null}
+                {!selected.deps?.length &&
+                !selected.related?.length &&
+                !selected.children?.length ? (
+                  <div className={pipe.sideEmpty}>无局部关联；见下方资产卡</div>
+                ) : null}
+              </div>
+            ) : (
+              <div className={pipe.sideEmpty}>选中概念叶查看依赖 / 相关 / 附属</div>
+            )}
+          </CollapsiblePanel>
+
+          <CollapsiblePanel title="相关公式 · 例子 · 定理" storageKey="mindmap-panel-assets" defaultOpen>
+            <RelatedAssetsPanel
+              entityId={selected?.id || null}
+              library={library}
+              lectureId={lectureIdForLinks || null}
+              lectureOnly={Boolean(lectureIdForLinks)}
+            />
+          </CollapsiblePanel>
+        </aside>
       }
     />
   );

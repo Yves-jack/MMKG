@@ -200,10 +200,12 @@ def resolve_lecture_chapters(
         primary = mapped_chapters[0]
         primary_s = combined.get(primary, map_boost)
         picked: list[tuple[str, float]] = [(primary, primary_s)]
-        # 映射中的其余章作为候选次章
+        # 映射中的其余章按 yaml 顺序填满 top_k（不再只取一个次章）
         for ch in mapped_chapters[1:]:
-            if ch != primary:
-                picked.append((ch, combined.get(ch, map_boost * 0.5)))
+            if ch == primary or any(ch == p for p, _ in picked):
+                continue
+            picked.append((ch, combined.get(ch, map_boost * 0.5)))
+            if len(picked) >= top_k:
                 break
         if len(picked) < top_k:
             primary_text = text_scores.get(primary, 0.0)

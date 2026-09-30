@@ -30,10 +30,11 @@
 .brand {
   margin: 0 0 12px;
   font-family: var(--display);
-  font-size: clamp(52px, 8vw, 72px);
+  font-size: clamp(36px, 5vw, 48px);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-align: center;
 }
 
 .brand span {
@@ -47,14 +48,92 @@
   letter-spacing: 0.02em;
 }
 
-.mainNav {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 44px;
+.continueRow {
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
 }
 
-.mainLink {
+.continueLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 207, 142, 0.4);
+  background: rgba(62, 207, 142, 0.12);
+  color: #9decc4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.continueLink:hover {
+  border-color: rgba(62, 207, 142, 0.65);
+  color: #c8f5dd;
+}
+
+.continueMeta {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px dashed var(--line);
+}
+
+.backHome {
+  /* 布局与排版 */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+
+  /* 颜色与装饰 */
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-radius: 2px;
+
+  /* 交互 */
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* 左侧箭头 */
+.backHome::before {
+  content: "←";
+  font-size: 1.1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+/* 悬停效果 */
+.backHome:hover {
+  color: var(--text, #111);
+  transform: translateX(-2px);
+}
+
+.backHome:hover::before {
+  transform: translateX(-3px);
+}
+
+/* 键盘焦点样式，提升可访问性 */
+.backHome:focus-visible {
+  outline: 2px solid var(--accent, #5b8def);
+  outline-offset: 3px;
+}
+
+.courseNav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.courseCard {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -62,8 +141,33 @@
   border: 1px solid var(--line);
   border-radius: 14px;
   background: color-mix(in srgb, var(--bg-elev) 85%, transparent);
-  min-height: 140px;
+  min-height: 132px;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.courseCard:hover {
+  border-color: rgba(62, 207, 142, 0.4);
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+.mainNav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mainLink {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-elev) 85%, transparent);
+  min-height: 92px;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .mainLink:hover {
@@ -81,8 +185,8 @@
 
 .title {
   font-family: var(--display);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 650;
   letter-spacing: -0.02em;
 }
 
@@ -94,7 +198,7 @@
 }
 
 .extra {
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .extra h2 {

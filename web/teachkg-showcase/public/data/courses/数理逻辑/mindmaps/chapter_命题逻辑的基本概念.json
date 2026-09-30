@@ -1,0 +1,501 @@
+{
+  "lecture_id": "chapter:第1章 命题逻辑的基本概念",
+  "root": {
+    "id": "__chapter__/第1章 命题逻辑的基本概念",
+    "zh": "第1章 命题逻辑的基本概念",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/命题逻辑",
+        "zh": "命题逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.313791,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/谓词",
+        "zh": "谓词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "一元谓词/unary predicate",
+            "zh": "一元谓词",
+            "importance": 0.013356,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "二元谓词/binary predicate",
+            "zh": "二元谓词",
+            "importance": 0.011721,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "多元谓词/n-ary predicate",
+            "zh": "多元谓词",
+            "importance": 0.010572,
+            "relation": "belong_to",
+            "related": [
+              "论域"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "一阶谓词逻辑/first-order predicate logic",
+            "zh": "一阶谓词逻辑",
+            "importance": 0.020359,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/论域",
+        "zh": "论域",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题",
+        "zh": "命题",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑",
+        "zh": "谓词逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/个体常项",
+        "zh": "个体常项",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "个体/Individual",
+            "zh": "个体",
+            "importance": 0.058188,
+            "relation": "belong_to",
+            "related": [
+              "谓词逻辑"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "常项/constant term",
+            "zh": "常项",
+            "importance": 0.019303,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/量词",
+        "zh": "量词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.053902,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "存在量词/existential quantifier",
+            "zh": "存在量词",
+            "importance": 0.053006,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/个体变项",
+        "zh": "个体变项",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/真值",
+        "zh": "真值",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/陈述句",
+        "zh": "陈述句",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词变项",
+        "zh": "谓词变项",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/映射",
+        "zh": "映射",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/推理形式",
+        "zh": "推理形式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/二元谓词",
+        "zh": "二元谓词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第1章 命题逻辑的基本概念/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词常项/predicate constant",
+            "zh": "谓词常项",
+            "importance": 0.023157,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.015302,
+            "relation": "belong_to",
+            "related": [
+              "谓词"
+            ],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第1章 命题逻辑的基本概念",
+      "zh": "第1章 命题逻辑的基本概念",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/命题逻辑",
+          "zh": "命题逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.313791,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/谓词",
+          "zh": "谓词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "一元谓词/unary predicate",
+              "zh": "一元谓词",
+              "importance": 0.013356,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "二元谓词/binary predicate",
+              "zh": "二元谓词",
+              "importance": 0.011721,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "多元谓词/n-ary predicate",
+              "zh": "多元谓词",
+              "importance": 0.010572,
+              "relation": "belong_to",
+              "related": [
+                "论域"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "一阶谓词逻辑/first-order predicate logic",
+              "zh": "一阶谓词逻辑",
+              "importance": 0.020359,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/论域",
+          "zh": "论域",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题",
+          "zh": "命题",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑",
+          "zh": "谓词逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/个体常项",
+          "zh": "个体常项",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "个体/Individual",
+              "zh": "个体",
+              "importance": 0.058188,
+              "relation": "belong_to",
+              "related": [
+                "谓词逻辑"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "常项/constant term",
+              "zh": "常项",
+              "importance": 0.019303,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/量词",
+          "zh": "量词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "全称量词/universal quantifier",
+              "zh": "全称量词",
+              "importance": 0.053902,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "存在量词/existential quantifier",
+              "zh": "存在量词",
+              "importance": 0.053006,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/个体变项",
+          "zh": "个体变项",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/真值",
+          "zh": "真值",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/陈述句",
+          "zh": "陈述句",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词变项",
+          "zh": "谓词变项",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/映射",
+          "zh": "映射",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/推理形式",
+          "zh": "推理形式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/二元谓词",
+          "zh": "二元谓词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第1章 命题逻辑的基本概念/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词常项/predicate constant",
+              "zh": "谓词常项",
+              "importance": 0.023157,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.015302,
+              "relation": "belong_to",
+              "related": [
+                "谓词"
+              ],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 27,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_zh": "第1章 命题逻辑的基本概念",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "1"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

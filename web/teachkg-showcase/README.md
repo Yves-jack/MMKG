@@ -28,19 +28,19 @@ npm run dev
 
 ```bash
 # 仓库根目录
-python scripts/teaching/export_pipeline_showcase.py --course-id shuliluoji --lecture-id 1
-python scripts/teaching/export_pipeline_showcase.py --course-id shuliluoji --session-lectures 1 2
+python scripts/teaching/export_pipeline_showcase.py --course-id 数理逻辑 --lecture-id 1
+python scripts/teaching/export_pipeline_showcase.py --course-id 数理逻辑 --session-lectures 1 2
 python scripts/teaching/export_importance_showcase.py
-python scripts/teaching/build_assets_library.py --course-id shuliluoji
+python scripts/teaching/build_assets_library.py --course-id 数理逻辑
 
 cd web/teachkg-showcase
 npm run sync-data
 ```
 
-课程默认 `shuliluoji`，可用环境变量覆盖：
+课程默认 `数理逻辑`，可用环境变量覆盖：
 
 ```bash
-TEACHKG_COURSE=shuliluoji npm run sync-data
+TEACHKG_COURSE=数理逻辑 npm run sync-data
 ```
 
 ## 路由

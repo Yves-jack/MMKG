@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from teachkg.schemas import VideoSegment
+from teachkg.stage1_alignment.knowledge_points import format_knowledge_points
 from teachkg.utils.text import count_text_words
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
@@ -28,6 +29,10 @@ VALID_ABSTRACT_RELATIONS = frozenset({
     "property_of",
     "related_with",
 })
+
+# 增量抽取来源：严格原文 / KG补全 / 跨段
+EXTRACT_SOURCE_LECTURE_DELTA = "lecture_delta"
+EXTRACT_SOURCE_KG_COMPLETION = "kg_completion"
 
 _SUBJECT_ALIASES = ("subject", "head", "h", "source")
 _OBJECT_ALIASES = ("object", "tail", "t", "target")
@@ -360,14 +365,23 @@ def filter_delta_triplets(
     asr_text: str = "",
     *,
     conceptual_focus: bool = False,
+    allow_model_written_context: bool = False,
 ) -> list[Triplet]:
     """增量三元组过滤 + 语义去重。"""
     out: list[Triplet] = []
     seen: set[tuple[str, str, str]] = set()
     for t in triplets:
-        if is_redundant_delta_triplet(t) or is_awkward_delta_triplet(t):
+        if is_redundant_delta_triplet(t):
             continue
-        reason = validate_triplet(t, asr_text, conceptual_focus=conceptual_focus)
+        # KG 补全的自写 context 常复述实体名，不宜用 awkward 双计规则误杀
+        if not allow_model_written_context and is_awkward_delta_triplet(t):
+            continue
+        reason = validate_triplet(
+            t,
+            asr_text,
+            conceptual_focus=conceptual_focus,
+            allow_model_written_context=allow_model_written_context,
+        )
         if reason:
             continue
         key = delta_semantic_key(t)
@@ -467,6 +481,7 @@ def validate_triplet(
     asr_text: str = "",
     *,
     conceptual_focus: bool = False,
+    allow_model_written_context: bool = False,
 ) -> str | None:
     """结构校验（字段完整、格式合法）；语义质量由 LLM 校验负责。"""
     if is_bad_entity(triplet.subject) or is_bad_entity(triplet.object):
@@ -490,7 +505,17 @@ def validate_triplet(
         return "concrete_is_sentence"
     if triplet.statement_direction not in VALID_STATEMENT_DIRECTIONS:
         return "bad_statement_direction"
-    if triplet.context and asr_text and not context_in_source(triplet.context, asr_text):
+    # KG 补全边允许模型自写 context；严格原文边须可在原文定位
+    relax_context = (
+        allow_model_written_context
+        or (triplet.extract_source or "").strip() == EXTRACT_SOURCE_KG_COMPLETION
+    )
+    if (
+        triplet.context
+        and asr_text
+        and not relax_context
+        and not context_in_source(triplet.context, asr_text)
+    ):
         return "context_not_in_source"
     return None
 
@@ -506,8 +531,10 @@ class Triplet:
     description: str = ""
     context: str = ""
     extract_source: str = ""
+    cross_cue_span: str = ""
     subject_entity_ref: str = ""  # textbook | new
     object_entity_ref: str = ""
+    related_knowledge_points: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if self.abstract_relation and self.abstract_relation not in VALID_ABSTRACT_RELATIONS:
@@ -570,10 +597,14 @@ class Triplet:
         }
         if self.extract_source:
             data["extract_source"] = self.extract_source
+        if self.cross_cue_span:
+            data["cross_cue_span"] = self.cross_cue_span
         if self.subject_entity_ref:
             data["subject_entity_ref"] = self.subject_entity_ref
         if self.object_entity_ref:
             data["object_entity_ref"] = self.object_entity_ref
+        if self.related_knowledge_points:
+            data["related_knowledge_points"] = list(self.related_knowledge_points)
         return data
 
     @classmethod
@@ -611,6 +642,13 @@ class Triplet:
             data.get("statement_direction", data.get("read_direction", data.get("rewrite_direction", "")))
         ).strip()
 
+        kps_raw = data.get("related_knowledge_points") or data.get("knowledge_points") or []
+        related_kps: list[str] = []
+        if isinstance(kps_raw, list):
+            related_kps = [str(x).strip() for x in kps_raw if str(x).strip()]
+        elif isinstance(kps_raw, str) and kps_raw.strip():
+            related_kps = [kps_raw.strip()]
+
         return cls(
             subject=subject,
             object=obj,
@@ -621,8 +659,10 @@ class Triplet:
             description=str(data.get("description", "")).strip(),
             context=str(data.get("context", "")).strip(),
             extract_source=str(data.get("extract_source", "")).strip(),
+            cross_cue_span=str(data.get("cross_cue_span", "")).strip(),
             subject_entity_ref=str(data.get("subject_entity_ref", "")).strip(),
             object_entity_ref=str(data.get("object_entity_ref", "")).strip(),
+            related_knowledge_points=related_kps,
         )
 
     @property
@@ -754,11 +794,17 @@ def filter_triplets(
     asr_text: str = "",
     *,
     conceptual_focus: bool = False,
+    allow_model_written_context: bool = False,
 ) -> list[Triplet]:
     """解析后校验与过滤。"""
     out: list[Triplet] = []
     for t in triplets:
-        reason = validate_triplet(t, asr_text, conceptual_focus=conceptual_focus)
+        reason = validate_triplet(
+            t,
+            asr_text,
+            conceptual_focus=conceptual_focus,
+            allow_model_written_context=allow_model_written_context,
+        )
         if reason:
             logger.debug("Triplet rejected (%s): %s", reason, t.dedupe_key)
             continue
@@ -1198,38 +1244,91 @@ class TripletValidator:
         return parse_validation_response(raw, len(triplets))
 
     def _structural_only_result(
-        self, triplets: list[Triplet], asr_text: str
+        self,
+        triplets: list[Triplet],
+        asr_text: str,
+        *,
+        allow_model_written_context: bool = False,
     ) -> TripletValidationResult:
-        passed = [t for t in triplets if validate_triplet(t, asr_text) is None]
+        passed = [
+            t
+            for t in triplets
+            if validate_triplet(
+                t,
+                asr_text,
+                allow_model_written_context=allow_model_written_context,
+            )
+            is None
+        ]
         discarded = [
             ValidatedTriplet(
                 triplet=t,
                 verdict=ValidationVerdict(
                     verdict=VALIDATION_VERDICT_DISCARD,
-                    reason=_structural_discard_reason(t, asr_text),
+                    reason=validate_triplet(
+                        t,
+                        asr_text,
+                        allow_model_written_context=allow_model_written_context,
+                    )
+                    or "bad_entity",
                 ),
             )
             for t in triplets
-            if validate_triplet(t, asr_text) is not None
+            if validate_triplet(
+                t,
+                asr_text,
+                allow_model_written_context=allow_model_written_context,
+            )
+            is not None
         ]
         return TripletValidationResult(passed=passed, discarded=discarded)
 
-    def validate_batch(self, triplets: list[Triplet], asr_text: str) -> TripletValidationResult:
+    def validate_batch(
+        self,
+        triplets: list[Triplet],
+        asr_text: str,
+        *,
+        prompt_name: str | None = None,
+        allow_model_written_context: bool = False,
+    ) -> TripletValidationResult:
         """首轮校验：单次 LLM 调用，校验本 cue 抽取出的全部三元组。"""
         if not triplets:
             return TripletValidationResult()
         if self.mock:
-            return self._structural_only_result(triplets, asr_text)
+            return self._structural_only_result(
+                triplets,
+                asr_text,
+                allow_model_written_context=allow_model_written_context,
+            )
         try:
-            verdicts = self._validate_with_llm(triplets, asr_text, prompt_name=self.prompt_name)
+            verdicts = self._validate_with_llm(
+                triplets,
+                asr_text,
+                prompt_name=prompt_name or self.prompt_name,
+            )
         except Exception as exc:  # noqa: BLE001
             logger.warning("LLM batch triplet validation failed, fallback to structural only: %s", exc)
-            return self._structural_only_result(triplets, asr_text)
+            return self._structural_only_result(
+                triplets,
+                asr_text,
+                allow_model_written_context=allow_model_written_context,
+            )
         return _split_validation_verdicts(triplets, verdicts)
 
-    def validate_single(self, triplet: Triplet, asr_text: str) -> TripletValidationResult:
+    def validate_single(
+        self,
+        triplet: Triplet,
+        asr_text: str,
+        *,
+        prompt_name: str | None = None,
+        allow_model_written_context: bool = False,
+    ) -> TripletValidationResult:
         """补救后校验：单次 LLM 调用，仅校验一条 fix / re_extract 结果。"""
-        structural_reason = validate_triplet(triplet, asr_text)
+        structural_reason = validate_triplet(
+            triplet,
+            asr_text,
+            allow_model_written_context=allow_model_written_context,
+        )
         if structural_reason:
             return TripletValidationResult(
                 discarded=[
@@ -1248,7 +1347,7 @@ class TripletValidator:
             verdicts = self._validate_with_llm(
                 [triplet],
                 asr_text,
-                prompt_name=self.retry_prompt_name,
+                prompt_name=prompt_name or self.retry_prompt_name,
             )
         except Exception as exc:  # noqa: BLE001
             logger.warning("LLM single triplet validation failed, fallback to structural only: %s", exc)
@@ -1303,6 +1402,11 @@ class TripletExtractor:
     # 第二轮补漏：对照已抽增量再扫一遍课堂文本
     hybrid_completeness_pass: bool = True
     hybrid_completeness_prompt_name: str = "stage1/subgraph_hybrid_extract_complete.txt"
+    # KG 补全（知识点完整性；允许模型自写 context）
+    kg_completion_enabled: bool = False
+    kg_completion_prompt_name: str = "stage1/subgraph_kg_completion.txt"
+    kg_completion_validate_prompt: str = "stage1/triplet_validate_kg_completion.txt"
+    kg_completion_max_triples: int | None = None
     # 跨段抽取（单段之外的额外 pass；不改单段结果）
     cross_cue_extract_enabled: bool = False
     cross_cue_prompt_name: str = "stage1/subgraph_cross_cue_extract.txt"
@@ -1329,12 +1433,14 @@ class TripletExtractor:
         *,
         conceptual_focus: bool | None = None,
         max_count: int | None | object = _PARSE_DEFAULT_CAP,
+        allow_model_written_context: bool = False,
     ) -> list[Triplet]:
         cf = self.conceptual_focus if conceptual_focus is None else conceptual_focus
         triplets = filter_triplets(
             dedupe_triplets(parse_triplet_response(raw)),
             text,
             conceptual_focus=cf,
+            allow_model_written_context=allow_model_written_context,
         )
         if max_count is _PARSE_DEFAULT_CAP:
             cap: int | None = int(self.max_triplets_per_cue)
@@ -1564,6 +1670,7 @@ class TripletExtractor:
         already: list[Triplet],
         textbook_spo_keys: set[tuple[str, str, str]],
         dedupe_against_textbook: bool,
+        knowledge_points: list[str] | None = None,
     ) -> list[Triplet]:
         """第二轮补漏：在已有增量基础上再扫课堂文本。"""
         if self.mock or not self.hybrid_completeness_pass:
@@ -1573,6 +1680,9 @@ class TripletExtractor:
             course_context=course_context or "（无）",
             textbook_subgraph_json=textbook_subgraph_json or "（无）",
             known_entities=known_entities_text or "（无）",
+            knowledge_points=format_knowledge_points(
+                [str(x).strip() for x in (knowledge_points or []) if str(x).strip()]
+            ),
             asr_text=text,
             already_extracted_json=self._format_delta_json_for_prompt(already),
         )
@@ -1591,7 +1701,7 @@ class TripletExtractor:
         seen = {t.spo_dedupe_key for t in already}
         out: list[Triplet] = []
         for triplet in extra:
-            triplet.extract_source = "lecture_delta"
+            triplet.extract_source = EXTRACT_SOURCE_LECTURE_DELTA
             if triplet.spo_dedupe_key in seen:
                 continue
             if dedupe_against_textbook and overlaps_textbook_spo(
@@ -1682,7 +1792,8 @@ class TripletExtractor:
         out: list[Triplet] = []
         for triplet in parsed:
             triplet.context = ""
-            triplet.extract_source = span
+            triplet.extract_source = "cross_cue"
+            triplet.cross_cue_span = span
             if not (triplet.description or "").strip():
                 triplet.description = f"跨段衔接（{span}）"
             if triplet.spo_dedupe_key in seen:
@@ -1784,8 +1895,9 @@ class TripletExtractor:
         textbook_triplets: list[Triplet],
         dedupe_against_textbook: bool = True,
         known_entities_text: str = "",
+        knowledge_points: list[str] | None = None,
     ) -> TripletExtractResult:
-        """教材子图约束下的增量抽取（仅补课堂独有知识）。"""
+        """教材子图约束下的严格原文增量抽取（lecture_delta）。"""
         text = asr_text.strip()
         if not text:
             return TripletExtractResult(triplets=[], error="empty_text")
@@ -1797,6 +1909,7 @@ class TripletExtractor:
             if dedupe_against_textbook
             else set()
         )
+        kps = [str(x).strip() for x in (knowledge_points or []) if str(x).strip()]
 
         if self.mock:
             delta = [
@@ -1829,6 +1942,7 @@ class TripletExtractor:
             course_context=course_context or "（无）",
             textbook_subgraph_json=textbook_subgraph_json or "（无）",
             known_entities=known_entities_text or "（无）",
+            knowledge_points=format_knowledge_points(kps),
             asr_text=text,
             max_delta_instruction=hybrid_delta_limit_instruction(
                 None, words_per_item=self.hybrid_delta_words_per_item
@@ -1856,7 +1970,7 @@ class TripletExtractor:
         else:
             logger.info("Hybrid first-pass after parse/filter: %d", len(triplets))
         for triplet in triplets:
-            triplet.extract_source = "lecture_delta"
+            triplet.extract_source = EXTRACT_SOURCE_LECTURE_DELTA
 
         if dedupe_against_textbook:
             before = len(triplets)
@@ -1882,6 +1996,7 @@ class TripletExtractor:
                 already=triplets,
                 textbook_spo_keys=textbook_spo_keys,
                 dedupe_against_textbook=dedupe_against_textbook,
+                knowledge_points=kps,
             )
             if extras:
                 triplets = dedupe_triplets(triplets + extras)
@@ -1911,7 +2026,7 @@ class TripletExtractor:
                 )
             triplets = validation.passed
             for triplet in triplets:
-                triplet.extract_source = "lecture_delta"
+                triplet.extract_source = EXTRACT_SOURCE_LECTURE_DELTA
             if dedupe_against_textbook:
                 triplets = [
                     t
@@ -1943,6 +2058,135 @@ class TripletExtractor:
             )
 
         return TripletExtractResult(triplets=triplets, validation=validation)
+
+
+    def extract_kg_completion(
+        self,
+        asr_text: str,
+        course_context: str,
+        *,
+        textbook_subgraph_json: str,
+        textbook_triplets: list[Triplet],
+        already: list[Triplet] | None = None,
+        dedupe_against_textbook: bool = True,
+        known_entities_text: str = "",
+        knowledge_points: list[str] | None = None,
+    ) -> TripletExtractResult:
+        """知识点完整性 KG 补全（隐含/未点名结构边）；extract_source=kg_completion。"""
+        if not self.kg_completion_enabled:
+            return TripletExtractResult(triplets=[])
+        text = asr_text.strip()
+        if not text:
+            return TripletExtractResult(triplets=[], error="empty_text")
+
+        textbook_spo_keys = (
+            build_textbook_spo_keys(
+                textbook_triplets, match=self.dedupe_textbook_match
+            )
+            if dedupe_against_textbook
+            else set()
+        )
+        kps = [str(x).strip() for x in (knowledge_points or []) if str(x).strip()]
+        prior = list(already or [])
+
+        if self.mock:
+            return TripletExtractResult(triplets=[])
+
+        cap = self.kg_completion_max_triples
+        if cap is not None and int(cap) > 0:
+            max_delta_instruction = f"本步最多输出 {int(cap)} 条补全三元组。"
+        else:
+            max_delta_instruction = "本步条数不设硬上限；只补真正缺失的结构边。"
+
+        prompt = format_prompt(
+            self.kg_completion_prompt_name,
+            course_context=course_context or "（无）",
+            textbook_subgraph_json=textbook_subgraph_json or "（无）",
+            known_entities=known_entities_text or "（无）",
+            knowledge_points=format_knowledge_points(kps),
+            asr_text=text,
+            already_extracted_json=self._format_delta_json_for_prompt(prior),
+            max_delta_instruction=max_delta_instruction,
+        )
+        try:
+            raw = self.llm_client.chat(prompt, temperature=self.temperature)  # type: ignore[union-attr]
+        except Exception as exc:  # noqa: BLE001
+            logger.exception("KG completion LLM call failed")
+            return TripletExtractResult(triplets=[], error=str(exc))
+
+        triplets = self._parse_and_filter(
+            raw,
+            text,
+            conceptual_focus=self.conceptual_focus,
+            max_count=cap if cap is not None and int(cap) > 0 else None,
+            allow_model_written_context=True,
+        )
+        seen = {t.spo_dedupe_key for t in prior}
+        out: list[Triplet] = []
+        for triplet in triplets:
+            triplet.extract_source = EXTRACT_SOURCE_KG_COMPLETION
+            if triplet.spo_dedupe_key in seen:
+                continue
+            if dedupe_against_textbook and overlaps_textbook_spo(
+                triplet, textbook_spo_keys, match=self.dedupe_textbook_match
+            ):
+                continue
+            seen.add(triplet.spo_dedupe_key)
+            out.append(triplet)
+
+        validation: TripletValidationResult | None = None
+        if self.validate_enabled and out:
+            validation = self.validator.validate_batch(
+                out,
+                text,
+                prompt_name=self.kg_completion_validate_prompt,
+                allow_model_written_context=True,
+            )
+            logger.info(
+                "KG completion validate: pass=%d revise=%d discard=%d",
+                len(validation.passed),
+                len(validation.revise),
+                len(validation.discarded),
+            )
+            # 补全边不做 fix/re_extract 重试；仅保留 pass
+            out = list(validation.passed)
+            for triplet in out:
+                triplet.extract_source = EXTRACT_SOURCE_KG_COMPLETION
+
+        if self.conceptual_focus:
+            out = [t for t in out if not is_overly_specific_triplet(t)]
+        before_filter = len(out)
+        out = filter_delta_triplets(
+            out,
+            text,
+            conceptual_focus=self.conceptual_focus,
+            allow_model_written_context=True,
+        )
+        if before_filter and before_filter != len(out):
+            logger.info(
+                "KG completion filter_delta_triplets: %d -> %d",
+                before_filter,
+                len(out),
+            )
+        if dedupe_against_textbook:
+            before_dedupe = len(out)
+            out = filter_deltas_against_textbook(
+                out,
+                textbook_triplets,
+                match=self.dedupe_textbook_match,
+            )
+            if before_dedupe and before_dedupe != len(out):
+                logger.info(
+                    "KG completion textbook SPO dedupe: %d -> %d",
+                    before_dedupe,
+                    len(out),
+                )
+        if out:
+            logger.info("KG completion added %d triple(s)", len(out))
+        elif before_filter:
+            logger.info("KG completion kept 0 after post-validate filters")
+        return TripletExtractResult(triplets=out, validation=validation)
+
 
 
 def loose_triplet_key(subject: str, relation: str, object_: str) -> tuple[str, tuple[str, str]]:
@@ -2046,8 +2290,12 @@ def build_flat_triplet_records(
     extract_source: str = "",
     extract_mode: str = "",
     ground_textbook: bool = True,
+    source_text: str | None = None,
 ) -> list[dict[str, Any]]:
     """将 cue 级三元组展开为带溯源的 flat 记录。"""
+    # 优先用实际抽取文本（预处理/OCR 拼接），避免溯源与抽取不一致
+    src_excerpt = (source_text if source_text is not None else cue.asr_text) or ""
+    src_excerpt = str(src_excerpt)[:500]
     records: list[dict[str, Any]] = []
     for t in triplets:
         rec: dict[str, Any] = {
@@ -2057,7 +2305,7 @@ def build_flat_triplet_records(
             "lecture_id": cue.lecture_id,
             "start_sec": round(cue.start_sec, 3),
             "end_sec": round(cue.end_sec, 3),
-            "source_text": cue.asr_text[:500],
+            "source_text": src_excerpt,
         }
         source = t.extract_source or extract_source
         if is_cross_cue_extract_source(source):

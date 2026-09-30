@@ -64,8 +64,11 @@ def _build_corrector(config: TeachKGConfig) -> MultimodalCorrector:
 
 def _build_ppt_detector(config: TeachKGConfig) -> PPTDetector:
     ppt_cfg = (config.get("stage0") or {}).get("ppt_detector", {})
+    coarse_raw = ppt_cfg.get("coarse_interval_sec", 5.0)
+    coarse_interval = None if coarse_raw in (None, "", False) else float(coarse_raw)
     return PPTDetector(
-        sample_interval_sec=ppt_cfg.get("sample_interval_sec", 2),
+        sample_interval_sec=ppt_cfg.get("sample_interval_sec", 1),
+        coarse_interval_sec=coarse_interval,
         ssim_threshold=ppt_cfg.get("ssim_threshold", 0.15),
         min_gap_sec=ppt_cfg.get("min_gap_sec", 3.0),
         min_page_sec=ppt_cfg.get("min_page_sec", 5.0),

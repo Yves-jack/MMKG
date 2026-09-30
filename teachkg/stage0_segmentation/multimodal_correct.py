@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import re
@@ -116,7 +117,7 @@ class MultimodalCorrector:
         llm_client: LLMClient | None = None,
         ocr_model: str = "qwen-vl-ocr",
         enabled: bool = True,
-        page_overlap_ratio: float = 1.0 / 3.0,
+        page_overlap_ratio: float = 1.0 / 3.0,  # 已弃用，保留入参兼容旧配置
         group_consecutive_same_pages: bool = True,
         min_page_duration_sec: float = 1.0,
         ocr_frame_margin_before_flip_sec: float = 3.0,
@@ -146,7 +147,7 @@ class MultimodalCorrector:
         self.llm_model = self.llm_client.model
         self.ocr_model = ocr_model
         self.enabled = enabled
-        self.page_overlap_ratio = page_overlap_ratio
+        _ = page_overlap_ratio  # 已弃用：页区间改由 select_pages_for_cue / primary_page 决定
         self.group_consecutive_same_pages = group_consecutive_same_pages
         self.min_page_duration_sec = min_page_duration_sec
         self.ocr_frame_margin_before_flip_sec = ocr_frame_margin_before_flip_sec
@@ -174,8 +175,15 @@ class MultimodalCorrector:
         cap.release()
         if not ok:
             raise RuntimeError(f"Cannot read PPT frame at {timestamp_sec}s from {ppt_video}")
+        output_path = Path(output_path)
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        cv2.imwrite(str(output_path), frame)
+        # Windows：cv2.imwrite 对含中文路径常返回 False
+        from teachkg.utils.cv_io import imwrite_unicode
+
+        if not imwrite_unicode(output_path, frame):
+            raise RuntimeError(f"Cannot write PPT frame at {timestamp_sec}s → {output_path}")
+        if not output_path.is_file():
+            raise RuntimeError(f"PPT frame not written: {output_path}")
         return output_path
 
     def ocr_frame(self, image_path: Path) -> str:
@@ -402,6 +410,14 @@ class MultimodalCorrector:
         if not cues:
             return []
 
+        # 关闭校对：原样透传，不按页合并、不抽帧、不调 OCR/LLM
+        if not self.enabled:
+            logger.info(
+                "Multimodal correct disabled; passthrough %d raw cues unchanged",
+                len(cues),
+            )
+            return list(cues)
+
         pages = build_ppt_pages(boundaries, video_duration, self.min_page_duration_sec)
         if not pages:
             logger.warning("No PPT pages built; returning raw cues unchanged")
@@ -432,7 +448,29 @@ class MultimodalCorrector:
             len(groups),
             len(corrected),
         )
+        self._save_ppt_ocr_cache(work_dir, ocr_cache)
         removed = self._cleanup_orphan_ocr_frames(work_dir / "ocr", pages)
         if removed:
             logger.info("Removed %d orphan OCR frame(s) after correction", removed)
         return corrected or cues
+
+    @staticmethod
+    def _save_ppt_ocr_cache(work_dir: Path, ocr_cache: dict[int, str]) -> None:
+        """持久化页级 OCR，供 Stage1 抽取复用（不再只当校对附件）。"""
+        if not ocr_cache:
+            return
+        ocr_dir = Path(work_dir) / "ocr"
+        ocr_dir.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "pages": {
+                str(idx): text
+                for idx, text in sorted(ocr_cache.items())
+                if (text or "").strip()
+            }
+        }
+        path = ocr_dir / "ppt_ocr.json"
+        path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        logger.info("Saved PPT OCR cache: %d pages → %s", len(payload["pages"]), path)

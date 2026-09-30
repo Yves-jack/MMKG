@@ -3,19 +3,59 @@ import shell from "@/styles/shell.module.css";
 import { ResizableSplit } from "./ResizableSplit";
 
 type Props = {
-  nav: ReactNode;
+  /** 左侧导航；不传则仅主区（或主区+详情） */
+  nav?: ReactNode;
   main: ReactNode;
-  /** 有 detail 时为三栏（导航 | 主区 | 详情） */
+  /** 有 detail 时为三栏或两栏（主区 | 详情） */
   detail?: ReactNode;
   /** localStorage 前缀，如 shell-pipeline */
   storagePrefix: string;
+  /** 右侧详情栏初始宽度（px） */
+  detailInitialRightPx?: number;
+  /** 右侧详情栏最小宽度（px）；窄轨折叠时可传更小值 */
+  detailMinRightPx?: number;
+  /** 锁定右侧像素宽（如 Neo4j 式收成窄轨）；隐藏拖拽条 */
+  detailFixedRightPx?: number;
 };
 
 /**
  * 全页外壳可拖分栏：始终左右布局（不因窗口变窄改为上下堆叠）。
  */
-export function ResizableShell({ nav, main, detail, storagePrefix }: Props) {
-  const rootClass = `${shell.shell}${detail ? ` ${shell.shellWide}` : ""}`;
+export function ResizableShell({
+  nav,
+  main,
+  detail,
+  storagePrefix,
+  detailInitialRightPx = 340,
+  detailMinRightPx = 220,
+  detailFixedRightPx,
+}: Props) {
+  const rootClass = `${shell.shell}${detail || nav ? ` ${shell.shellWide}` : ""}`;
+  const rightMin = detailFixedRightPx ?? detailMinRightPx;
+  const rightFixed = detailFixedRightPx;
+  const rightInitial = detailFixedRightPx ?? detailInitialRightPx;
+
+  if (!nav && !detail) {
+    return <div className={rootClass}>{main}</div>;
+  }
+
+  if (!nav && detail) {
+    return (
+      <ResizableSplit
+        className={rootClass}
+        storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
+        sizedPane="right"
+        initialRightPx={rightInitial}
+        initialRightRatio={0.34}
+        minLeftPx={320}
+        minRightPx={rightMin}
+        fixedSizedPx={rightFixed}
+        stackBelowPx={0}
+        left={main}
+        right={detail}
+      />
+    );
+  }
 
   if (!detail) {
     return (
@@ -45,13 +85,15 @@ export function ResizableShell({ nav, main, detail, storagePrefix }: Props) {
       left={nav}
       right={
         <ResizableSplit
+          key={rightFixed != null ? "detail-rail" : "detail-panel"}
           className={shell.shellInner}
-          storageKey={`${storagePrefix}-detail-r`}
+          storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
           sizedPane="right"
-          initialRightPx={340}
-          initialRightRatio={0.28}
+          initialRightPx={rightInitial}
+          initialRightRatio={0.32}
           minLeftPx={280}
-          minRightPx={220}
+          minRightPx={rightMin}
+          fixedSizedPx={rightFixed}
           stackBelowPx={0}
           left={main}
           right={detail}

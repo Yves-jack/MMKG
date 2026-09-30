@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import time
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Iterator
 
 # 可读 JSON 根目录与 data 根目录；可由配置注入。
 _PRETTY_ROOT: Path | None = None
@@ -81,3 +83,34 @@ def save_jsonl(
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     if pretty:
         save_json(pretty_json_path(path), items, indent=indent)
+
+@contextmanager
+def exclusive_dir_lock(
+    lock_dir: str | Path,
+    *,
+    timeout_sec: float = 7200.0,
+    poll_sec: float = 0.25,
+) -> Iterator[Path]:
+    """Cross-platform exclusive lock via atomic mkdir (works on Windows).
+
+    Stage1 parallel lecture workers hold this only around shared JSONL
+    read-modify-write merges so LLM extraction can overlap.
+    """
+    path = Path(lock_dir)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    deadline = time.monotonic() + timeout_sec
+    while True:
+        try:
+            path.mkdir()
+            break
+        except FileExistsError:
+            if time.monotonic() >= deadline:
+                raise TimeoutError(f"Timed out waiting for lock: {path}")
+            time.sleep(poll_sec)
+    try:
+        yield path
+    finally:
+        try:
+            path.rmdir()
+        except OSError:
+            pass

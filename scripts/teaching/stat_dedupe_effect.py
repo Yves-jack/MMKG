@@ -127,7 +127,7 @@ def build_retriever(cfg: TeachKGConfig):
                 if "fallback_to_alias_on_empty" in seed_cfg
                 else None
             ),
-            course_context="shuliluoji",
+            course_context="数理逻辑",
         )
     edge_llm_filter = None
     if edge_cfg.get("enabled", False):
@@ -145,7 +145,7 @@ def build_retriever(cfg: TeachKGConfig):
                 edge_cfg.get("require_classroom_evidence", True)
             ),
             min_evidence_chars=int(edge_cfg.get("min_evidence_chars", 4) or 4),
-            course_context="shuliluoji",
+            course_context="数理逻辑",
         )
 
     return subgraph_mod.TextbookSubgraphRetriever(
@@ -192,12 +192,12 @@ def main() -> None:
 
     cues = [
         r
-        for r in load_jsonl(ROOT / "data/processed/shuliluoji/filtered_cues.jsonl")
+        for r in load_jsonl(ROOT / "data/processed/数理逻辑/filtered_cues.jsonl")
         if str(r.get("lecture_id")) == "1"
     ]
     cues.sort(key=lambda r: float(r.get("start_sec") or 0))
 
-    trips = load_jsonl(ROOT / "data/kg/shuliluoji/triplets.jsonl")
+    trips = load_jsonl(ROOT / "data/kg/数理逻辑/triplets.jsonl")
     hyb_by: dict[str, dict[str, list]] = defaultdict(
         lambda: {"textbook": [], "delta": [], "fallback": []}
     )
@@ -213,7 +213,7 @@ def main() -> None:
             hyb_by[r["cue_id"]]["fallback"].append(r)
 
     llm_by: dict[str, list] = defaultdict(list)
-    for r in load_jsonl(ROOT / "data/kg/shuliluoji/llm_only/triplets.jsonl"):
+    for r in load_jsonl(ROOT / "data/kg/数理逻辑/llm_only/triplets.jsonl"):
         if str(r.get("lecture_id")) == "1":
             llm_by[r["cue_id"]].append(r)
 
@@ -350,7 +350,7 @@ def main() -> None:
 
     out = (
         ROOT
-        / "data/experiments/comparisons/shuliluoji/dedupe_effect_lec1.json"
+        / "data/experiments/comparisons/数理逻辑/dedupe_effect_lec1.json"
     )
     save_json(out, report)
     print("wrote", out)

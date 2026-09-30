@@ -1,0 +1,1093 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "7",
+  "title": "第7讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/7_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/7_1.mp4",
+  "duration_sec": 3295.1,
+  "segments": [
+    {
+      "id": "数理逻辑_7_342600_710400",
+      "index": 1,
+      "start_sec": 342.6,
+      "end_sec": 710.4,
+      "title": "今天我们继续介绍第五章一阶谓词逻辑的推理"
+    },
+    {
+      "id": "数理逻辑_7_711300_874500",
+      "index": 2,
+      "start_sec": 711.3,
+      "end_sec": 874.5,
+      "title": "我们可以通过存在消去规则，将∃xP(x)中的…"
+    },
+    {
+      "id": "数理逻辑_7_876200_920000",
+      "index": 3,
+      "start_sec": 876.2,
+      "end_sec": 920.0,
+      "title": "例5：推理演算"
+    },
+    {
+      "id": "数理逻辑_7_921600_2036500",
+      "index": 4,
+      "start_sec": 921.6,
+      "end_sec": 2036.5,
+      "title": "推理演算（等值公式证明）： 前提：¬(∀x)…"
+    },
+    {
+      "id": "数理逻辑_7_2037400_2372100",
+      "index": 5,
+      "start_sec": 2037.4,
+      "end_sec": 2372.1,
+      "title": "归结推理过程如下： 1. 为证明 $A \\R…"
+    },
+    {
+      "id": "数理逻辑_7_2373200_2437900",
+      "index": 6,
+      "start_sec": 2373.2,
+      "end_sec": 2437.9,
+      "title": "将Skolem范式中的全称量词省略，仅对母式…"
+    },
+    {
+      "id": "数理逻辑_7_2438900_3295100",
+      "index": 7,
+      "start_sec": 2438.9,
+      "end_sec": 3295.1,
+      "title": "我们有一个子句是¬P(x)∨Q(x)，另一个…"
+    }
+  ],
+  "points": [
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.436712,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。",
+      "definition": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。它们与基本推理公式配合使用，确保逻辑的严谨性。例如，前提引入规则允许在推理过程中随时引入前提，而条件证明规则则建立了条件句推导的等价性。推理规则的有效性是逻辑系统的基石，能够保持普遍有效性，并广泛应用于命题逻辑和谓词逻辑的证明演算中。",
+      "neighbors": [
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "belong_to",
+          "object": "推理/inference",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理"
+        },
+        {
+          "subject": "证明/proof",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "证明依赖推理规则"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "推理演算依赖推理规则"
+        },
+        {
+          "subject": "推演/derivation",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "推演依赖推理规则"
+        },
+        {
+          "subject": "全称引入规则/universal introduction rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "全称引入规则属于推理规则"
+        },
+        {
+          "subject": "全称消去规则/universal elimination rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "全称消去规则属于推理规则"
+        },
+        {
+          "subject": "存在引入规则/existential introduction rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "存在引入规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.344077,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "变元/variable symbol",
+          "predicate": "part_of",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "变元属于论域"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "公式依赖论域"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "property_of",
+          "object": "论域/domain of discourse",
+          "label": "具有属性",
+          "natural_statement": "论域具有属性公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 2
+    },
+    {
+      "id": "矛盾式/contradiction",
+      "zh": "矛盾式",
+      "importance": 0.189132,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。",
+      "definition": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。这类公式是逻辑上不可满足的，例如，如果一个公式可以被归结为空子句（□），则证明其为矛盾式。理解矛盾式对于判断公式的等值性、重言式以及证明推理的有效性至关重要，定理2.8.2表明，$A \\Rightarrow B$ 成立的充分必要条件是 $A \\wedge \\neg B$ 是矛盾式。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "矛盾式/contradiction",
+          "label": "属于",
+          "natural_statement": "公式属于矛盾式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "property_of",
+          "object": "公式/formula",
+          "label": "表示",
+          "natural_statement": "公式表示矛盾式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "depend_on",
+          "object": "范式/normal form",
+          "label": "依赖",
+          "natural_statement": "矛盾式依赖范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_truth_classification"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "合一/unification",
+      "zh": "合一",
+      "importance": 0.138354,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "将Skolem范式中的全称量词省略，仅对母式求合取范式。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "合一/unification",
+          "predicate": "part_of",
+          "object": "归结过程/resolution process",
+          "label": "是…部分",
+          "natural_statement": "合一是归结过程部分"
+        },
+        {
+          "subject": "归结/resolution",
+          "predicate": "depend_on",
+          "object": "合一/unification",
+          "label": "依赖于",
+          "natural_statement": "归结依赖于合一"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2373200_2437900",
+          "text": "将Skolem范式中的全称量词省略，仅对母式求合取范式。然后将合取范式中的合取词\"∧\"替换为逗号，得到子句集S。在归结过程中需要进行合一(unification)操作。例如有两个子句：C1=p(x)∨q(x)，C2=¬p(a)∨r(y)，此时不能直接进行归结。",
+          "start_sec": 2373.2,
+          "end_sec": 2437.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2373200_2437900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_2438900_3295100",
+          "text": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。这时需要进行合一(unification)操作：首先用常量a代入x，得到¬P(a)∨Q(a)，然后进行归结，消去¬P(a)后得到Q(a)∨R(y)。\n\n这就是合一的过程，通过个体变元代入实现。最终Q(x)被代换为Q(a)。现在进行归结推理：首先从前提1得到子句¬P(x)∨Q(x)，前提2得到¬Q(x)∨R(x)，否定结论得到P(a)和¬R(a)两个子句。\n\n将四个子句进行归结：\n1. ¬Q(x)∨R(x)与¬P(x)∨Q(x)归结得到¬P(x)∨R(x)\n2. ¬P(x)∨R(x)与P(a)归结得到R(a)\n3. R(a)与¬R(a)归结得到矛盾\n\n这样就完成了证明。我们首先改写公式，然后分别求出各前提的子句集，最终得到Skolem范式。在Skolem化过程中，全称量词直接去掉，存在量词通过常量代换处理。",
+          "start_sec": 2438.9,
+          "end_sec": 3295.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2438900_3295100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "假设引入/Assumption Introduction",
+      "zh": "假设引入",
+      "importance": 0.107171,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "推理演算（等值公式证明）： 前提：¬(∀x)P(x) 结论：(∃x)¬P(x) 证明过程： 第…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "假设引入/Assumption Introduction",
+          "predicate": "belong_to",
+          "object": "方法/method",
+          "label": "属于",
+          "natural_statement": "假设引入属于方法"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_921600_2036500",
+          "text": "推理演算（等值公式证明）：\n前提：¬(∀x)P(x)\n结论：(∃x)¬P(x)\n\n证明过程：\n第一步引入前提¬(∀x)P(x)。第二步引入后件否定假设¬(∃x)¬P(x)。第三步假设¬P(x)。第四步通过存在量词引入得到(∃x)¬P(x)。第五步通过归结消元得到矛盾。第六步消去假设得到P(x)。第七步通过全称量词引入得到(∀x)P(x)。第八步与前提归结消元得到矛盾。第九步消去假设得到结论(∃x)¬P(x)。\n\n反之亦可证明，因此有¬(∀x)P(x)≡(∃x)¬P(x)。\n\n在证明过程中，我们采用了假设引入的方法。当证明无法进行时，可以引入假设，但所有假设最终都需要通过矛盾消去。这种方法类似于反证法，通过引入假设并最终消去假设来得到结论。\n\n对于另一个方向的证明：(∃x)¬P(x)推出¬(∀x)P(x)，可以采用类似的方法。首先引入前提(∃x)¬P(x)，然后通过存在量词消去规则得到¬P(",
+          "start_sec": 921.6,
+          "end_sec": 2036.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_921600_2036500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "矛盾消去/Contradiction Elimination",
+      "zh": "矛盾消去",
+      "importance": 0.107171,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "推理演算（等值公式证明）： 前提：¬(∀x)P(x) 结论：(∃x)¬P(x) 证明过程： 第…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "矛盾消去/Contradiction Elimination",
+          "predicate": "belong_to",
+          "object": "方法/method",
+          "label": "属于",
+          "natural_statement": "矛盾消去属于方法"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_921600_2036500",
+          "text": "推理演算（等值公式证明）：\n前提：¬(∀x)P(x)\n结论：(∃x)¬P(x)\n\n证明过程：\n第一步引入前提¬(∀x)P(x)。第二步引入后件否定假设¬(∃x)¬P(x)。第三步假设¬P(x)。第四步通过存在量词引入得到(∃x)¬P(x)。第五步通过归结消元得到矛盾。第六步消去假设得到P(x)。第七步通过全称量词引入得到(∀x)P(x)。第八步与前提归结消元得到矛盾。第九步消去假设得到结论(∃x)¬P(x)。\n\n反之亦可证明，因此有¬(∀x)P(x)≡(∃x)¬P(x)。\n\n在证明过程中，我们采用了假设引入的方法。当证明无法进行时，可以引入假设，但所有假设最终都需要通过矛盾消去。这种方法类似于反证法，通过引入假设并最终消去假设来得到结论。\n\n对于另一个方向的证明：(∃x)¬P(x)推出¬(∀x)P(x)，可以采用类似的方法。首先引入前提(∃x)¬P(x)，然后通过存在量词消去规则得到¬P(",
+          "start_sec": 921.6,
+          "end_sec": 2036.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_921600_2036500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "个体变元/individual variable",
+      "zh": "个体变元",
+      "importance": 0.105078,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "代入/instantiation",
+          "predicate": "related_with",
+          "object": "个体变元/individual variable",
+          "label": "作用于",
+          "natural_statement": "代入作用于个体变元"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2438900_3295100",
+          "text": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。这时需要进行合一(unification)操作：首先用常量a代入x，得到¬P(a)∨Q(a)，然后进行归结，消去¬P(a)后得到Q(a)∨R(y)。\n\n这就是合一的过程，通过个体变元代入实现。最终Q(x)被代换为Q(a)。现在进行归结推理：首先从前提1得到子句¬P(x)∨Q(x)，前提2得到¬Q(x)∨R(x)，否定结论得到P(a)和¬R(a)两个子句。\n\n将四个子句进行归结：\n1. ¬Q(x)∨R(x)与¬P(x)∨Q(x)归结得到¬P(x)∨R(x)\n2. ¬P(x)∨R(x)与P(a)归结得到R(a)\n3. R(a)与¬R(a)归结得到矛盾\n\n这样就完成了证明。我们首先改写公式，然后分别求出各前提的子句集，最终得到Skolem范式。在Skolem化过程中，全称量词直接去掉，存在量词通过常量代换处理。",
+          "start_sec": 2438.9,
+          "end_sec": 3295.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2438900_3295100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.101019,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "否定包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2438900_3295100",
+          "text": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。这时需要进行合一(unification)操作：首先用常量a代入x，得到¬P(a)∨Q(a)，然后进行归结，消去¬P(a)后得到Q(a)∨R(y)。\n\n这就是合一的过程，通过个体变元代入实现。最终Q(x)被代换为Q(a)。现在进行归结推理：首先从前提1得到子句¬P(x)∨Q(x)，前提2得到¬Q(x)∨R(x)，否定结论得到P(a)和¬R(a)两个子句。\n\n将四个子句进行归结：\n1. ¬Q(x)∨R(x)与¬P(x)∨Q(x)归结得到¬P(x)∨R(x)\n2. ¬P(x)∨R(x)与P(a)归结得到R(a)\n3. R(a)与¬R(a)归结得到矛盾\n\n这样就完成了证明。我们首先改写公式，然后分别求出各前提的子句集，最终得到Skolem范式。在Skolem化过程中，全称量词直接去掉，存在量词通过常量代换处理。",
+          "start_sec": 2438.9,
+          "end_sec": 3295.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2438900_3295100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_特称否定命题翻译模板_8700_1951300",
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 8
+    },
+    {
+      "id": "全称消去规则/universal elimination rule",
+      "zh": "全称消去规则",
+      "importance": 0.098363,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "今天我们继续介绍第五章一阶谓词逻辑的推理。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称消去规则/universal elimination rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "全称消去规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "全称引入规则/universal introduction rule",
+      "zh": "全称引入规则",
+      "importance": 0.098363,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "今天我们继续介绍第五章一阶谓词逻辑的推理。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称引入规则/universal introduction rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "全称引入规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "存在引入规则/existential introduction rule",
+      "zh": "存在引入规则",
+      "importance": 0.098363,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "今天我们继续介绍第五章一阶谓词逻辑的推理。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "存在引入规则/existential introduction rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "存在引入规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "存在消去规则/Existential Elimination Rule",
+      "zh": "存在消去规则",
+      "importance": 0.091886,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "存在消去规则/Existential Elimination Rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "存在消去规则属于推理规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.081885,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "命题形式/propositional form",
+          "label": "属于",
+          "natural_statement": "量词属于命题形式"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "量词属于公式"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "公式依赖量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "存在量词表示量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2438900_3295100",
+          "text": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。这时需要进行合一(unification)操作：首先用常量a代入x，得到¬P(a)∨Q(a)，然后进行归结，消去¬P(a)后得到Q(a)∨R(y)。\n\n这就是合一的过程，通过个体变元代入实现。最终Q(x)被代换为Q(a)。现在进行归结推理：首先从前提1得到子句¬P(x)∨Q(x)，前提2得到¬Q(x)∨R(x)，否定结论得到P(a)和¬R(a)两个子句。\n\n将四个子句进行归结：\n1. ¬Q(x)∨R(x)与¬P(x)∨Q(x)归结得到¬P(x)∨R(x)\n2. ¬P(x)∨R(x)与P(a)归结得到R(a)\n3. R(a)与¬R(a)归结得到矛盾\n\n这样就完成了证明。我们首先改写公式，然后分别求出各前提的子句集，最终得到Skolem范式。在Skolem化过程中，全称量词直接去掉，存在量词通过常量代换处理。",
+          "start_sec": 2438.9,
+          "end_sec": 3295.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2438900_3295100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_形式化是推理的第一步_4500_3036300",
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "prin_domain_of_discourse",
+        "tech_bound_free_split",
+        "tech_quantifier_negation",
+        "tech_rename_bound_var"
+      ],
+      "rank": 13
+    },
+    {
+      "id": "子句集/clause set",
+      "zh": "子句集",
+      "importance": 0.081153,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "子句集（clause set）是数理逻辑中的一个基本概念，特指由若干个子句（clause）构成…",
+      "definition": "子句集（clause set）是数理逻辑中的一个基本概念，特指由若干个子句（clause）构成的集合。子句是文字（文字是原子命题或其否定）的析取式，其目的是将一个逻辑公式表示成一组析取的子句，便于应用如归结（resolution）等证明方法。例如，集合 $S = {\\neg P \\lor Q, P, \\neg Q}$ 就是一个子句集。",
+      "neighbors": [
+        {
+          "subject": "归结式/resolvent",
+          "predicate": "belong_to",
+          "object": "子句集/clause set",
+          "label": "属于",
+          "natural_statement": "归结式属于子句集"
+        },
+        {
+          "subject": "归结式/resolvent",
+          "predicate": "part_of",
+          "object": "子句集/clause set",
+          "label": "属于",
+          "natural_statement": "归结式属于子句集"
+        },
+        {
+          "subject": "子句集/clause set",
+          "predicate": "depend_on",
+          "object": "合取范式/conjunctive normal form",
+          "label": "依赖",
+          "natural_statement": "子句集依赖合取范式"
+        },
+        {
+          "subject": "子句集/clause set",
+          "predicate": "depend_on",
+          "object": "公式/formula",
+          "label": "依赖",
+          "natural_statement": "子句集依赖公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_2373200_2437900",
+          "text": "将Skolem范式中的全称量词省略，仅对母式求合取范式。然后将合取范式中的合取词\"∧\"替换为逗号，得到子句集S。在归结过程中需要进行合一(unification)操作。例如有两个子句：C1=p(x)∨q(x)，C2=¬p(a)∨r(y)，此时不能直接进行归结。",
+          "start_sec": 2373.2,
+          "end_sec": 2437.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2373200_2437900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_2438900_3295100",
+          "text": "我们有一个子句是¬P(x)∨Q(x)，另一个子句是¬P(a)∨R(y)。这时需要进行合一(unification)操作：首先用常量a代入x，得到¬P(a)∨Q(a)，然后进行归结，消去¬P(a)后得到Q(a)∨R(y)。\n\n这就是合一的过程，通过个体变元代入实现。最终Q(x)被代换为Q(a)。现在进行归结推理：首先从前提1得到子句¬P(x)∨Q(x)，前提2得到¬Q(x)∨R(x)，否定结论得到P(a)和¬R(a)两个子句。\n\n将四个子句进行归结：\n1. ¬Q(x)∨R(x)与¬P(x)∨Q(x)归结得到¬P(x)∨R(x)\n2. ¬P(x)∨R(x)与P(a)归结得到R(a)\n3. R(a)与¬R(a)归结得到矛盾\n\n这样就完成了证明。我们首先改写公式，然后分别求出各前提的子句集，最终得到Skolem范式。在Skolem化过程中，全称量词直接去掉，存在量词通过常量代换处理。",
+          "start_sec": 2438.9,
+          "end_sec": 3295.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2438900_3295100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "等值公式/equivalent formula",
+      "zh": "等值公式",
+      "importance": 0.074477,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。",
+      "definition": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。这些公式如双重否定律、结合律、交换律和分配律等，允许对公式进行结构性变换而不改变其逻辑含义。例如，将含有蕴含和双条件的公式转化为仅含否定、析取和合取的公式，即是一种利用等值公式的置换操作，这对于简化公式和证明其唯一的主析取范式至关重要。",
+      "neighbors": [
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "分配律属于等值公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "结合律表示等值公式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_921600_2036500",
+          "text": "推理演算（等值公式证明）：\n前提：¬(∀x)P(x)\n结论：(∃x)¬P(x)\n\n证明过程：\n第一步引入前提¬(∀x)P(x)。第二步引入后件否定假设¬(∃x)¬P(x)。第三步假设¬P(x)。第四步通过存在量词引入得到(∃x)¬P(x)。第五步通过归结消元得到矛盾。第六步消去假设得到P(x)。第七步通过全称量词引入得到(∀x)P(x)。第八步与前提归结消元得到矛盾。第九步消去假设得到结论(∃x)¬P(x)。\n\n反之亦可证明，因此有¬(∀x)P(x)≡(∃x)¬P(x)。\n\n在证明过程中，我们采用了假设引入的方法。当证明无法进行时，可以引入假设，但所有假设最终都需要通过矛盾消去。这种方法类似于反证法，通过引入假设并最终消去假设来得到结论。\n\n对于另一个方向的证明：(∃x)¬P(x)推出¬(∀x)P(x)，可以采用类似的方法。首先引入前提(∃x)¬P(x)，然后通过存在量词消去规则得到¬P(",
+          "start_sec": 921.6,
+          "end_sec": 2036.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_921600_2036500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "推理演算/inference calculus",
+      "zh": "推理演算",
+      "importance": 0.072774,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。",
+      "definition": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实现逻辑证明的关键手段。例如，在谓词逻辑中，结合归结法进行推理演算，可以高效地进行逻辑推导。",
+      "neighbors": [
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "推理规则/inference rule",
+          "label": "依赖",
+          "natural_statement": "推理演算依赖推理规则"
+        },
+        {
+          "subject": "证明过程/proof process",
+          "predicate": "depend_on",
+          "object": "推理演算/inference calculus",
+          "label": "依赖",
+          "natural_statement": "证明过程依赖推理演算"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_921600_2036500",
+          "text": "推理演算（等值公式证明）：\n前提：¬(∀x)P(x)\n结论：(∃x)¬P(x)\n\n证明过程：\n第一步引入前提¬(∀x)P(x)。第二步引入后件否定假设¬(∃x)¬P(x)。第三步假设¬P(x)。第四步通过存在量词引入得到(∃x)¬P(x)。第五步通过归结消元得到矛盾。第六步消去假设得到P(x)。第七步通过全称量词引入得到(∀x)P(x)。第八步与前提归结消元得到矛盾。第九步消去假设得到结论(∃x)¬P(x)。\n\n反之亦可证明，因此有¬(∀x)P(x)≡(∃x)¬P(x)。\n\n在证明过程中，我们采用了假设引入的方法。当证明无法进行时，可以引入假设，但所有假设最终都需要通过矛盾消去。这种方法类似于反证法，通过引入假设并最终消去假设来得到结论。\n\n对于另一个方向的证明：(∃x)¬P(x)推出¬(∀x)P(x)，可以采用类似的方法。首先引入前提(∃x)¬P(x)，然后通过存在量词消去规则得到¬P(",
+          "start_sec": 921.6,
+          "end_sec": 2036.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_921600_2036500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "Skolem范式/Skolem normal form",
+      "zh": "Skolem范式",
+      "importance": 0.072466,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "将Skolem范式中的全称量词省略，仅对母式求合取范式。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "母式/Matrix",
+          "predicate": "part_of",
+          "object": "Skolem范式/Skolem normal form",
+          "label": "是…部分",
+          "natural_statement": "母式是Skolem范式部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2373200_2437900",
+          "text": "将Skolem范式中的全称量词省略，仅对母式求合取范式。然后将合取范式中的合取词\"∧\"替换为逗号，得到子句集S。在归结过程中需要进行合一(unification)操作。例如有两个子句：C1=p(x)∨q(x)，C2=¬p(a)∨r(y)，此时不能直接进行归结。",
+          "start_sec": 2373.2,
+          "end_sec": 2437.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2373200_2437900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "归结式/resolvent",
+      "zh": "归结式",
+      "importance": 0.050974,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "归结式是数理逻辑中，由两个包含互补文字（如L与¬L）的子句通过归结规则生成的新子句。",
+      "definition": "归结式是数理逻辑中，由两个包含互补文字（如L与¬L）的子句通过归结规则生成的新子句。具体地，若子句$C_1 = L \\vee C_1'$ 和 $C_2 = \\neg L \\vee C_2'$ 包含互补文字$L$和$\\neg L$，则它们的归结式为$C_1' \\vee C_2'$。归结式是原子句的逻辑推论，在自动定理证明中用于子句集的约简和证明。",
+      "neighbors": [
+        {
+          "subject": "归结式/resolvent",
+          "predicate": "belong_to",
+          "object": "子句集/clause set",
+          "label": "属于",
+          "natural_statement": "归结式属于子句集"
+        },
+        {
+          "subject": "归结式/resolvent",
+          "predicate": "part_of",
+          "object": "子句集/clause set",
+          "label": "属于",
+          "natural_statement": "归结式属于子句集"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "母式/Matrix",
+      "zh": "母式",
+      "importance": 0.048165,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "母式（Matrix）是数理逻辑中，一个不包含量词的公式。",
+      "definition": "母式（Matrix）是数理逻辑中，一个不包含量词的公式。它是从带有量词的公式通过特定规则（例如，在Herbrand域上进行特例化）推导而来，保留了公式的主要结构和变量关系，常用于自动化定理证明等领域。",
+      "neighbors": [
+        {
+          "subject": "母式/Matrix",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "母式包含公式"
+        },
+        {
+          "subject": "母式/Matrix",
+          "predicate": "property_of",
+          "object": "公式/formula",
+          "label": "具有属性",
+          "natural_statement": "公式具有属性母式"
+        },
+        {
+          "subject": "母式/Matrix",
+          "predicate": "part_of",
+          "object": "Skolem范式/Skolem normal form",
+          "label": "是…部分",
+          "natural_statement": "母式是Skolem范式部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_2373200_2437900",
+          "text": "将Skolem范式中的全称量词省略，仅对母式求合取范式。然后将合取范式中的合取词\"∧\"替换为逗号，得到子句集S。在归结过程中需要进行合一(unification)操作。例如有两个子句：C1=p(x)∨q(x)，C2=¬p(a)∨r(y)，此时不能直接进行归结。",
+          "start_sec": 2373.2,
+          "end_sec": 2437.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2373200_2437900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "推理过程/inference process",
+      "zh": "推理过程",
+      "importance": 0.045814,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明…",
+      "definition": "推理过程是数理逻辑与集合论中，一种从前提出发，依据既定规则推导出结论的论证方式，亦可理解为证明A⇒B的形式。它由一系列公式序列组成，每个公式要么是前提，要么是通过推理规则（如肯定前件、否定后件）从前面公式推导而来，直至得出最终结论。",
+      "neighbors": [
+        {
+          "subject": "推理过程/inference process",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖",
+          "natural_statement": "推理过程依赖前提"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "part_of",
+          "object": "推理过程/inference process",
+          "label": "属于",
+          "natural_statement": "公式属于推理过程"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_342600_710400",
+          "text": "今天我们继续介绍第五章一阶谓词逻辑的推理。一阶谓词逻辑推理基于第二章介绍的推理规则，并增加了四条新规则。\n\n首先是全称引入规则：如果P(x)成立，我们可以引入任意x使得P(x)成立，但要求x必须是自由变量。在莫绍揆先生的著作中提出了\"全称封闭式\"概念：如果一个一阶谓词逻辑公式中的个体变元x是自由的，那么我们就隐式地认为x受到全称量词的约束。\n\n其次是全称消去规则：如果有∀xP(x)，我们可以得到P(y)。为了简化，我们通常保持变量名不变，只需确保x在其他地方未被使用。\n\n存在引入规则较为简单：如果在前提或中间结论中出现P(c)为真，那么可以得到∃xP(x)为真，其中x在P中不出现。\n\n存在消去规则需要特别注意：如果∃xP(x)为真，我们可以推出P(c)为真。但存在消去有重要前提条件：在P(x)中不能包含特定限制。这一点必须牢记，否则容易出错。",
+          "start_sec": 342.6,
+          "end_sec": 710.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_342600_710400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "定理2.8.2/定理_2_8_2",
+      "zh": "定理2.8.2",
+      "importance": 0.044657,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "归结推理过程如下： 1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\w…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "定理2.8.2/定理_2_8_2",
+          "predicate": "belong_to",
+          "object": "证明/proof",
+          "label": "定理 2.8.2",
+          "natural_statement": "定理 2.8.2定理 2.8.2证明"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.043283,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。",
+      "definition": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范式不唯一，但λ-演算中的范式（即不含β-归约形式的项）是唯一的，且任何项经有限步β-归约后必能终止于其唯一的范式。",
+      "neighbors": [
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "depend_on",
+          "object": "范式/normal form",
+          "label": "依赖",
+          "natural_statement": "矛盾式依赖范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "谓词公式/predicate formula",
+      "zh": "谓词公式",
+      "importance": 0.040992,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "谓词公式是数理逻辑中用于表达命题的符号化语言，它包含谓词、变量、量词和逻辑联结词。",
+      "definition": "谓词公式是数理逻辑中用于表达命题的符号化语言，它包含谓词、变量、量词和逻辑联结词。谓词公式在特定解释下具有确定的真值，其等值式和推理式是普遍有效的。例如，在有限域上的转换有助于理解复杂的谓词公式，而子集公理模式则通过谓词公式定义了集合的子集。",
+      "neighbors": [
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "谓词公式属于公式"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "表示",
+          "natural_statement": "自由变元表示谓词公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "tech_finite_domain_expand",
+        "tech_truth_classification",
+        "tech_wff_recursive_check"
+      ],
+      "rank": 23
+    },
+    {
+      "id": "自由变元/free variable",
+      "zh": "自由变元",
+      "importance": 0.039375,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量…",
+      "definition": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量词∃）约束的变量。例如，在谓词公式P(x)中，如果x没有被任何量词限定，则x是自由变元。自由变元的值可以被自由地选择，其在公式中的含义会随着个体域的选择而变化。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "自由变元属于公式"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "property_of",
+          "object": "公式/formula",
+          "label": "依赖",
+          "natural_statement": "公式依赖自由变元"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "表示",
+          "natural_statement": "自由变元表示谓词公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_7_2037400_2372100",
+          "text": "归结推理过程如下：\n\n1. 为证明 $A \\Rightarrow B$，可等价地证明 $A \\wedge \\neg B$ 是矛盾式。\n2. 建立 $A \\wedge \\neg B$ 的子句集 $S$：\n   - 将 $G = A \\wedge \\neg B$ 化成 Skolem 范式 $G^{*}$（注意 $G$ 不可满足性当且仅当 $G^{*}$ 不可满足）\n   - 省略 $G^{*}$ 中的全称量词 $\\forall$，并将母式（已合取范式化）中的合取词 $\\wedge$ 替换为逗号，形成子句集 $S$\n3. 对 $S$ 进行归结：\n   - 若存在两个子句 $C1 = L1 \\vee C1'$ 和 $C2 = \\neg L2 \\vee C2'$，且存在代入 $\\sigma$ 使得 $L1$ 与 $L2$ 合一（即 $L1\\sigma = L2\\sigma$）\n   - 则可得到归结",
+          "start_sec": 2037.4,
+          "end_sec": 2372.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_2037400_2372100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_7_711300_874500",
+          "text": "我们可以通过存在消去规则，将∃xP(x)中的x替换为特定常量c，得到P(c)。但必须注意：在P(x)中不能包含自由变元，这一点非常重要，也是作业和考试中容易出错的地方。\n\n例如，若P(x)是\"x大于10\"，且论域是自然数集，这种替换是正确的。但如果P(x)中包含自由变元y，例如\"x大于y\"，那么这种替换就是错误的。因此要求∃xP(x)中不能包含自由变元。\n\n掌握了这个规则后，我们可以按以下步骤进行证明：首先用存在消去和全称消去规则，将前提中的量词全部消去；然后将公式转换为所需的后件形式；最后再重新添加量词。整个证明过程只需运用第二章学过的四条基本推理规则即可，无需使用分配律等其他复杂规则。",
+          "start_sec": 711.3,
+          "end_sec": 874.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_7_711300_874500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_约束变元改名等价定理_7600_3270100"
+      ],
+      "rank": 24
+    }
+  ]
+}

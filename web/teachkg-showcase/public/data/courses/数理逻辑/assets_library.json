@@ -1,0 +1,4742 @@
+{
+  "course_id": "数理逻辑",
+  "generated_at": "2026-08-18T08:59:18Z",
+  "card_count": 119,
+  "stats": {
+    "example": 43,
+    "formula": 39,
+    "principle": 9,
+    "theorem": 12,
+    "technique": 16,
+    "textbook_cards": 0,
+    "curated_cards": 15,
+    "llm_cards": 119,
+    "grounded_cards": 0,
+    "timed_cards": 0,
+    "refined_times": 0,
+    "relinked_cards": 80,
+    "lecture_entity_keys": 1115,
+    "with_evidence": 104
+  },
+  "cards": [
+    {
+      "asset_id": "llm_exam_用_p_今天是周二_q_今天有离散课做蕴含推理_39500_773000",
+      "kind": "example",
+      "name": "用 p=今天是周二、q=今天有离散课做蕴含推理",
+      "aliases": [],
+      "summary": "以具体命题演示命题逻辑中的假言推理。",
+      "statement": "p 表示今天是周二，q 表示今天有离散课，由 p→q 和 p 推出 q。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题逻辑/propositional logic",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "比如这里有 p，p 等于今天是周二，Q 等于今天有离散课。然后 p 蕴含 q，再以上 p，我们推出 q",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_339500_773000",
+        "start_sec": 339.5,
+        "end_sec": 773.0
+      }
+    },
+    {
+      "asset_id": "llm_form_假言推理_分离规则_39500_773000",
+      "kind": "formula",
+      "name": "假言推理（分离规则）",
+      "aliases": [],
+      "summary": "由蕴含式 p→q 和 p 为真推出 q 为真的推理规则。",
+      "statement": "若 p→q 且 p 为真，则 q 为真。",
+      "steps": [],
+      "concepts": [],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "p 蕴含 q，再以上 p，我们推出 q",
+      "latex": "(p \\rightarrow q) \\land p \\rightarrow q",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_339500_773000",
+        "start_sec": 339.5,
+        "end_sec": 773.0
+      }
+    },
+    {
+      "asset_id": "llm_exam_个体词所指对象的例子_89100_980600",
+      "kind": "example",
+      "name": "个体词所指对象的例子",
+      "aliases": [],
+      "summary": "用苏格拉底和人说明个体词表示的对象。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如苏格拉底、人，这些都是我们的对象。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_889100_980600",
+        "start_sec": 889.1,
+        "end_sec": 980.6
+      }
+    },
+    {
+      "asset_id": "llm_exam_论域取不同集合的例子_89100_980600",
+      "kind": "example",
+      "name": "论域取不同集合的例子",
+      "aliases": [],
+      "summary": "用自然数集、整数集、实数集等说明论域需要指明。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "比如自然数集、整数集、实数集等。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_889100_980600",
+        "start_sec": 889.1,
+        "end_sec": 980.6
+      }
+    },
+    {
+      "asset_id": "llm_prin_先指明论域_89100_980600",
+      "kind": "principle",
+      "name": "先指明论域",
+      "aliases": [],
+      "summary": "讨论时需先指明论域，否则公式含义不确定。",
+      "statement": "论域不同，整体含义会不同。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "讨论时需指明论域，因为论域不同，整体含义会不同。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_889100_980600",
+        "start_sec": 889.1,
+        "end_sec": 980.6
+      }
+    },
+    {
+      "asset_id": "llm_exam_一元谓词例子_苏格拉底_1600_1224300",
+      "kind": "example",
+      "name": "一元谓词例子:苏格拉底/柏拉图是人",
+      "aliases": [],
+      "summary": "以“苏格拉底是人”“柏拉图是人”说明一元谓词描述个体属性。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "一元谓词/unary predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "一元谓词如“苏格拉底是人”“柏拉图是人”",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_三元谓词例子_a在b和c之间_1600_1224300",
+      "kind": "example",
+      "name": "三元谓词例子:A在B和C之间",
+      "aliases": [],
+      "summary": "以“A在B和C之间”说明三元谓词表示三个个体之间的关系。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "三元谓词如“A在B和C之间”。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_二元谓词例子_亚当喜欢夏娃_1600_1224300",
+      "kind": "example",
+      "name": "二元谓词例子:亚当喜欢夏娃",
+      "aliases": [],
+      "summary": "以“亚当喜欢夏娃”说明二元谓词表示两个个体之间的关系。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "二元谓词/binary predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "二元谓词表明两个个体之间的关系，如“亚当喜欢夏娃”。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_form_个体常项与个体变项记号约定_1600_1224300",
+      "kind": "formula",
+      "name": "个体常项与个体变项记号约定",
+      "aliases": [],
+      "summary": "个体常项用 A、B、C，个体变项用 x、y、z 表示。",
+      "statement": "个体常项用 A、B、C，个体变项用 x、y、z 表示。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体变项/individual variable",
+          "role": "notation_of"
+        },
+        {
+          "entity": "个体常项/individual constant",
+          "role": "notation_of"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "个体常项用A、B、C，个体变项用x、y、z。",
+      "latex": "A, B, C; x, y, z",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_form_命题与谓词符号约定_1600_1224300",
+      "kind": "formula",
+      "name": "命题与谓词符号约定",
+      "aliases": [],
+      "summary": "命题用小写 p、q、r 表示，谓词用大写 P、Q、R 表示。",
+      "statement": "命题用小写 p、q、r 表示，谓词用大写 P、Q、R 表示。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题/proposition",
+          "role": "notation_of"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "notation_of"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "role": "notation_of"
+        }
+      ],
+      "evidence": "命题逻辑中命题用小写p、q、r表示，谓词用大写P、Q、R表示。",
+      "latex": "p, q, r; P, Q, R",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_form_谓词表示约定_1600_1224300",
+      "kind": "formula",
+      "name": "谓词表示约定",
+      "aliases": [],
+      "summary": "谓词通常用能代表含义的英文单词表示，首字母大写，如 Man、Likes。",
+      "statement": "谓词用能代表含义的英文单词表示，首字母大写。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "notation_of"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "谓词通常用能代表含义的英文单词表示，首字母大写，如Man、Likes。",
+      "latex": "\\text{Man}, \\text{Likes}",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_981600_1224300",
+        "start_sec": 981.6,
+        "end_sec": 1224.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_p_x_y_在x_1_y_2时取值为假_3500_1575900",
+      "kind": "example",
+      "name": "P(x,y)在x=1,y=2时取值为假",
+      "aliases": [],
+      "summary": "给P(x,y)的变元赋值后得到假命题",
+      "statement": "当x=1,y=2时，1+2=2是假命题",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "变元/variable symbol",
+          "role": "illustrates"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "当x=1,y=2时，1+2=2就是一个命题，值为假",
+      "latex": "P(1,2): 1+2=2 \\equiv F",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_1313500_1575900",
+        "start_sec": 1313.5,
+        "end_sec": 1575.9
+      }
+    },
+    {
+      "asset_id": "llm_exam_p_father_john_复合示例_7500_1694100",
+      "kind": "example",
+      "name": "P(father(John)) 复合示例",
+      "aliases": [],
+      "summary": "用命题函数 P 与个体函数 father 复合，表达 John 的父亲是教师。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "命题函数 P(x) 表示 x 是教师，则 P(father(John)) 表达了 John 的父亲是教师。",
+      "latex": "P(father(John))",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_1577500_1694100",
+        "start_sec": 1577.5,
+        "end_sec": 1694.1
+      }
+    },
+    {
+      "asset_id": "llm_exam_个体函数示例_father_x_与_teacher_x_7500_1694100",
+      "kind": "example",
+      "name": "个体函数示例 father(x) 与 teacher(x)",
+      "aliases": [],
+      "summary": "用 father(x) 和 teacher(x) 说明个体函数是个体域到个体域的映射。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        },
+        {
+          "entity": "映射/mapping",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "个体函数，例如 father(x) 表示 x 的父亲，teacher(x) 表示 x 的老师。",
+      "latex": "father(x), teacher(x)",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_1577500_1694100",
+        "start_sec": 1577.5,
+        "end_sec": 1694.1
+      }
+    },
+    {
+      "asset_id": "llm_exam_小弟弟抱红气球的谓词翻译_7500_2258100",
+      "kind": "example",
+      "name": "小弟弟抱红气球的谓词翻译",
+      "aliases": [],
+      "summary": "示例:将‘这位小弟弟抱住了那只大的红气球’分解成个体与谓词并翻译成谓词公式。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "我们来看个例子，谓词公式的翻译。这位小弟弟抱住了那只大的红气球。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_1697500_2258100",
+        "start_sec": 1697.5,
+        "end_sec": 2258.1
+      }
+    },
+    {
+      "asset_id": "llm_exam_找不到小弟弟就不回家的谓词翻译_7500_2258100",
+      "kind": "example",
+      "name": "找不到小弟弟就不回家的谓词翻译",
+      "aliases": [],
+      "summary": "示例:把‘我如果找不到你的小弟弟，绝不回家’拆解为条件式，并讨论小弟弟可作谓词或个体函数。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "我如果找不到你的小弟弟，绝不回家。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_1697500_2258100",
+        "start_sec": 1697.5,
+        "end_sec": 2258.1
+      }
+    },
+    {
+      "asset_id": "llm_exam_所有人都会死_9300_2687400",
+      "kind": "example",
+      "name": "所有人都会死",
+      "aliases": [],
+      "summary": "用“所有人都会死”说明全称量词约束论域中的所有个体",
+      "statement": "∀x(人(x)→会死(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "illustrates"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如“所有的x，如果x是人，则x都会死”，它约束了x在论域中的所有个体。",
+      "latex": "\\forall x(\\text{人}(x) \\to \\text{会死}(x))",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2259300_2687400",
+        "start_sec": 2259.3,
+        "end_sec": 2687.4
+      }
+    },
+    {
+      "asset_id": "llm_form_全称量词_的基本形式_9300_2687400",
+      "kind": "formula",
+      "name": "全称量词∀的基本形式",
+      "aliases": [],
+      "summary": "全称量词∀的合式公式形式",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词∀表示“对所有...”，基本形式为(∀x)P(x)。",
+      "latex": "(\\forall x)P(x)",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2259300_2687400",
+        "start_sec": 2259.3,
+        "end_sec": 2687.4
+      }
+    },
+    {
+      "asset_id": "llm_form_存在量词_的基本形式_9300_2687400",
+      "kind": "formula",
+      "name": "存在量词∃的基本形式",
+      "aliases": [],
+      "summary": "存在量词∃的合式公式形式",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在量词∃表示“存在某个...”，基本形式为(∃x)P(x)。",
+      "latex": "(\\exists x)P(x)",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2259300_2687400",
+        "start_sec": 2259.3,
+        "end_sec": 2687.4
+      }
+    },
+    {
+      "asset_id": "llm_theo_全称量词真值条件_9300_2687400",
+      "kind": "theorem",
+      "name": "全称量词真值条件",
+      "aliases": [],
+      "summary": "全称量词命题的真假由论域中所有个体是否满足谓词决定。",
+      "statement": "当且仅当论域中所有个体x均使P(x)为真时，(∀x)P(x)为真；当且仅当存在个体x₀使P(x₀)为假时，(∀x)P(x)为假。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "about"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "当且仅当论域中所有个体x均使P(x)为真时，(∀x)P(x)为真；当且仅当存在个体x₀使P(x₀)为假时，(∀x)P(x)为假",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2259300_2687400",
+        "start_sec": 2259.3,
+        "end_sec": 2687.4
+      }
+    },
+    {
+      "asset_id": "llm_theo_存在量词真值条件_9300_2687400",
+      "kind": "theorem",
+      "name": "存在量词真值条件",
+      "aliases": [],
+      "summary": "存在量词命题的真假由论域中是否存在个体满足谓词决定。",
+      "statement": "当且仅当论域中至少存在一个个体x₀使P(x₀)为真时，(∃x)P(x)为真；当且仅当论域中所有个体x均使P(x)为假时，(∃x)P(x)为假。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "about"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "当且仅当论域中至少存在一个个体x₀使P(x₀)为真时，(∃x)P(x)为真；当且仅当论域中所有个体x均使P(x)为假时，(∃x)P(x)为假",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2259300_2687400",
+        "start_sec": 2490.32,
+        "end_sec": 2504.444
+      }
+    },
+    {
+      "asset_id": "llm_exam_约束出现与自由出现例子_7600_3270100",
+      "kind": "example",
+      "name": "约束出现与自由出现例子",
+      "aliases": [],
+      "summary": "通过(∀x)P(x)∨Q(x)说明同一个公式中x可以既有约束出现又有自由出现。",
+      "statement": "在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "自由出现/free occurrence",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如在(∀x)P(x)∨Q(x)中，P(x)中的x是约束出现，Q(x)中的x是自由出现。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2757600_3270100",
+        "start_sec": 2757.6,
+        "end_sec": 3270.1
+      }
+    },
+    {
+      "asset_id": "llm_form_约束变元易名规则_7600_3270100",
+      "kind": "formula",
+      "name": "约束变元易名规则",
+      "aliases": [],
+      "summary": "约束变元改名不改变命题真值，全称量词和存在量词均可换名。",
+      "statement": "约束变元可以任意改名，但自由变元不能改。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "约束变元/bound variable",
+          "role": "about"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "约束变元改名不改变命题的真值，即(∀x)P(x) = (∀y)P(y)，(∃x)P(x) = (∃y)P(y)。",
+      "latex": "(\\forall x)P(x) = (\\forall y)P(y),\\ (\\exists x)P(x) = (\\exists y)P(y)",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2757600_3270100",
+        "start_sec": 2757.6,
+        "end_sec": 3270.1
+      }
+    },
+    {
+      "asset_id": "llm_theo_约束变元改名等价定理_7600_3270100",
+      "kind": "theorem",
+      "name": "约束变元改名等价定理",
+      "aliases": [],
+      "summary": "约束变元可以改名，改名不改变命题真值；自由变元不能随意改名。",
+      "statement": "约束变元可以改名，改名不改变命题真值，即(∀x)P(x)等价于(∀y)P(y)，(∃x)P(x)等价于(∃y)P(y)；自由变元不能随意改名。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "约束变元/bound variable",
+          "role": "about"
+        },
+        {
+          "entity": "自由变元/free variable",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "约束变元可以改名，改名不改变命题真值，即(∀x)P(x)等价于(∀y)P(y)，(∃x)P(x)等价于(∃y)P(y)；自由变元不能随意改名。",
+      "grounding": {
+        "lecture_id": "1",
+        "cue_id": "数理逻辑_1_2757600_3270100",
+        "start_sec": 2757.6,
+        "end_sec": 3270.1
+      }
+    },
+    {
+      "asset_id": "prin_domain_of_discourse",
+      "kind": "principle",
+      "name": "论域原理/domain of discourse principle",
+      "aliases": [
+        "个体域",
+        "讨论范围"
+      ],
+      "summary": "量词与谓词的讨论必须相对于事先约定的论域；论域改变会改变公式含义。",
+      "statement": "论域是所讨论个体的全集；个体常项、变项与谓词解释均相对该全集给出。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        },
+        {
+          "entity": "个体/Individual",
+          "role": "uses"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "applies_to"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "prin_predicate_as_propositional_function",
+      "kind": "principle",
+      "name": "谓词即命题函数/predicate as propositional function",
+      "aliases": [
+        "命题函数"
+      ],
+      "summary": "谓词可视为以个体为变元、以命题为值的函数；填入个体后得到命题。",
+      "statement": "n 元谓词 P(x1,…,xn) 是从论域^n 到命题的映射，又称命题函数。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "about"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "applies_to"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "prin_zero_ary_predicate_as_proposition",
+      "kind": "principle",
+      "name": "零元谓词即命题/zero-ary predicate as proposition",
+      "aliases": [
+        "零元谓词",
+        "命题是零元谓词"
+      ],
+      "summary": "不含个体变元的谓词（零元谓词）本身就是命题，在命题逻辑与谓词逻辑之间起桥梁作用。",
+      "statement": "零元谓词不跟随个体变元，其解释直接为真或假，因而等同于命题。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题/proposition",
+          "role": "about"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "about"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "tech_bound_free_split",
+      "kind": "technique",
+      "name": "约束与自由变元区分/bound-free variable distinction",
+      "aliases": [
+        "约束变元",
+        "自由变元"
+      ],
+      "summary": "判断个体变元是否在量词作用域内：约束变元无需额外指派，自由变元必须在解释中赋值。",
+      "statement": "变元 x 在 (∀x)A 或 (∃x)A 的作用域内出现时为约束出现；否则为自由出现。",
+      "steps": [
+        "标出每个量词的作用域",
+        "标记作用域内同名变元为约束出现",
+        "其余出现为自由出现",
+        "解释时只对自由变元指派"
+      ],
+      "concepts": [
+        {
+          "entity": "个体变项/individual variable",
+          "role": "applies_to"
+        },
+        {
+          "entity": "自由个体变项/free individual variable",
+          "role": "about"
+        },
+        {
+          "entity": "受量词约束/bound by quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "tech_finite_domain_expand",
+      "kind": "technique",
+      "name": "有限论域量词展开/finite-domain quantifier expansion",
+      "aliases": [
+        "有限论域下的量词",
+        "量词展开"
+      ],
+      "summary": "论域有限时，把全称/存在量词展开为合取/析取，使谓词公式转化为命题公式。",
+      "statement": "设论域 D={1,…,k}，则 (∀x)P(x) ≡ P(1)∧…∧P(k)，(∃x)P(x) ≡ P(1)∨…∨P(k)。",
+      "steps": [
+        "确认论域有限并列出全部个体",
+        "全称量词改为对每个个体的合取",
+        "存在量词改为对每个个体的析取",
+        "得到的命题公式再按命题逻辑判定真值"
+      ],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "applies_to"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "uses"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "uses"
+        },
+        {
+          "entity": "谓词公式/predicate formula",
+          "role": "applies_to"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "tech_overlap_quantifier_order",
+      "kind": "technique",
+      "name": "重叠量词次序分析/overlapping quantifier order analysis",
+      "aliases": [
+        "重叠量词",
+        "量词次序"
+      ],
+      "summary": "多个量词叠用时，次序影响含义：∀∃ 与 ∃∀ 一般不等价，需按依赖关系解读。",
+      "statement": "(∀x)(∃y)R(x,y) 表示每个 x 都有（可能依赖 x 的）y；(∃y)(∀x)R(x,y) 表示存在一个对所有 x 通用的 y。",
+      "steps": [
+        "从左到右阅读量词前缀",
+        "标出后重量词对前重量词的依赖",
+        "用自然语言复述依赖关系",
+        "必要时用小论域举例区分"
+      ],
+      "concepts": [
+        {
+          "entity": "重叠量词/overlapping quantifiers",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "uses"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "tech_propositionalize_predicate",
+      "kind": "technique",
+      "name": "谓词公式命题化/propositionalization of predicate formulas",
+      "aliases": [
+        "谓词转化为命题",
+        "命题函数转化为命题"
+      ],
+      "summary": "通过指派个体或消去自由变元，把命题函数变成有真值的命题。",
+      "statement": "对命题函数中的自由个体变元指派论域中的具体个体后，得到命题。",
+      "steps": [
+        "识别自由个体变元",
+        "从论域选取个体代入",
+        "得到原子命题或命题公式",
+        "再按命题逻辑求值"
+      ],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "applies_to"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "applies_to"
+        },
+        {
+          "entity": "个体常项/individual constant",
+          "role": "uses"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "tech_rename_bound_var",
+      "kind": "technique",
+      "name": "约束变元改名/bound variable renaming",
+      "aliases": [
+        "改名规则",
+        "改名保持真值"
+      ],
+      "summary": "在不改变约束结构的前提下更换约束变元字母，真值保持不变，常用于避免变元冲突。",
+      "statement": "将 (∀x)A(x) 中约束变元 x 一致替换为新变元 y（y 不在 A 中冲突）得 (∀y)A(y)，二者等值。",
+      "steps": [
+        "找出需改名的约束变元及其辖域",
+        "选择论域中未冲突的新变元名",
+        "辖域内一致替换",
+        "检查自由变元集合未改变"
+      ],
+      "concepts": [
+        {
+          "entity": "改名保持真值/truth-preserving under renaming",
+          "role": "about"
+        },
+        {
+          "entity": "个体变项/individual variable",
+          "role": "applies_to"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "1"
+      }
+    },
+    {
+      "asset_id": "llm_form_量词辖域记法_43300_422900",
+      "kind": "formula",
+      "name": "量词辖域记法",
+      "aliases": [],
+      "summary": "量词后面的括号范围就是该量词的辖域。",
+      "statement": "量词的辖域取决于量词后面的括号范围。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "量词的辖域/scope of quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "量词的辖域取决于量词后面的括号范围。",
+      "latex": "(\\forall x)(\\cdots)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_343300_422900",
+        "start_sec": 343.3,
+        "end_sec": 350.758
+      }
+    },
+    {
+      "asset_id": "llm_theo_约束变元改名定理_43300_422900",
+      "kind": "theorem",
+      "name": "约束变元改名定理",
+      "aliases": [],
+      "summary": "约束变元可进行改名，不影响公式含义。",
+      "statement": "约束变元可进行改名（如换用其他变元），不影响公式含义。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "公式/formula",
+          "role": "about"
+        },
+        {
+          "entity": "约束变元/bound variable",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "约束变元可进行改名（如换用其他变元），不影响公式含义。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_343300_422900",
+        "start_sec": 343.3,
+        "end_sec": 422.9
+      }
+    },
+    {
+      "asset_id": "llm_exam_辖域与约束变元示例_43300_422900",
+      "kind": "example",
+      "name": "辖域与约束变元示例",
+      "aliases": [],
+      "summary": "用两个量词公式演示量词辖域、内层约束与约束变元换名。",
+      "statement": "(∀x)(P(x)∨Q(x)) 中辖域为整个 P(x)∨Q(x)；(∀x)(P(x)∨(∃x)Q(x)) 中 Q(x) 的 x 被内层存在量词约束，不再是自由变元；内层存在量词可改写为 (∃y)Q(y) 或 (∃z)Q(z)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "约束变元/bound variable",
+          "role": "illustrates"
+        },
+        {
+          "entity": "辖域/Scope",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如，公式(∀x)(P(x)∨Q(x))中，辖域为整个P(x)∨Q(x)。而在公式(∀x)(P(x)∨(∃x)Q(x))中，Q(x)里的x已经被内层的存在量词约束，不再是自由变元，因此外层的全称量词无法约束它。这个存在量词可以改写为(∃y)Q(y)或(∃z)Q(z)，不影响其含义。",
+      "latex": "(\\forall x)(P(x)\\lor Q(x)),\\ (\\forall x)(P(x)\\lor(\\exists x)Q(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_343300_422900",
+        "start_sec": 349.558,
+        "end_sec": 406.047
+      }
+    },
+    {
+      "asset_id": "llm_form_量词约束自由变元规则_43300_422900",
+      "kind": "formula",
+      "name": "量词约束自由变元规则",
+      "aliases": [],
+      "summary": "量词只约束自由变元；已被约束的变元不能再被外层量词约束。",
+      "statement": "全称量词和存在量词只能约束自由变元；对于已经是约束变元的个体变元，外层量词不能再起作用。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "自由变元/free variable",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词和存在量词只能约束自由变元，对于已经是约束变元的个体变元，外层量词不能再起作用。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_343300_422900",
+        "start_sec": 404.847,
+        "end_sec": 422.9
+      }
+    },
+    {
+      "asset_id": "llm_theo_量词约束自由变元定理_43300_422900",
+      "kind": "theorem",
+      "name": "量词约束自由变元定理",
+      "aliases": [],
+      "summary": "全称量词和存在量词只能约束自由变元，已被约束的变元外层量词不能再起作用。",
+      "statement": "全称量词和存在量词只能约束自由变元；对于已被约束的个体变元，外层量词不能再起作用。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词和存在量词只能约束自由变元；对于已被约束的个体变元，外层量词不能再起作用。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_343300_422900",
+        "start_sec": 404.847,
+        "end_sec": 422.9
+      }
+    },
+    {
+      "asset_id": "llm_exam_p_x_y_x_y_2_作为命题函数_29800_914000",
+      "kind": "example",
+      "name": "P(x,y): x+y=2 作为命题函数",
+      "aliases": [],
+      "summary": "用 x+y=2 说明含自由变元的谓词公式是命题函数，代入常项后才有真假。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        },
+        {
+          "entity": "代入/instantiation",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。",
+      "latex": "P(x,y) \\triangleq (x+y=2)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_429800_914000",
+        "start_sec": 473.428,
+        "end_sec": 514.549
+      }
+    },
+    {
+      "asset_id": "llm_form_命题函数化为命题的两种方式_29800_914000",
+      "kind": "formula",
+      "name": "命题函数化为命题的两种方式",
+      "aliases": [],
+      "summary": "命题函数通过实例化或约束化消除自由变元而成为命题。",
+      "statement": "若公式没有自由变元，则它是命题；两种方式:个体变元实例化、个体变元约束化。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题/proposition",
+          "role": "about"
+        },
+        {
+          "entity": "自由变元/free variable",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "那么如何将一个命题形式化为命题呢",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_429800_914000",
+        "start_sec": 555.845,
+        "end_sec": 567.347
+      }
+    },
+    {
+      "asset_id": "llm_exam_x_y_x_y_2_的真假依赖论域_29800_914000",
+      "kind": "example",
+      "name": "∀x∃y(x+y=2) 的真假依赖论域",
+      "aliases": [],
+      "summary": "说明同一公式在自然数论域为假，在整数论域真假不同。",
+      "statement": "在自然数论域上，∀x∃y(x+y=2) 是假命题；改变论域会改变真值。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。",
+      "latex": "\\forall x \\exists y (x+y=2)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_429800_914000",
+        "start_sec": 597.053,
+        "end_sec": 648.476
+      }
+    },
+    {
+      "asset_id": "llm_exam_q_x_含自由变元不是命题_29800_914000",
+      "kind": "example",
+      "name": "Q(x) 含自由变元不是命题",
+      "aliases": [],
+      "summary": "用 Q(x) 说明含自由变元的公式不是命题。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "自由变元/free variable",
+          "role": "illustrates"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "那么下面这些公式是命题吗？显然不是，因为这里的x是自由变元，比如Q(x)中的x是自由变元，所以不行，不能有自由变元。",
+      "latex": "Q(x)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_429800_914000",
+        "start_sec": 813.398,
+        "end_sec": 851.943
+      }
+    },
+    {
+      "asset_id": "llm_exam_一切事物都会死_的假命题_29800_914000",
+      "kind": "example",
+      "name": "“一切事物都会死”的假命题",
+      "aliases": [],
+      "summary": "全称命题在论域为一切事物时为假，而含命题常项 r 的公式是命题。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "全称命题/universal proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "前面这个全称命题是一个假命题，因为x的论域为一切事物，x都会死，但并非所有事物都会死，所以这是一个假命题。而后面这个公式是一个命题，因为r是一个命题常项，所以这是一个命题。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_429800_914000",
+        "start_sec": 857.826,
+        "end_sec": 914.0
+      }
+    },
+    {
+      "asset_id": "llm_exam_对谓词变元施加量词的反例_6500_1138800",
+      "kind": "example",
+      "name": "对谓词变元施加量词的反例",
+      "aliases": [],
+      "summary": "举例说明量词不允许作用于谓词变元",
+      "statement": "若将任意量词作用于大写 P，即作用在谓词上，这是不允许的。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词变项/predicate variable",
+          "role": "illustrates"
+        },
+        {
+          "entity": "量词的辖域/scope of quantifier",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。",
+      "latex": "\\forall P",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_916500_1138800",
+        "start_sec": 989.8,
+        "end_sec": 1006.307
+      }
+    },
+    {
+      "asset_id": "llm_form_一阶谓词逻辑符号约定_6500_1138800",
+      "kind": "formula",
+      "name": "一阶谓词逻辑符号约定",
+      "aliases": [],
+      "summary": "一阶谓词逻辑中各类符号的表示约定",
+      "statement": "命题变项用小写 p、q、r；个体变元用 x、y、z；个体常项用 a、b、c；谓词变项用大写 P、Q、R；谓词常项用首字母大写的单词；函数用 f、g、h 或首字母小写的单词。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "一阶谓词逻辑/first-order predicate logic",
+          "role": "notation_of"
+        },
+        {
+          "entity": "个体常项/individual constant",
+          "role": "notation_of"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "role": "notation_of"
+        }
+      ],
+      "evidence": "命题变项用小写的 p、q、r 表示，个体变元用 x、y、z 表示，个体常项用 a、b、c 表示，谓词变项用大写的 P、Q、R 表示，谓词常项如 man、die、like 等，用首字母大写的单词表示。函数指的是个体函数，比如 father，表示谁是谁的父亲，谁是谁的弟弟，用 f、g、h 或首字母小写的单词来表示。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_916500_1138800",
+        "start_sec": 1069.814,
+        "end_sec": 1125.285
+      }
+    },
+    {
+      "asset_id": "llm_prin_翻译需依据语境判断_2600_1567300",
+      "kind": "principle",
+      "name": "翻译需依据语境判断",
+      "aliases": [],
+      "summary": "自然语言到逻辑语言的翻译并非唯一，必须结合语境确定合适的翻译。",
+      "statement": "",
+      "steps": [],
+      "concepts": [],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "同一语句在不同语境下翻译可能不同，翻译需依据语境判断。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1362600_1567300",
+        "start_sec": 1362.6,
+        "end_sec": 1567.3
+      }
+    },
+    {
+      "asset_id": "llm_tech_八股文翻译法_2600_1567300",
+      "kind": "technique",
+      "name": "八股文翻译法/AEIO套用",
+      "aliases": [],
+      "summary": "将自然语言命题按AEIO四种形式套用固定公式进行翻译。",
+      "statement": "",
+      "steps": [
+        "判断语句类型（全称/特称、肯定/否定），确定所属AEIO形式",
+        "套用对应的固定公式模板，将具体谓词和量词代入"
+      ],
+      "concepts": [
+        {
+          "entity": "一阶谓词逻辑/first-order predicate logic",
+          "role": "about"
+        },
+        {
+          "entity": "四种形式/AEIO",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "一阶谓词逻辑中存在“八股文”翻译法，即套用固定公式。同一语句在不同语境下翻译可能不同，翻译需依据语境判断。在无特殊情况下，可套用四种形式（AEIO）",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1362600_1567300",
+        "start_sec": 1362.6,
+        "end_sec": 1567.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_考85分与得奖的蕴含翻译_2600_1567300",
+      "kind": "example",
+      "name": "考85分与得奖的蕴含翻译",
+      "aliases": [],
+      "summary": "给定语境下“考85分以上就能得奖”被译为Q蕴含P，说明同一句话在不同语境翻译不同。",
+      "statement": "设P为“考85分以上”，Q为“得奖”；在此语境下，得奖是充分条件、考85分以上是必要条件，因此老师那句话应翻译为Q→P。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "蕴含/implication",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "举个例子，老师说考85分以上就能得奖，我考了90分却没有得奖，这句话怎么翻译？设“考85分以上”为P，“得奖”为Q。老师说考85分以上就能得奖，但我考了90分没得奖。在这种语境下，老师那句话该怎么解析？得奖和考85分以上哪个是充分条件，哪个是必要条件？得奖是充分条件，考85分以上是必要条件。所以P是考85分以上，Q是得奖，那就应该是Q蕴含P。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1362600_1567300",
+        "start_sec": 1460.027,
+        "end_sec": 1522.888
+      }
+    },
+    {
+      "asset_id": "llm_form_全称肯定命题形式化_8300_1773500",
+      "kind": "formula",
+      "name": "全称肯定命题形式化",
+      "aliases": [],
+      "summary": "全称肯定命题‘一切S是P’翻译为蕴含式。",
+      "statement": "对于全称肯定命题，形式化为:任意x，S(x)蕴含P(x)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称肯定命题/universal affirmative proposition",
+          "role": "about"
+        },
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "任意x，S(x)蕴含P(x)",
+      "latex": "\\forall x(S(x)\\to P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1568300_1773500",
+        "start_sec": 1575.379,
+        "end_sec": 1581.375
+      }
+    },
+    {
+      "asset_id": "llm_exam_所有的有理数都是实数的翻译_8300_1773500",
+      "kind": "example",
+      "name": "所有的有理数都是实数的翻译",
+      "aliases": [],
+      "summary": "用谓词Rational(x)和Real(x)演示全称命题翻译为蕴含式。",
+      "statement": "将‘所有的有理数都是实数’形式化为:任意x，Rational(x)蕴含Real(x)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称命题/universal proposition",
+          "role": "illustrates"
+        },
+        {
+          "entity": "蕴含/implication",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "所有的有理数都是实数。有理数是R",
+      "latex": "\\forall x(Rational(x)\\to Real(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1568300_1773500",
+        "start_sec": 1593.535,
+        "end_sec": 1600.217
+      }
+    },
+    {
+      "asset_id": "llm_theo_全称否定命题的两种形式等价_5100_1882900",
+      "kind": "theorem",
+      "name": "全称否定命题的两种形式等价",
+      "aliases": [],
+      "summary": "全称否定命题可形式化为∀x(S(x)→¬P(x))，与¬∃x(S(x)∧P(x))等价。",
+      "statement": "∀x(S(x)→¬P(x)) ⇔ ¬∃x(S(x)∧P(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称否定命题/universal negative proposition",
+          "role": "about"
+        },
+        {
+          "entity": "否定/Negation",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称否定命题形式化为 $\\forall x (S(x) \\rightarrow \\neg P(x))$，即“一切 S 都不是 P”。该形式与 $\\neg \\exists x (S(x) \\land P(x))$ 等价，二者可通过等值演算相互转换。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1775100_1882900",
+        "start_sec": 1775.1,
+        "end_sec": 1882.9
+      }
+    },
+    {
+      "asset_id": "llm_form_全称否定命题形式化_5100_1882900",
+      "kind": "formula",
+      "name": "全称否定命题形式化",
+      "aliases": [],
+      "summary": "全称否定命题“一切S都不是P”形式化为 ∀x(S(x)→¬P(x))。",
+      "statement": "∀x(S(x)→¬P(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称否定命题/universal negative proposition",
+          "role": "about"
+        },
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称否定就是一切S都不是P，形式化是任意x，S(x)蕴含非P(x)",
+      "latex": "\\forall x(S(x)\\to\\neg P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1775100_1882900",
+        "start_sec": 1782.112,
+        "end_sec": 1800.497
+      }
+    },
+    {
+      "asset_id": "llm_exam_所有无理数都不是有理数_5100_1882900",
+      "kind": "example",
+      "name": "所有无理数都不是有理数",
+      "aliases": [],
+      "summary": "用全称否定命题形式化“所有无理数都不是有理数”，并给出等价改写 ¬∃x(Irrational(x)∧Rational(x))。",
+      "statement": "∀x(Irrational(x)→¬Rational(x)) ⇔ ¬∃x(Irrational(x)∧Rational(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称否定命题/universal negative proposition",
+          "role": "illustrates"
+        },
+        {
+          "entity": "形式化/formalization",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "所有的无理数都不是有理数，形式化是任意x，Irrational(x)蕴含非Rational(x)。但也可以写成不存在x，使得x是无理数且x是有理数，即¬(∃x)(Irrational(x)∧Rational(x))。这两个形式是等价的",
+      "latex": "\\forall x(Irrational(x)\\to\\neg Rational(x)) \\equiv \\neg\\exists x(Irrational(x)\\land Rational(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1775100_1882900",
+        "start_sec": 1808.671,
+        "end_sec": 1870.801
+      }
+    },
+    {
+      "asset_id": "llm_form_特称肯定命题形式化_3700_1917600",
+      "kind": "formula",
+      "name": "特称肯定命题形式化",
+      "aliases": [],
+      "summary": "特称肯定命题SIP表示为存在量词与合取的形式。",
+      "statement": "有S是P ⇔ (∃x)(S(x)∧P(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        },
+        {
+          "entity": "特称肯定命题/particular affirmative proposition",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "特称肯定命题I，即SIP，表示有S是P，也就是说，存在x，使得x是S且x是P，形式化为(∃x)(S(x)∧P(x))。",
+      "latex": "(\\exists x)(S(x)\\land P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1883700_1917600",
+        "start_sec": 1883.7,
+        "end_sec": 1905.378
+      }
+    },
+    {
+      "asset_id": "llm_exam_有的实数是有理数_3700_1917600",
+      "kind": "example",
+      "name": "有的实数是有理数",
+      "aliases": [],
+      "summary": "特称肯定命题的具体实例。",
+      "statement": "令S(x)表示x是实数，P(x)表示x是有理数，则(∃x)(S(x)∧P(x))为真。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "特称肯定命题/particular affirmative proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如，有的实数是有理数。",
+      "latex": "(\\exists x)(S(x)\\land P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1883700_1917600",
+        "start_sec": 1904.178,
+        "end_sec": 1909.705
+      }
+    },
+    {
+      "asset_id": "llm_form_量词与联结词配对规则_3700_1917600",
+      "kind": "formula",
+      "name": "量词与联结词配对规则",
+      "aliases": [],
+      "summary": "存在量词与合取配对，全称量词与蕴含配对。",
+      "statement": "∃ 与 ∧ 配对，∀ 与 → 配对",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "联结词/connective",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "这里，存在量词与合取配对，全称量词与蕴含配对。",
+      "latex": "\\exists x(\\ldots\\land\\ldots),\\ \\forall x(\\ldots\\to\\ldots)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1883700_1917600",
+        "start_sec": 1908.505,
+        "end_sec": 1917.6
+      }
+    },
+    {
+      "asset_id": "llm_theo_量词与联结词配对法则_3700_1917600",
+      "kind": "theorem",
+      "name": "量词与联结词配对法则",
+      "aliases": [],
+      "summary": "存在量词与合取配对，全称量词与蕴含配对。",
+      "statement": "存在量词与合取配对，全称量词与蕴含配对。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "合取/conjunction",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在量词与合取配对，全称量词与蕴含配对",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1883700_1917600",
+        "start_sec": 1909.587,
+        "end_sec": 1917.6
+      }
+    },
+    {
+      "asset_id": "llm_tech_特称否定命题翻译模板_8700_1951300",
+      "kind": "technique",
+      "name": "特称否定命题翻译模板",
+      "aliases": [],
+      "summary": "将“有S不是P”形式化为存在量词合取否定式。",
+      "statement": "",
+      "steps": [
+        "识别自然语句中的存在量词和否定关系",
+        "用(∃x)(S(x)∧¬P(x))形式化"
+      ],
+      "concepts": [
+        {
+          "entity": "否定/Negation",
+          "role": "about"
+        },
+        {
+          "entity": "否定命题/negated proposition",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "特称否定命题O即SOP，表示“有S不是P”，即存在x，使得x是S且x不是P，形式化为(∃x)(S(x)∧¬P(x))。其形式与特称肯定命题类似，可作为自然语句的翻译模板。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1918700_1951300",
+        "start_sec": 1922.47,
+        "end_sec": 1931.287
+      }
+    },
+    {
+      "asset_id": "llm_form_特称否定命题形式化_8700_1951300",
+      "kind": "formula",
+      "name": "特称否定命题形式化",
+      "aliases": [],
+      "summary": "特称否定命题SOP的形式化为存在x使得x是S且x不是P。",
+      "statement": "存在x，使得x是S且x不是P",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        },
+        {
+          "entity": "特称否定命题/particular negative proposition",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "形式化为(∃x)(S(x)∧¬P(x))",
+      "latex": "(\\exists x)(S(x) \\land \\neg P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1918700_1951300",
+        "start_sec": 1930.392,
+        "end_sec": 1937.685
+      }
+    },
+    {
+      "asset_id": "llm_exam_有的实数不是有理数_8700_1951300",
+      "kind": "example",
+      "name": "有的实数不是有理数",
+      "aliases": [],
+      "summary": "将“有的实数不是有理数”作为特称否定命题的翻译实例。",
+      "statement": "有的实数不是有理数",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "特称否定命题/particular negative proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如，有的实数不是有理数。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1918700_1951300",
+        "start_sec": 1946.539,
+        "end_sec": 1951.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_参观者与展品量词赋值_2200_2106600",
+      "kind": "example",
+      "name": "参观者与展品量词赋值",
+      "aliases": [],
+      "summary": "用 V(x)、E(y)、L(x,y) 三个具体谓词演示重叠量词的四种读法。",
+      "statement": "令 V(x): x是参观者，E(y): y是展品，L(x,y): x喜欢y。四种读法即所有参观者喜欢所有展品、所有参观者喜欢有的展品、有的参观者喜欢所有展品、有的参观者喜欢有的展品。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "量词/quantifier",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "V(x)表示x是参观者，E(y)表示y是展品，L(x,y)表示x喜欢y。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1952200_2106600",
+        "start_sec": 1952.2,
+        "end_sec": 1969.756
+      }
+    },
+    {
+      "asset_id": "llm_form_重叠量词四种范式_2200_2106600",
+      "kind": "formula",
+      "name": "重叠量词四种范式",
+      "aliases": [],
+      "summary": "两个量词前后组合共有四种形式，全称量词常配蕴含、存在量词常配合取。",
+      "statement": "任意一元谓词 P、Q 和二元谓词 R 下，重叠量词的四种范式为:∀x∀y、∀x∃y、∃x∀y、∃x∃y，分别对应 P→(Q→R)、P→(Q∧R)、P∧(Q→R)、P∧(Q∧R)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "对于重叠量词，有四种情形。",
+      "latex": "\\forall x(P(x)\\to\\forall y(Q(y)\\to R(x,y))),\\ \\forall x(P(x)\\to\\exists y(Q(y)\\land R(x,y))),\\ \\exists x(P(x)\\land\\forall y(Q(y)\\to R(x,y))),\\ \\exists x(P(x)\\land\\exists y(Q(y)\\land R(x,y)))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_1952200_2106600",
+        "start_sec": 1968.556,
+        "end_sec": 1975.951
+      }
+    },
+    {
+      "asset_id": "llm_exam_至少有一个偶数是素数_7600_2206600",
+      "kind": "example",
+      "name": "至少有一个偶数是素数",
+      "aliases": [],
+      "summary": "用存在量词将“至少有一个偶数是素数”形式化为∃x(Even(x)∧Prime(x))。",
+      "statement": "存在一个x，x是偶数，并且x是素数",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "illustrates"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "至少有一个偶数是素数，在形式化的",
+      "latex": "\\exists x(Even(x)\\land Prime(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2107600_2206600",
+        "start_sec": 2115.012,
+        "end_sec": 2123.512
+      }
+    },
+    {
+      "asset_id": "llm_form_存在量词表达至少有一个_7600_2206600",
+      "kind": "formula",
+      "name": "存在量词表达至少有一个",
+      "aliases": [],
+      "summary": "“至少”无法直接翻译，用存在量词表达“存在一个x满足P且Q”。",
+      "statement": "至少有一个x使得P(x)且Q(x)，形式化为 ∃x(P(x)∧Q(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        },
+        {
+          "entity": "存在量词和全称量词/existential and universal quantifiers",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在一个x，x是偶数，并且x是素",
+      "latex": "\\exists x(P(x)\\land Q(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2107600_2206600",
+        "start_sec": 2136.454,
+        "end_sec": 2144.954
+      }
+    },
+    {
+      "asset_id": "llm_exam_生物或非生物_7600_2206600",
+      "kind": "example",
+      "name": "生物或非生物",
+      "aliases": [],
+      "summary": "将“一切事物或是生物或是非生物”形式化为∀x(Living(x)∨¬Living(x))，并指出它是永真式。",
+      "statement": "对所有x，Living(x)或者¬Living(x)",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "永真式/eternally true formula",
+          "role": "illustrates"
+        },
+        {
+          "entity": "形式化/formalization",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "再比如，一切事物它或是生物或是非",
+      "latex": "\\forall x(Living(x)\\lor \\lnot Living(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2107600_2206600",
+        "start_sec": 2154.703,
+        "end_sec": 2163.203
+      }
+    },
+    {
+      "asset_id": "llm_form_排中律图式_7600_2206600",
+      "kind": "formula",
+      "name": "排中律图式",
+      "aliases": [],
+      "summary": "任意个体x满足P(x)或¬P(x)，即∀x(P(x)∨¬P(x))是永真式。",
+      "statement": "∀x(P(x)∨¬P(x))",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体/Individual",
+          "role": "about"
+        },
+        {
+          "entity": "永真式/eternally true formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "对所有x，Living(x)或者",
+      "latex": "\\forall x(P(x)\\lor \\lnot P(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2107600_2206600",
+        "start_sec": 2168.846,
+        "end_sec": 2177.346
+      }
+    },
+    {
+      "asset_id": "llm_form_有且仅有一个_量词图式_7400_2302200",
+      "kind": "formula",
+      "name": "“有且仅有一个”量词图式",
+      "aliases": [],
+      "summary": "形式化“有且仅有一个x满足P(x)”的通用格式:存在一个x满足P，且任意满足P的y都等于x。",
+      "statement": "存在一个 x，使得 P(x)，并且对于所有 y，如果 P(y) 则 x 等于 y。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "量词/quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在一个x，使得x是中国，并且对",
+      "latex": "\\exists x(P(x) \\land \\forall y(P(y) \\to x=y))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2207400_2302200",
+        "start_sec": 2246.708,
+        "end_sec": 2259.575
+      }
+    },
+    {
+      "asset_id": "llm_form_唯一存在量词_有且仅有_的表示_7700_2513700",
+      "kind": "formula",
+      "name": "唯一存在量词（有且仅有）的表示",
+      "aliases": [],
+      "summary": "把“有且仅有”翻译成一阶逻辑时，用存在量词保证存在，再用全称量词保证唯一。",
+      "statement": "∃!x P(x) 可表示为 ∃x(P(x) ∧ ∀y(P(y) → y=x))。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "存在量词和全称量词/existential and universal quantifiers",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "有且仅有就是先用存在量词，再用全称量词",
+      "latex": "\\exists! x\\,P(x) \\equiv \\exists x\\,(P(x) \\land \\forall y\\,(P(y)\\to y=x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2307700_2513700",
+        "start_sec": 2419.331,
+        "end_sec": 2427.558
+      }
+    },
+    {
+      "asset_id": "llm_exam_自然数公理的一阶谓词逻辑翻译_7700_2513700",
+      "kind": "example",
+      "name": "自然数公理的一阶谓词逻辑翻译",
+      "aliases": [],
+      "summary": "以自然数公理为例，演示如何把“零”“后继”“前驱”等性质翻译成一阶谓词逻辑。",
+      "statement": "把自然数公理形式化为:零是自然数；每个数有且仅有一个后继；没有这样的数，零是其后继；除零之外的数有且仅有一个前驱。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "一阶谓词逻辑/first-order predicate logic",
+          "role": "illustrates"
+        },
+        {
+          "entity": "自然数公理",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "自然数公理",
+          "predicate": "depend_on",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "零是自然数；对每个数有且仅有一个",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2307700_2513700",
+        "start_sec": 2466.67,
+        "end_sec": 2473.788
+      }
+    },
+    {
+      "asset_id": "llm_prin_形式化是推理的第一步_4500_3036300",
+      "kind": "principle",
+      "name": "形式化是推理的第一步",
+      "aliases": [],
+      "summary": "强调解决实际问题时先形式化再进行推理",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "about"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "形式化是解决实际问题的第一步，之后才能进行推理。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2514500_3036300",
+        "start_sec": 2514.5,
+        "end_sec": 3036.3
+      }
+    },
+    {
+      "asset_id": "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+      "kind": "technique",
+      "name": "自然语言翻译为谓词逻辑的量词搭配法",
+      "aliases": [],
+      "summary": "翻译时全称量词配蕴含，存在量词配合取",
+      "statement": "翻译自然语言为谓词逻辑时，全称量词通常与蕴含搭配，存在量词通常与合取搭配。",
+      "steps": [
+        "识别自然语言中的量词类型（全称或存在）",
+        "将全称量词对应的命题与蕴含连接，存在量词对应的命题与合取连接"
+      ],
+      "concepts": [
+        {
+          "entity": "合取/conjunction",
+          "role": "about"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "翻译自然语言为谓词逻辑时，全称量词通常与蕴含搭配，存在量词通常与合取搭配。",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2514500_3036300",
+        "start_sec": 2514.5,
+        "end_sec": 3036.3
+      }
+    },
+    {
+      "asset_id": "llm_exam_函数连续ε_δ定义的形式化表示_4500_3036300",
+      "kind": "example",
+      "name": "函数连续ε-δ定义的形式化表示",
+      "aliases": [],
+      "summary": "课堂练习:将函数连续的一阶逻辑定义用谓词和量词表示",
+      "statement": "把 ε-δ 定义翻译为 ∀ε>0 ∃δ>0 ∀x(|x-x0|<δ → |f(x)-f(x0)|<ε)，其中 |u-v|<w 定义为一个三元谓词，x0 是常量。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "形式化/formalization",
+          "role": "illustrates"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "函数f(x)在[a,b]上的点x",
+      "latex": "\\forall\\varepsilon>0\\, \\exists\\delta>0\\, \\forall x\\, (|x-x_0|<\\delta \\to |f(x)-f(x_0)|<\\varepsilon)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2514500_3036300",
+        "start_sec": 2531.069,
+        "end_sec": 2538.059
+      }
+    },
+    {
+      "asset_id": "llm_form_约束变元易名规则_4500_3036300",
+      "kind": "formula",
+      "name": "约束变元易名规则",
+      "aliases": [],
+      "summary": "约束变元可以更换名称而不改变命题意义。",
+      "statement": "约束变元 x 可以改成 y、z 等任意变元。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "约束变元/bound variable",
+          "role": "about"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "约束变元x可以改成，这个x可以改成y，改成z，改成什么都可以",
+      "latex": "\\forall x A(x) \\Rightarrow \\forall y A(y)",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2514500_3036300",
+        "start_sec": 2873.387,
+        "end_sec": 2885.443
+      }
+    },
+    {
+      "asset_id": "llm_form_量词翻译配对规则_4500_3036300",
+      "kind": "formula",
+      "name": "量词翻译配对规则",
+      "aliases": [],
+      "summary": "翻译谓词逻辑时，全称量词通常与蕴含搭配，存在量词通常与合取搭配。",
+      "statement": "全称量词 95% 以上与蕴含配对，存在量词与合取配对。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "合取/conjunction",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词通常是跟通常是跟95%以上是跟我们蕴含配对的，翻译的时候，我们的存在量词是跟我们的合取配对的",
+      "latex": "\\forall x(P(x)\\to Q(x)),\\quad \\exists x(P(x)\\land Q(x))",
+      "grounding": {
+        "lecture_id": "2",
+        "cue_id": "数理逻辑_2_2514500_3036300",
+        "start_sec": 2902.698,
+        "end_sec": 2921.991
+      }
+    },
+    {
+      "asset_id": "tech_aeio_square",
+      "kind": "technique",
+      "name": "AEIO 命题形式化/AEIO propositional formalization",
+      "aliases": [
+        "AEIO",
+        "直言命题形式化"
+      ],
+      "summary": "把日常全称/特称肯定否定命题写成谓词逻辑中的标准 AEIO 形式。",
+      "statement": "A: (∀x)(S(x)→P(x))；E: (∀x)(S(x)→¬P(x))；I: (∃x)(S(x)∧P(x))；O: (∃x)(S(x)∧¬P(x))。",
+      "steps": [
+        "判断命题是全称还是特称、肯定还是否定",
+        "确定主词 S 与谓词 P",
+        "套用对应 AEIO 模板",
+        "检查量词与联结词是否匹配"
+      ],
+      "concepts": [
+        {
+          "entity": "AEIO四种命题形式/AEIO propositional forms",
+          "role": "about"
+        },
+        {
+          "entity": "全称命题/universal proposition",
+          "role": "applies_to"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "uses"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "2"
+      }
+    },
+    {
+      "asset_id": "tech_substitution_instance",
+      "kind": "technique",
+      "name": "个体代入实例化/individual substitution instantiation",
+      "aliases": [
+        "代入",
+        "实例化"
+      ],
+      "summary": "用个体常项或项替换自由变元，得到公式的实例，用于从全称断言过渡到具体情形。",
+      "statement": "由 (∀x)P(x) 可得 P(a)（a 为论域中个体或项），前提是代入合法且不捕获变元。",
+      "steps": [
+        "确认被代入位置是自由出现",
+        "选择合法的项/常项",
+        "一致替换全部目标自由出现",
+        "检查未引入意外约束"
+      ],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "uses"
+        },
+        {
+          "entity": "个体常项/individual constant",
+          "role": "uses"
+        },
+        {
+          "entity": "自由个体变项/free individual variable",
+          "role": "applies_to"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "2"
+      }
+    },
+    {
+      "asset_id": "llm_prin_量词仅约束个体_3600_1205100",
+      "kind": "principle",
+      "name": "量词仅约束个体",
+      "aliases": [],
+      "summary": "一阶谓词逻辑中量词只能作用于个体，不能作用于谓词或公式。",
+      "statement": "量词只能限制个体，不能限制谓词或公式。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "量词/quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "量词只能限制个体，不能限制谓词或公式",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 343.6,
+        "end_sec": 1205.1
+      }
+    },
+    {
+      "asset_id": "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+      "kind": "technique",
+      "name": "全称-蕴含、存在-合取配对翻译法",
+      "aliases": [],
+      "summary": "将自然语言翻译为谓词公式时，全称量词通常与蕴含搭配，存在量词通常与合取搭配。",
+      "statement": "",
+      "steps": [
+        "识别命题是全称量词（任意）还是存在量词（存在）",
+        "全称命题用蕴含连接，存在命题用合取连接"
+      ],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "合取/conjunction",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词（任意 x）与蕴含常配对使用，存在量词（存在 x）与合取常配对使用",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 343.6,
+        "end_sec": 1205.1
+      }
+    },
+    {
+      "asset_id": "llm_form_个体常项与变元记号约定_3600_1205100",
+      "kind": "formula",
+      "name": "个体常项与变元记号约定",
+      "aliases": [],
+      "summary": "一阶谓词逻辑中，个体常项用小写字母 a,b,c 表示，个体变元用 x,y,z 表示。",
+      "statement": "个体常项常用 a,b,c 表示；个体变元常用 x,y,z 表示。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体常项/individual constant",
+          "role": "notation_of"
+        },
+        {
+          "entity": "变元/variable symbol",
+          "role": "notation_of"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "个体常量通常用 a、b、c 来表示，变量用 x、y、z 来表示。",
+      "latex": "a,b,c,\\ldots; x,y,z,\\ldots",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 384.662,
+        "end_sec": 401.084
+      }
+    },
+    {
+      "asset_id": "llm_exam_x_y_2_的谓词与命题化_3600_1205100",
+      "kind": "example",
+      "name": "“x+y=2”的谓词与命题化",
+      "aliases": [],
+      "summary": "用“x 加 y 等于二”说明谓词无真假，通过量化或代入个体可变成命题。",
+      "statement": "P(x,y): x+y=2；∀x∃y(x+y=2) 是量化后的命题；代入具体值也是命题。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "命题/proposition",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "比如“x 加 y 等于二”，这是一个谓",
+      "latex": "P(x,y): x+y=2,\\quad \\forall x\\exists y(x+y=2)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 518.335,
+        "end_sec": 528.573
+      }
+    },
+    {
+      "asset_id": "llm_form_量词翻译配对规则_3600_1205100",
+      "kind": "formula",
+      "name": "量词翻译配对规则",
+      "aliases": [],
+      "summary": "把自然语言翻译成一阶逻辑时，全称量词常与蕴含配对，存在量词常与合取配对。",
+      "statement": "“任意”通常跟“蕴含”相配对，“存在”通常跟“合取”相配对。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "合取/conjunction",
+          "role": "about"
+        },
+        {
+          "entity": "蕴含/implication",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "“任意”通常跟“蕴含”相配对，“存在”通常跟“合取”相配对。",
+      "latex": "\\forall x (P(x)\\to Q(x)), \\quad \\exists x (P(x)\\land Q(x))",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 678.647,
+        "end_sec": 694.118
+      }
+    },
+    {
+      "asset_id": "llm_exam_小弟弟抱红气球_的谓词翻译修正_3600_1205100",
+      "kind": "example",
+      "name": "“小弟弟抱红气球”的谓词翻译修正",
+      "aliases": [],
+      "summary": "上节课把 little brother 和 big red balloon 直接作谓词套在 embrace 内是错误的；一阶谓词中谓词内只能是个体词项，应改写为合取式。",
+      "statement": "错误:embrace(little_brother, big_red_balloon)；正确:embrace(a,b) ∧ little(a) ∧ big(b) ∧ red(b)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        },
+        {
+          "entity": "合取/conjunction",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "所以这句话应该怎么写呢？这两种写",
+      "latex": "\\text{embrace}(a,b)\\land \\text{little}(a)\\land \\text{big}(b)\\land \\text{red}(b)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_343600_1205100",
+        "start_sec": 953.128,
+        "end_sec": 961.94
+      }
+    },
+    {
+      "asset_id": "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+      "kind": "theorem",
+      "name": "谓词公式真值唯一确定性",
+      "aliases": [],
+      "summary": "在确定全部解释成分后，谓词公式的真值唯一确定。",
+      "statement": "给定论域、个体常项、个体变项、命题变项、函数变项、谓词变项的指派，公式的真值唯一确定。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "真值/truth value",
+          "role": "about"
+        },
+        {
+          "entity": "谓词公式/predicate formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "某种指派确定后，公式的真值即唯一确定。",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_1206500_2043100",
+        "start_sec": 1206.5,
+        "end_sec": 2043.1
+      }
+    },
+    {
+      "asset_id": "llm_exam_谓词公式解释示例_a_p_x_y_q_x_q_y_6500_2043100",
+      "kind": "example",
+      "name": "谓词公式解释示例:A=P(x,y)→(Q(x)∨Q(y))",
+      "aliases": [],
+      "summary": "用具体谓词公式说明解释需确定论域及各个变元、函数、谓词的取值。",
+      "statement": "给定 A=P(x,y)→(Q(x)∨Q(y))，其中 P、Q 为谓词变元，x、y 为个体变元。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词公式的解释/interpretation of predicate formula",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词公式的解释/interpretation of predicate formula",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "例如，给定公式 A = P(x, y) → (Q(x) ∨ Q(y))，或加上其他成分如 A = Ln(x) 等。",
+      "latex": "A = P(x, y) \\to (Q(x) \\lor Q(y))",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_1206500_2043100",
+        "start_sec": 1212.287,
+        "end_sec": 1260.423
+      }
+    },
+    {
+      "asset_id": "llm_exam_命题公式赋值组合示例_p_q_r_6500_2043100",
+      "kind": "example",
+      "name": "命题公式赋值组合示例:P→(Q∨R)",
+      "aliases": [],
+      "summary": "P、Q、R 三个命题变元共有八种真值取值组合。",
+      "statement": "命题公式 P→(Q∨R) 的解释就是 P、Q、R 各取真或假的八种组合。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题公式/propositional formula",
+          "role": "illustrates"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "命题公式如 P → (Q ∨ R)，其解释就是三个命题变元的取值组合，共八种，即 P、Q、R 各取真或假，对应八种取值。",
+      "latex": "P \\to (Q \\lor R)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_1206500_2043100",
+        "start_sec": 1278.161,
+        "end_sec": 1328.767
+      }
+    },
+    {
+      "asset_id": "llm_exam_有穷论域二元谓词数量示例_6500_2043100",
+      "kind": "example",
+      "name": "有穷论域二元谓词数量示例",
+      "aliases": [],
+      "summary": "10 个体论域上，二元谓词有 2^100 种可能。",
+      "statement": "论域有 10 个个体时，Q(x,y) 的输入组合为 10×10=100 种，每种可取真/假，故共有 2^100 种二元谓词。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "例如，在一个有穷论域上，若论域有 10 个个体，则二元谓词 Q(x, y) 的输入有 10 × 10 = 100 种组合，每种组合可取真或假，因此共有 2^100 种可能的谓词。",
+      "latex": "2^{10^2}=2^{100}",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_1206500_2043100",
+        "start_sec": 1824.916,
+        "end_sec": 1899.401
+      }
+    },
+    {
+      "asset_id": "llm_form_命题公式指派数公式_6500_2043100",
+      "kind": "formula",
+      "name": "命题公式指派数公式",
+      "aliases": [],
+      "summary": "含 n 个命题变元的命题公式共有 2^n 种真值指派。",
+      "statement": "若命题公式有 n 个命题变元，则所有可能真值指派数为 2^n。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "命题公式/propositional formula",
+          "role": "about"
+        },
+        {
+          "entity": "变元/variable symbol",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "命题公式若有 n 个命题变元，只有 2^n 种指派",
+      "latex": "2^n",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_1206500_2043100",
+        "start_sec": 1978.073,
+        "end_sec": 1999.858
+      }
+    },
+    {
+      "asset_id": "llm_form_有限论域全称量词展开式_3900_2163700",
+      "kind": "formula",
+      "name": "有限论域全称量词展开式",
+      "aliases": [],
+      "summary": "在有限论域中，全称量词等价于对所有个体变元取值的合取。",
+      "statement": "设论域为 {x_1, x_2, ..., x_k}，则 ∀x P(x) 等价于 P(x_1) ∧ P(x_2) ∧ ... ∧ P(x_k)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "任意 x，P(x) 可以写成 P(x_1) ∧ P(x_2) ∧ ... ∧ P(x_k)",
+      "latex": "\\forall x P(x) \\equiv P(x_1) \\land P(x_2) \\land \\cdots \\land P(x_k)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2043900_2163700",
+        "start_sec": 2087.077,
+        "end_sec": 2111.024
+      }
+    },
+    {
+      "asset_id": "llm_form_有限论域存在量词展开式_3900_2163700",
+      "kind": "formula",
+      "name": "有限论域存在量词展开式",
+      "aliases": [],
+      "summary": "在有限论域中，存在量词等价于对所有个体变元取值的析取。",
+      "statement": "设论域为 {x_1, x_2, ..., x_k}，则 ∃x P(x) 等价于 P(x_1) ∨ P(x_2) ∨ ... ∨ P(x_k)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在量词则表示为 P(x_1) ∨ P(x_2) ∨ ... ∨ P(x_k)",
+      "latex": "\\exists x P(x) \\equiv P(x_1) \\lor P(x_2) \\lor \\cdots \\lor P(x_k)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2043900_2163700",
+        "start_sec": 2129.538,
+        "end_sec": 2150.452
+      }
+    },
+    {
+      "asset_id": "llm_form_有限论域上的量词展开规则_5700_2227000",
+      "kind": "formula",
+      "name": "有限论域上的量词展开规则",
+      "aliases": [],
+      "summary": "在有限论域上，全称量词化为合取，存在量词化为析取，嵌套量词逐层展开。",
+      "statement": "设论域D={a1,...,an}，则∀xφ(x)等价于φ(a1)∧...∧φ(an)，∃xφ(x)等价于φ(a1)∨...∨φ(an)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "在域{1, 2}上，比如我现在是任",
+      "latex": "\\forall x\\varphi(x)\\leftrightarrow \\varphi(a_1)\\land\\cdots\\land\\varphi(a_n),\\quad \\exists x\\varphi(x)\\leftrightarrow \\varphi(a_1)\\lor\\cdots\\lor\\varphi(a_n)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2165700_2227000",
+        "start_sec": 2165.7,
+        "end_sec": 2172.124
+      }
+    },
+    {
+      "asset_id": "llm_exam_谓词公式在有限论域下的解释与求值示例_0300_2944200",
+      "kind": "example",
+      "name": "谓词公式在有限论域下的解释与求值示例",
+      "aliases": [],
+      "summary": "对 (∀x)(P(x)→Q(f(x),a)) 在论域 {1,2}、a=1、f 为交换映射、P={2}、Q={(1,1),(1,2),(2,2)} 的解释下求真值。",
+      "statement": "该公式在这个解释下的真值为真。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词公式的解释/interpretation of predicate formula",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词公式的解释/interpretation of predicate formula",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "考虑对(∀x) P(x) → Q(f(x), a)的解释，在解释I下的值。我们今天来看一下，在有限论域下，这个解释I包含什么呢？首先论域是什么？这个解释的论域是{1, 2}，它是有限论域。a的解释呢？这里有几个个体常项？就一个a，就一个常项，对吧？那我们把它设为1，指派为1。",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2230300_2944200",
+        "start_sec": 2230.3,
+        "end_sec": 2277.77
+      }
+    },
+    {
+      "asset_id": "llm_form_谓词的解释由个体到真值的映射唯一确定_0300_2944200",
+      "kind": "formula",
+      "name": "谓词的解释由个体到真值的映射唯一确定",
+      "aliases": [],
+      "summary": "一个谓词在解释下由从个体域到真假二值的映射唯一确定。",
+      "statement": "n元谓词 P 的解释可视为 D^n 到 {真,假} 的映射；在有限论域下常只列出使其为真的元组集合。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "映射/mapping",
+          "role": "about"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "一个谓词由从定义域到二值的映射就成了它的一个唯一定义",
+      "latex": "P^I: D^n \\to \\{0,1\\}",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2230300_2944200",
+        "start_sec": 2585.938,
+        "end_sec": 2596.007
+      }
+    },
+    {
+      "asset_id": "llm_form_有限论域下量词消去式_0300_2944200",
+      "kind": "formula",
+      "name": "有限论域下量词消去式",
+      "aliases": [],
+      "summary": "在有限论域中，全称量词化为合取，存在量词化为析取。",
+      "statement": "若论域为 {a1,...,an}，则 ∀x A(x) 等价于 A(a1)∧...∧A(an)；∃x A(x) 等价于 A(a1)∨...∨A(an)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "约束情况下，我把在有限论域下任意的和存在的都把它转化成这个，把所有情况都考虑进去。",
+      "latex": "\\forall x A(x) \\leftrightarrow A(a_1)\\land \\cdots \\land A(a_n),\\quad \\exists x A(x) \\leftrightarrow A(a_1)\\lor \\cdots \\lor A(a_n)",
+      "grounding": {
+        "lecture_id": "3",
+        "cue_id": "数理逻辑_3_2230300_2944200",
+        "start_sec": 2838.344,
+        "end_sec": 2853.529
+      }
+    },
+    {
+      "asset_id": "prin_interpretation_determines_truth",
+      "kind": "principle",
+      "name": "解释决定真值原理/truth-by-interpretation principle",
+      "aliases": [
+        "谓词公式真假与解释有关"
+      ],
+      "summary": "谓词公式的真假依赖于论域以及个体、命题、函数、谓词的指派，不能脱离解释谈真假。",
+      "statement": "同一谓词公式在不同解释下可以取不同真值；只有相对解释才有确定真假。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词公式的解释/interpretation of predicate formula",
+          "role": "about"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "applies_to"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "3"
+      }
+    },
+    {
+      "asset_id": "tech_predicate_interpretation",
+      "kind": "technique",
+      "name": "谓词公式解释赋值/predicate formula interpretation",
+      "aliases": [
+        "谓词公式的解释",
+        "解释I"
+      ],
+      "summary": "通过指定论域并对个体、命题、函数、谓词符号指派，使谓词公式在解释下有确定真值。",
+      "statement": "解释 I 包含：论域 D；命题变项→{T,F}；自由个体变项→D 中个体；函数/谓词符号→D 上的函数/关系。",
+      "steps": [
+        "给出论域 D",
+        "对命题变项赋值",
+        "对自由个体变项指派 D 中个体",
+        "解释函数符号与谓词符号",
+        "自内向外计算公式真值"
+      ],
+      "concepts": [
+        {
+          "entity": "谓词公式的解释/interpretation of predicate formula",
+          "role": "about"
+        },
+        {
+          "entity": "论域/domain of discourse",
+          "role": "uses"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "applies_to"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "applies_to"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "3"
+      }
+    },
+    {
+      "asset_id": "llm_form_p_p_重言式_排中律_65400_447100",
+      "kind": "formula",
+      "name": "P∨¬P 重言式（排中律）",
+      "aliases": [],
+      "summary": "命题公式 P∨¬P 是重言式，将其中的命题变元 P 用任意谓词公式代入，得到谓词逻辑中的普遍有效公式。",
+      "statement": "P∨¬P 是重言式；以任意谓词公式代入 P，所得公式为普遍有效公式。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "重言式/tautology",
+          "role": "about"
+        },
+        {
+          "entity": "命题公式/propositional formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "role": "about"
+        }
+      ],
+      "evidence": "如 \\( P \\vee \\neg P \\) 是重言式，其中的 \\( P \\) 可以用任意谓词公式代入，这样的谓词公式就是普遍有效的",
+      "latex": "P \\vee \\neg P",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_365400_447100",
+        "start_sec": 371.676,
+        "end_sec": 393.784
+      }
+    },
+    {
+      "asset_id": "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+      "kind": "principle",
+      "name": "代入时同一变元必须使用同一谓词公式",
+      "aliases": [],
+      "summary": "将命题公式代入为谓词公式时，所有相同的命题变元必须用同一个谓词公式替换。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词公式/predicate formula",
+          "role": "about"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "代入时，必须用同一个谓词公式替换所有相同的命题变元。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_365400_447100",
+        "start_sec": 439.224,
+        "end_sec": 447.1
+      }
+    },
+    {
+      "asset_id": "llm_form_有限域普遍有效_7900_1534900",
+      "kind": "formula",
+      "name": "有限域普遍有效/可满足性仅取决于个体域大小",
+      "aliases": [],
+      "summary": "公式在有限域上的普遍有效与可满足性只由个体域大小决定，与具体个体域无关。",
+      "statement": "公式是否普遍有效或可满足，仅取决于个体域的大小 k，与具体个体域无关。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "有限域/finite domain",
+          "role": "about"
+        },
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "有限域/finite domain",
+          "predicate": "belong_to",
+          "object": "个体域/domain of individuals",
+          "role": "about"
+        }
+      ],
+      "evidence": "公式是否普遍有效或可满足，仅取决于个体域的大小k，与具体个体域无关。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 495.355,
+        "end_sec": 582.905
+      }
+    },
+    {
+      "asset_id": "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900",
+      "kind": "theorem",
+      "name": "有限域普遍有效性与可满足性仅依赖个体域大小",
+      "aliases": [],
+      "summary": "公式的真值属性在有限个体域上只由个体域大小决定，与具体个体域无关。",
+      "statement": "在有限域上，公式的普遍有效性与可满足性仅取决于个体域的大小k，与具体个体域无关。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        },
+        {
+          "entity": "公式/formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "公式的普遍有效性与可满足性仅取决于个体域的大小k，与具体个体域无关",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 558.848,
+        "end_sec": 580.365
+      }
+    },
+    {
+      "asset_id": "llm_exam_自然数1_10上普遍有效到5元素域的例子_7900_1534900",
+      "kind": "example",
+      "name": "自然数1-10上普遍有效到5元素域的例子",
+      "aliases": [],
+      "summary": "用具体大小演示定理一:若在含10个元素的自然数集上普遍有效，则在任意5元素域上也普遍有效。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "公式的普遍有效性/universal validity of formula",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如，若公式在自然数集1-10上普遍有效，则在任意5元素域上也普遍有效。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 581.705,
+        "end_sec": 674.335
+      }
+    },
+    {
+      "asset_id": "llm_theo_大永真推出小永真_7900_1534900",
+      "kind": "theorem",
+      "name": "大永真推出小永真",
+      "aliases": [],
+      "summary": "若公式在较大的k个体域上普遍有效，则在较小的k-1个体域上也普遍有效。",
+      "statement": "若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        },
+        {
+          "entity": "公式/formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "大永真推出小永真——若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 688.373,
+        "end_sec": 793.702
+      }
+    },
+    {
+      "asset_id": "llm_form_大永真推出小永真_7900_1534900",
+      "kind": "formula",
+      "name": "大永真推出小永真",
+      "aliases": [],
+      "summary": "若公式在 k-个体域上普遍有效，则在更小的 (k-1)-个体域上也普遍有效。",
+      "statement": "若公式在 k-个体域上普遍有效，则在 (k-1)-个体域上也普遍有效。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        },
+        {
+          "entity": "公式/formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "个体域/domain of individuals",
+          "role": "about"
+        }
+      ],
+      "evidence": "若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 711.231,
+        "end_sec": 796.242
+      }
+    },
+    {
+      "asset_id": "llm_theo_小可满足推出大可满足_7900_1534900",
+      "kind": "theorem",
+      "name": "小可满足推出大可满足",
+      "aliases": [],
+      "summary": "若公式在较小的k个体域上可满足，则在较大的k+1个体域上也可满足。",
+      "statement": "若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        },
+        {
+          "entity": "公式/formula",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "小可满足推出大可满足——若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 711.231,
+        "end_sec": 915.608
+      }
+    },
+    {
+      "asset_id": "llm_form_小可满足推出大可满足_7900_1534900",
+      "kind": "formula",
+      "name": "小可满足推出大可满足",
+      "aliases": [],
+      "summary": "若公式在 k-个体域上可满足，则在更大的 (k+1)-个体域上也可满足。",
+      "statement": "若公式在 k-个体域上可满足，则在 (k+1)-个体域上也可满足。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "个体域/domain of individuals",
+          "role": "about"
+        },
+        {
+          "entity": "不可满足/unsatisfiable",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_447900_1534900",
+        "start_sec": 838.217,
+        "end_sec": 918.148
+      }
+    },
+    {
+      "asset_id": "llm_form_全称蕴含存在永真式_8600_2173000",
+      "kind": "formula",
+      "name": "全称蕴含存在永真式",
+      "aliases": [],
+      "summary": "若所有个体满足F，则存在个体满足F，在非空论域上永真。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "公式 ∀xF(x)→∃xF(x) 的永真性",
+      "latex": "\\forall x F(x) \\to \\exists x F(x)",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_1538600_2173000",
+        "start_sec": 1557.208,
+        "end_sec": 1583.881
+      }
+    },
+    {
+      "asset_id": "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000",
+      "kind": "theorem",
+      "name": "∀xF(x)→∃xF(x)在有限域上永真",
+      "aliases": [],
+      "summary": "公式∀xF(x)→∃xF(x)在所有k元域上均永真。",
+      "statement": "∀xF(x)→∃xF(x)在所有k元域上均永真。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "同构/Isomorphism",
+          "role": "about"
+        },
+        {
+          "entity": "映射/mapping",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "公式∀xF(x)→∃xF(x)在所有k元域上均永真",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_1538600_2173000",
+        "start_sec": 1557.98,
+        "end_sec": 1578.098
+      }
+    },
+    {
+      "asset_id": "llm_exam_二元域上公式真值验证实例_8600_2173000",
+      "kind": "example",
+      "name": "二元域上公式真值验证实例",
+      "aliases": [],
+      "summary": "在解释I₁={2,3}上令F为偶数，通过映射到I₂={a,b}保持真值表，验证∀xF(x)→∃xF(x)的真值不变。",
+      "statement": "",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "公式/formula",
+          "role": "illustrates"
+        },
+        {
+          "entity": "映射/mapping",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_1538600_2173000",
+        "start_sec": 1725.815,
+        "end_sec": 1839.824
+      }
+    },
+    {
+      "asset_id": "llm_exam_汉诺塔问题的能行性反例_6800_2284700",
+      "kind": "example",
+      "name": "汉诺塔问题的能行性反例",
+      "aliases": [],
+      "summary": "用汉诺塔问题说明可计算但不满足能行性要求。",
+      "statement": "汉诺塔问题存在递归算法，因此可计算；但计算复杂度指数增长，不满足能行性要求。",
+      "steps": [],
+      "concepts": [],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "例如汉诺塔问题虽可计算（存在递归算法），但因计算复杂度呈指数增长（如移动26次需数年），不满足能行性要求。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2176800_2284700",
+        "start_sec": 2247.933,
+        "end_sec": 2263.15
+      }
+    },
+    {
+      "asset_id": "llm_form_全称量词前置范式_5900_2367500",
+      "kind": "formula",
+      "name": "全称量词前置范式",
+      "aliases": [],
+      "summary": "所有量词都在公式前方且均为全称量词的可判定范式。",
+      "statement": "若公式形如 (∀x1)...(∀xn)A(x1,...,xn)，则它是可判定的。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "范式/normal form",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词前置的公式/formula with universal quantifiers prefixed",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$",
+      "latex": "(\\forall x_1)\\ldots(\\forall x_n)A(x_1,\\ldots,x_n)",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2285900_2367500",
+        "start_sec": 2321.182,
+        "end_sec": 2336.814
+      }
+    },
+    {
+      "asset_id": "llm_form_存在量词前置范式_5900_2367500",
+      "kind": "formula",
+      "name": "存在量词前置范式",
+      "aliases": [],
+      "summary": "所有量词都在公式前方且均为存在量词的可判定范式。",
+      "statement": "若公式形如 (∃x1)...(∃xn)A(x1,...,xn)，则它是可判定的。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "范式/normal form",
+          "role": "about"
+        },
+        {
+          "entity": "全称量词前置的公式/formula with universal quantifiers prefixed",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$",
+      "latex": "(\\exists x_1)\\ldots(\\exists x_n)A(x_1,\\ldots,x_n)",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2285900_2367500",
+        "start_sec": 2335.892,
+        "end_sec": 2351.524
+      }
+    },
+    {
+      "asset_id": "llm_form_量词否定等值式_3600_3020500",
+      "kind": "formula",
+      "name": "量词否定等值式",
+      "aliases": [],
+      "summary": "否定词与量词相互作用的四条等值式，体现量词的摩根律。",
+      "statement": "¬(∀x)P(x) ⇔ (∃x)¬P(x)；(∀x)P(x) ⇔ ¬(∃x)¬P(x)；¬(∃x)P(x) ⇔ (∀x)¬P(x)；(∃x)P(x) ⇔ ¬(∀x)¬P(x)。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "量词否定型等值式/negative equivalence formula with quantifiers",
+          "role": "about"
+        },
+        {
+          "entity": "量词的摩根律/De Morgan's laws for quantifiers",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "量词否定型等值式涉及量词否定词的",
+      "latex": "\\neg(\\forall x)P(x)\\equiv(\\exists x)\\neg P(x);\\ (\\forall x)P(x)\\equiv\\neg(\\exists x)\\neg P(x);\\ \\neg(\\exists x)P(x)\\equiv(\\forall x)\\neg P(x);\\ (\\exists x)P(x)\\equiv\\neg(\\forall x)\\neg P(x)",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2773600_3020500",
+        "start_sec": 2773.6,
+        "end_sec": 2783.951
+      }
+    },
+    {
+      "asset_id": "llm_tech_有限论域量词展开法_3600_3020500",
+      "kind": "technique",
+      "name": "有限论域量词展开法",
+      "aliases": [],
+      "summary": "在有限论域上，将全称量词展开为合取式、存在量词展开为析取式。",
+      "statement": "",
+      "steps": [
+        "确定论域为有限集合，列出所有个体常项 a1, a2, ..., an。",
+        "若公式含 ∀xP(x)，则替换为 P(a1) ∧ P(a2) ∧ ... ∧ P(an)。",
+        "若公式含 ∃xP(x)，则替换为 P(a1) ∨ P(a2) ∨ ... ∨ P(an)。"
+      ],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "about"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "有限论域上全称量词可展开为合取式，存在量词可展开为析取式",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2773600_3020500",
+        "start_sec": 2773.6,
+        "end_sec": 3020.5
+      }
+    },
+    {
+      "asset_id": "llm_exam_所有有理数都不是无理数_3600_3020500",
+      "kind": "example",
+      "name": "所有有理数都不是无理数",
+      "aliases": [],
+      "summary": "用谓词逻辑表示该命题，并通过量词否定等值演算化为否定存在形式。",
+      "statement": "原表示为 (∀x)(Rational(x)→¬Irrational(x))，等值演算为 ¬(∃x)(Rational(x)∧Irrational(x))。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词逻辑/Predicate Logic",
+          "role": "illustrates"
+        },
+        {
+          "entity": "量词否定/quantifier negation",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "以\"所有有理数都不是无理数\"为例",
+      "latex": "(\\forall x)(Rational(x)\\to\\neg Irrational(x))\\equiv\\neg(\\exists x)(Rational(x)\\wedge Irrational(x))",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_2773600_3020500",
+        "start_sec": 2840.589,
+        "end_sec": 2851.739
+      }
+    },
+    {
+      "asset_id": "llm_exam_论域_1_2_3_上谓词q_x_表示x小于某个值的例子_1600_3441000",
+      "kind": "example",
+      "name": "论域{1,2,3}上谓词Q(x)表示x小于某个值的例子",
+      "aliases": [],
+      "summary": "用有限论域{1,2,3}说明谓词中不能出现变量，且个体只能来自论域。",
+      "statement": "在论域{1,2,3}上，Q(x)表示x小于某个值，x只能取1、2、3，不能超出该范围。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "论域/domain of discourse",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "例如，假设论域是{1,2,3}，那么谓词Q(x)表示x小于某个值。这里只能出现1、2、3，不能超过这个范围。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_3031600_3441000",
+        "start_sec": 3055.829,
+        "end_sec": 3105.299
+      }
+    },
+    {
+      "asset_id": "llm_exam_x_4有无穷多个解释的例子_1600_3441000",
+      "kind": "example",
+      "name": "x<4有无穷多个解释的例子",
+      "aliases": [],
+      "summary": "通过x<5、x<6说明谓词解释有多种，但这不是无穷多个解。",
+      "statement": "以x<4为例，可以有x<5、x<6等多种解释方式，说明谓词的解释不唯一。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "x<4为什么有无穷多个解？可以x<5、x<6，但这不是无穷多解。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_3031600_3441000",
+        "start_sec": 3157.732,
+        "end_sec": 3187.536
+      }
+    },
+    {
+      "asset_id": "llm_exam_个体域_1_2_3_下谓词等价类例子_1600_3441000",
+      "kind": "example",
+      "name": "个体域{1,2,3}下谓词等价类例子",
+      "aliases": [],
+      "summary": "P(x)表示x<4，Q(x)表示x<5，在给定个体域上代入任意个体真值一致，因此视为等价类。",
+      "statement": "在个体域{1,2,3}下，P(x)和Q(x)对所有个体真值相同，属于同一等价类。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "等价类/Equivalence Class",
+          "role": "illustrates"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "evidence": "在个体域{1,2,3}下，谓词P(x)表示x<4，Q(x)表示x<5。无论代入哪个个体，其真值都一致，这类谓词可以视为等价类。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_3031600_3441000",
+        "start_sec": 3256.953,
+        "end_sec": 3314.468
+      }
+    },
+    {
+      "asset_id": "llm_exam_将x_5从数字域映射到桌椅域无意义的例子_1600_3441000",
+      "kind": "example",
+      "name": "将x<5从数字域映射到桌椅域无意义的例子",
+      "aliases": [],
+      "summary": "说明谓词的含义依赖论域，跨域映射可能失去意义。",
+      "statement": "将x<5从数字论域映射到桌椅论域，无法解释其意义。",
+      "steps": [],
+      "concepts": [
+        {
+          "entity": "映射/mapping",
+          "role": "illustrates"
+        },
+        {
+          "entity": "谓词/predicate",
+          "role": "illustrates"
+        }
+      ],
+      "source": "llm",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "edges": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "role": "illustrates"
+        }
+      ],
+      "evidence": "例如，将x<5从数字域映射到桌椅域就没有意义。",
+      "grounding": {
+        "lecture_id": "4",
+        "cue_id": "数理逻辑_4_3031600_3441000",
+        "start_sec": 3352.599,
+        "end_sec": 3374.359
+      }
+    },
+    {
+      "asset_id": "tech_quantifier_negation",
+      "kind": "technique",
+      "name": "量词否定对偶/quantifier negation duality",
+      "aliases": [
+        "量词否定",
+        "德摩根量词"
+      ],
+      "summary": "否定可穿过量词并互换全称与存在：¬(∀x)A ≡ (∃x)¬A，¬(∃x)A ≡ (∀x)¬A。",
+      "statement": "¬(∀x)P(x) ⇔ (∃x)¬P(x)；¬(∃x)P(x) ⇔ (∀x)¬P(x)。",
+      "steps": [
+        "定位最外层被否定的量词",
+        "去掉否定并改写量词类型",
+        "把否定移入量词辖域",
+        "必要时继续对内层公式化简"
+      ],
+      "concepts": [
+        {
+          "entity": "全称量词/universal quantifier",
+          "role": "applies_to"
+        },
+        {
+          "entity": "存在量词/existential quantifier",
+          "role": "applies_to"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "about"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "4"
+      }
+    },
+    {
+      "asset_id": "tech_truth_classification",
+      "kind": "technique",
+      "name": "谓词公式真假分类/predicate formula truth classification",
+      "aliases": [
+        "永真",
+        "可满足",
+        "永假",
+        "普遍有效"
+      ],
+      "summary": "在所有/某些/无一解释下判定公式：普遍有效、可满足或不可满足（矛盾）。",
+      "statement": "普遍有效：一切解释下为真；可满足：存在解释为真；不可满足/矛盾式：一切解释下为假。",
+      "steps": [
+        "明确要判定的类别（普遍有效 / 可满足 / 矛盾）",
+        "构造或搜索解释",
+        "有限论域时可枚举关键个体赋值",
+        "归纳得到分类结论"
+      ],
+      "concepts": [
+        {
+          "entity": "可满足/satisfiable",
+          "role": "about"
+        },
+        {
+          "entity": "矛盾式/contradiction",
+          "role": "about"
+        },
+        {
+          "entity": "谓词公式/predicate formula",
+          "role": "applies_to"
+        },
+        {
+          "entity": "真值/truth value",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "4"
+      }
+    },
+    {
+      "asset_id": "tech_wff_recursive_check",
+      "kind": "technique",
+      "name": "合式公式递归判定/wff recursive checking",
+      "aliases": [
+        "合式公式判定",
+        "wff 检查"
+      ],
+      "summary": "按形成规则自底向上检查：原子 → 联结词组合 → 量词约束，判定是否为合式公式。",
+      "statement": "原子谓词公式是 wff；若 A,B 为 wff 则 ¬A、(A∧B) 等为 wff；若 x 在 A 中自由则 (∀x)A、(∃x)A 为 wff。",
+      "steps": [
+        "找出最内层原子公式",
+        "按联结词与括号匹配向外扩展",
+        "检查量词约束的变元是否自由",
+        "确认整式符合形成规则"
+      ],
+      "concepts": [
+        {
+          "entity": "合式公式/Well-formed formula(Wff)",
+          "role": "about"
+        },
+        {
+          "entity": "谓词公式/predicate formula",
+          "role": "applies_to"
+        },
+        {
+          "entity": "量词/quantifier",
+          "role": "uses"
+        }
+      ],
+      "source": "curated",
+      "links": {
+        "demos": [],
+        "anims": [],
+        "problems": []
+      },
+      "grounding": {
+        "lecture_id": "16"
+      }
+    }
+  ],
+  "index_by_entity": {
+    "AEIO四种命题形式": [
+      "tech_aeio_square"
+    ],
+    "AEIO四种命题形式/AEIO propositional forms": [
+      "tech_aeio_square"
+    ],
+    "一元谓词": [
+      "llm_exam_一元谓词例子_苏格拉底_1600_1224300"
+    ],
+    "一元谓词/unary predicate": [
+      "llm_exam_一元谓词例子_苏格拉底_1600_1224300"
+    ],
+    "一阶谓词逻辑": [
+      "llm_exam_自然数公理的一阶谓词逻辑翻译_7700_2513700",
+      "llm_form_一阶谓词逻辑符号约定_6500_1138800",
+      "llm_tech_八股文翻译法_2600_1567300"
+    ],
+    "一阶谓词逻辑/first-order predicate logic": [
+      "llm_exam_自然数公理的一阶谓词逻辑翻译_7700_2513700",
+      "llm_form_一阶谓词逻辑符号约定_6500_1138800",
+      "llm_tech_八股文翻译法_2600_1567300"
+    ],
+    "不可满足": [
+      "llm_form_小可满足推出大可满足_7900_1534900"
+    ],
+    "不可满足/unsatisfiable": [
+      "llm_form_小可满足推出大可满足_7900_1534900"
+    ],
+    "个体": [
+      "llm_exam_p_father_john_复合示例_7500_1694100",
+      "llm_exam_一元谓词例子_苏格拉底_1600_1224300",
+      "llm_exam_三元谓词例子_a在b和c之间_1600_1224300",
+      "llm_exam_个体函数示例_father_x_与_teacher_x_7500_1694100",
+      "llm_exam_个体词所指对象的例子_89100_980600",
+      "llm_exam_二元谓词例子_亚当喜欢夏娃_1600_1224300",
+      "llm_exam_小弟弟抱红气球的谓词翻译_7500_2258100",
+      "llm_exam_所有人都会死_9300_2687400",
+      "llm_exam_找不到小弟弟就不回家的谓词翻译_7500_2258100",
+      "llm_form_排中律图式_7600_2206600",
+      "llm_prin_先指明论域_89100_980600",
+      "llm_theo_全称量词真值条件_9300_2687400",
+      "llm_theo_存在量词真值条件_9300_2687400",
+      "prin_domain_of_discourse"
+    ],
+    "个体/Individual": [
+      "llm_exam_p_father_john_复合示例_7500_1694100",
+      "llm_exam_一元谓词例子_苏格拉底_1600_1224300",
+      "llm_exam_三元谓词例子_a在b和c之间_1600_1224300",
+      "llm_exam_个体函数示例_father_x_与_teacher_x_7500_1694100",
+      "llm_exam_个体词所指对象的例子_89100_980600",
+      "llm_exam_二元谓词例子_亚当喜欢夏娃_1600_1224300",
+      "llm_exam_小弟弟抱红气球的谓词翻译_7500_2258100",
+      "llm_exam_所有人都会死_9300_2687400",
+      "llm_exam_找不到小弟弟就不回家的谓词翻译_7500_2258100",
+      "llm_form_排中律图式_7600_2206600",
+      "llm_prin_先指明论域_89100_980600",
+      "llm_theo_全称量词真值条件_9300_2687400",
+      "llm_theo_存在量词真值条件_9300_2687400",
+      "prin_domain_of_discourse"
+    ],
+    "个体变项": [
+      "llm_form_个体常项与个体变项记号约定_1600_1224300",
+      "tech_bound_free_split",
+      "tech_rename_bound_var"
+    ],
+    "个体变项/individual variable": [
+      "llm_form_个体常项与个体变项记号约定_1600_1224300",
+      "tech_bound_free_split",
+      "tech_rename_bound_var"
+    ],
+    "个体域": [
+      "llm_form_大永真推出小永真_7900_1534900",
+      "llm_form_小可满足推出大可满足_7900_1534900",
+      "llm_form_有限域普遍有效_7900_1534900",
+      "llm_theo_大永真推出小永真_7900_1534900",
+      "llm_theo_小可满足推出大可满足_7900_1534900",
+      "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900"
+    ],
+    "个体域/domain of individuals": [
+      "llm_form_大永真推出小永真_7900_1534900",
+      "llm_form_小可满足推出大可满足_7900_1534900",
+      "llm_form_有限域普遍有效_7900_1534900",
+      "llm_theo_大永真推出小永真_7900_1534900",
+      "llm_theo_小可满足推出大可满足_7900_1534900",
+      "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900"
+    ],
+    "个体常项": [
+      "llm_form_一阶谓词逻辑符号约定_6500_1138800",
+      "llm_form_个体常项与个体变项记号约定_1600_1224300",
+      "llm_form_个体常项与变元记号约定_3600_1205100",
+      "tech_propositionalize_predicate",
+      "tech_substitution_instance"
+    ],
+    "个体常项/individual constant": [
+      "llm_form_一阶谓词逻辑符号约定_6500_1138800",
+      "llm_form_个体常项与个体变项记号约定_1600_1224300",
+      "llm_form_个体常项与变元记号约定_3600_1205100",
+      "tech_propositionalize_predicate",
+      "tech_substitution_instance"
+    ],
+    "二元谓词": [
+      "llm_exam_二元谓词例子_亚当喜欢夏娃_1600_1224300"
+    ],
+    "二元谓词/binary predicate": [
+      "llm_exam_二元谓词例子_亚当喜欢夏娃_1600_1224300"
+    ],
+    "代入": [
+      "llm_exam_p_x_y_x_y_2_作为命题函数_29800_914000"
+    ],
+    "代入/instantiation": [
+      "llm_exam_p_x_y_x_y_2_作为命题函数_29800_914000"
+    ],
+    "全称否定命题": [
+      "llm_exam_所有无理数都不是有理数_5100_1882900",
+      "llm_form_全称否定命题形式化_5100_1882900",
+      "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+    ],
+    "全称否定命题/universal negative proposition": [
+      "llm_exam_所有无理数都不是有理数_5100_1882900",
+      "llm_form_全称否定命题形式化_5100_1882900",
+      "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+    ],
+    "全称命题": [
+      "llm_exam_一切事物都会死_的假命题_29800_914000",
+      "llm_exam_所有的有理数都是实数的翻译_8300_1773500",
+      "tech_aeio_square"
+    ],
+    "全称命题/universal proposition": [
+      "llm_exam_一切事物都会死_的假命题_29800_914000",
+      "llm_exam_所有的有理数都是实数的翻译_8300_1773500",
+      "tech_aeio_square"
+    ],
+    "全称肯定命题": [
+      "llm_form_全称肯定命题形式化_8300_1773500"
+    ],
+    "全称肯定命题/universal affirmative proposition": [
+      "llm_form_全称肯定命题形式化_8300_1773500"
+    ],
+    "全称量词": [
+      "llm_exam_所有人都会死_9300_2687400",
+      "llm_form_全称量词_的基本形式_9300_2687400",
+      "llm_form_有限论域上的量词展开规则_5700_2227000",
+      "llm_form_有限论域下量词消去式_0300_2944200",
+      "llm_form_有限论域全称量词展开式_3900_2163700",
+      "llm_form_重叠量词四种范式_2200_2106600",
+      "llm_form_量词与联结词配对规则_3700_1917600",
+      "llm_form_量词约束自由变元规则_43300_422900",
+      "llm_form_量词翻译配对规则_4500_3036300",
+      "llm_prin_量词仅约束个体_3600_1205100",
+      "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+      "llm_tech_有限论域量词展开法_3600_3020500",
+      "llm_theo_量词与联结词配对法则_3700_1917600",
+      "llm_theo_量词约束自由变元定理_43300_422900",
+      "tech_aeio_square",
+      "tech_finite_domain_expand",
+      "tech_overlap_quantifier_order",
+      "tech_quantifier_negation",
+      "tech_substitution_instance"
+    ],
+    "全称量词/universal quantifier": [
+      "llm_exam_所有人都会死_9300_2687400",
+      "llm_form_全称量词_的基本形式_9300_2687400",
+      "llm_form_有限论域上的量词展开规则_5700_2227000",
+      "llm_form_有限论域下量词消去式_0300_2944200",
+      "llm_form_有限论域全称量词展开式_3900_2163700",
+      "llm_form_重叠量词四种范式_2200_2106600",
+      "llm_form_量词与联结词配对规则_3700_1917600",
+      "llm_form_量词约束自由变元规则_43300_422900",
+      "llm_form_量词翻译配对规则_4500_3036300",
+      "llm_prin_量词仅约束个体_3600_1205100",
+      "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+      "llm_tech_有限论域量词展开法_3600_3020500",
+      "llm_theo_量词与联结词配对法则_3700_1917600",
+      "llm_theo_量词约束自由变元定理_43300_422900",
+      "tech_aeio_square",
+      "tech_finite_domain_expand",
+      "tech_overlap_quantifier_order",
+      "tech_quantifier_negation",
+      "tech_substitution_instance"
+    ],
+    "全称量词前置的公式": [
+      "llm_form_全称量词前置范式_5900_2367500",
+      "llm_form_存在量词前置范式_5900_2367500"
+    ],
+    "全称量词前置的公式/formula with universal quantifiers prefixed": [
+      "llm_form_全称量词前置范式_5900_2367500",
+      "llm_form_存在量词前置范式_5900_2367500"
+    ],
+    "公式": [
+      "llm_exam_二元域上公式真值验证实例_8600_2173000",
+      "llm_form_大永真推出小永真_7900_1534900",
+      "llm_theo_大永真推出小永真_7900_1534900",
+      "llm_theo_小可满足推出大可满足_7900_1534900",
+      "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900",
+      "llm_theo_约束变元改名定理_43300_422900"
+    ],
+    "公式/formula": [
+      "llm_exam_二元域上公式真值验证实例_8600_2173000",
+      "llm_form_大永真推出小永真_7900_1534900",
+      "llm_theo_大永真推出小永真_7900_1534900",
+      "llm_theo_小可满足推出大可满足_7900_1534900",
+      "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900",
+      "llm_theo_约束变元改名定理_43300_422900"
+    ],
+    "公式的普遍有效性": [
+      "llm_exam_自然数1_10上普遍有效到5元素域的例子_7900_1534900"
+    ],
+    "公式的普遍有效性/universal validity of formula": [
+      "llm_exam_自然数1_10上普遍有效到5元素域的例子_7900_1534900"
+    ],
+    "受量词约束": [
+      "tech_bound_free_split"
+    ],
+    "受量词约束/bound by quantifier": [
+      "tech_bound_free_split"
+    ],
+    "变元": [
+      "llm_exam_p_x_y_在x_1_y_2时取值为假_3500_1575900",
+      "llm_form_个体常项与变元记号约定_3600_1205100",
+      "llm_form_命题公式指派数公式_6500_2043100"
+    ],
+    "变元/variable symbol": [
+      "llm_exam_p_x_y_在x_1_y_2时取值为假_3500_1575900",
+      "llm_form_个体常项与变元记号约定_3600_1205100",
+      "llm_form_命题公式指派数公式_6500_2043100"
+    ],
+    "可满足": [
+      "tech_truth_classification"
+    ],
+    "可满足/satisfiable": [
+      "tech_truth_classification"
+    ],
+    "合取": [
+      "llm_exam_小弟弟抱红气球_的谓词翻译修正_3600_1205100",
+      "llm_form_量词翻译配对规则_3600_1205100",
+      "llm_form_量词翻译配对规则_4500_3036300",
+      "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+      "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+      "llm_theo_量词与联结词配对法则_3700_1917600"
+    ],
+    "合取/conjunction": [
+      "llm_exam_小弟弟抱红气球_的谓词翻译修正_3600_1205100",
+      "llm_form_量词翻译配对规则_3600_1205100",
+      "llm_form_量词翻译配对规则_4500_3036300",
+      "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+      "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+      "llm_theo_量词与联结词配对法则_3700_1917600"
+    ],
+    "合式公式": [
+      "tech_wff_recursive_check"
+    ],
+    "合式公式/Well-formed formula(Wff)": [
+      "tech_wff_recursive_check"
+    ],
+    "同构": [
+      "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+    ],
+    "同构/Isomorphism": [
+      "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+    ],
+    "否定": [
+      "llm_tech_特称否定命题翻译模板_8700_1951300",
+      "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+    ],
+    "否定/Negation": [
+      "llm_tech_特称否定命题翻译模板_8700_1951300",
+      "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+    ],
+    "否定命题": [
+      "llm_tech_特称否定命题翻译模板_8700_1951300"
+    ],
+    "否定命题/negated proposition": [
+      "llm_tech_特称否定命题翻译模板_8700_1951300"
+    ],
+    "命题": [
+      "llm_exam_p_father_john_复合示例_7500_1694100",
+      "llm_exam_p_x_y_x_y_2_作为命题函数_29800_914000",
+      "llm_exam_p_x_y_在x_1_y_2时取值为假_3500_1575900",
+      "llm_exam_q_x_含自由变元不是命题_29800_914000",
+      "llm_exam_x_y_2_的谓词与命题化_3600_1205100",
+      "llm_exam_x_y_x_y_2_的真假依赖论域_29800_914000",
+      "llm_form_命题与谓词符号约定_1600_1224300",
+      "llm_form_命题函数化为命题的两种方式_29800_914000",
+      "llm_form_约束变元易名规则_4500_3036300",
+      "prin_predicate_as_propositional_function",
+      "prin_zero_ary_predicate_as_proposition",
+      "tech_propositionalize_predicate"
+    ],
+    "命题/proposition": [
+      "llm_exam_p_father_john_复合示例_7500_1694100",
+      "llm_exam_p_x_y_x_y_2_作为命题函数_29800_914000",
+      "llm_exam_p_x_y_在x_1_y_2时取值为假_3500_1575900",
+      "llm_exam_q_x_含自由变元不是命题_29800_914000",
+      "llm_exam_x_y_2_的谓词与命题化_3600_1205100",
+      "llm_exam_x_y_x_y_2_的真假依赖论域_29800_914000",
+      "llm_form_命题与谓词符号约定_1600_1224300",
+      "llm_form_命题函数化为命题的两种方式_29800_914000",
+      "llm_form_约束变元易名规则_4500_3036300",
+      "prin_predicate_as_propositional_function",
+      "prin_zero_ary_predicate_as_proposition",
+      "tech_propositionalize_predicate"
+    ],
+    "命题公式": [
+      "llm_exam_命题公式赋值组合示例_p_q_r_6500_2043100",
+      "llm_form_p_p_重言式_排中律_65400_447100",
+      "llm_form_命题公式指派数公式_6500_2043100"
+    ],
+    "命题公式/propositional formula": [
+      "llm_exam_命题公式赋值组合示例_p_q_r_6500_2043100",
+      "llm_form_p_p_重言式_排中律_65400_447100",
+      "llm_form_命题公式指派数公式_6500_2043100"
+    ],
+    "命题逻辑": [
+      "llm_exam_用_p_今天是周二_q_今天有离散课做蕴含推理_39500_773000"
+    ],
+    "命题逻辑/propositional logic": [
+      "llm_exam_用_p_今天是周二_q_今天有离散课做蕴含推理_39500_773000"
+    ],
+    "四种形式": [
+      "llm_tech_八股文翻译法_2600_1567300"
+    ],
+    "四种形式/AEIO": [
+      "llm_tech_八股文翻译法_2600_1567300"
+    ],
+    "存在量词": [
+      "llm_exam_至少有一个偶数是素数_7600_2206600",
+      "llm_form_存在量词_的基本形式_9300_2687400",
+      "llm_form_有限论域存在量词展开式_3900_2163700",
+      "llm_form_重叠量词四种范式_2200_2106600",
+      "llm_tech_有限论域量词展开法_3600_3020500",
+      "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+      "llm_theo_量词约束自由变元定理_43300_422900",
+      "tech_aeio_square",
+      "tech_finite_domain_expand",
+      "tech_overlap_quantifier_order",
+      "tech_quantifier_negation"
+    ],
+    "存在量词/existential quantifier": [
+      "llm_exam_至少有一个偶数是素数_7600_2206600",
+      "llm_form_存在量词_的基本形式_9300_2687400",
+      "llm_form_有限论域存在量词展开式_3900_2163700",
+      "llm_form_重叠量词四种范式_2200_2106600",
+      "llm_tech_有限论域量词展开法_3600_3020500",
+      "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+      "llm_theo_量词约束自由变元定理_43300_422900",
+      "tech_aeio_square",
+      "tech_finite_domain_expand",
+      "tech_overlap_quantifier_order",
+      "tech_quantifier_negation"
+    ],
+    "存在量词和全称量词": [
+      "llm_form_唯一存在量词_有且仅有_的表示_7700_2513700",
+      "llm_form_存在量词表达至少有一个_7600_2206600"
+    ],
+    "存在量词和全称量词/existential and universal quantifiers": [
+      "llm_form_唯一存在量词_有且仅有_的表示_7700_2513700",
+      "llm_form_存在量词表达至少有一个_7600_2206600"
+    ],
+    "形式化": [
+      "llm_exam_函数连续ε_δ定义的形式化表示_4500_3036300",
+      "llm_exam_所有无理数都不是有理数_5100_1882900",
+      "llm_exam_生物或非生物_7600_2206600",
+      "llm_exam_至少有一个偶数是素数_7600_2206600",
+      "llm_form_全称否定命题形式化_5100_1882900",
+      "llm_form_全称肯定命题形式化_8300_1773500",
+      "llm_form_存在量词表达至少有一个_7600_2206600",
+      "llm_form_有且仅有一个_量词图式_7400_2302200",
+      "llm_form_特称否定命题形式化_8700_1951300",
+      "llm_form_特称肯定命题形式化_3700_1917600",
+      "llm_prin_形式化是推理的第一步_4500_3036300"
+    ],
+    "形式化/formalization": [
+      "llm_exam_函数连续ε_δ定义的形式化表示_4500_3036300",
+      "llm_exam_所有无理数都不是有理数_5100_1882900",
+      "llm_exam_生物或非生物_7600_2206600",
+      "llm_exam_至少有一个偶数是素数_7600_2206600",
+      "llm_form_全称否定命题形式化_5100_1882900",
+      "llm_form_全称肯定命题形式化_8300_1773500",
+      "llm_form_存在量词表达至少有一个_7600_2206600",
+      "llm_form_有且仅有一个_量词图式_7400_2302200",
+      "llm_form_特称否定命题形式化_8700_1951300",
+      "llm_form_特称肯定命题形式化_3700_1917600",
+      "llm_prin_形式化是推理的第一步_4500_3036300"
+    ],
+    "改名保持真值": [
+      "tech_rename_bound_var"
+    ],
+    "改名保持真值/truth-preserving under renaming": [
+      "tech_rename_bound_var"
+    ],
+    "映射": [
+      "llm_exam_个体函数示例_father_x_与_teacher_x_7500_1694100",
+      "llm_exam_二元域上公式真值验证实例_8600_2173000",
+      "llm_exam_将x_5从数字域映射到桌椅域无意义的例子_1600_3441000",
+      "llm_form_谓词的解释由个体到真值的映射唯一确定_0300_2944200",
+      "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+    ],
+    "映射/mapping": [
+      "llm_exam_个体函数示例_father_x_与_teacher_x_7500_1694100",
+      "llm_exam_二元域上公式真值验证实例_8600_2173000",
+      "llm_exam_将x_5从数字域映射到桌椅域无意义的例子_1600_3441000",
+      "llm_form_谓词的解释由个体到真值的映射唯一确定_0300_2944200",
+      "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+    ],
+    "有限域": [
+      "llm_form_有限域普遍有效_7900_1534900"
+    ],
+    "有限域/finite domain": [
+      "llm_form_有限域普遍有效_7900_1534900"
+    ],
+    "永真式": [
+      "llm_exam_生物或非生物_7600_2206600",
+      "llm_form_排中律图式_7600_2206600"
+    ],
+    "永真式/eternally true formula": [
+      "llm_exam_生物或非生物_7600_2206600",
+      "llm_form_排中律图式_7600_2206600"
+    ],
+    "特称否定命题": [
+      "llm_exam_有的实数不是有理数_8700_1951300",
+      "llm_form_特称否定命题形式化_8700_1951300"
+    ],
+    "特称否定命题/particular negative proposition": [
+      "llm_exam_有的实数不是有理数_8700_1951300",
+      "llm_form_特称否定命题形式化_8700_1951300"
+    ],
+    "特称肯定命题": [
+      "llm_exam_有的实数是有理数_3700_1917600",
+      "llm_form_特称肯定命题形式化_3700_1917600"
+    ],
+    "特称肯定命题/particular affirmative proposition": [
+      "llm_exam_有的实数是有理数_3700_1917600",
+      "llm_form_特称肯定命题形式化_3700_1917600"
+    ],
+    "真值": [
+      "llm_exam_个体域_1_2_3_下谓词等价类例子_1600_3441000",
+      "llm_exam_命题公式赋值组合示例_p_q_r_6500_2043100",
+      "llm_form_约束变元易名规则_7600_3270100",
+      "llm_form_谓词的解释由个体到真值的映射唯一确定_0300_2944200",
+      "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+      "prin_interpretation_determines_truth",
+      "tech_predicate_interpretation",
+      "tech_truth_classification"
+    ],
+    "真值/truth value": [
+      "llm_exam_个体域_1_2_3_下谓词等价类例子_1600_3441000",
+      "llm_exam_命题公式赋值组合示例_p_q_r_6500_2043100",
+      "llm_form_约束变元易名规则_7600_3270100",
+      "llm_form_谓词的解释由个体到真值的映射唯一确定_0300_2944200",
+      "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+      "prin_interpretation_determines_truth",
+      "tech_predicate_interpretation",
+      "tech_truth_classification"
+    ],
+    "矛盾式": [
+      "tech_truth_classification"
+    ],
+    "矛盾式/contradiction": [
+      "tech_truth_classification"
+    ],
+    "等价类": [
+      "llm_exam_个体域_1_2_3_下谓词等价类例子_1600_3441000"
+    ],
+    "等价类/Equivalence Class": [
+      "llm_exam_个体域_1_2_3_下谓词等价类例子_1600_3441000"
+    ],
+    "约束变元": [
+      "llm_exam_辖域与约束变元示例_43300_422900",
+      "llm_form_约束变元易名规则_4500_3036300",
+      "llm_form_约束变元易名规则_7600_3270100",
+      "llm_theo_约束变元改名定理_43300_422900",
+      "llm_theo_约束变元改名等价定理_7600_3270100"
+    ],
+    "约束变元/bound variable": [
+      "llm_exam_辖域与约束变元示例_43300_422900",
+      "llm_form_约束变元易名规则_4500_3036300",
+      "llm_form_约束变元易名规则_7600_3270100",
+      "llm_theo_约束变元改名定理_43300_422900",
+      "llm_theo_约束变元改名等价定理_7600_3270100"
+    ],
+    "联结词": [
+      "llm_form_量词与联结词配对规则_3700_1917600"
+    ],
+    "联结词/connective": [
+      "llm_form_量词与联结词配对规则_3700_1917600"
+    ],
+    "自然数公理": [
+      "llm_exam_自然数公理的一阶谓词逻辑翻译_7700_2513700"
+    ],
+    "自由个体变项": [
+      "tech_bound_free_split",
+      "tech_substitution_instance"
+    ],
+    "自由个体变项/free individual variable": [
+      "tech_bound_free_split",
+      "tech_substitution_instance"
+    ],
+    "自由出现": [
+      "llm_exam_约束出现与自由出现例子_7600_3270100"
+    ],
+    "自由出现/free occurrence": [
+      "llm_exam_约束出现与自由出现例子_7600_3270100"
+    ],
+    "自由变元": [
+      "llm_exam_q_x_含自由变元不是命题_29800_914000",
+      "llm_form_命题函数化为命题的两种方式_29800_914000",
+      "llm_form_量词约束自由变元规则_43300_422900",
+      "llm_theo_约束变元改名等价定理_7600_3270100"
+    ],
+    "自由变元/free variable": [
+      "llm_exam_q_x_含自由变元不是命题_29800_914000",
+      "llm_form_命题函数化为命题的两种方式_29800_914000",
+      "llm_form_量词约束自由变元规则_43300_422900",
+      "llm_theo_约束变元改名等价定理_7600_3270100"
+    ],
+    "范式": [
+      "llm_form_全称量词前置范式_5900_2367500",
+      "llm_form_存在量词前置范式_5900_2367500"
+    ],
+    "范式/normal form": [
+      "llm_form_全称量词前置范式_5900_2367500",
+      "llm_form_存在量词前置范式_5900_2367500"
+    ],
+    "蕴含": [
+      "llm_exam_所有的有理数都是实数的翻译_8300_1773500",
+      "llm_exam_考85分与得奖的蕴含翻译_2600_1567300",
+      "llm_form_量词翻译配对规则_3600_1205100"
+    ],
+    "蕴含/implication": [
+      "llm_exam_所有的有理数都是实数的翻译_8300_1773500",
+      "llm_exam_考85分与得奖的蕴含翻译_2600_1567300",
+      "llm_form_量词翻译配对规则_3600_1205100"
+    ],
+    "论域": [
+      "llm_exam_x_y_x_y_2_的真假依赖论域_29800_914000",
+      "llm_exam_一切事物都会死_的假命题_29800_914000",
+      "llm_exam_有穷论域二元谓词数量示例_6500_2043100",
+      "llm_exam_论域_1_2_3_上谓词q_x_表示x小于某个值的例子_1600_3441000",
+      "llm_exam_论域取不同集合的例子_89100_980600",
+      "llm_exam_谓词公式在有限论域下的解释与求值示例_0300_2944200",
+      "llm_exam_谓词公式解释示例_a_p_x_y_q_x_q_y_6500_2043100",
+      "llm_form_全称蕴含存在永真式_8600_2173000",
+      "llm_form_有限论域上的量词展开规则_5700_2227000",
+      "llm_form_有限论域下量词消去式_0300_2944200",
+      "llm_form_有限论域全称量词展开式_3900_2163700",
+      "llm_form_有限论域存在量词展开式_3900_2163700",
+      "llm_prin_先指明论域_89100_980600",
+      "llm_theo_全称量词真值条件_9300_2687400",
+      "llm_theo_存在量词真值条件_9300_2687400",
+      "prin_domain_of_discourse",
+      "prin_interpretation_determines_truth",
+      "tech_finite_domain_expand",
+      "tech_predicate_interpretation",
+      "tech_propositionalize_predicate"
+    ],
+    "论域/domain of discourse": [
+      "llm_exam_x_y_x_y_2_的真假依赖论域_29800_914000",
+      "llm_exam_一切事物都会死_的假命题_29800_914000",
+      "llm_exam_有穷论域二元谓词数量示例_6500_2043100",
+      "llm_exam_论域_1_2_3_上谓词q_x_表示x小于某个值的例子_1600_3441000",
+      "llm_exam_论域取不同集合的例子_89100_980600",
+      "llm_exam_谓词公式在有限论域下的解释与求值示例_0300_2944200",
+      "llm_exam_谓词公式解释示例_a_p_x_y_q_x_q_y_6500_2043100",
+      "llm_form_全称蕴含存在永真式_8600_2173000",
+      "llm_form_有限论域上的量词展开规则_5700_2227000",
+      "llm_form_有限论域下量词消去式_0300_2944200",
+      "llm_form_有限论域全称量词展开式_3900_2163700",
+      "llm_form_有限论域存在量词展开式_3900_2163700",
+      "llm_prin_先指明论域_89100_980600",
+      "llm_theo_全称量词真值条件_9300_2687400",
+      "llm_theo_存在量词真值条件_9300_2687400",
+      "prin_domain_of_discourse",
+      "prin_interpretation_determines_truth",
+      "tech_finite_domain_expand",
+      "tech_predicate_interpretation",
+      "tech_propositionalize_predicate"
+    ],
+    "谓词": [
+      "llm_exam_x_4有无穷多个解释的例子_1600_3441000",
+      "llm_exam_x_y_2_的谓词与命题化_3600_1205100",
+      "llm_exam_三元谓词例子_a在b和c之间_1600_1224300",
+      "llm_exam_参观者与展品量词赋值_2200_2106600",
+      "llm_exam_将x_5从数字域映射到桌椅域无意义的例子_1600_3441000",
+      "llm_exam_小弟弟抱红气球_的谓词翻译修正_3600_1205100",
+      "llm_exam_小弟弟抱红气球的谓词翻译_7500_2258100",
+      "llm_exam_找不到小弟弟就不回家的谓词翻译_7500_2258100",
+      "llm_exam_有穷论域二元谓词数量示例_6500_2043100",
+      "llm_exam_论域_1_2_3_上谓词q_x_表示x小于某个值的例子_1600_3441000",
+      "llm_form_命题与谓词符号约定_1600_1224300",
+      "llm_form_谓词表示约定_1600_1224300",
+      "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+      "prin_predicate_as_propositional_function",
+      "prin_zero_ary_predicate_as_proposition",
+      "tech_predicate_interpretation",
+      "tech_propositionalize_predicate"
+    ],
+    "谓词/predicate": [
+      "llm_exam_x_4有无穷多个解释的例子_1600_3441000",
+      "llm_exam_x_y_2_的谓词与命题化_3600_1205100",
+      "llm_exam_三元谓词例子_a在b和c之间_1600_1224300",
+      "llm_exam_参观者与展品量词赋值_2200_2106600",
+      "llm_exam_将x_5从数字域映射到桌椅域无意义的例子_1600_3441000",
+      "llm_exam_小弟弟抱红气球_的谓词翻译修正_3600_1205100",
+      "llm_exam_小弟弟抱红气球的谓词翻译_7500_2258100",
+      "llm_exam_找不到小弟弟就不回家的谓词翻译_7500_2258100",
+      "llm_exam_有穷论域二元谓词数量示例_6500_2043100",
+      "llm_exam_论域_1_2_3_上谓词q_x_表示x小于某个值的例子_1600_3441000",
+      "llm_form_命题与谓词符号约定_1600_1224300",
+      "llm_form_谓词表示约定_1600_1224300",
+      "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+      "prin_predicate_as_propositional_function",
+      "prin_zero_ary_predicate_as_proposition",
+      "tech_predicate_interpretation",
+      "tech_propositionalize_predicate"
+    ],
+    "谓词公式": [
+      "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+      "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+      "tech_finite_domain_expand",
+      "tech_truth_classification",
+      "tech_wff_recursive_check"
+    ],
+    "谓词公式/predicate formula": [
+      "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+      "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+      "tech_finite_domain_expand",
+      "tech_truth_classification",
+      "tech_wff_recursive_check"
+    ],
+    "谓词公式的解释": [
+      "llm_exam_谓词公式在有限论域下的解释与求值示例_0300_2944200",
+      "llm_exam_谓词公式解释示例_a_p_x_y_q_x_q_y_6500_2043100",
+      "prin_interpretation_determines_truth",
+      "tech_predicate_interpretation"
+    ],
+    "谓词公式的解释/interpretation of predicate formula": [
+      "llm_exam_谓词公式在有限论域下的解释与求值示例_0300_2944200",
+      "llm_exam_谓词公式解释示例_a_p_x_y_q_x_q_y_6500_2043100",
+      "prin_interpretation_determines_truth",
+      "tech_predicate_interpretation"
+    ],
+    "谓词变项": [
+      "llm_exam_对谓词变元施加量词的反例_6500_1138800"
+    ],
+    "谓词变项/predicate variable": [
+      "llm_exam_对谓词变元施加量词的反例_6500_1138800"
+    ],
+    "谓词逻辑": [
+      "llm_exam_所有有理数都不是无理数_3600_3020500"
+    ],
+    "谓词逻辑/Predicate Logic": [
+      "llm_exam_所有有理数都不是无理数_3600_3020500"
+    ],
+    "辖域": [
+      "llm_exam_辖域与约束变元示例_43300_422900"
+    ],
+    "辖域/Scope": [
+      "llm_exam_辖域与约束变元示例_43300_422900"
+    ],
+    "重叠量词": [
+      "tech_overlap_quantifier_order"
+    ],
+    "重叠量词/overlapping quantifiers": [
+      "tech_overlap_quantifier_order"
+    ],
+    "重言式": [
+      "llm_form_p_p_重言式_排中律_65400_447100"
+    ],
+    "重言式/tautology": [
+      "llm_form_p_p_重言式_排中律_65400_447100"
+    ],
+    "量词": [
+      "llm_exam_函数连续ε_δ定义的形式化表示_4500_3036300",
+      "llm_exam_参观者与展品量词赋值_2200_2106600",
+      "llm_form_有且仅有一个_量词图式_7400_2302200",
+      "llm_prin_形式化是推理的第一步_4500_3036300",
+      "llm_prin_量词仅约束个体_3600_1205100",
+      "prin_domain_of_discourse",
+      "tech_bound_free_split",
+      "tech_quantifier_negation",
+      "tech_rename_bound_var",
+      "tech_wff_recursive_check"
+    ],
+    "量词/quantifier": [
+      "llm_exam_函数连续ε_δ定义的形式化表示_4500_3036300",
+      "llm_exam_参观者与展品量词赋值_2200_2106600",
+      "llm_form_有且仅有一个_量词图式_7400_2302200",
+      "llm_prin_形式化是推理的第一步_4500_3036300",
+      "llm_prin_量词仅约束个体_3600_1205100",
+      "prin_domain_of_discourse",
+      "tech_bound_free_split",
+      "tech_quantifier_negation",
+      "tech_rename_bound_var",
+      "tech_wff_recursive_check"
+    ],
+    "量词否定": [
+      "llm_exam_所有有理数都不是无理数_3600_3020500"
+    ],
+    "量词否定/quantifier negation": [
+      "llm_exam_所有有理数都不是无理数_3600_3020500"
+    ],
+    "量词否定型等值式": [
+      "llm_form_量词否定等值式_3600_3020500"
+    ],
+    "量词否定型等值式/negative equivalence formula with quantifiers": [
+      "llm_form_量词否定等值式_3600_3020500"
+    ],
+    "量词的摩根律": [
+      "llm_form_量词否定等值式_3600_3020500"
+    ],
+    "量词的摩根律/De Morgan's laws for quantifiers": [
+      "llm_form_量词否定等值式_3600_3020500"
+    ],
+    "量词的辖域": [
+      "llm_exam_对谓词变元施加量词的反例_6500_1138800",
+      "llm_form_量词辖域记法_43300_422900"
+    ],
+    "量词的辖域/scope of quantifier": [
+      "llm_exam_对谓词变元施加量词的反例_6500_1138800",
+      "llm_form_量词辖域记法_43300_422900"
+    ]
+  }
+}

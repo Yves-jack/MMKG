@@ -1,0 +1,491 @@
+{
+  "lecture_id": "chapter:第6章 谓词逻辑的公理化",
+  "root": {
+    "id": "__chapter__/第6章 谓词逻辑的公理化",
+    "zh": "第6章 谓词逻辑的公理化",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/集合",
+        "zh": "集合",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "有穷集合/Finite Set",
+            "zh": "有穷集合",
+            "importance": 0.045046,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "无限集合/infinite set",
+            "zh": "无限集合",
+            "importance": 0.044487,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "自然数集合/Set of Natural Numbers",
+            "zh": "自然数集合",
+            "importance": 0.026266,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/联结词",
+        "zh": "联结词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/公理系统",
+        "zh": "公理系统",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题",
+        "zh": "命题",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑",
+        "zh": "命题逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数",
+        "zh": "函数",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/笛卡儿积",
+        "zh": "笛卡儿积",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/等值",
+        "zh": "等值",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/自然数",
+        "zh": "自然数",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/集合论",
+        "zh": "集合论",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/集合的并运算",
+        "zh": "集合的并运算",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/推理演算",
+        "zh": "推理演算",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题连接词",
+        "zh": "命题连接词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第6章 谓词逻辑的公理化/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.092276,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "双射/bijective function",
+            "zh": "双射",
+            "importance": 0.070573,
+            "relation": "belong_to",
+            "related": [
+              "集合"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "幂集/power set",
+            "zh": "幂集",
+            "importance": 0.040267,
+            "relation": "belong_to",
+            "related": [
+              "广义并"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "有序对/ordered pair",
+            "zh": "有序对",
+            "importance": 0.035624,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "空集/empty set",
+            "zh": "空集",
+            "importance": 0.03422,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "规则/rule",
+            "zh": "规则",
+            "importance": 0.030726,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "实数/real number",
+            "zh": "实数",
+            "importance": 0.029484,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "有限基数/finite cardinality",
+            "zh": "有限基数",
+            "importance": 0.014077,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第6章 谓词逻辑的公理化",
+      "zh": "第6章 谓词逻辑的公理化",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/集合",
+          "zh": "集合",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "有穷集合/Finite Set",
+              "zh": "有穷集合",
+              "importance": 0.045046,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "无限集合/infinite set",
+              "zh": "无限集合",
+              "importance": 0.044487,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "自然数集合/Set of Natural Numbers",
+              "zh": "自然数集合",
+              "importance": 0.026266,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/联结词",
+          "zh": "联结词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/公理系统",
+          "zh": "公理系统",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题",
+          "zh": "命题",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑",
+          "zh": "命题逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数",
+          "zh": "函数",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/笛卡儿积",
+          "zh": "笛卡儿积",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/等值",
+          "zh": "等值",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/自然数",
+          "zh": "自然数",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/集合论",
+          "zh": "集合论",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/集合的并运算",
+          "zh": "集合的并运算",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/推理演算",
+          "zh": "推理演算",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题连接词",
+          "zh": "命题连接词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第6章 谓词逻辑的公理化/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "蕴含/implication",
+              "zh": "蕴含",
+              "importance": 0.092276,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "双射/bijective function",
+              "zh": "双射",
+              "importance": 0.070573,
+              "relation": "belong_to",
+              "related": [
+                "集合"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "幂集/power set",
+              "zh": "幂集",
+              "importance": 0.040267,
+              "relation": "belong_to",
+              "related": [
+                "广义并"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "有序对/ordered pair",
+              "zh": "有序对",
+              "importance": 0.035624,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "空集/empty set",
+              "zh": "空集",
+              "importance": 0.03422,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "规则/rule",
+              "zh": "规则",
+              "importance": 0.030726,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "实数/real number",
+              "zh": "实数",
+              "importance": 0.029484,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "有限基数/finite cardinality",
+              "zh": "有限基数",
+              "importance": 0.014077,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 27,
+  "max_depth": 2,
+  "orphan_count": 6,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化",
+    "root_zh": "第6章 谓词逻辑的公理化",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "12"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

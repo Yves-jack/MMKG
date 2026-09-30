@@ -72,6 +72,21 @@
   color: #c5cedb;
   font-size: 13px;
   flex-shrink: 0;
+  cursor: default;
+  z-index: 2;
+}
+
+.toolbarActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.zoomMeta {
+  font-style: normal;
+  color: #8b95a8;
+  font-size: 12px;
 }
 
 .closeBtn {
@@ -88,6 +103,18 @@
   border-color: rgba(62, 207, 142, 0.4);
 }
 
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(96vw, 1200px);
+  width: 100%;
+  height: calc(100vh - 88px);
+  cursor: default;
+  overflow: hidden;
+}
+
 .full {
   max-width: min(96vw, 1200px);
   max-height: calc(100vh - 88px);
@@ -97,5 +124,71 @@
   border-radius: 10px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
   background: #0a0c10;
-  cursor: default;
+  cursor: zoom-in;
+  transform-origin: center center;
+  transition: transform 0.05s linear;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
 }
+
+.fullZoomed {
+  cursor: grab;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+}
+
+.fullZoomed:active {
+  cursor: grabbing;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(14, 17, 22, 0.78);
+  color: #e8edf5;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navPrev {
+  left: 8px;
+}
+
+.navNext {
+  right: 8px;
+}
+
+.navBtn:hover,
+.navBtn:focus-visible {
+  border-color: rgba(62, 207, 142, 0.55);
+  color: var(--accent, #3ecf8e);
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .navBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+
+  .navPrev {
+    left: 4px;
+  }
+
+  .navNext {
+    right: 4px;
+  }
+}
+

@@ -1,0 +1,159 @@
+{
+  "courseId": "数理逻辑",
+  "title": "单课复习整理",
+  "items": [
+    {
+      "lecture_id": "1",
+      "title": "第1讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_1.json",
+      "class_video": "data/raw/数理逻辑/video/class/1_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/1_1.mp4",
+      "duration_sec": 3270.1
+    },
+    {
+      "lecture_id": "2",
+      "title": "第2讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_2.json",
+      "class_video": "data/raw/数理逻辑/video/class/2_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/2_1.mp4",
+      "duration_sec": 3274.9
+    },
+    {
+      "lecture_id": "3",
+      "title": "第3讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_3.json",
+      "class_video": "data/raw/数理逻辑/video/class/3_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/3_1.mp4",
+      "duration_sec": 3127.1
+    },
+    {
+      "lecture_id": "4",
+      "title": "第4讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_4.json",
+      "class_video": "data/raw/数理逻辑/video/class/4_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/4_1.mp4",
+      "duration_sec": 3441.0
+    },
+    {
+      "lecture_id": "6",
+      "title": "第6讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_6.json",
+      "class_video": "data/raw/数理逻辑/video/class/6_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/6_1.mp4",
+      "duration_sec": 3295.6
+    },
+    {
+      "lecture_id": "7",
+      "title": "第7讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_7.json",
+      "class_video": "data/raw/数理逻辑/video/class/7_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/7_1.mp4",
+      "duration_sec": 3295.1
+    },
+    {
+      "lecture_id": "9",
+      "title": "第9讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_9.json",
+      "class_video": "data/raw/数理逻辑/video/class/9_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/9_1.mp4",
+      "duration_sec": 3045.3
+    },
+    {
+      "lecture_id": "10",
+      "title": "第10讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_10.json",
+      "class_video": "data/raw/数理逻辑/video/class/10_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/10_1.mp4",
+      "duration_sec": 3111.8
+    },
+    {
+      "lecture_id": "11",
+      "title": "第11讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_11.json",
+      "class_video": "data/raw/数理逻辑/video/class/11_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/11_1.mp4",
+      "duration_sec": 3046.3
+    },
+    {
+      "lecture_id": "12",
+      "title": "第12讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_12.json",
+      "class_video": "data/raw/数理逻辑/video/class/12_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/12_1.mp4",
+      "duration_sec": 3207.3
+    },
+    {
+      "lecture_id": "13",
+      "title": "第13讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_13.json",
+      "class_video": "data/raw/数理逻辑/video/class/13_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/13_1.mp4",
+      "duration_sec": 3280.3
+    },
+    {
+      "lecture_id": "14",
+      "title": "第14讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_14.json",
+      "class_video": "data/raw/数理逻辑/video/class/14_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/14_1.mp4",
+      "duration_sec": 3280.1
+    },
+    {
+      "lecture_id": "16",
+      "title": "第16讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_16.json",
+      "class_video": "data/raw/数理逻辑/video/class/16_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/16_1.mp4",
+      "duration_sec": 3239.6
+    },
+    {
+      "lecture_id": "18",
+      "title": "第18讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_18.json",
+      "class_video": "data/raw/数理逻辑/video/class/18_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/18_1.mp4",
+      "duration_sec": 3299.9
+    },
+    {
+      "lecture_id": "19",
+      "title": "第19讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_19.json",
+      "class_video": "data/raw/数理逻辑/video/class/19_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/19_1.mp4",
+      "duration_sec": 3301.888
+    },
+    {
+      "lecture_id": "25",
+      "title": "第25讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_25.json",
+      "class_video": "data/raw/数理逻辑/video/class/25_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/25_1.mp4",
+      "duration_sec": 3289.8
+    },
+    {
+      "lecture_id": "26",
+      "title": "第26讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_26.json",
+      "class_video": "data/raw/数理逻辑/video/class/26_0.mp4",
+      "ppt_video": "data/raw/数理逻辑/video/ppt/26_1.mp4",
+      "duration_sec": 3281.5
+    }
+  ]
+}

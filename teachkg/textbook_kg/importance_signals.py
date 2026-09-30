@@ -72,20 +72,12 @@ def _endpoints(t: dict[str, Any]) -> list[str]:
     return out
 
 
-def _dur_weight(t: dict[str, Any], *, use_log: bool) -> float:
-    start = float(t.get("start_sec") or 0)
-    end = float(t.get("end_sec") or 0)
-    dur = max(0.0, end - start)
-    if use_log:
-        return math.log1p(dur) if dur > 0 else 1.0
-    return dur if dur > 0 else 1.0
-
-
 def _ctx_of(t: dict[str, Any]) -> str:
     return str(
         t.get("context")
         or t.get("source_text")
         or t.get("natural_statement")
+        or t.get("raw_asr_text")
         or ""
     )
 
@@ -102,30 +94,113 @@ def cue_position_multiplier(ctx: str) -> float:
     return m
 
 
+def _build_mention_vocab(entity_ids: Iterable[str]) -> list[tuple[str, str]]:
+    """(匹配串, 规范实体 id)，按匹配串长度降序，便于最长匹配。"""
+    is_invalid_entity, _ = _entity_helpers()
+    best: dict[str, str] = {}
+    for eid in entity_ids:
+        n = str(eid or "").strip()
+        if not n or is_invalid_entity(n):
+            continue
+        zh = _zh(n)
+        if len(zh) < 2:
+            continue
+        prev = best.get(zh)
+        if prev is None:
+            best[zh] = n
+            continue
+        # 同中文名：优先带英文尾的完整 id
+        if "/" in n and "/" not in prev:
+            best[zh] = n
+        elif len(n) > len(prev):
+            best[zh] = n
+    return sorted(best.items(), key=lambda x: (-len(x[0]), x[0]))
+
+
+def longest_match_mentions(text: str, vocab: list[tuple[str, str]]) -> list[str]:
+    """在文本上做贪心最长匹配，返回命中的规范实体 id 列表。
+
+    例：文本含「谓词逻辑」时只计「谓词逻辑」，不计其中的「谓词」。
+    """
+    if not text or not vocab:
+        return []
+    hits: list[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        matched = False
+        for surface, eid in vocab:
+            L = len(surface)
+            if L <= 0 or i + L > n:
+                continue
+            if text[i : i + L] == surface:
+                hits.append(eid)
+                i += L
+                matched = True
+                break
+        if not matched:
+            i += 1
+    return hits
+
+
 def signal_mention_time(
     triplets: Iterable[dict[str, Any]],
     *,
-    use_log_duration: bool = True,
+    use_log_duration: bool = True,  # 保留参数兼容旧调用；已忽略
     count_bonus: float = 0.25,
 ) -> dict[str, float]:
+    """提及次数通道（不再使用 cue 时长）。
+
+    对每条唯一语境文本做实体最长匹配计数；无可用文本时回退为三元组端点次数。
+    分数：平均语境权重 × (1+count_bonus) × log1p(次数)。
+    """
+    del use_log_duration  # 时长口径不可靠，显式丢弃
     _, entity_weight_multiplier = _entity_helpers()
-    dur_scores: dict[str, float] = defaultdict(float)
+    trips = list(triplets)
+
+    endpoint_ids: list[str] = []
+    for t in trips:
+        endpoint_ids.extend(_endpoints(t))
+    vocab = _build_mention_vocab(endpoint_ids)
+
+    # cue_id / 文本 → 语境权重；同一文本只扫一次
+    text_weight: dict[str, float] = {}
+    for t in trips:
+        ctx = _ctx_of(t).strip()
+        if not ctx:
+            continue
+        key = str(t.get("cue_id") or "") + "\n" + ctx
+        w = cue_position_multiplier(ctx)
+        # 同文本取最大语境权重
+        text_weight[key] = max(text_weight.get(key, 0.0), w)
+
     counts: dict[str, int] = defaultdict(int)
-    for t in triplets:
-        w = _dur_weight(t, use_log=use_log_duration)
-        w *= cue_position_multiplier(_ctx_of(t))
-        for n in _endpoints(t):
-            ww = w * entity_weight_multiplier(n)
-            dur_scores[n] += ww
-            counts[n] += 1
+    weight_sum: dict[str, float] = defaultdict(float)
+    if text_weight and vocab:
+        for key, w in text_weight.items():
+            text = key.split("\n", 1)[-1]
+            for eid in longest_match_mentions(text, vocab):
+                counts[eid] += 1
+                weight_sum[eid] += w
+    else:
+        # 无文本：端点精确计数（已是实体 id，不存在子串误匹配）
+        for t in trips:
+            w = cue_position_multiplier(_ctx_of(t))
+            for n in _endpoints(t):
+                counts[n] += 1
+                weight_sum[n] += w
+
     out: dict[str, float] = {}
-    for n, d in dur_scores.items():
-        out[n] = d + count_bonus * math.log1p(counts[n]) * entity_weight_multiplier(n)
+    for n, c in counts.items():
+        if c <= 0:
+            continue
+        avg_w = weight_sum[n] / c if c else 1.0
+        out[n] = avg_w * (1.0 + count_bonus) * math.log1p(c) * entity_weight_multiplier(n)
     return out
 
 
 def signal_board_ppt(triplets: Iterable[dict[str, Any]]) -> dict[str, float]:
-    """板书/PPT 证据：有 ppt 帧的三元组端点加分。"""
+    """板书/PPT 证据：有 ppt 帧的三元组端点按次计分（不含时长）。"""
     _, entity_weight_multiplier = _entity_helpers()
     scores: dict[str, float] = defaultdict(float)
     for t in triplets:
@@ -139,9 +214,8 @@ def signal_board_ppt(triplets: Iterable[dict[str, Any]]) -> dict[str, float]:
         base = 1.0
         if t.get("evidence_ppt_page_index") is not None:
             base += 0.25
-        w = base * _dur_weight(t, use_log=True)
         for n in _endpoints(t):
-            scores[n] += w * entity_weight_multiplier(n)
+            scores[n] += base * entity_weight_multiplier(n)
     return dict(scores)
 
 
@@ -181,7 +255,7 @@ def signal_discourse_role(
     *,
     asset_boost: dict[str, float] | None = None,
 ) -> dict[str, float]:
-    """话语角色：例子/论域实例降权，定义语境与资产概念抬升。"""
+    """话语角色：例子/论域实例降权，定义语境与资产概念抬升（按次，不含时长）。"""
     _, entity_weight_multiplier = _entity_helpers()
     asset_boost = asset_boost or {}
     scores: dict[str, float] = defaultdict(float)
@@ -205,7 +279,6 @@ def signal_discourse_role(
 
     for t in trips:
         ctx = _ctx_of(t)
-        w = _dur_weight(t, use_log=True)
         exampleish = bool(_EXAMPLE_CTX.search(ctx))
         defineish = bool(_DEFINE_CTX.search(ctx))
         for n in _endpoints(t):
@@ -225,7 +298,7 @@ def signal_discourse_role(
                 mult *= 0.5
             ab = asset_boost.get(n) or asset_boost.get(zh) or 1.0
             mult *= float(ab)
-            scores[n] += w * mult * entity_weight_multiplier(n)
+            scores[n] += mult * entity_weight_multiplier(n)
     return dict(scores)
 
 

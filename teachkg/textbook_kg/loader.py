@@ -30,6 +30,8 @@ class TextbookRelation:
     """教材侧原文/描述上下文。"""
     classroom_evidence: str = ""
     """边筛后附着的课堂原文依据；有则优先写入三元组 context。"""
+    related_knowledge_points: list[str] = field(default_factory=list)
+    """边筛保留时关联的本段知识点。"""
 
 
 @dataclass

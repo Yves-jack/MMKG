@@ -1,0 +1,632 @@
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.emptyPage {
+  padding: 48px 32px;
+  color: var(--muted);
+}
+
+/* —— 中右顶部：标题 + 跳转 —— */
+.workspaceTop {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.workspaceLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  justify-self: start;
+}
+
+.backLink {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(22, 27, 34, 0.65);
+  color: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.backLink:hover {
+  border-color: rgba(62, 207, 142, 0.4);
+  color: #9decc4;
+}
+
+.workspaceCenter {
+  justify-self: center;
+}
+
+.workspaceRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  justify-self: end;
+}
+
+.workspaceTitle {
+  min-width: 0;
+}
+
+.workspaceTitle h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.workspaceTitle p {
+  display: none;
+}
+
+.jumpRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.jump {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(22, 27, 34, 0.55);
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.jump:hover {
+  border-color: rgba(62, 207, 142, 0.4);
+  color: #9decc4;
+}
+
+.statChips {
+  display: flex;
+  gap: 10px;
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.statChips strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* —— 左侧：仅视频列表 —— */
+.videoList {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.videoItem,
+.videoActive {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+  background: rgba(22, 27, 34, 0.65);
+  color: inherit;
+  cursor: pointer;
+}
+
+.videoItem:hover {
+  border-color: rgba(62, 207, 142, 0.35);
+}
+
+.videoActive {
+  border-color: rgba(62, 207, 142, 0.55);
+  background: rgba(62, 207, 142, 0.1);
+}
+
+.videoBadge {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(91, 141, 239, 0.15);
+  color: #9ecbff;
+}
+
+.videoMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.videoMeta strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.videoMeta em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* —— 中间：上视频 + 下知识点多列 —— */
+.centerPane {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.videoGraphSplit {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.playerBlock {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px 4px;
+}
+
+.videoPartSwitch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+.videoPartBtn,
+.videoPartActive {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(22, 27, 34, 0.55);
+  color: var(--muted, #9aa0a6);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.videoPartBtn:hover {
+  border-color: rgba(62, 207, 142, 0.35);
+  color: #c5cad3;
+}
+
+.videoPartActive {
+  border-color: rgba(62, 207, 142, 0.55);
+  background: rgba(62, 207, 142, 0.12);
+  color: #9decc4;
+}
+
+.playerEmpty {
+  padding: 36px 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+}
+
+.seekBtn {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 102, 153, 0.35);
+  background: rgba(255, 102, 153, 0.1);
+  color: #ff9fbf;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.seekBtn:hover {
+  background: rgba(255, 102, 153, 0.2);
+}
+
+.pointsBlock {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.mapHead {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-right: 14px;
+}
+
+.mapViewTabs {
+  display: flex;
+  gap: 4px;
+  padding-left: 10px;
+}
+
+.mapTab,
+.mapTabActive {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mapTabActive,
+.mapTab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mapTabActive {
+  border-color: rgba(62, 207, 142, 0.4);
+}
+
+.graphHost {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.graphHost > div {
+  border-left: none;
+  background: transparent;
+}
+
+.listHead {
+  padding: 10px 14px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mapTools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapMeta {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.mapBtn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: rgba(22, 27, 34, 0.55);
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mapBtn:hover {
+  border-color: rgba(62, 207, 142, 0.4);
+}
+
+.mindmapHost {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+.mapStack {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.mapPane {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.mapPane[data-hidden="1"] {
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mapPane[data-hidden="0"] {
+  visibility: visible;
+  z-index: 1;
+}
+
+/* —— 右侧：详情 —— */
+.detailPane {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 12, 16, 0.55);
+  border-left: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.detailToolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.secToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.secToggle h4 {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.secToggle span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.childPick {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.childPick:hover {
+  color: var(--accent);
+}
+
+.detailHead {
+  flex-shrink: 0;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.detailTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.detailTitleRow h3 {
+  margin: 0;
+  font-size: 20px;
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+.originBadge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.detailSummary {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.detailActions {
+  display: flex;
+  gap: 8px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(62, 207, 142, 0.16);
+  border: 1px solid rgba(62, 207, 142, 0.4);
+  color: #9decc4;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.cta:hover {
+  background: rgba(62, 207, 142, 0.28);
+}
+
+.detailBody {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px 16px 24px;
+}
+
+.section {
+  margin-bottom: 18px;
+}
+
+.section h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.def {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.muted {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.edgeList,
+.evList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edgeList li {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(22, 27, 34, 0.5);
+}
+
+.edgeList a {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  font-size: 13px;
+}
+
+.edgeList a:hover {
+  color: var(--accent);
+}
+
+.edgePred {
+  color: var(--muted);
+  font-size: 11px;
+  min-width: 4.5em;
+}
+
+.edgeList em {
+  display: block;
+  margin-top: 4px;
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.evList li {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(22, 27, 34, 0.45);
+}
+
+.evMeta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.evList p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.empty {
+  padding: 24px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .workspaceTop {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .workspaceLeft,
+  .workspaceCenter,
+  .workspaceRight {
+    justify-self: stretch;
+  }
+
+  .workspaceRight {
+    justify-content: flex-start;
+  }
+}

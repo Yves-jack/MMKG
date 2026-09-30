@@ -8,8 +8,10 @@ export type PipelineNode = {
   importance_base?: number | null;
   importance_delta?: number | null;
   importance_contributions?: Record<string, number> | null;
-  /** 等价合并后的别名（完整实体名） */
+  /** 仅 synonym_of 等价合并产生的别名（完整实体名） */
   aliases?: string[];
+  /** 由 property_of 收成的特性说明（每条一句，可分点展示） */
+  properties?: string[];
   /** 重要性阈值下本应隐藏、现被临时显示的节点 */
   filtered_by_importance?: boolean;
   /** mmkg enrichment：实体描述（不参与构图） */
@@ -60,6 +62,10 @@ export type PipelineEdge = {
   dedupe_reason?: string | null;
   /** 跨段去重原因（中文） */
   dedupe_reason_zh?: string | null;
+  /** 是否跨段边（去重后可能保留更高优先级 source，仍用此标记计入「跨段边」） */
+  is_cross_cue?: boolean;
+  /** 保留边关联的本段知识点 */
+  related_knowledge_points?: string[];
 };
 
 export type CorrectionSnap = {
@@ -99,6 +105,8 @@ export type PipelineStage = {
   nodes?: PipelineNode[];
   edges?: PipelineEdge[];
   stats?: Record<string, number | string | null>;
+  /** 知识点提取步骤：本段知识点列表 */
+  knowledge_points?: string[];
 };
 
 export type PipelineItem = {
@@ -110,7 +118,7 @@ export type PipelineItem = {
   raw_asr_text?: string;
   extract_text?: string;
   preprocess_status?: string;
-  media?: { clip?: string; ppt?: string };
+  media?: { clip?: string; ppt?: string; ppt_pages?: string[] };
   stages: PipelineStage[];
   triplets?: unknown[];
   /** 跨段窗口项（片段列表末尾） */
@@ -132,5 +140,7 @@ export type PipelinePayload = {
   subtitle?: string;
   cue_count?: number;
   cross_cue_window_count?: number;
+  /** 整讲（或两讲堂次）OCR PPT 截图，供「全部片段」左右翻看 */
+  ppt_gallery?: string[];
   items: PipelineItem[];
 };

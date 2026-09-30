@@ -1,0 +1,530 @@
+{
+  "lecture_id": "chapter:第3章 命题逻辑的公理化",
+  "root": {
+    "id": "__chapter__/第3章 命题逻辑的公理化",
+    "zh": "第3章 命题逻辑的公理化",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/推理规则",
+        "zh": "推理规则",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/论域",
+        "zh": "论域",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/矛盾式",
+        "zh": "矛盾式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/合一",
+        "zh": "合一",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/假设引入",
+        "zh": "假设引入",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/矛盾消去",
+        "zh": "矛盾消去",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/个体变元",
+        "zh": "个体变元",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "个体/Individual",
+            "zh": "个体",
+            "importance": 0.057536,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.011134,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/否定",
+        "zh": "否定",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/全称消去规则",
+        "zh": "全称消去规则",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/全称引入规则",
+        "zh": "全称引入规则",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/存在引入规则",
+        "zh": "存在引入规则",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/存在消去规则",
+        "zh": "存在消去规则",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/量词",
+        "zh": "量词",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.053902,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "存在量词/existential quantifier",
+            "zh": "存在量词",
+            "importance": 0.053006,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/子句集",
+        "zh": "子句集",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第3章 命题逻辑的公理化/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.309623,
+            "relation": null,
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+            "zh": "谓词逻辑的公理系统",
+            "importance": 0.162414,
+            "relation": "chapter_topic",
+            "related": [
+              "推理规则"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "析取/disjunction",
+            "zh": "析取",
+            "importance": 0.162052,
+            "relation": "chapter_topic",
+            "related": [
+              "全称量词",
+              "存在量词",
+              "蕴含"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.132746,
+            "relation": "chapter_topic",
+            "related": [
+              "推理规则",
+              "证明过程"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "合取/conjunction",
+            "zh": "合取",
+            "importance": 0.103909,
+            "relation": "chapter_topic",
+            "related": [
+              "全称量词",
+              "存在量词",
+              "蕴含"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "基本的推理公式/basic inference formula",
+            "zh": "基本的推理公式",
+            "importance": 0.098383,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.092276,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "变形规则/transformation rule",
+            "zh": "变形规则",
+            "importance": 0.084947,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第3章 命题逻辑的公理化",
+      "zh": "第3章 命题逻辑的公理化",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/推理规则",
+          "zh": "推理规则",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/论域",
+          "zh": "论域",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/矛盾式",
+          "zh": "矛盾式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/合一",
+          "zh": "合一",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/假设引入",
+          "zh": "假设引入",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/矛盾消去",
+          "zh": "矛盾消去",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/个体变元",
+          "zh": "个体变元",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "个体/Individual",
+              "zh": "个体",
+              "importance": 0.057536,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.011134,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/否定",
+          "zh": "否定",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/全称消去规则",
+          "zh": "全称消去规则",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/全称引入规则",
+          "zh": "全称引入规则",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/存在引入规则",
+          "zh": "存在引入规则",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/存在消去规则",
+          "zh": "存在消去规则",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/量词",
+          "zh": "量词",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "全称量词/universal quantifier",
+              "zh": "全称量词",
+              "importance": 0.053902,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "存在量词/existential quantifier",
+              "zh": "存在量词",
+              "importance": 0.053006,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/子句集",
+          "zh": "子句集",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第3章 命题逻辑的公理化/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.309623,
+              "relation": null,
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
+              "zh": "谓词逻辑的公理系统",
+              "importance": 0.162414,
+              "relation": "chapter_topic",
+              "related": [
+                "推理规则"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "析取/disjunction",
+              "zh": "析取",
+              "importance": 0.162052,
+              "relation": "chapter_topic",
+              "related": [
+                "全称量词",
+                "存在量词",
+                "蕴含"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.132746,
+              "relation": "chapter_topic",
+              "related": [
+                "推理规则",
+                "证明过程"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "合取/conjunction",
+              "zh": "合取",
+              "importance": 0.103909,
+              "relation": "chapter_topic",
+              "related": [
+                "全称量词",
+                "存在量词",
+                "蕴含"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "基本的推理公式/basic inference formula",
+              "zh": "基本的推理公式",
+              "importance": 0.098383,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "蕴含/implication",
+              "zh": "蕴含",
+              "importance": 0.092276,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "变形规则/transformation rule",
+              "zh": "变形规则",
+              "importance": 0.084947,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 28,
+  "max_depth": 2,
+  "orphan_count": 14,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化",
+    "root_zh": "第3章 命题逻辑的公理化",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "7",
+      "9"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

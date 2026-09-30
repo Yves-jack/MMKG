@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 
 import numpy as np
 
@@ -57,31 +57,40 @@ def extract_region_signature(
     *,
     crop: tuple[float, float, float, float],
     signature_size: tuple[int, int],
+    cap: Any = None,
+    fps: float | None = None,
 ) -> RegionSignature | None:
     import cv2
 
-    cap = cv2.VideoCapture(str(video_path))
-    if not cap.isOpened():
-        return None
+    own_cap = cap is None
+    if own_cap:
+        cap = cv2.VideoCapture(str(video_path))
+        if not cap.isOpened():
+            return None
+        fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    assert cap is not None
+    use_fps = float(fps or 25.0)
 
-    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
-    cap.set(cv2.CAP_PROP_POS_FRAMES, max(int(timestamp_sec * fps), 0))
-    ok, frame = cap.read()
-    cap.release()
-    if not ok or frame is None:
-        return None
+    try:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, max(int(timestamp_sec * use_fps), 0))
+        ok, frame = cap.read()
+        if not ok or frame is None:
+            return None
 
-    h, w = frame.shape[:2]
-    x0 = int(w * crop[0])
-    y0 = int(h * crop[1])
-    x1 = max(int(w * crop[2]), x0 + 1)
-    y1 = max(int(h * crop[3]), y0 + 1)
-    region = frame[y0:y1, x0:x1]
-    if region.size == 0:
-        return None
+        h, w = frame.shape[:2]
+        x0 = int(w * crop[0])
+        y0 = int(h * crop[1])
+        x1 = max(int(w * crop[2]), x0 + 1)
+        y1 = max(int(h * crop[3]), y0 + 1)
+        region = frame[y0:y1, x0:x1]
+        if region.size == 0:
+            return None
 
-    gray = cv2.cvtColor(region, cv2.COLOR_BGR2GRAY)
-    return cv2.resize(gray, signature_size, interpolation=cv2.INTER_AREA)
+        gray = cv2.cvtColor(region, cv2.COLOR_BGR2GRAY)
+        return cv2.resize(gray, signature_size, interpolation=cv2.INTER_AREA)
+    finally:
+        if own_cap:
+            cap.release()
 
 
 def extract_title_signature(
@@ -113,8 +122,7 @@ def region_similarity(left: RegionSignature, right: RegionSignature) -> float:
 
     if left.shape != right.shape:
         return 0.0
-    score, _ = structural_similarity(left, right, full=True)
-    return float(score)
+    return float(structural_similarity(left, right))
 
 
 def _boundary_contexts(
@@ -272,31 +280,69 @@ def refine_animation_false_flips(
     upper_half_signature_fn: SignatureFn | None = None,
 ) -> list[float]:
     """步骤 2 + 3：标题聚类后按上半区域确认合并。"""
-    groups = group_animation_false_flips(
-        boundaries,
-        video_path,
-        video_duration,
-        title_similarity_threshold=title_similarity_threshold,
-        title_crop=title_crop,
-        title_signature_fn=title_signature_fn,
-    )
-    if not groups:
-        return sorted(boundaries)
+    import cv2
 
-    logger.info(
-        "Title clustering: %d candidate animation group(s) in %s",
-        len(groups),
-        Path(video_path).name,
-    )
-    return merge_animation_flip_groups(
-        boundaries,
-        groups,
-        video_path,
-        video_duration,
-        upper_half_similarity_threshold=upper_half_similarity_threshold,
-        upper_half_crop=upper_half_crop,
-        upper_half_signature_fn=upper_half_signature_fn,
-    )
+    video_path = Path(video_path)
+    own_fns = title_signature_fn is None and upper_half_signature_fn is None
+    shared_cap = None
+    shared_fps = 25.0
+
+    if own_fns:
+        shared_cap = cv2.VideoCapture(str(video_path))
+        if not shared_cap.isOpened():
+            logger.warning("Cannot open PPT for title refine: %s", video_path)
+            return sorted(boundaries)
+        shared_fps = shared_cap.get(cv2.CAP_PROP_FPS) or 25.0
+
+        def title_signature_fn(path: Path, ts: float) -> RegionSignature | None:
+            return extract_region_signature(
+                path,
+                ts,
+                crop=title_crop,
+                signature_size=(170, 36),
+                cap=shared_cap,
+                fps=shared_fps,
+            )
+
+        def upper_half_signature_fn(path: Path, ts: float) -> RegionSignature | None:
+            return extract_region_signature(
+                path,
+                ts,
+                crop=upper_half_crop,
+                signature_size=(220, 120),
+                cap=shared_cap,
+                fps=shared_fps,
+            )
+
+    try:
+        groups = group_animation_false_flips(
+            boundaries,
+            video_path,
+            video_duration,
+            title_similarity_threshold=title_similarity_threshold,
+            title_crop=title_crop,
+            title_signature_fn=title_signature_fn,
+        )
+        if not groups:
+            return sorted(boundaries)
+
+        logger.info(
+            "Title clustering: %d candidate animation group(s) in %s",
+            len(groups),
+            video_path.name,
+        )
+        return merge_animation_flip_groups(
+            boundaries,
+            groups,
+            video_path,
+            video_duration,
+            upper_half_similarity_threshold=upper_half_similarity_threshold,
+            upper_half_crop=upper_half_crop,
+            upper_half_signature_fn=upper_half_signature_fn,
+        )
+    finally:
+        if shared_cap is not None:
+            shared_cap.release()
 
 
 # 向后兼容旧调用名

@@ -1,0 +1,1469 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "2",
+  "title": "第2讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/2_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/2_1.mp4",
+  "duration_sec": 3274.9,
+  "segments": [
+    {
+      "id": "数理逻辑_2_343300_422900",
+      "index": 1,
+      "start_sec": 343.3,
+      "end_sec": 422.9,
+      "title": "量词的辖域取决于量词后面的括号范围"
+    },
+    {
+      "id": "数理逻辑_2_429800_914000",
+      "index": 2,
+      "start_sec": 429.8,
+      "end_sec": 914.0,
+      "title": "一个命题形式，我们可以把它叫做一个命题函数"
+    },
+    {
+      "id": "数理逻辑_2_916500_1138800",
+      "index": 3,
+      "start_sec": 916.5,
+      "end_sec": 1138.8,
+      "title": "我们讲了这样一些谓词逻辑后，大家对谓词就有了…"
+    },
+    {
+      "id": "数理逻辑_2_1140200_1146800",
+      "index": 4,
+      "start_sec": 1140.2,
+      "end_sec": 1146.8,
+      "title": "那么，讨论了符号以后，我们就要讨论如何由这些…"
+    },
+    {
+      "id": "数理逻辑_2_1147900_1284300",
+      "index": 5,
+      "start_sec": 1147.9,
+      "end_sec": 1284.3,
+      "title": "格式良好的公式称为合式公式，即wff"
+    },
+    {
+      "id": "数理逻辑_2_1288100_1361900",
+      "index": 6,
+      "start_sec": 1288.1,
+      "end_sec": 1361.9,
+      "title": "这个是合式的，对吧？那这个是合式的吗？这也是…"
+    },
+    {
+      "id": "数理逻辑_2_1362600_1567300",
+      "index": 7,
+      "start_sec": 1362.6,
+      "end_sec": 1567.3,
+      "title": "这件衣服很漂亮，但是它很贵"
+    },
+    {
+      "id": "数理逻辑_2_1568300_1773500",
+      "index": 8,
+      "start_sec": 1568.3,
+      "end_sec": 1773.5,
+      "title": "对于一切x，如果x是S，那么x是P，形式化为…"
+    },
+    {
+      "id": "数理逻辑_2_1775100_1882900",
+      "index": 9,
+      "start_sec": 1775.1,
+      "end_sec": 1882.9,
+      "title": "那么还有一个叫做全称否定命题，全称否定就是一…"
+    },
+    {
+      "id": "数理逻辑_2_1883700_1917600",
+      "index": 10,
+      "start_sec": 1883.7,
+      "end_sec": 1917.6,
+      "title": "特称肯定命题I，即SIP，表示有S是P，也就…"
+    },
+    {
+      "id": "数理逻辑_2_1918700_1951300",
+      "index": 11,
+      "start_sec": 1918.7,
+      "end_sec": 1951.3,
+      "title": "特称否定命题O，即SOP，表示有S不是P，也…"
+    },
+    {
+      "id": "数理逻辑_2_1952200_2106600",
+      "index": 12,
+      "start_sec": 1952.2,
+      "end_sec": 2106.6,
+      "title": "V(x)表示x是参观者，E(y)表示y是展品…"
+    },
+    {
+      "id": "数理逻辑_2_2107600_2206600",
+      "index": 13,
+      "start_sec": 2107.6,
+      "end_sec": 2206.6,
+      "title": "我们再来看一下“至少有”的形式表示"
+    },
+    {
+      "id": "数理逻辑_2_2207400_2302200",
+      "index": 14,
+      "start_sec": 2207.4,
+      "end_sec": 2302.2,
+      "title": "有且仅有一个中国”该如何形式化？关键在于“有…"
+    },
+    {
+      "id": "数理逻辑_2_2307700_2513700",
+      "index": 15,
+      "start_sec": 2307.7,
+      "end_sec": 2513.7,
+      "title": "我们下面来翻译一下自然数的公理"
+    },
+    {
+      "id": "数理逻辑_2_2514500_3036300",
+      "index": 16,
+      "start_sec": 2514.5,
+      "end_sec": 3036.3,
+      "title": "好，接下去大家做一下这个，函数连续定义的形式…"
+    },
+    {
+      "id": "数理逻辑_2_3221100_3274900",
+      "index": 17,
+      "start_sec": 3221.1,
+      "end_sec": 3274.9,
+      "title": "片段 17"
+    }
+  ],
+  "points": [
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.947943,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "一阶谓词逻辑/first-order predicate logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "depend_on",
+          "object": "命题逻辑/propositional logic",
+          "label": "建立在…之上",
+          "natural_statement": "谓词逻辑建立在命题逻辑之上"
+        },
+        {
+          "subject": "一阶谓词逻辑/first-order predicate logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是一种",
+          "natural_statement": "一阶谓词逻辑是一种谓词逻辑"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "谓词属于谓词逻辑"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "量词组成谓词逻辑"
+        },
+        {
+          "subject": "逻辑公式/logical formula",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "构成",
+          "natural_statement": "逻辑公式构成谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1147900_1284300",
+          "text": "格式良好的公式称为合式公式，即wff。根据递归定义，如果A是合式公式，则¬A也是合式公式。若A和B均为合式公式，且没有变元x在A中是约束的而在B中是自由的，即同一个个体变元在A和B中要么都是约束的，要么都是自由的，才能用二元连接词将其连接成复合公式，如(A∧B)、(A∨B)、(A→B)或(A↔B)。此外，如果x在A中是自由的，则可在A前面加上量词约束x，所得公式仍为合式公式。这就是合式公式的定义。其中，第四条及添加量词的部分是命题逻辑中所没有的，属于谓词逻辑特有的内容。第三点则是在命题逻辑基础上增加了关于变元自由与约束的要求。这样，我们就由原始符号构造出合法的合式公式。",
+          "start_sec": 1147.9,
+          "end_sec": 1284.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1147900_1284300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1362600_1567300",
+          "text": "这件衣服很漂亮，但是它很贵。我们翻译的时候，“这件衣服很漂亮”和“这件衣服很贵”可以用“合取”来连接，但“但是”所表达的转折语义是翻译不出来的。像这样丰富的语义我们都会丢失。所以翻译的过程当中需要权衡，如果你认为某些语义非常重要，就需要添加新的连接词或新的量词。因为我们现在抽象出来的逻辑系统适用于所有领域，但当你在某个特定领域中发现某些重要信息无法通过现有的连接词和量词来表达时，就需要定义自己的连接词和量词，这都是允许的。\n\n下面介绍一种“八股文”翻译法，也就是在一阶谓词逻辑中套用固定公式的方法。比如在命题逻辑中，蕴含关系的翻译是比较困难的。举个例子，老师说考85分以上就能得奖，我考了90分却没有得奖，这句话怎么翻译？设“考85分以上”为P，“得奖”为Q。老师说考85分以上就能得奖，但我考了90分没得奖。在这种语境下，老师那句话该怎么解析？得奖和考85分以上哪个是充分条件，哪个是必要条件？",
+          "start_sec": 1362.6,
+          "end_sec": 1567.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1362600_1567300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_2207400_2302200",
+          "text": "“有且仅有一个中国”该如何形式化？关键在于“有且仅有”中必须有一个表示相等的谓词，即指明x等于y。我们翻译为：存在一个x，使得x是中国，并且对于所有y，如果y是中国，则x等于y。所以以后遇到“有且仅有”就按这个格式：先写存在量词，再写全称量词，内部用蕴含连接。",
+          "start_sec": 2207.4,
+          "end_sec": 2302.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2207400_2302200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.655584,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "需明确",
+          "natural_statement": "量词需明确论域"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "真值依赖论域"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1568300_1773500",
+          "text": "对于一切x，如果x是S，那么x是P，形式化为：任意x，S(x)蕴含P(x)。这个命题的真值和x的论域无关，这里x是对一切事物而言的。比如说我们翻译一下：所有的有理数都是实数。有理数是Rational(x)，实数是Real(x)。形式化就是：任意x，Rational(x)蕴含Real(x)。这个x可以是任何事物，如果x是桌子，Rational(x)就是假，那么这个命题是不是还是真？如果x是桌子的话，Rational(x)是假，那么蕴含式的前件为假，整个命题为真。所以对于这样的一种翻译，x是任意的，与论域没有关系。那么有的人问，为什么不能翻译成“任意x，S(x)且P(x)”呢？如果你翻译成这样的话，比如“所有的有理数都是实数”，你翻译成“任意x，Rational(x)且Real(x)”，那这句话我们希望它是一个真命题、是一个定理，它翻译成一阶谓词逻辑应该是一个永真式。如果翻译成蕴含式，它就是永",
+          "start_sec": 1568.3,
+          "end_sec": 1773.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1568300_1773500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_429800_914000",
+          "text": "一个命题形式，我们可以把它叫做一个命题函数。也就是说，它的真假如何确定呢？因为谓词最终也是有真值的，要么真，要么假，只不过现在有个体变元。比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。什么情况下它的真假能确定呢？就是将个体用个体常项代入，比如x等于一，y等于二带进去，或者x等于一，y等于一带进去，它的真假就确定了。那么如何将一个命题形式化为命题呢？有两种方式：一种是个体变元实例化，即用个体常项代入；另一种是个体变元约束化，即对变元加上量词。例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。如果论域是整数呢？这时就跟论域相关了。所以，给所有的自由变元加上量词，把它们变成约束变元，其真假也就确定了。当然，在约束任",
+          "start_sec": 429.8,
+          "end_sec": 914.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_429800_914000.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 2
+    },
+    {
+      "id": "谓词/predicate",
+      "zh": "谓词",
+      "importance": 0.493003,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x,…",
+      "definition": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕获了不同命题的共同结构，并通过量词与个体变量结合形成合式公式。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "取决于",
+          "natural_statement": "命题函数取决于个体变元"
+        },
+        {
+          "subject": "谓词常项/predicate constant",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词常项表示谓词"
+        },
+        {
+          "subject": "谓词变项/predicate variable",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词变项表示谓词"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "谓词属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2207400_2302200",
+          "text": "“有且仅有一个中国”该如何形式化？关键在于“有且仅有”中必须有一个表示相等的谓词，即指明x等于y。我们翻译为：存在一个x，使得x是中国，并且对于所有y，如果y是中国，则x等于y。所以以后遇到“有且仅有”就按这个格式：先写存在量词，再写全称量词，内部用蕴含连接。",
+          "start_sec": 2207.4,
+          "end_sec": 2302.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2207400_2302200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_429800_914000",
+          "text": "一个命题形式，我们可以把它叫做一个命题函数。也就是说，它的真假如何确定呢？因为谓词最终也是有真值的，要么真，要么假，只不过现在有个体变元。比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。什么情况下它的真假能确定呢？就是将个体用个体常项代入，比如x等于一，y等于二带进去，或者x等于一，y等于一带进去，它的真假就确定了。那么如何将一个命题形式化为命题呢？有两种方式：一种是个体变元实例化，即用个体常项代入；另一种是个体变元约束化，即对变元加上量词。例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。如果论域是整数呢？这时就跟论域相关了。所以，给所有的自由变元加上量词，把它们变成约束变元，其真假也就确定了。当然，在约束任",
+          "start_sec": 429.8,
+          "end_sec": 914.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_429800_914000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_predicate_interpretation",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.440262,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "具有属性",
+          "natural_statement": "命题具有属性否定"
+        },
+        {
+          "subject": "否定命题/negated proposition",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "具有属性",
+          "natural_statement": "命题具有属性否定命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1775100_1882900",
+          "text": "那么还有一个叫做全称否定命题，全称否定就是一切S都不是P，形式化是任意x，S(x)蕴含非P(x)。这个和全称肯定是一样的模式。例如，所有的无理数都不是有理数，形式化是任意x，Irrational(x)蕴含非Rational(x)。但也可以写成不存在x，使得x是无理数且x是有理数，即¬(∃x)(Irrational(x)∧Rational(x))。这两个形式是等价的，我们后面通过等值演算会看到。最后是特称肯定式。",
+          "start_sec": 1775.1,
+          "end_sec": 1882.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1775100_1882900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1918700_1951300",
+          "text": "特称否定命题O，即SOP，表示有S不是P，也就是说，存在x，使得x是S且x不是P，形式化为(∃x)(S(x)∧¬P(x))。这和特称肯定命题的形式是类似的。这些就是自然语句形式的翻译模板。例如，有的实数不是有理数。",
+          "start_sec": 1918.7,
+          "end_sec": 1951.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1918700_1951300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.398857,
+      "mention_count": 9,
+      "origin": "shared",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "辖域/Scope",
+          "predicate": "property_of",
+          "object": "量词/quantifier",
+          "label": "具有属性",
+          "natural_statement": "量词具有属性辖域"
+        },
+        {
+          "subject": "量词的辖域/scope of quantifier",
+          "predicate": "property_of",
+          "object": "量词/quantifier",
+          "label": "具有属性",
+          "natural_statement": "量词具有属性量词的辖域"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "由…约束",
+          "natural_statement": "约束变元由量词约束"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "related_with",
+          "object": "自由变元/free variable",
+          "label": "加在",
+          "natural_statement": "量词加在自由变元"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "需明确",
+          "natural_statement": "量词需明确论域"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1147900_1284300",
+          "text": "格式良好的公式称为合式公式，即wff。根据递归定义，如果A是合式公式，则¬A也是合式公式。若A和B均为合式公式，且没有变元x在A中是约束的而在B中是自由的，即同一个个体变元在A和B中要么都是约束的，要么都是自由的，才能用二元连接词将其连接成复合公式，如(A∧B)、(A∨B)、(A→B)或(A↔B)。此外，如果x在A中是自由的，则可在A前面加上量词约束x，所得公式仍为合式公式。这就是合式公式的定义。其中，第四条及添加量词的部分是命题逻辑中所没有的，属于谓词逻辑特有的内容。第三点则是在命题逻辑基础上增加了关于变元自由与约束的要求。这样，我们就由原始符号构造出合法的合式公式。",
+          "start_sec": 1147.9,
+          "end_sec": 1284.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1147900_1284300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1288100_1361900",
+          "text": "这个是合式的，对吧？那这个是合式的吗？这也是，这也是。但下面这些就不是了。因为在这个里面，有自由变元和约束变元，这两个就不能够用我们的连接词“合取”、“析取”把它们进行连接。好，这个里面已经约束了，就没有必要再加一个约束，再加一个量词了。这个里面，x不是自由的变元，所以这里加上去也是不对的。是这样。接下来，我们有一个重要的内容，就是如何将自然语言形式化。这是非常重要的。其实，我们去用逻辑解决问题的时候，首先要将实际问题形式化。在命题逻辑中我们已经知道，形式化的过程中会丢失很多语义。",
+          "start_sec": 1288.1,
+          "end_sec": 1361.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1288100_1361900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1883700_1917600",
+          "text": "特称肯定命题I，即SIP，表示有S是P，也就是说，存在x，使得x是S且x是P，形式化为(∃x)(S(x)∧P(x))。例如，有的实数是有理数。这里，存在量词与合取配对，全称量词与蕴含配对。",
+          "start_sec": 1883.7,
+          "end_sec": 1917.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1883700_1917600.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_形式化是推理的第一步_4500_3036300",
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "prin_domain_of_discourse",
+        "tech_bound_free_split",
+        "tech_quantifier_negation",
+        "tech_rename_bound_var"
+      ],
+      "rank": 5
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.370014,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "联结词组成一阶谓词逻辑"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "是一种",
+          "natural_statement": "合取是一种联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "是一种",
+          "natural_statement": "蕴含是一种联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1883700_1917600",
+          "text": "特称肯定命题I，即SIP，表示有S是P，也就是说，存在x，使得x是S且x是P，形式化为(∃x)(S(x)∧P(x))。例如，有的实数是有理数。这里，存在量词与合取配对，全称量词与蕴含配对。",
+          "start_sec": 1883.7,
+          "end_sec": 1917.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1883700_1917600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "合式公式/Well-formed formula(Wff)",
+      "zh": "合式公式",
+      "importance": 0.250276,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域…",
+      "definition": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域内，遵循特定符号形成规则（形成准则）构成的一类有意义的符号序列。它由基本原子命题（如命题常项、命题变项、原子谓词公式）通过逻辑联结词（如¬, ∧, ∨, →, ↔）以及量词（如∀, ∃）递归地组合而成，且其结构能够明确界定运算次序，确保语义的唯一性。",
+      "neighbors": [
+        {
+          "subject": "递归定义/recursive definition",
+          "predicate": "property_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "具有属性",
+          "natural_statement": "合式公式具有属性递归定义"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "property_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "具有属性",
+          "natural_statement": "合式公式具有属性量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1147900_1284300",
+          "text": "格式良好的公式称为合式公式，即wff。根据递归定义，如果A是合式公式，则¬A也是合式公式。若A和B均为合式公式，且没有变元x在A中是约束的而在B中是自由的，即同一个个体变元在A和B中要么都是约束的，要么都是自由的，才能用二元连接词将其连接成复合公式，如(A∧B)、(A∨B)、(A→B)或(A↔B)。此外，如果x在A中是自由的，则可在A前面加上量词约束x，所得公式仍为合式公式。这就是合式公式的定义。其中，第四条及添加量词的部分是命题逻辑中所没有的，属于谓词逻辑特有的内容。第三点则是在命题逻辑基础上增加了关于变元自由与约束的要求。这样，我们就由原始符号构造出合法的合式公式。",
+          "start_sec": 1147.9,
+          "end_sec": 1284.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1147900_1284300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_wff_recursive_check"
+      ],
+      "rank": 7
+    },
+    {
+      "id": "逻辑公式/logical formula",
+      "zh": "逻辑公式",
+      "importance": 0.214363,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "逻辑公式是数理逻辑中，使用逻辑符号和变量，根据合式规则（如括号的使用）构成的、用于精确表示自然…",
+      "definition": "逻辑公式是数理逻辑中，使用逻辑符号和变量，根据合式规则（如括号的使用）构成的、用于精确表示自然语句逻辑结构的符号化语言表达。它允许计算机识别、计算和处理逻辑推理，不同的表示法（如波兰式和逆波兰式）会影响处理效率，且逻辑公式的等值性是判断其等价性的关键。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "蕴含表示逻辑公式"
+        },
+        {
+          "subject": "逻辑公式/logical formula",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "构成",
+          "natural_statement": "逻辑公式构成谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2207400_2302200",
+          "text": "“有且仅有一个中国”该如何形式化？关键在于“有且仅有”中必须有一个表示相等的谓词，即指明x等于y。我们翻译为：存在一个x，使得x是中国，并且对于所有y，如果y是中国，则x等于y。所以以后遇到“有且仅有”就按这个格式：先写存在量词，再写全称量词，内部用蕴含连接。",
+          "start_sec": 2207.4,
+          "end_sec": 2302.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2207400_2302200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.203611,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "取决于",
+          "natural_statement": "真值取决于个体变元"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "真值依赖论域"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含全称量词"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "property_of",
+          "object": "永真式/eternally true formula",
+          "label": "具有",
+          "natural_statement": "永真式具有真值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1568300_1773500",
+          "text": "对于一切x，如果x是S，那么x是P，形式化为：任意x，S(x)蕴含P(x)。这个命题的真值和x的论域无关，这里x是对一切事物而言的。比如说我们翻译一下：所有的有理数都是实数。有理数是Rational(x)，实数是Real(x)。形式化就是：任意x，Rational(x)蕴含Real(x)。这个x可以是任何事物，如果x是桌子，Rational(x)就是假，那么这个命题是不是还是真？如果x是桌子的话，Rational(x)是假，那么蕴含式的前件为假，整个命题为真。所以对于这样的一种翻译，x是任意的，与论域没有关系。那么有的人问，为什么不能翻译成“任意x，S(x)且P(x)”呢？如果你翻译成这样的话，比如“所有的有理数都是实数”，你翻译成“任意x，Rational(x)且Real(x)”，那这句话我们希望它是一个真命题、是一个定理，它翻译成一阶谓词逻辑应该是一个永真式。如果翻译成蕴含式，它就是永",
+          "start_sec": 1568.3,
+          "end_sec": 1773.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1568300_1773500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_429800_914000",
+          "text": "一个命题形式，我们可以把它叫做一个命题函数。也就是说，它的真假如何确定呢？因为谓词最终也是有真值的，要么真，要么假，只不过现在有个体变元。比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。什么情况下它的真假能确定呢？就是将个体用个体常项代入，比如x等于一，y等于二带进去，或者x等于一，y等于一带进去，它的真假就确定了。那么如何将一个命题形式化为命题呢？有两种方式：一种是个体变元实例化，即用个体常项代入；另一种是个体变元约束化，即对变元加上量词。例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。如果论域是整数呢？这时就跟论域相关了。所以，给所有的自由变元加上量词，把它们变成约束变元，其真假也就确定了。当然，在约束任",
+          "start_sec": 429.8,
+          "end_sec": 914.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_429800_914000.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 9
+    },
+    {
+      "id": "全称否定命题/universal negative proposition",
+      "zh": "全称否定命题",
+      "importance": 0.2034,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那么还有一个叫做全称否定命题，全称否定就是一切S都不是P，形式化是任意x，S(x)蕴含非P(x…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称否定命题/universal negative proposition",
+          "predicate": "related_with",
+          "object": "形式化/formalization",
+          "label": "涉及",
+          "natural_statement": "全称否定命题涉及形式化"
+        },
+        {
+          "subject": "全称否定命题/universal negative proposition",
+          "predicate": "related_with",
+          "object": "等值演算/equivalence calculus",
+          "label": "通过",
+          "natural_statement": "全称否定命题通过等值演算"
+        },
+        {
+          "subject": "全称否定命题/universal negative proposition",
+          "predicate": "belong_to",
+          "object": "否定命题/negated proposition",
+          "label": "是…的一种",
+          "natural_statement": "全称否定命题是否定命题的一种"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1775100_1882900",
+          "text": "那么还有一个叫做全称否定命题，全称否定就是一切S都不是P，形式化是任意x，S(x)蕴含非P(x)。这个和全称肯定是一样的模式。例如，所有的无理数都不是有理数，形式化是任意x，Irrational(x)蕴含非Rational(x)。但也可以写成不存在x，使得x是无理数且x是有理数，即¬(∃x)(Irrational(x)∧Rational(x))。这两个形式是等价的，我们后面通过等值演算会看到。最后是特称肯定式。",
+          "start_sec": 1775.1,
+          "end_sec": 1882.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1775100_1882900.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 10
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.202054,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "depend_on",
+          "object": "命题逻辑/propositional logic",
+          "label": "建立在…之上",
+          "natural_statement": "谓词逻辑建立在命题逻辑之上"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1147900_1284300",
+          "text": "格式良好的公式称为合式公式，即wff。根据递归定义，如果A是合式公式，则¬A也是合式公式。若A和B均为合式公式，且没有变元x在A中是约束的而在B中是自由的，即同一个个体变元在A和B中要么都是约束的，要么都是自由的，才能用二元连接词将其连接成复合公式，如(A∧B)、(A∨B)、(A→B)或(A↔B)。此外，如果x在A中是自由的，则可在A前面加上量词约束x，所得公式仍为合式公式。这就是合式公式的定义。其中，第四条及添加量词的部分是命题逻辑中所没有的，属于谓词逻辑特有的内容。第三点则是在命题逻辑基础上增加了关于变元自由与约束的要求。这样，我们就由原始符号构造出合法的合式公式。",
+          "start_sec": 1147.9,
+          "end_sec": 1284.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1147900_1284300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "命题变项/propositional variable",
+      "zh": "命题变项",
+      "importance": 0.187116,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。",
+      "definition": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其真值可根据赋值情况确定，例如n个命题变项共有2^n种取值情形。",
+      "neighbors": [
+        {
+          "subject": "p,q,r.../p,q,r...",
+          "predicate": "property_of",
+          "object": "命题变项/propositional variable",
+          "label": "用…表示",
+          "natural_statement": "命题变项用p,q,r...表示"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "命题变项组成一阶谓词逻辑"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "命题变项属于变元"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "个体变项/individual variable",
+      "zh": "个体变项",
+      "importance": 0.180213,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通…",
+      "definition": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通常以小写字母 x, y, z 等表示。个体变项可以被量词（如全称量词∀和存在量词∃）所约束，形成约束变项，也可以不受量词约束。个体变项是构建逻辑公式、进行代入以及定义合式公式的关键要素，其变化范围限定为个体域或论域。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "取决于",
+          "natural_statement": "命题函数取决于个体变元"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "取决于",
+          "natural_statement": "真值取决于个体变元"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "个体变项/individual variable",
+          "label": "是一种",
+          "natural_statement": "自由变元是一种个体变元"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "belong_to",
+          "object": "个体变项/individual variable",
+          "label": "是一种",
+          "natural_statement": "约束变元是一种个体变元"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "related_with",
+          "object": "个体变项/individual variable",
+          "label": "作用于",
+          "natural_statement": "量词作用于个体变元"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "个体变元组成一阶谓词逻辑"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "个体变元属于变元"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_429800_914000",
+          "text": "一个命题形式，我们可以把它叫做一个命题函数。也就是说，它的真假如何确定呢？因为谓词最终也是有真值的，要么真，要么假，只不过现在有个体变元。比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。什么情况下它的真假能确定呢？就是将个体用个体常项代入，比如x等于一，y等于二带进去，或者x等于一，y等于一带进去，它的真假就确定了。那么如何将一个命题形式化为命题呢？有两种方式：一种是个体变元实例化，即用个体常项代入；另一种是个体变元约束化，即对变元加上量词。例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。如果论域是整数呢？这时就跟论域相关了。所以，给所有的自由变元加上量词，把它们变成约束变元，其真假也就确定了。当然，在约束任",
+          "start_sec": 429.8,
+          "end_sec": 914.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_429800_914000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_bound_free_split",
+        "tech_rename_bound_var"
+      ],
+      "rank": 13
+    },
+    {
+      "id": "公理/axiom",
+      "zh": "公理",
+      "importance": 0.174156,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "公理（axiom）是数理逻辑与集合论中作为演绎体系的起点，不需证明、被视为真理的基础性命题或永…",
+      "definition": "公理（axiom）是数理逻辑与集合论中作为演绎体系的起点，不需证明、被视为真理的基础性命题或永真公式。它们构成了公理系统的基石，通过逻辑推理规则（如蕴含、联结词的引入与消去）可以推导出一系列定理，从而建立起完整的数学理论。公理可以是对基本集合的构造性陈述，或为普遍有效的公式模式。",
+      "neighbors": [
+        {
+          "subject": "自然数集/natural number set",
+          "predicate": "depend_on",
+          "object": "公理/axiom",
+          "label": "依赖",
+          "natural_statement": "自然数集依赖公理"
+        },
+        {
+          "subject": "自然数/natural number",
+          "predicate": "depend_on",
+          "object": "公理/axiom",
+          "label": "定义基于",
+          "natural_statement": "自然数定义基于公理"
+        },
+        {
+          "subject": "公理/axiom",
+          "predicate": "related_with",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "可用…表示",
+          "natural_statement": "公理可用一阶谓词逻辑表示"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2307700_2513700",
+          "text": "我们下面来翻译一下自然数的公理。大家知道自然数公理，对吧？自然数公理里面，首先它定义后继，它说零是自然数，这是第一条公理，然后去定义后继：所有自然数的后继是自然数。只有自然数的后继是自然数。后面我们会看到，用集合论去定义自然数，就是根据自然数公理来定义的。对每个数，有且仅有一个后继。好，这个“有且仅有”是关键。这里对每个数，对任意的x，这个Eq表示相等，s表示后继successor，p表示前驱predecessor。它是说：如果一个y是x的后继的话，那么对所有的z，如果z也是x的后继，那么y和z就相等。后面这部分其实就是“有且仅有”了，前面只是加上一个任意的x而已。对每个数有且仅有一个后继，就是这样。有且仅有就是先用存在量词，再用全称量词。好，没有这样的数，零是其后继，也就是说零不是任何一个自然数的后继，所以不存在这样的数，使得零是它的后继，这个很简单。除零之外的数有且仅有一个前驱，所以这",
+          "start_sec": 2307.7,
+          "end_sec": 2513.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2307700_2513700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "个体常项/individual constant",
+      "zh": "个体常项",
+      "importance": 0.159061,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定…",
+      "definition": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定、固定个体的符号，类似于一个具有特定名称的个体（如“张三”）或一个代表论域中特定元素的符号（如“c”）。个体常项是逻辑语言中的基本成分，不同于个体变项，它不接受量词的量化，且一旦被指定，就始终代表论域中的同一对象。在构成命题时，个体常项与谓词常项或谓词变项结合，将命题形式转化为具体的命题。",
+      "neighbors": [
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "related_with",
+          "object": "自由变元/free variable",
+          "label": "代入",
+          "natural_statement": "个体常项代入自由变元"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "个体常项/individual constant",
+          "label": "使用",
+          "natural_statement": "代入使用个体常项"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "belong_to",
+          "object": "常项/constant term",
+          "label": "表示",
+          "natural_statement": "个体常项表示常项"
+        },
+        {
+          "subject": "a,b,c.../a,b,c...",
+          "predicate": "property_of",
+          "object": "个体常项/individual constant",
+          "label": "用…表示",
+          "natural_statement": "个体常项用a,b,c...表示"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "个体常项组成一阶谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_429800_914000",
+          "text": "一个命题形式，我们可以把它叫做一个命题函数。也就是说，它的真假如何确定呢？因为谓词最终也是有真值的，要么真，要么假，只不过现在有个体变元。比如前面举的例子，x加y等于二，即P(x,y)，定义为x加y等于二，这个式子现在无法确定真假，所以它叫做命题函数或命题形式。什么情况下它的真假能确定呢？就是将个体用个体常项代入，比如x等于一，y等于二带进去，或者x等于一，y等于一带进去，它的真假就确定了。那么如何将一个命题形式化为命题呢？有两种方式：一种是个体变元实例化，即用个体常项代入；另一种是个体变元约束化，即对变元加上量词。例如，对任意的x存在y，x加y等于二，这个命题的真假取决于论域。如果论域是自然数，它是真是假？任意的x存在y使得x加y等于二，在自然数范围内，对吗？是错的。如果论域是整数呢？这时就跟论域相关了。所以，给所有的自由变元加上量词，把它们变成约束变元，其真假也就确定了。当然，在约束任",
+          "start_sec": 429.8,
+          "end_sec": 914.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_429800_914000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_propositionalize_predicate",
+        "tech_substitution_instance"
+      ],
+      "rank": 15
+    },
+    {
+      "id": "特称否定命题/particular negative proposition",
+      "zh": "特称否定命题",
+      "importance": 0.149944,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "特称否定命题O，即SOP，表示有S不是P，也就是说，存在x，使得x是S且x不是P，形式化为(∃…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "特称否定命题/particular negative proposition",
+          "predicate": "related_with",
+          "object": "自然语句/natural language statement",
+          "label": "可作为翻译模板",
+          "natural_statement": "特称否定命题可作为翻译模板自然语句"
+        },
+        {
+          "subject": "特称否定命题/particular negative proposition",
+          "predicate": "related_with",
+          "object": "特称肯定命题/particular affirmative proposition",
+          "label": "形式类似",
+          "natural_statement": "特称否定命题形式类似特称肯定命题"
+        },
+        {
+          "subject": "特称否定命题/particular negative proposition",
+          "predicate": "belong_to",
+          "object": "否定命题/negated proposition",
+          "label": "属于",
+          "natural_statement": "特称否定命题属于否定命题"
+        },
+        {
+          "subject": "特称否定命题/particular negative proposition",
+          "predicate": "depend_on",
+          "object": "否定/Negation",
+          "label": "依赖",
+          "natural_statement": "特称否定命题依赖否定"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1918700_1951300",
+          "text": "特称否定命题O，即SOP，表示有S不是P，也就是说，存在x，使得x是S且x不是P，形式化为(∃x)(S(x)∧¬P(x))。这和特称肯定命题的形式是类似的。这些就是自然语句形式的翻译模板。例如，有的实数不是有理数。",
+          "start_sec": 1918.7,
+          "end_sec": 1951.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1918700_1951300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "特称肯定命题/particular affirmative proposition",
+      "zh": "特称肯定命题",
+      "importance": 0.149944,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "特称否定命题O，即SOP，表示有S不是P，也就是说，存在x，使得x是S且x不是P，形式化为(∃…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "特称否定命题/particular negative proposition",
+          "predicate": "related_with",
+          "object": "特称肯定命题/particular affirmative proposition",
+          "label": "形式类似",
+          "natural_statement": "特称否定命题形式类似特称肯定命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1918700_1951300",
+          "text": "特称否定命题O，即SOP，表示有S不是P，也就是说，存在x，使得x是S且x不是P，形式化为(∃x)(S(x)∧¬P(x))。这和特称肯定命题的形式是类似的。这些就是自然语句形式的翻译模板。例如，有的实数不是有理数。",
+          "start_sec": 1918.7,
+          "end_sec": 1951.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1918700_1951300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "个体/Individual",
+      "zh": "个体",
+      "importance": 0.12946,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。",
+      "definition": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。它代表了一个具体的、独立的实体，可以用于描述特定属性或作为集合的成员。例如，在自然数集合的论域中，'3'就是一个个体。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是…组成部分",
+          "natural_statement": "个体是谓词逻辑组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2514500_3036300",
+          "text": "好，接下去大家做一下这个，函数连续定义的形式化表示，大家试一下。函数连续的定义大家再熟悉不过了。函数f(x)在[a,b]上的点x₀处连续的ε-δ定义：任给正数ε，总存在正数δ，使得当|x-x₀|<δ时，总有|f(x)-f(x₀)|<ε，则称f(x)在点x₀处连续，对不对？这是我们函数连续定义的形式化表示，大家表示一下。像这些都要定义成一个谓词，对吧？像这个绝对值相减小于这种，都要定义成哪些谓词？书上也有的是吧？书上有吗？对，第一个就是把这样的两个数相减的绝对值小于某个值定义成一个谓词，这肯定要定义成一个谓词，是不是？看看你们写出来。存在。x线。哦，这个是η对吧？或者δ什么的，是吧？嗯。这个x₀不是存在量词，它是在点x₀处。大家来看一下，因为我们时间的关系，我们来看一下。对于任意的ε，但这个是正数嘛，所以ε大于零。所以我们是任意的一个ε它是正数，然后呢，蕴含存在这么一个δ，它是大于零。你看，",
+          "start_sec": 2514.5,
+          "end_sec": 3036.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2514500_3036300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse"
+      ],
+      "rank": 18
+    },
+    {
+      "id": "等值/equivalence",
+      "zh": "等值",
+      "importance": 0.120343,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。",
+      "definition": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍有效公式），则称它们是等值的。等值关系允许在公式中用等值的公式进行替换，是判断重言式、矛盾式及公式化简的基础。",
+      "neighbors": [
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "depend_on",
+          "object": "等值/equivalence",
+          "label": "建立在…之上",
+          "natural_statement": "等值演算建立在等值之上"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1775100_1882900",
+          "text": "那么还有一个叫做全称否定命题，全称否定就是一切S都不是P，形式化是任意x，S(x)蕴含非P(x)。这个和全称肯定是一样的模式。例如，所有的无理数都不是有理数，形式化是任意x，Irrational(x)蕴含非Rational(x)。但也可以写成不存在x，使得x是无理数且x是有理数，即¬(∃x)(Irrational(x)∧Rational(x))。这两个形式是等价的，我们后面通过等值演算会看到。最后是特称肯定式。",
+          "start_sec": 1775.1,
+          "end_sec": 1882.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1775100_1882900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.096839,
+      "mention_count": 6,
+      "origin": "shared",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "表示",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "自由变元/free variable",
+          "label": "约束",
+          "natural_statement": "全称量词约束自由变元"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "property_of",
+          "object": "真值/truth value",
+          "label": "包含",
+          "natural_statement": "真值包含全称量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于合取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "配对",
+          "natural_statement": "全称量词配对蕴含"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "是一种",
+          "natural_statement": "全称量词是一种量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "搭配",
+          "natural_statement": "全称量词搭配蕴含"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "等价于",
+          "natural_statement": "全称量词等价于存在量词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1568300_1773500",
+          "text": "对于一切x，如果x是S，那么x是P，形式化为：任意x，S(x)蕴含P(x)。这个命题的真值和x的论域无关，这里x是对一切事物而言的。比如说我们翻译一下：所有的有理数都是实数。有理数是Rational(x)，实数是Real(x)。形式化就是：任意x，Rational(x)蕴含Real(x)。这个x可以是任何事物，如果x是桌子，Rational(x)就是假，那么这个命题是不是还是真？如果x是桌子的话，Rational(x)是假，那么蕴含式的前件为假，整个命题为真。所以对于这样的一种翻译，x是任意的，与论域没有关系。那么有的人问，为什么不能翻译成“任意x，S(x)且P(x)”呢？如果你翻译成这样的话，比如“所有的有理数都是实数”，你翻译成“任意x，Rational(x)且Real(x)”，那这句话我们希望它是一个真命题、是一个定理，它翻译成一阶谓词逻辑应该是一个永真式。如果翻译成蕴含式，它就是永",
+          "start_sec": 1568.3,
+          "end_sec": 1773.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1568300_1773500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1883700_1917600",
+          "text": "特称肯定命题I，即SIP，表示有S是P，也就是说，存在x，使得x是S且x是P，形式化为(∃x)(S(x)∧P(x))。例如，有的实数是有理数。这里，存在量词与合取配对，全称量词与蕴含配对。",
+          "start_sec": 1883.7,
+          "end_sec": 1917.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1883700_1917600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_2107600_2206600",
+          "text": "我们再来看一下“至少有”的形式表示。至少有一个偶数是素数，在形式化的时候，“至少”这个词本身翻译不出来，所以我们用存在量词来表达：存在一个x，x是偶数，并且x是素数。这样“至少”的含义就通过存在量词体现出来了。再比如，一切事物它或是生物或是非生物，这里x是生物，形式化为：对所有x，Living(x)或者¬Living(x)。这个例子比较特殊，它并不是全称量词与蕴含配对的典型情况，而是一个永真式，因为任意x要么是生物，要么不是生物。",
+          "start_sec": 2107.6,
+          "end_sec": 2206.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2107600_2206600.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_theo_量词与联结词配对法则_3700_1917600",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square"
+      ],
+      "rank": 20
+    },
+    {
+      "id": "变项/variable",
+      "zh": "变项",
+      "importance": 0.096642,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。",
+      "definition": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。在逻辑推理中，变项可以被特定个体或个体集合替代，其自由出现或被量词约束的状态对于公式的解释和真值判断至关重要。例如，在谓词逻辑中，$P(x)$ 表示 '$x$ 是学生'，这里的 $x$ 是一个变项。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "是一种",
+          "natural_statement": "自由变元是一种变元"
+        },
+        {
+          "subject": "约束变元/bound variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "是一种",
+          "natural_statement": "约束变元是一种变元"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "个体变元属于变元"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "命题变项属于变元"
+        },
+        {
+          "subject": "变项/variable",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "变项表示谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2514500_3036300",
+          "text": "好，接下去大家做一下这个，函数连续定义的形式化表示，大家试一下。函数连续的定义大家再熟悉不过了。函数f(x)在[a,b]上的点x₀处连续的ε-δ定义：任给正数ε，总存在正数δ，使得当|x-x₀|<δ时，总有|f(x)-f(x₀)|<ε，则称f(x)在点x₀处连续，对不对？这是我们函数连续定义的形式化表示，大家表示一下。像这些都要定义成一个谓词，对吧？像这个绝对值相减小于这种，都要定义成哪些谓词？书上也有的是吧？书上有吗？对，第一个就是把这样的两个数相减的绝对值小于某个值定义成一个谓词，这肯定要定义成一个谓词，是不是？看看你们写出来。存在。x线。哦，这个是η对吧？或者δ什么的，是吧？嗯。这个x₀不是存在量词，它是在点x₀处。大家来看一下，因为我们时间的关系，我们来看一下。对于任意的ε，但这个是正数嘛，所以ε大于零。所以我们是任意的一个ε它是正数，然后呢，蕴含存在这么一个δ，它是大于零。你看，",
+          "start_sec": 2514.5,
+          "end_sec": 3036.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2514500_3036300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_343300_422900",
+          "text": "量词的辖域取决于量词后面的括号范围。例如，公式(∀x)(P(x)∨Q(x))中，辖域为整个P(x)∨Q(x)。而在公式(∀x)(P(x)∨(∃x)Q(x))中，Q(x)里的x已经被内层的存在量词约束，不再是自由变元，因此外层的全称量词无法约束它。这个存在量词可以改写为(∃y)Q(y)或(∃z)Q(z)，不影响其含义。全称量词和存在量词只能约束自由变元，对于已经是约束变元的个体变元，外层量词不能再起作用。",
+          "start_sec": 343.3,
+          "end_sec": 422.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_343300_422900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_916500_1138800",
+          "text": "我们讲了这样一些谓词逻辑后，大家对谓词就有了理解，大概是什么样子的，以及它和命题之间的关系，就比较清楚了。接下来给大家介绍一个非常常用的谓词逻辑，叫做 first order logic，即一阶谓词逻辑，大家会经常听到。这是我们整个科学或数学科学领域用得最多的一个逻辑。Prolog 语言以及很多谓词逻辑推理语言，都是对一阶谓词逻辑进行实现的。那什么叫 first order 呢？量词仅作用于个体变元，不允许作用于命题变项。比如我对所有的大写 P，把这个任意量词作用在 P 上，那就作用在谓词上了，这是不允许的。不允许作用于命题变项和谓词变项，也不讨论谓词的谓词，也就是谓词里面还有谓词，这是不允许的。谓词的变元只能是个体变元，不能是谓词变元。否则像这样就是不知几阶了，一阶、两阶、三阶、四阶。所以首先不允许谓词里面还有谓词，另外我们的量词，存在、任意这种全称和特称量词，只对个体进行约束，不能对 ",
+          "start_sec": 916.5,
+          "end_sec": 1138.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_916500_1138800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "自然数公理",
+      "zh": "自然数公理",
+      "importance": 0.086116,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "好，接下去大家做一下这个，函数连续定义的形式化表示，大家试一下。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "自然数公理",
+          "predicate": "depend_on",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "可用…形式化",
+          "natural_statement": "自然数公理可用一阶谓词逻辑形式化"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_2514500_3036300",
+          "text": "好，接下去大家做一下这个，函数连续定义的形式化表示，大家试一下。函数连续的定义大家再熟悉不过了。函数f(x)在[a,b]上的点x₀处连续的ε-δ定义：任给正数ε，总存在正数δ，使得当|x-x₀|<δ时，总有|f(x)-f(x₀)|<ε，则称f(x)在点x₀处连续，对不对？这是我们函数连续定义的形式化表示，大家表示一下。像这些都要定义成一个谓词，对吧？像这个绝对值相减小于这种，都要定义成哪些谓词？书上也有的是吧？书上有吗？对，第一个就是把这样的两个数相减的绝对值小于某个值定义成一个谓词，这肯定要定义成一个谓词，是不是？看看你们写出来。存在。x线。哦，这个是η对吧？或者δ什么的，是吧？嗯。这个x₀不是存在量词，它是在点x₀处。大家来看一下，因为我们时间的关系，我们来看一下。对于任意的ε，但这个是正数嘛，所以ε大于零。所以我们是任意的一个ε它是正数，然后呢，蕴含存在这么一个δ，它是大于零。你看，",
+          "start_sec": 2514.5,
+          "end_sec": 3036.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2514500_3036300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "全称肯定命题/universal affirmative proposition",
+      "zh": "全称肯定命题",
+      "importance": 0.086069,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "这件衣服很漂亮，但是它很贵。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "全称肯定命题/universal affirmative proposition",
+          "predicate": "belong_to",
+          "object": "四种形式/AEIO",
+          "label": "属于",
+          "natural_statement": "全称肯定命题属于四种形式"
+        },
+        {
+          "subject": "全称肯定命题/universal affirmative proposition",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "形式化为",
+          "natural_statement": "全称肯定命题形式化为蕴含"
+        },
+        {
+          "subject": "全称肯定命题/universal affirmative proposition",
+          "predicate": "related_with",
+          "object": "合取式/conjunctive form",
+          "label": "可翻译为",
+          "natural_statement": "全称肯定命题可翻译为合取式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1362600_1567300",
+          "text": "这件衣服很漂亮，但是它很贵。我们翻译的时候，“这件衣服很漂亮”和“这件衣服很贵”可以用“合取”来连接，但“但是”所表达的转折语义是翻译不出来的。像这样丰富的语义我们都会丢失。所以翻译的过程当中需要权衡，如果你认为某些语义非常重要，就需要添加新的连接词或新的量词。因为我们现在抽象出来的逻辑系统适用于所有领域，但当你在某个特定领域中发现某些重要信息无法通过现有的连接词和量词来表达时，就需要定义自己的连接词和量词，这都是允许的。\n\n下面介绍一种“八股文”翻译法，也就是在一阶谓词逻辑中套用固定公式的方法。比如在命题逻辑中，蕴含关系的翻译是比较困难的。举个例子，老师说考85分以上就能得奖，我考了90分却没有得奖，这句话怎么翻译？设“考85分以上”为P，“得奖”为Q。老师说考85分以上就能得奖，但我考了90分没得奖。在这种语境下，老师那句话该怎么解析？得奖和考85分以上哪个是充分条件，哪个是必要条件？",
+          "start_sec": 1362.6,
+          "end_sec": 1567.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1362600_1567300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_1568300_1773500",
+          "text": "对于一切x，如果x是S，那么x是P，形式化为：任意x，S(x)蕴含P(x)。这个命题的真值和x的论域无关，这里x是对一切事物而言的。比如说我们翻译一下：所有的有理数都是实数。有理数是Rational(x)，实数是Real(x)。形式化就是：任意x，Rational(x)蕴含Real(x)。这个x可以是任何事物，如果x是桌子，Rational(x)就是假，那么这个命题是不是还是真？如果x是桌子的话，Rational(x)是假，那么蕴含式的前件为假，整个命题为真。所以对于这样的一种翻译，x是任意的，与论域没有关系。那么有的人问，为什么不能翻译成“任意x，S(x)且P(x)”呢？如果你翻译成这样的话，比如“所有的有理数都是实数”，你翻译成“任意x，Rational(x)且Real(x)”，那这句话我们希望它是一个真命题、是一个定理，它翻译成一阶谓词逻辑应该是一个永真式。如果翻译成蕴含式，它就是永",
+          "start_sec": 1568.3,
+          "end_sec": 1773.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1568300_1773500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "一阶谓词逻辑/first-order predicate logic",
+      "zh": "一阶谓词逻辑",
+      "importance": 0.079762,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "一阶谓词逻辑（First-order Predicate Logic），又称狭谓词逻辑，是命题…",
+      "definition": "一阶谓词逻辑（First-order Predicate Logic），又称狭谓词逻辑，是命题逻辑的扩展，在数理逻辑与集合论中，它是一种形式化系统，其核心特征在于量词（如全称量词和存在量词）仅作用于个体变项，而不作用于命题变项或谓词变项，并且不允许出现谓词的谓词。这种限定使得它能够更精确地表达和推理关于个体及其性质和关系的主张。",
+      "neighbors": [
+        {
+          "subject": "一阶谓词逻辑/first-order predicate logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "个体变元组成一阶谓词逻辑"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "个体常项组成一阶谓词逻辑"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "命题变项组成一阶谓词逻辑"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "联结词组成一阶谓词逻辑"
+        },
+        {
+          "subject": "谓词变项/predicate variable",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "谓词变项组成一阶谓词逻辑"
+        },
+        {
+          "subject": "谓词常项/predicate constant",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "谓词常项组成一阶谓词逻辑"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "一阶谓词逻辑/first-order predicate logic",
+          "label": "组成",
+          "natural_statement": "量词组成一阶谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_2_1362600_1567300",
+          "text": "这件衣服很漂亮，但是它很贵。我们翻译的时候，“这件衣服很漂亮”和“这件衣服很贵”可以用“合取”来连接，但“但是”所表达的转折语义是翻译不出来的。像这样丰富的语义我们都会丢失。所以翻译的过程当中需要权衡，如果你认为某些语义非常重要，就需要添加新的连接词或新的量词。因为我们现在抽象出来的逻辑系统适用于所有领域，但当你在某个特定领域中发现某些重要信息无法通过现有的连接词和量词来表达时，就需要定义自己的连接词和量词，这都是允许的。\n\n下面介绍一种“八股文”翻译法，也就是在一阶谓词逻辑中套用固定公式的方法。比如在命题逻辑中，蕴含关系的翻译是比较困难的。举个例子，老师说考85分以上就能得奖，我考了90分却没有得奖，这句话怎么翻译？设“考85分以上”为P，“得奖”为Q。老师说考85分以上就能得奖，但我考了90分没得奖。在这种语境下，老师那句话该怎么解析？得奖和考85分以上哪个是充分条件，哪个是必要条件？",
+          "start_sec": 1362.6,
+          "end_sec": 1567.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_1362600_1567300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_2307700_2513700",
+          "text": "我们下面来翻译一下自然数的公理。大家知道自然数公理，对吧？自然数公理里面，首先它定义后继，它说零是自然数，这是第一条公理，然后去定义后继：所有自然数的后继是自然数。只有自然数的后继是自然数。后面我们会看到，用集合论去定义自然数，就是根据自然数公理来定义的。对每个数，有且仅有一个后继。好，这个“有且仅有”是关键。这里对每个数，对任意的x，这个Eq表示相等，s表示后继successor，p表示前驱predecessor。它是说：如果一个y是x的后继的话，那么对所有的z，如果z也是x的后继，那么y和z就相等。后面这部分其实就是“有且仅有”了，前面只是加上一个任意的x而已。对每个数有且仅有一个后继，就是这样。有且仅有就是先用存在量词，再用全称量词。好，没有这样的数，零是其后继，也就是说零不是任何一个自然数的后继，所以不存在这样的数，使得零是它的后继，这个很简单。除零之外的数有且仅有一个前驱，所以这",
+          "start_sec": 2307.7,
+          "end_sec": 2513.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2307700_2513700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_2_2514500_3036300",
+          "text": "好，接下去大家做一下这个，函数连续定义的形式化表示，大家试一下。函数连续的定义大家再熟悉不过了。函数f(x)在[a,b]上的点x₀处连续的ε-δ定义：任给正数ε，总存在正数δ，使得当|x-x₀|<δ时，总有|f(x)-f(x₀)|<ε，则称f(x)在点x₀处连续，对不对？这是我们函数连续定义的形式化表示，大家表示一下。像这些都要定义成一个谓词，对吧？像这个绝对值相减小于这种，都要定义成哪些谓词？书上也有的是吧？书上有吗？对，第一个就是把这样的两个数相减的绝对值小于某个值定义成一个谓词，这肯定要定义成一个谓词，是不是？看看你们写出来。存在。x线。哦，这个是η对吧？或者δ什么的，是吧？嗯。这个x₀不是存在量词，它是在点x₀处。大家来看一下，因为我们时间的关系，我们来看一下。对于任意的ε，但这个是正数嘛，所以ε大于零。所以我们是任意的一个ε它是正数，然后呢，蕴含存在这么一个δ，它是大于零。你看，",
+          "start_sec": 2514.5,
+          "end_sec": 3036.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_2_2514500_3036300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_八股文翻译法_2600_1567300"
+      ],
+      "rank": 24
+    }
+  ]
+}

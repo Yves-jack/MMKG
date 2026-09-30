@@ -1,0 +1,1350 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "19",
+  "title": "第19讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/19_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/19_1.mp4",
+  "duration_sec": 3301.888,
+  "segments": [
+    {
+      "id": "数理逻辑_19_60100_68900",
+      "index": 1,
+      "start_sec": 60.1,
+      "end_sec": 68.9,
+      "title": "这不就相当于你通过增值表，那个公式"
+    },
+    {
+      "id": "数理逻辑_19_340300_540300",
+      "index": 2,
+      "start_sec": 340.3,
+      "end_sec": 540.3,
+      "title": "那么我们上节课跟大家介绍了命题演算中的第一个…"
+    },
+    {
+      "id": "数理逻辑_19_541700_633700",
+      "index": 3,
+      "start_sec": 541.7,
+      "end_sec": 633.7,
+      "title": "当后件有与和或的时候，直接分配进去，与或是不…"
+    },
+    {
+      "id": "数理逻辑_19_634500_807900",
+      "index": 4,
+      "start_sec": 634.5,
+      "end_sec": 807.9,
+      "title": "A等于p蕴含q，它有三个成真指派"
+    },
+    {
+      "id": "数理逻辑_19_809300_878200",
+      "index": 5,
+      "start_sec": 809.3,
+      "end_sec": 878.2,
+      "title": "那么通过从F列写呢，就一行"
+    },
+    {
+      "id": "数理逻辑_19_881800_951500",
+      "index": 6,
+      "start_sec": 881.8,
+      "end_sec": 951.5,
+      "title": "方法一：从T来列写"
+    },
+    {
+      "id": "数理逻辑_19_952400_974600",
+      "index": 7,
+      "start_sec": 952.4,
+      "end_sec": 974.6,
+      "title": "方法二：从F来列写"
+    },
+    {
+      "id": "数理逻辑_19_976500_1010500",
+      "index": 8,
+      "start_sec": 976.5,
+      "end_sec": 1010.5,
+      "title": "大家还记得吗？P等价Q，它等于P与Q或非P与…"
+    },
+    {
+      "id": "数理逻辑_19_1011600_1458300",
+      "index": 9,
+      "start_sec": 1011.6,
+      "end_sec": 1458.3,
+      "title": "方法二，从F来列写"
+    },
+    {
+      "id": "数理逻辑_19_1459200_1727300",
+      "index": 10,
+      "start_sec": 1459.2,
+      "end_sec": 1727.3,
+      "title": "那先写写看，Y等于什么？现在会写了吧？我们真…"
+    },
+    {
+      "id": "数理逻辑_19_1728400_1761800",
+      "index": 11,
+      "start_sec": 1728.4,
+      "end_sec": 1761.8,
+      "title": "写出来以后，最后用与把它们连接，每一个用与连…"
+    },
+    {
+      "id": "数理逻辑_19_1762700_1817500",
+      "index": 12,
+      "start_sec": 1762.7,
+      "end_sec": 1817.5,
+      "title": "这是一个半加法器，作业中让你们去写一个全加法…"
+    },
+    {
+      "id": "数理逻辑_19_1824500_1830500",
+      "index": 13,
+      "start_sec": 1824.5,
+      "end_sec": 1830.5,
+      "title": "因为我喜欢全加法器，就在课上讲了，不让大家做…"
+    },
+    {
+      "id": "数理逻辑_19_1838300_2039300",
+      "index": 14,
+      "start_sec": 1838.3,
+      "end_sec": 2039.3,
+      "title": "全加法器"
+    },
+    {
+      "id": "数理逻辑_19_2040600_2089300",
+      "index": 15,
+      "start_sec": 2040.6,
+      "end_sec": 2089.3,
+      "title": "这个就是我们的关于等值演算，以及我们怎么去通…"
+    },
+    {
+      "id": "数理逻辑_19_2091000_2298500",
+      "index": 16,
+      "start_sec": 2091.0,
+      "end_sec": 2298.5,
+      "title": "二元连接词一共有多少个？我曾经跟大家介绍过，…"
+    },
+    {
+      "id": "数理逻辑_19_2299600_2337400",
+      "index": 17,
+      "start_sec": 2299.6,
+      "end_sec": 2337.4,
+      "title": "好，有这么多种，那么二元连接词其实就是一个从…"
+    },
+    {
+      "id": "数理逻辑_19_2338800_2348100",
+      "index": 18,
+      "start_sec": 2338.8,
+      "end_sec": 2348.1,
+      "title": "好，那么这个大家都已经知道了，一共有多少个？…"
+    },
+    {
+      "id": "数理逻辑_19_2348900_2416600",
+      "index": 19,
+      "start_sec": 2348.9,
+      "end_sec": 2416.6,
+      "title": "一般地，n元真值函数有n个自变元，每个自变元…"
+    },
+    {
+      "id": "数理逻辑_19_2417400_2919900",
+      "index": 20,
+      "start_sec": 2417.4,
+      "end_sec": 2919.9,
+      "title": "联结词的完备集"
+    },
+    {
+      "id": "数理逻辑_19_2921000_3301888",
+      "index": 21,
+      "start_sec": 2921.0,
+      "end_sec": 3301.888,
+      "title": "好，那么这是关于完备联结词的概念"
+    }
+  ],
+  "points": [
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.764506,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。",
+      "definition": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。集合由其元素完全决定，可以通过外延（列举元素）、内涵（描述性质）或运算构造。集合是数理逻辑与集合论课程中的核心概念，如整数集 $\\mathbb{Z}$、有理数集 $\\mathbb{Q}$、实数集 $\\mathbb{R}$ 等均是集合的实例。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "元素/Element",
+          "predicate": "part_of",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "元素属于集合"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "函数依赖集合"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "全集/universal set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "全集包含集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1011600_1458300",
+          "text": "方法二，从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。第一个，由P、Q等于T、F，可写出析取式非P或Q。第二个，由P、Q等于T、T，可写出析取式非P或非Q。",
+          "start_sec": 1011.6,
+          "end_sec": 1458.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1011600_1458300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_1459200_1727300",
+          "text": "那先写写看，Y等于什么？现在会写了吧？我们真值表写出来，公式不就写出来了吗？你愿意写六行还是愿意写三行呢？你可以通过成真指派写三行，成假指派写六行。那肯定通过成真指派来写。所以我们在这个里面可以用真值表写公式，通过真值表，从真值表写公式，这在我们本节演算中，从真值表写公式变得非常简单。你只要通过你的实际案例和实际情况，写出真值表，然后就可以通过真值表写公式。第一个通过成真指派来写，它一定是或，然后每一行里面是与。成真指派，让它为真的那些成真指派来写。成真指派有多少个？这里有多少个，那么我们这里就有多少个这样的项，当然也可以有多个。那么这个里面的值怎么填呢？原来为真的，你就直接写真；原来为假的那个，你就要前面加个否定词，加个非就行了。那些元素，为真的直接写，为假的前面写个非。那么这里就代表了你的那个电路。好，这是成真指派。那么成假指派呢？我们是用合取，成假指派用合取写。然后你这里有多少个？这",
+          "start_sec": 1459.2,
+          "end_sec": 1727.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1459200_1727300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "函数/function",
+      "zh": "函数",
+      "importance": 0.730081,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映…",
+      "definition": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写字母表示，例如 $f(x)$ 表示个体 $x$ 的某种变换。函数可以被看作是一种特殊的二元关系，其关系矩阵的每行恰好有一个1，或者在关系图中，定义域中的每个顶点恰好发出一条有向边。函数还可进一步区分为单射（一对一）、满射（映上）和双射（一一对应），并可以进行复合、求逆等运算。",
+      "neighbors": [
+        {
+          "subject": "特征函数/characteristic function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "特征函数属于函数"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "函数依赖集合"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "二元命题联结词/binary propositional connective",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "是…种",
+          "natural_statement": "二元命题联结词是函数种"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2299600_2337400",
+          "text": "好，有这么多种，那么二元连接词其实就是一个从定义域到值域上的映射这样的函数。我们这里有两个命题变元，它们的取值都可能是True和False，它们的笛卡尔积一共有四种情况，然后值域的取值就是True和False，这样的一种映射。",
+          "start_sec": 2299.6,
+          "end_sec": 2337.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2299600_2337400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.584929,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "值域/range",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "包含",
+          "natural_statement": "值域包含关系"
+        },
+        {
+          "subject": "定义域/Domain(dom)",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "包含",
+          "natural_statement": "定义域包含关系"
+        },
+        {
+          "subject": "二元关系/binary relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "二元关系属于关系"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1838300_2039300",
+          "text": "全加法器。这是我们的全加法器。全加法器有A、B、C，C是进位。这里是进位，然后这是和。这里进位等于C i加一。那么大家可以看到，这边的值，因为它是怎么做呢？如果这三位，这个是新的进位。例如，000加0加0，进位也是0，那么这边就是0，新的进位也是0。001，这边的值等于1，没有进位。010，等于1，没有进位。011，加起来0，有进位。100，类似。101，0有进位。110，0有进位。111，1有进位。它是等于这样的值。这是全加法器，然后我们就得到进位和和的值这样一种关系，然后你们去写。然后你们这个电路，你们去实现一下这个电路。然后我们还可以C0等于0，然后S n加一，那么我们的新的最后的一个值，它是等于最后一位，因为它有很多位，是一位一位去加的，所以我们就可以得到一个新的加法器。加法器，这里只有一位的运算，我们可以有多位的加法器。现在得到的是一位的一个加法器。那么你们就可以通过这个进位，它",
+          "start_sec": 1838.3,
+          "end_sec": 2039.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1838300_2039300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2299600_2337400",
+          "text": "好，有这么多种，那么二元连接词其实就是一个从定义域到值域上的映射这样的函数。我们这里有两个命题变元，它们的取值都可能是True和False，它们的笛卡尔积一共有四种情况，然后值域的取值就是True和False，这样的一种映射。",
+          "start_sec": 2299.6,
+          "end_sec": 2337.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2299600_2337400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.505557,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "或非/NOR",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "具有",
+          "natural_statement": "或非具有联结词"
+        },
+        {
+          "subject": "等价/equivalence",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "等价属于联结词"
+        },
+        {
+          "subject": "N元联结词/n-ary connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "N元联结词属于联结词"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "联结词属于命题公式"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "等值等价于联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "蕴含等价于联结词"
+        },
+        {
+          "subject": "与非/NAND",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "具有",
+          "natural_statement": "与非具有联结词"
+        },
+        {
+          "subject": "非蕴含/non-implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "非蕴含属于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2348900_2416600",
+          "text": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。对每一种取值组合又有两种可能的函数值，于是可定义2的2的n次方种不同的真值函数，相应地可定义2的2的n次方个n元联结词。例如，定义一个三元联结词#，P、Q、R为真当且仅当P、Q、R中至少两个为真，无法用习惯的中缀法表示。",
+          "start_sec": 2348.9,
+          "end_sec": 2416.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2348900_2416600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2921000_3301888",
+          "text": "好，那么这是关于完备联结词的概念。我们来介绍对偶式。观察下面两个等值公式，即分配律：P析取Q与R的合取，等于P析取Q与P析取R的合取；P合取Q与R的析取，等于P合取Q与P合取R的析取。命题逻辑公式存在对偶规律。设公式A中只出现非、且、或，将A中的且与或分别替换为或与且，所得公式称为A的对偶式A*。",
+          "start_sec": 2921.0,
+          "end_sec": 3301.888,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2921000_3301888.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "命题公式/propositional formula",
+      "zh": "命题公式",
+      "importance": 0.316893,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和…",
+      "definition": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和括号构成。在给定的命题变项的解释下，命题公式可以确定一个唯一的真值，常用于判断公式的等值性、重言式和矛盾式，且任何命题公式都存在与之等值的合取范式和析取范式。",
+      "neighbors": [
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题公式包含公式"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "联结词属于命题公式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取范式属于命题公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取属于命题公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "否定属于命题公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2040600_2089300",
+          "text": "这个就是我们的关于等值演算，以及我们怎么去通过真值表去写公式，公式写下来进行等值演算化简，然后我们的电路就整个电路就设计出来。那么我们的作业有另外一个，可能做那个投币什么的，另外一个电路的设计让你们去做，那么整个全加法器我就不让大家去做了。好，那么接下去再跟大家介绍一个联结词的完备集，我其实已经跟大家介绍过了，我们前面说过了对吧？",
+          "start_sec": 2040.6,
+          "end_sec": 2089.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2040600_2089300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.258095,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题包含公式"
+        },
+        {
+          "subject": "复合命题/compound proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "复合命题属于命题"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "命题属于前提"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1011600_1458300",
+          "text": "方法二，从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。第一个，由P、Q等于T、F，可写出析取式非P或Q。第二个，由P、Q等于T、T，可写出析取式非P或非Q。",
+          "start_sec": 1011.6,
+          "end_sec": 1458.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1011600_1458300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_60100_68900",
+          "text": "这不就相当于你通过增值表，那个公式。",
+          "start_sec": 60.1,
+          "end_sec": 68.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_60100_68900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_881800_951500",
+          "text": "方法一：从T来列写。从每个使A为真的解释写出一个各命题变元的合取式，然后写出各合取式的析取式。例如，A有三个成真解释。第一行P为假，Q为假，要使其为真，只能是非P且非Q。第二行P为假，Q为真，写非P且Q。第三行P为真，Q为真，写P且Q。然后将这三个合取式用析取连接，得到非P且非Q析取非P且Q析取P且Q。",
+          "start_sec": 881.8,
+          "end_sec": 951.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_881800_951500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 6
+    },
+    {
+      "id": "n元真值函数/n元真值函数",
+      "zh": "n元真值函数",
+      "importance": 0.223823,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "n元真值函数/n元真值函数",
+          "predicate": "property_of",
+          "object": "真值组合/truth combination",
+          "label": "有...种真值组合",
+          "natural_statement": "n元真值函数有真值组合种真值组合"
+        },
+        {
+          "subject": "自变元/自变元",
+          "predicate": "part_of",
+          "object": "n元真值函数/n元真值函数",
+          "label": "是...的一部分",
+          "natural_statement": "自变元是n元真值函数的一部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2348900_2416600",
+          "text": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。对每一种取值组合又有两种可能的函数值，于是可定义2的2的n次方种不同的真值函数，相应地可定义2的2的n次方个n元联结词。例如，定义一个三元联结词#，P、Q、R为真当且仅当P、Q、R中至少两个为真，无法用习惯的中缀法表示。",
+          "start_sec": 2348.9,
+          "end_sec": 2416.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2348900_2416600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "等值/equivalence",
+      "zh": "等值",
+      "importance": 0.174559,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。",
+      "definition": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍有效公式），则称它们是等值的。等值关系允许在公式中用等值的公式进行替换，是判断重言式、矛盾式及公式化简的基础。",
+      "neighbors": [
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "等值等价于联结词"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "等值表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "全集/universal set",
+      "zh": "全集",
+      "importance": 0.170553,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "全集（Universal Set）是集合论中的一个基本概念，它是一个包含当前讨论所有可能元素的…",
+      "definition": "全集（Universal Set）是集合论中的一个基本概念，它是一个包含当前讨论所有可能元素的集合。在文氏图中，全集通常用一个矩形表示，其内部包含所有可能的点。全集与空集是两个特殊的集合，例如，集合 A 的余集（或绝对补集）-A 定义为全集 E 中不属于 A 的所有元素组成的集合，即 $-A = E - A$。",
+      "neighbors": [
+        {
+          "subject": "全集/universal set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "全集包含集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2338800_2348100",
+          "text": "好，那么这个大家都已经知道了，一共有多少个？一共有16种不同的情况，那么。",
+          "start_sec": 2338.8,
+          "end_sec": 2348.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2338800_2348100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "函数值",
+      "zh": "函数值",
+      "importance": 0.166283,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "函数值",
+          "predicate": "depend_on",
+          "object": "真值组合/truth combination",
+          "label": "依赖于",
+          "natural_statement": "函数值依赖于真值组合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2348900_2416600",
+          "text": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。对每一种取值组合又有两种可能的函数值，于是可定义2的2的n次方种不同的真值函数，相应地可定义2的2的n次方个n元联结词。例如，定义一个三元联结词#，P、Q、R为真当且仅当P、Q、R中至少两个为真，无法用习惯的中缀法表示。",
+          "start_sec": 2348.9,
+          "end_sec": 2416.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2348900_2416600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "析取式/disjunctive form",
+      "zh": "析取式",
+      "importance": 0.161037,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "析取式（Disjunctive Form），在数理逻辑中，是指由若干个文字（Literal）通…",
+      "definition": "析取式（Disjunctive Form），在数理逻辑中，是指由若干个文字（Literal）通过析取联结词（∨）连接而成的命题公式，也常被称为子句。它的核心逻辑是“或”，即当构成它的任一文字取真时，整个析取式就取真；仅当所有文字均取假时，析取式才取假。在逻辑推演中，析取式是构成合取范式（Conjunctive Normal Form, CNF）的基本单元，其特例——仅由极小项构成的析取式，构成了主析取范式（Disjunctive Normal Form, DNF）。",
+      "neighbors": [
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "主析取范式属于析取式"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "极大项属于析取式"
+        },
+        {
+          "subject": "子句/clause",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "子句属于析取式"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "文字属于析取式"
+        },
+        {
+          "subject": "互补对/complementary pair",
+          "predicate": "part_of",
+          "object": "析取式/disjunctive form",
+          "label": "包含",
+          "natural_statement": "互补对包含析取式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1011600_1458300",
+          "text": "方法二，从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。第一个，由P、Q等于T、F，可写出析取式非P或Q。第二个，由P、Q等于T、T，可写出析取式非P或非Q。",
+          "start_sec": 1011.6,
+          "end_sec": 1458.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1011600_1458300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_1824500_1830500",
+          "text": "因为我喜欢全加法器，就在课上讲了，不让大家做，然后我让大家做另外一个作业。",
+          "start_sec": 1824.5,
+          "end_sec": 1830.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1824500_1830500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_952400_974600",
+          "text": "方法二：从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。",
+          "start_sec": 952.4,
+          "end_sec": 974.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_952400_974600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "合取式/conjunctive form",
+      "zh": "合取式",
+      "importance": 0.15059,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "合取式是数理逻辑中一种由若干个文字（原子命题或其否定）通过合取联结符（AND）连接而成的公式。",
+      "definition": "合取式是数理逻辑中一种由若干个文字（原子命题或其否定）通过合取联结符（AND）连接而成的公式。其核心功能是将复杂的逻辑命题分解为更小的、由原子命题组合而成的逻辑单元，用于逻辑推理和公式简化。例如，在处理命题逻辑的范式转换时，合取式是构建析取范式（DNF）或主析取范式（CNF）的基本单元，并且在公式中引入互补对（如 P 和 ¬P）是重要的逻辑操作。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "文字属于合取式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "主合取范式属于合取式"
+        },
+        {
+          "subject": "合取式/conjunctive form",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "包含",
+          "natural_statement": "合取式包含析取范式"
+        },
+        {
+          "subject": "互补对/complementary pair",
+          "predicate": "part_of",
+          "object": "合取式/conjunctive form",
+          "label": "包含",
+          "natural_statement": "互补对包含合取式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1011600_1458300",
+          "text": "方法二，从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。第一个，由P、Q等于T、F，可写出析取式非P或Q。第二个，由P、Q等于T、T，可写出析取式非P或非Q。",
+          "start_sec": 1011.6,
+          "end_sec": 1458.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1011600_1458300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_1762700_1817500",
+          "text": "这是一个半加法器，作业中让你们去写一个全加法器，或者去做一个别的实际的，你们自己去做。那么这就是很简单了，我的这两个加法器输入是A和B，输出是和与进位。那么A和B，进位是这样，然后A和B。那么，通过真值表去写，sum，你可以通过真值表去写。那么这样子，这个电路不就出来了吗？这个电路是不是就出来了？对不对？你的半加法器是这个，那全加法器呢？大家去做做看。全加法器呢？大家去做做看，我来看一下，哎，我这里没有全讲，我应该有。",
+          "start_sec": 1762.7,
+          "end_sec": 1817.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1762700_1817500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_634500_807900",
+          "text": "A等于p蕴含q，它有三个成真指派。从成真指派来列写的方法：对于每个成真指派，写出一个合取式，其中变元取值为假的用否定，取值为真的用原文字；然后将这些合取式用析取连接起来。例如，第一行(P,Q)=(F,F)写出¬P∧¬Q；第二行(F,T)写出¬P∧Q；第三行(T,T)写出P∧Q。因此A可以写成(¬P∧¬Q)∨(¬P∧Q)∨(P∧Q)。",
+          "start_sec": 634.5,
+          "end_sec": 807.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_634500_807900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "等价/equivalence",
+      "zh": "等价",
+      "importance": 0.12672,
+      "mention_count": 3,
+      "origin": "lecture_only",
+      "summary": "二元连接词一共有多少个？",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "双向蕴含/bidirectional implication",
+          "predicate": "synonym_of",
+          "object": "等价/equivalence",
+          "label": "即",
+          "natural_statement": "双向蕴含即等价"
+        },
+        {
+          "subject": "等价/equivalence",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "等价属于联结词"
+        },
+        {
+          "subject": "等价/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "属于",
+          "natural_statement": "等价属于二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_340300_540300",
+          "text": "那么我们上节课跟大家介绍了命题演算中的第一个等值演算。等值演算，我们介绍了什么是等值式，即两个公式相等，或者记作逻辑等值。A和B相等，即它们在任意解释下同真同假。A等价于B永真，当且仅当A等于B。然后我们又介绍了这样的一些等值式，用于等值演算。通过用右边的替换左边的进行置换，置换前后两个公式是等值的。我们介绍了结合律、交换律、分配律，以及双重否定律、摩根律，还有蕴含的等值式：P蕴含Q等于非P或Q，也等于非Q蕴含非P。双向蕴含即等价，P等价于Q等于P与Q或非P与非Q，也等于P或Q与非P或Q，还等于P蕴含Q与Q蕴含P。另外，当有两个前提时，可以交换前提，即P蕴含（Q蕴含R）等于Q蕴含（P蕴含R），也等于P与Q蕴含R，等等。",
+          "start_sec": 340.3,
+          "end_sec": 540.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_340300_540300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_976500_1010500",
+          "text": "大家还记得吗？P等价Q，它等于P与Q或非P与非Q。这是通过成真指派来写的，中间用或连接。而下面这个，一真一假，是通过成假指派来写的，两个，两行，这个也是两行，这个也是两行。所以我们这里面，成假指派有两个。",
+          "start_sec": 976.5,
+          "end_sec": 1010.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_976500_1010500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "析取范式/disjunctive normal form",
+      "zh": "析取范式",
+      "importance": 0.118326,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "析取范式（Disjunctive Normal Form, DNF）是数理逻辑中一类特殊的合式…",
+      "definition": "析取范式（Disjunctive Normal Form, DNF）是数理逻辑中一类特殊的合式公式，其结构为若干个合取式的析取。每个合取式都由文字（原子命题及其否定）通过合取连接而成，而整个析取范式则由这些合取式通过析取连接。DNF是逻辑公式标准化的重要形式之一，常用于等价变换和逻辑推理，例如，通过分配律 $A \\wedge (B \\lor C) = (A \\wedge B) \\vee (A \\wedge C)$ 可将合取式转化为析取式，是化简和判断公式性质（如矛盾式）的基础。",
+      "neighbors": [
+        {
+          "subject": "合取式/conjunctive form",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "包含",
+          "natural_statement": "合取式包含析取范式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取范式属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1011600_1458300",
+          "text": "方法二，从F来列写。从每个使A为假的解释写出一个各命题变元的析取式，然后写出各析取式的合取式。例如，A有两个成假解释。第一个，由P、Q等于T、F，可写出析取式非P或Q。第二个，由P、Q等于T、T，可写出析取式非P或非Q。",
+          "start_sec": 1011.6,
+          "end_sec": 1458.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1011600_1458300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "自变元/自变元",
+      "zh": "自变元",
+      "importance": 0.109031,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "自变元/自变元",
+          "predicate": "property_of",
+          "object": "取值/取值",
+          "label": "有...种取值",
+          "natural_statement": "自变元有取值种取值"
+        },
+        {
+          "subject": "自变元/自变元",
+          "predicate": "part_of",
+          "object": "n元真值函数/n元真值函数",
+          "label": "是...的一部分",
+          "natural_statement": "自变元是n元真值函数的一部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2348900_2416600",
+          "text": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。对每一种取值组合又有两种可能的函数值，于是可定义2的2的n次方种不同的真值函数，相应地可定义2的2的n次方个n元联结词。例如，定义一个三元联结词#，P、Q、R为真当且仅当P、Q、R中至少两个为真，无法用习惯的中缀法表示。",
+          "start_sec": 2348.9,
+          "end_sec": 2416.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2348900_2416600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "半加法器/half adder",
+      "zh": "半加法器",
+      "importance": 0.106164,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "这是一个半加法器，作业中让你们去写一个全加法器，或者去做一个别的实际的，你们自己去做。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "输入/input",
+          "predicate": "part_of",
+          "object": "半加法器/half adder",
+          "label": "是…的组成部分",
+          "natural_statement": "输入是半加法器的组成部分"
+        },
+        {
+          "subject": "输出/output",
+          "predicate": "part_of",
+          "object": "半加法器/half adder",
+          "label": "是…的组成部分",
+          "natural_statement": "输出是半加法器的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1762700_1817500",
+          "text": "这是一个半加法器，作业中让你们去写一个全加法器，或者去做一个别的实际的，你们自己去做。那么这就是很简单了，我的这两个加法器输入是A和B，输出是和与进位。那么A和B，进位是这样，然后A和B。那么，通过真值表去写，sum，你可以通过真值表去写。那么这样子，这个电路不就出来了吗？这个电路是不是就出来了？对不对？你的半加法器是这个，那全加法器呢？大家去做做看。全加法器呢？大家去做做看，我来看一下，哎，我这里没有全讲，我应该有。",
+          "start_sec": 1762.7,
+          "end_sec": 1817.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1762700_1817500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "特征函数/characteristic function",
+      "zh": "特征函数",
+      "importance": 0.104028,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "特征函数（或指示函数）是数理逻辑与集合论中用于表示谓词真假或集合成员关系的函数，将满足条件的输…",
+      "definition": "特征函数（或指示函数）是数理逻辑与集合论中用于表示谓词真假或集合成员关系的函数，将满足条件的输入映射到1（真），不满足条件的映射到0（假）。当它表示一个递归谓词时，被称为递归函数，用于定义递归关系。特征函数可以方便地通过算术运算（如乘法对应逻辑与，减法对应逻辑异或）来表示集合运算，并常用于证明集合恒等式，是模糊集合论中模糊隶属函数的特例。",
+      "neighbors": [
+        {
+          "subject": "特征函数/characteristic function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "特征函数属于函数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "二元联结词/binary connective",
+      "zh": "二元联结词",
+      "importance": 0.093469,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。",
+      "definition": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。二元联结词优先于一元联结词和逻辑关系符，例如所熟知的析取（∨）、合取（∧）、蕴涵（→）和等价（↔）以及摩尔斯联结词（↑）和反对摩尔斯联结词（↓）都属于二元联结词的范畴，所有二元联结词共可定义出16个不同的形式。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "蕴含表示二元联结词"
+        },
+        {
+          "subject": "等价/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "属于",
+          "natural_statement": "等价属于二元联结词"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "等值表示二元联结词"
+        },
+        {
+          "subject": "二元联结词/binary connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "二元联结词属于联结词"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "析取表示二元联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "合取表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2091000_2298500",
+          "text": "二元连接词一共有多少个？我曾经跟大家介绍过，二元连接词有四种情况：false false、false true、true false、true true。每个连接词实际上是一个函数，这个函数的取值可能性有多少种呢？每个情况有两种可能，所以一共有二的四次方种不同的函数取值，因此就有二的四次方种不同的二元连接词，也就是16种。我们现在介绍过的有与、或、非（非是一元的），还有蕴含、等价，这有四个。然后我们后面又介绍了异或，也就是二者只能取其一，异或要求两者不同。接着我们还介绍了与非和或非。目前介绍的二元连接词一共有七个。其实有16种，我们常见的就是这几个。如果你们需要其他的，也可以自己定义任意一个二元连接词，用真值表写出它的定义——当p和q为真时，通过真值表来定义你的连接词。除了这七个，还有九个你可以自己定义新的符号，用真值表来定义，只要把每一种情况是true还是false定义好，你的二元连接词",
+          "start_sec": 2091.0,
+          "end_sec": 2298.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2091000_2298500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2921000_3301888",
+          "text": "好，那么这是关于完备联结词的概念。我们来介绍对偶式。观察下面两个等值公式，即分配律：P析取Q与R的合取，等于P析取Q与P析取R的合取；P合取Q与R的析取，等于P合取Q与P合取R的析取。命题逻辑公式存在对偶规律。设公式A中只出现非、且、或，将A中的且与或分别替换为或与且，所得公式称为A的对偶式A*。",
+          "start_sec": 2921.0,
+          "end_sec": 3301.888,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2921000_3301888.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "非蕴含/non-implication",
+      "zh": "非蕴含",
+      "importance": 0.093081,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "联结词的完备集。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "非蕴含/non-implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "非蕴含属于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "双向蕴含/bidirectional implication",
+      "zh": "双向蕴含",
+      "importance": 0.08666,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那么我们上节课跟大家介绍了命题演算中的第一个等值演算。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "双向蕴含/bidirectional implication",
+          "predicate": "synonym_of",
+          "object": "等价/equivalence",
+          "label": "即",
+          "natural_statement": "双向蕴含即等价"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_340300_540300",
+          "text": "那么我们上节课跟大家介绍了命题演算中的第一个等值演算。等值演算，我们介绍了什么是等值式，即两个公式相等，或者记作逻辑等值。A和B相等，即它们在任意解释下同真同假。A等价于B永真，当且仅当A等于B。然后我们又介绍了这样的一些等值式，用于等值演算。通过用右边的替换左边的进行置换，置换前后两个公式是等值的。我们介绍了结合律、交换律、分配律，以及双重否定律、摩根律，还有蕴含的等值式：P蕴含Q等于非P或Q，也等于非Q蕴含非P。双向蕴含即等价，P等价于Q等于P与Q或非P与非Q，也等于P或Q与非P或Q，还等于P蕴含Q与Q蕴含P。另外，当有两个前提时，可以交换前提，即P蕴含（Q蕴含R）等于Q蕴含（P蕴含R），也等于P与Q蕴含R，等等。",
+          "start_sec": 340.3,
+          "end_sec": 540.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_340300_540300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "成真指派/truth assignment",
+      "zh": "成真指派",
+      "importance": 0.085664,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "A等于p蕴含q，它有三个成真指派。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "property_of",
+          "object": "成真指派/truth assignment",
+          "label": "具有",
+          "natural_statement": "公式具有成真指派"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_634500_807900",
+          "text": "A等于p蕴含q，它有三个成真指派。从成真指派来列写的方法：对于每个成真指派，写出一个合取式，其中变元取值为假的用否定，取值为真的用原文字；然后将这些合取式用析取连接起来。例如，第一行(P,Q)=(F,F)写出¬P∧¬Q；第二行(F,T)写出¬P∧Q；第三行(T,T)写出P∧Q。因此A可以写成(¬P∧¬Q)∨(¬P∧Q)∨(P∧Q)。",
+          "start_sec": 634.5,
+          "end_sec": 807.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_634500_807900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "等值公式/equivalent formula",
+      "zh": "等值公式",
+      "importance": 0.083762,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。",
+      "definition": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。这些公式如双重否定律、结合律、交换律和分配律等，允许对公式进行结构性变换而不改变其逻辑含义。例如，将含有蕴含和双条件的公式转化为仅含否定、析取和合取的公式，即是一种利用等值公式的置换操作，这对于简化公式和证明其唯一的主析取范式至关重要。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        },
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "分配律属于等值公式"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "结合律表示等值公式"
+        },
+        {
+          "subject": "交换律/commutative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "交换律表示等值公式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        },
+        {
+          "subject": "双重否定律/double negation law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "双重否定律属于等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2417400_2919900",
+          "text": "联结词的完备集。可定义的联结词很多，但并非都彼此独立，即能够相互表示。例如，P蕴含Q等于非P或Q，即蕴含可用非和或表示。定义：设C是联结词的集合，如果对任一命题公式都有由C中联结词表示出来的公式与之等值，就说C是完备的联结词集合，或联结词的完备集。定理：非、与、或是完备的联结词集合。证明思路：回顾由真值表列写命题公式的过程可知，任一公式都可由非、与、或表示出来。这是后面即将学到的范式定理的直接推论。非与、非或、非蕴含等都是完备的联结词集合。例如，P与Q等于非括号非P或非Q，可知与可由非或表示，故非或也是联结词的完备集。那么什么叫完备联结词？我们定义，如果一个公式都可以用某个集合中的联结词表示，那么这个集合就叫做完备联结词集合。从真值表写公式我们可以知道第一个完备联结词集合是哪一个？从真值表，任何真值表都用到哪三个联结词？与、或、非，只用到这三个。所以非、与、或是一个完备联结词集合，因为所有",
+          "start_sec": 2417.4,
+          "end_sec": 2919.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2417400_2919900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_19_2921000_3301888",
+          "text": "好，那么这是关于完备联结词的概念。我们来介绍对偶式。观察下面两个等值公式，即分配律：P析取Q与R的合取，等于P析取Q与P析取R的合取；P合取Q与R的析取，等于P合取Q与P合取R的析取。命题逻辑公式存在对偶规律。设公式A中只出现非、且、或，将A中的且与或分别替换为或与且，所得公式称为A的对偶式A*。",
+          "start_sec": 2921.0,
+          "end_sec": 3301.888,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2921000_3301888.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "取值/取值",
+      "zh": "取值",
+      "importance": 0.079112,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "自变元/自变元",
+          "predicate": "property_of",
+          "object": "取值/取值",
+          "label": "有...种取值",
+          "natural_statement": "自变元有取值种取值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_2348900_2416600",
+          "text": "一般地，n元真值函数有n个自变元，每个自变元有两种取值，共有2的n次方种真值组合。对每一种取值组合又有两种可能的函数值，于是可定义2的2的n次方种不同的真值函数，相应地可定义2的2的n次方个n元联结词。例如，定义一个三元联结词#，P、Q、R为真当且仅当P、Q、R中至少两个为真，无法用习惯的中缀法表示。",
+          "start_sec": 2348.9,
+          "end_sec": 2416.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_2348900_2416600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "输入/input",
+      "zh": "输入",
+      "importance": 0.077645,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "这是一个半加法器，作业中让你们去写一个全加法器，或者去做一个别的实际的，你们自己去做。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "输入/input",
+          "predicate": "part_of",
+          "object": "半加法器/half adder",
+          "label": "是…的组成部分",
+          "natural_statement": "输入是半加法器的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_19_1762700_1817500",
+          "text": "这是一个半加法器，作业中让你们去写一个全加法器，或者去做一个别的实际的，你们自己去做。那么这就是很简单了，我的这两个加法器输入是A和B，输出是和与进位。那么A和B，进位是这样，然后A和B。那么，通过真值表去写，sum，你可以通过真值表去写。那么这样子，这个电路不就出来了吗？这个电路是不是就出来了？对不对？你的半加法器是这个，那全加法器呢？大家去做做看。全加法器呢？大家去做做看，我来看一下，哎，我这里没有全讲，我应该有。",
+          "start_sec": 1762.7,
+          "end_sec": 1817.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_19_1762700_1817500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

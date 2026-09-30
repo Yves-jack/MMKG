@@ -21,15 +21,19 @@ type Props = {
   initialRightRatio?: number;
   minLeftPx?: number;
   minRightPx?: number;
-  /** 哪一侧用固定像素宽控制；另一侧 flex:1 */
+  /** 锁定 sized 侧像素宽（如右栏收成窄轨）；隐藏拖拽条且不写缓存 */
+  fixedSizedPx?: number;
+  /** 哪一侧用固定像素宽/高控制；另一侧 flex:1 */
   sizedPane?: "left" | "right";
   /** 持久化到 localStorage（存 0–1 比例） */
   storageKey?: string;
   className?: string;
   leftClassName?: string;
   rightClassName?: string;
-  /** false 时只显示右侧（无分隔条） */
+  /** false 时收起一侧（无分隔条） */
   enabled?: boolean;
+  /** enabled=false 时收起哪一侧；默认收起左/上栏 */
+  hideWhenDisabled?: "left" | "right";
   /** 窄屏改为上下堆叠；≤0 表示永不堆叠，始终左右布局 */
   stackBelowPx?: number;
   /**
@@ -38,6 +42,8 @@ type Props = {
    * first：上栏伸展、下栏受限
    */
   stackGrow?: "first" | "second";
+  /** horizontal：左右；vertical：上下（left=上，right=下） */
+  orientation?: "horizontal" | "vertical";
 };
 
 function readStoredRatio(key: string | undefined): number | null {
@@ -65,7 +71,7 @@ function writeStoredRatio(key: string | undefined, ratio: number) {
 }
 
 /**
- * 左右可拖拽分栏。一侧以像素宽控制，另一侧 flex:1。
+ * 可拖拽分栏。一侧以像素宽/高控制，另一侧 flex:1。
  * 比例写入 localStorage；容器尺寸变化时自动重算，避免放缩后撑破布局。
  */
 export function ResizableSplit({
@@ -77,20 +83,24 @@ export function ResizableSplit({
   initialRightRatio = 0.32,
   minLeftPx = 200,
   minRightPx = 240,
+  fixedSizedPx,
   sizedPane = "left",
   storageKey,
   className,
   leftClassName,
   rightClassName,
   enabled = true,
+  hideWhenDisabled = "left",
   stackBelowPx = 0,
   stackGrow = "second",
+  orientation = "horizontal",
 }: Props) {
+  const vertical = orientation === "vertical";
   const boxRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const ratioRef = useRef(0);
   const [stacked, setStacked] = useState(false);
-  const [boxW, setBoxW] = useState(0);
+  const [boxSize, setBoxSize] = useState(0);
   const [ratio, setRatio] = useState(() => {
     const stored = readStoredRatio(storageKey);
     if (stored != null) return stored;
@@ -103,7 +113,7 @@ export function ResizableSplit({
   }, [ratio]);
 
   useEffect(() => {
-    if (stackBelowPx <= 0) {
+    if (vertical || stackBelowPx <= 0) {
       setStacked(false);
       return;
     }
@@ -112,52 +122,56 @@ export function ResizableSplit({
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
-  }, [stackBelowPx]);
+  }, [stackBelowPx, vertical]);
 
-  // 跟踪容器宽度；像素初值只在第一次量到宽度时折算成比例
+  // 跟踪容器主轴尺寸；像素初值只在第一次量到时折算成比例
   useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
-    const apply = (w: number) => {
-      if (w < 40) return;
-      setBoxW((prev) => (Math.abs(prev - w) < 1 ? prev : w));
+    const apply = (size: number) => {
+      if (size < 40) return;
+      setBoxSize((prev) => (Math.abs(prev - size) < 1 ? prev : size));
     };
-    apply(el.getBoundingClientRect().width);
+    const rect = el.getBoundingClientRect();
+    apply(vertical ? rect.height : rect.width);
     const ro = new ResizeObserver((entries) => {
-      const w = entries[0]?.contentRect.width ?? 0;
-      apply(w);
+      const cr = entries[0]?.contentRect;
+      const size = vertical ? cr?.height ?? 0 : cr?.width ?? 0;
+      apply(size);
     });
     ro.observe(el);
     return () => ro.disconnect();
-  }, [enabled, stacked]);
+  }, [enabled, stacked, vertical]);
 
-  // 无缓存且给了 initial*Px 时，用当前宽度折成比例（仅一次）
+  // 无缓存且给了 initial*Px 时，用当前尺寸折成比例（仅一次）
   const pxBootstrapped = useRef(false);
   useEffect(() => {
-    if (pxBootstrapped.current || boxW < 40) return;
+    if (pxBootstrapped.current || boxSize < 40) return;
     if (readStoredRatio(storageKey) != null) {
       pxBootstrapped.current = true;
       return;
     }
     if (sizedPane === "right" && initialRightPx != null) {
-      setRatio(Math.min(0.92, Math.max(0.08, initialRightPx / boxW)));
+      setRatio(Math.min(0.92, Math.max(0.08, initialRightPx / boxSize)));
       pxBootstrapped.current = true;
     } else if (sizedPane === "left" && initialLeftPx != null) {
-      setRatio(Math.min(0.92, Math.max(0.08, initialLeftPx / boxW)));
+      setRatio(Math.min(0.92, Math.max(0.08, initialLeftPx / boxSize)));
       pxBootstrapped.current = true;
     } else {
       pxBootstrapped.current = true;
     }
-  }, [boxW, storageKey, sizedPane, initialLeftPx, initialRightPx]);
+  }, [boxSize, storageKey, sizedPane, initialLeftPx, initialRightPx]);
 
   const softMin = useCallback(
     (total: number) => {
       // 容器变窄时放宽最小值，避免 clamp 无解把一侧压成 0
-      const leftMin = Math.min(minLeftPx, Math.max(80, Math.floor(total * 0.18)));
-      const rightMin = Math.min(minRightPx, Math.max(80, Math.floor(total * 0.18)));
+      // fixedSizedPx / 极窄轨：允许低于 80px
+      const floor = fixedSizedPx != null && fixedSizedPx < 80 ? Math.max(24, fixedSizedPx) : 80;
+      const leftMin = Math.min(minLeftPx, Math.max(floor, Math.floor(total * 0.18)));
+      const rightMin = Math.min(minRightPx, Math.max(floor, Math.floor(total * 0.18)));
       return { leftMin, rightMin };
     },
-    [minLeftPx, minRightPx]
+    [minLeftPx, minRightPx, fixedSizedPx]
   );
 
   const clampPx = useCallback(
@@ -174,7 +188,11 @@ export function ResizableSplit({
   );
 
   const sizedPx =
-    boxW > 40 ? clampPx(Math.round(boxW * ratio), boxW) : 0;
+    fixedSizedPx != null && Number.isFinite(fixedSizedPx)
+      ? Math.max(24, Math.round(fixedSizedPx))
+      : boxSize > 40
+        ? clampPx(Math.round(boxSize * ratio), boxSize)
+        : 0;
 
   const commitRatio = useCallback(
     (nextPx: number, total: number) => {
@@ -191,9 +209,15 @@ export function ResizableSplit({
     const onMove = (e: PointerEvent) => {
       if (!dragging.current || !boxRef.current) return;
       const rect = boxRef.current.getBoundingClientRect();
-      const raw =
-        sizedPane === "right" ? rect.right - e.clientX : e.clientX - rect.left;
-      commitRatio(raw, rect.width);
+      const total = vertical ? rect.height : rect.width;
+      const raw = vertical
+        ? sizedPane === "right"
+          ? rect.bottom - e.clientY
+          : e.clientY - rect.top
+        : sizedPane === "right"
+          ? rect.right - e.clientX
+          : e.clientX - rect.left;
+      commitRatio(raw, total);
     };
     const onUp = () => {
       if (!dragging.current) return;
@@ -209,21 +233,22 @@ export function ResizableSplit({
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointercancel", onUp);
     };
-  }, [commitRatio, sizedPane]);
+  }, [commitRatio, sizedPane, vertical]);
 
   const resetSized = useCallback(() => {
     const el = boxRef.current;
     if (!el) return;
-    const w = el.getBoundingClientRect().width;
+    const rect = el.getBoundingClientRect();
+    const total = vertical ? rect.height : rect.width;
     const target =
       sizedPane === "right"
         ? initialRightPx != null
           ? initialRightPx
-          : Math.round(w * initialRightRatio)
+          : Math.round(total * initialRightRatio)
         : initialLeftPx != null
           ? initialLeftPx
-          : Math.round(w * initialLeftRatio);
-    commitRatio(target, w);
+          : Math.round(total * initialLeftRatio);
+    commitRatio(target, total);
   }, [
     commitRatio,
     sizedPane,
@@ -231,29 +256,37 @@ export function ResizableSplit({
     initialLeftRatio,
     initialRightPx,
     initialRightRatio,
+    vertical,
   ]);
 
   const onKeyResize = (e: KeyboardEvent) => {
     const el = boxRef.current;
     if (!el) return;
     const step = e.shiftKey ? 40 : 16;
-    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const keys = vertical
+      ? { shrink: "ArrowUp", grow: "ArrowDown" }
+      : { shrink: "ArrowLeft", grow: "ArrowRight" };
+    if (e.key !== keys.shrink && e.key !== keys.grow) return;
     e.preventDefault();
-    const w = el.getBoundingClientRect().width;
+    const rect = el.getBoundingClientRect();
+    const total = vertical ? rect.height : rect.width;
     const delta =
       sizedPane === "right"
-        ? e.key === "ArrowLeft"
+        ? e.key === keys.shrink
           ? step
           : -step
-        : e.key === "ArrowLeft"
+        : e.key === keys.shrink
           ? -step
           : step;
-    commitRatio(sizedPx + delta, w);
+    commitRatio(sizedPx + delta, total);
   };
 
   // 始终保持 [左栏, 分隔条, 右栏] 同一 DOM 顺序，避免 enabled/堆叠切换时卸载右侧（图谱会丢视口）
-  const splitActive = enabled && !stacked;
+  const sizeLocked = fixedSizedPx != null && Number.isFinite(fixedSizedPx);
+  const splitActive = enabled && !stacked && !sizeLocked;
   const stackActive = enabled && stacked;
+  const hideLeft = !enabled && hideWhenDisabled !== "right";
+  const hideRight = !enabled && hideWhenDisabled === "right";
   const growClass = stackActive
     ? stackGrow === "first"
       ? styles.stackedGrowFirst
@@ -261,48 +294,57 @@ export function ResizableSplit({
     : "";
   const sizedStyle =
     sizedPx > 0
-      ? { width: sizedPx, flex: "0 0 auto" as const }
+      ? vertical
+        ? { height: sizedPx, flex: "0 0 auto" as const, width: "100%" }
+        : { width: sizedPx, flex: "0 0 auto" as const }
       : { flex: "1 1 50%" as const };
   const hideStyle = {
     display: "none",
-    width: 0,
+    width: vertical ? "100%" : 0,
+    height: vertical ? 0 : undefined,
     flex: "0 0 0",
     minWidth: 0,
+    minHeight: 0,
     overflow: "hidden",
     border: "none",
     padding: 0,
     margin: 0,
   } as const;
+  const applySized = (splitActive || sizeLocked) && !stacked;
 
   return (
     <div
       ref={boxRef}
-      className={`${styles.split} ${!enabled ? styles.single : ""} ${
-        stackActive ? `${styles.stacked} ${growClass}` : ""
-      } ${className || ""}`.trim()}
+      className={`${styles.split} ${vertical ? styles.splitVertical : ""} ${
+        !enabled ? styles.single : ""
+      } ${stackActive ? `${styles.stacked} ${growClass}` : ""} ${
+        className || ""
+      }`.trim()}
     >
       <div
         className={`${styles.pane} ${
-          splitActive && sizedPane !== "left" ? styles.paneGrow : ""
+          (applySized && sizedPane !== "left") || hideRight
+            ? styles.paneGrow
+            : ""
         } ${leftClassName || ""}`.trim()}
         style={
-          !enabled
+          hideLeft
             ? hideStyle
-            : splitActive && sizedPane === "left"
+            : applySized && sizedPane === "left"
               ? sizedStyle
               : undefined
         }
-        aria-hidden={!enabled}
+        aria-hidden={hideLeft}
       >
         {left}
       </div>
       <div
-        className={styles.handle}
+        className={`${styles.handle} ${vertical ? styles.handleVertical : ""}`}
         role="separator"
-        aria-orientation="vertical"
+        aria-orientation={vertical ? "horizontal" : "vertical"}
         aria-valuenow={sizedPx}
-        aria-label="拖动调整栏宽"
-        title="拖动调整宽度（双击复位）"
+        aria-label={vertical ? "拖动调整栏高" : "拖动调整栏宽"}
+        title={vertical ? "拖动调整高度（双击复位）" : "拖动调整宽度（双击复位）"}
         tabIndex={splitActive ? 0 : -1}
         hidden={!splitActive}
         style={splitActive ? undefined : hideStyle}
@@ -310,17 +352,26 @@ export function ResizableSplit({
           if (!splitActive) return;
           dragging.current = true;
           e.preventDefault();
-          document.body.style.cursor = "col-resize";
+          document.body.style.cursor = vertical ? "row-resize" : "col-resize";
           document.body.style.userSelect = "none";
         }}
         onDoubleClick={resetSized}
         onKeyDown={onKeyResize}
       />
       <div
-        className={`${styles.pane} ${styles.paneGrow} ${rightClassName || ""}`.trim()}
+        className={`${styles.pane} ${
+          (applySized && sizedPane === "right") || hideRight
+            ? ""
+            : styles.paneGrow
+        } ${rightClassName || ""}`.trim()}
         style={
-          splitActive && sizedPane === "right" ? sizedStyle : undefined
+          hideRight
+            ? hideStyle
+            : applySized && sizedPane === "right"
+              ? sizedStyle
+              : undefined
         }
+        aria-hidden={hideRight}
       >
         {right}
       </div>

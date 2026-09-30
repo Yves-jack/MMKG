@@ -1,0 +1,1376 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "14",
+  "title": "第14讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/14_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/14_1.mp4",
+  "duration_sec": 3280.1,
+  "segments": [
+    {
+      "id": "数理逻辑_14_3000_397100",
+      "index": 1,
+      "start_sec": 3.0,
+      "end_sec": 397.1,
+      "title": "下面我们看一下1+101=110，这个是命题…"
+    },
+    {
+      "id": "数理逻辑_14_398100_561300",
+      "index": 2,
+      "start_sec": 398.1,
+      "end_sec": 561.3,
+      "title": "好，那么接下来我们介绍如何对命题进行符号化表…"
+    },
+    {
+      "id": "数理逻辑_14_562400_741300",
+      "index": 3,
+      "start_sec": 562.4,
+      "end_sec": 741.3,
+      "title": "那么我们的命题分为简单命题和复合命题"
+    },
+    {
+      "id": "数理逻辑_14_742500_920300",
+      "index": 4,
+      "start_sec": 742.5,
+      "end_sec": 920.3,
+      "title": "好，之前我们说过，因为我们是形式逻辑，我们只…"
+    },
+    {
+      "id": "数理逻辑_14_921400_970800",
+      "index": 5,
+      "start_sec": 921.4,
+      "end_sec": 970.8,
+      "title": "我们将命题抽象为形式逻辑，与具体内容无关"
+    },
+    {
+      "id": "数理逻辑_14_972100_1015500",
+      "index": 6,
+      "start_sec": 972.1,
+      "end_sec": 1015.5,
+      "title": "否定词“¬”读作“非"
+    },
+    {
+      "id": "数理逻辑_14_1016900_1098600",
+      "index": 7,
+      "start_sec": 1016.9,
+      "end_sec": 1098.6,
+      "title": "这些连接词可以看成是函数，它实际上是成分命题…"
+    },
+    {
+      "id": "数理逻辑_14_1100000_1170200",
+      "index": 8,
+      "start_sec": 1100.0,
+      "end_sec": 1170.2,
+      "title": "合取词就是“∧”，我们读作“P与Q”，或者也…"
+    },
+    {
+      "id": "数理逻辑_14_1171100_1227900",
+      "index": 9,
+      "start_sec": 1171.1,
+      "end_sec": 1227.9,
+      "title": "例如，教室里面有10名女同学，教室里面有15…"
+    },
+    {
+      "id": "数理逻辑_14_1229700_1302700",
+      "index": 10,
+      "start_sec": 1229.7,
+      "end_sec": 1302.7,
+      "title": "那么这台机器质量很好是p，这台机器很贵是q，…"
+    },
+    {
+      "id": "数理逻辑_14_1303600_1336000",
+      "index": 11,
+      "start_sec": 1303.6,
+      "end_sec": 1336.0,
+      "title": "好，接下去介绍析取词，就是或，disjunc…"
+    },
+    {
+      "id": "数理逻辑_14_1337200_1525300",
+      "index": 12,
+      "start_sec": 1337.2,
+      "end_sec": 1525.3,
+      "title": "那么，日常用语中的“或”往往具有“不可兼或”…"
+    },
+    {
+      "id": "数理逻辑_14_1526100_1933800",
+      "index": 13,
+      "start_sec": 1526.1,
+      "end_sec": 1933.8,
+      "title": "片段 13"
+    },
+    {
+      "id": "数理逻辑_14_1935200_1982100",
+      "index": 14,
+      "start_sec": 1935.2,
+      "end_sec": 1982.1,
+      "title": "推理演算是所有推理的基础"
+    },
+    {
+      "id": "数理逻辑_14_1984400_2069900",
+      "index": 15,
+      "start_sec": 1984.4,
+      "end_sec": 2069.9,
+      "title": "例如，令P为“2×2=4”，P'为“2×2=…"
+    },
+    {
+      "id": "数理逻辑_14_2071600_2412500",
+      "index": 16,
+      "start_sec": 2071.6,
+      "end_sec": 2412.5,
+      "title": "如果1+1=3，我就是超人"
+    },
+    {
+      "id": "数理逻辑_14_2413400_2897300",
+      "index": 17,
+      "start_sec": 2413.4,
+      "end_sec": 2897.3,
+      "title": "好，这样你们就理解充分必要了"
+    },
+    {
+      "id": "数理逻辑_14_2901500_3039900",
+      "index": 18,
+      "start_sec": 2901.5,
+      "end_sec": 3039.9,
+      "title": "好，那么联结词我们这几个是最常用的五个联结词…"
+    },
+    {
+      "id": "数理逻辑_14_3040800_3280100",
+      "index": 19,
+      "start_sec": 3040.8,
+      "end_sec": 3280.1,
+      "title": "片段 19"
+    }
+  ],
+  "points": [
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.595284,
+      "mention_count": 6,
+      "origin": "shared",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "蕴含等价于联结词"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "联结词属于命题逻辑"
+        },
+        {
+          "subject": "否定联结词/negation connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "否定联结词属于联结词"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "表示",
+          "natural_statement": "命题逻辑表示联结词"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "否定属于联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "合取属于联结词"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "析取属于联结词"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "belong_to",
+          "object": "真值函数/truth function",
+          "label": "属于",
+          "natural_statement": "联结词属于真值函数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1016900_1098600",
+          "text": "这些连接词可以看成是函数，它实际上是成分命题变量的函数。首先我们介绍真值表：所谓真值表，就是把所有成分命题变量列出来，并列出它们所有的真假可能性，然后看最终的复合命题的真值。例如，当成分命题为真时，复合命题为假；当成分命题为假时，复合命题为真，这就是真值表。对于所有成分命题，复合命题的取值依赖于这些简单命题的取值情况。因此，复合命题可以看作是这些命题变量的函数。",
+          "start_sec": 1016.9,
+          "end_sec": 1098.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1016900_1098600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1337200_1525300",
+          "text": "那么，日常用语中的“或”往往具有“不可兼或”的涵义，即二选一。例如：你去或者我去。令P：你去，Q：我去，P ∨ Q 表示你去或者我去，可以同时去。但如何表示不可兼或（异或）呢？用(P ∧ ¬Q) ∨ (¬P ∧ Q)来表示。比如说，足球比赛中，教练安排替补时，说“张三上或者李四上”，此时两个人不能同时上，只能一个上，这就是不可兼或，也叫异或。那么它的表示就是只能取p与非q，或者非p与q，两者只能有一种情况成立。这个不可兼或，我们通常用符号上面加一横来表示，代表两个人不能同时为真，但可以同时为假。而一般的或则允许同时为真。所以在形式化翻译时，要分清这个“或”是异或还是一般的或。",
+          "start_sec": 1337.2,
+          "end_sec": 1525.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1337200_1525300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1526100_1933800",
+          "text": "蕴涵词。推理演算主要针对连接词的推理。蕴涵将两个命题P、Q联结成一个新命题P→Q，表达“如果P成立，那么Q成立”。P称为前件，Q称为后件。P→Q为假，当且仅当P真而Q假。真值表有四种情况，只有P真Q假时为假，其他情况都为真。当前件为假时，后件无论真假，蕴涵都定义为真，这是本体系的规定；其他理论可能不同，但所有理论在P为真时定义一致：P真Q假时蕴涵为假，P真Q真时蕴涵为真。当前件为假时，后件真假不重要，因为假设已不成立。蕴涵是所有推理的基础，非常重要。P是Q的充分条件，Q是P的必要条件。可以证明P→Q与¬P ∨ Q等值，即无论P和Q取何值，两者的真值都相等。这就是等值演算，类似代数中的等式变换。",
+          "start_sec": 1526.1,
+          "end_sec": 1933.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1526100_1933800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.537338,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "公式依赖论域"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "函数依赖论域"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "property_of",
+          "object": "论域/domain of discourse",
+          "label": "具有属性",
+          "natural_statement": "论域具有属性公式"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "解释/interpretation(logic)",
+          "label": "属于",
+          "natural_statement": "论域属于解释"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_3000_397100",
+          "text": "下面我们看一下1+101=110，这个是命题吗？是不是？它在二进制里面是正确的，对吧？所以这个时候我们就要讲论域。也就是说我们要确定你的论域是二进制还是十进制。那么二进制里面它就是一个真命题，对吧？十进制里面它就是一个假命题。但是如果你说，如果它没有任何的条件，没有任何的场景或者上下文的时候，我们就不知道它真假。那么我们通常认为，如果它在二进制，它就是正确的。",
+          "start_sec": 3.0,
+          "end_sec": 397.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_3000_397100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 2
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.372675,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "命题属于前提"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "陈述句/declarative sentence",
+          "label": "属于",
+          "natural_statement": "命题属于陈述句"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "陈述句/declarative sentence",
+          "label": "是...的一种",
+          "natural_statement": "命题是陈述句的一种"
+        },
+        {
+          "subject": "命题常项/proposition constant",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "是...的一种",
+          "natural_statement": "命题常项是命题的一种"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "是...的属性",
+          "natural_statement": "真值是命题的属性"
+        },
+        {
+          "subject": "命题变项/proposition variable",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "与...相关",
+          "natural_statement": "命题变项与命题相关"
+        },
+        {
+          "subject": "复合命题/compound proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "复合命题属于命题"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1984400_2069900",
+          "text": "例如，令P为“2×2=4”，P'为“2×2=5”，Q为“雪是白的”，Q'为“雪是黑的”。请判断以下命题的真假：P→Q、P'→Q、P'→Q'、P→Q'。P→Q为真。P'→Q呢？前件为假，无论后件真假，蕴含式都为真，所以P'→Q也为真。同样，P'→Q'也为真。那么P→Q'呢？P真Q假，此时蕴含式为假。因为蕴含式只有一种情况为假，即前件真后件假，其他情况均为真。",
+          "start_sec": 1984.4,
+          "end_sec": 2069.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1984400_2069900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_3000_397100",
+          "text": "下面我们看一下1+101=110，这个是命题吗？是不是？它在二进制里面是正确的，对吧？所以这个时候我们就要讲论域。也就是说我们要确定你的论域是二进制还是十进制。那么二进制里面它就是一个真命题，对吧？十进制里面它就是一个假命题。但是如果你说，如果它没有任何的条件，没有任何的场景或者上下文的时候，我们就不知道它真假。那么我们通常认为，如果它在二进制，它就是正确的。",
+          "start_sec": 3.0,
+          "end_sec": 397.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_3000_397100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_398100_561300",
+          "text": "好，那么接下来我们介绍如何对命题进行符号化表示。命题非真即假，它是有两个真值的陈述句。它的形式化表示通常用大写字母P、Q、R，当然也可以用A、B、C，但通常用P、Q、R。在命题逻辑中我们用大写字母，到了一阶谓词逻辑则用小写字母，它降了一级。命题和命题变项：用P表示“雪是白的”是命题常项，用P表示任意命题则是命题变项。命题有确定的真值，命题变项真值不确定，但在命题逻辑演算中两者处理原则一样，可不做区分。",
+          "start_sec": 398.1,
+          "end_sec": 561.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_398100_561300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.283078,
+      "mention_count": 7,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "命题演算/Propositional Calculus",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题演算属于命题逻辑"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "联结词属于命题逻辑"
+        },
+        {
+          "subject": "命题联结词/propositional connective",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题联结词属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "表示",
+          "natural_statement": "命题逻辑表示联结词"
+        },
+        {
+          "subject": "命题逻辑的基本概念/basic concepts of propositional logic",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑的基本概念属于命题逻辑"
+        },
+        {
+          "subject": "真值表法/Truth Table Method",
+          "predicate": "depend_on",
+          "object": "命题逻辑/propositional logic",
+          "label": "依赖",
+          "natural_statement": "真值表法依赖命题逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1171100_1227900",
+          "text": "例如，教室里面有10名女同学，教室里面有15名男同学，P和Q，P∧Q就是这样的一种表示。今天下雨了，教室里有100张桌子，那么自然语言化的话就变成“今天下雨了并且教室里有100张桌子”，形式化就变成A∧B。当然，我们是不考虑内容之间的关联的，比如张三38岁并且今天天气晴朗，这两者之间没有任何关系，我们不管。",
+          "start_sec": 1171.1,
+          "end_sec": 1227.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1171100_1227900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1229700_1302700",
+          "text": "那么这台机器质量很好是p，这台机器很贵是q，翻译时我们翻译成p∧q。但是自然语言翻译成形式化语言后，会丢弃一些语义信息，比如转折的语气就没有办法翻译。所以在形式化的过程中，我们牺牲掉了一些语义信息，像这个例子就翻译成p∧q，但转折无法翻译出来。在命题逻辑翻译中，“张三和李四是表兄弟”这个时候，如果用p与q表示，并不是这么回事。“张三和李四是表兄弟”是一个原子命题，不能用合取词来翻译，这个“和”不能作为合取词来表示，所以这是一个原子命题，不能再拆分。",
+          "start_sec": 1229.7,
+          "end_sec": 1302.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1229700_1302700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1526100_1933800",
+          "text": "蕴涵词。推理演算主要针对连接词的推理。蕴涵将两个命题P、Q联结成一个新命题P→Q，表达“如果P成立，那么Q成立”。P称为前件，Q称为后件。P→Q为假，当且仅当P真而Q假。真值表有四种情况，只有P真Q假时为假，其他情况都为真。当前件为假时，后件无论真假，蕴涵都定义为真，这是本体系的规定；其他理论可能不同，但所有理论在P为真时定义一致：P真Q假时蕴涵为假，P真Q真时蕴涵为真。当前件为假时，后件真假不重要，因为假设已不成立。蕴涵是所有推理的基础，非常重要。P是Q的充分条件，Q是P的必要条件。可以证明P→Q与¬P ∨ Q等值，即无论P和Q取何值，两者的真值都相等。这就是等值演算，类似代数中的等式变换。",
+          "start_sec": 1526.1,
+          "end_sec": 1933.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1526100_1933800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.256484,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它…",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "命题P的否定与命题P的真值关系/truth relation between negation of proposition P and proposition P",
+          "label": "表示",
+          "natural_statement": "真值表表示命题P的否定与命题P的真值关系"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "property_of",
+          "object": "合取/conjunction",
+          "label": "是属性",
+          "natural_statement": "真值表是属性合取词"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "依赖",
+          "natural_statement": "真值表依赖联结词"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "公式依赖真值表"
+        },
+        {
+          "subject": "成真指派/true assignment",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "是…的一部分",
+          "natural_statement": "成真指派是真值表的一部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1303600_1336000",
+          "text": "好，接下去介绍析取词，就是或，disjunction。p 或 q 为假，当且仅当 p 和 q 都为假，其他三种情况都为真。这就是析取词或它的真值表，用真值表来表示没有歧义。",
+          "start_sec": 1303.6,
+          "end_sec": 1336.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1303600_1336000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_1526100_1933800",
+          "text": "蕴涵词。推理演算主要针对连接词的推理。蕴涵将两个命题P、Q联结成一个新命题P→Q，表达“如果P成立，那么Q成立”。P称为前件，Q称为后件。P→Q为假，当且仅当P真而Q假。真值表有四种情况，只有P真Q假时为假，其他情况都为真。当前件为假时，后件无论真假，蕴涵都定义为真，这是本体系的规定；其他理论可能不同，但所有理论在P为真时定义一致：P真Q假时蕴涵为假，P真Q真时蕴涵为真。当前件为假时，后件真假不重要，因为假设已不成立。蕴涵是所有推理的基础，非常重要。P是Q的充分条件，Q是P的必要条件。可以证明P→Q与¬P ∨ Q等值，即无论P和Q取何值，两者的真值都相等。这就是等值演算，类似代数中的等式变换。",
+          "start_sec": 1526.1,
+          "end_sec": 1933.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1526100_1933800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "初始符号/initial symbols",
+      "zh": "初始符号",
+      "importance": 0.232664,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "初始符号是形式语言或公理系统中构成合法符号序列（也称为合式公式）的基础元素，其种类根据具体系统…",
+      "definition": "初始符号是形式语言或公理系统中构成合法符号序列（也称为合式公式）的基础元素，其种类根据具体系统有所不同。例如，在命题逻辑中，初始符号包括命题变项（如p, q）和命题联结词（如¬, ∨）；在更广泛的数理逻辑语境下，还可能包括个体变项（如x, y）、谓词变项（如P, Q）以及量词（如∀, ∃），还有用于分隔和组织结构的括号等符号。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "belong_to",
+          "object": "初始符号/initial symbols",
+          "label": "属于",
+          "natural_statement": "联结词属于初始符号"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2901500_3039900",
+          "text": "好，那么联结词我们这几个是最常用的五个联结词，是最常用的。我们还有刚才说的三个联结词，不常用但是非常有用，就是我们的与非门，这个代表与非门，这个代表或非门，以及刚才我们说的这个异或。这些也是常用的，也都是二元联结词。那么到底有多少个二元联结词呢？一共是2的4次方个。任何一个二元联结词都是二元联结词的函数。",
+          "start_sec": 2901.5,
+          "end_sec": 3039.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2901500_3039900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.207859,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1016900_1098600",
+          "text": "这些连接词可以看成是函数，它实际上是成分命题变量的函数。首先我们介绍真值表：所谓真值表，就是把所有成分命题变量列出来，并列出它们所有的真假可能性，然后看最终的复合命题的真值。例如，当成分命题为真时，复合命题为假；当成分命题为假时，复合命题为真，这就是真值表。对于所有成分命题，复合命题的取值依赖于这些简单命题的取值情况。因此，复合命题可以看作是这些命题变量的函数。",
+          "start_sec": 1016.9,
+          "end_sec": 1098.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1016900_1098600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.205433,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "假/false",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "假表示真值"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "property_of",
+          "object": "命题/proposition",
+          "label": "是...的属性",
+          "natural_statement": "真值是命题的属性"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真/true",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "真表示真值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1303600_1336000",
+          "text": "好，接下去介绍析取词，就是或，disjunction。p 或 q 为假，当且仅当 p 和 q 都为假，其他三种情况都为真。这就是析取词或它的真值表，用真值表来表示没有歧义。",
+          "start_sec": 1303.6,
+          "end_sec": 1336.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1303600_1336000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_3040800_3280100",
+          "text": "欢迎你。什么你在说什么？我还真喜欢吃瓜，真的。对对对。100万，说不定能收买到。挺好的。那我们看一下吧，这家伙特别。行，这个好。对。",
+          "start_sec": 3040.8,
+          "end_sec": 3280.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_3040800_3280100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_398100_561300",
+          "text": "好，那么接下来我们介绍如何对命题进行符号化表示。命题非真即假，它是有两个真值的陈述句。它的形式化表示通常用大写字母P、Q、R，当然也可以用A、B、C，但通常用P、Q、R。在命题逻辑中我们用大写字母，到了一阶谓词逻辑则用小写字母，它降了一级。命题和命题变项：用P表示“雪是白的”是命题常项，用P表示任意命题则是命题变项。命题有确定的真值，命题变项真值不确定，但在命题逻辑演算中两者处理原则一样，可不做区分。",
+          "start_sec": 398.1,
+          "end_sec": 561.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_398100_561300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 8
+    },
+    {
+      "id": "函数/function",
+      "zh": "函数",
+      "importance": 0.196977,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映…",
+      "definition": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写字母表示，例如 $f(x)$ 表示个体 $x$ 的某种变换。函数可以被看作是一种特殊的二元关系，其关系矩阵的每行恰好有一个1，或者在关系图中，定义域中的每个顶点恰好发出一条有向边。函数还可进一步区分为单射（一对一）、满射（映上）和双射（一一对应），并可以进行复合、求逆等运算。",
+      "neighbors": [
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "函数依赖论域"
+        },
+        {
+          "subject": "解释/interpretation(logic)",
+          "predicate": "depend_on",
+          "object": "函数/function",
+          "label": "依赖",
+          "natural_statement": "解释依赖函数"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1016900_1098600",
+          "text": "这些连接词可以看成是函数，它实际上是成分命题变量的函数。首先我们介绍真值表：所谓真值表，就是把所有成分命题变量列出来，并列出它们所有的真假可能性，然后看最终的复合命题的真值。例如，当成分命题为真时，复合命题为假；当成分命题为假时，复合命题为真，这就是真值表。对于所有成分命题，复合命题的取值依赖于这些简单命题的取值情况。因此，复合命题可以看作是这些命题变量的函数。",
+          "start_sec": 1016.9,
+          "end_sec": 1098.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1016900_1098600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_3000_397100",
+          "text": "下面我们看一下1+101=110，这个是命题吗？是不是？它在二进制里面是正确的，对吧？所以这个时候我们就要讲论域。也就是说我们要确定你的论域是二进制还是十进制。那么二进制里面它就是一个真命题，对吧？十进制里面它就是一个假命题。但是如果你说，如果它没有任何的条件，没有任何的场景或者上下文的时候，我们就不知道它真假。那么我们通常认为，如果它在二进制，它就是正确的。",
+          "start_sec": 3.0,
+          "end_sec": 397.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_3000_397100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_562400_741300",
+          "text": "那么我们的命题分为简单命题和复合命题。简单命题又叫原子命题，不能再拆分。例如“雪是白的”，这个陈述没有可能再做拆分，不可能再分割了。复合命题是由成分命题经联结词联结而成，例如“张三是教师并且雪是白的”。复合命题的真值是成分命题的真值的函数，此函数由所有联结词组成。我们会介绍联结词，联结词有非、与、或，以及蕴含和双向蕴含。",
+          "start_sec": 562.4,
+          "end_sec": 741.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_562400_741300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "二元联结词/binary connective",
+      "zh": "二元联结词",
+      "importance": 0.193305,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。",
+      "definition": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。二元联结词优先于一元联结词和逻辑关系符，例如所熟知的析取（∨）、合取（∧）、蕴涵（→）和等价（↔）以及摩尔斯联结词（↑）和反对摩尔斯联结词（↓）都属于二元联结词的范畴，所有二元联结词共可定义出16个不同的形式。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "蕴含表示二元联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "合取表示二元联结词"
+        },
+        {
+          "subject": "二元联结词/binary connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "二元联结词属于联结词"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "析取表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2071600_2412500",
+          "text": "如果1+1=3，我就是超人。这句话是为真的。如果1+1=3，那么我可以随便说什么，比如摘月亮、摘太阳。这是说，前提假，结论可以任意，这是蕴含式的特点。\n\n老师说考试得85分以上会得奖，我考了90分但没有得奖。这句话怎么翻译？设P为考85分以上，Q为得奖。第一种情况，老师说考试85分以上会得奖，我考了90分也没得奖。那么P和Q之间是什么关系？用蕴含词表示，是P蕴含Q还是Q蕴含P？P是充分条件，Q是必要条件。此时应该翻译成Q蕴含P：得奖是85分以上的充分条件，但85分以上不保证得奖。如果假设老师说的话都是正确的，那么翻译成Q蕴含P。\n\n老师说考试得85分以上会得奖，我考了80分却得奖了。这时是P蕴含Q，因为前件假后件真，蕴含式为真。\n\n老师说考试得不到85分以上别想得奖。这句话翻译成Q蕴含P，即得奖了一定是85分以上。\n\n想得奖，当考试得85分以上。“当”表示充分条件，所以是P蕴含Q。“仅当”",
+          "start_sec": 2071.6,
+          "end_sec": 2412.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2071600_2412500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2901500_3039900",
+          "text": "好，那么联结词我们这几个是最常用的五个联结词，是最常用的。我们还有刚才说的三个联结词，不常用但是非常有用，就是我们的与非门，这个代表与非门，这个代表或非门，以及刚才我们说的这个异或。这些也是常用的，也都是二元联结词。那么到底有多少个二元联结词呢？一共是2的4次方个。任何一个二元联结词都是二元联结词的函数。",
+          "start_sec": 2901.5,
+          "end_sec": 3039.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2901500_3039900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "析取/disjunction",
+      "zh": "析取",
+      "importance": 0.182207,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真…",
+      "definition": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更复杂的逻辑公式，例如将蕴含转化为只含否定、析取和合取的公式。",
+      "neighbors": [
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "析取属于联结词"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "析取/disjunction",
+          "label": "依赖",
+          "natural_statement": "公式依赖析取"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "析取表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2901500_3039900",
+          "text": "好，那么联结词我们这几个是最常用的五个联结词，是最常用的。我们还有刚才说的三个联结词，不常用但是非常有用，就是我们的与非门，这个代表与非门，这个代表或非门，以及刚才我们说的这个异或。这些也是常用的，也都是二元联结词。那么到底有多少个二元联结词呢？一共是2的4次方个。任何一个二元联结词都是二元联结词的函数。",
+          "start_sec": 2901.5,
+          "end_sec": 3039.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2901500_3039900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_562400_741300",
+          "text": "那么我们的命题分为简单命题和复合命题。简单命题又叫原子命题，不能再拆分。例如“雪是白的”，这个陈述没有可能再做拆分，不可能再分割了。复合命题是由成分命题经联结词联结而成，例如“张三是教师并且雪是白的”。复合命题的真值是成分命题的真值的函数，此函数由所有联结词组成。我们会介绍联结词，联结词有非、与、或，以及蕴含和双向蕴含。",
+          "start_sec": 562.4,
+          "end_sec": 741.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_562400_741300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "合取/conjunction",
+      "zh": "合取",
+      "importance": 0.149187,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或…",
+      "definition": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$ 等价于 $\\neg (\\neg A \\vee \\neg B)$。它在命题逻辑和谓词逻辑中都扮演着基础角色，并且与析取（∨）、蕴含（→）、双条件（↔）等共同构成了逻辑系统的基本运算。",
+      "neighbors": [
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "合取属于联结词"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "property_of",
+          "object": "合取/conjunction",
+          "label": "是属性",
+          "natural_statement": "真值表是属性合取词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "synonym_of",
+          "object": "逻辑与符号/logical AND symbol",
+          "label": "就是",
+          "natural_statement": "合取词就是逻辑与符号"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "合取属于前提"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "合取等价于联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "合取表示二元联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "二元命题联结词/binary propositional connective",
+          "label": "属于",
+          "natural_statement": "合取词属于二元命题联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2071600_2412500",
+          "text": "如果1+1=3，我就是超人。这句话是为真的。如果1+1=3，那么我可以随便说什么，比如摘月亮、摘太阳。这是说，前提假，结论可以任意，这是蕴含式的特点。\n\n老师说考试得85分以上会得奖，我考了90分但没有得奖。这句话怎么翻译？设P为考85分以上，Q为得奖。第一种情况，老师说考试85分以上会得奖，我考了90分也没得奖。那么P和Q之间是什么关系？用蕴含词表示，是P蕴含Q还是Q蕴含P？P是充分条件，Q是必要条件。此时应该翻译成Q蕴含P：得奖是85分以上的充分条件，但85分以上不保证得奖。如果假设老师说的话都是正确的，那么翻译成Q蕴含P。\n\n老师说考试得85分以上会得奖，我考了80分却得奖了。这时是P蕴含Q，因为前件假后件真，蕴含式为真。\n\n老师说考试得不到85分以上别想得奖。这句话翻译成Q蕴含P，即得奖了一定是85分以上。\n\n想得奖，当考试得85分以上。“当”表示充分条件，所以是P蕴含Q。“仅当”",
+          "start_sec": 2071.6,
+          "end_sec": 2412.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2071600_2412500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词与联结词配对法则_3700_1917600"
+      ],
+      "rank": 12
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.142725,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "否定属于联结词"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "否定包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_562400_741300",
+          "text": "那么我们的命题分为简单命题和复合命题。简单命题又叫原子命题，不能再拆分。例如“雪是白的”，这个陈述没有可能再做拆分，不可能再分割了。复合命题是由成分命题经联结词联结而成，例如“张三是教师并且雪是白的”。复合命题的真值是成分命题的真值的函数，此函数由所有联结词组成。我们会介绍联结词，联结词有非、与、或，以及蕴含和双向蕴含。",
+          "start_sec": 562.4,
+          "end_sec": 741.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_562400_741300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_特称否定命题翻译模板_8700_1951300",
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 13
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.116985,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。",
+      "definition": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提条件的顺序交换（如 P → (Q → R) = Q → (P → R)），同时其逆否形式 ¬Q → ¬P 与原蕴含式等值。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "蕴含等价于联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "依赖",
+          "natural_statement": "蕴含依赖公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "蕴含表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1935200_1982100",
+          "text": "推理演算是所有推理的基础。如果已知P→Q为真，那么只要P为真，就能推出Q为真。这就是推理的最基本形式：由两个旧知推出新知。这就是推理演算，蕴含和推理。",
+          "start_sec": 1935.2,
+          "end_sec": 1982.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1935200_1982100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_2071600_2412500",
+          "text": "如果1+1=3，我就是超人。这句话是为真的。如果1+1=3，那么我可以随便说什么，比如摘月亮、摘太阳。这是说，前提假，结论可以任意，这是蕴含式的特点。\n\n老师说考试得85分以上会得奖，我考了90分但没有得奖。这句话怎么翻译？设P为考85分以上，Q为得奖。第一种情况，老师说考试85分以上会得奖，我考了90分也没得奖。那么P和Q之间是什么关系？用蕴含词表示，是P蕴含Q还是Q蕴含P？P是充分条件，Q是必要条件。此时应该翻译成Q蕴含P：得奖是85分以上的充分条件，但85分以上不保证得奖。如果假设老师说的话都是正确的，那么翻译成Q蕴含P。\n\n老师说考试得85分以上会得奖，我考了80分却得奖了。这时是P蕴含Q，因为前件假后件真，蕴含式为真。\n\n老师说考试得不到85分以上别想得奖。这句话翻译成Q蕴含P，即得奖了一定是85分以上。\n\n想得奖，当考试得85分以上。“当”表示充分条件，所以是P蕴含Q。“仅当”",
+          "start_sec": 2071.6,
+          "end_sec": 2412.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2071600_2412500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_562400_741300",
+          "text": "那么我们的命题分为简单命题和复合命题。简单命题又叫原子命题，不能再拆分。例如“雪是白的”，这个陈述没有可能再做拆分，不可能再分割了。复合命题是由成分命题经联结词联结而成，例如“张三是教师并且雪是白的”。复合命题的真值是成分命题的真值的函数，此函数由所有联结词组成。我们会介绍联结词，联结词有非、与、或，以及蕴含和双向蕴含。",
+          "start_sec": 562.4,
+          "end_sec": 741.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_562400_741300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "复合命题/compound proposition",
+      "zh": "复合命题",
+      "importance": 0.113649,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "复合命题是数理逻辑与集合论中，通过逻辑联结词（如与、或、非）将一个或多个简单命题组合而构成的新…",
+      "definition": "复合命题是数理逻辑与集合论中，通过逻辑联结词（如与、或、非）将一个或多个简单命题组合而构成的新命题。其真值由构成它的简单命题的真值及联结词的真值表确定。例如，通过合取词‘$\\wedge$’连接简单命题 P 和 Q 可构成复合命题 P $\\wedge$ Q。命题逻辑中的许多问题可转化为计算复合命题的真假值。",
+      "neighbors": [
+        {
+          "subject": "复合命题/compound proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "复合命题属于命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_921400_970800",
+          "text": "我们将命题抽象为形式逻辑，与具体内容无关。命题联结词类似于数学中的加减乘除运算符。主要的命题联结词有五个：否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）。其中非、与、或大家已经很熟悉了。",
+          "start_sec": 921.4,
+          "end_sec": 970.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_921400_970800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "P与Q的合取/conjunction of P and Q",
+      "zh": "P与Q的合取",
+      "importance": 0.09731,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "P与Q的合取/conjunction of P and Q",
+          "predicate": "synonym_of",
+          "object": "P与Q/P and Q",
+          "label": "读作",
+          "natural_statement": "P与Q的合取读作P与Q"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "命题P的否定/negation of proposition P",
+      "zh": "命题P的否定",
+      "importance": 0.092351,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "否定词“¬”读作“非”。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "否定词/negation symbol",
+          "predicate": "part_of",
+          "object": "命题P的否定/negation of proposition P",
+          "label": "是...的组成部分",
+          "natural_statement": "否定词是命题P的否定的组成部分"
+        },
+        {
+          "subject": "命题P的否定/negation of proposition P",
+          "predicate": "depend_on",
+          "object": "命题P/proposition P",
+          "label": "由...形成",
+          "natural_statement": "命题P的否定由命题P形成"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_972100_1015500",
+          "text": "否定词“¬”读作“非”。命题P加上否定词就形成一个新命题¬P，表达对P的否定。¬P为真当且仅当P为假。这种真值关系常用真值表来表示。新命题的真值是成分命题变量真值的函数。",
+          "start_sec": 972.1,
+          "end_sec": 1015.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_972100_1015500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "双条件式/Biconditional",
+      "zh": "双条件式",
+      "importance": 0.091446,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。",
+      "definition": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。当且仅当两个命题同为真或同为假时，双条件式为真。它可以被定义为两个单条件式的合取，即 $P \\leftrightarrow Q = (P \\rightarrow Q) \\land (Q \\rightarrow P)$，或等价地表示为仅包含否定、析取和合取的公式 $(P \\lor \\neg Q) \\land (\\neg P \\lor Q)$。双条件式为重言式意味着其被联结的两个命题在任何解释下都具有相同的真值。",
+      "neighbors": [
+        {
+          "subject": "充分必要条件/necessary and sufficient condition",
+          "predicate": "synonym_of",
+          "object": "双条件式/Biconditional",
+          "label": "等价于",
+          "natural_statement": "双条件式等价于充分必要条件"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "成真指派/true assignment",
+      "zh": "成真指派",
+      "importance": 0.084613,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "好，这样你们就理解充分必要了。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "成真指派/true assignment",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "是…的一部分",
+          "natural_statement": "成真指派是真值表的一部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "命题变项/proposition variable",
+      "zh": "命题变项",
+      "importance": 0.078868,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。",
+      "definition": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其真值可根据赋值情况确定，例如n个命题变项共有2^n种取值情形。",
+      "neighbors": [
+        {
+          "subject": "命题变项/proposition variable",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "与...相关",
+          "natural_statement": "命题变项与命题相关"
+        },
+        {
+          "subject": "命题变项/proposition variable",
+          "predicate": "part_of",
+          "object": "否定命题/negated proposition",
+          "label": "是…部分",
+          "natural_statement": "命题变项是否定命题部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_398100_561300",
+          "text": "好，那么接下来我们介绍如何对命题进行符号化表示。命题非真即假，它是有两个真值的陈述句。它的形式化表示通常用大写字母P、Q、R，当然也可以用A、B、C，但通常用P、Q、R。在命题逻辑中我们用大写字母，到了一阶谓词逻辑则用小写字母，它降了一级。命题和命题变项：用P表示“雪是白的”是命题常项，用P表示任意命题则是命题变项。命题有确定的真值，命题变项真值不确定，但在命题逻辑演算中两者处理原则一样，可不做区分。",
+          "start_sec": 398.1,
+          "end_sec": 561.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_398100_561300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_14_972100_1015500",
+          "text": "否定词“¬”读作“非”。命题P加上否定词就形成一个新命题¬P，表达对P的否定。¬P为真当且仅当P为假。这种真值关系常用真值表来表示。新命题的真值是成分命题变量真值的函数。",
+          "start_sec": 972.1,
+          "end_sec": 1015.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_972100_1015500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "命题常项/proposition constant",
+      "zh": "命题常项",
+      "importance": 0.078868,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题常项是数理逻辑中表示一个独立、完整的陈述句的符号，它是合式公式的一种基本类型，例如，'P'…",
+      "definition": "命题常项是数理逻辑中表示一个独立、完整的陈述句的符号，它是合式公式的一种基本类型，例如，'P'可以代表'今天是晴天'。命题常项不包含联结词，是构成更复杂命题公式的基础单元。",
+      "neighbors": [
+        {
+          "subject": "命题常项/proposition constant",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "是...的一种",
+          "natural_statement": "命题常项是命题的一种"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_398100_561300",
+          "text": "好，那么接下来我们介绍如何对命题进行符号化表示。命题非真即假，它是有两个真值的陈述句。它的形式化表示通常用大写字母P、Q、R，当然也可以用A、B、C，但通常用P、Q、R。在命题逻辑中我们用大写字母，到了一阶谓词逻辑则用小写字母，它降了一级。命题和命题变项：用P表示“雪是白的”是命题常项，用P表示任意命题则是命题变项。命题有确定的真值，命题变项真值不确定，但在命题逻辑演算中两者处理原则一样，可不做区分。",
+          "start_sec": 398.1,
+          "end_sec": 561.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_398100_561300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "充分必要条件/necessary and sufficient condition",
+      "zh": "充分必要条件",
+      "importance": 0.077193,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "好，这样你们就理解充分必要了。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "充分必要条件/necessary and sufficient condition",
+          "predicate": "synonym_of",
+          "object": "双条件式/Biconditional",
+          "label": "等价于",
+          "natural_statement": "双条件式等价于充分必要条件"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_2413400_2897300",
+          "text": "好，这样你们就理解充分必要了。当p和q是充分必要条件时，那就是p双向蕴含。双向蕴含比较简单，就是当且仅当。双向蕴含就是两个方向，p双向蕴含q就是等价，当且仅当p当且仅当q，所以p和q互为充分必要条件。这表明p是q的充分条件，q是p的必要条件。那么双向就表明p、q互为充分必要条件，也就是它们俩是等价的。它们只有两个都为假或者两个都为真时为真，一真一假时为假。这个大家容易理解，没有争议，这是当且仅当的关系。也就是说，p蕴含q等于p隐含q且q隐含p，这一个方向等于两个方向的合取。它还等于同真或者同假，两个都为真，或者两个都为假。然后它也等于一真一假，非p或q与上p或非q。一会儿我们会跟大家说，根据这样的真值表来写公式。前面这个例子不就是这样吗？给你一个真值表，我就能写出这个公式。这个真值表三个公式是根据这三行来写的，通过它的成真指派来写出来。通过这个对应这个，这个对应第二行，这个对应第三行。当然",
+          "start_sec": 2413.4,
+          "end_sec": 2897.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_2413400_2897300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "P与Q/P and Q",
+      "zh": "P与Q",
+      "importance": 0.074417,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "P与Q的合取/conjunction of P and Q",
+          "predicate": "synonym_of",
+          "object": "P与Q/P and Q",
+          "label": "读作",
+          "natural_statement": "P与Q的合取读作P与Q"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "四种情况/four cases",
+      "zh": "四种情况",
+      "importance": 0.074417,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "四种情况/four cases",
+          "predicate": "synonym_of",
+          "object": "四种解释/four interpretations",
+          "label": "叫做",
+          "natural_statement": "四种情况叫做四种解释"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_14_1100000_1170200",
+          "text": "合取词就是“∧”，我们读作“P与Q”，或者也可以说是“P、Q的合取”。这个合取词“与”的定义是：P∧Q为真，当且仅当P和Q都为真。它的真值表就是这个样子，只有当P和Q都为真时，P∧Q才为真，其他三种情况都为假。因为P和Q取真和假，它们的组合有四种情况，这四种情况叫做四种解释。每一种解释中，只有当P和Q都为真时它才为真，其他三种情况都为假。",
+          "start_sec": 1100.0,
+          "end_sec": 1170.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_14_1100000_1170200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

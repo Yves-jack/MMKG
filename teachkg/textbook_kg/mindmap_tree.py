@@ -13,15 +13,13 @@ from teachkg.textbook_kg.importance_feedback import (
     is_invalid_entity,
 )
 
-# 层级边强度：越大越优先作为树边
+# 树边只允许层次关系；属于优先于组成
 _REL_STRENGTH = {
-    "part_of": 1.0,
-    "belong_to": 0.85,
-    "property_of": 0.65,
-    "depend_on": 0.35,
-    "related_with": 0.0,
-    "synonym_of": 0.0,
+    "belong_to": 1.0,
+    "part_of": 0.85,
 }
+_RELATED_RELS = frozenset({"depend_on", "related_with"})
+_PROPERTY_REL = "property_of"
 
 
 def _zh(name: str) -> str:
@@ -44,9 +42,10 @@ class TreeNode:
     relation: str | None = None
     children: list["TreeNode"] = field(default_factory=list)
     related: list[str] = field(default_factory=list)
+    copy: bool = False
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        d: dict[str, Any] = {
             "id": self.id,
             "zh": self.zh,
             "importance": round(self.importance, 6),
@@ -54,6 +53,9 @@ class TreeNode:
             "related": self.related,
             "children": [c.to_dict() for c in self.children],
         }
+        if self.copy:
+            d["copy"] = True
+        return d
 
 
 @dataclass
@@ -64,11 +66,14 @@ class MindmapResult:
     max_depth: int
     orphan_count: int
     meta: dict[str, Any] = field(default_factory=dict)
+    roots: list[TreeNode] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
+        trees = self.roots or [self.root]
         return {
             "lecture_id": self.lecture_id,
             "root": self.root.to_dict(),
+            "roots": [t.to_dict() for t in trees],
             "n_nodes": self.n_nodes,
             "max_depth": self.max_depth,
             "orphan_count": self.orphan_count,
@@ -76,15 +81,166 @@ class MindmapResult:
         }
 
 
+def _drop_hierarchy_shortcuts(edges: list[dict[str, Any]], can) -> list[dict[str, Any]]:
+    """子-belong_to→父 且 父-part_of→祖 时，丢掉子→祖的 part_of（对齐课堂图后处理）。"""
+    belong: dict[str, set[str]] = defaultdict(set)
+    part_of: dict[str, set[str]] = defaultdict(set)
+    rows: list[tuple[dict[str, Any], str, str, str]] = []
+    for e in edges:
+        rel = _rel_key(e)
+        s = can(str(e.get("subject") or e.get("from") or ""))
+        o = can(str(e.get("object") or e.get("to") or ""))
+        rows.append((e, rel, s, o))
+        if not s or not o or s == o:
+            continue
+        if rel == "belong_to":
+            belong[s].add(o)
+        elif rel == "part_of":
+            part_of[s].add(o)
+    kept: list[dict[str, Any]] = []
+    for e, rel, s, o in rows:
+        if rel == "part_of" and any(o in part_of.get(p, ()) for p in belong.get(s, ())):
+            continue
+        kept.append(e)
+    return kept
+
+
+def _is_special_attach_kind(name: str) -> bool:
+    """定理/算法/公式等不得做概念的父；应挂在概念下。"""
+    t = f"{_zh(name)} {name}"
+    return bool(
+        re.search(r"定理|算法|公式|公理|引理|推论|定律|法则|命题演算系统", t)
+    )
+
+
 def _orient_hierarchy_edge(subj: str, obj: str, rel: str) -> tuple[str, str, float] | None:
-    """返回 (parent, child, strength)；不可作层级则 None。"""
+    """返回 (parent, child, strength)；不可作层级则 None。
+
+    约定与课堂图一致：A belong_to/part_of B → 父=B、子=A。
+    property_of 已折进实体特性，depend_on 只作 related，均不作树边。
+    若父为定理/算法而子为概念 → 翻转。
+    """
     strength = _REL_STRENGTH.get(rel, 0.0)
     if strength <= 0:
         return None
-    # A part_of/belong_to/property_of/depend_on B → 父=B, 子=A
-    if rel in {"part_of", "belong_to", "property_of", "depend_on"}:
-        return obj, subj, strength
-    return None
+    if rel not in _REL_STRENGTH:
+        return None
+    parent, child = obj, subj
+    if _is_special_attach_kind(parent) and not _is_special_attach_kind(child):
+        parent, child = child, parent
+    return parent, child, strength
+
+
+def _bottom_up_parent_of(
+    nodes: set[str],
+    hier: list[tuple[float, float, str, str, str]],
+    importance: dict[str, float],
+) -> dict[str, tuple[str, str]]:
+    """自底向上挂父：先处理叶子（不当任何人的父），属于优先。"""
+    uf = {n: n for n in nodes}
+
+    def find(x: str) -> str:
+        while uf[x] != x:
+            uf[x] = uf[uf[x]]
+            x = uf[x]
+        return x
+
+    cands: dict[str, list[tuple[float, float, str, str, str]]] = defaultdict(list)
+    for h in hier:
+        cands[h[3]].append(h)
+
+    unassigned = set(cands)
+    parent_of: dict[str, tuple[str, str]] = {}
+
+    def ready(child: str) -> bool:
+        for other in unassigned:
+            if other == child:
+                continue
+            if any(h[2] == child for h in cands[other]):
+                return False
+        return True
+
+    while unassigned:
+        batch = [c for c in unassigned if ready(c)] or list(unassigned)
+        batch.sort(key=lambda c: (-importance.get(c, 0.0), c))
+        progressed = False
+        for child in batch:
+            opts = sorted(
+                cands[child],
+                key=lambda x: (-x[0], -importance.get(x[2], 0.0), -x[1], x[2]),
+            )
+            for _strength, _cimp, parent, ch, rel in opts:
+                if ch not in nodes or parent not in nodes:
+                    continue
+                if ch in parent_of or ch == parent:
+                    continue
+                if find(ch) == find(parent):
+                    continue
+                parent_of[ch] = (parent, rel)
+                uf[find(ch)] = find(parent)
+                progressed = True
+                break
+            unassigned.discard(child)
+        if not progressed:
+            break
+    return parent_of
+
+
+def _looks_like_property_phrase(name: str) -> bool:
+    zh = _zh(name)
+    if len(zh) >= 6 and re.search(r"(为空|相连|为真|为假|等于|大于|小于|具有)", zh):
+        return True
+    if re.match(r"^(任意|所有|每个)", zh) and len(zh) >= 6:
+        return True
+    return False
+
+
+def _prepare_graph(
+    entities: list[dict[str, Any]],
+    edges: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, set[str]]]:
+    """对齐课堂后处理：去掉 property_of 边与纯属性句节点；depend_on 记入 related。"""
+    related: dict[str, set[str]] = defaultdict(set)
+    attr_subjects: set[str] = set()
+    kept: list[dict[str, Any]] = []
+    for e in edges:
+        rel = _rel_key(e)
+        s, o = str(e.get("subject") or e.get("from") or ""), str(e.get("object") or e.get("to") or "")
+        if not s or not o or s == o:
+            continue
+        if rel == _PROPERTY_REL:
+            attr_subjects.add(s)
+            continue
+        if rel in _RELATED_RELS:
+            related[s].add(_zh(o))
+            related[o].add(_zh(s))
+            if rel == "depend_on":
+                kept.append(e)  # 课程总导图仍可能沿 depend_on 传分；讲次导图改走树边
+            continue
+        kept.append(e)
+
+    still_linked: set[str] = set()
+    for e in kept:
+        still_linked.add(str(e.get("subject") or e.get("from") or ""))
+        still_linked.add(str(e.get("object") or e.get("to") or ""))
+
+    drop = {
+        n
+        for n in attr_subjects
+        if n not in still_linked or _looks_like_property_phrase(n)
+    }
+    ents = [
+        e
+        for e in entities
+        if str(e.get("id") or e.get("name") or "") not in drop
+    ]
+    edges_out = [
+        e
+        for e in kept
+        if str(e.get("subject") or e.get("from") or "") not in drop
+        and str(e.get("object") or e.get("to") or "") not in drop
+    ]
+    return ents, edges_out, related
 
 
 def _merge_synonyms(
@@ -229,6 +385,7 @@ def build_course_mindmap_tree(
     """整课导图：课名根 → 各章（目录）→ 章内层级展开。"""
     entities = list(kg.get("entities") or [])
     edges = list(kg.get("edges") or [])
+    entities, edges, related_seed = _prepare_graph(entities, edges)
     importance = dict(importance or {})
     chapters = [c for c in (chapter_order or []) if c]
 
@@ -241,6 +398,8 @@ def build_course_mindmap_tree(
 
     def can(n: str) -> str:
         return alias_map.get(n, n)
+
+    edges = _drop_hierarchy_shortcuts(edges, can)
 
     all_nodes: set[str] = set()
     for e in entities:
@@ -262,6 +421,8 @@ def build_course_mindmap_tree(
 
     hier: list[tuple[float, float, str, str, str]] = []
     related: dict[str, set[str]] = defaultdict(set)
+    for k, vs in related_seed.items():
+        related[can(k)].update(vs)
     out_deg: dict[str, int] = defaultdict(int)
 
     for e in edges:
@@ -272,10 +433,6 @@ def build_course_mindmap_tree(
         s, o = can(s), can(o)
         if s not in pool or o not in pool or s == o:
             continue
-        if rel == "related_with":
-            related[s].add(_zh(o))
-            related[o].add(_zh(s))
-            continue
         oriented = _orient_hierarchy_edge(s, o, rel)
         if not oriented:
             continue
@@ -284,6 +441,7 @@ def build_course_mindmap_tree(
         hier.append((strength, importance.get(child, 0.0), parent, child, rel))
         out_deg[parent] += 1
 
+    # 重要性由图谱侧传递后传入；导图只展示，不再二次传递
     root_id = f"__course__/{course_title}"
     importance[root_id] = (max(importance.values()) if importance else 1.0) * 1.1
 
@@ -437,6 +595,7 @@ def build_course_mindmap_tree(
     return MindmapResult(
         lecture_id="course",
         root=root,
+        roots=[root],
         n_nodes=len(in_tree),
         max_depth=depth_of(root),
         orphan_count=max(0, len(pool) - len(in_tree) + 1),
@@ -445,6 +604,7 @@ def build_course_mindmap_tree(
             "course_title": course_title,
             "root_zh": course_title,
             "virtual_root": True,
+            "n_trees": 1,
             "n_chapters": len(chapters),
             "max_nodes": max_nodes,
             "max_depth_cap": max_depth,
@@ -453,6 +613,7 @@ def build_course_mindmap_tree(
             "n_edges_raw": len(edges),
             "pool_size": len(pool),
             "alias_merged": len({a for a, c in alias_map.items() if a != c}),
+            "source": "kg",
         },
     )
 
@@ -462,7 +623,7 @@ def build_mindmap_tree(
     *,
     importance: dict[str, float] | None = None,
     chapter: str | None = None,
-    max_nodes: int = 36,
+    max_nodes: int = 64,
     max_depth: int = 4,
     max_children: int = 8,
 ) -> MindmapResult:
@@ -470,6 +631,7 @@ def build_mindmap_tree(
     lecture_id = str(kg.get("lecture_id") or "")
     entities = list(kg.get("entities") or [])
     edges = list(kg.get("edges") or [])
+    entities, edges, related_seed = _prepare_graph(entities, edges)
     importance = dict(importance or {})
 
     for e in entities:
@@ -482,6 +644,8 @@ def build_mindmap_tree(
     def can(n: str) -> str:
         return alias_map.get(n, n)
 
+    edges = _drop_hierarchy_shortcuts(edges, can)
+
     nodes: set[str] = set()
     for e in entities:
         nid = str(e.get("id") or e.get("name") or "")
@@ -493,7 +657,8 @@ def build_mindmap_tree(
 
     hier: list[tuple[float, float, str, str, str]] = []
     related: dict[str, set[str]] = defaultdict(set)
-    out_deg: dict[str, int] = defaultdict(int)
+    for k, vs in related_seed.items():
+        related[can(k)].update(vs)
 
     for e in edges:
         rel = _rel_key(e)
@@ -503,137 +668,133 @@ def build_mindmap_tree(
         s, o = can(s), can(o)
         if s not in nodes or o not in nodes or s == o:
             continue
-        if rel == "related_with":
-            related[s].add(_zh(o))
-            related[o].add(_zh(s))
-            continue
         oriented = _orient_hierarchy_edge(s, o, rel)
         if not oriented:
             continue
         parent, child, strength = oriented
         if parent not in nodes or child not in nodes:
             continue
-        strength *= entity_weight_multiplier(child)
         hier.append((strength, importance.get(child, 0.0), parent, child, rel))
-        out_deg[parent] += 1
 
-    root_id, virtual_root = _pick_root(nodes, importance, out_deg, chapter)
-    if virtual_root:
-        importance[root_id] = max(importance.values() or [1.0]) * 1.05
-        nodes.add(root_id)
-        seeds = sorted(
-            [n for n in nodes if n != root_id and entity_weight_multiplier(n) >= 0.5],
-            key=lambda n: (-importance.get(n, 0.0), -out_deg.get(n, 0)),
-        )[: max(3, min(6, max_children))]
-        for n in seeds:
-            hier.append((0.55, importance.get(n, 0.0), root_id, n, "chapter_topic"))
-            out_deg[root_id] += 1
-    elif out_deg.get(root_id, 0) < 3:
-        # 真根但层级出边很少：用高重要性节点补一层主题枝
-        seeds = sorted(
-            [
-                n
-                for n in nodes
-                if n != root_id and entity_weight_multiplier(n) >= 0.5
-            ],
-            key=lambda n: -importance.get(n, 0.0),
-        )[: max(3, min(6, max_children))]
-        for n in seeds:
-            hier.append((0.5, importance.get(n, 0.0), root_id, n, "chapter_topic"))
-            out_deg[root_id] += 1
+    # 重要性由图谱侧传递后传入；导图只展示，不再二次传递
 
-    parent_of: dict[str, tuple[str, str]] = {}
-    in_tree = {root_id}
-    hier.sort(key=lambda x: (-x[0], -x[1], -importance.get(x[2], 0.0)))
+    # 导图结构：去掉依赖边，并丢掉因此产生的孤立点
+    linked = {h[2] for h in hier} | {h[3] for h in hier}
+    nodes = {n for n in nodes if n in linked}
+    hier = [h for h in hier if h[2] in nodes and h[3] in nodes]
+    parent_of = _bottom_up_parent_of(nodes, hier, importance)
 
-    changed = True
-    while changed and len(in_tree) < max_nodes:
-        changed = False
-        for strength, _cimp, parent, child, rel in hier:
-            if parent not in in_tree or child in in_tree:
-                continue
-            depth = 1
-            walk = parent
-            while walk in parent_of:
-                walk = parent_of[walk][0]
-                depth += 1
-                if depth >= max_depth:
-                    break
-            if depth >= max_depth:
-                continue
-            sibs = sum(1 for c, (p, _) in parent_of.items() if p == parent)
-            if sibs >= max_children:
-                continue
-            parent_of[child] = (parent, rel)
-            in_tree.add(child)
-            changed = True
-            if len(in_tree) >= max_nodes:
-                break
+    belong_kids = {h[3] for h in hier if h[4] == "belong_to"}
+    part_kids = {h[3] for h in hier if h[4] == "part_of"}
+    extra: list[tuple[str, str, str]] = []
+    extra_seen: set[tuple[str, str, str]] = set()
+    for _s, _ci, parent, child, rel in hier:
+        if child not in belong_kids or child not in part_kids:
+            continue
+        used = parent_of.get(child)
+        if used and used[0] == parent and used[1] == rel:
+            continue
+        key = (child, parent, rel)
+        if key in extra_seen:
+            continue
+        extra_seen.add(key)
+        extra.append(key)
 
-    orphans = [
-        n
-        for n in sorted(nodes, key=lambda x: -importance.get(x, 0.0))
-        if n not in in_tree and n != root_id and entity_weight_multiplier(n) >= 0.5
-    ]
-    attached_orphan = 0
-    for n in orphans:
-        if len(in_tree) >= max_nodes:
-            break
-        host = None
-        for rzh in related.get(n, ()):
-            for t in in_tree:
-                if _zh(t) == rzh:
-                    host = t
-                    break
-            if host:
-                break
-        if host is None:
-            host = root_id
-        sibs = sum(1 for c, (p, _) in parent_of.items() if p == host)
-        if sibs >= max_children:
-            if host != root_id:
-                host = root_id
-                sibs = sum(1 for c, (p, _) in parent_of.items() if p == host)
-            if sibs >= max_children:
-                continue
-        parent_of[n] = (host, "related_with" if host != root_id else "attach")
-        in_tree.add(n)
-        attached_orphan += 1
+    roots = [n for n in nodes if n not in parent_of]
+    roots.sort(key=lambda n: -importance.get(n, 0.0))
 
-    children_map: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    children_map: dict[str, list[tuple[str, str, bool]]] = defaultdict(list)
     for child, (parent, rel) in parent_of.items():
-        children_map[parent].append((child, rel))
+        children_map[parent].append((child, rel, False))
+    for child, parent, rel in extra:
+        children_map[parent].append((child, rel, True))
 
-    def build_node(nid: str, rel: str | None = None, depth: int = 0) -> TreeNode:
-        kids = children_map.get(nid, [])
-        kids.sort(key=lambda x: -importance.get(x[0], 0.0))
+    attached_orphan = sum(1 for n in roots if not children_map.get(n))
+    roots = [n for n in roots if children_map.get(n)]
+
+    def build_node(nid: str, rel: str | None = None, is_copy: bool = False) -> TreeNode:
+        kids = [] if is_copy else children_map.get(nid, [])
+        kids = sorted(kids, key=lambda x: (x[2], -importance.get(x[0], 0.0)))
+        # 叶层：定理/算法挂在概念下后不再深挖
+        if _is_special_attach_kind(nid):
+            kids = []
+        else:
+            pruned: list[tuple[str, str, bool]] = []
+            for c, r, cp in kids:
+                if _is_special_attach_kind(c):
+                    pruned.append((c, r, True))  # 特殊子作叶（无再展开）
+                else:
+                    pruned.append((c, r, cp))
+            kids = pruned
         return TreeNode(
             id=nid,
             zh=_zh(nid),
             importance=float(importance.get(nid, 0.0)),
-            relation=rel,
+            relation=rel or None,
             related=sorted(related.get(nid, set()))[:6],
-            children=[build_node(c, r, depth + 1) for c, r in kids],
+            copy=is_copy,
+            children=[
+                build_node(c, r, cp or _is_special_attach_kind(c)) for c, r, cp in kids
+            ],
         )
-
-    root = build_node(root_id)
 
     def depth_of(node: TreeNode) -> int:
         if not node.children:
             return 1
         return 1 + max(depth_of(c) for c in node.children)
 
+    if not roots:
+        dummy = TreeNode(
+            id=f"__lecture__/{lecture_id or 'graph'}",
+            zh="本讲",
+        )
+        return MindmapResult(
+            lecture_id=lecture_id,
+            root=dummy,
+            roots=[],
+            n_nodes=0,
+            max_depth=1,
+            orphan_count=0,
+            meta={
+                "chapter": chapter,
+                "root_id": dummy.id,
+                "root_zh": dummy.zh,
+                "virtual_root": False,
+                "n_trees": 0,
+                "max_nodes": max_nodes,
+                "max_depth_cap": max_depth,
+                "max_children": max_children,
+                "n_entities_raw": len(entities),
+                "n_edges_raw": len(edges),
+                "n_hierarchy_candidates": len(hier),
+                "attached_orphans": attached_orphan,
+                "alias_merged": len({a for a, c in alias_map.items() if a != c}),
+            },
+        )
+
+    trees = [build_node(n) for n in roots]
+    kept: set[str] = set()
+
+    def collect(n: TreeNode) -> None:
+        kept.add(n.id)
+        for c in n.children:
+            collect(c)
+
+    for t in trees:
+        collect(t)
     return MindmapResult(
         lecture_id=lecture_id,
-        root=root,
-        n_nodes=len(in_tree),
-        max_depth=depth_of(root),
-        orphan_count=max(0, len(nodes) - len(in_tree)),
+        root=trees[0],
+        roots=trees,
+        n_nodes=len(kept),
+        max_depth=max(depth_of(t) for t in trees),
+        orphan_count=attached_orphan,
         meta={
             "chapter": chapter,
-            "root_id": root_id,
-            "root_zh": _zh(root_id),
-            "virtual_root": virtual_root,
+            "root_id": trees[0].id,
+            "root_zh": trees[0].zh,
+            "virtual_root": False,
+            "n_trees": len(trees),
             "max_nodes": max_nodes,
             "max_depth_cap": max_depth,
             "max_children": max_children,
@@ -642,5 +803,7 @@ def build_mindmap_tree(
             "n_hierarchy_candidates": len(hier),
             "attached_orphans": attached_orphan,
             "alias_merged": len({a for a, c in alias_map.items() if a != c}),
+            "scope": "lecture",
+            "source": "kg",
         },
     )

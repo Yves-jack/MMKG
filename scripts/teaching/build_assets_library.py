@@ -2,7 +2,7 @@
 """构建课程学科方法资产库（定理 / 原理 / 技术）。
 
 示例：
-  python scripts/teaching/build_assets_library.py --course-id shuliluoji
+  python scripts/teaching/build_assets_library.py --course-id 数理逻辑
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ logger = logging.getLogger("build_assets_library")
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--config", default=str(ROOT / "configs" / "teaching.yaml"))
-    p.add_argument("--course-id", default="shuliluoji")
+    p.add_argument("--course-id", default="数理逻辑")
     p.add_argument(
         "--curated",
         default=None,

@@ -26,6 +26,7 @@ from teachkg.utils.time import parse_time_nodes_file
 logger = logging.getLogger(__name__)
 
 _TRIVIAL_TEXT = re.compile(r"^[\s\-—–·.…,，、]+$")
+VIDEO_SUFFIXES = {".mp4", ".avi", ".mov", ".mkv", ".flv"}
 
 
 class VideoSlicer:
@@ -41,6 +42,9 @@ class VideoSlicer:
         self.clip_subdir = slicer_cfg.get("clip_subdir", "cues")
         self.cleanup_orphan_clips = slicer_cfg.get("cleanup_orphan_clips", True)
         self.cue_merge_settings: CueMergeSettings = settings_from_config(s0.get("cue_merge", {}))
+
+        corr_cfg = s0.get("asr_pipeline", {}).get("correction", {})
+        self.min_page_duration_sec = float(corr_cfg.get("min_page_duration_sec", 1.0))
 
         tf = s0.get("time_filter", {})
         self.time_filter_enabled = tf.get("enabled", False)
@@ -58,11 +62,12 @@ class VideoSlicer:
         lectures: list[dict] = []
         skipped: list[dict[str, str]] = []
         for class_video in sorted(class_dir.glob("*_0.*")):
-            if class_video.suffix.lower() not in {".mp4", ".avi", ".mov", ".mkv"}:
+            if class_video.suffix.lower() not in VIDEO_SUFFIXES:
                 continue
-            lecture_id = class_video.stem.replace("_0", "")
+            stem = class_video.stem
+            lecture_id = stem[:-2] if stem.endswith("_0") else stem
             ppt_video = None
-            for ext in (".mp4", ".avi", ".mov", ".mkv"):
+            for ext in sorted(VIDEO_SUFFIXES):
                 candidate = ppt_dir / f"{lecture_id}_1{ext}"
                 if candidate.exists():
                     ppt_video = candidate
@@ -104,12 +109,16 @@ class VideoSlicer:
         ppt_ids: set[str] = set()
         if class_dir.is_dir():
             for p in class_dir.glob("*_0.*"):
-                if p.suffix.lower() in {".mp4", ".avi", ".mov", ".mkv"}:
-                    class_ids.add(p.stem.replace("_0", ""))
+                if p.suffix.lower() not in VIDEO_SUFFIXES:
+                    continue
+                stem = p.stem
+                class_ids.add(stem[:-2] if stem.endswith("_0") else stem)
         if ppt_dir.is_dir():
             for p in ppt_dir.glob("*_1.*"):
-                if p.suffix.lower() in {".mp4", ".avi", ".mov", ".mkv"}:
-                    ppt_ids.add(p.stem.replace("_1", ""))
+                if p.suffix.lower() not in VIDEO_SUFFIXES:
+                    continue
+                stem = p.stem
+                ppt_ids.add(stem[:-2] if stem.endswith("_1") else stem)
 
         available = sorted(class_ids & ppt_ids, key=lambda x: int(x) if x.isdigit() else x)
         only_class = sorted(class_ids - ppt_ids, key=lambda x: int(x) if x.isdigit() else x)
@@ -164,7 +173,11 @@ class VideoSlicer:
                 if dur <= 0 and working:
                     dur = max(c.end_sec for c in working)
                 if dur > 0:
-                    pages = build_ppt_pages(ppt_boundaries, dur, min_page_duration_sec=1.0)
+                    pages = build_ppt_pages(
+                        ppt_boundaries,
+                        dur,
+                        min_page_duration_sec=self.min_page_duration_sec,
+                    )
             working = merge_adjacent_cues(
                 working,
                 settings=self.cue_merge_settings,
@@ -195,13 +208,21 @@ class VideoSlicer:
         if output.exists():
             return str(output)
 
+        # -ss/-to 放在 -i 之后：按解码时间裁切，比 input-seek + copy 更贴近 cue 边界
         cmd = [
-            "ffmpeg", "-y",
-            "-ss", str(start_sec), "-to", str(end_sec),
-            "-i", str(source), "-c", "copy", str(output),
+            "ffmpeg",
+            "-hide_banner",
+            "-nostdin",
+            "-loglevel", "error",
+            "-y",
+            "-i", str(source),
+            "-ss", str(start_sec),
+            "-to", str(end_sec),
+            "-c", "copy",
+            str(output),
         ]
         try:
-            subprocess.run(cmd, check=True, capture_output=True)
+            subprocess.run(cmd, check=True, capture_output=True, text=True)
         except (subprocess.CalledProcessError, FileNotFoundError) as exc:
             logger.warning("ffmpeg clip extraction failed: %s", exc)
             return ""

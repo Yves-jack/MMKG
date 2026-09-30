@@ -322,7 +322,10 @@ def merge_overlapping_cues(
     overlap_sec: float,
     text_ratio: float,
 ) -> list[SubtitleCue]:
-    """时间重叠且文本相近的 cue 合并为一条（而非简单丢弃）。"""
+    """时间重叠且文本相近的 cue 合并为一条（而非简单丢弃）。
+
+    注意：当前主流水线使用 merge_adjacent_cues；本函数保留供实验/兼容，默认未接线。
+    """
     if len(cues) < 2:
         return list(cues)
 

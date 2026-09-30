@@ -1,0 +1,231 @@
+.root {
+  margin: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 10px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.tab,
+.tabOn {
+  flex: 1;
+  padding: 5px 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tabOn {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 650;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.subTitle {
+  margin: 4px 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.diffCounts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.diffCount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 50%, var(--bg-elev));
+}
+
+.diffCount strong {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.diffTag {
+  font-size: 11px;
+  font-weight: 650;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.diff_easy {
+  color: #9decc4;
+  border-color: rgba(62, 207, 142, 0.35);
+  background: rgba(62, 207, 142, 0.1);
+}
+
+.diff_medium {
+  color: #9db7f0;
+  border-color: rgba(91, 141, 239, 0.35);
+  background: rgba(91, 141, 239, 0.1);
+}
+
+.diff_hard {
+  color: #f0b4c8;
+  border-color: rgba(232, 121, 169, 0.4);
+  background: rgba(232, 121, 169, 0.1);
+}
+
+.diffEmpty {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stat {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 50%, var(--bg-elev));
+}
+
+.stat strong {
+  display: block;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.stat span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 88px;
+  margin-bottom: 10px;
+  padding: 6px 2px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+
+.barCol {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.barTrack {
+  width: 100%;
+  max-width: 14px;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 4px 4px 0 0;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.barFill {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 80%, #fff),
+    color-mix(in srgb, var(--accent) 45%, var(--text))
+  );
+  min-height: 0;
+  transition: height 0.25s ease;
+}
+
+.barLabel {
+  font-size: 9px;
+  color: var(--muted);
+  transform: scale(0.92);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+
+.barVal {
+  font-size: 9px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  min-height: 10px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 140px;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+  font-size: 12px;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowLabel {
+  color: var(--text);
+  font-weight: 560;
+}
+
+.rowMeta {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.empty {
+  padding: 8px 0;
+  font-size: 12px;
+  color: var(--muted);
+}

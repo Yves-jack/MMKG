@@ -81,6 +81,9 @@ def relation_to_triplet(rel: TextbookRelation) -> Triplet:
         description=natural,
         context=context,
         extract_source="textbook",
+        related_knowledge_points=list(
+            getattr(rel, "related_knowledge_points", None) or []
+        ),
     )
 
 

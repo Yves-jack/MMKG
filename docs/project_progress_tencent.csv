@@ -1,43 +1,43 @@
-﻿【Sheet1: 项目进展时间线】
-序号,日期,模块,进展详情,遇到的问题,尝试方案,解决方法与结果,状态,关键指标,相关路径/Commit
-1,2026-07初,论文基线复现,依据 arXiv:2506.21556 在 MMKG 目录实现 VAT-KG 四阶段构建 + 多模态 RAG（CLAP/ViCLIP/FAISS/Checker）,官方 HuggingFace 仓库 vatkg/VATKG_CODE 无法克隆,查论文附录 Section C、WebSearch 超参数、mock 干跑,完成 vatkg/construction 与 vatkg/rag 全模块；数据目录占位,已完成,CLAP≥0.2; ViCLIP剔除最低10%; top-k=5,D:/Yves/MMKG; commit 8ec0705(教学改造前)
-2,2026-07初,教学架构设计,根目录迁至 VAT-KG；新增 Stage0 切片 + teachkg/ 教学流水线；MMKG 作最终产物目录,原 VAT-KG 面向短视频：voice-over 过滤、1视频1三元组，不适配课堂长视频,用户提出 Stage0 语义切片 / Stage1 对齐 / Stage3 子图抽取等改造方案,产出 configs/teaching.yaml、prompts/teaching/、data/ 分层目录,已完成,目标 cue 10-30s；输出 kg/index/viz,configs/teaching.yaml
-3,2026-07,Stage0 初版,PPT SSIM 翻页 + FunASR/固定块 ASR 切片；成对视频 lecture_N_0/_1,无 PPT 时无回退；30s 固定块时间戳粗糙,移植 SlideSegmenter、FixedSegmentASR,首版 VideoSlicer + run_stage0_segment.py 可跑通,已迭代,110 固定片段(早期),teachkg/stage0_segmentation/
-4,2026-07,Stage0 ASR 升级,删除无 PPT 分支；ASR 切 Qwen3-ASR-Flash + syllabus context,FunASR 仅块级时间戳；需 DashScope API,封装 qwen3_asr.py；ffmpeg 16kHz mono；120s 分块,缺 PPT 直接报错；支持 .env 密钥,已迭代,chunk 120s; max 10MB,teachkg/models/qwen3_asr.py
-5,2026-07,Stage0 四阶段高精度 ASR,A Silero VAD → B Qwen3 转写 → C PPT OCR+LLM 校对 → D WhisperX 句级对齐,文本准确率与时间对齐两层质量；原方案 context 为空,HighAccuracyASRPipeline、multimodal_correct、align_timestamps,产出 corrected_cues.json 再切片,已完成,四阶段流水线,teachkg/stage0_segmentation/asr_pipeline.py
-6,2026-07,Stage0 数理逻辑试跑,shuliluoji 第1讲全量 Stage0,VAD 过碎(562段)；WhisperX 因 PyTorch/cu128 并行失败,调 VAD 0.55/0.8s；升级 RTX5070Ti cu128 torch；use_existing_artifacts 续跑,A-C 完成后 D+切片成功,已完成,562 VAD→563 corrected cues; ~55min视频,data/segments/shuliluoji/
-7,2026-07,Stage0 切片优化,segments→cues 句级单元；PPT 假翻页合并(标题+上半区 SSIM),PPT 翻页仅3处；相邻 segment ASR 重复；动画假翻页,ppt_title_cluster 三步合并；cue 合并；PPT 页归属规则,Stage0 完成可进 Stage1,已完成,60/58 cues(句级); 14次PPT翻页(优化后),teachkg/stage0_segmentation/ppt_detector.py
-8,2026-07,Stage1 CLAP/CLIP 过滤,CLAP 音频-文本 + Chinese-CLIP 视频-文本 + PPT 截帧过滤,课堂场景 CLIP 无法区分好坏；CLAP 误杀核心知识点,run_stage1_filter.py；阈值 CLAP≥0.12 CLIP≥0.28,第1讲 58入→43通过(74%),已调整策略,CLAP通过组0.218 vs 拒绝0.067; CLIP拒绝0条,scripts/teaching/run_stage1_filter.py
-9,2026-07,Stage1 过滤策略,CLAP 曾全局 null(warmup失败)；改为 rules_only 默认,14/15 拒绝来自 CLAP<0.12；核心引入课也被拒,修 CLAP 加载；分析后 filter_mode: rules_only,默认只拦 text_too_short/clip_missing；CLAP/CLIP 仅打分写入 report,已完成,CLIP通过/拒绝组均~0.37,configs/teaching.yaml stage1.rules
-10,2026-07,Stage1 三元组抽取,LLM 子图抽取并入 Stage1；AutoEduKG 六类关系 schema,1视频1三元组不适用；旧输出缺 statement_direction,subgraph_extract.txt + triplet_extract.py + 校验,讲次1: 12 cues→137 三元组(早期),已迭代,discard率8.8%; related_with 24.8%,prompts/teaching/subgraph_extract.txt
-11,2026-07,三元组质量迭代,多轮 prompt/校验：statement_direction、natural_statement、槽位...,符号/例题当实体；depend_on 方向反；举例泛滥,LLM 自检+代码格式校验；triplet_validate；is_bad_entity,20+ 单测通过；持续 force 重跑覆盖,持续优化,concrete_relation 槽位不计入字数,tests/test_triplet_extract.py
-12,2026-07,Stage2 实体合并,中英文 alias 匹配、边去重、provenance 合并、related_with 降级,跨讲同名实体；自环；related_with 冗余,entity_merge.py；drop_related_with_when_specific,讲次1: 41实体/41边；课程级 101/117,已完成,embedding_merge 曾0.88后关闭,teachkg/stage2_kg_build/entity_merge.py
-13,2026-07,Stage3 MMKG,证据挂接→CLAP/CLIP对齐→LLM实体描述→FAISS索引,仅有符号KG缺 clip/PPT/描述/检索,evidence_attach、alignment、entity_describe、index_builder,讲次1 mmkg+索引；检索谓词逻辑 score≈0.76,已完成,82索引条(单讲早期); CLAP均值~0.14,teachkg/stage3_mmkg/
-14,2026-07,讲次扩展&课程级,讲次2 Stage0-3；课程级 MMKG 合并；跨讲 RAG,followup 竞态；Stage0 讲次2 ~205 VAD段,run_lecture_followup 修复；run_course_pipeline,29 cues/121三元组；课程218索引(早期)→1307(全课),进行中,101实体/117边(2讲时),scripts/teaching/run_course_pipeline.py
-15,2026-07,RAG 增强,混合检索+BM25；图谱1-hop；多轮记忆；答案Checker；时间戳引用,纯向量漏检；回答缺证据,hybrid_retriever、answer_checker、multi_turn,交互式 RAG + Gradio；跨讲 lecture-id all,已完成,hybrid主题召回83.3% vs dense75%,teachkg/rag/
-16,2026-07-11,RAG 评测 v1,qa_eval 12题；真实 LLM 评测；A/B 检索对比,缺标准评测集,run_rag_eval.py；run_rag_ab_eval.py,命中率100%；supported 91.7%,已迭代,dense75%/hybrid83.3%/hybrid+graph83.3%,data/eval/shuliluoji/qa_eval.jsonl
-17,2026-07,教材母图入库,AutoEduKG CS2501 教材 KG 复制到 data/textbook/,纯 LLM 770条缺教材规范术语,1482实体+2754关系；gitignore 保留 llm_only 基线,stage1.textbook_kg.path 配置就绪,已完成,1482实体/2754关系,data/textbook/CS2501-.../
-18,2026-07-13,教材 Hybrid 抽取,子图检索+约束增量 LLM；extract_source=textbook|lecture_delta,全课 LLM770 vs 教材概念边；编号公理过具体,textbook_kg/*；subgraph_hybrid_extract.txt；讲次1/10实验,讲次10: 63条(60+3)零过具体；讲次1: 79→82条优化后,已完成,教材同名实体100%(讲次10),teachkg/textbook_kg/
-19,2026-07-13,Hybrid 讲次1 问题修复,每cue至少1教材边；零覆盖fallback；占位符过滤；语义去重,2个核心cue零覆盖；符号占位增量；awkward自然语句,min_edges_per_cue；zero_coverage_fallback；is_placeholder_entity；filter_delta_triplets,零覆盖cue 2→0；符号占位 3→0；cue覆盖12/12,已完成,808300 cue 0→3条,teachkg/textbook_kg/lecture_assign.py
-20,2026-07-13,Provenance 全链路,teachkg/provenance.py 统一 triplet→边→索引→RAG,边 provenance 仅 cue_id+context；RAG 缺原文/clip/讲次,from_triplet；enrich_with_cue_index；text_snippets；Stage2/3/RAG贯通,766/766边含 context+source_text；回答末尾【来源】脚注,已完成,索引1307条(课程级),teachkg/provenance.py; f7bc2c0
-21,2026-07-13,RAG 全课检索,retrieval_scope:course；infer_lecture:false；评测去 lecture_id,按讲次索引+题干讲次标注导致 q12 等检索偏讲,默认 --lecture-id all；全课 mmkg_index；format_hit 含 provenance 原文,topic召回88.9%；hit100%,已完成,data/index/shuliluoji/course/mmkg_index/
-22,2026-07-13,RAG 严格校验,check_strict+check_min_confidence 0.75；规则后处理 apply_strict_check_rules,supported 率因 partial 虚高；LLM 过度推断判 supported,收紧 rag_answer_check.txt；unsupported 诚实拒答保留,supported 72.2%→83.3%→50%(过严)→88.9%(provenance后),已完成,18题: hit100% supported88.9% unsupported2,configs/teaching.yaml stage4
-23,2026-07-13,RAG 评测演进,18题全链路评测；索引缓存修复 GPU OOM,批量评测每题重载 FAISS 崩溃；q4/q12 unsupported,MMKGRAG.clear_cache()；索引缓存；partial_rate统计,q4合取真值表、q12第1讲析取(题干与检索讲次冲突)仍 unsupported,待优化,q4/q12 见 qa_eval_results.json,data/eval/shuliluoji/qa_eval_results.json
-24,2026-07-13,CI teaching-smoke,GitHub Actions pytest 3文件冒烟,ModuleNotFoundError: teachkg；无 pyproject/setup；pytest 未加 pythonpath,本地无 PYTHONPATH 复现；查 GH Actions API,pytest.ini pythonpath=.; python -m pytest；#2/#3 success,已完成,17-20 passed; ~1m40s/次,pytest.ini; f096cf1
-25,2026-07-13,Git 提交&源码恢复,Initial commit + CI fix + feat + chore 推送 origin/main,排查CI时 git checkout 误还原 teachkg；provenance 曾未入库,从 agent 转录 replay StrReplace 恢复源码；分2 commit,8ec0705→f096cf1→f7bc2c0→c8e963f；全量120 passed,已完成,https://github.com/Yves-jack/MMKG,commits on main
-
-【Sheet2: RAG评测演进与失败案例】
-编号,类别,场景,问题描述,尝试,结果,状态,指标,备注
-E1,RAG评测,讲次限制索引,lecture_id 过滤 + infer_lecture,q12等偏讲检索,—,supported 72.2%(13/18),已解决,改全课索引,—
-E2,RAG评测,全课索引无严格校验,retrieval_scope:course,partial 过多,—,supported 83.3%,已迭代,—,—
-E3,RAG评测,严格校验过严,check_strict 初版,supported 50%,放宽规则+provenance上下文,supported 88.9%(16/18),当前,partial0% unsupported11.1%,qa_eval_results.json
-E4,RAG失败案例,q4 合取真值表,has_hits=true,图谱缺真值表细粒度边,增量 property_of 或专门抽取,verdict=unsupported(诚实拒答),待补图谱,expected:合取联结词真值表,q4
-E5,RAG失败案例,q12 第1讲析取,题干含第1讲但全课检索命中第19讲,infer_lecture:false,修正题干或加讲次过滤选项,verdict=unsupported,待优化,引用 shuliluoji_19_*,q12
-
-【Sheet3: 待办与规划】
-编号,类别,事项,背景,尝试,下一步,状态,指标,备注
-T1,数据,批量跑讲次3-18 Stage0-3,8讲缺号；仅1/2/10等部分 hybrid,—,run_hybrid_batch / incremental,进行中,—,—
-T2,质量,embedding merge 可疑 alias 抽查,0.88阈值合并43对,人工审阅 merge_map_review,—,待做,—,data/kg/.../merge_map_review_course.jsonl
-T3,RAG,补细粒度边(真值表/联结词含义),概念层图谱定位,允许 property_of 描述联结词,—,待做,—,q4/q8/q12
-T4,工程,entity_registry.json / embeddings.npy 不入库,运行时生成,gitignore 可选,—,建议,2.7MB npy,—
-T5,研究,对比实验(规则/RAG/多智能体),任务.md 规划,—,—,规划中,—,任务.md
+﻿【Sheet1: 项目进展时间线】
+序号,日期,模块,进展详情,遇到的问题,尝试方案,解决方法与结果,状态,关键指标,相关路径/Commit
+1,2026-07初,论文基线复现,依据 arXiv:2506.21556 在 MMKG 目录实现 VAT-KG 四阶段构建 + 多模态 RAG（CLAP/ViCLIP/FAISS/Checker）,官方 HuggingFace 仓库 vatkg/VATKG_CODE 无法克隆,查论文附录 Section C、WebSearch 超参数、mock 干跑,完成 vatkg/construction 与 vatkg/rag 全模块；数据目录占位,已完成,CLAP≥0.2; ViCLIP剔除最低10%; top-k=5,D:/Yves/MMKG; commit 8ec0705(教学改造前)
+2,2026-07初,教学架构设计,根目录迁至 VAT-KG；新增 Stage0 切片 + teachkg/ 教学流水线；MMKG 作最终产物目录,原 VAT-KG 面向短视频：voice-over 过滤、1视频1三元组，不适配课堂长视频,用户提出 Stage0 语义切片 / Stage1 对齐 / Stage3 子图抽取等改造方案,产出 configs/teaching.yaml、prompts/teaching/、data/ 分层目录,已完成,目标 cue 10-30s；输出 kg/index/viz,configs/teaching.yaml
+3,2026-07,Stage0 初版,PPT SSIM 翻页 + FunASR/固定块 ASR 切片；成对视频 lecture_N_0/_1,无 PPT 时无回退；30s 固定块时间戳粗糙,移植 SlideSegmenter、FixedSegmentASR,首版 VideoSlicer + run_stage0_segment.py 可跑通,已迭代,110 固定片段(早期),teachkg/stage0_segmentation/
+4,2026-07,Stage0 ASR 升级,删除无 PPT 分支；ASR 切 Qwen3-ASR-Flash + syllabus context,FunASR 仅块级时间戳；需 DashScope API,封装 qwen3_asr.py；ffmpeg 16kHz mono；120s 分块,缺 PPT 直接报错；支持 .env 密钥,已迭代,chunk 120s; max 10MB,teachkg/models/qwen3_asr.py
+5,2026-07,Stage0 四阶段高精度 ASR,A Silero VAD → B Qwen3 转写 → C PPT OCR+LLM 校对 → D WhisperX 句级对齐,文本准确率与时间对齐两层质量；原方案 context 为空,HighAccuracyASRPipeline、multimodal_correct、align_timestamps,产出 corrected_cues.json 再切片,已完成,四阶段流水线,teachkg/stage0_segmentation/asr_pipeline.py
+6,2026-07,Stage0 数理逻辑试跑,数理逻辑 第1讲全量 Stage0,VAD 过碎(562段)；WhisperX 因 PyTorch/cu128 并行失败,调 VAD 0.55/0.8s；升级 RTX5070Ti cu128 torch；use_existing_artifacts 续跑,A-C 完成后 D+切片成功,已完成,562 VAD→563 corrected cues; ~55min视频,data/segments/数理逻辑/
+7,2026-07,Stage0 切片优化,segments→cues 句级单元；PPT 假翻页合并(标题+上半区 SSIM),PPT 翻页仅3处；相邻 segment ASR 重复；动画假翻页,ppt_title_cluster 三步合并；cue 合并；PPT 页归属规则,Stage0 完成可进 Stage1,已完成,60/58 cues(句级); 14次PPT翻页(优化后),teachkg/stage0_segmentation/ppt_detector.py
+8,2026-07,Stage1 CLAP/CLIP 过滤,CLAP 音频-文本 + Chinese-CLIP 视频-文本 + PPT 截帧过滤,课堂场景 CLIP 无法区分好坏；CLAP 误杀核心知识点,run_stage1_filter.py；阈值 CLAP≥0.12 CLIP≥0.28,第1讲 58入→43通过(74%),已调整策略,CLAP通过组0.218 vs 拒绝0.067; CLIP拒绝0条,scripts/teaching/run_stage1_filter.py
+9,2026-07,Stage1 过滤策略,CLAP 曾全局 null(warmup失败)；改为 rules_only 默认,14/15 拒绝来自 CLAP<0.12；核心引入课也被拒,修 CLAP 加载；分析后 filter_mode: rules_only,默认只拦 text_too_short/clip_missing；CLAP/CLIP 仅打分写入 report,已完成,CLIP通过/拒绝组均~0.37,configs/teaching.yaml stage1.rules
+10,2026-07,Stage1 三元组抽取,LLM 子图抽取并入 Stage1；AutoEduKG 六类关系 schema,1视频1三元组不适用；旧输出缺 statement_direction,subgraph_extract.txt + triplet_extract.py + 校验,讲次1: 12 cues→137 三元组(早期),已迭代,discard率8.8%; related_with 24.8%,prompts/teaching/subgraph_extract.txt
+11,2026-07,三元组质量迭代,多轮 prompt/校验：statement_direction、natural_statement、槽位...,符号/例题当实体；depend_on 方向反；举例泛滥,LLM 自检+代码格式校验；triplet_validate；is_bad_entity,20+ 单测通过；持续 force 重跑覆盖,持续优化,concrete_relation 槽位不计入字数,tests/test_triplet_extract.py
+12,2026-07,Stage2 实体合并,中英文 alias 匹配、边去重、provenance 合并、related_with 降级,跨讲同名实体；自环；related_with 冗余,entity_merge.py；drop_related_with_when_specific,讲次1: 41实体/41边；课程级 101/117,已完成,embedding_merge 曾0.88后关闭,teachkg/stage2_kg_build/entity_merge.py
+13,2026-07,Stage3 MMKG,证据挂接→CLAP/CLIP对齐→LLM实体描述→FAISS索引,仅有符号KG缺 clip/PPT/描述/检索,evidence_attach、alignment、entity_describe、index_builder,讲次1 mmkg+索引；检索谓词逻辑 score≈0.76,已完成,82索引条(单讲早期); CLAP均值~0.14,teachkg/stage3_mmkg/
+14,2026-07,讲次扩展&课程级,讲次2 Stage0-3；课程级 MMKG 合并；跨讲 RAG,followup 竞态；Stage0 讲次2 ~205 VAD段,run_lecture_followup 修复；run_course_pipeline,29 cues/121三元组；课程218索引(早期)→1307(全课),进行中,101实体/117边(2讲时),scripts/teaching/run_course_pipeline.py
+15,2026-07,RAG 增强,混合检索+BM25；图谱1-hop；多轮记忆；答案Checker；时间戳引用,纯向量漏检；回答缺证据,hybrid_retriever、answer_checker、multi_turn,交互式 RAG + Gradio；跨讲 lecture-id all,已完成,hybrid主题召回83.3% vs dense75%,teachkg/rag/
+16,2026-07-11,RAG 评测 v1,qa_eval 12题；真实 LLM 评测；A/B 检索对比,缺标准评测集,run_rag_eval.py；run_rag_ab_eval.py,命中率100%；supported 91.7%,已迭代,dense75%/hybrid83.3%/hybrid+graph83.3%,data/eval/数理逻辑/qa_eval.jsonl
+17,2026-07,教材母图入库,AutoEduKG CS2501 教材 KG 复制到 data/textbook/,纯 LLM 770条缺教材规范术语,1482实体+2754关系；gitignore 保留 llm_only 基线,stage1.textbook_kg.path 配置就绪,已完成,1482实体/2754关系,data/textbook/CS2501-.../
+18,2026-07-13,教材 Hybrid 抽取,子图检索+约束增量 LLM；extract_source=textbook|lecture_delta,全课 LLM770 vs 教材概念边；编号公理过具体,textbook_kg/*；subgraph_hybrid_extract.txt；讲次1/10实验,讲次10: 63条(60+3)零过具体；讲次1: 79→82条优化后,已完成,教材同名实体100%(讲次10),teachkg/textbook_kg/
+19,2026-07-13,Hybrid 讲次1 问题修复,每cue至少1教材边；零覆盖fallback；占位符过滤；语义去重,2个核心cue零覆盖；符号占位增量；awkward自然语句,min_edges_per_cue；zero_coverage_fallback；is_placeholder_entity；filter_delta_triplets,零覆盖cue 2→0；符号占位 3→0；cue覆盖12/12,已完成,808300 cue 0→3条,teachkg/textbook_kg/lecture_assign.py
+20,2026-07-13,Provenance 全链路,teachkg/provenance.py 统一 triplet→边→索引→RAG,边 provenance 仅 cue_id+context；RAG 缺原文/clip/讲次,from_triplet；enrich_with_cue_index；text_snippets；Stage2/3/RAG贯通,766/766边含 context+source_text；回答末尾【来源】脚注,已完成,索引1307条(课程级),teachkg/provenance.py; f7bc2c0
+21,2026-07-13,RAG 全课检索,retrieval_scope:course；infer_lecture:false；评测去 lecture_id,按讲次索引+题干讲次标注导致 q12 等检索偏讲,默认 --lecture-id all；全课 mmkg_index；format_hit 含 provenance 原文,topic召回88.9%；hit100%,已完成,data/index/数理逻辑/course/mmkg_index/
+22,2026-07-13,RAG 严格校验,check_strict+check_min_confidence 0.75；规则后处理 apply_strict_check_rules,supported 率因 partial 虚高；LLM 过度推断判 supported,收紧 rag_answer_check.txt；unsupported 诚实拒答保留,supported 72.2%→83.3%→50%(过严)→88.9%(provenance后),已完成,18题: hit100% supported88.9% unsupported2,configs/teaching.yaml stage4
+23,2026-07-13,RAG 评测演进,18题全链路评测；索引缓存修复 GPU OOM,批量评测每题重载 FAISS 崩溃；q4/q12 unsupported,MMKGRAG.clear_cache()；索引缓存；partial_rate统计,q4合取真值表、q12第1讲析取(题干与检索讲次冲突)仍 unsupported,待优化,q4/q12 见 qa_eval_results.json,data/eval/数理逻辑/qa_eval_results.json
+24,2026-07-13,CI teaching-smoke,GitHub Actions pytest 3文件冒烟,ModuleNotFoundError: teachkg；无 pyproject/setup；pytest 未加 pythonpath,本地无 PYTHONPATH 复现；查 GH Actions API,pytest.ini pythonpath=.; python -m pytest；#2/#3 success,已完成,17-20 passed; ~1m40s/次,pytest.ini; f096cf1
+25,2026-07-13,Git 提交&源码恢复,Initial commit + CI fix + feat + chore 推送 origin/main,排查CI时 git checkout 误还原 teachkg；provenance 曾未入库,从 agent 转录 replay StrReplace 恢复源码；分2 commit,8ec0705→f096cf1→f7bc2c0→c8e963f；全量120 passed,已完成,https://github.com/Yves-jack/MMKG,commits on main
+
+【Sheet2: RAG评测演进与失败案例】
+编号,类别,场景,问题描述,尝试,结果,状态,指标,备注
+E1,RAG评测,讲次限制索引,lecture_id 过滤 + infer_lecture,q12等偏讲检索,—,supported 72.2%(13/18),已解决,改全课索引,—
+E2,RAG评测,全课索引无严格校验,retrieval_scope:course,partial 过多,—,supported 83.3%,已迭代,—,—
+E3,RAG评测,严格校验过严,check_strict 初版,supported 50%,放宽规则+provenance上下文,supported 88.9%(16/18),当前,partial0% unsupported11.1%,qa_eval_results.json
+E4,RAG失败案例,q4 合取真值表,has_hits=true,图谱缺真值表细粒度边,增量 property_of 或专门抽取,verdict=unsupported(诚实拒答),待补图谱,expected:合取联结词真值表,q4
+E5,RAG失败案例,q12 第1讲析取,题干含第1讲但全课检索命中第19讲,infer_lecture:false,修正题干或加讲次过滤选项,verdict=unsupported,待优化,引用 数理逻辑_19_*,q12
+
+【Sheet3: 待办与规划】
+编号,类别,事项,背景,尝试,下一步,状态,指标,备注
+T1,数据,批量跑讲次3-18 Stage0-3,8讲缺号；仅1/2/10等部分 hybrid,—,run_hybrid_batch / incremental,进行中,—,—
+T2,质量,embedding merge 可疑 alias 抽查,0.88阈值合并43对,人工审阅 merge_map_review,—,待做,—,data/kg/.../merge_map_review_course.jsonl
+T3,RAG,补细粒度边(真值表/联结词含义),概念层图谱定位,允许 property_of 描述联结词,—,待做,—,q4/q8/q12
+T4,工程,entity_registry.json / embeddings.npy 不入库,运行时生成,gitignore 可选,—,建议,2.7MB npy,—
+T5,研究,对比实验(规则/RAG/多智能体),任务.md 规划,—,—,规划中,—,任务.md

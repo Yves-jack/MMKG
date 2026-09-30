@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import {
-  isBidirectionalRelation,
-  RELATION_EDGE_COLOR,
-  relationArrowText,
-} from "@/lib/pipeline/graphLogic";
+import { isBidirectionalRelation, RELATION_EDGE_COLOR, relationArrowText } from "@/lib/pipeline/graphLogic";
 import type { PipelineEdge } from "@/lib/pipeline/types";
 import { LatexText } from "./LatexText";
 import styles from "./SliceTextAnnotator.module.css";
@@ -682,11 +678,6 @@ export function SliceTextAnnotator({
         className || ""
       }`.trim()}
     >
-      <div className={styles.meta}>
-        已标注 {matched} 处依据
-        {edges?.length ? ` · 边 ${edges.length}` : ""}
-        {" · 悬停划线查看关系"}
-      </div>
       {segments.map((seg, i) => {
         if (seg.kind === "text") {
           return (

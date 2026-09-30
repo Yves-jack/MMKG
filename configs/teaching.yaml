@@ -11,18 +11,24 @@ project:
   experiments_dir: data/experiments     # A/B 对比、消融等实验产物（非流水线正式输出）
   data_dir: data                        # pretty 镜像相对根目录
 
+# 批处理：无授课内容讲次 → skipped（非 fail）
+batch:
+  skip_lectures: []                     # 如 ["17"] 已知考试场
+  auto_skip_empty: true                 # Stage1 后 0 三元组自动跳过 Stage2/3
+
 # 全局 LLM（DashScope OpenAI 兼容；密钥见 .env 中 DASHSCOPE_API_KEY）
 llm:
   api_key: null                  # null → DASHSCOPE_API_KEY
   base_url: null                 # null → DASHSCOPE_BASE_URL / LLM_BASE_URL
-  model: deepseek-v4-flash-0731  # deepseek-v4-flash-0731 / deepseek-v3 / qwen-plus
+  model: deepseek-v4-flash-0731  # deepseek-v4-flash-0731 / qwen-plus
   max_retry: 6
   retry_pause_sec: 5
 
 # Stage 0: 视频语义切片（课堂录屏 + PPT 录屏必须成对）
 stage0:
   ppt_detector:
-    sample_interval_sec: 1        # SSIM 采样间隔（秒），越小越不易漏检
+    coarse_interval_sec: 5        # 粗扫间隔；null/关闭或 ≤ sample 时退化为均匀细扫
+    sample_interval_sec: 1        # 变点窗内加密间隔（秒）
     ssim_threshold: 0.15          # 降低阈值，提高翻页灵敏度
     min_gap_sec: 2.0              # 相邻采样重复触发去抖
     min_page_sec: 5.0             # 短于此间隔的翻页点视为动画步骤并合并
@@ -47,6 +53,10 @@ stage0:
       min_speech_sec: 0.8       # 短于 0.8s 的片段丢弃
       min_silence_sec: 0.8      # 静音 <0.8s 不切开，合并相邻语音
       max_segment_sec: 120.0    # 单段最长，超过再切（API 10MB 限制）
+      vad_split_overlap_sec: 0.5  # 超长 VAD 段切分重叠（与 primary_asr.overlap_sec 无关）
+      # 多课程/多进程并发时再打开，避免 CPU 过订阅；默认不限制
+      torch_num_threads: null
+      onnx_intra_op_num_threads: null
 
     # B: Qwen3-ASR-Flash 主转写（DashScope API；密钥见项目根 .env）
     primary_asr:
@@ -58,6 +68,15 @@ stage0:
       language: zh
       enable_itn: true
       context: ""                    # 全局术语偏置；课程大纲见 workspace/syllabus/
+      # 仅用于 Qwen3ASRClient.transcribe_video 的 VAD 超长段切分重叠（主路径用 preprocess.vad_split_overlap_sec）
+      overlap_sec: 0.0
+      # 重试：缺省继承 llm.max_retry / llm.retry_pause_sec
+      # max_retry: 6
+      # retry_pause_sec: 5
+      max_retry_pause_sec: 60.0      # 指数退避上限（秒）
+      retry_jitter: true             # 退避乘 0.5~1.5 随机抖动，减轻限流尖峰
+      remove_checkpoint_on_success: true  # 整讲成功后删除 raw_cues.checkpoint.json
+      max_workers: 4                 # VAD 段并行 ASR；429 多可降到 2，稳了可试 8
 
     # C: PPT OCR + LLM 校对
     correction:
@@ -120,7 +139,7 @@ stage2:
     textbook_canonical: true              # 合并时优先教材实体名作 canonical
     merge_synonym_of: true                # synonym_of 等价实体合并；正式名作主名，其余进 aliases
     embedding_merge:
-      enabled: false                      # 向量相似度合并不稳定，仅保留字符串规则合并
+      enabled: true                       # 近义实体向量合并（阈值见下）
       similarity_threshold: 0.93
       max_statements: 2
       block_structural_pairs: true
@@ -150,8 +169,8 @@ stage3:
 
   alignment:
     enabled: true
-    clap_min_score: 0.0          # 0=只打分不过滤；VAT-KG 参考 0.2
-    clip_min_score: 0.0
+    clap_min_score: 0.2          # 低于此标记 alignment_ok=false
+    clip_min_score: 0.2
     skip_if_encoders_unavailable: true
     video_grounding_enabled: true    # 对 clip 视频采样 CLIP 打分
     video_max_frames: 4
@@ -215,7 +234,7 @@ stage1:
   rejected_filename: rejected_cues.jsonl
   triplets_filename: triplets.jsonl          # 活跃三元组（后续教材融合/混合可写此文件）
   llm_only:
-    enabled: true
+    enabled: false
     triplets_filename: llm_only/triplets.jsonl   # 纯 LLM 基线，教材融合不得覆盖
     sync_active_triplets: false                  # 混合模式：不覆盖 llm_only 基线
 
@@ -261,7 +280,7 @@ stage1:
       secondary_chapter_cap: 0.25              # 次章权重上限，防污染主章
       off_chapter_penalty: 0.45                # 相对主章的章外衰减
       lecture_idf_power: 1.0                   # 跨讲次 IDF；0=关闭
-      use_log_duration: true
+      use_log_duration: false  # 已废弃：mention 通道只用次数+最长匹配
       classroom_hub_penalty: 0.15
       # —— 实体卫生 / 降权（可配置；默认内置教学通用词表，与配置取并集）——
       generic_weight: 0.25                     # 「公式」「证明」等整词降权
@@ -297,7 +316,7 @@ stage1:
       lecture_min_relation_score: 4.0            # 仅当 score_prune_edges=true 时生效
       cue_min_relation_score: 4.0                # 仅当 score_prune_edges=true 时生效
       require_text_anchor: false                 # 已停用：消融显示无效
-      require_both_ends_in_candidate_seeds: true # 一跳两端∈候选池；两跳落点∈筛后种子（中间点不限）
+      require_both_ends_in_candidate_seeds: true  # true=一跳两端∈候选种子池（筛后种子—候选种子）；false=一跳另一端不限（噪声大）。两跳仍为种子—中间—种子
       score_prune_edges: false                   # false=不做分数硬剪枝，交给 LLM 边筛
       lecture_dynamic_cap: true                  # 按 cue 数动态收紧边池上限
       lecture_edges_per_cue_cap: 7.0             # 动态上限 ≈ cue数 × 此值
@@ -331,6 +350,11 @@ stage1:
         require_classroom_evidence: true
         min_evidence_chars: 4
         description_max_chars: 60                # 候选边附带的教材描述截断长度；0=不附描述
+      knowledge_point_extract:
+        enabled: false
+        prompt: stage1/knowledge_point_extract.txt
+        temperature: 0.1
+        llm_model: null                          # null → 用全局 llm.model
     entity_registry:
       link_delta_entities: true                  # 增量边实体链接到教材 canonical
       output_path: entity_registry.json
@@ -347,36 +371,45 @@ stage1:
       delta_words_per_item: 0
       max_delta_per_cue: null
       delta_min_per_cue: 1
-      # 抽全：首轮后对照已抽结果再扫一遍，补遗漏概念边
-      delta_completeness_pass: true
+      # 抽全：首轮后对照已抽结果再扫一遍，补遗漏「有原文依据」的概念边（仍属 lecture_delta）
+      delta_completeness_pass: false
       delta_completeness_prompt: stage1/subgraph_hybrid_extract_complete.txt
+      # 增量三路：①原文严格 lecture_delta ②KG补全 kg_completion ③跨段 cross_cue
+      kg_completion:
+        enabled: true
+        prompt: stage1/subgraph_kg_completion.txt
+        validate_prompt: stage1/triplet_validate_kg_completion.txt
+        max_triples: null                      # null=不封顶；正整数封顶
       # 跨段抽取：单段结果不动；按字数滑动窗补隐含衔接边（不挂 multimodal / context）
       # 半窗滑动：下一窗从上一窗中间字符所在段落起；重叠边靠后续/讲次内 SPO 去重
       cross_cue_extract:
         enabled: true
         prompt: stage1/subgraph_cross_cue_extract.txt
-        max_triples: 6
+        max_triples: 8                         # 略增：分类并列补齐常需多条平行边
         char_budget: 1500                      # 窗口累计字数阈值
         slide: half                            # half=半窗（中间字符所在段）
       dedupe_against_textbook: true              # 增量按 SPO 与本 cue 子图去重（忽略 concrete）
       # exact_fullname=仅全名 SPO；label=全名+中文主名（更严，易误伤）
       dedupe_textbook_match: exact_fullname
-      zero_coverage_fallback: false              # 关闭：不再从 llm_only 基线补边
-      thin_coverage_fallback: false              # 关闭：边筛收紧后易误触发，冲淡 hybrid
+      zero_coverage_fallback: true              # 关闭：不再从 llm_only 基线补边
+      thin_coverage_fallback: true              # 关闭：边筛收紧后易误触发，冲淡 hybrid
       thin_coverage_ratio: 0.55                # 仅 thin_coverage_fallback=true 时生效
       thin_coverage_min_llm: 3                   # 仅 thin_coverage_fallback=true 时生效
       llm_fallback_max: 5                        # 仅 fallback 开启时生效
 
   rules:
-    require_clip: true
+    require_clip: false
     min_text_chars: 5
 
   ppt_frame:
     enabled: true
-    source: stage0_ocr           # 复用 Stage 0 的 asr_work/{lecture}/ocr/ppt_page_{idx}.jpg
+    source: stage0_ocr
+    ocr_text:
+      enabled: true
+      max_chars: 2000           # 复用 Stage 0 的 asr_work/{lecture}/ocr/ppt_page_{idx}.jpg
     min_page_duration_sec: 1.0
 
-  # 三元组抽取前文本预处理：删例子/低关联 + 总结要点
+  # 三元组抽取前文本预处理：删例子/介绍引入/低关联 + 总结要点
   # extract_from_asr=false：子图/增量抽取使用 preprocess 后的 extract_text
   text_preprocess:
     enabled: true
@@ -384,12 +417,13 @@ stage1:
     rules:
       remove_markdown_noise: true
       remove_classroom_admin: true
+      remove_intro_framing: true               # 规则预删纯介绍/引入铺垫句
       remove_non_knowledge: false              # 总结交给 LLM；规则侧勿误伤短定义
       knowledge_min_score: 1.0
       remove_example_labels: true              # 规则预删 P/Q 标签例题行
       dedupe_paragraphs: true
     llm:
-      enabled: true                # LLM：删例子/低关联并总结
+      enabled: false                # LLM：删例子/介绍引入/低关联并总结
       prompt: stage1/cue_text_preprocess.txt
       llm_model: null
       temperature: 0.1
@@ -413,8 +447,8 @@ stage1:
         fix_enabled: true
         reextract_enabled: true
         fix_fallback_reextract: true   # fix 失败后对该条再尝试单条 re_extract
-        max_fix_attempts: 3           # 语义：每条可重试上限（实现上每条主动作 1 次）
-        max_reextract_attempts: 3
+        max_fix_attempts: 1           # 收敛重试层：每条至多 1 次 fix
+        max_reextract_attempts: 1
         # fix/re_extract 失败时保留结构合法的原增量边，避免校验把抽全结果清零
         keep_original_on_retry_fail: true
         fix_prompt: stage1/triplet_fix.txt

@@ -246,10 +246,15 @@ def retrieve_lecture_subgraph(
         selected = filtered
 
     edge_filt = getattr(retriever, "edge_llm_filter", None)
+    kps: list[str] = []
+    kp_ext = getattr(retriever, "knowledge_point_extractor", None)
+    if kp_ext is not None and getattr(kp_ext, "enabled", False):
+        kps = list(kp_ext.extract(combined) or [])
     if edge_filt is not None and getattr(edge_filt, "enabled", False) and selected:
         selected = edge_filt.filter(
             combined,
             selected,
             expansion_seeds=seeds,
+            knowledge_points=kps,
         )
     return seeds, selected

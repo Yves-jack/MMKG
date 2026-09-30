@@ -1,11 +1,25 @@
 .root {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
   word-break: break-word;
   color: #d5dde8;
   font-family: var(--font);
   font-size: 13.5px;
   line-height: 1.95;
+}
+
+.root :global(.katex-display),
+.root :global(.katex) {
+  max-width: 100%;
+}
+
+.root :global(.katex-display) {
+  overflow-x: hidden;
 }
 
 .toneNew {

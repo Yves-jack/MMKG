@@ -21,8 +21,8 @@ ROOT = Path(__file__).resolve().parents[2]
 AUTOEDU = ROOT.parent / "AutoEduKG"
 DEFAULT_PROCESSED = AUTOEDU / "data" / "processed-former"
 DEFAULT_EXTRACT_ROOT = AUTOEDU / "output" / "output-former"
-DEFAULT_OUT_DIR = ROOT / "data" / "viz" / "shuliluoji" / "textbook_kg"
-DEFAULT_LEGACY = ROOT / "data" / "viz" / "shuliluoji" / "textbook_kg_showcase.json"
+DEFAULT_OUT_DIR = ROOT / "data" / "viz" / "数理逻辑" / "textbook_kg"
+DEFAULT_LEGACY = ROOT / "data" / "viz" / "数理逻辑" / "textbook_kg_showcase.json"
 # 当前试点：仅数理逻辑与集合论（processed 正式目录）
 DEFAULT_COURSE = "CS2501-离散数学（数理逻辑与集合论）"
 DEFAULT_FILE_ID = DEFAULT_COURSE
@@ -879,7 +879,7 @@ def main() -> None:
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--legacy-out", type=Path, default=DEFAULT_LEGACY)
     parser.add_argument("--default-file", default=DEFAULT_FILE_ID)
-    parser.add_argument("--course-id", default="shuliluoji")
+    parser.add_argument("--course-id", default="数理逻辑")
     parser.add_argument("--max-chars", type=int, default=80000)
     parser.add_argument(
         "--only",
@@ -935,6 +935,7 @@ def main() -> None:
                 "chapter_count": ent["chapter_count"],
                 "available": ent["available"],
                 "reason": ent.get("reason") or "",
+                # 扁平旧路径；web sync-data 会改写为 /data/courses/{course}/textbook_kg/...
                 "dataUrl": f"/data/textbook_kg/{ent['id']}.json",
             }
         )

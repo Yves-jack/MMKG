@@ -1,23 +1,26 @@
 """
-Qwen3-ASR-Flash 客户端：分块转写课堂音频。
+Qwen3-ASR-Flash 客户端：薄封装 API 转写。
+
+音视频预处理（抽音 / VAD / 切段）统一走 ``AudioPreprocessor``，
+本模块只负责调用模型；``transcribe_video`` 为兼容旧入口的便捷封装。
 """
 
 from __future__ import annotations
 
 import logging
 import os
-import subprocess
 import tempfile
-import wave
+import threading
 from pathlib import Path
 
 from teachkg.models.qwen3_asr_flash import Qwen3ASRFlashModel
+from teachkg.stage0_segmentation.audio_preprocess import AudioPreprocessor
 
 logger = logging.getLogger(__name__)
 
 
 class Qwen3ASRClient:
-    """对课堂音频做分块转写，返回带时间偏移的字幕 cue。"""
+    """对课堂音频做 API 转写；可选便捷视频入口复用 AudioPreprocessor。"""
 
     def __init__(
         self,
@@ -28,34 +31,40 @@ class Qwen3ASRClient:
         chunk_duration_sec: int = 120,
         language: str = "zh",
         enable_itn: bool = True,
+        *,
+        overlap_sec: float = 0.0,
     ) -> None:
         self.api_key = api_key or os.environ.get("DASHSCOPE_API_KEY")
+        if not self.api_key:
+            raise ValueError("未提供 api_key，且环境变量 DASHSCOPE_API_KEY 未设置")
         self.base_url = base_url or os.environ.get(
             "DASHSCOPE_BASE_URL",
             "https://dashscope.aliyuncs.com/compatible-mode/v1",
         )
         self.model_name = model
-        self.max_local_file_mb = max_local_file_mb
-        self.chunk_duration_sec = chunk_duration_sec
+        self.max_local_file_mb = max(1, int(max_local_file_mb))
+        # 仅供 transcribe_video 传给 AudioPreprocessor.max_segment_sec / 切段重叠
+        self.chunk_duration_sec = max(1, int(chunk_duration_sec))
         self.language = language
         self.enable_itn = enable_itn
+        self.overlap_sec = max(0.0, float(overlap_sec))
         self._model: Qwen3ASRFlashModel | None = None
+        self._lock = threading.Lock()
 
     def _get_model(self) -> Qwen3ASRFlashModel:
         if self._model is None:
-            self._model = Qwen3ASRFlashModel(
-                api_key=self.api_key,
-                base_url=self.base_url,
-                model=self.model_name,
-                max_local_file_mb=self.max_local_file_mb,
-            )
+            with self._lock:
+                if self._model is None:
+                    self._model = Qwen3ASRFlashModel(
+                        api_key=self.api_key,
+                        base_url=self.base_url,
+                        model=self.model_name,
+                        max_local_file_mb=self.max_local_file_mb,
+                    )
         return self._model
 
-    def transcribe_audio(
-        self,
-        audio_path: str | Path,
-        context: str = "",
-    ) -> str:
+    def transcribe_audio(self, audio_path: str | Path, context: str = "") -> str:
+        """转写单个音频文件，返回纯文本。主路径（asr_primary）只调用本方法。"""
         result = self._get_model().transcribe(
             audio_path=audio_path,
             context=context,
@@ -70,76 +79,39 @@ class Qwen3ASRClient:
         context: str = "",
         sample_rate: int = 16000,
     ) -> list[tuple[float, float, str]]:
+        """兼容旧入口：抽音 + VAD 切段后逐段转写（预处理复用 AudioPreprocessor）。"""
+
         video_path = Path(video_path)
+        if not video_path.is_file():
+            raise FileNotFoundError(f"视频不存在: {video_path}")
+
+        preprocessor = AudioPreprocessor(
+            sample_rate=sample_rate,
+            max_segment_sec=float(self.chunk_duration_sec),
+            vad_split_overlap_sec=self.overlap_sec,
+        )
+
         with tempfile.TemporaryDirectory() as tmp:
             tmp_dir = Path(tmp)
             full_wav = tmp_dir / "full.wav"
-            self._extract_audio(video_path, full_wav, sample_rate)
+            preprocessor.extract_from_video(video_path, full_wav)
+            segments = preprocessor.detect_speech(full_wav)
 
-            chunks = self._split_wav(full_wav, sample_rate)
             cues: list[tuple[float, float, str]] = []
-
-            for idx, (chunk_path, start_sec, end_sec) in enumerate(chunks, 1):
+            for idx, seg in enumerate(segments, 1):
+                chunk_path = tmp_dir / f"vad_{idx:04d}.wav"
+                preprocessor.cut_segment(full_wav, seg, chunk_path)
                 text = self.transcribe_audio(chunk_path, context=context)
                 if text:
-                    cues.append((start_sec, end_sec, text))
-                    logger.info("ASR chunk %d [%s-%ss]: %d chars", idx, start_sec, end_sec, len(text))
+                    cues.append((seg.start_sec, seg.end_sec, text))
+                    logger.info(
+                        "ASR chunk %d [%.2f-%.2fs]: %d chars",
+                        idx, seg.start_sec, seg.end_sec, len(text),
+                    )
+                else:
+                    logger.debug(
+                        "ASR chunk %d [%.2f-%.2fs] 为空",
+                        idx, seg.start_sec, seg.end_sec,
+                    )
 
             return cues
-
-    @staticmethod
-    def _extract_audio(video_path: Path, output_wav: Path, sample_rate: int) -> None:
-        cmd = [
-            "ffmpeg",
-            "-y",
-            "-i",
-            str(video_path),
-            "-vn",
-            "-acodec",
-            "pcm_s16le",
-            "-ar",
-            str(sample_rate),
-            "-ac",
-            "1",
-            str(output_wav),
-        ]
-        subprocess.run(cmd, check=True, capture_output=True)
-
-    def _split_wav(
-        self,
-        wav_path: Path,
-        sample_rate: int,
-    ) -> list[tuple[Path, float, float]]:
-        max_bytes = self.max_local_file_mb * 1024 * 1024
-        max_samples_by_size = max_bytes // 2
-        max_samples_by_duration = self.chunk_duration_sec * sample_rate
-        chunk_samples = min(max_samples_by_size, max_samples_by_duration)
-
-        chunks: list[tuple[Path, float, float]] = []
-        with wave.open(str(wav_path), "rb") as wf:
-            n_channels = wf.getnchannels()
-            sampwidth = wf.getsampwidth()
-            framerate = wf.getframerate()
-            if n_channels != 1 or sampwidth != 2:
-                raise ValueError(f"Expected mono 16-bit WAV, got ch={n_channels} width={sampwidth}")
-
-            total_frames = wf.getnframes()
-            cursor = 0
-            part = 0
-            while cursor < total_frames:
-                frames = min(chunk_samples, total_frames - cursor)
-                wf.setpos(cursor)
-                data = wf.readframes(frames)
-                start_sec = cursor / framerate
-                end_sec = (cursor + frames) / framerate
-                part += 1
-                chunk_path = wav_path.parent / f"chunk_{part:04d}.wav"
-                with wave.open(str(chunk_path), "wb") as out:
-                    out.setnchannels(1)
-                    out.setsampwidth(2)
-                    out.setframerate(framerate)
-                    out.writeframes(data)
-                chunks.append((chunk_path, start_sec, end_sec))
-                cursor += frames
-
-        return chunks

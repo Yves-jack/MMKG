@@ -2,10 +2,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { GraphCanvas } from "@/components/pipeline/GraphCanvas";
 import { HighlightLegend } from "@/components/pipeline/HighlightLegend";
-import { RelatedEdges, SelectionDetail } from "@/components/pipeline/SelectionPanels";
+import { CollapsiblePanel } from "@/components/pipeline/CollapsiblePanel";
+import { RelatedEdges, SelectionDetail, relatedEdgesOf } from "@/components/pipeline/SelectionPanels";
 import { ResizableShell } from "@/components/pipeline/ResizableShell";
 import { ZoomableImage } from "@/components/pipeline/ZoomableImage";
 import { loadManifest } from "@/lib/catalog";
+import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
 import type { PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
 import { ensureCrossCueWindowItems } from "@/lib/pipeline/crossCueWindows";
 import {
@@ -93,6 +95,7 @@ const PLACEHOLDER_STAGES: PipelineStage[] = [
 ];
 
 export function PipelinePage() {
+  const courseId = useCourseId() || "数理逻辑";
   const { lectureId: rawId } = useParams();
   const navigate = useNavigate();
   const lectureId = useMemo(() => {
@@ -127,7 +130,7 @@ export function PipelinePage() {
 
   useEffect(() => {
     let cancelled = false;
-    loadManifest()
+    loadManifest(courseId)
       .then((m) => {
         if (cancelled) return;
         const ready = new Set<string>();
@@ -153,13 +156,13 @@ export function PipelinePage() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [courseId]);
 
   useEffect(() => {
     if (!lectureId) return;
     // 兼容旧链接 /pipeline/lecture_1
     if (rawId && rawId !== lectureId && /^(?:lecture[_-])?\d+$/i.test(rawId)) {
-      navigate(`/pipeline/${lectureId}`, { replace: true });
+      navigate(coursePath(courseId, `/pipeline/${lectureId}`), { replace: true });
       return;
     }
     let cancelled = false;
@@ -176,7 +179,7 @@ export function PipelinePage() {
     setLoading(true);
 
     const stem = isSession ? lectureId : `lecture_${lectureId}`;
-    fetch(`/data/pipeline/pipeline_build_${stem}.json`)
+    fetch(courseDataUrl(courseId, `pipeline/pipeline_build_${stem}.json`))
       .then((r) => {
         if (!r.ok) throw new Error("no-data");
         return r.json();
@@ -214,12 +217,14 @@ export function PipelinePage() {
     return () => {
       cancelled = true;
     };
-  }, [lectureId, rawId, navigate, isSession]);
+  }, [courseId, lectureId, rawId, navigate, isSession]);
 
   const cue = payload?.items?.[cueIndex];
   const isCrossCueItem = Boolean(cue?.is_cross_cue);
   const stages: PipelineStage[] = cue?.stages?.length
-    ? cue.stages.map((st) => {
+    ? cue.stages
+        .filter((st) => st.id !== "knowledge_points")
+        .map((st) => {
         // 段级展示不含跨段边（即使旧数据误写入 merge）；跨段窗口项本身保留
         if (
           !isCrossCueItem &&
@@ -321,11 +326,11 @@ export function PipelinePage() {
   );
 
   if (!lectureId) {
-    return <Navigate to="/pipeline/1" replace />;
+    return <Navigate to={coursePath(courseId, "/pipeline/1")} replace />;
   }
 
-  const goLecture = (id: string) => navigate(`/pipeline/${id}`);
-  const goSession = (id: string) => navigate(`/pipeline/${id}`);
+  const goLecture = (id: string) => navigate(coursePath(courseId, `/pipeline/${id}`));
+  const goSession = (id: string) => navigate(coursePath(courseId, `/pipeline/${id}`));
 
   return (
     <ResizableShell
@@ -333,7 +338,7 @@ export function PipelinePage() {
       nav={
       <aside className={shell.sidebar}>
         <div className={shell.sideHead}>
-          <Link className={shell.back} to="/">
+          <Link className={shell.back} to={coursePath(courseId)}>
             <span className={shell.backIcon} aria-hidden>
               ←
             </span>
@@ -591,8 +596,7 @@ export function PipelinePage() {
       }
       detail={
       <aside className={styles.side}>
-        <div className={styles.panel}>
-          <h3>本讲片段</h3>
+        <CollapsiblePanel title="本讲片段" storageKey="pipeline-panel-cues" defaultOpen>
           <div className={styles.cueList}>
             {hasData && payload
               ? payload.items.map((it, i) => {
@@ -629,10 +633,9 @@ export function PipelinePage() {
                 <div className={styles.sideEmpty}>暂无片段</div>
               )}
           </div>
-        </div>
+        </CollapsiblePanel>
 
-        <div className={styles.panel}>
-          <h3>选中详情</h3>
+        <CollapsiblePanel title="选中详情" storageKey="pipeline-panel-detail" defaultOpen>
           {hasData && stage ? (
             <SelectionDetail
               stage={stage}
@@ -644,11 +647,21 @@ export function PipelinePage() {
           ) : (
             <div className={styles.sideEmpty}>点击图中实体或关系查看详情</div>
           )}
-        </div>
+        </CollapsiblePanel>
 
         {selectedNodeId ? (
-          <div className={styles.panel}>
-            <h3>相关关系</h3>
+          <CollapsiblePanel
+            title={`相关关系-${
+              stage
+                ? relatedEdgesOf(stage, selectedNodeId, {
+                    hideFiltered,
+                    mode: payload?.mode || "lecture",
+                  }).length
+                : 0
+            }`}
+            storageKey="pipeline-panel-edges"
+            defaultOpen
+          >
             {hasData && stage ? (
               <RelatedEdges
                 stage={stage}
@@ -663,12 +676,11 @@ export function PipelinePage() {
             ) : (
               <div className={styles.sideEmpty}>暂无</div>
             )}
-          </div>
+          </CollapsiblePanel>
         ) : null}
 
         {!isCrossCueItem ? (
-          <div className={styles.panel}>
-            <h3>多模态证据</h3>
+          <CollapsiblePanel title="多模态证据" storageKey="pipeline-panel-media" defaultOpen>
             <div className={styles.mm}>
               <div>
                 <div className={styles.mmLabel}>课堂切片</div>
@@ -687,7 +699,7 @@ export function PipelinePage() {
                 )}
               </div>
             </div>
-          </div>
+          </CollapsiblePanel>
         ) : null}
       </aside>
       }

@@ -54,7 +54,8 @@ def _lecture_duration(cues: list[dict], trips: list[dict]) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="章节感知重要性反馈 v2（多通道）")
-    parser.add_argument("--course", default="shuliluoji")
+    parser.add_argument("--course", default="数理逻辑")
+    parser.add_argument("--config", default=None, help="默认 teaching.yaml；离散数学课用 teaching_lisan.yaml")
     parser.add_argument("--lecture", default=None)
     parser.add_argument("--alpha", type=float, default=None)
     parser.add_argument("--alphas", default="0.35,0.45,0.55")
@@ -63,7 +64,12 @@ def main() -> None:
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
 
-    cfg = TeachKGConfig.from_yaml(ROOT / "configs/teaching.yaml")
+    cfg_path = Path(args.config) if args.config else ROOT / "configs/teaching.yaml"
+    if args.config is None and ("图论" in str(args.course) or "离散数学(" in str(args.course)):
+        alt = ROOT / "configs" / "teaching_lisan.yaml"
+        if alt.is_file():
+            cfg_path = alt
+    cfg = TeachKGConfig.from_yaml(cfg_path)
     tb = cfg.get("stage1", "textbook_kg", default={}) or {}
     fb = tb.get("importance_feedback", {}) or {}
     configure_entity_weights(fb)

@@ -1,0 +1,312 @@
+{
+  "lecture_id": "course",
+  "root": {
+    "id": "__course__/离散数学",
+    "zh": "离散数学",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第1章 图的基本概念与表示",
+        "zh": "第1章 图的基本概念与表示",
+        "importance": 0.65,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "__section__/图的定义",
+            "zh": "图的定义",
+            "importance": 0.8568613102961766,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/图的类型",
+            "zh": "图的类型",
+            "importance": 0.7317159308276144,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/顶点与关联",
+            "zh": "顶点与关联",
+            "importance": 0.7450883612169737,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/结点的度",
+            "zh": "结点的度",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/子图",
+            "zh": "子图",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/图的运算",
+            "zh": "图的运算",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/图的表示",
+            "zh": "图的表示",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/第2章 道路与回路",
+        "zh": "第2章 道路与回路",
+        "importance": 0.65,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "__section__/图的连通性",
+            "zh": "图的连通性",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/道路与回路的判定",
+            "zh": "道路与回路的判定",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/欧拉道路与回路",
+            "zh": "欧拉道路与回路",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/哈密顿道路与回路",
+            "zh": "哈密顿道路与回路",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/旅行商问题",
+            "zh": "旅行商问题",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/最短路径",
+            "zh": "最短路径",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/关键路径",
+            "zh": "关键路径",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/中国邮路",
+            "zh": "中国邮路",
+            "importance": 0.4,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__course__/离散数学",
+      "zh": "离散数学",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第1章 图的基本概念与表示",
+          "zh": "第1章 图的基本概念与表示",
+          "importance": 0.65,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "__section__/图的定义",
+              "zh": "图的定义",
+              "importance": 0.8568613102961766,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/图的类型",
+              "zh": "图的类型",
+              "importance": 0.7317159308276144,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/顶点与关联",
+              "zh": "顶点与关联",
+              "importance": 0.7450883612169737,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/结点的度",
+              "zh": "结点的度",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/子图",
+              "zh": "子图",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/图的运算",
+              "zh": "图的运算",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/图的表示",
+              "zh": "图的表示",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/第2章 道路与回路",
+          "zh": "第2章 道路与回路",
+          "importance": 0.65,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "__section__/图的连通性",
+              "zh": "图的连通性",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/道路与回路的判定",
+              "zh": "道路与回路的判定",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/欧拉道路与回路",
+              "zh": "欧拉道路与回路",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/哈密顿道路与回路",
+              "zh": "哈密顿道路与回路",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/旅行商问题",
+              "zh": "旅行商问题",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/最短路径",
+              "zh": "最短路径",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/关键路径",
+              "zh": "关键路径",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/中国邮路",
+              "zh": "中国邮路",
+              "importance": 0.4,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 18,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "离散数学",
+    "root_zh": "离散数学",
+    "virtual_root": true,
+    "scope": "course",
+    "source": "summary+kg",
+    "n_chapters": 2,
+    "n_trees": 1,
+    "composed_from": "chapters"
+  }
+}

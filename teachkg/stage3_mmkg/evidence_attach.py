@@ -52,19 +52,26 @@ def build_cue_index(triplets: list[dict[str, Any]]) -> dict[str, dict[str, Any]]
 def _text_evidence_from_triplets(
     entity_id: str,
     triplets: list[dict[str, Any]],
+    *,
+    alias_lookup: dict[str, set[str]] | None = None,
 ) -> list[dict[str, Any]]:
+    from teachkg.stage3_mmkg.name_resolve import entity_name_matches
+
+    lookup = alias_lookup or {entity_id: {entity_id}}
+    names = lookup.get(entity_id) or {entity_id}
     texts: list[dict[str, Any]] = []
     for row in triplets:
         sub = str(row.get("subject", "")).strip()
         obj = str(row.get("object", "")).strip()
-        if entity_id not in {sub, obj}:
+        if not entity_name_matches(entity_id, sub, obj, lookup):
             continue
+        role = "subject" if sub in names else "object"
         texts.append(
             {
                 "cue_id": row.get("cue_id", ""),
                 "context": row.get("context", ""),
                 "source_text": row.get("source_text", ""),
-                "role": "subject" if sub == entity_id else "object",
+                "role": role,
             }
         )
     return _dedupe_dicts(texts, ("cue_id", "context", "role"))
@@ -184,9 +191,17 @@ class EvidenceAttachResult:
 def attach_multimodal_evidence(
     kg: dict[str, Any],
     triplets: list[dict[str, Any]],
+    *,
+    merge_map: dict[str, str] | None = None,
 ) -> EvidenceAttachResult:
     """将 triplets 中的 clip / PPT / 文本证据挂接到 Stage 2 图谱。"""
+    from teachkg.stage3_mmkg.name_resolve import build_alias_lookup
+
     cue_index = build_cue_index(triplets)
+    alias_lookup = build_alias_lookup(
+        list(kg.get("entities") or []),
+        merge_map=merge_map or kg.get("merge_map"),
+    )
     entities_out: list[dict[str, Any]] = []
     clip_count = 0
     image_count = 0
@@ -194,7 +209,9 @@ def attach_multimodal_evidence(
     for ent in kg.get("entities") or []:
         entity_id = ent.get("id") or ent.get("name", "")
         cue_ids = list(ent.get("cue_ids") or [])
-        texts = _text_evidence_from_triplets(entity_id, triplets)
+        texts = _text_evidence_from_triplets(
+            entity_id, triplets, alias_lookup=alias_lookup
+        )
         clips = _clip_evidence(cue_ids, cue_index)
         images = _image_evidence(cue_ids, cue_index)
         clip_count += len(clips)

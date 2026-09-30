@@ -1,0 +1,1231 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "12",
+  "title": "第12讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/12_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/12_1.mp4",
+  "duration_sec": 3207.3,
+  "segments": [
+    {
+      "id": "数理逻辑_12_334700_387300",
+      "index": 1,
+      "start_sec": 334.7,
+      "end_sec": 387.3,
+      "title": "上节课跟大家介绍了我们集合的概念，它的性质：…"
+    },
+    {
+      "id": "数理逻辑_12_388400_452800",
+      "index": 2,
+      "start_sec": 388.4,
+      "end_sec": 452.8,
+      "title": "那 A 是 a、b，B 是 0、1、2"
+    },
+    {
+      "id": "数理逻辑_12_454600_490900",
+      "index": 3,
+      "start_sec": 454.6,
+      "end_sec": 490.9,
+      "title": "关系符、运算符的优先权"
+    },
+    {
+      "id": "数理逻辑_12_493400_602200",
+      "index": 4,
+      "start_sec": 493.4,
+      "end_sec": 602.2,
+      "title": "关系符、运算符、关系符"
+    },
+    {
+      "id": "数理逻辑_12_603000_652400",
+      "index": 5,
+      "start_sec": 603.0,
+      "end_sec": 652.4,
+      "title": "一元运算符优先于二元运算符"
+    },
+    {
+      "id": "数理逻辑_12_656300_967600",
+      "index": 6,
+      "start_sec": 656.3,
+      "end_sec": 967.6,
+      "title": "好，最后我们就看这个例子"
+    },
+    {
+      "id": "数理逻辑_12_968400_1018200",
+      "index": 7,
+      "start_sec": 968.4,
+      "end_sec": 1018.2,
+      "title": "是不是重言蕴含？左边和右边是不是重言蕴含？是…"
+    },
+    {
+      "id": "数理逻辑_12_1019300_1074400",
+      "index": 8,
+      "start_sec": 1019.3,
+      "end_sec": 1074.4,
+      "title": "它是A的幂集，是一个集合的集合"
+    },
+    {
+      "id": "数理逻辑_12_1075200_1195200",
+      "index": 9,
+      "start_sec": 1075.2,
+      "end_sec": 1195.2,
+      "title": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就…"
+    },
+    {
+      "id": "数理逻辑_12_1195200_1198400",
+      "index": 10,
+      "start_sec": 1195.2,
+      "end_sec": 1198.4,
+      "title": "很容易证明"
+    },
+    {
+      "id": "数理逻辑_12_1200200_1246700",
+      "index": 11,
+      "start_sec": 1200.2,
+      "end_sec": 1246.7,
+      "title": "所以这些我们就不说了"
+    },
+    {
+      "id": "数理逻辑_12_1249400_1822400",
+      "index": 12,
+      "start_sec": 1249.4,
+      "end_sec": 1822.4,
+      "title": "A和B的幂集的交集就等于A和B的交集的幂集"
+    },
+    {
+      "id": "数理逻辑_12_1823300_2300600",
+      "index": 13,
+      "start_sec": 1823.3,
+      "end_sec": 2300.6,
+      "title": "广义并和广义交的性质中，有一条比较重要：广义…"
+    },
+    {
+      "id": "数理逻辑_12_2322000_2369600",
+      "index": 14,
+      "start_sec": 2322.0,
+      "end_sec": 2369.6,
+      "title": "这里还有一个幂集合的性质"
+    },
+    {
+      "id": "数理逻辑_12_2370600_2622400",
+      "index": 15,
+      "start_sec": 2370.6,
+      "end_sec": 2622.4,
+      "title": "好，我们来看一下笛卡儿积的性质"
+    },
+    {
+      "id": "数理逻辑_12_2623500_2681900",
+      "index": 16,
+      "start_sec": 2623.5,
+      "end_sec": 2681.9,
+      "title": "有限集合的基数"
+    },
+    {
+      "id": "数理逻辑_12_2683000_2723400",
+      "index": 17,
+      "start_sec": 2683.0,
+      "end_sec": 2723.4,
+      "title": "无限级我们先不讲，先讲有限的，无限放到最后讲"
+    },
+    {
+      "id": "数理逻辑_12_2724400_2755400",
+      "index": 18,
+      "start_sec": 2724.4,
+      "end_sec": 2755.4,
+      "title": "对有限集合，通过这个公式我们就可以看到"
+    },
+    {
+      "id": "数理逻辑_12_2756200_2787300",
+      "index": 19,
+      "start_sec": 2756.2,
+      "end_sec": 2787.3,
+      "title": "如果A1并A2并...并An的基数，它等于所…"
+    },
+    {
+      "id": "数理逻辑_12_2788400_2828700",
+      "index": 20,
+      "start_sec": 2788.4,
+      "end_sec": 2828.7,
+      "title": "无穷集合的等势就是要看等势，如果两个集合之间…"
+    },
+    {
+      "id": "数理逻辑_12_2830000_2866900",
+      "index": 21,
+      "start_sec": 2830.0,
+      "end_sec": 2866.9,
+      "title": "自然数和整数是等势的，整数和有理数是等势的"
+    },
+    {
+      "id": "数理逻辑_12_2868000_2988000",
+      "index": 22,
+      "start_sec": 2868.0,
+      "end_sec": 2988.0,
+      "title": "有限集合的基数"
+    },
+    {
+      "id": "数理逻辑_12_2988000_3032300",
+      "index": 23,
+      "start_sec": 2988.0,
+      "end_sec": 3032.3,
+      "title": "笛卡尔积这几种运算和它们的一些性质，以及这些…"
+    },
+    {
+      "id": "数理逻辑_12_3062300_3207300",
+      "index": 24,
+      "start_sec": 3062.3,
+      "end_sec": 3207.3,
+      "title": "不要看我"
+    }
+  ],
+  "points": [
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.577322,
+      "mention_count": 14,
+      "origin": "shared",
+      "summary": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。",
+      "definition": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。集合由其元素完全决定，可以通过外延（列举元素）、内涵（描述性质）或运算构造。集合是数理逻辑与集合论课程中的核心概念，如整数集 $\\mathbb{Z}$、有理数集 $\\mathbb{Q}$、实数集 $\\mathbb{R}$ 等均是集合的实例。",
+      "neighbors": [
+        {
+          "subject": "真子集/proper subset",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "真子集属于集合"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "集合运算/set operation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "集合运算依赖集合"
+        },
+        {
+          "subject": "不自吞/non-self-membership",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "是…性质",
+          "natural_statement": "不自吞是集合性质"
+        },
+        {
+          "subject": "无次序/no order",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "是…性质",
+          "natural_statement": "无次序是集合性质"
+        },
+        {
+          "subject": "内涵法/intensional definition method",
+          "predicate": "related_with",
+          "object": "集合/set",
+          "label": "用于定义",
+          "natural_statement": "内涵法用于定义集合"
+        },
+        {
+          "subject": "广义交/generalized intersection",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "广义交属于集合"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1019300_1074400",
+          "text": "它是A的幂集，是一个集合的集合。我们通过把零个元素的集合放在最底下，一个元素的集合放在第二层，两个元素的集合放在第三层。因为A的幂集的元素都是集合，所以我们看这些元素中集合的元素个数：零个、一个、两个、三个。这样从下到上排序后，只在相邻层之间，如果上一层是下一层子集，就连边。",
+          "start_sec": 1019.3,
+          "end_sec": 1074.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1019300_1074400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_1075200_1195200",
+          "text": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B的元素看成y轴，那么A和B的笛卡尔积就是x和y的这样一个相交的矩形，这样得到矩形，这个就是我们笛卡尔积的图示法，这个相对比较简单了。好，集合的性质，我们讲完集合性质就讲公理系统了。那么性质其实很简单，因为我们的这个集合，大家可以看到都是或、与，对吧？并和交就是或和与，对吧？就或和与，用或和与来定义，所以这三种运算——并、交、补，满足我们的交换律、结合律和分配律，而我们的补集是满足我们的摩根律的，这些我们就很容易。",
+          "start_sec": 1075.2,
+          "end_sec": 1195.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1075200_1195200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_1823300_2300600",
+          "text": "广义并和广义交的性质中，有一条比较重要：广义并是幂的逆运算，即 U(P(A)) = A。注意次序不能颠倒，因为 P(U(A)) ≠ A。我们可以根据定义来证明这个等式。对于任意 x，若 x ∈ U(P(A))，则存在 z ∈ P(A)，使得 x ∈ z。而 z ∈ P(A) 意味着 z ⊆ A，因此 x ∈ z ⊆ A，所以 x ∈ A。反之，若 x ∈ A，则 {x} ⊆ A，即 {x} ∈ P(A)，且 x ∈ {x}，所以 x ∈ U(P(A))。因此两个方向都成立，即 U(P(A)) = A。但反过来不成立，例如取 A = {a, b}，则 P(A) = {∅, {a}, {b}, {a, b}}，U(P(A)) = {a, b} = A，而 U(A) = ∅（因为 a 和 b 不是集合），所以 P(U(A)) = P(∅) = {∅}，不等于 A。因此广义并和幂是互逆的运算，但顺",
+          "start_sec": 1823.3,
+          "end_sec": 2300.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1823300_2300600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.312857,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "集合关系符/set relational symbol",
+          "predicate": "related_with",
+          "object": "联结词/connective",
+          "label": "优先级高于",
+          "natural_statement": "集合关系符优先级高于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_493400_602200",
+          "text": "关系符、运算符、关系符。下面我们还有一阶谓词逻辑的连接词，以及一阶谓词逻辑的关系。有这么多运算符，最后判断一个公式的真假时，先算哪个后算哪个？集合的关系表达式是一个命题逻辑，它的运算得到的是集合。所以我们既有集合的运算，又有集合的关系，还有一阶谓词逻辑的连接词和关系。先运算什么？一定是先运算集合的运算符，因为集合运算符得到的是集合。集合运算符里面先算一元的，比如一元运算符，再做二元的。先做运算符，再做关系符，关系符得到的是命题，然后再看一阶谓词逻辑的。所以运算关系是：先算一元运算符，即集合的一元运算符。",
+          "start_sec": 493.4,
+          "end_sec": 602.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_493400_602200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "公理系统/axiomatic system",
+      "zh": "公理系统",
+      "importance": 0.30866,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一…",
+      "definition": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一系列定理的抽象符号系统。其目的是构建一个形式化的演绎体系，如命题演算的重言式所构成的公理系统。公理系统的关键在于其公理的独立性、系统的可靠性（是否能推导出非重言式）及完备性（是否所有普遍有效的公式都能被证明）。",
+      "neighbors": [
+        {
+          "subject": "命题演算的重言式/tautology of propositional calculus",
+          "predicate": "belong_to",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "命题演算的重言式属于公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1075200_1195200",
+          "text": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B的元素看成y轴，那么A和B的笛卡尔积就是x和y的这样一个相交的矩形，这样得到矩形，这个就是我们笛卡尔积的图示法，这个相对比较简单了。好，集合的性质，我们讲完集合性质就讲公理系统了。那么性质其实很简单，因为我们的这个集合，大家可以看到都是或、与，对吧？并和交就是或和与，对吧？就或和与，用或和与来定义，所以这三种运算——并、交、补，满足我们的交换律、结合律和分配律，而我们的补集是满足我们的摩根律的，这些我们就很容易。",
+          "start_sec": 1075.2,
+          "end_sec": 1195.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1075200_1195200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.301156,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题包含公式"
+        },
+        {
+          "subject": "集合关系符/set relational symbol",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "产生",
+          "natural_statement": "集合关系符产生命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_656300_967600",
+          "text": "好，最后我们就看这个例子。我们先做哪个？这个里面只有集合的运算和关系。先做集合的一元运算符，先做A的补和D的广义交。先做A的补，然后做D的广义交。然后做二元运算符，这个二元运算符和这个二元运算符，这两个得到的都是集合。最后看左边得到集合，右边得到集合，这两个是不是有子集关系？如果有就为真，如果没有就为假。所以如果我们加括号的话，就应该是先做这个和这个，然后再做这个和这个，最后看左边的集合和右边的集合是不是有子集的关系。现在分析一下。我们先做一元运算符，这里一的广义交是一元运算，得到的是一个集合。然后我们再做非，非还没做运算。先做A交B，A交B得到了以后，然后我们再看A交B这个集合是不是属于C的元素，C可能是集合的集合。做完这个以后，然后再做非，最后做蕴含。所以是这样的关系：先做这个，再做这个，再做这个和这个，然后再做这个，最后做这个。下面这个呢？下面这个我们没有一元运算符，我们只有集合的关",
+          "start_sec": 656.3,
+          "end_sec": 967.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_656300_967600.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.282469,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "有序对属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2370600_2622400",
+          "text": "好，我们来看一下笛卡儿积的性质。假设x是A的元素，y也是A的元素，那么有序对<x,y>就是A的幂集的幂集的元素。上面这些性质中，笛卡儿积不满足交换律，也不满足结合律，因为有序对是有顺序的。下面我们来证明性质⑧：若x∈A，y∈A，则<x,y>∈PP(A)。注意，有序对<x,y>被定义为{{x},{x,y}}这个集合。那么要证明<x,y>是PP(A)的元素，等价于证明{{x},{x,y}}是P(A)的子集。因为x∈A，所以{x}是A的子集，即{x}∈P(A)；又因为x,y∈A，所以{x,y}也是A的子集，即{x,y}∈P(A)。那么以这两个元素为元素的集合{{x},{x,y}}就是P(A)的子集，因此{{x},{x,y}}∈PP(A)，得证。",
+          "start_sec": 2370.6,
+          "end_sec": 2622.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2370600_2622400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_334700_387300",
+          "text": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法、内涵法。它的关系，它有两个集合相等、子集、真子集、相交这样四种关系，我们都是用我们的一阶谓词逻辑来表示。然后我们的运算，我们有大家熟悉的并、交、减、对称差，那么除此之外，我们还跟大家介绍我们的广义并、广义交、幂集和我们笛卡尔积这样四种新的运算。这是我们的笛卡尔积，可以看到，如果说两个集合，我现在有这样的两集合，A是。",
+          "start_sec": 334.7,
+          "end_sec": 387.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_334700_387300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.270144,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "part_of",
+          "object": "数理逻辑与集合论/Mathematical Logic and Set Theory",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于数理逻辑与集合论"
+        },
+        {
+          "subject": "概念/concept",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "概念属于命题逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        },
+        {
+          "subject": "规则/rule",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "规则属于命题逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1249400_1822400",
+          "text": "A和B的幂集的交集就等于A和B的交集的幂集。下面这个：A的幂集并上B的幂集，它是A并B的幂集的子集。这个我们来证明一下。我们设x属于A的幂集并上B的幂集，那么x属于P(A)或x属于P(B)。根据幂集的概念，x是A的子集或x是B的子集。通过子集的概念，我们把它化成一阶谓词逻辑：对于任意的y，如果y属于x，则y属于A；或者对于任意的y，如果y属于x，则y属于B。这里可以提取出：对于任意的y，y属于x蕴含y属于A或y属于B。而y属于A或y属于B等价于y属于A并B。所以对于任意的y，y属于x蕴含y属于A并B，即x是A并B的子集，因此x属于P(A并B)。整个推理过程中，其他地方都是等值的，只有从“x是A的子集或x是B的子集”到“x是A并B的子集”这一步是单向的，只能由左边推出右边，不能反过来，所以这里不是等于，而是子集关系。这就是第4条性质。下面第5条：P(A-B) ⊆ (P(A) - P(B)) ",
+          "start_sec": 1249.4,
+          "end_sec": 1822.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1249400_1822400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2724400_2755400",
+          "text": "对有限集合，通过这个公式我们就可以看到。对无限集合呢，我们下次再讲，今天就讲有限集合。集合的基数就这么简单。然后这些东西大家可能在竞赛中已经用到过。比如说两个集合的并的基数，A1并A2的基数等于A1的基数加上A2的基数减去A1交A2的基数。",
+          "start_sec": 2724.4,
+          "end_sec": 2755.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2724400_2755400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2868000_2988000",
+          "text": "有限集合的基数。好，那么我们今天课基本上就上到这儿了。我们主要讲了关系、运算和一些性质，这些性质都可以通过一阶谓词逻辑，根据定义来证明。要证明两个关系是否成立，或者某个等式是否成立，都是化为一阶谓词逻辑的运算。其实这一章是对前面第五章等值演算和推理演算的复习，这些性质的证明都用到了这些。然后我们讲了有限集合的基数，无限集合后面再说。这个基数比较简单，我们会有一些作业。剩下的集合的基数讲完后，我们会讲公理系统，集合论公理系统ZFC。关于第五章的作业，大家今天要提交。我们会把集合的一些基本概念讲完，公理不考，也不布置作业，减轻大家工作量。我们后面讲的公理系统也不布置作业，第九章的作业内容就到这儿为止。我今天会布置第九章的作业，第九章比较简单，增加了一些广义并、广义交、幂。",
+          "start_sec": 2868.0,
+          "end_sec": 2988.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2868000_2988000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "函数/function",
+      "zh": "函数",
+      "importance": 0.187151,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映…",
+      "definition": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写字母表示，例如 $f(x)$ 表示个体 $x$ 的某种变换。函数可以被看作是一种特殊的二元关系，其关系矩阵的每行恰好有一个1，或者在关系图中，定义域中的每个顶点恰好发出一条有向边。函数还可进一步区分为单射（一对一）、满射（映上）和双射（一一对应），并可以进行复合、求逆等运算。",
+      "neighbors": [
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "有序对属于函数"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "双射属于函数"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "函数依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2370600_2622400",
+          "text": "好，我们来看一下笛卡儿积的性质。假设x是A的元素，y也是A的元素，那么有序对<x,y>就是A的幂集的幂集的元素。上面这些性质中，笛卡儿积不满足交换律，也不满足结合律，因为有序对是有顺序的。下面我们来证明性质⑧：若x∈A，y∈A，则<x,y>∈PP(A)。注意，有序对<x,y>被定义为{{x},{x,y}}这个集合。那么要证明<x,y>是PP(A)的元素，等价于证明{{x},{x,y}}是P(A)的子集。因为x∈A，所以{x}是A的子集，即{x}∈P(A)；又因为x,y∈A，所以{x,y}也是A的子集，即{x,y}∈P(A)。那么以这两个元素为元素的集合{{x},{x,y}}就是P(A)的子集，因此{{x},{x,y}}∈PP(A)，得证。",
+          "start_sec": 2370.6,
+          "end_sec": 2622.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2370600_2622400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2788400_2828700",
+          "text": "无穷集合的等势就是要看等势，如果两个集合之间能找到一个双射函数，我们就说这两个集合是等势的。那这个我们后面讲，比如我们的自然数、整数、有理数和自然数笛卡尔积，它们都是等势的。",
+          "start_sec": 2788.4,
+          "end_sec": 2828.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2788400_2828700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_334700_387300",
+          "text": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法、内涵法。它的关系，它有两个集合相等、子集、真子集、相交这样四种关系，我们都是用我们的一阶谓词逻辑来表示。然后我们的运算，我们有大家熟悉的并、交、减、对称差，那么除此之外，我们还跟大家介绍我们的广义并、广义交、幂集和我们笛卡尔积这样四种新的运算。这是我们的笛卡尔积，可以看到，如果说两个集合，我现在有这样的两集合，A是。",
+          "start_sec": 334.7,
+          "end_sec": 387.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_334700_387300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "笛卡儿积/Cartesian product",
+      "zh": "笛卡儿积",
+      "importance": 0.183258,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "笛卡儿积（Cartesian product），又称卡氏积、乘积或直积，是数理逻辑与集合论中的…",
+      "definition": "笛卡儿积（Cartesian product），又称卡氏积、乘积或直积，是数理逻辑与集合论中的一种集合二元运算。它是指由两个非空集合A和B的所有有序对<x,y>（其中x属于A，y属于B）构成的集合，记作A×B。笛卡儿积是定义关系概念的基础，其性质包括不满足交换律和结合律，但满足分配律，且两个有限集的笛卡儿积的基数等于它们各自基数的乘积。例如，两个可数集的笛卡儿积仍是可数集。",
+      "neighbors": [
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "笛卡儿积/Cartesian product",
+          "label": "属于",
+          "natural_statement": "有序对属于笛卡儿积"
+        },
+        {
+          "subject": "笛卡儿平方/Cartesian square",
+          "predicate": "belong_to",
+          "object": "笛卡儿积/Cartesian product",
+          "label": "是…的特例",
+          "natural_statement": "笛卡儿平方是笛卡儿积的特例"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "笛卡儿积依赖集合"
+        },
+        {
+          "subject": "矩形/rectangle",
+          "predicate": "related_with",
+          "object": "笛卡儿积/Cartesian product",
+          "label": "是...的图示",
+          "natural_statement": "矩形是笛卡尔积的图示"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "属于",
+          "natural_statement": "笛卡儿积属于集合运算"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "belong_to",
+          "object": "二元运算/binary operation",
+          "label": "属于",
+          "natural_statement": "笛卡儿积属于二元运算"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "笛卡儿积属于集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1075200_1195200",
+          "text": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B的元素看成y轴，那么A和B的笛卡尔积就是x和y的这样一个相交的矩形，这样得到矩形，这个就是我们笛卡尔积的图示法，这个相对比较简单了。好，集合的性质，我们讲完集合性质就讲公理系统了。那么性质其实很简单，因为我们的这个集合，大家可以看到都是或、与，对吧？并和交就是或和与，对吧？就或和与，用或和与来定义，所以这三种运算——并、交、补，满足我们的交换律、结合律和分配律，而我们的补集是满足我们的摩根律的，这些我们就很容易。",
+          "start_sec": 1075.2,
+          "end_sec": 1195.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1075200_1195200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2370600_2622400",
+          "text": "好，我们来看一下笛卡儿积的性质。假设x是A的元素，y也是A的元素，那么有序对<x,y>就是A的幂集的幂集的元素。上面这些性质中，笛卡儿积不满足交换律，也不满足结合律，因为有序对是有顺序的。下面我们来证明性质⑧：若x∈A，y∈A，则<x,y>∈PP(A)。注意，有序对<x,y>被定义为{{x},{x,y}}这个集合。那么要证明<x,y>是PP(A)的元素，等价于证明{{x},{x,y}}是P(A)的子集。因为x∈A，所以{x}是A的子集，即{x}∈P(A)；又因为x,y∈A，所以{x,y}也是A的子集，即{x,y}∈P(A)。那么以这两个元素为元素的集合{{x},{x,y}}就是P(A)的子集，因此{{x},{x,y}}∈PP(A)，得证。",
+          "start_sec": 2370.6,
+          "end_sec": 2622.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2370600_2622400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2756200_2787300",
+          "text": "如果A1并A2并...并An的基数，它等于所有集合基数的和减去两两集合交的基数，加上三三集合交的基数，减去……直到负一的n减一次方乘以所有集合的交的基数。",
+          "start_sec": 2756.2,
+          "end_sec": 2787.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2756200_2787300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "等值/equivalence",
+      "zh": "等值",
+      "importance": 0.167289,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。",
+      "definition": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍有效公式），则称它们是等值的。等值关系允许在公式中用等值的公式进行替换，是判断重言式、矛盾式及公式化简的基础。",
+      "neighbors": [
+        {
+          "subject": "重言等价/tautological equivalence",
+          "predicate": "synonym_of",
+          "object": "等值/equivalence",
+          "label": "是…的不同名称",
+          "natural_statement": "重言等价是等值的不同名称"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "等值表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1249400_1822400",
+          "text": "A和B的幂集的交集就等于A和B的交集的幂集。下面这个：A的幂集并上B的幂集，它是A并B的幂集的子集。这个我们来证明一下。我们设x属于A的幂集并上B的幂集，那么x属于P(A)或x属于P(B)。根据幂集的概念，x是A的子集或x是B的子集。通过子集的概念，我们把它化成一阶谓词逻辑：对于任意的y，如果y属于x，则y属于A；或者对于任意的y，如果y属于x，则y属于B。这里可以提取出：对于任意的y，y属于x蕴含y属于A或y属于B。而y属于A或y属于B等价于y属于A并B。所以对于任意的y，y属于x蕴含y属于A并B，即x是A并B的子集，因此x属于P(A并B)。整个推理过程中，其他地方都是等值的，只有从“x是A的子集或x是B的子集”到“x是A并B的子集”这一步是单向的，只能由左边推出右边，不能反过来，所以这里不是等于，而是子集关系。这就是第4条性质。下面第5条：P(A-B) ⊆ (P(A) - P(B)) ",
+          "start_sec": 1249.4,
+          "end_sec": 1822.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1249400_1822400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_968400_1018200",
+          "text": "是不是重言蕴含？左边和右边是不是重言蕴含？是不是等值？重言等价就是等值。好，集合最后一个图形表示法，文氏图大家很熟悉，我就不说了。那么我们的幂集，后面会介绍，我们会用哈斯图来表示，后面我们还会不断地介绍。比如说A是0,1,2，那么A的幂集就会有2的三次方，八个元素，A的幂集P(A)有八个元素。好，在这里面有八个元素，我们把这八个元素。",
+          "start_sec": 968.4,
+          "end_sec": 1018.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_968400_1018200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "自然数/natural number",
+      "zh": "自然数",
+      "importance": 0.11459,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "自然数是数理逻辑与集合论中的基本概念，指非负整数（0, 1, 2, ...）。",
+      "definition": "自然数是数理逻辑与集合论中的基本概念，指非负整数（0, 1, 2, ...）。它们具有关键属性，如每个数有唯一相继后元，除0外有唯一相继前元。自然数可用于定义数论函数，并能与非数字系统建立一一对应关系，其研究可归结为函数关系的研究。在集合论视角下，自然数通过集合的元素数量（如0为空集，1为含一元素的集合）来定义，且存在由所有自然数组成的集合，允许通过后继运算（n+1 = n^+）进行构造。自然数是有限集合的基数，而无限集合（如自然数集N本身或实数集R）的基数则用更抽象的符号（如$\\aleph_0$）表示，因为它们不与任何自然数等势。",
+      "neighbors": [
+        {
+          "subject": "自然数/natural number",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "自然数依赖集合"
+        },
+        {
+          "subject": "自然数/natural number",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "自然数属于集合"
+        },
+        {
+          "subject": "自然数/natural number",
+          "predicate": "belong_to",
+          "object": "无限集合/infinite set",
+          "label": "属于",
+          "natural_statement": "自然数属于无限集合"
+        },
+        {
+          "subject": "有限基数/finite cardinality",
+          "predicate": "belong_to",
+          "object": "自然数/natural number",
+          "label": "属于",
+          "natural_statement": "有限基数属于自然数"
+        },
+        {
+          "subject": "自然数/natural number",
+          "predicate": "part_of",
+          "object": "自然数集合/Set of Natural Numbers",
+          "label": "属于",
+          "natural_statement": "自然数属于自然数集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2322000_2369600",
+          "text": "这里还有一个幂集合的性质。",
+          "start_sec": 2322.0,
+          "end_sec": 2369.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2322000_2369600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_2623500_2681900",
+          "text": "有限集合的基数。集合的基数就是集合中元素的个数。定义：如果存在n属于自然数，使集合A与集合{x|x∈N且x<n}={0,1,2,…,n-1}的元素个数相同，就说集合A的基数是n，记作#(A)=n或|A|=n或card(A)=n。空集的基数是0。定义：如果存在n属于自然数，n是集合A的基数，就说A是有限集合。如果不存在这样的n，就说A是无限集合。",
+          "start_sec": 2623.5,
+          "end_sec": 2681.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2623500_2681900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_656300_967600",
+          "text": "好，最后我们就看这个例子。我们先做哪个？这个里面只有集合的运算和关系。先做集合的一元运算符，先做A的补和D的广义交。先做A的补，然后做D的广义交。然后做二元运算符，这个二元运算符和这个二元运算符，这两个得到的都是集合。最后看左边得到集合，右边得到集合，这两个是不是有子集关系？如果有就为真，如果没有就为假。所以如果我们加括号的话，就应该是先做这个和这个，然后再做这个和这个，最后看左边的集合和右边的集合是不是有子集的关系。现在分析一下。我们先做一元运算符，这里一的广义交是一元运算，得到的是一个集合。然后我们再做非，非还没做运算。先做A交B，A交B得到了以后，然后我们再看A交B这个集合是不是属于C的元素，C可能是集合的集合。做完这个以后，然后再做非，最后做蕴含。所以是这样的关系：先做这个，再做这个，再做这个和这个，然后再做这个，最后做这个。下面这个呢？下面这个我们没有一元运算符，我们只有集合的关",
+          "start_sec": 656.3,
+          "end_sec": 967.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_656300_967600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "集合论/Set Theory",
+      "zh": "集合论",
+      "importance": 0.11239,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。",
+      "definition": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。它包含集合、运算、关系、函数和基数等基本概念，其公理系统（如外延公理）是其严谨性的体现，并探讨了如Russell悖论等重要问题。",
+      "neighbors": [
+        {
+          "subject": "并集/union",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "并集属于集合论"
+        },
+        {
+          "subject": "交集/Intersection",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "交集属于集合论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2724400_2755400",
+          "text": "对有限集合，通过这个公式我们就可以看到。对无限集合呢，我们下次再讲，今天就讲有限集合。集合的基数就这么简单。然后这些东西大家可能在竞赛中已经用到过。比如说两个集合的并的基数，A1并A2的基数等于A1的基数加上A2的基数减去A1交A2的基数。",
+          "start_sec": 2724.4,
+          "end_sec": 2755.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2724400_2755400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "集合的并运算/union of sets",
+      "zh": "集合的并运算",
+      "importance": 0.102046,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "集合的并运算/union of sets",
+          "predicate": "property_of",
+          "object": "交换律/commutative law",
+          "label": "满足",
+          "natural_statement": "集合的并运算满足交换律"
+        },
+        {
+          "subject": "集合的并运算/union of sets",
+          "predicate": "property_of",
+          "object": "结合律/associative law",
+          "label": "满足",
+          "natural_statement": "集合的并运算满足结合律"
+        },
+        {
+          "subject": "集合的并运算/union of sets",
+          "predicate": "property_of",
+          "object": "分配律/distributive law",
+          "label": "满足",
+          "natural_statement": "集合的并运算满足分配律"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1075200_1195200",
+          "text": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B的元素看成y轴，那么A和B的笛卡尔积就是x和y的这样一个相交的矩形，这样得到矩形，这个就是我们笛卡尔积的图示法，这个相对比较简单了。好，集合的性质，我们讲完集合性质就讲公理系统了。那么性质其实很简单，因为我们的这个集合，大家可以看到都是或、与，对吧？并和交就是或和与，对吧？就或和与，用或和与来定义，所以这三种运算——并、交、补，满足我们的交换律、结合律和分配律，而我们的补集是满足我们的摩根律的，这些我们就很容易。",
+          "start_sec": 1075.2,
+          "end_sec": 1195.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1075200_1195200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "推理演算/inference calculus",
+      "zh": "推理演算",
+      "importance": 0.084918,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。",
+      "definition": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实现逻辑证明的关键手段。例如，在谓词逻辑中，结合归结法进行推理演算，可以高效地进行逻辑推导。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2868000_2988000",
+          "text": "有限集合的基数。好，那么我们今天课基本上就上到这儿了。我们主要讲了关系、运算和一些性质，这些性质都可以通过一阶谓词逻辑，根据定义来证明。要证明两个关系是否成立，或者某个等式是否成立，都是化为一阶谓词逻辑的运算。其实这一章是对前面第五章等值演算和推理演算的复习，这些性质的证明都用到了这些。然后我们讲了有限集合的基数，无限集合后面再说。这个基数比较简单，我们会有一些作业。剩下的集合的基数讲完后，我们会讲公理系统，集合论公理系统ZFC。关于第五章的作业，大家今天要提交。我们会把集合的一些基本概念讲完，公理不考，也不布置作业，减轻大家工作量。我们后面讲的公理系统也不布置作业，第九章的作业内容就到这儿为止。我今天会布置第九章的作业，第九章比较简单，增加了一些广义并、广义交、幂。",
+          "start_sec": 2868.0,
+          "end_sec": 2988.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2868000_2988000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "命题连接词/propositional connective",
+      "zh": "命题连接词",
+      "importance": 0.078225,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "好，最后我们就看这个例子。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "命题连接词/propositional connective",
+          "predicate": "related_with",
+          "object": "逻辑关系符/logical relation symbol",
+          "label": "优先级高于",
+          "natural_statement": "命题连接词优先级高于逻辑关系符"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_656300_967600",
+          "text": "好，最后我们就看这个例子。我们先做哪个？这个里面只有集合的运算和关系。先做集合的一元运算符，先做A的补和D的广义交。先做A的补，然后做D的广义交。然后做二元运算符，这个二元运算符和这个二元运算符，这两个得到的都是集合。最后看左边得到集合，右边得到集合，这两个是不是有子集关系？如果有就为真，如果没有就为假。所以如果我们加括号的话，就应该是先做这个和这个，然后再做这个和这个，最后看左边的集合和右边的集合是不是有子集的关系。现在分析一下。我们先做一元运算符，这里一的广义交是一元运算，得到的是一个集合。然后我们再做非，非还没做运算。先做A交B，A交B得到了以后，然后我们再看A交B这个集合是不是属于C的元素，C可能是集合的集合。做完这个以后，然后再做非，最后做蕴含。所以是这样的关系：先做这个，再做这个，再做这个和这个，然后再做这个，最后做这个。下面这个呢？下面这个我们没有一元运算符，我们只有集合的关",
+          "start_sec": 656.3,
+          "end_sec": 967.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_656300_967600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "矩形/rectangle",
+      "zh": "矩形",
+      "importance": 0.074071,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "矩形/rectangle",
+          "predicate": "related_with",
+          "object": "笛卡儿积/Cartesian product",
+          "label": "是...的图示",
+          "natural_statement": "矩形是笛卡尔积的图示"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1075200_1195200",
+          "text": "那么我们笛卡尔积的图示法，因为笛卡尔积我们就是看成有序对(x,y)，所以把A的元素看成x轴，B的元素看成y轴，那么A和B的笛卡尔积就是x和y的这样一个相交的矩形，这样得到矩形，这个就是我们笛卡尔积的图示法，这个相对比较简单了。好，集合的性质，我们讲完集合性质就讲公理系统了。那么性质其实很简单，因为我们的这个集合，大家可以看到都是或、与，对吧？并和交就是或和与，对吧？就或和与，用或和与来定义，所以这三种运算——并、交、补，满足我们的交换律、结合律和分配律，而我们的补集是满足我们的摩根律的，这些我们就很容易。",
+          "start_sec": 1075.2,
+          "end_sec": 1195.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1075200_1195200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "笛卡儿平方/Cartesian square",
+      "zh": "笛卡儿平方",
+      "importance": 0.071369,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那 A 是 a、b，B 是 0、1、2。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "笛卡儿平方/Cartesian square",
+          "predicate": "belong_to",
+          "object": "笛卡儿积/Cartesian product",
+          "label": "是…的特例",
+          "natural_statement": "笛卡儿平方是笛卡儿积的特例"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_388400_452800",
+          "text": "那 A 是 a、b，B 是 0、1、2。那么 A 和 B 的笛卡儿积，第一个元素从 A 中取，第二个元素从 B 中取，所以一共有二乘以三，六个元素。而 B 和 A 的笛卡儿积也是六个，但有序对正好反过来。A 和 A 的笛卡儿积，我们把它写成 A 的平方。所以，如果 A 的元素有 n 个，B 的元素有 m 个，那么 A 和 B 的笛卡儿积就有 n 乘以 m 个。这就是笛卡儿积的运算。",
+          "start_sec": 388.4,
+          "end_sec": 452.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_388400_452800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "二元联结词/binary connective",
+      "zh": "二元联结词",
+      "importance": 0.071185,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。",
+      "definition": "二元联结词是数理逻辑中用于联结两个命题变项（原子命题）的逻辑符号，其操作结果为一个真值。二元联结词优先于一元联结词和逻辑关系符，例如所熟知的析取（∨）、合取（∧）、蕴涵（→）和等价（↔）以及摩尔斯联结词（↑）和反对摩尔斯联结词（↓）都属于二元联结词的范畴，所有二元联结词共可定义出16个不同的形式。",
+      "neighbors": [
+        {
+          "subject": "一元联结词/unary connective",
+          "predicate": "related_with",
+          "object": "二元联结词/binary connective",
+          "label": "优先于",
+          "natural_statement": "一元联结词优先于二元联结词"
+        },
+        {
+          "subject": "二元联结词/binary connective",
+          "predicate": "related_with",
+          "object": "逻辑关系符/logical relation symbol",
+          "label": "优先于",
+          "natural_statement": "二元联结词优先于逻辑关系符"
+        },
+        {
+          "subject": "一元联结词/unary connective",
+          "predicate": "related_with",
+          "object": "二元联结词/binary connective",
+          "label": "相关",
+          "natural_statement": "一元联结词相关二元联结词"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "二元联结词/binary connective",
+          "label": "表示",
+          "natural_statement": "等值表示二元联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1249400_1822400",
+          "text": "A和B的幂集的交集就等于A和B的交集的幂集。下面这个：A的幂集并上B的幂集，它是A并B的幂集的子集。这个我们来证明一下。我们设x属于A的幂集并上B的幂集，那么x属于P(A)或x属于P(B)。根据幂集的概念，x是A的子集或x是B的子集。通过子集的概念，我们把它化成一阶谓词逻辑：对于任意的y，如果y属于x，则y属于A；或者对于任意的y，如果y属于x，则y属于B。这里可以提取出：对于任意的y，y属于x蕴含y属于A或y属于B。而y属于A或y属于B等价于y属于A并B。所以对于任意的y，y属于x蕴含y属于A并B，即x是A并B的子集，因此x属于P(A并B)。整个推理过程中，其他地方都是等值的，只有从“x是A的子集或x是B的子集”到“x是A并B的子集”这一步是单向的，只能由左边推出右边，不能反过来，所以这里不是等于，而是子集关系。这就是第4条性质。下面第5条：P(A-B) ⊆ (P(A) - P(B)) ",
+          "start_sec": 1249.4,
+          "end_sec": 1822.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1249400_1822400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_454600_490900",
+          "text": "关系符、运算符的优先权。优先关系：一元运算符（-A，P(A)，∩A，∪A）优先于二元运算符（-，∩，∪，⊕，×），优先于集合关系符（=，⊆，<，∈），优先于一元联结词（→），优先于二元联结词（∧，∨，→，↔），优先于逻辑关系符（⇒，⇐）。同时使用括号表示优先权方法、从左到右的优先次序：（1）括号内的优先于括号外的；（2）同一层括号内，按上述优先权；（3）同一层括号内，同一优先级的，按从左到右的优先次序。",
+          "start_sec": 454.6,
+          "end_sec": 490.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_454600_490900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_12_603000_652400",
+          "text": "一元运算符优先于二元运算符。然后，二元运算符优先于集合关系符，集合关系符包括等于、子集、属于等，这些关系符得到的是命题。接下来，集合关系符优先于一元联结词，一元联结词优先于二元联结词，最后是逻辑关系符。同时，使用括号表示优先权，同一层括号内按上述优先级，同一优先级按从左到右的次序。",
+          "start_sec": 603.0,
+          "end_sec": 652.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_603000_652400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "基数/基数",
+      "zh": "基数",
+      "importance": 0.070945,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "基数是集合论中用于衡量集合大小的数。",
+      "definition": "基数是集合论中用于衡量集合大小的数。有限集合的基数是一个非负整数，代表集合中的元素个数；对于无限集合，基数则是一个无穷数，用于区分不同“大小”的无穷集合，例如自然数集的基数记作ℵ₀。基数支持加法、乘法和幂运算，并且不存在最大的基数。",
+      "neighbors": [
+        {
+          "subject": "基数/基数",
+          "predicate": "synonym_of",
+          "object": "集合中元素的个数/集合中元素的个数",
+          "label": "同义于",
+          "natural_statement": "基数同义于集合中元素的个数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_2623500_2681900",
+          "text": "有限集合的基数。集合的基数就是集合中元素的个数。定义：如果存在n属于自然数，使集合A与集合{x|x∈N且x<n}={0,1,2,…,n-1}的元素个数相同，就说集合A的基数是n，记作#(A)=n或|A|=n或card(A)=n。空集的基数是0。定义：如果存在n属于自然数，n是集合A的基数，就说A是有限集合。如果不存在这样的n，就说A是无限集合。",
+          "start_sec": 2623.5,
+          "end_sec": 2681.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_2623500_2681900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "按子集大小分层/stratification by subset size",
+      "zh": "按子集大小分层",
+      "importance": 0.070694,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "它是A的幂集，是一个集合的集合。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "幂集的图示法/Graphical representation of power sets",
+          "predicate": "property_of",
+          "object": "按子集大小分层/stratification by subset size",
+          "label": "具有",
+          "natural_statement": "幂集的图示法具有按子集大小分层"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_1019300_1074400",
+          "text": "它是A的幂集，是一个集合的集合。我们通过把零个元素的集合放在最底下，一个元素的集合放在第二层，两个元素的集合放在第三层。因为A的幂集的元素都是集合，所以我们看这些元素中集合的元素个数：零个、一个、两个、三个。这样从下到上排序后，只在相邻层之间，如果上一层是下一层子集，就连边。",
+          "start_sec": 1019.3,
+          "end_sec": 1074.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_1019300_1074400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "不自吞/non-self-membership",
+      "zh": "不自吞",
+      "importance": 0.070493,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "不自吞/non-self-membership",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "是…性质",
+          "natural_statement": "不自吞是集合性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_334700_387300",
+          "text": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法、内涵法。它的关系，它有两个集合相等、子集、真子集、相交这样四种关系，我们都是用我们的一阶谓词逻辑来表示。然后我们的运算，我们有大家熟悉的并、交、减、对称差，那么除此之外，我们还跟大家介绍我们的广义并、广义交、幂集和我们笛卡尔积这样四种新的运算。这是我们的笛卡尔积，可以看到，如果说两个集合，我现在有这样的两集合，A是。",
+          "start_sec": 334.7,
+          "end_sec": 387.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_334700_387300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "无次序/no order",
+      "zh": "无次序",
+      "importance": 0.070493,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "无次序/no order",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "是…性质",
+          "natural_statement": "无次序是集合性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_334700_387300",
+          "text": "上节课跟大家介绍了我们集合的概念，它的性质：不自吞、无次序、不重复、确定性表示法，我们有外延法、内涵法。它的关系，它有两个集合相等、子集、真子集、相交这样四种关系，我们都是用我们的一阶谓词逻辑来表示。然后我们的运算，我们有大家熟悉的并、交、减、对称差，那么除此之外，我们还跟大家介绍我们的广义并、广义交、幂集和我们笛卡尔积这样四种新的运算。这是我们的笛卡尔积，可以看到，如果说两个集合，我现在有这样的两集合，A是。",
+          "start_sec": 334.7,
+          "end_sec": 387.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_334700_387300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "重言等价/tautological equivalence",
+      "zh": "重言等价",
+      "importance": 0.070257,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "是不是重言蕴含？",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "重言等价/tautological equivalence",
+          "predicate": "synonym_of",
+          "object": "等值/equivalence",
+          "label": "是…的不同名称",
+          "natural_statement": "重言等价是等值的不同名称"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_968400_1018200",
+          "text": "是不是重言蕴含？左边和右边是不是重言蕴含？是不是等值？重言等价就是等值。好，集合最后一个图形表示法，文氏图大家很熟悉，我就不说了。那么我们的幂集，后面会介绍，我们会用哈斯图来表示，后面我们还会不断地介绍。比如说A是0,1,2，那么A的幂集就会有2的三次方，八个元素，A的幂集P(A)有八个元素。好，在这里面有八个元素，我们把这八个元素。",
+          "start_sec": 968.4,
+          "end_sec": 1018.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_968400_1018200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "一元运算符",
+      "zh": "一元运算符",
+      "importance": 0.070223,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "一元运算符是数理逻辑中作用于单个操作数、产生一个结果的逻辑符号，其优先级高于二元运算符。",
+      "definition": "一元运算符是数理逻辑中作用于单个操作数、产生一个结果的逻辑符号，其优先级高于二元运算符。例如，否定运算符（¬）可以作用于单个命题，将其真值反转。在逻辑表达式求值时，一元运算符通常会比二元运算符更早被计算。",
+      "neighbors": [
+        {
+          "subject": "一元运算符",
+          "predicate": "related_with",
+          "object": "二元运算符",
+          "label": "优先于",
+          "natural_statement": "一元运算符优先于二元运算符"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_603000_652400",
+          "text": "一元运算符优先于二元运算符。然后，二元运算符优先于集合关系符，集合关系符包括等于、子集、属于等，这些关系符得到的是命题。接下来，集合关系符优先于一元联结词，一元联结词优先于二元联结词，最后是逻辑关系符。同时，使用括号表示优先权，同一层括号内按上述优先级，同一优先级按从左到右的次序。",
+          "start_sec": 603.0,
+          "end_sec": 652.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_603000_652400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "二元运算符",
+      "zh": "二元运算符",
+      "importance": 0.070223,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "二元运算符是数理逻辑与集合论中作用于两个操作数（或称参数）的运算符号，其优先级低于一元运算符。",
+      "definition": "二元运算符是数理逻辑与集合论中作用于两个操作数（或称参数）的运算符号，其优先级低于一元运算符。在集合论中，二元运算符优先于集合关系符，例如“∪”（并集）和“∩”（交集）都是二元运算符，它们作用于两个集合，产生一个新的集合。",
+      "neighbors": [
+        {
+          "subject": "一元运算符",
+          "predicate": "related_with",
+          "object": "二元运算符",
+          "label": "优先于",
+          "natural_statement": "一元运算符优先于二元运算符"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_12_603000_652400",
+          "text": "一元运算符优先于二元运算符。然后，二元运算符优先于集合关系符，集合关系符包括等于、子集、属于等，这些关系符得到的是命题。接下来，集合关系符优先于一元联结词，一元联结词优先于二元联结词，最后是逻辑关系符。同时，使用括号表示优先权，同一层括号内按上述优先级，同一优先级按从左到右的次序。",
+          "start_sec": 603.0,
+          "end_sec": 652.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_12_603000_652400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

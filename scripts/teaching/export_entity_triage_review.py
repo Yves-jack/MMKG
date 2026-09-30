@@ -17,7 +17,7 @@ def main() -> None:
     import argparse
 
     p = argparse.ArgumentParser(description="Export entity triage review for a course")
-    p.add_argument("--course-id", default="shuliluoji")
+    p.add_argument("--course-id", default="数理逻辑")
     p.add_argument("--lectures", default="1,2,3", help="comma-separated lecture ids")
     p.add_argument(
         "--textbook",

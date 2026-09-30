@@ -1,0 +1,652 @@
+/* Mindmap-specific: horizontal branch / bubble tree */
+
+.mindCanvasWrap {
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panViewport {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  position: relative;
+  overscroll-behavior: contain;
+  flex: 1 1 auto;
+}
+
+.panDragging {
+  cursor: grabbing;
+}
+
+.panMoved :global(button) {
+  pointer-events: none;
+}
+
+.panLayer {
+  display: inline-block;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 28px 32px 48px;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.zoomBar {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: color-mix(in srgb, var(--bg-elev, #161b22) 88%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.zoomBtn {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.zoomBtn:hover {
+  background: rgba(62, 207, 142, 0.12);
+}
+
+.zoomBtnActive {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 7px;
+  background: rgba(62, 207, 142, 0.18);
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.zoomLabel {
+  min-width: 42px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 28px 48px;
+  min-width: min(100%, 720px);
+  padding: 8px 12px 24px;
+  position: relative;
+}
+
+.remoteSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.remotePath {
+  stroke: rgba(232, 184, 109, 0.75);
+  stroke-width: 1.6;
+  stroke-dasharray: 6 5;
+}
+
+.editBar {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 24px);
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: color-mix(in srgb, var(--bg-elev, #161b22) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.chromeBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: color-mix(in srgb, var(--bg-elev, #161b22) 92%, #0e1116);
+  position: relative;
+  z-index: 6;
+  flex-shrink: 0;
+}
+
+.chromeEnd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.entitySearch {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 260px;
+}
+
+.entitySearchInput {
+  width: 100%;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  background: color-mix(in srgb, var(--bg, #0b1220) 70%, var(--bg-elev, #161b22));
+  color: inherit;
+  font-size: 13px;
+}
+
+.entitySearchInput:focus {
+  outline: none;
+  border-color: rgba(62, 207, 142, 0.45);
+}
+
+.entitySearchMenu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  max-height: 240px;
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: var(--bg-elev, #161b22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  z-index: 20;
+}
+
+.entitySearchItem {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.entitySearchItem:hover {
+  background: rgba(62, 207, 142, 0.12);
+}
+
+.entitySearchItem em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted, #8b949e);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 45%;
+}
+
+.entitySearchEmpty {
+  padding: 10px;
+  font-size: 12px;
+  color: var(--muted, #8b949e);
+}
+
+.mindCanvasWrap .editBar {
+  position: relative;
+  left: auto;
+  top: auto;
+  max-width: none;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.editToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.editBtn {
+  appearance: none;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.editBtn:hover:not(:disabled) {
+  border-color: rgba(62, 207, 142, 0.4);
+}
+
+.editBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.editBtnOn {
+  background: rgba(62, 207, 142, 0.16);
+  border-color: rgba(62, 207, 142, 0.45);
+}
+
+.editHint {
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 280px;
+  line-height: 1.35;
+}
+
+.linkList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 100%;
+}
+
+.linkChip {
+  appearance: none;
+  border: 1px dashed rgba(232, 184, 109, 0.45);
+  background: rgba(232, 184, 109, 0.08);
+  color: #e8b86d;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.bubble[data-move-src="1"],
+.bubble[data-link-src="1"] {
+  border-color: rgba(232, 184, 109, 0.7);
+  box-shadow: 0 0 0 2px rgba(232, 184, 109, 0.2);
+}
+
+.mindCanvasWrap[data-edit="1"] {
+  cursor: default;
+}
+
+.mindCanvasWrap[data-edit="1"] .panViewport {
+  cursor: grab;
+}
+
+.mindCanvasWrap[data-edit="1"] .panDragging {
+  cursor: grabbing;
+}
+
+.canvas[data-forest="0"] {
+  align-items: center;
+}
+
+.treeSlot {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px;
+  border-radius: 12px;
+  cursor: grab;
+  position: relative;
+}
+
+.treeDragging {
+  cursor: grabbing;
+  z-index: 2;
+}
+
+.branch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.branchMain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+  padding: 10px 14px;
+  padding-right: 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  color: var(--text);
+  text-align: left;
+  box-shadow: none;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.bubble[data-sized="1"] {
+  border-radius: 12px;
+  align-items: flex-start;
+}
+
+.bubble[data-sized="1"] .bubbleText {
+  white-space: normal;
+  overflow: auto;
+  text-overflow: unset;
+  flex: 1;
+  min-width: 0;
+  align-self: center;
+}
+
+.resizeHandle {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  cursor: nwse-resize;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 45%,
+      color-mix(in srgb, var(--muted) 55%, transparent) 45% 55%,
+      transparent 55% 70%,
+      color-mix(in srgb, var(--muted) 70%, transparent) 70% 80%,
+      transparent 80%
+    );
+  opacity: 0;
+  z-index: 2;
+}
+
+.bubble:hover .resizeHandle,
+.bubble[data-selected="1"] .resizeHandle,
+.bubble[data-sized="1"] .resizeHandle {
+  opacity: 0.85;
+}
+
+.resizeHandle:hover {
+  opacity: 1;
+}
+
+.bubble:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  transform: translateY(-1px);
+}
+
+.bubble[data-selected="1"] {
+  border-color: rgba(62, 207, 142, 0.85);
+  box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.28);
+  background: color-mix(in srgb, rgba(62, 207, 142, 0.22) 85%, var(--bg-elev));
+  z-index: 1;
+}
+
+.bubble[data-kind="root"] {
+  max-width: 280px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border-color: rgba(62, 207, 142, 0.45);
+  background:
+    linear-gradient(135deg, rgba(62, 207, 142, 0.16), transparent 60%),
+    var(--bg-elev);
+}
+
+.bubble[data-kind="root"] .bubbleText {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bubble[data-kind="chapter"] {
+  border-radius: 12px;
+  border-color: rgba(91, 141, 239, 0.35);
+  background: color-mix(in srgb, rgba(91, 141, 239, 0.12) 70%, var(--bg-elev));
+}
+
+.bubble[data-kind="chapter"] .bubbleText {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.bubble[data-kind="topic"] {
+  background: color-mix(
+    in srgb,
+    var(--accent) calc(var(--imp) * 18%),
+    var(--bg-elev)
+  );
+}
+
+.bubble[data-kind="leaf"] {
+  padding: 7px 12px;
+  opacity: 0.96;
+}
+
+.bubble[data-kind="leaf"] .bubbleText {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.bubbleText {
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.bubbleToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 55%, var(--bg-elev));
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.bubbleToggle:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  color: var(--text);
+}
+
+.elbow {
+  width: 18px;
+  height: 2px;
+  background: color-mix(in srgb, var(--accent) 35%, var(--line));
+  flex-shrink: 0;
+}
+
+.childCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding-left: 0;
+  position: relative;
+}
+
+/* display:flex 会覆盖原生 [hidden]，收起时必须显式隐藏 */
+.childCol[hidden],
+.childCol[data-open="0"] {
+  display: none !important;
+}
+
+.childRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.childRow[data-weak="1"] > .rail {
+  background: transparent;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--accent) 45%, var(--line)) 40%,
+    transparent 0%
+  );
+  background-size: 6px 2px;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.85;
+}
+
+.childRow[data-weak="1"] .bubble {
+  border-style: dashed;
+  opacity: 0.92;
+}
+
+.rail {
+  width: 16px;
+  height: 2px;
+  background: color-mix(in srgb, var(--accent) 28%, var(--line));
+  flex-shrink: 0;
+  position: relative;
+}
+
+.childRow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--accent) 22%, var(--line));
+  top: 0;
+  bottom: 0;
+}
+
+.childRow[data-first="1"]::before {
+  top: 50%;
+}
+
+.childRow[data-last="1"]::before {
+  bottom: 50%;
+}
+
+.childRow[data-first="1"][data-last="1"]::before {
+  display: none;
+}
+
+.mindCanvasWrap[data-layout="tb"] .canvas {
+  align-items: flex-start;
+}
+
+.mindCanvasWrap[data-layout="tb"] .branch,
+.mindCanvasWrap[data-layout="tb"] .branchMain,
+.mindCanvasWrap[data-layout="tb"] .childRow {
+  flex-direction: column;
+  align-items: center;
+}
+
+.mindCanvasWrap[data-layout="tb"] .elbow {
+  width: 2px;
+  height: 18px;
+}
+
+.mindCanvasWrap[data-layout="tb"] .childCol {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.mindCanvasWrap[data-layout="tb"] .rail {
+  width: 2px;
+  height: 16px;
+}
+
+.mindCanvasWrap[data-layout="tb"] .childRow::before {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 2px;
+}
+
+.mindCanvasWrap[data-layout="tb"] .childRow[data-first="1"]::before {
+  top: 0;
+  left: 50%;
+}
+
+.mindCanvasWrap[data-layout="tb"] .childRow[data-last="1"]::before {
+  bottom: auto;
+  right: 50%;
+}
+
+.mindCanvasWrap[data-layout="tb"] .childRow[data-first="1"][data-last="1"]::before {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .bubble {
+    max-width: 160px;
+  }
+
+  .bubble[data-kind="root"] {
+    max-width: 200px;
+  }
+
+  .bubble[data-kind="root"] .bubbleText {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 560px) {
+  .branch {
+    align-items: flex-start;
+  }
+}

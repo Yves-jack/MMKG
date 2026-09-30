@@ -35,7 +35,7 @@
 }
 
 .sideHead {
-  padding: 22px 20px 16px;
+  padding: 16px 16px 12px;
   border-bottom: 1px solid var(--line);
   flex-shrink: 0;
 }
@@ -130,9 +130,9 @@
 .sideTitle {
   margin: 0 0 6px;
   font-family: var(--display);
-  font-size: 26px;
+  font-size: 20px;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .sideLead {
@@ -321,6 +321,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .stats > div {

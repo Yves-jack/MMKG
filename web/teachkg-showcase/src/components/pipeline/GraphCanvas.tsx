@@ -13,6 +13,7 @@ import type { PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
 import { exportVisNetworkPng } from "@/lib/pipeline/exportVisNetworkPng";
 import {
   applyCachedPositions,
+  assignElasticSprings,
   assignParallelCurves,
   buildVisEdges,
   buildVisNodes,
@@ -24,7 +25,9 @@ import {
   HL_NODE_FADE_BG,
   HL_NODE_FADE_BORDER,
   placeUncachedNodes,
+  reduceEdgeCrossings,
   resolveNodeOverlaps,
+  seedClusterCircleLayout,
   stageEdgesForDisplay,
   stageHighlightFilters,
   stageNodesForDisplay,
@@ -55,6 +58,8 @@ type Props = {
   stage: PipelineStage;
   hideFiltered: boolean;
   highlightKey: string | null;
+  /** 覆盖默认 stageHighlightFilters（课堂 KG 三类图例） */
+  highlightFilters?: HlFilter[] | null;
   /** dim=淡化无关；solo=只显示高亮相关 */
   highlightMode?: "dim" | "solo";
   posCacheRef: MutableRefObject<Record<string, { x: number; y: number }>>;
@@ -77,12 +82,21 @@ type Props = {
   onSelectEdge: (id: string | null, groupIds?: string[]) => void;
 };
 
+/** 重要性从紧到松等场景会突然补回大量节点；原地塞位会乱，需整图重布局 */
+function shouldRelayoutForNodeGrowth(haveCount: number, addedCount: number): boolean {
+  if (addedCount <= 0) return false;
+  if (haveCount <= 0) return addedCount > 0;
+  if (addedCount >= 8) return true;
+  return addedCount / haveCount >= 0.15;
+}
+
 function GraphCanvasInner(
   {
     payload,
     stage,
     hideFiltered,
     highlightKey,
+    highlightFilters = null,
     highlightMode = "dim",
     posCacheRef,
     keepLayout,
@@ -122,7 +136,8 @@ function GraphCanvasInner(
         const host = hostRef.current;
         if (!net || !host) return false;
         // 文本-only 阶段无 network
-        if (stage.focus === "text" || stage.id === "seeds") return false;
+        if (stage.focus === "text" || stage.id === "seeds")
+          return false;
         try {
           return await exportVisNetworkPng(net, host, opts);
         } catch {
@@ -239,17 +254,44 @@ function GraphCanvasInner(
     }
     const matchN = new Set<string>();
     const matchE = new Set<string>();
+    const nodeKindOnly = Boolean(
+      filter.nodeKinds?.length &&
+        !filter.edgeSources?.length &&
+        !filter.edgeRelations?.length &&
+        !filter.edgeIds?.length &&
+        !filter.nodeIds?.length
+    );
     if (filter.nodeKinds?.length) {
+      const kinds = new Set(filter.nodeKinds.map(String));
       allNodes.forEach((n) => {
-        if (filter.nodeKinds!.includes(String(n._kind))) matchN.add(String(n.id));
+        const kind = String(n._kind || "entity");
+        if (kinds.has(kind)) matchN.add(String(n.id));
       });
-      allEdges.forEach((e) => {
-        if (matchN.has(String(e.from)) || matchN.has(String(e.to))) matchE.add(String(e.id));
-      });
+      if (nodeKindOnly) {
+        // 实体图例：只高亮同类节点；边仅当两端均命中（不把异类邻居算进高亮）
+        allEdges.forEach((e) => {
+          if (matchN.has(String(e.from)) && matchN.has(String(e.to))) {
+            matchE.add(String(e.id));
+          }
+        });
+      } else {
+        allEdges.forEach((e) => {
+          if (matchN.has(String(e.from)) || matchN.has(String(e.to))) {
+            matchE.add(String(e.id));
+          }
+        });
+      }
     }
     if (filter.edgeSources?.length) {
+      const wantsCross = filter.edgeSources.some(
+        (s) => s === "cross_cue" || String(s).startsWith("cross_cue")
+      );
       allEdges.forEach((e) => {
-        if (filter.edgeSources!.includes(String(e._source))) {
+        const cross = Boolean(e._isCrossCue);
+        const hit = wantsCross
+          ? cross
+          : !cross && filter.edgeSources!.includes(String(e._source));
+        if (hit) {
           matchE.add(String(e.id));
           if (e.from) matchN.add(String(e.from));
           if (e.to) matchN.add(String(e.to));
@@ -289,12 +331,14 @@ function GraphCanvasInner(
         }
       });
     }
-    // 命中边的两端始终纳入高亮（图例 / 边聚焦 / 实体邻域一致）
-    matchE.forEach((eid) => {
-      const e = allEdges.find((x) => String(x.id) === eid);
-      if (e?.from) matchN.add(String(e.from));
-      if (e?.to) matchN.add(String(e.to));
-    });
+    // 边类图例：命中边的两端纳入高亮；实体类图例不扩展异类邻居
+    if (!nodeKindOnly) {
+      matchE.forEach((eid) => {
+        const e = allEdges.find((x) => String(x.id) === eid);
+        if (e?.from) matchN.add(String(e.from));
+        if (e?.to) matchN.add(String(e.to));
+      });
+    }
     nDS.update(
       allNodes.map((n) => {
         const hit = matchN.has(String(n.id));
@@ -402,6 +446,10 @@ function GraphCanvasInner(
     } else {
       assignParallelCurves(visEdges);
       cacheEdgeSmooth(visEdges);
+    }
+    assignElasticSprings(visNodes, visEdges);
+    if (!freeze) {
+      seedClusterCircleLayout(visNodes, visEdges);
     }
 
     const haveN = new Set((nDS.getIds() as string[]).map(String));
@@ -533,9 +581,22 @@ function GraphCanvasInner(
         nodeIds: [String(selectedNodeId)],
       };
     }
-    const filters = stageHighlightFilters(stage, payload.mode, payload.lecture_ids || []).filter(
-      (f) => filterHasMatches(payload.mode, stage, f, hideFiltered)
-    );
+    // 处理类等自定义图例：计数时不能用 hideFiltered（process_* 默认隐藏）
+    const catalog =
+      highlightFilters && highlightFilters.length
+        ? highlightFilters
+        : stageHighlightFilters(stage, payload.mode, payload.lecture_ids || []);
+    const filters = catalog.filter((f) => {
+      const isProcess =
+        f.group === "处理类" ||
+        (f.edgeSources || []).some((s) => String(s).startsWith("process_"));
+      return filterHasMatches(
+        payload.mode,
+        stage,
+        f,
+        isProcess ? false : hideFiltered
+      );
+    });
     return filters.find((f) => f.key === highlightKey) || null;
   };
 
@@ -590,7 +651,35 @@ function GraphCanvasInner(
     }
     if (!hostRef.current) return;
 
+    const mode = payload.mode;
+    const previewEdges = stageEdgesForDisplay(mode, stage, hideFiltered);
+    const previewNodes = stageNodesForDisplay(
+      mode,
+      stage,
+      previewEdges,
+      hideFiltered
+    );
+    const haveIds = nodeDS.current
+      ? (nodeDS.current.getIds() as string[]).map(String)
+      : [];
+    const haveSet = new Set(haveIds);
+    let addedCount = 0;
+    for (const n of previewNodes) {
+      if (!haveSet.has(String(n.id))) addedCount += 1;
+    }
+    const forceFullLayout =
+      !!netRef.current &&
+      shouldRelayoutForNodeGrowth(haveIds.length, addedCount);
+
+    if (forceFullLayout) {
+      posCacheRef.current = {};
+      edgeSmoothCacheRef.current = {};
+      viewRef.current = null;
+      stageIdRef.current = "";
+    }
+
     const canKeep =
+      !forceFullLayout &&
       keepLayout &&
       payload.mode === "session" &&
       netRef.current &&
@@ -606,7 +695,9 @@ function GraphCanvasInner(
     }
 
     // 同一步内切换「隐藏过滤边」等：原地增删边/节点，保持坐标
+    // 节点明显增多（如重要性从「去掉零分」回到「全部」）则走下方整图重布局
     if (
+      !forceFullLayout &&
       netRef.current &&
       nodeDS.current &&
       edgeDS.current &&
@@ -617,7 +708,6 @@ function GraphCanvasInner(
       return;
     }
 
-    const mode = payload.mode;
     // 先对「全部边」算平行曲线并缓存，再按 hideFiltered 取子集，保证切换时曲线不变
     const allRawEdges = stageEdgesForDisplay(mode, stage, false);
     const allVisEdges = buildVisEdges(allRawEdges);
@@ -627,8 +717,8 @@ function GraphCanvasInner(
       netRef.current.destroy();
       netRef.current = null;
     }
-    // lecture 切步骤：清空坐标/边曲线缓存并重新布局；同一步过滤切换已走 syncInPlace
-    if (mode !== "session") {
+    // lecture 切步骤 / 强制重布局：清空坐标与边曲线缓存
+    if (mode !== "session" || forceFullLayout) {
       posCacheRef.current = {};
       edgeSmoothCacheRef.current = {};
     }
@@ -638,11 +728,16 @@ function GraphCanvasInner(
     const nodes = buildVisNodes(stage, stageNodesForDisplay(mode, stage, rawEdges, hideFiltered));
     const edges = buildVisEdges(rawEdges);
     applyCachedEdgeSmooth(edges);
+    assignElasticSprings(nodes, edges);
 
-    const reuse = mode === "session" && Object.keys(posCacheRef.current).length > 0;
+    const reuse =
+      !forceFullLayout &&
+      mode === "session" &&
+      Object.keys(posCacheRef.current).length > 0;
     if (!reuse) {
       // 全新布局：丢掉旧视口，避免把上一图的缩放套到新图上
       viewRef.current = null;
+      seedClusterCircleLayout(nodes, edges);
     }
     if (reuse) {
       applyCachedPositions(nodes, posCacheRef.current);
@@ -695,6 +790,7 @@ function GraphCanvasInner(
         snapshot();
         try {
           const live = nodeDS.current!.get() as VisNode[];
+          const liveEdges = (edgeDS.current?.get() as VisEdge[]) || [];
           const pos = net.getPositions(live.map((n) => n.id));
           live.forEach((n) => {
             const p = pos[n.id];
@@ -703,7 +799,11 @@ function GraphCanvasInner(
               n.y = p.y;
             }
           });
-          resolveNodeOverlaps(live, null);
+          if (stage.id === "seeds") {
+            resolveNodeOverlaps(live, null);
+          } else {
+            reduceEdgeCrossings(live, liveEdges);
+          }
           nodeDS.current!.update(
             live.filter((n) => n.x != null).map((n) => ({ id: n.id, x: n.x, y: n.y })) as any
           );
@@ -711,8 +811,15 @@ function GraphCanvasInner(
         } catch {
           /* ignore */
         }
-        if (stage.id === "seeds") {
-          net.fit({ animation: { duration: 280, easingFunction: "easeInOutQuad" } });
+        try {
+          net.fit({
+            animation: {
+              duration: stage.id === "seeds" ? 280 : 320,
+              easingFunction: "easeInOutQuad",
+            },
+          });
+        } catch {
+          /* ignore */
         }
         captureView();
       });
@@ -730,7 +837,15 @@ function GraphCanvasInner(
     applyHighlight(resolveActiveHighlight());
     syncGraphSelection();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [highlightKey, highlightMode, focusEdgeIds, selectedEdgeId, selectedNodeId]);
+  }, [
+    highlightKey,
+    highlightFilters,
+    highlightMode,
+    focusEdgeIds,
+    selectedEdgeId,
+    selectedNodeId,
+    hideFiltered,
+  ]);
 
   // 仅响应搜索触发的一次性居中；消费后通知父级清空，避免点选/重挂载再次居中
   useEffect(() => {

@@ -1,13 +1,18 @@
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PipelineEdge, PipelineStage } from "@/lib/pipeline/types";
 import { isBidirectionalRelation } from "@/lib/pipeline/graphLogic";
+import { propertyOfToSentence } from "@/lib/kg/lectureKgProcess";
 import {
-  assetKindLabel,
-  findAssetsForEntity,
-  type AssetCard,
-  type AssetsLibrary,
-} from "@/lib/kg/assetsLibrary";
+  ABSTRACT_RELATIONS,
+  composeCanonicalName,
+  splitCanonicalName,
+  type EdgeEdit,
+  type KgEditPatch,
+} from "@/lib/kg/kgEdits";
+import { assetKindLabel, assetRoleLabel, assetReviewSeek, findPeerAssets, type AssetCard, type AssetsLibrary, findAssetsForEntity } from "@/lib/kg/assetsLibrary";
+import { WatchClassroom } from "@/components/apps/WatchClassroom";
+import { useCourseId } from "@/lib/course";
 import { LatexText } from "@/components/pipeline/LatexText";
 import styles from "@/pages/PipelinePage.module.css";
 
@@ -96,18 +101,40 @@ const SOURCE_LABEL: Record<string, string> = {
   textbook_revised: "教材·修订后",
   textbook_before: "教材·修订前",
   lecture_delta: "课堂增量",
+  kg_completion: "KG补全",
   cross_cue: "跨段衔接",
+  process_rule: "规则删边",
+  process_node: "节点筛选",
+  process_isolated: "孤立边删除",
   llm_fallback: "LLM 回退",
   llm_only: "LLM",
   filtered: "已过滤/删除",
   both: "两讲共有",
 };
 
-/** 来源行：抽取类型 · 讲次 · 片段 */
+/** 去掉来源文案中的时间点（如 01:23、12:34–15:00、12.5s） */
+function stripTimeHints(s: string): string {
+  return String(s || "")
+    .replace(
+      /\b\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?(?:\s*[–—\-~至到]\s*\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?)?\b/g,
+      ""
+    )
+    .replace(
+      /\b\d+(?:\.\d+)?\s*(?:s|sec|secs|秒)(?:\s*[–—\-~至到]\s*\d+(?:\.\d+)?\s*(?:s|sec|secs|秒))?\b/gi,
+      ""
+    )
+    .replace(/\(\s*\)/g, "")
+    .replace(/\s*[·•|]\s*[·•|]/g, " · ")
+    .replace(/^\s*[·•|]\s*|\s*[·•|]\s*$/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+/** 来源行：抽取类型 · 讲次 · 片段（不含时间点） */
 function formatEdgeSource(edge: PipelineEdge): string {
   const parts: string[] = [];
   const src = (edge.source || "").trim();
-  const span = (edge.extract_source || "").trim();
+  const span = stripTimeHints((edge.extract_source || "").trim());
   const lecRaw =
     edge.lecture_id != null && String(edge.lecture_id).trim()
       ? String(edge.lecture_id).trim()
@@ -118,7 +145,7 @@ function formatEdgeSource(edge: PipelineEdge): string {
     parts.push(span);
   } else if (src === "filtered" && (span || edge.dedupe_reason_zh || edge.dedupe_reason)) {
     parts.push("去重候选");
-    const reason = (edge.dedupe_reason_zh || edge.dedupe_reason || "").trim();
+    const reason = stripTimeHints((edge.dedupe_reason_zh || edge.dedupe_reason || "").trim());
     if (reason) parts.push(reason);
     if (span) parts.push(span);
   } else if (SOURCE_LABEL[src]) {
@@ -140,34 +167,26 @@ function formatEdgeSource(edge: PipelineEdge): string {
   }
   if (lecLabel) parts.push(lecLabel);
 
-  const cueLabel = (edge.cue_label || "").trim();
+  const cueLabel = stripTimeHints((edge.cue_label || "").trim());
   if (cueLabel) {
     // 若标签已含讲次且上面已写讲次，去掉前缀避免重复
     const stripped = lecLabel
       ? cueLabel.replace(new RegExp(`^${lecLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[·•|]\\s*`), "")
       : cueLabel;
-    if (stripped) parts.push(stripped);
+    const clean = stripTimeHints(stripped);
+    if (clean) parts.push(clean);
   } else if (edge.cue_ids && edge.cue_ids.length > 1) {
     parts.push(`${edge.cue_ids.length} 个片段`);
-  } else if (edge.cue_id) {
-    parts.push(String(edge.cue_id));
   }
 
-  return parts.join(" · ") || "—";
+  return parts.map(stripTimeHints).filter(Boolean).join(" · ") || "—";
 }
 
-const ABSTRACT_RELATIONS = [
-  "belong_to",
-  "part_of",
-  "depend_on",
-  "property_of",
-  "synonym_of",
-  "related_with",
-] as const;
+const ABSTRACT_RELATIONS_LOCAL = ABSTRACT_RELATIONS;
 
 function normalizeAbstractRelation(raw?: string | null): string {
   const p = (raw || "").trim();
-  if ((ABSTRACT_RELATIONS as readonly string[]).includes(p)) return p;
+  if ((ABSTRACT_RELATIONS_LOCAL as readonly string[]).includes(p)) return p;
   const aliases: Record<string, string> = {
     belongs_to: "belong_to",
     is_a: "belong_to",
@@ -205,17 +224,58 @@ function edgesForStage(
   return edges;
 }
 
-function DetailRows({ rows }: { rows: Array<[string, ReactNode] | null | false | undefined> }) {
+function DetailRows({
+  rows,
+}: {
+  rows: Array<[string, ReactNode] | null | false | undefined>;
+}) {
   const list = rows.filter(Boolean) as Array<[string, ReactNode]>;
+  const COLLAPSE_KEYS = new Set([
+    "描述",
+    "关联知识点",  // 兼容旧数据折叠键；展示已移除
+    "详细理由",
+    "修正依据",
+    "修正前依据",
+    "原文依据",
+    "依据",
+    "上下文",
+  ]);
+  const [openKeys, setOpenKeys] = useState<Record<string, boolean>>({});
   if (!list.length) return null;
+
   return (
     <dl className={styles.detailRows}>
-      {list.map(([k, v]) => (
-        <div key={k} className={styles.detailRow}>
-          <dt>{k}</dt>
-          <dd>{v}</dd>
-        </div>
-      ))}
+      {list.map(([k, v]) => {
+        const collapsible = COLLAPSE_KEYS.has(k);
+        // 描述、特性默认展开；其余可折叠字段默认收起
+        const open = openKeys[k] ?? (k === "特性" || k === "描述");
+        return (
+          <div key={k} className={styles.detailRow}>
+            <dt>
+              {collapsible ? (
+                <button
+                  type="button"
+                  className={styles.fieldToggle}
+                  aria-expanded={open}
+                  onClick={() =>
+                    setOpenKeys((prev) => ({ ...prev, [k]: !open }))
+                  }
+                >
+                  <span>{k}</span>
+                  <span className={styles.fieldChevron}>{open ? "▾" : "▸"}</span>
+                </button>
+              ) : (
+                k
+              )}
+            </dt>
+            {collapsible && !open ? (
+              <dd className={styles.fieldCollapsedHint}>已折叠 · 点击展开</dd>
+            ) : (
+              <dd>{v}</dd>
+            )}
+          </div>
+        );
+      })}
     </dl>
   );
 }
@@ -293,10 +353,100 @@ function fmt(v: unknown) {
   if (v == null || Number.isNaN(Number(v))) return "—";
   return Number(v).toFixed(3);
 }
+
+/** 课堂分：缺失显示「未评分」，避免与真·零分混淆 */
+function fmtClassroom(v: unknown) {
+  if (v == null || Number.isNaN(Number(v))) return "未评分";
+  return Number(v).toFixed(3);
+}
+
 function fmtDelta(v: unknown) {
   if (v == null || Number.isNaN(Number(v))) return "—";
   const n = Number(v);
   return `${n >= 0 ? "+" : ""}${n.toFixed(3)}`;
+}
+
+const FUSION_CONTRIB_KEYS = new Set(["pagerank", "classroom_adj", "blend_adjust"]);
+
+const CONTRIB_LABEL: Record<string, string> = {
+  prior: "先验",
+  mention_time: "提及次数",
+  board_ppt: "板书/PPT",
+  discourse_role: "话语角色",
+  structure_graph: "结构支撑",
+  app_feedback: "应用反馈",
+  pagerank: "PageRank",
+  classroom_adj: "课堂 C′",
+  blend_adjust: "修正量",
+};
+
+function descriptionFallbackFromEdges(
+  related: PipelineEdge[],
+  existing?: string | null
+): { text: string; fromEdges: boolean } {
+  const owned = String(existing || "").trim();
+  if (owned) return { text: owned, fromEdges: false };
+  const seen = new Set<string>();
+  const samples: string[] = [];
+  for (const e of related) {
+    const candidates = [
+      e.description,
+      e.context,
+      e.statement,
+      e.concrete || e.concrete_relation,
+    ];
+    for (const raw of candidates) {
+      const t = String(raw || "").trim();
+      if (!t || seen.has(t)) continue;
+      seen.add(t);
+      samples.push(t);
+      if (samples.length >= 2) break;
+    }
+    if (samples.length >= 2) break;
+  }
+  if (!samples.length) return { text: "", fromEdges: false };
+  return { text: samples.join("\n\n"), fromEdges: true };
+}
+
+function ContribBars({
+  entries,
+  scale,
+}: {
+  entries: Array<[string, number]>;
+  scale: "fixed01" | "groupMax";
+}) {
+  if (!entries.length) return null;
+  const maxC =
+    scale === "fixed01"
+      ? 1
+      : Math.max(...entries.map(([, v]) => Math.abs(Number(v) || 0)), 1e-6);
+  return (
+    <>
+      {entries.map(([k, v]) => {
+        const num = Number(v);
+        const isDelta = k === "blend_adjust";
+        const val = isDelta ? num : Math.max(0, num || 0);
+        const widthPct = Math.min(100, (Math.abs(num || 0) / maxC) * 100);
+        return (
+          <div key={k} className={styles.contribRow}>
+            <span>{CONTRIB_LABEL[k] || k}</span>
+            <div className={styles.contribBarTrack}>
+              <div
+                className={styles.contribBar}
+                style={{
+                  width: `${widthPct}%`,
+                  ...(isDelta && num < 0
+                    ? { background: "rgba(239, 68, 68, 0.65)" }
+                    : null),
+                }}
+              />
+            </div>
+            <em>{isDelta ? fmtDelta(num) : val.toFixed(3)}</em>
+          </div>
+        );
+      })}
+    </>
+  );
 }
 
 export function SelectionDetail({
@@ -305,15 +455,35 @@ export function SelectionDetail({
   selectedEdgeId,
   hideFiltered = false,
   mode = "lecture",
-  /** textbook：仅教材先验；full：教材先验 + 反馈后 + Δ */
+  /** textbook：仅教材先验；classroom：仅课堂信号；full：教材先验 + 反馈后 + Δ */
   importanceMode = "full",
+  editMode = false,
+  kgPatch = null,
+  editBusy = false,
+  onRenameEntity,
+  onSaveEdgeEdit,
+  onClearEdgeEdit,
+  onDeleteEntity,
+  onDeleteEdge,
+  onRestoreEntity,
+  onRestoreEdge,
 }: {
   stage: PipelineStage;
   selectedNodeId: string | null;
   selectedEdgeId: string | null;
   hideFiltered?: boolean;
   mode?: string;
-  importanceMode?: "full" | "textbook";
+  importanceMode?: "full" | "textbook" | "classroom";
+  editMode?: boolean;
+  kgPatch?: KgEditPatch | null;
+  editBusy?: boolean;
+  onRenameEntity?: (currentId: string, newId: string) => void | Promise<void>;
+  onSaveEdgeEdit?: (edgeId: string, edit: EdgeEdit) => void | Promise<void>;
+  onClearEdgeEdit?: (edgeId: string) => void | Promise<void>;
+  onDeleteEntity?: (currentId: string) => void | Promise<void>;
+  onDeleteEdge?: (edgeId: string) => void | Promise<void>;
+  onRestoreEntity?: (originalId: string) => void | Promise<void>;
+  onRestoreEdge?: (edgeId: string) => void | Promise<void>;
 }) {
   const edge = resolveEdgeForDetail(stage, selectedEdgeId);
   const stageNode = selectedNodeId
@@ -323,8 +493,7 @@ export function SelectionDetail({
   if (edge) {
     const pred = normalizeAbstractRelation(edge.relation || edge.label || "");
     const concrete = (edge.concrete || edge.concrete_relation || "").trim();
-    const action = edge.correction_action || "";
-    const isRevise = action === "revise" || action === "revise_before";
+    const edgePatch = kgPatch?.edgeEdits?.[String(edge.id || "")] || null;
     return (
       <div className={styles.detailCard}>
         <div className={styles.detailBadge}>关系</div>
@@ -341,35 +510,16 @@ export function SelectionDetail({
             <Tex text={shortName(edge.to)} />
           </strong>
         </div>
-        {isRevise && edge.before && edge.after ? (
-          <div className={styles.tripCompare}>
-            <div className={styles.tripBefore}>
-              <span className={styles.tripTag}>前</span>
-              {snapLine(edge.before)}
-            </div>
-            <div className={styles.tripAfter}>
-              <span className={styles.tripTagAfter}>后</span>
-              {snapLine(edge.after)}
-            </div>
-            {edge.changes?.length ? (
-              <small className={styles.tripChanges}>变化：{edge.changes.join("、")}</small>
-            ) : null}
-          </div>
-        ) : null}
-        {action === "drop" ? (
-          <div className={styles.tripCompare}>
-            <div className={styles.tripBefore}>
-              <span className={styles.tripTag}>删</span>
-              {snapLine(
-                edge.before || {
-                  from: edge.from,
-                  to: edge.to,
-                  label: edge.label,
-                  concrete: edge.concrete,
-                }
-              )}
-            </div>
-          </div>
+        {editMode && onSaveEdgeEdit ? (
+          <EdgeEditForm
+            edge={edge}
+            pred={pred}
+            edgePatch={edgePatch}
+            busy={editBusy}
+            onSave={onSaveEdgeEdit}
+            onClear={onClearEdgeEdit}
+            onDelete={onDeleteEdge}
+          />
         ) : null}
         <DetailRows
           rows={[
@@ -378,23 +528,8 @@ export function SelectionDetail({
             edge.source || edge.lecture_id || edge.cue_label || edge.cue_id
               ? ["来源", formatEdgeSource(edge)]
               : null,
-            action ? ["修正动作", action] : null,
             edge.description ? ["描述", <Tex text={edge.description} block />] : null,
-            edge.basis_before
-              ? ["修正前依据", <Tex text={edge.basis_before} block />]
-              : edge.context
-                ? ["课堂依据", <Tex text={edge.context} block />]
-                : null,
-            edge.correction_reason ? ["理由摘要", <Tex text={edge.correction_reason} block />] : null,
-            edge.correction_reason_detail ? (
-              ["详细理由", <Tex text={edge.correction_reason_detail} block />]
-            ) : null,
-            edge.basis_after || edge.correction_evidence
-              ? [
-                  "修正依据",
-                  <Tex text={edge.basis_after || edge.correction_evidence || ""} block />,
-                ]
-              : null,
+            edge.context ? ["课堂依据", <Tex text={edge.context} block />] : null,
           ]}
         />
       </div>
@@ -404,8 +539,6 @@ export function SelectionDetail({
   if (selectedNodeId) {
     const id = String(selectedNodeId);
     const kind = String(stageNode?.kind || "");
-    const zh = String(stageNode?.label || shortName(id));
-    const en = enName(id);
     const aliasList = (stageNode?.aliases || [])
       .map((a) => String(a || "").trim())
       .filter((a) => a && a !== id);
@@ -419,34 +552,93 @@ export function SelectionDetail({
     const related = edgesForStage(stage, hideFiltered, mode).filter(
       (e) => String(e.from) === id || String(e.to) === id
     );
-    const descSamples = related
-      .map((e) => e.description || e.context)
-      .filter((x): x is string => Boolean(x && String(x).trim()))
-      .filter((x, i, arr) => arr.indexOf(x) === i)
-      .slice(0, 2);
+    // 特性：节点已折叠的 properties + 仍挂在图上的 property_of（属性→本实体）
+    const propSeen = new Set<string>();
+    const propertyLines: string[] = [];
+    const pushProp = (line: string) => {
+      const t = String(line || "").trim();
+      if (!t || propSeen.has(t)) return;
+      propSeen.add(t);
+      propertyLines.push(t);
+    };
+    for (const p of stageNode?.properties || []) pushProp(p);
+    for (const e of related) {
+      const rel = normalizeAbstractRelation(e.relation || e.label || "");
+      if (rel !== "property_of") continue;
+      if (String(e.to) !== id) continue;
+      pushProp(propertyOfToSentence(e));
+    }
+    const descInfo = descriptionFallbackFromEdges(related, stageNode?.description);
+    const fusionOrder = ["pagerank", "classroom_adj", "blend_adjust"];
+    const channelOrder = [
+      "prior",
+      "mention_time",
+      "board_ppt",
+      "discourse_role",
+      "structure_graph",
+      "app_feedback",
+    ];
+    const contribEntries = Object.entries(stageNode?.importance_contributions || {}).filter(
+      ([k]) => k !== "boost_gated"
+    );
+    const fusionEntries = fusionOrder
+      .map((k) => contribEntries.find(([ck]) => ck === k))
+      .filter((x): x is [string, number] => Boolean(x))
+      .map(([k, v]) => [k, Number(v)] as [string, number]);
+    const channelEntries = channelOrder
+      .map((k) => contribEntries.find(([ck]) => ck === k))
+      .filter((x): x is [string, number] => Boolean(x))
+      .map(([k, v]) => [k, Number(v)] as [string, number]);
+    const otherEntries = contribEntries
+      .filter(([k]) => !FUSION_CONTRIB_KEYS.has(k) && !channelOrder.includes(k))
+      .map(([k, v]) => [k, Number(v)] as [string, number]);
     return (
       <div className={styles.detailCard}>
         <div className={styles.detailBadge}>
           {stageNode?.filtered_by_importance ? "被筛实体" : "实体"}
         </div>
+        {editMode && onRenameEntity ? (
+          <EntityRenameForm
+            entityId={id}
+            busy={editBusy}
+            onSave={onRenameEntity}
+            onDelete={onDeleteEntity}
+          />
+        ) : null}
         <DetailRows
           rows={[
-            ["中文名", <Tex text={zh || "—"} />],
-            ["英文名", en ? <Tex text={en} /> : "—"],
+            ["规范名", <Tex text={id} />],
             aliasText ? ["别名", <Tex text={aliasText} />] : null,
             kind ? ["角色", KIND_LABEL[kind] || kind] : null,
-            stageNode?.description
-              ? ["描述", <Tex text={String(stageNode.description)} block />]
+            propertyLines.length
+              ? [
+                  "特性",
+                  <ul style={{ margin: "0.25rem 0 0", paddingLeft: "1.1rem" }}>
+                    {propertyLines.map((p) => (
+                      <li key={p} style={{ marginBottom: "0.2rem" }}>
+                        <Tex text={p} />
+                      </li>
+                    ))}
+                  </ul>,
+                ]
               : null,
+            [
+              "描述",
+              descInfo.text ? (
+                <>
+                  {descInfo.fromEdges ? (
+                    <div className={styles.fieldCollapsedHint} style={{ marginBottom: 4 }}>
+                      来自关联关系说明
+                    </div>
+                  ) : null}
+                  <Tex text={descInfo.text} block />
+                </>
+              ) : (
+                "暂无实体释义"
+              ),
+            ],
             stageNode?.filtered_by_importance
               ? ["筛选", "低于当前重要性阈值（临时显示）"]
-              : null,
-            ["关联边数", String(related.length)],
-            descSamples.length
-              ? [
-                  "相关描述",
-                  <Tex text={descSamples.join("\n\n")} block />,
-                ]
               : null,
           ]}
         />
@@ -455,6 +647,41 @@ export function SelectionDetail({
             <div>
               <span>教材重要性</span>
               {fmt(stageNode?.importance_base ?? stageNode?.importance)}
+            </div>
+          ) : importanceMode === "classroom" &&
+            stageNode?.importance_contributions &&
+            (stageNode.importance_contributions.pagerank != null ||
+              stageNode.importance_contributions.blend_adjust != null) ? (
+            <>
+              <div title="PageRank = P">
+                <span>PageRank (P)</span>
+                {fmt(
+                  stageNode.importance_base ??
+                    stageNode.importance_contributions.pagerank
+                )}
+              </div>
+              <div
+                title={
+                  Number(stageNode.importance_contributions.boost_gated) > 0
+                    ? "上抬被「提及次数」/「板书/PPT」门控拦截"
+                    : "修正量 adjust：课堂相对 PageRank 的修正"
+                }
+              >
+                <span>修正量 (adjust)</span>
+                {fmtDelta(
+                  stageNode.importance_delta ??
+                    stageNode.importance_contributions.blend_adjust
+                )}
+              </div>
+              <div title="最终重要性 I = clip(P + adjust)">
+                <span>最终 (I)</span>
+                {fmt(stageNode?.importance)}
+              </div>
+            </>
+          ) : importanceMode === "classroom" ? (
+            <div title="课堂通道合成分；无记录时显示未评分">
+              <span>课堂重要性 (I)</span>
+              {fmtClassroom(stageNode?.importance)}
             </div>
           ) : (
             <>
@@ -482,38 +709,32 @@ export function SelectionDetail({
           stageNode?.importance_contributions &&
           Object.keys(stageNode.importance_contributions).length > 0 && (
             <div className={styles.contribBlock}>
-              <div className={styles.contribTitle}>重要性贡献</div>
-              {Object.entries(stageNode.importance_contributions)
-                .sort((a, b) => Number(b[1]) - Number(a[1]))
-                .map(([k, v]) => {
-                  const val = Math.max(0, Number(v) || 0);
-                  const maxC = Math.max(
-                    ...Object.values(stageNode.importance_contributions || {}).map((x) =>
-                      Number(x) || 0
-                    ),
-                    1e-6
-                  );
-                  const label: Record<string, string> = {
-                    prior: "先验",
-                    mention_time: "时长提及",
-                    board_ppt: "板书/PPT",
-                    discourse_role: "话语角色",
-                    structure_graph: "结构支撑",
-                    app_feedback: "应用反馈",
-                  };
-                  return (
-                    <div key={k} className={styles.contribRow}>
-                      <span>{label[k] || k}</span>
-                      <div className={styles.contribBarTrack}>
-                        <div
-                          className={styles.contribBar}
-                          style={{ width: `${Math.min(100, (val / maxC) * 100)}%` }}
-                        />
-                      </div>
-                      <em>{val.toFixed(3)}</em>
-                    </div>
-                  );
-                })}
+              <div className={styles.contribTitle}>
+                {stageNode.importance_contributions.pagerank != null
+                  ? "重要性分解"
+                  : "重要性贡献"}
+              </div>
+              {fusionEntries.length ? (
+                <>
+                  <div className={styles.contribSubTitle}>融合（0–1）</div>
+                  <ContribBars entries={fusionEntries} scale="fixed01" />
+                </>
+              ) : null}
+              {channelEntries.length || otherEntries.length ? (
+                <>
+                  <div className={styles.contribSubTitle}>课堂通道（组内归一）</div>
+                  <ContribBars
+                    entries={[...channelEntries, ...otherEntries]}
+                    scale="groupMax"
+                  />
+                </>
+              ) : null}
+              {Number(stageNode.importance_contributions.boost_gated) > 0 ? (
+                <div className={styles.contribRow}>
+                  <span>门控</span>
+                  <em>上抬已拦截</em>
+                </div>
+              ) : null}
             </div>
           )}
       </div>
@@ -530,6 +751,266 @@ export function SelectionDetail({
 
   return <div className={styles.sideEmpty}>点击图中实体或关系，查看描述与依据</div>;
 }
+
+function EntityRenameForm({
+  entityId,
+  busy,
+  onSave,
+  onDelete,
+}: {
+  entityId: string;
+  busy?: boolean;
+  onSave: (currentId: string, newId: string) => void | Promise<void>;
+  onDelete?: (currentId: string) => void | Promise<void>;
+}) {
+  const initial = splitCanonicalName(entityId);
+  const [zh, setZh] = useState(initial.zh);
+  const [en, setEn] = useState(initial.en);
+  useEffect(() => {
+    const next = splitCanonicalName(entityId);
+    setZh(next.zh);
+    setEn(next.en);
+  }, [entityId]);
+  const canonical = composeCanonicalName(zh, en);
+  const dirty = Boolean(canonical) && canonical !== entityId;
+  return (
+    <div className={styles.kgEditBox}>
+      <label className={styles.kgEditLabel}>修改实体名称</label>
+      <label className={styles.kgEditFieldLabel}>中文名</label>
+      <input
+        className={styles.kgEditInput}
+        value={zh}
+        disabled={busy}
+        onChange={(e) => setZh(e.target.value)}
+        placeholder="如 命题逻辑"
+      />
+      <label className={styles.kgEditFieldLabel}>英文名</label>
+      <input
+        className={styles.kgEditInput}
+        value={en}
+        disabled={busy}
+        onChange={(e) => setEn(e.target.value)}
+        placeholder="如 propositional logic"
+      />
+      <div className={styles.kgEditPreview}>
+        <span>规范名</span>
+        <code>{canonical || "—"}</code>
+      </div>
+      <div className={styles.kgEditActions}>
+        <button
+          type="button"
+          className={styles.kgEditBtn}
+          disabled={busy || !dirty}
+          onClick={() => void onSave(entityId, canonical)}
+        >
+          保存名称
+        </button>
+        {onDelete ? (
+          <button
+            type="button"
+            className={styles.kgEditBtnDanger}
+            disabled={busy}
+            onClick={() => {
+              if (
+                window.confirm(
+                  `删除实体「${shortName(entityId)}」？其关联关系也会从展示中移除（可撤销）。`
+                )
+              ) {
+                void onDelete(entityId);
+              }
+            }}
+          >
+            删除实体
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function EdgeEditForm({
+  edge,
+  pred,
+  edgePatch,
+  busy,
+  onSave,
+  onClear,
+  onDelete,
+}: {
+  edge: PipelineEdge;
+  pred: string;
+  edgePatch: EdgeEdit | null;
+  busy?: boolean;
+  onSave: (edgeId: string, edit: EdgeEdit) => void | Promise<void>;
+  onClear?: (edgeId: string) => void | Promise<void>;
+  onDelete?: (edgeId: string) => void | Promise<void>;
+}) {
+  const edgeId = String(edge.id || "");
+  const [rel, setRel] = useState(pred);
+  useEffect(() => {
+    setRel(pred);
+  }, [pred, edgeId]);
+
+  const reversed = Boolean(edgePatch?.reversed);
+  const hasPatch = Boolean(edgePatch);
+
+  return (
+    <div className={styles.kgEditBox}>
+      <label className={styles.kgEditLabel}>修改关系</label>
+      <select
+        className={styles.kgEditInput}
+        value={rel}
+        disabled={busy}
+        onChange={(e) => setRel(e.target.value)}
+      >
+        {ABSTRACT_RELATIONS.map((r) => (
+          <option key={r} value={r}>
+            {r}
+          </option>
+        ))}
+      </select>
+      <div className={styles.kgEditActions}>
+        <button
+          type="button"
+          className={styles.kgEditBtn}
+          disabled={busy || rel === pred}
+          onClick={() =>
+            void onSave(edgeId, {
+              ...(edgePatch || {}),
+              relation: rel,
+              label: rel,
+            })
+          }
+        >
+          保存类型
+        </button>
+        <button
+          type="button"
+          className={styles.kgEditBtn}
+          disabled={busy}
+          onClick={() =>
+            void onSave(edgeId, {
+              ...(edgePatch || {}),
+              relation: edgePatch?.relation || pred,
+              label: edgePatch?.label || edgePatch?.relation || pred,
+              reversed: !reversed,
+            })
+          }
+        >
+          {reversed ? "恢复方向" : "对调方向"}
+        </button>
+        {hasPatch && onClear ? (
+          <button
+            type="button"
+            className={styles.kgEditBtnGhost}
+            disabled={busy}
+            onClick={() => void onClear(edgeId)}
+          >
+            撤销本边编辑
+          </button>
+        ) : null}
+        {onDelete ? (
+          <button
+            type="button"
+            className={styles.kgEditBtnDanger}
+            disabled={busy}
+            onClick={() => {
+              if (
+                window.confirm(
+                  `删除关系「${shortName(edge.from)} —[${pred}]→ ${shortName(edge.to)}」？（可撤销）`
+                )
+              ) {
+                void onDelete(edgeId);
+              }
+            }}
+          >
+            删除关系
+          </button>
+        ) : null}
+      </div>
+      {reversed ? (
+        <small className={styles.kgEditHint}>当前相对原始边已对调主客</small>
+      ) : null}
+    </div>
+  );
+}
+
+function pptFileLabel(url: string): string {
+  const raw = String(url || "").trim();
+  if (!raw) return "";
+  try {
+    const pathOnly = decodeURIComponent(raw.split("?")[0] || "");
+    const name = pathOnly.split("/").filter(Boolean).pop() || raw;
+    return name.length > 28 ? `${name.slice(0, 28)}…` : name;
+  } catch {
+    return raw.length > 28 ? `${raw.slice(0, 28)}…` : raw;
+  }
+}
+
+function DeletedItemsPanel({
+  kgPatch,
+  busy,
+  onRestoreEntity,
+  onRestoreEdge,
+  onRestorePpt,
+}: {
+  kgPatch?: KgEditPatch | null;
+  busy?: boolean;
+  onRestoreEntity?: (originalId: string) => void | Promise<void>;
+  onRestoreEdge?: (edgeId: string) => void | Promise<void>;
+  onRestorePpt?: (url: string) => void | Promise<void>;
+}) {
+  const ents = Object.keys(kgPatch?.deletedEntities || {});
+  const edges = Object.keys(kgPatch?.deletedEdges || {});
+  const ppts = Object.keys(kgPatch?.deletedPptUrls || {});
+  if (!ents.length && !edges.length && !ppts.length) return null;
+  return (
+    <div className={styles.kgEditBox} style={{ marginTop: 10 }}>
+      <label className={styles.kgEditLabel}>已删除（可恢复）</label>
+      {ents.map((id) => (
+        <div key={`e-${id}`} className={styles.kgDeletedRow}>
+          <code title={id}>{shortName(id)}</code>
+          <button
+            type="button"
+            className={styles.kgEditBtnGhost}
+            disabled={busy || !onRestoreEntity}
+            onClick={() => void onRestoreEntity?.(id)}
+          >
+            恢复实体
+          </button>
+        </div>
+      ))}
+      {edges.map((id) => (
+        <div key={`r-${id}`} className={styles.kgDeletedRow}>
+          <code title={id}>{id.length > 28 ? `${id.slice(0, 28)}…` : id}</code>
+          <button
+            type="button"
+            className={styles.kgEditBtnGhost}
+            disabled={busy || !onRestoreEdge}
+            onClick={() => void onRestoreEdge?.(id)}
+          >
+            恢复关系
+          </button>
+        </div>
+      ))}
+      {ppts.map((url) => (
+        <div key={`p-${url}`} className={styles.kgDeletedRow}>
+          <code title={url}>{pptFileLabel(url)}</code>
+          <button
+            type="button"
+            className={styles.kgEditBtnGhost}
+            disabled={busy || !onRestorePpt}
+            onClick={() => void onRestorePpt?.(url)}
+          >
+            恢复截图
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export { DeletedItemsPanel };
 
 function EdgeListItem({
   edge: e,
@@ -586,16 +1067,19 @@ function EdgeListItem({
           </strong>
         </div>
       )}
-      <small>
-        {formatEdgeSource(e) + (action ? ` · ${action}` : "")}
-        {e.concrete ? (
-          <>
-            {" · "}
-            <Tex text={e.concrete} />
-          </>
-        ) : null}
-      </small>
     </button>
+  );
+}
+
+export function relatedEdgesOf(
+  stage: PipelineStage,
+  nodeId: string,
+  opts?: { hideFiltered?: boolean; mode?: string }
+): PipelineEdge[] {
+  const hideFiltered = opts?.hideFiltered ?? false;
+  const mode = opts?.mode ?? "lecture";
+  return edgesForStage(stage, hideFiltered, mode).filter(
+    (e) => String(e.from) === String(nodeId) || String(e.to) === String(nodeId)
   );
 }
 
@@ -614,9 +1098,7 @@ export function RelatedEdges({
   mode?: string;
   onSelect: (id: string | null) => void;
 }) {
-  const edges = edgesForStage(stage, hideFiltered, mode).filter(
-    (e) => String(e.from) === String(nodeId) || String(e.to) === String(nodeId)
-  );
+  const edges = relatedEdgesOf(stage, nodeId, { hideFiltered, mode });
   if (!edges.length) {
     return <div className={styles.sideEmpty}>该实体在本步暂无关联边</div>;
   }
@@ -638,112 +1120,184 @@ export function RelatedEdges({
   );
 }
 
-const ROLE_LABEL: Record<string, string> = {
-  about: "关于",
-  applies_to: "作用于",
-  uses: "用到",
-};
-
-function AssetCardItem({ card }: { card: AssetCard }) {
-  const [open, setOpen] = useState(false);
+function AssetCardItem({
+  card,
+  lectureId,
+  library = null,
+  lectureOnly = false,
+}: {
+  card: AssetCard;
+  lectureId?: string | null;
+  library?: AssetsLibrary | null;
+  lectureOnly?: boolean;
+}) {
+  const [open, setOpen] = useState(true);
+  const courseId = useCourseId() || "";
+  const seek = assetReviewSeek(card, lectureId);
+  const peers = useMemo(
+    () =>
+      findPeerAssets(library, card, {
+        lectureId,
+        lectureOnly,
+        maxItems: 6,
+      }),
+    [library, card, lectureId, lectureOnly]
+  );
   const zh = shortName(card.name);
   const en = enName(card.name);
-  const hasBody =
-    Boolean((card.statement || "").trim()) || Boolean((card.steps || []).length);
+  const statement = (card.statement || "").trim();
+  const summary = (card.summary || "").trim();
+  const latex = (card.latex || "").trim();
+  const detail = statement || summary;
+  const showLatex = Boolean(latex) && !detail.includes(latex);
+  const steps = (card.steps || []).map((s) => String(s || "").trim()).filter(Boolean);
+  const concepts = card.concepts || [];
+  const hasRelated = concepts.length > 0 || peers.length > 0;
+  const hasBody = Boolean(detail || showLatex || steps.length || hasRelated);
+
   return (
     <div className={styles.assetCard}>
-      <div className={styles.assetHead}>
-        <span className={styles.assetKind}>{assetKindLabel(card.kind)}</span>
-        <strong className={styles.assetTitle}>
-          <Tex text={zh} />
-        </strong>
-      </div>
-      {en ? <div className={styles.assetEn}>{en}</div> : null}
-      {card.summary ? (
-        <div className={styles.assetSummary}>
-          <Tex text={card.summary} block />
-        </div>
-      ) : null}
-      {hasBody ? (
+      <div className={styles.assetHeadRow}>
         <button
           type="button"
-          className={styles.assetToggle}
-          onClick={() => setOpen((v) => !v)}
+          className={styles.assetHead}
+          aria-expanded={hasBody ? open : undefined}
+          onClick={() => hasBody && setOpen((v) => !v)}
         >
-          {open ? "收起陈述" : "展开陈述 / 步骤"}
+          <span className={styles.assetKind}>{assetKindLabel(card.kind)}</span>
+          <strong className={styles.assetTitle}>
+            <Tex text={zh} />
+          </strong>
+          {en ? <span className={styles.assetEn}>{en}</span> : null}
+          {hasBody ? (
+            <span className={styles.assetChev} aria-hidden>
+              {open ? "▾" : "▸"}
+            </span>
+          ) : null}
         </button>
-      ) : null}
-      {open ? (
+        {seek ? (
+          <WatchClassroom
+            courseId={courseId}
+            lectureId={seek.lectureId}
+            startSec={seek.startSec}
+            entityId={seek.entityId}
+          />
+        ) : null}
+      </div>
+      {open && hasBody ? (
         <div className={styles.assetBody}>
-          {card.statement ? (
-            <div className={styles.assetStatement}>
-              <Tex text={card.statement} block />
+          {detail || showLatex ? (
+            <div className={styles.assetField}>
+              <span className={styles.assetFieldLabel}>详细描述</span>
+              {detail ? (
+                <div className={styles.assetStatement}>
+                  <Tex text={detail} block />
+                </div>
+              ) : null}
+              {showLatex ? (
+                <div className={styles.assetStatement}>
+                  <Tex text={`$${latex}$`} block />
+                </div>
+              ) : null}
             </div>
           ) : null}
-          {(card.steps || []).length ? (
-            <ol className={styles.assetSteps}>
-              {(card.steps || []).map((s, i) => (
-                <li key={i}>
-                  <Tex text={s} />
-                </li>
-              ))}
-            </ol>
-          ) : null}
-          {(card.concepts || []).length ? (
-            <div className={styles.assetConcepts}>
-              {(card.concepts || []).map((c, i) => (
-                <span key={`${c.entity}-${i}`} className={styles.assetConceptChip}>
-                  {ROLE_LABEL[String(c.role || "about")] || c.role} ·{" "}
-                  <Tex text={shortName(c.entity)} />
-                </span>
-              ))}
+          {steps.length ? (
+            <div className={styles.assetField}>
+              <span className={styles.assetFieldLabel}>步骤</span>
+              <ol className={styles.assetSteps}>
+                {steps.map((s, i) => (
+                  <li key={i}>
+                    <Tex text={s} />
+                  </li>
+                ))}
+              </ol>
             </div>
           ) : null}
-          <div className={styles.assetMeta}>
-            <code>{card.asset_id}</code>
-            {card.source ? <span>· {card.source}</span> : null}
-            {card.grounding?.lecture_id ? (
-              <span>· 第 {card.grounding.lecture_id} 讲</span>
-            ) : null}
-          </div>
+          {hasRelated ? (
+            <div className={styles.assetField}>
+              <span className={styles.assetFieldLabel}>相关</span>
+              <div className={styles.assetConcepts}>
+                {concepts.map((c, i) => (
+                  <span key={`${c.entity}-${i}`} className={styles.assetConceptChip}>
+                    {assetRoleLabel(c.role)} ·{" "}
+                    <Tex text={shortName(c.entity)} />
+                  </span>
+                ))}
+                {peers.map((p) => (
+                  <span key={p.asset_id} className={styles.assetPeerChip}>
+                    {assetKindLabel(p.kind)} · <Tex text={shortName(p.name)} />
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
   );
 }
 
-/** 选中概念时展示关联的定理 / 原理 / 学科方法卡片 */
+/** 选中概念时展示关联的资源层卡片（公式 / 例子 / 定理·原理·方法） */
 export function RelatedAssetsPanel({
   entityId,
   library,
+  lectureId = null,
+  lectureOnly = false,
   maxItems = 12,
+  hideEmpty = false,
 }: {
   entityId: string | null;
   library: AssetsLibrary | null;
+  lectureId?: string | null;
+  /** 讲次课堂 KG：只显示本讲抽取，避免精选种子盖住新结果 */
+  lectureOnly?: boolean;
   maxItems?: number;
+  hideEmpty?: boolean;
 }) {
   const cards = useMemo(
-    () => (entityId ? findAssetsForEntity(library, entityId) : []),
-    [entityId, library]
+    () =>
+      entityId
+        ? findAssetsForEntity(library, entityId, {
+            lectureId,
+            lectureOnly,
+            llmPrinciplesOnly: true,
+          })
+        : [],
+    [entityId, library, lectureId, lectureOnly]
   );
   if (!entityId) {
-    return <div className={styles.sideEmpty}>选中实体后显示相关定理·原理·方法</div>;
+    if (hideEmpty) return null;
+    return <div className={styles.sideEmpty}>选中实体后显示相关公式、例子与定理</div>;
   }
   if (!library) {
+    if (hideEmpty) return null;
     return <div className={styles.sideEmpty}>资产库未加载</div>;
   }
   if (!cards.length) {
-    return <div className={styles.sideEmpty}>暂无关联的定理·原理·方法</div>;
+    if (hideEmpty) return null;
+    return (
+      <div className={styles.sideEmpty}>
+        {lectureOnly
+          ? "本讲暂无挂到该实体的公式 / 例子 / 定理"
+          : "暂无关联的公式、例子或定理·原理·方法"}
+      </div>
+    );
   }
   const shown = cards.slice(0, maxItems);
   const rest = cards.length - shown.length;
   return (
     <div className={styles.assetList}>
       {shown.map((c) => (
-        <AssetCardItem key={c.asset_id} card={c} />
+        <AssetCardItem
+          key={c.asset_id}
+          card={c}
+          lectureId={lectureId}
+          library={library}
+          lectureOnly={lectureOnly}
+        />
       ))}
       {rest > 0 ? (
-        <div className={styles.assetMore}>另有 {rest} 条教材定理未展开</div>
+        <div className={styles.assetMore}>另有 {rest} 条未展开</div>
       ) : null}
     </div>
   );

@@ -6,8 +6,9 @@ import logging
 from pathlib import Path
 from typing import Any
 
-import cv2
 import numpy as np
+
+from teachkg.utils.cv_io import imread_unicode
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +64,7 @@ def score_edge_alignment(
     frame_path = _resolve_path(str(grounding.get("ppt_frame_path", "")), project_root)
     if frame_path and clip_encoder is not None:
         try:
-            image = cv2.imread(str(frame_path))
+            image = imread_unicode(frame_path)
             if image is not None:
                 alignment["clip_image_text"] = clip_encoder.score_image_text(image, statement)
             else:

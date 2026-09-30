@@ -1,0 +1,1301 @@
+{
+  "courseId": "离散数学(图论+数理逻辑与集合论)",
+  "generatedAt": "2026-09-28T16:21:52.149Z",
+  "items": [
+    {
+      "id": "mindmap_lectures",
+      "type": "mindmap",
+      "group": "思维导图",
+      "title": "讲次 · 图谱投影思维导图",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/mindmap",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/mindmap_showcase.json",
+      "scope": "lecture"
+    },
+    {
+      "id": "pipeline_lecture_1",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 1 讲 · 构建过程",
+      "stem": "lecture_1",
+      "lectureId": "1",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/1",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_1.json"
+    },
+    {
+      "id": "pipeline_lecture_2",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 2 讲 · 构建过程",
+      "stem": "lecture_2",
+      "lectureId": "2",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/2",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_2.json"
+    },
+    {
+      "id": "pipeline_lecture_3",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 3 讲 · 构建过程",
+      "stem": "lecture_3",
+      "lectureId": "3",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/3",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_3.json"
+    },
+    {
+      "id": "pipeline_lecture_4",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 4 讲 · 构建过程",
+      "stem": "lecture_4",
+      "lectureId": "4",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/4",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_4.json"
+    },
+    {
+      "id": "pipeline_lecture_5",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 5 讲 · 构建过程",
+      "stem": "lecture_5",
+      "lectureId": "5",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/5",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_5.json"
+    },
+    {
+      "id": "pipeline_lecture_6",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 6 讲 · 构建过程",
+      "stem": "lecture_6",
+      "lectureId": "6",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/6",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_6.json"
+    },
+    {
+      "id": "pipeline_lecture_7",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 7 讲 · 构建过程",
+      "stem": "lecture_7",
+      "lectureId": "7",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/7",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_7.json"
+    },
+    {
+      "id": "pipeline_lecture_8",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 8 讲 · 构建过程",
+      "stem": "lecture_8",
+      "lectureId": "8",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/8",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_8.json"
+    },
+    {
+      "id": "pipeline_lecture_9",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 9 讲 · 构建过程",
+      "stem": "lecture_9",
+      "lectureId": "9",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/9",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_9.json"
+    },
+    {
+      "id": "pipeline_lecture_10",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 10 讲 · 构建过程",
+      "stem": "lecture_10",
+      "lectureId": "10",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/10",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_10.json"
+    },
+    {
+      "id": "pipeline_lecture_11",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 11 讲 · 构建过程",
+      "stem": "lecture_11",
+      "lectureId": "11",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/11",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_11.json"
+    },
+    {
+      "id": "pipeline_lecture_12",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 12 讲 · 构建过程",
+      "stem": "lecture_12",
+      "lectureId": "12",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/12",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_12.json"
+    },
+    {
+      "id": "pipeline_lecture_13",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 13 讲 · 构建过程",
+      "stem": "lecture_13",
+      "lectureId": "13",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/13",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_13.json"
+    },
+    {
+      "id": "pipeline_lecture_14",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 14 讲 · 构建过程",
+      "stem": "lecture_14",
+      "lectureId": "14",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/14",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_14.json"
+    },
+    {
+      "id": "pipeline_lecture_15",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 15 讲 · 构建过程",
+      "stem": "lecture_15",
+      "lectureId": "15",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/15",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_15.json"
+    },
+    {
+      "id": "pipeline_lecture_16",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 16 讲 · 构建过程",
+      "stem": "lecture_16",
+      "lectureId": "16",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/16",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_16.json"
+    },
+    {
+      "id": "pipeline_lecture_18",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 18 讲 · 构建过程",
+      "stem": "lecture_18",
+      "lectureId": "18",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/18",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_18.json"
+    },
+    {
+      "id": "pipeline_lecture_19",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 19 讲 · 构建过程",
+      "stem": "lecture_19",
+      "lectureId": "19",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/19",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_19.json"
+    },
+    {
+      "id": "pipeline_lecture_20",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 20 讲 · 构建过程",
+      "stem": "lecture_20",
+      "lectureId": "20",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/20",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_20.json"
+    },
+    {
+      "id": "pipeline_lecture_21",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 21 讲 · 构建过程",
+      "stem": "lecture_21",
+      "lectureId": "21",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/21",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_21.json"
+    },
+    {
+      "id": "pipeline_lecture_22",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 22 讲 · 构建过程",
+      "stem": "lecture_22",
+      "lectureId": "22",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/22",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_22.json"
+    },
+    {
+      "id": "pipeline_lecture_23",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 23 讲 · 构建过程",
+      "stem": "lecture_23",
+      "lectureId": "23",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/23",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_23.json"
+    },
+    {
+      "id": "pipeline_lecture_24",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 24 讲 · 构建过程",
+      "stem": "lecture_24",
+      "lectureId": "24",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/24",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_24.json"
+    },
+    {
+      "id": "pipeline_lecture_25",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 25 讲 · 构建过程",
+      "stem": "lecture_25",
+      "lectureId": "25",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/25",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_25.json"
+    },
+    {
+      "id": "pipeline_lecture_26",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 26 讲 · 构建过程",
+      "stem": "lecture_26",
+      "lectureId": "26",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/26",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_26.json"
+    },
+    {
+      "id": "pipeline_lecture_27",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 27 讲 · 构建过程",
+      "stem": "lecture_27",
+      "lectureId": "27",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/27",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_27.json"
+    },
+    {
+      "id": "pipeline_lecture_28",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 28 讲 · 构建过程",
+      "stem": "lecture_28",
+      "lectureId": "28",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/28",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_28.json"
+    },
+    {
+      "id": "pipeline_lecture_29",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 29 讲 · 构建过程",
+      "stem": "lecture_29",
+      "lectureId": "29",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/29",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_29.json"
+    },
+    {
+      "id": "pipeline_lecture_30",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 30 讲 · 构建过程",
+      "stem": "lecture_30",
+      "lectureId": "30",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/30",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_30.json"
+    },
+    {
+      "id": "pipeline_lecture_31",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 31 讲 · 构建过程",
+      "stem": "lecture_31",
+      "lectureId": "31",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/31",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_31.json"
+    },
+    {
+      "id": "pipeline_lecture_32",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 32 讲 · 构建过程",
+      "stem": "lecture_32",
+      "lectureId": "32",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/32",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_32.json"
+    },
+    {
+      "id": "pipeline_lecture_33",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 33 讲 · 构建过程",
+      "stem": "lecture_33",
+      "lectureId": "33",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/33",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_33.json"
+    },
+    {
+      "id": "pipeline_lecture_34",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 34 讲 · 构建过程",
+      "stem": "lecture_34",
+      "lectureId": "34",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/34",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_34.json"
+    },
+    {
+      "id": "pipeline_lecture_35",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 35 讲 · 构建过程",
+      "stem": "lecture_35",
+      "lectureId": "35",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/35",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_35.json"
+    },
+    {
+      "id": "pipeline_lecture_36",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 36 讲 · 构建过程",
+      "stem": "lecture_36",
+      "lectureId": "36",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/36",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_36.json"
+    },
+    {
+      "id": "pipeline_lecture_37",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 37 讲 · 构建过程",
+      "stem": "lecture_37",
+      "lectureId": "37",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/37",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_37.json"
+    },
+    {
+      "id": "pipeline_lecture_38",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 38 讲 · 构建过程",
+      "stem": "lecture_38",
+      "lectureId": "38",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/38",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_38.json"
+    },
+    {
+      "id": "pipeline_lecture_39",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 39 讲 · 构建过程",
+      "stem": "lecture_39",
+      "lectureId": "39",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/39",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_39.json"
+    },
+    {
+      "id": "pipeline_lecture_40",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 40 讲 · 构建过程",
+      "stem": "lecture_40",
+      "lectureId": "40",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/40",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_40.json"
+    },
+    {
+      "id": "pipeline_lecture_41",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 41 讲 · 构建过程",
+      "stem": "lecture_41",
+      "lectureId": "41",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/41",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_41.json"
+    },
+    {
+      "id": "pipeline_lecture_42",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 42 讲 · 构建过程",
+      "stem": "lecture_42",
+      "lectureId": "42",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/42",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_42.json"
+    },
+    {
+      "id": "pipeline_lecture_43",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 43 讲 · 构建过程",
+      "stem": "lecture_43",
+      "lectureId": "43",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/43",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_43.json"
+    },
+    {
+      "id": "pipeline_lecture_44",
+      "type": "pipeline",
+      "group": "流水线构建",
+      "title": "第 44 讲 · 构建过程",
+      "stem": "lecture_44",
+      "lectureId": "44",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/44",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_lecture_44.json"
+    },
+    {
+      "id": "pipeline_session_1_2",
+      "type": "session",
+      "group": "会话融合",
+      "title": "会话融合 · 1+2",
+      "stem": "session_1_2",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/session_1_2",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/pipeline_build_session_1_2.json"
+    },
+    {
+      "id": "mmkg_lecture_1",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 1 讲 · MMKG",
+      "lectureId": "1",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/1",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_1/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_1_2",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 1–2 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "1_2",
+      "lectureIds": [
+        "1",
+        "2"
+      ],
+      "lectureId": "1",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/1_2",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_1/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_2",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 2 讲 · MMKG",
+      "lectureId": "2",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/2",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_2/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_3",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 3 讲 · MMKG",
+      "lectureId": "3",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/3",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_3/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_3_4",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 3–4 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "3_4",
+      "lectureIds": [
+        "3",
+        "4"
+      ],
+      "lectureId": "3",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/3_4",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_3/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_4",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 4 讲 · MMKG",
+      "lectureId": "4",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/4",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_4/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_5",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 5 讲 · MMKG",
+      "lectureId": "5",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/5",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_5/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_5_6",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 5–6 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "5_6",
+      "lectureIds": [
+        "5",
+        "6"
+      ],
+      "lectureId": "5",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/5_6",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_5/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_6",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 6 讲 · MMKG",
+      "lectureId": "6",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/6",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_6/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_7",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 7 讲 · MMKG",
+      "lectureId": "7",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/7",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_7/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_7_8",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 7–8 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "7_8",
+      "lectureIds": [
+        "7",
+        "8"
+      ],
+      "lectureId": "7",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/7_8",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_7/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_8",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 8 讲 · MMKG",
+      "lectureId": "8",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/8",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_8/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_9",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 9 讲 · MMKG",
+      "lectureId": "9",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/9",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_9/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_9_10",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 9–10 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "9_10",
+      "lectureIds": [
+        "9",
+        "10"
+      ],
+      "lectureId": "9",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/9_10",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_9/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_10",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 10 讲 · MMKG",
+      "lectureId": "10",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/10",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_10/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_11",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 11 讲 · MMKG",
+      "lectureId": "11",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/11",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_11/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_11_12",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 11–12 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "11_12",
+      "lectureIds": [
+        "11",
+        "12"
+      ],
+      "lectureId": "11",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/11_12",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_11/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_12",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 12 讲 · MMKG",
+      "lectureId": "12",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/12",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_12/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_13",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 13 讲 · MMKG",
+      "lectureId": "13",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/13",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_13/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_13_14",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 13–14 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "13_14",
+      "lectureIds": [
+        "13",
+        "14"
+      ],
+      "lectureId": "13",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/13_14",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_13/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_14",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 14 讲 · MMKG",
+      "lectureId": "14",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/14",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_14/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_15",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 15 讲 · MMKG",
+      "lectureId": "15",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/15",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_15/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_15_16",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 15–16 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "15_16",
+      "lectureIds": [
+        "15",
+        "16"
+      ],
+      "lectureId": "15",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/15_16",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_15/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_16",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 16 讲 · MMKG",
+      "lectureId": "16",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/16",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_16/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_18",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 18 讲 · MMKG",
+      "lectureId": "18",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/18",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_18/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_19",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 19 讲 · MMKG",
+      "lectureId": "19",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/19",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_19/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_19_20",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 19–20 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "19_20",
+      "lectureIds": [
+        "19",
+        "20"
+      ],
+      "lectureId": "19",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/19_20",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_19/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_20",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 20 讲 · MMKG",
+      "lectureId": "20",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/20",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_20/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_21",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 21 讲 · MMKG",
+      "lectureId": "21",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/21",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_21/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_21_22",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 21–22 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "21_22",
+      "lectureIds": [
+        "21",
+        "22"
+      ],
+      "lectureId": "21",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/21_22",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_21/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_22",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 22 讲 · MMKG",
+      "lectureId": "22",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/22",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_22/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_23",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 23 讲 · MMKG",
+      "lectureId": "23",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/23",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_23/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_23_24",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 23–24 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "23_24",
+      "lectureIds": [
+        "23",
+        "24"
+      ],
+      "lectureId": "23",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/23_24",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_23/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_24",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 24 讲 · MMKG",
+      "lectureId": "24",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/24",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_24/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_25",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 25 讲 · MMKG",
+      "lectureId": "25",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/25",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_25/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_25_26",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 25–26 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "25_26",
+      "lectureIds": [
+        "25",
+        "26"
+      ],
+      "lectureId": "25",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/25_26",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_25/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_26",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 26 讲 · MMKG",
+      "lectureId": "26",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/26",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_26/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_27",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 27 讲 · MMKG",
+      "lectureId": "27",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/27",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_27/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_27_28",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 27–28 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "27_28",
+      "lectureIds": [
+        "27",
+        "28"
+      ],
+      "lectureId": "27",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/27_28",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_27/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_28",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 28 讲 · MMKG",
+      "lectureId": "28",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/28",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_28/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_29",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 29 讲 · MMKG",
+      "lectureId": "29",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/29",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_29/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_29_30",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 29–30 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "29_30",
+      "lectureIds": [
+        "29",
+        "30"
+      ],
+      "lectureId": "29",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/29_30",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_29/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_30",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 30 讲 · MMKG",
+      "lectureId": "30",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/30",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_30/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_31",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 31 讲 · MMKG",
+      "lectureId": "31",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/31",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_31/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_31_32",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 31–32 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "31_32",
+      "lectureIds": [
+        "31",
+        "32"
+      ],
+      "lectureId": "31",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/31_32",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_31/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_32",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 32 讲 · MMKG",
+      "lectureId": "32",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/32",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_32/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_33",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 33 讲 · MMKG",
+      "lectureId": "33",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/33",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_33/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_33_34",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 33–34 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "33_34",
+      "lectureIds": [
+        "33",
+        "34"
+      ],
+      "lectureId": "33",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/33_34",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_33/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_34",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 34 讲 · MMKG",
+      "lectureId": "34",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/34",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_34/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_35",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 35 讲 · MMKG",
+      "lectureId": "35",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/35",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_35/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_35_36",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 35–36 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "35_36",
+      "lectureIds": [
+        "35",
+        "36"
+      ],
+      "lectureId": "35",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/35_36",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_35/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_36",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 36 讲 · MMKG",
+      "lectureId": "36",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/36",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_36/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_37",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 37 讲 · MMKG",
+      "lectureId": "37",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/37",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_37/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_37_38",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 37–38 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "37_38",
+      "lectureIds": [
+        "37",
+        "38"
+      ],
+      "lectureId": "37",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/37_38",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_37/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_38",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 38 讲 · MMKG",
+      "lectureId": "38",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/38",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_38/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_39",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 39 讲 · MMKG",
+      "lectureId": "39",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/39",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_39/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_39_40",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 39–40 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "39_40",
+      "lectureIds": [
+        "39",
+        "40"
+      ],
+      "lectureId": "39",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/39_40",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_39/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_40",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 40 讲 · MMKG",
+      "lectureId": "40",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/40",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_40/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_41",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 41 讲 · MMKG",
+      "lectureId": "41",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/41",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_41/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_41_42",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 41–42 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "41_42",
+      "lectureIds": [
+        "41",
+        "42"
+      ],
+      "lectureId": "41",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/41_42",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_41/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_42",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 42 讲 · MMKG",
+      "lectureId": "42",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/42",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_42/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_43",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 43 讲 · MMKG",
+      "lectureId": "43",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/43",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_43/mmkg.json"
+    },
+    {
+      "id": "mmkg_session_43_44",
+      "type": "mmkg",
+      "group": "一堂课融合",
+      "title": "第 43–44 讲 · 一堂课融合",
+      "source": "mmkg",
+      "scope": "session",
+      "sessionId": "43_44",
+      "lectureIds": [
+        "43",
+        "44"
+      ],
+      "lectureId": "43",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/session/43_44",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_43/mmkg.json"
+    },
+    {
+      "id": "mmkg_lecture_44",
+      "type": "mmkg",
+      "group": "讲次图谱",
+      "title": "第 44 讲 · MMKG",
+      "lectureId": "44",
+      "source": "mmkg",
+      "scope": "lecture",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/kg/lecture/44",
+      "dataUrl": "/repo-data/kg/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/lecture_44/mmkg.json"
+    },
+    {
+      "id": "textbook_kg",
+      "type": "textbook",
+      "group": "教材知识图谱",
+      "title": "教材知识图谱 · 分章浏览",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/textbook",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/textbook_kg/catalog.json",
+      "scope": "course"
+    },
+    {
+      "id": "assets_library",
+      "type": "assets",
+      "group": "学科方法资产库",
+      "title": "定理 · 公式 · 例子",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/assets",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/assets_library.json",
+      "scope": "course"
+    },
+    {
+      "id": "review_lecture_1",
+      "type": "review",
+      "group": "应用",
+      "title": "第1讲 · 知识点浓缩",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/apps/review/1",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/review/lecture_1.json",
+      "scope": "lecture",
+      "lectureId": "1"
+    },
+    {
+      "id": "review_lecture_2",
+      "type": "review",
+      "group": "应用",
+      "title": "第2讲 · 知识点浓缩",
+      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/apps/review/2",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/review/lecture_2.json",
+      "scope": "lecture",
+      "lectureId": "2"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import re
 from dataclasses import dataclass, field, replace
 from typing import Any, Sequence
 
+from teachkg.stage1_alignment.knowledge_points import normalize_related_knowledge_points
 from teachkg.textbook_kg.loader import TextbookRelation
 from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 from teachkg.utils.prompts import format_prompt
@@ -103,6 +104,20 @@ def _extract_evidence_from_item(item: Any) -> str:
     return ""
 
 
+def _extract_related_kps_from_item(item: Any) -> Any:
+    if isinstance(item, dict):
+        for key in (
+            "related_knowledge_points",
+            "knowledge_points",
+            "kps",
+            "related_kps",
+            "关联知识点",
+        ):
+            if key in item:
+                return item.get(key)
+    return None
+
+
 def parse_keep_edges(
     raw: str,
     candidates: Sequence[TextbookRelation],
@@ -110,6 +125,7 @@ def parse_keep_edges(
     extract_text: str = "",
     require_classroom_evidence: bool = False,
     min_evidence_chars: int = 4,
+    knowledge_points: Sequence[str] | None = None,
 ) -> list[TextbookRelation]:
     """解析模型输出，仅返回落在 candidates 中的边（保持原对象或附着依据后的副本）。"""
     text = (raw or "").strip()
@@ -151,8 +167,13 @@ def parse_keep_edges(
     seen: set[tuple[str, str, str]] = set()
     dropped_no_evidence = 0
     dropped_bad_evidence = 0
+    allowed_kps = list(knowledge_points or [])
 
-    def _attach(rel: TextbookRelation | None, evidence: str = "") -> None:
+    def _attach(
+        rel: TextbookRelation | None,
+        evidence: str = "",
+        related_kps: Any = None,
+    ) -> None:
         nonlocal dropped_no_evidence, dropped_bad_evidence
         if rel is None:
             return
@@ -160,6 +181,7 @@ def parse_keep_edges(
         if key in seen:
             return
         ev = (evidence or "").strip()
+        kps = normalize_related_knowledge_points(related_kps, allowed_kps or None)
         if require_classroom_evidence:
             if len(ev) < max(1, int(min_evidence_chars)):
                 dropped_no_evidence += 1
@@ -167,9 +189,21 @@ def parse_keep_edges(
             if extract_text and not evidence_in_text(ev, extract_text):
                 dropped_bad_evidence += 1
                 return
-            rel = replace(rel, classroom_evidence=ev, context=ev)
+            rel = replace(
+                rel,
+                classroom_evidence=ev,
+                context=ev,
+                related_knowledge_points=kps,
+            )
         elif ev and (not extract_text or evidence_in_text(ev, extract_text)):
-            rel = replace(rel, classroom_evidence=ev, context=ev)
+            rel = replace(
+                rel,
+                classroom_evidence=ev,
+                context=ev,
+                related_knowledge_points=kps,
+            )
+        elif kps:
+            rel = replace(rel, related_knowledge_points=kps)
         seen.add(key)
         kept.append(rel)
 
@@ -182,12 +216,14 @@ def parse_keep_edges(
         if isinstance(item, (list, tuple)) and item:
             idx = _resolve_index(item[0], candidates)
             evidence = _extract_evidence_from_item(item)
+            related_kps = item[2] if len(item) >= 3 else None
             if idx is not None:
-                _attach(candidates[idx - 1], evidence)
+                _attach(candidates[idx - 1], evidence, related_kps)
             continue
 
         if isinstance(item, dict):
             evidence = _extract_evidence_from_item(item)
+            related_kps = _extract_related_kps_from_item(item)
             idx = None
             for key in ("i", "index", "id", "no", "序号"):
                 if key in item:
@@ -195,13 +231,13 @@ def parse_keep_edges(
                     if idx is not None:
                         break
             if idx is not None:
-                _attach(candidates[idx - 1], evidence)
+                _attach(candidates[idx - 1], evidence, related_kps)
                 continue
             sub = str(item.get("subject", "")).strip()
             pred = str(item.get("predicate", item.get("relation", ""))).strip()
             obj = str(item.get("object", "")).strip()
             if sub and pred and obj:
-                _attach(_rel_from_spo(sub, pred, obj), evidence)
+                _attach(_rel_from_spo(sub, pred, obj), evidence, related_kps)
             continue
 
         idx = _resolve_index(item, candidates)
@@ -256,7 +292,6 @@ def parse_keep_edges(
                 _attach(candidates[idx - 1], "")
     return kept
 
-
 @dataclass
 class EdgeLLMFilter:
     """规则剪枝后的边 LLM 筛选；可要求每条保留边附带课堂原文依据。"""
@@ -294,6 +329,7 @@ class EdgeLLMFilter:
         relations: Sequence[TextbookRelation],
         *,
         expansion_seeds: set[str] | None = None,
+        knowledge_points: Sequence[str] | None = None,
         course_context: str | None = None,
     ) -> list[TextbookRelation]:
         """返回筛选后的边；关闭或跳过时返回原列表。要求依据时无依据则不保留。"""
@@ -307,6 +343,7 @@ class EdgeLLMFilter:
         if len(relations) < max(1, int(self.min_candidates)):
             return relations
 
+        kps = [str(x).strip() for x in (knowledge_points or []) if str(x).strip()]
         prompt = format_prompt(
             self.prompt,
             course_context=course_context or self.course_context or "",
@@ -326,6 +363,7 @@ class EdgeLLMFilter:
             extract_text=extract_text,
             require_classroom_evidence=self.require_classroom_evidence,
             min_evidence_chars=self.min_evidence_chars,
+            knowledge_points=kps,
         )
 
         try:
@@ -354,10 +392,15 @@ class EdgeLLMFilter:
         with_ev = sum(
             1 for r in kept if (getattr(r, "classroom_evidence", "") or "").strip()
         )
+        with_kp = sum(
+            1 for r in kept if getattr(r, "related_knowledge_points", None)
+        )
         logger.info(
-            "Edge LLM filter: candidates=%d -> keep=%d (with_classroom_evidence=%d)",
+            "Edge LLM filter: candidates=%d -> keep=%d "
+            "(with_classroom_evidence=%d with_related_kps=%d)",
             len(relations),
             len(kept),
             with_ev,
+            with_kp,
         )
         return kept

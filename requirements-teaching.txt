@@ -9,8 +9,9 @@ python-dotenv>=1.0.0
 torch>=2.0.0
 torchaudio>=2.0.0
 
-# A: Silero VAD（pip install silero-vad）
+# A: Silero VAD（优先 ONNX；缺 onnxruntime 时代码回退 Torch）
 silero-vad>=5.0.0
+onnxruntime>=1.16.0
 # B/C: DashScope qwen3-asr-flash + qwen-vl-ocr（teachkg/models/ 直接调用）
 
 # Stage 1: 多模态对齐

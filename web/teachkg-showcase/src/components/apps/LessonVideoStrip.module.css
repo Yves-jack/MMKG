@@ -1,0 +1,33 @@
+.wrap,
+.wrapCompact {
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.toggle {
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 2px 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.player {
+  max-height: 240px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.wrapCompact .player {
+  max-height: 200px;
+}

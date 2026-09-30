@@ -5,7 +5,8 @@
 ## 第1期范围
 
 - 卡片种类：`theorem` | `principle` | `technique`（学科方法）
-- 与图谱关联：`concepts[].entity` = Stage2 canonical 实体全名
+- **主路径**：课堂片段大模型抽取（`source=llm`），强制 `evidence` 原文子串
+- **关联**：`evidence` 与实体相关边 context 做字符 n-gram 重叠，写入 `concepts[]`
 - 展示：图谱页选中实体 → 侧栏「相关定理·原理·方法」
 - **不做**：演示 / 动画 / 出题（`links.*` 预留为空数组）
 
@@ -13,34 +14,34 @@
 
 | 路径 | 说明 |
 |------|------|
-| `data/kg/{course}/assets/curated_seed.json` | 手写方法/原理种子 |
-| `data/kg/{course}/assets/library.json` | 构建产物（教材定理 + curated） |
+| `data/kg/{course}/assets/llm_assets_lecture_{N}.json` | 各讲 LLM 抽取缓存 |
+| `data/kg/{course}/assets/curated_seed.json` | 可选手写种子 |
+| `data/kg/{course}/assets/library.json` | 构建产物 |
 | `web/teachkg-showcase/public/data/assets_library.json` | `npm run sync-data` 拷贝 |
 
 ## 构建
 
 ```bash
-python scripts/teaching/build_assets_library.py --course-id shuliluoji
+# 大模型抽取第 N 讲并重建 library（可加 --no-textbook-theorems）
+python -m scripts.teaching.extract_assets_llm --course-id 数理逻辑 --lecture 1 --no-textbook-theorems
 cd web/teachkg-showcase && npm run sync-data
 ```
 
-教材侧从 `entity.theorems[]` 展开（过滤「未知」等噪声）；curated 同 `asset_id` 覆盖教材卡。
+Prompt：`prompts/stage1/asset_extract.txt`
 
 ## 卡片字段
 
 | 字段 | 说明 |
 |------|------|
-| `asset_id` | 稳定 ID，如 `tech_finite_domain_expand` |
+| `asset_id` | 稳定 ID |
 | `kind` | `theorem` / `principle` / `technique` |
 | `name` | `中文/English` |
-| `aliases` | 别名 |
-| `summary` | 侧栏摘要 |
-| `statement` | 形式化陈述 |
-| `steps` | 仅方法：有序步骤 |
-| `concepts` | `[{entity, role}]`，`role` ∈ `about` \| `applies_to` \| `uses` |
-| `grounding` | 可选 `lecture_id` / `cue_id` / `ppt_page` |
-| `source` | `textbook` \| `lecture` \| `curated` |
-| `links` | `{ demos, anims, problems }` — 第2期挂资源 ID/路径 |
+| `evidence` | **原文依据**（课堂连续子串） |
+| `summary` / `statement` / `steps` | 摘要 / 陈述 / 方法步骤 |
+| `concepts` | 重叠关联得到的 `[{entity, role}]` |
+| `grounding` | `lecture_id` / `cue_id` |
+| `source` | `llm` \| `curated` \| `textbook` |
+| `links` | 第2期挂资源 |
 
 ## 第2期挂接约定
 

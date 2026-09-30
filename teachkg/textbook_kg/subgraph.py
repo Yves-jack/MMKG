@@ -59,6 +59,8 @@ class SubgraphResult:
     relations: list[TextbookRelation] = field(default_factory=list)
     # 边筛前的候选（规则硬剪枝后）；filtered = candidate - relations
     candidate_relations: list[TextbookRelation] = field(default_factory=list)
+    # 本段知识点（边筛前提取，供展示与边关联）
+    knowledge_points: list[str] = field(default_factory=list)
 
     @property
     def edge_count(self) -> int:
@@ -81,8 +83,8 @@ class SubgraphResult:
         ]
 
     @staticmethod
-    def _relation_brief(rel: TextbookRelation) -> dict[str, str]:
-        return {
+    def _relation_brief(rel: TextbookRelation) -> dict[str, Any]:
+        data: dict[str, Any] = {
             "subject": rel.subject,
             "object": rel.object,
             "abstract_relation": rel.predicate,
@@ -90,6 +92,10 @@ class SubgraphResult:
             "context": (rel.context or "")[:300],
             "classroom_evidence": (getattr(rel, "classroom_evidence", "") or "")[:300],
         }
+        kps = list(getattr(rel, "related_knowledge_points", None) or [])
+        if kps:
+            data["related_knowledge_points"] = kps
+        return data
 
     def to_dict(self) -> dict[str, Any]:
         filtered = self.filtered_relations
@@ -105,6 +111,7 @@ class SubgraphResult:
             "relations": len(self.relations),
             "candidate_relations": len(self.candidate_relations),
             "filtered_relations": [self._relation_brief(r) for r in filtered],
+            "knowledge_points": list(self.knowledge_points),
             "seed_count": len(self.seed_entities),
             "entity_count": len(self.entities),
             "relation_count": len(self.relations),
@@ -138,6 +145,7 @@ class TextbookSubgraphRetriever:
         textbook_base_path: Path | None = None,
         seed_llm_filter: Any | None = None,
         edge_llm_filter: Any | None = None,
+        knowledge_point_extractor: Any | None = None,
     ) -> None:
         self.kg = kg
         self.max_hops = max(0, max_hops)
@@ -156,7 +164,9 @@ class TextbookSubgraphRetriever:
         self.lecture_min_relation_score = lecture_min_relation_score
         self.cue_min_relation_score = cue_min_relation_score
         self.require_text_anchor = require_text_anchor
-        # True：边两端都必须属于别名∪向量候选种子，才保留（当前唯一有效的规则硬剪枝）
+        # True（默认）：一跳两端∈候选种子池（筛后种子—候选种子，控噪声）
+        # False：一跳另一端不限（噪声大，仅消融用）
+        # 两跳始终为「筛后种子 — 中间点 — 筛后种子」
         self.require_both_ends_in_candidate_seeds = require_both_ends_in_candidate_seeds
         # False：不做分数/文本锚点硬剪枝，语义筛选交给 edge_llm_filter
         self.score_prune_edges = score_prune_edges
@@ -179,6 +189,7 @@ class TextbookSubgraphRetriever:
         self.textbook_base_path = Path(textbook_base_path) if textbook_base_path else None
         self.seed_llm_filter = seed_llm_filter
         self.edge_llm_filter = edge_llm_filter
+        self.knowledge_point_extractor = knowledge_point_extractor
         self._embedder = None
         self._entity_embeddings = None
         # 章条件重要性视图（默认全局）
@@ -226,10 +237,15 @@ class TextbookSubgraphRetriever:
 
         seeds, alias_seeds, embedding_seeds = self.resolve_seed_sets(cue_text)
         if not seeds:
+            kps: list[str] = []
+            kp_ext = self.knowledge_point_extractor
+            if kp_ext is not None and getattr(kp_ext, "enabled", False):
+                kps = list(kp_ext.extract(cue_text) or [])
             # 筛后为空仍保留筛前候选，供展示「已筛掉」
             return SubgraphResult(
                 seed_candidates_alias=set(alias_seeds),
                 seed_candidates_embedding=set(embedding_seeds) - set(alias_seeds),
+                knowledge_points=kps,
             )
 
         limit = max_edges if max_edges is not None else self.max_edges_per_cue
@@ -253,6 +269,7 @@ class TextbookSubgraphRetriever:
         candidate_seed_pool: set[str] | None = None,
         alias_seeds: set[str] | None = None,
         embedding_seeds: set[str] | None = None,
+        knowledge_points: list[str] | None = None,
     ) -> SubgraphResult:
         alias_src = set(alias_seeds) if alias_seeds is not None else set()
         emb_src = set(embedding_seeds) if embedding_seeds is not None else set()
@@ -260,6 +277,7 @@ class TextbookSubgraphRetriever:
             return SubgraphResult(
                 seed_candidates_alias=set(alias_src),
                 seed_candidates_embedding=set(emb_src) - set(alias_src),
+                knowledge_points=list(knowledge_points or []),
             )
 
         seeds = self._cap_seeds(seeds, rank_text)
@@ -280,7 +298,12 @@ class TextbookSubgraphRetriever:
                 unknown = seeds - alias_kept - emb_kept
                 emb_kept |= unknown
 
-        # 一跳从筛后种子出发；中间点不限，两跳落点须为筛后种子
+        kps = [str(x).strip() for x in (knowledge_points or []) if str(x).strip()]
+        kp_ext = self.knowledge_point_extractor
+        if not kps and kp_ext is not None and getattr(kp_ext, "enabled", False):
+            kps = list(kp_ext.extract(rank_text) or [])
+
+        # 一跳从筛后种子出发（默认另一端不限）；两跳为种子—中间—种子
         candidates = self._expand_subgraph(
             seeds, rank_text, unrestricted_intermediate=True
         )
@@ -312,6 +335,7 @@ class TextbookSubgraphRetriever:
                 rank_text,
                 selected,
                 expansion_seeds=seeds,
+                knowledge_points=kps,
             )
 
         entities = set(seeds)
@@ -328,6 +352,7 @@ class TextbookSubgraphRetriever:
             entities=entities,
             relations=selected,
             candidate_relations=candidate_relations,
+            knowledge_points=kps,
         )
 
     def _cap_seeds(self, seeds: set[str], rank_text: str) -> set[str]:
@@ -472,7 +497,7 @@ class TextbookSubgraphRetriever:
     ) -> list[TextbookRelation]:
         """按跳数/路径筛选边。
 
-        - 一跳：与筛后种子相邻、且两端∈候选种子池（默认）
+        - 一跳：与筛后种子相邻；若 require_both_ends_in_pool，两端须∈候选种子池。
         - 两跳：筛后种子 → 任意中间点 → 筛后种子；保留中间点与筛后种子之间的边
           （不依赖 BFS hop 标签，避免「入边被标成 hop0」漏桥接）
         """
@@ -494,14 +519,15 @@ class TextbookSubgraphRetriever:
             seen.add(key)
             selected.append(rel)
 
-        # 一跳：种子邻边，两端∈候选池
+        # 一跳：从筛后种子出发；require_both_ends_in_pool 时两端∈候选池
         for rel in rels:
             if rel.subject not in seeds and rel.object not in seeds:
                 continue
-            if not require_both_ends_in_pool or (
+            if require_both_ends_in_pool and not (
                 rel.subject in pool and rel.object in pool
             ):
-                add(rel)
+                continue
+            add(rel)
 
         # 中间点 = 与筛后种子相邻、且自身不是筛后种子的节点
         mids: set[str] = set()
@@ -537,6 +563,7 @@ class TextbookSubgraphRetriever:
         candidate_seed_pool: set[str] | None = None,
     ) -> float:
         pool = candidate_seed_pool if candidate_seed_pool is not None else seeds
+        # 仅旧行为：一跳两端须在候选池时，分数路径也硬拒池外端点
         if self.require_both_ends_in_candidate_seeds:
             if rel.subject not in pool or rel.object not in pool:
                 return -1e9
@@ -644,27 +671,23 @@ class TextbookSubgraphRetriever:
         *,
         candidate_seed_pool: set[str] | None = None,
     ) -> list[tuple[TextbookRelation, float]]:
-        """讲次级：扩展；默认只做候选池两端硬剪枝，分数仅作可选排序。"""
+        """讲次级：扩展；结构剪枝后，分数仅作可选排序。"""
         seeds = self._cap_seeds(seeds, rank_text)
         pool = candidate_seed_pool if candidate_seed_pool is not None else set(seeds)
         candidates = self._expand_subgraph(
             seeds, rank_text, unrestricted_intermediate=True
         )
-        if self.require_both_ends_in_candidate_seeds:
-            selected = self._select_relations_for_pool(
-                candidates,
-                seeds=seeds,
-                pool=pool,
-                require_both_ends_in_pool=True,
-            )
-            candidates = [(rel, 0) for rel in selected]
+        selected = self._select_relations_for_pool(
+            candidates,
+            seeds=seeds,
+            pool=pool,
+            require_both_ends_in_pool=self.require_both_ends_in_candidate_seeds,
+        )
+        candidates = [(rel, 0) for rel in selected]
         if self.score_prune_edges:
             return self._score_relations(
                 candidates, rank_text, seeds, candidate_seed_pool=pool
             )
-        # 不剪分数：统一给占位分，保持接口
-        if self.require_both_ends_in_candidate_seeds:
-            return [(rel, 1.0) for rel, _hop in candidates]
         return [(rel, 1.0) for rel, _hop in candidates]
 
     def _embedding_link(

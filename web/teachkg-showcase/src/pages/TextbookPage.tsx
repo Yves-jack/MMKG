@@ -2,15 +2,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { GraphCanvas } from "@/components/pipeline/GraphCanvas";
 import { HighlightLegend } from "@/components/pipeline/HighlightLegend";
-import { RelatedEdges, SelectionDetail } from "@/components/pipeline/SelectionPanels";
+import { CollapsiblePanel } from "@/components/pipeline/CollapsiblePanel";
+import { RelatedEdges, SelectionDetail, relatedEdgesOf } from "@/components/pipeline/SelectionPanels";
 import { ResizableShell } from "@/components/pipeline/ResizableShell";
 import { ResizableSplit } from "@/components/pipeline/ResizableSplit";
 import { SliceTextAnnotator } from "@/components/pipeline/SliceTextAnnotator";
 import type { PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
-import {
-  filterHasMatches,
-  stageHighlightFilters,
-} from "@/lib/pipeline/graphLogic";
+import { filterHasMatches, stageHighlightFilters } from "@/lib/pipeline/graphLogic";
+import { applyMmkgEnrichmentToNodes, loadMmkgEntityEnrichment, type MmkgEntityEnrichment } from "@/lib/kg/pipelineMergeSource";
+import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
+import { withBase } from "@/lib/withBase";
 import shell from "@/styles/shell.module.css";
 import pipe from "./PipelinePage.module.css";
 import styles from "./TextbookPage.module.css";
@@ -59,7 +60,7 @@ function stageFromSlice(slice: TextbookSlice): PipelineStage {
     id: `textbook_${slice.id}`,
     title: slice.title,
     subtitle: `${slice.node_count} 实体 · ${slice.triple_count} 关系`,
-    blurb: "MD 分章 · extract 对齐",
+    blurb: "课件划分 · extract 对齐",
     focus: "graph",
     nodes,
     edges,
@@ -80,7 +81,27 @@ function formatSliceText(raw: string): string {
     .trim();
 }
 
+/** 课内教材分片 URL；兼容 catalog 里旧的 /data/textbook_kg/... */
+function resolveTextbookFileUrl(courseId: string, entry: CatalogFile): string {
+  const id = String(entry.id || "").trim();
+  if (!id) {
+    return entry.dataUrl || courseDataUrl(courseId, "textbook_kg_showcase.json");
+  }
+  const encodedId = encodeURIComponent(id).replace(/%2B/gi, "+");
+  const local = courseDataUrl(courseId, `textbook_kg/${encodedId}.json`);
+  const raw = String(entry.dataUrl || "");
+  // 旧导出写死了扁平路径；改走课内副本，避免 404 / HTML 回退
+  if (!raw || raw.startsWith("/data/textbook_kg/")) {
+    return local;
+  }
+  if (raw.startsWith("/data/courses/")) {
+    return withBase(raw);
+  }
+  return local;
+}
+
 export function TextbookPage() {
+  const courseId = useCourseId();
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [fileId, setFileId] = useState<string>("");
   const [data, setData] = useState<TextbookPayload | null>(null);
@@ -92,16 +113,48 @@ export function TextbookPage() {
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<string | null>(null);
   const [focusEdgeIds, setFocusEdgeIds] = useState<string[] | null>(null);
+  const [entityQuery, setEntityQuery] = useState("");
+  const [entitySearchOpen, setEntitySearchOpen] = useState(false);
+  const [focusNodeRequest, setFocusNodeRequest] = useState<{
+    id: string;
+    seq: number;
+  } | null>(null);
+  /** 跨课件跳转后等 stage 就绪再居中 */
+  const [pendingFocusId, setPendingFocusId] = useState<string | null>(null);
+  const [mmkgEnrichment, setMmkgEnrichment] = useState<Map<string, MmkgEntityEnrichment>>(
+    () => new Map()
+  );
   const posCacheRef = useRef<Record<string, { x: number; y: number }>>({});
+  const entitySearchRef = useRef<HTMLDivElement>(null);
+  const pendingFocusRef = useRef<string | null>(null);
 
   useEffect(() => {
-    fetch(`/data/textbook_kg/catalog.json?t=${Date.now()}`, { cache: "no-store" })
+    pendingFocusRef.current = pendingFocusId;
+  }, [pendingFocusId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    loadMmkgEntityEnrichment(courseId, null).then((m) => {
+      if (!cancelled) setMmkgEnrichment(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId]);
+
+  useEffect(() => {
+    fetch(`${courseDataUrl(courseId, "textbook_kg/catalog.json")}?t=${Date.now()}`, {
+      cache: "no-store",
+    })
       .then(async (r) => {
         if (r.ok) return r.json();
         // 兼容旧单文件
-        const legacy = await fetch(`/data/textbook_kg_showcase.json?t=${Date.now()}`, {
-          cache: "no-store",
-        });
+        const legacy = await fetch(
+          `${courseDataUrl(courseId, "textbook_kg_showcase.json")}?t=${Date.now()}`,
+          {
+            cache: "no-store",
+          }
+        );
         if (!legacy.ok) throw new Error("缺少 textbook_kg/catalog.json，请先导出并 sync-data");
         const j = await legacy.json();
         return {
@@ -109,9 +162,9 @@ export function TextbookPage() {
           files: [
             {
               id: j.file_id || "legacy",
-              title: j.title || "教材知识图谱",
+              title: j.title || "教材级图谱",
               available: true,
-              dataUrl: "/data/textbook_kg_showcase.json",
+              dataUrl: courseDataUrl(courseId, "textbook_kg_showcase.json"),
               chapter_count: j.slices?.length || 0,
             },
           ],
@@ -126,7 +179,7 @@ export function TextbookPage() {
         if (firstAvail) setFileId(firstAvail.id);
       })
       .catch((e) => setError(String(e.message || e)));
-  }, []);
+  }, [courseId]);
 
   useEffect(() => {
     if (!catalog || !fileId) return;
@@ -137,12 +190,30 @@ export function TextbookPage() {
       setError(entry.reason ? `不可用：${entry.reason}` : "该文件不可用");
       return;
     }
-    const url = entry.dataUrl || `/data/textbook_kg/${entry.id}.json`;
+    const url = resolveTextbookFileUrl(courseId, entry);
     setLoadingFile(true);
     setError(null);
     fetch(`${url}?t=${Date.now()}`, { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`缺少 ${url}，请先导出该文件`);
+      .then(async (r) => {
+        if (!r.ok) {
+          // 课内路径失败时再试扁平旧路径（兼容未 re-sync）
+          const legacyUrl = withBase(
+            `/data/textbook_kg/${encodeURIComponent(entry.id).replace(/%2B/gi, "+")}.json`
+          );
+          const legacy = await fetch(`${legacyUrl}?t=${Date.now()}`, { cache: "no-store" });
+          if (!legacy.ok) {
+            throw new Error(`缺少教材图谱数据（${entry.id}），请运行 npm run sync-data`);
+          }
+          const ct = legacy.headers.get("content-type") || "";
+          if (ct.includes("text/html")) {
+            throw new Error("教材图谱接口返回了页面而非 JSON，请检查文件名编码后重新 sync-data");
+          }
+          return legacy.json();
+        }
+        const ct = r.headers.get("content-type") || "";
+        if (ct.includes("text/html")) {
+          throw new Error("教材图谱接口返回了页面而非 JSON，请检查文件名编码后重新 sync-data");
+        }
         return r.json();
       })
       .then((j: TextbookPayload) => {
@@ -156,7 +227,7 @@ export function TextbookPage() {
         setError(String(e.message || e));
       })
       .finally(() => setLoadingFile(false));
-  }, [catalog, fileId]);
+  }, [catalog, fileId, courseId]);
 
   const active: TextbookSlice | null = useMemo(() => {
     if (!data || !sliceId) return null;
@@ -164,15 +235,22 @@ export function TextbookPage() {
     return data.slices.find((s) => s.id === sliceId) || data.slices[0] || null;
   }, [data, sliceId]);
 
-  const stage = useMemo(() => (active ? stageFromSlice(active) : undefined), [active]);
+  const stage = useMemo(() => {
+    if (!active) return undefined;
+    const raw = stageFromSlice(active);
+    return {
+      ...raw,
+      nodes: applyMmkgEnrichmentToNodes(raw.nodes || [], mmkgEnrichment),
+    };
+  }, [active, mmkgEnrichment]);
 
   const payload: PipelinePayload | null = useMemo(() => {
     if (!data || !stage || !active) return null;
     return {
       brand: "TeachKG",
-      product: "教材知识图谱",
+      product: "教材级图谱",
       mode: "lecture",
-      course_id: "shuliluoji",
+      course_id: courseId,
       title: data.title,
       subtitle: data.subtitle,
       items: [
@@ -182,7 +260,11 @@ export function TextbookPage() {
         },
       ],
     };
-  }, [data, stage, active]);
+  }, [data, stage, active, courseId]);
+
+  useEffect(() => {
+    pendingFocusRef.current = pendingFocusId;
+  }, [pendingFocusId]);
 
   useEffect(() => {
     posCacheRef.current = {};
@@ -190,7 +272,22 @@ export function TextbookPage() {
     setSelectedEdge(null);
     setFocusEdgeIds(null);
     setHighlightKey(null);
+    setEntitySearchOpen(false);
+    if (!pendingFocusRef.current) {
+      setEntityQuery("");
+      setFocusNodeRequest(null);
+    }
   }, [sliceId, fileId]);
+
+  useEffect(() => {
+    const onDoc = (ev: MouseEvent) => {
+      if (!entitySearchRef.current?.contains(ev.target as Node)) {
+        setEntitySearchOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
 
   const selectEdgesFromText = (id: string | null, groupIds?: string[]) => {
     if (id == null) {
@@ -204,7 +301,7 @@ export function TextbookPage() {
     setSelectedNode(null);
   };
 
-  const chapterList = useMemo(() => data?.slices || [], [data]);
+  const coursewareList = useMemo(() => data?.slices || [], [data]);
 
   const sliceBody = useMemo(
     () => formatSliceText(active?.text || ""),
@@ -223,13 +320,147 @@ export function TextbookPage() {
   const availableFiles = catalog?.files.filter((f) => f.available) || [];
   const unavailableFiles = catalog?.files.filter((f) => !f.available) || [];
 
+  const findSliceForNode = (nodeId: string): string => {
+    if (!data) return "__all__";
+    if (sliceId !== "__all__") {
+      const cur = data.slices.find((s) => s.id === sliceId);
+      if (cur?.nodes?.some((n) => String(n.id) === nodeId)) return sliceId;
+    }
+    for (const s of data.slices || []) {
+      if (s.nodes?.some((n) => String(n.id) === nodeId)) return s.id;
+    }
+    return "__all__";
+  };
+
+  const entityMatches = useMemo(() => {
+    const q = entityQuery.trim().toLowerCase();
+    if (!q || !data) return [];
+    type Hit = {
+      id: string;
+      label: string;
+      kind: string;
+      score: number;
+      sliceId: string;
+      sliceTitle: string;
+      inCurrent: boolean;
+    };
+    const scoreNode = (
+      n: NonNullable<TextbookSlice["nodes"]>[number],
+      sid: string,
+      stitle: string,
+      inCurrent: boolean
+    ): Hit | null => {
+      const id = String(n.id || "");
+      const label = String(n.label || "");
+      const title = String(n.title || "");
+      const zh = id.split("/")[0] || label;
+      const hay = `${id} ${label} ${title} ${zh}`.toLowerCase();
+      if (!hay.includes(q)) return null;
+      let score = 0;
+      if (zh.toLowerCase() === q || label.toLowerCase() === q || id.toLowerCase() === q) {
+        score = 300;
+      } else if (
+        zh.toLowerCase().startsWith(q) ||
+        label.toLowerCase().startsWith(q) ||
+        id.toLowerCase().startsWith(q)
+      ) {
+        score = 200;
+      } else {
+        score = 100;
+      }
+      if (inCurrent) score += 40;
+      return {
+        id,
+        label: label || zh || id,
+        kind: n.kind || "",
+        score,
+        sliceId: sid,
+        sliceTitle: stitle,
+        inCurrent,
+      };
+    };
+
+    const byId = new Map<string, Hit>();
+    const curNodes = stage?.nodes || [];
+    for (const n of curNodes) {
+      const hit = scoreNode(n, sliceId || "__all__", active?.title || "当前", true);
+      if (hit) byId.set(hit.id, hit);
+    }
+    // 全书索引：便于在单份课件视图也能搜到其他课件实体
+    const pool: { slice: TextbookSlice; sid: string }[] = [
+      ...(data.slices || []).map((s) => ({ slice: s, sid: s.id })),
+    ];
+    if (data.overview) {
+      pool.push({ slice: data.overview, sid: "__all__" });
+    }
+    for (const { slice, sid } of pool) {
+      const stitle = sid === "__all__" ? "全部" : slice.title || sid;
+      for (const n of slice.nodes || []) {
+        const id = String(n.id || "");
+        if (byId.has(id)) continue;
+        const hit = scoreNode(n, sid === "__all__" ? findSliceForNode(id) : sid, stitle, false);
+        if (hit) {
+          // 若命中全书节点，优先落到真实课件名
+          if (sid === "__all__" && hit.sliceId !== "__all__") {
+            const cw = data.slices.find((s) => s.id === hit.sliceId);
+            hit.sliceTitle = cw?.title || hit.sliceTitle;
+          }
+          byId.set(id, hit);
+        }
+      }
+    }
+    const scored = [...byId.values()];
+    scored.sort(
+      (a, b) => b.score - a.score || a.label.localeCompare(b.label, "zh")
+    );
+    return scored.slice(0, 12);
+    // findSliceForNode 依赖 data/sliceId，已在闭包内
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entityQuery, data, stage, sliceId, active?.title]);
+
+  const applyFocusOnStage = (nodeId: string) => {
+    const n = stage?.nodes?.find((x) => String(x.id) === nodeId);
+    if (!n) return false;
+    setSelectedEdge(null);
+    setFocusEdgeIds(null);
+    setHighlightKey(null);
+    setSelectedNode(String(n.id));
+    setFocusNodeRequest((prev) => ({
+      id: String(n.id),
+      seq: (prev?.seq || 0) + 1,
+    }));
+    setEntityQuery(n.label || String(n.id).split("/")[0] || String(n.id));
+    setEntitySearchOpen(false);
+    return true;
+  };
+
+  const focusEntity = (nodeId: string, targetSliceId?: string) => {
+    const dest = targetSliceId || findSliceForNode(nodeId);
+    if (dest !== sliceId) {
+      setPendingFocusId(nodeId);
+      setSliceId(dest);
+      setShowSliceText(dest !== "__all__");
+      setEntitySearchOpen(false);
+      return;
+    }
+    applyFocusOnStage(nodeId);
+  };
+
+  useEffect(() => {
+    if (!pendingFocusId) return;
+    if (!stage?.nodes?.some((n) => String(n.id) === pendingFocusId)) return;
+    applyFocusOnStage(pendingFocusId);
+    setPendingFocusId(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingFocusId, stage, sliceId]);
+
   return (
     <ResizableShell
       storagePrefix="shell-textbook"
       nav={
       <aside className={shell.sidebar}>
         <div className={shell.sideHead}>
-          <Link to="/" className={shell.back}>
+          <Link to={coursePath(courseId)} className={shell.back}>
             <span className={shell.backIcon} aria-hidden>
               ←
             </span>
@@ -238,37 +469,35 @@ export function TextbookPage() {
             </span>
           </Link>
           <p className={shell.eyebrow}>Textbook KG</p>
-          <h1 className={shell.sideTitle}>教材知识图谱</h1>
-          <p className={shell.sideLead}>
-            {data?.subtitle || "选择 MD 文件 · 按章对齐 extract 三元组"}
-          </p>
+          <h1 className={shell.sideTitle}>教材级图谱</h1>
         </div>
 
-        <div className={shell.navBlock}>
-          <p className={shell.navLabel}>教材文件</p>
-          <div className={`${shell.navScroll} ${styles.fileScroll}`}>
-            {availableFiles.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                className={fileId === f.id ? shell.navItemActive : shell.navItem}
-                title={f.title}
-                onClick={() => setFileId(f.id)}
-              >
-                <span>{f.title}</span>
-                <em>{f.chapter_count ?? "—"}章</em>
-              </button>
-            ))}
-            {unavailableFiles.length > 0 ? (
-              <p className={styles.fileDisabledHint}>
-                另有 {unavailableFiles.length} 项缺 MD/extract
-              </p>
-            ) : null}
+        {availableFiles.length > 1 || unavailableFiles.length > 0 ? (
+          <div className={shell.navBlock}>
+            <p className={shell.navLabel}>教材</p>
+            <div className={`${shell.navScroll} ${styles.fileScroll}`}>
+              {availableFiles.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className={fileId === f.id ? shell.navItemActive : shell.navItem}
+                  title={f.title}
+                  onClick={() => setFileId(f.id)}
+                >
+                  <span>{f.title}</span>
+                </button>
+              ))}
+              {unavailableFiles.length > 0 ? (
+                <p className={styles.fileDisabledHint}>
+                  另有 {unavailableFiles.length} 项缺 MD/extract
+                </p>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <div className={`${shell.navBlock} ${shell.navBlockGrow}`}>
-          <p className={shell.navLabel}>章节</p>
+          <p className={shell.navLabel}>课件划分</p>
           <div className={shell.navScroll}>
             <button
               type="button"
@@ -278,10 +507,10 @@ export function TextbookPage() {
                 setShowSliceText(false);
               }}
             >
-              <span>全书合并</span>
+              <span>全部合并</span>
             </button>
 
-            {chapterList.map((s) => (
+            {coursewareList.map((s) => (
               <button
                 key={s.id}
                 type="button"
@@ -302,25 +531,68 @@ export function TextbookPage() {
       <main className={styles.mainCol}>
         <header className={shell.topbar}>
           <div className={shell.topbarText}>
-            <h2>{active?.title || data?.title || "教材知识图谱"}</h2>
-            <p>
-              {data?.source_dir ? `来源 ${data.source_dir}` : "MD 分章"}
-              {data?.stats
-                ? ` · ${data.stats.slices} 章 / ${data.stats.entities} 实体 / ${data.stats.relations} 关系`
-                : ""}
-              {data?.stats?.aligned_triples != null
-                ? ` · 对齐 ${data.stats.aligned_triples}`
-                : ""}
-              {hasSliceText ? ` · 正文 ${sliceBody.length} 字` : ""}
-            </p>
+            <h2>{active?.title || data?.title || "教材级图谱"}</h2>
           </div>
           <div className={shell.tools}>
+            <div className={styles.entitySearch} ref={entitySearchRef}>
+              <input
+                type="search"
+                className={styles.entitySearchInput}
+                value={entityQuery}
+                disabled={!data || loadingFile}
+                placeholder="搜索实体…"
+                aria-label="搜索教材实体"
+                autoComplete="off"
+                onFocus={() => setEntitySearchOpen(true)}
+                onChange={(e) => {
+                  setEntityQuery(e.target.value);
+                  setEntitySearchOpen(true);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") {
+                    setEntitySearchOpen(false);
+                    return;
+                  }
+                  if (e.key === "Enter" && entityMatches[0]) {
+                    e.preventDefault();
+                    focusEntity(entityMatches[0].id, entityMatches[0].sliceId);
+                  }
+                }}
+              />
+              {entitySearchOpen && entityQuery.trim() && (
+                <div className={styles.entitySearchMenu} role="listbox">
+                  {entityMatches.length === 0 ? (
+                    <div className={styles.entitySearchEmpty}>无匹配实体</div>
+                  ) : (
+                    entityMatches.map((m) => (
+                      <button
+                        key={m.id}
+                        type="button"
+                        role="option"
+                        className={styles.entitySearchItem}
+                        onClick={() => focusEntity(m.id, m.sliceId)}
+                        title={m.id}
+                      >
+                        <span>{m.label}</span>
+                        <em>
+                          {m.inCurrent
+                            ? m.id.includes("/")
+                              ? m.id.split("/").slice(1).join("/")
+                              : m.kind || "当前"
+                            : m.sliceTitle}
+                        </em>
+                      </button>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
             <button
               type="button"
               className={shell.toolBtn}
               disabled={!hasSliceText}
               onClick={() => setShowSliceText((v) => !v)}
-              title={slicePanelVisible ? "隐藏章节正文" : "显示章节正文"}
+              title={slicePanelVisible ? "隐藏课件正文" : "显示课件正文"}
             >
               {slicePanelVisible ? "隐藏正文" : "显示正文"}
             </button>
@@ -356,15 +628,7 @@ export function TextbookPage() {
               left={
                 <>
                   <div className={styles.sliceHead}>
-                    <strong>章节正文</strong>
-                    <span className={styles.sliceHint}>MD 章节原文</span>
-                    <button
-                      type="button"
-                      className={styles.sliceHide}
-                      onClick={() => setShowSliceText(false)}
-                    >
-                      隐藏
-                    </button>
+                    <strong>课件正文</strong>
                   </div>
                   <div className={styles.sliceScroll}>
                     <SliceTextAnnotator
@@ -393,6 +657,8 @@ export function TextbookPage() {
                     selectedEdgeId={selectedEdge}
                     focusEdgeIds={focusEdgeIds}
                     selectedNodeId={selectedNode}
+                    focusNodeRequest={focusNodeRequest}
+                    onFocusNodeConsumed={() => setFocusNodeRequest(null)}
                     posCacheRef={posCacheRef}
                     keepLayout={false}
                     onSelectNode={(id) => {
@@ -427,23 +693,7 @@ export function TextbookPage() {
       }
       detail={
       <aside className={pipe.side}>
-        <div className={pipe.panel}>
-          <h3>当前章节</h3>
-          <p className={styles.panelLead}>{active?.title || "—"}</p>
-          <div className={styles.statGrid}>
-            <div>
-              <b>{active?.node_count ?? 0}</b>
-              <span>实体</span>
-            </div>
-            <div>
-              <b>{active?.triple_count ?? 0}</b>
-              <span>关系</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={pipe.panel}>
-          <h3>选中详情</h3>
+        <CollapsiblePanel title="选中详情" storageKey="textbook-panel-detail" defaultOpen>
           {stage ? (
             <SelectionDetail
               stage={stage}
@@ -456,11 +706,19 @@ export function TextbookPage() {
           ) : (
             <div className={pipe.sideEmpty}>点击图中实体或关系查看详情</div>
           )}
-        </div>
+        </CollapsiblePanel>
 
         {selectedNode && stage ? (
-          <div className={pipe.panel}>
-            <h3>相关关系</h3>
+          <CollapsiblePanel
+            title={`相关关系-${
+              relatedEdgesOf(stage, selectedNode, {
+                hideFiltered: false,
+                mode: "lecture",
+              }).length
+            }`}
+            storageKey="textbook-panel-edges"
+            defaultOpen
+          >
             <RelatedEdges
               stage={stage}
               nodeId={selectedNode}
@@ -471,7 +729,7 @@ export function TextbookPage() {
                 selectEdgesFromText(id, id != null ? [id] : undefined);
               }}
             />
-          </div>
+          </CollapsiblePanel>
         ) : null}
       </aside>
       }

@@ -94,3 +94,33 @@
 .handle:focus-visible {
   outline: none;
 }
+
+.splitVertical {
+  flex-direction: column;
+}
+
+.handleVertical {
+  flex: 0 0 7px;
+  cursor: row-resize;
+  width: 100%;
+  align-self: stretch;
+}
+
+.handleVertical::before {
+  top: 2px;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 3px;
+}
+
+.handleVertical:hover::before,
+.handleVertical:focus-visible::before,
+.handleVertical:active::before {
+  left: 0;
+  right: 0;
+  top: 1px;
+  width: auto;
+  height: 5px;
+}

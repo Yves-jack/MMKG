@@ -1,0 +1,1479 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "18",
+  "title": "第18讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/18_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/18_1.mp4",
+  "duration_sec": 3299.9,
+  "segments": [
+    {
+      "id": "数理逻辑_18_171800_450100",
+      "index": 1,
+      "start_sec": 171.8,
+      "end_sec": 450.1,
+      "title": "好，现在我们开始上第二章的内容，这是命题逻辑…"
+    },
+    {
+      "id": "数理逻辑_18_451400_685500",
+      "index": 2,
+      "start_sec": 451.4,
+      "end_sec": 685.5,
+      "title": "推理演算是我们的蕴含关系"
+    },
+    {
+      "id": "数理逻辑_18_686900_887900",
+      "index": 3,
+      "start_sec": 686.9,
+      "end_sec": 887.9,
+      "title": "证明两个公式等值的方法有多种"
+    },
+    {
+      "id": "数理逻辑_18_888700_1071500",
+      "index": 4,
+      "start_sec": 888.7,
+      "end_sec": 1071.5,
+      "title": "从形式系统角度看，↔是命题联结词，A↔B是系…"
+    },
+    {
+      "id": "数理逻辑_18_1072600_1116300",
+      "index": 5,
+      "start_sec": 1072.6,
+      "end_sec": 1116.3,
+      "title": "等值关系“=”的性质与数学中的等号相同，具有…"
+    },
+    {
+      "id": "数理逻辑_18_1117100_1169100",
+      "index": 6,
+      "start_sec": 1117.1,
+      "end_sec": 1169.1,
+      "title": "利用真值表证明等值关系"
+    },
+    {
+      "id": "数理逻辑_18_1170800_1307000",
+      "index": 7,
+      "start_sec": 1170.8,
+      "end_sec": 1307.0,
+      "title": "基本等值式（等价定律）中的第一类是结合律"
+    },
+    {
+      "id": "数理逻辑_18_1315700_1442700",
+      "index": 8,
+      "start_sec": 1315.7,
+      "end_sec": 1442.7,
+      "title": "分配律包含以下三个等值式： P ∨ (Q ∧…"
+    },
+    {
+      "id": "数理逻辑_18_1444300_1594400",
+      "index": 9,
+      "start_sec": 1444.3,
+      "end_sec": 1594.4,
+      "title": "接下来我们讲解关于否定词的等值式"
+    },
+    {
+      "id": "数理逻辑_18_1595300_1703500",
+      "index": 10,
+      "start_sec": 1595.3,
+      "end_sec": 1703.5,
+      "title": "根据摩根律，p 等价 q 可以通过等值式推导…"
+    },
+    {
+      "id": "数理逻辑_18_1704400_1913900",
+      "index": 11,
+      "start_sec": 1704.4,
+      "end_sec": 1913.9,
+      "title": "我们需要重点记忆这些等值式"
+    },
+    {
+      "id": "数理逻辑_18_1916200_1979300",
+      "index": 12,
+      "start_sec": 1916.2,
+      "end_sec": 1979.3,
+      "title": "接下来介绍其他常用等值式"
+    },
+    {
+      "id": "数理逻辑_18_1988800_2412100",
+      "index": 13,
+      "start_sec": 1988.8,
+      "end_sec": 2412.1,
+      "title": "第七个等值式比较重要，后面会经常用到"
+    },
+    {
+      "id": "数理逻辑_18_2412900_2650600",
+      "index": 14,
+      "start_sec": 2412.9,
+      "end_sec": 2650.6,
+      "title": "置换规则是等值演算中的重要规则，指对公式的子…"
+    },
+    {
+      "id": "数理逻辑_18_2651300_2786000",
+      "index": 15,
+      "start_sec": 2651.3,
+      "end_sec": 2786.0,
+      "title": "我们可以通过等值演算进行证明"
+    },
+    {
+      "id": "数理逻辑_18_2786900_3075100",
+      "index": 16,
+      "start_sec": 2786.9,
+      "end_sec": 3075.1,
+      "title": "利用等值演算进行化简"
+    },
+    {
+      "id": "数理逻辑_18_3110200_3299900",
+      "index": 17,
+      "start_sec": 3110.2,
+      "end_sec": 3299.9,
+      "title": "根据提供的材料，当前ASR转写内容与OCR文…"
+    }
+  ],
+  "points": [
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.765658,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于关系"
+        },
+        {
+          "subject": "偏序关系/partial order relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "偏序关系属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_451400_685500",
+          "text": "推理演算是我们的蕴含关系。现在开始讲解等值演算。等值演算不仅涉及语法层面，更包含语义层面的等价关系。即在特定语义场景下，可以用一个等值命题替换另一个命题。\n\n等值的定义如下：给定两个命题公式A和B，设P1到Pn是出现在A和B中的所有命题变项。对于这n个变项，共有2^n种不同的解释（即真值表有2^n行）。如果在所有2^n种解释下，A和B的真值都相同，则称A和B等值（或逻辑等价），记作A=B或A⇔B。\n\n例如，我们已经证明过P→Q与¬P∨Q是等值的。这两个公式在语法结构上不同，但在语义上是等值的。这就是等值演算的基本概念。那么如何证明两个公式等值呢？",
+          "start_sec": 451.4,
+          "end_sec": 685.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_451400_685500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_686900_887900",
+          "text": "证明两个公式等值的方法有多种。第一种是真值表法：列出所有命题变量的可能取值，共有2^n种解释。若在每种解释下A和B的真值都相同，则A=B。第二种方法是利用等值定理。\n\n等值定理指出：对公式A和B，A=B当且仅当A↔B是重言式。重言式是指在所有解释下其真值都为真。根据↔的定义，A↔B为真当且仅当A和B同真或同假。因此，若A=B，则在所有解释下A和B真值相同，故A↔B必为重言式。\n\n需要区分两个符号：A↔B是命题公式，具有真值；而A=B表示两个命题公式之间的等值关系，本身不是命题公式。",
+          "start_sec": 686.9,
+          "end_sec": 887.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_686900_887900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "命题公式/propositional formula",
+      "zh": "命题公式",
+      "importance": 0.399644,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和…",
+      "definition": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和括号构成。在给定的命题变项的解释下，命题公式可以确定一个唯一的真值，常用于判断公式的等值性、重言式和矛盾式，且任何命题公式都存在与之等值的合取范式和析取范式。",
+      "neighbors": [
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题公式属于命题逻辑"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "否定属于命题公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "命题变项属于命题公式"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取范式属于命题公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取属于命题公式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题公式包含公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1170800_1307000",
+          "text": "基本等值式（等价定律）中的第一类是结合律。  \n\n在结合律中，蕴含是没有结合律和交换律的。以析取为例，公式 (P ∨ Q) ∨ R = P ∨ (Q ∨ R) 体现了结合律的性质。但需要注意，蕴含运算不满足结合律，也不满足交换律。  \n\n例如，P → Q 与 Q → P 是不同的逻辑关系：前者表示 P 是 Q 的充分条件，后者表示 Q 是 P 的充分条件。因此，蕴含运算不符合交换律。这一点可以通过真值表验证。  \n\n接下来是分配律的内容。",
+          "start_sec": 1170.8,
+          "end_sec": 1307.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1170800_1307000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "等值公式/equivalent formula",
+      "zh": "等值公式",
+      "importance": 0.345011,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。",
+      "definition": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。这些公式如双重否定律、结合律、交换律和分配律等，允许对公式进行结构性变换而不改变其逻辑含义。例如，将含有蕴含和双条件的公式转化为仅含否定、析取和合取的公式，即是一种利用等值公式的置换操作，这对于简化公式和证明其唯一的主析取范式至关重要。",
+      "neighbors": [
+        {
+          "subject": "等值公式/equivalent formula",
+          "predicate": "belong_to",
+          "object": "逻辑公式/logical formula",
+          "label": "具有",
+          "natural_statement": "等值公式具有逻辑公式"
+        },
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "分配律属于等值公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "结合律表示等值公式"
+        },
+        {
+          "subject": "交换律/commutative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "交换律表示等值公式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        },
+        {
+          "subject": "双重否定律/double negation law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "双重否定律属于等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2412900_2650600",
+          "text": "置换规则是等值演算中的重要规则，指对公式的子公式用等值公式进行替换。与代入规则不同，置换只需对部分子公式进行替换。若对公式A的子公式置换后得到公式B，则A与B等值。这意味着虽然语法形式改变，但语义保持不变——在所有赋值情况下，真值与原公式一致。\n\n例如，若A是重言式，则置换得到的B也是重言式，因为A与B等值。这与代入规则有本质区别：代入要求对变量进行处处替换，且替换内容不需要与原变量等值；而置换只需对子公式进行局部替换，且要求替换公式与被替换子公式等值。\n\n在证明时，可将子公式及其替换公式视为新变元，通过判断A和B的同真假来验证等值性。这种基于基本等值式的演算方法，可用于公式的简化与证明。",
+          "start_sec": 2412.9,
+          "end_sec": 2650.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2412900_2650600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "逻辑公式/logical formula",
+      "zh": "逻辑公式",
+      "importance": 0.310703,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "逻辑公式是数理逻辑中，使用逻辑符号和变量，根据合式规则（如括号的使用）构成的、用于精确表示自然…",
+      "definition": "逻辑公式是数理逻辑中，使用逻辑符号和变量，根据合式规则（如括号的使用）构成的、用于精确表示自然语句逻辑结构的符号化语言表达。它允许计算机识别、计算和处理逻辑推理，不同的表示法（如波兰式和逆波兰式）会影响处理效率，且逻辑公式的等值性是判断其等价性的关键。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "属于",
+          "natural_statement": "否定属于逻辑公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "合取表示逻辑公式"
+        },
+        {
+          "subject": "等值公式/equivalent formula",
+          "predicate": "belong_to",
+          "object": "逻辑公式/logical formula",
+          "label": "具有",
+          "natural_statement": "等值公式具有逻辑公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "析取表示逻辑公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "蕴含表示逻辑公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "命题变项/propositional variable",
+      "zh": "命题变项",
+      "importance": 0.27142,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。",
+      "definition": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其真值可根据赋值情况确定，例如n个命题变项共有2^n种取值情形。",
+      "neighbors": [
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "命题变项属于命题公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "p,q,r.../p,q,r...",
+          "predicate": "property_of",
+          "object": "命题变项/propositional variable",
+          "label": "表示",
+          "natural_statement": "命题变项表示p,q,r..."
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1315700_1442700",
+          "text": "分配律包含以下三个等值式：\nP ∨ (Q ∧ R) = (P ∨ Q) ∧ (P ∨ R)\nP ∧ (Q ∨ R) = (P ∧ Q) ∨ (P ∧ R)\nP → (Q → R) = (P → Q) → (P → R)\n\n需要注意的是，等价运算不满足分配律。\n\n吸收律的内容如下：\nP ∨ (P ∧ Q) = P\nP ∧ (P ∨ Q) = P\n\n这两个等值式可以通过分配律进行证明。以第一个等值式为例，当P为真时，整个表达式为真；当P为假时，表达式也为假。也可以通过真值表来验证这些等值式。",
+          "start_sec": 1315.7,
+          "end_sec": 1442.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1315700_1442700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_451400_685500",
+          "text": "推理演算是我们的蕴含关系。现在开始讲解等值演算。等值演算不仅涉及语法层面，更包含语义层面的等价关系。即在特定语义场景下，可以用一个等值命题替换另一个命题。\n\n等值的定义如下：给定两个命题公式A和B，设P1到Pn是出现在A和B中的所有命题变项。对于这n个变项，共有2^n种不同的解释（即真值表有2^n行）。如果在所有2^n种解释下，A和B的真值都相同，则称A和B等值（或逻辑等价），记作A=B或A⇔B。\n\n例如，我们已经证明过P→Q与¬P∨Q是等值的。这两个公式在语法结构上不同，但在语义上是等值的。这就是等值演算的基本概念。那么如何证明两个公式等值呢？",
+          "start_sec": 451.4,
+          "end_sec": 685.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_451400_685500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "重言式/tautology",
+      "zh": "重言式",
+      "importance": 0.244347,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公…",
+      "definition": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公式。其核心功能在于代表逻辑规律和正确的推理形式。一个公式为重言式当且仅当其否定式为永假式。在实际应用中，重言式被用于证明公式的等值性，例如，$A \\leftrightarrow B$ 为重言式即表示 $A$ 与 $B$ 等价。常见的重言式包括逻辑公理和推理规则，它们是演绎体系的基石。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "重言式属于命题逻辑"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "双条件式/Biconditional",
+          "label": "属于",
+          "natural_statement": "重言式属于双条件式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "重言式属于公式"
+        },
+        {
+          "subject": "等值式/equivalence formula",
+          "predicate": "belong_to",
+          "object": "重言式/tautology",
+          "label": "具有",
+          "natural_statement": "等值式具有重言式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2412900_2650600",
+          "text": "置换规则是等值演算中的重要规则，指对公式的子公式用等值公式进行替换。与代入规则不同，置换只需对部分子公式进行替换。若对公式A的子公式置换后得到公式B，则A与B等值。这意味着虽然语法形式改变，但语义保持不变——在所有赋值情况下，真值与原公式一致。\n\n例如，若A是重言式，则置换得到的B也是重言式，因为A与B等值。这与代入规则有本质区别：代入要求对变量进行处处替换，且替换内容不需要与原变量等值；而置换只需对子公式进行局部替换，且要求替换公式与被替换子公式等值。\n\n在证明时，可将子公式及其替换公式视为新变元，通过判断A和B的同真假来验证等值性。这种基于基本等值式的演算方法，可用于公式的简化与证明。",
+          "start_sec": 2412.9,
+          "end_sec": 2650.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2412900_2650600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.236464,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。",
+      "definition": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提条件的顺序交换（如 P → (Q → R) = Q → (P → R)），同时其逆否形式 ¬Q → ¬P 与原蕴含式等值。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "结合律/associative law",
+          "label": "不满足",
+          "natural_statement": "蕴含不满足结合律"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "交换律/commutative law",
+          "label": "不满足",
+          "natural_statement": "蕴含不满足交换律"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "依赖",
+          "natural_statement": "蕴含依赖公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "蕴含表示逻辑公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1170800_1307000",
+          "text": "基本等值式（等价定律）中的第一类是结合律。  \n\n在结合律中，蕴含是没有结合律和交换律的。以析取为例，公式 (P ∨ Q) ∨ R = P ∨ (Q ∨ R) 体现了结合律的性质。但需要注意，蕴含运算不满足结合律，也不满足交换律。  \n\n例如，P → Q 与 Q → P 是不同的逻辑关系：前者表示 P 是 Q 的充分条件，后者表示 Q 是 P 的充分条件。因此，蕴含运算不符合交换律。这一点可以通过真值表验证。  \n\n接下来是分配律的内容。",
+          "start_sec": 1170.8,
+          "end_sec": 1307.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1170800_1307000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1704400_1913900",
+          "text": "我们需要重点记忆这些等值式。其中，P蕴含Q等于非P或Q，这是非常重要的。如果记不住分配律等规律，可以直接将其转化为非P或Q的形式。根据交换律，非P或Q等于Q或非P。再根据摩根律，可以转化为非Q蕴含非P，这称为逆否定理。\n\n另一个重要的等值式是P等价Q。它等于非P等价非Q，这可以通过代入法理解。更重要的是，P等价Q表示P和Q互为充分必要条件，即等于（P蕴含Q）且（Q蕴含P）。此外，P等价Q还表示两者同真或同假，即（P∧Q）∨（¬P∧¬Q）。",
+          "start_sec": 1704.4,
+          "end_sec": 1913.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1704400_1913900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "今天的课程/today's course",
+      "zh": "今天的课程",
+      "importance": 0.23558,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "利用等值演算进行化简。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "今天的课程/today's course",
+          "predicate": "related_with",
+          "object": "等值演算的定义/Definition of equivalence calculus",
+          "label": "介绍了",
+          "natural_statement": "今天的课程介绍了等值演算的定义"
+        },
+        {
+          "subject": "今天的课程/today's course",
+          "predicate": "related_with",
+          "object": "八大基本等值式/Eight basic equivalence laws",
+          "label": "介绍了",
+          "natural_statement": "今天的课程介绍了八大基本等值式"
+        },
+        {
+          "subject": "今天的课程/today's course",
+          "predicate": "related_with",
+          "object": "等值定理/Equivalence theorem",
+          "label": "介绍了",
+          "natural_statement": "今天的课程介绍了等值定理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_2786900_3075100",
+          "text": "利用等值演算进行化简。电路图A是由3个与门和2个或门构造的逻辑电路，其逻辑表达式为：\n\n$Y = ((P \\land Q) \\lor (P \\land R)) \\land (Q \\lor R)$\n\n首先应用分配律：\n$= P \\land (Q \\lor R) \\land (Q \\lor R)$\n\n根据等幂律化简：\n$= P \\land (Q \\lor R)$\n\n最后应用摩根律转换为与非门形式：\n$= \\neg(\\neg(P \\land Q) \\land \\neg(P \\land R))$\n\n通过化简得到电路图B，以及仅使用与非门的电路图C。\n\n今天的课程介绍了等值演算的定义、八大基本等值式和等值定理。作业包括第一章内容和图论的附加题，请于下周二提交。",
+          "start_sec": 2786.9,
+          "end_sec": 3075.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2786900_3075100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "逻辑电路/logic circuit",
+      "zh": "逻辑电路",
+      "importance": 0.23558,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "利用等值演算进行化简。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "或门/OR gate",
+          "predicate": "part_of",
+          "object": "逻辑电路/logic circuit",
+          "label": "是…组成部分",
+          "natural_statement": "或门是逻辑电路组成部分"
+        },
+        {
+          "subject": "与门/AND gate",
+          "predicate": "part_of",
+          "object": "逻辑电路/logic circuit",
+          "label": "是…组成部分",
+          "natural_statement": "与门是逻辑电路组成部分"
+        },
+        {
+          "subject": "逻辑电路/logic circuit",
+          "predicate": "property_of",
+          "object": "逻辑表达式/logical expression",
+          "label": "具有",
+          "natural_statement": "逻辑电路具有逻辑表达式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_2786900_3075100",
+          "text": "利用等值演算进行化简。电路图A是由3个与门和2个或门构造的逻辑电路，其逻辑表达式为：\n\n$Y = ((P \\land Q) \\lor (P \\land R)) \\land (Q \\lor R)$\n\n首先应用分配律：\n$= P \\land (Q \\lor R) \\land (Q \\lor R)$\n\n根据等幂律化简：\n$= P \\land (Q \\lor R)$\n\n最后应用摩根律转换为与非门形式：\n$= \\neg(\\neg(P \\land Q) \\land \\neg(P \\land R))$\n\n通过化简得到电路图B，以及仅使用与非门的电路图C。\n\n今天的课程介绍了等值演算的定义、八大基本等值式和等值定理。作业包括第一章内容和图论的附加题，请于下周二提交。",
+          "start_sec": 2786.9,
+          "end_sec": 3075.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2786900_3075100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.23091,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "假/false",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "假表示真值"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真/true",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "真表示真值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2412900_2650600",
+          "text": "置换规则是等值演算中的重要规则，指对公式的子公式用等值公式进行替换。与代入规则不同，置换只需对部分子公式进行替换。若对公式A的子公式置换后得到公式B，则A与B等值。这意味着虽然语法形式改变，但语义保持不变——在所有赋值情况下，真值与原公式一致。\n\n例如，若A是重言式，则置换得到的B也是重言式，因为A与B等值。这与代入规则有本质区别：代入要求对变量进行处处替换，且替换内容不需要与原变量等值；而置换只需对子公式进行局部替换，且要求替换公式与被替换子公式等值。\n\n在证明时，可将子公式及其替换公式视为新变元，通过判断A和B的同真假来验证等值性。这种基于基本等值式的演算方法，可用于公式的简化与证明。",
+          "start_sec": 2412.9,
+          "end_sec": 2650.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2412900_2650600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_888700_1071500",
+          "text": "从形式系统角度看，↔是命题联结词，A↔B是系统内的合式公式；而=是系统外的符号，A=B不是合式公式，它表示在系统外观察两个公式是否等值。\n\n从真假性来看，写下A↔B不代表A和B等值，只有当A↔B为真时才能确定A和B等值。但A↔B可能为假。而写下A=B则直接表明A和B等值。\n\nA↔B作为命题公式具有真值：当它为假时，说明A和B在某种解释下取值不同；只有当它为真时，A和B取值才相同。而A=B直接断言两个公式在所有解释下取值相同。\n\n需要特别注意：虽然\"A等价B\"的读法可能暗示等值关系，但A↔B作为命题公式可能为假命题；而A=B则是明确的等值关系断言。因此，A↔B是系统内的合式公式，A=B是系统外的等值关系表达式。",
+          "start_sec": 888.7,
+          "end_sec": 1071.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_888700_1071500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 10
+    },
+    {
+      "id": "合式公式/Well-formed formula(Wff)",
+      "zh": "合式公式",
+      "importance": 0.226464,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域…",
+      "definition": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域内，遵循特定符号形成规则（形成准则）构成的一类有意义的符号序列。它由基本原子命题（如命题常项、命题变项、原子谓词公式）通过逻辑联结词（如¬, ∧, ∨, →, ↔）以及量词（如∀, ∃）递归地组合而成，且其结构能够明确界定运算次序，确保语义的唯一性。",
+      "neighbors": [
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "双条件公式/biconditional formula",
+          "predicate": "belong_to",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "是...的实例",
+          "natural_statement": "双条件公式是合式公式的实例"
+        },
+        {
+          "subject": "合式公式/Well-formed formula(Wff)",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "具有",
+          "natural_statement": "合式公式具有公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_451400_685500",
+          "text": "推理演算是我们的蕴含关系。现在开始讲解等值演算。等值演算不仅涉及语法层面，更包含语义层面的等价关系。即在特定语义场景下，可以用一个等值命题替换另一个命题。\n\n等值的定义如下：给定两个命题公式A和B，设P1到Pn是出现在A和B中的所有命题变项。对于这n个变项，共有2^n种不同的解释（即真值表有2^n行）。如果在所有2^n种解释下，A和B的真值都相同，则称A和B等值（或逻辑等价），记作A=B或A⇔B。\n\n例如，我们已经证明过P→Q与¬P∨Q是等值的。这两个公式在语法结构上不同，但在语义上是等值的。这就是等值演算的基本概念。那么如何证明两个公式等值呢？",
+          "start_sec": 451.4,
+          "end_sec": 685.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_451400_685500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_888700_1071500",
+          "text": "从形式系统角度看，↔是命题联结词，A↔B是系统内的合式公式；而=是系统外的符号，A=B不是合式公式，它表示在系统外观察两个公式是否等值。\n\n从真假性来看，写下A↔B不代表A和B等值，只有当A↔B为真时才能确定A和B等值。但A↔B可能为假。而写下A=B则直接表明A和B等值。\n\nA↔B作为命题公式具有真值：当它为假时，说明A和B在某种解释下取值不同；只有当它为真时，A和B取值才相同。而A=B直接断言两个公式在所有解释下取值相同。\n\n需要特别注意：虽然\"A等价B\"的读法可能暗示等值关系，但A↔B作为命题公式可能为假命题；而A=B则是明确的等值关系断言。因此，A↔B是系统内的合式公式，A=B是系统外的等值关系表达式。",
+          "start_sec": 888.7,
+          "end_sec": 1071.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_888700_1071500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_wff_recursive_check"
+      ],
+      "rank": 11
+    },
+    {
+      "id": "非P或Q/not P or Q",
+      "zh": "非P或Q",
+      "importance": 0.225902,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们需要重点记忆这些等值式。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "P蕴含Q/P implies Q",
+          "predicate": "synonym_of",
+          "object": "非P或Q/not P or Q",
+          "label": "等于",
+          "natural_statement": "P蕴含Q等于非P或Q"
+        },
+        {
+          "subject": "非P或Q/not P or Q",
+          "predicate": "synonym_of",
+          "object": "Q或非P/Q or not P",
+          "label": "等于",
+          "natural_statement": "非P或Q等于Q或非P"
+        },
+        {
+          "subject": "非P或Q/not P or Q",
+          "predicate": "synonym_of",
+          "object": "非Q蕴含非P/not Q implies not P",
+          "label": "转化为",
+          "natural_statement": "非P或Q转化为非Q蕴含非P"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1704400_1913900",
+          "text": "我们需要重点记忆这些等值式。其中，P蕴含Q等于非P或Q，这是非常重要的。如果记不住分配律等规律，可以直接将其转化为非P或Q的形式。根据交换律，非P或Q等于Q或非P。再根据摩根律，可以转化为非Q蕴含非P，这称为逆否定理。\n\n另一个重要的等值式是P等价Q。它等于非P等价非Q，这可以通过代入法理解。更重要的是，P等价Q表示P和Q互为充分必要条件，即等于（P蕴含Q）且（Q蕴含P）。此外，P等价Q还表示两者同真或同假，即（P∧Q）∨（¬P∧¬Q）。",
+          "start_sec": 1704.4,
+          "end_sec": 1913.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1704400_1913900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "基本等值式",
+      "zh": "基本等值式",
+      "importance": 0.212367,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "我们可以通过等值演算进行证明。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "belong_to",
+          "object": "基本等值式",
+          "label": "是...的实例",
+          "natural_statement": "分配律是基本等值式的实例"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "基本等值式",
+          "label": "是...的实例",
+          "natural_statement": "结合律是基本等值式的实例"
+        },
+        {
+          "subject": "摩根律",
+          "predicate": "belong_to",
+          "object": "基本等值式",
+          "label": "是...的实例",
+          "natural_statement": "摩根律是基本等值式的实例"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_2651300_2786000",
+          "text": "我们可以通过等值演算进行证明。首先观察这两个部分满足分配律，将其应用分配律进行变换。这里分配律的应用方向可以从右到左或从左到右，我们选择从右到左应用分配律。\n\n接下来将表达式转换为（Q∨P）∧R的形式，然后应用结合律。随后使用摩根律进行变换，再应用分配律得到新的表达式。\n\n此时表达式呈现为¬(P∨Q)∨(P∨Q)的形式，这是一个永真式，可以用T表示。最后应用同一律，得到T∧R等价于R。\n\n整个等值演算过程运用了分配律、结合律、摩根律、置换规则和同一律等基本等值式。",
+          "start_sec": 2651.3,
+          "end_sec": 2786.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2651300_2786000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "合取/conjunction",
+      "zh": "合取",
+      "importance": 0.207669,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或…",
+      "definition": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$ 等价于 $\\neg (\\neg A \\vee \\neg B)$。它在命题逻辑和谓词逻辑中都扮演着基础角色，并且与析取（∨）、蕴含（→）、双条件（↔）等共同构成了逻辑系统的基本运算。",
+      "neighbors": [
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "合取表示逻辑公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "合取属于前提"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "property_of",
+          "object": "交换前件/commutativity of antecedent",
+          "label": "具有性质",
+          "natural_statement": "合取具有性质交换前件"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1916200_1979300",
+          "text": "接下来介绍其他常用等值式。首先是合取前提公式：P→(Q→R) = (P∧Q)→R。这个公式表示对于R而言，P和Q可以合取作为充分条件。此外还有交换前提公式：P→(Q→R) = Q→(P→R)。其他重要等值式包括：\nP→(Q∧R) = (P→Q)∧(P→R)\nP→(Q∨R) = (P→Q)∨(P→R)\n(P∨Q)→R = (P→R)∧(Q→R)\n(P∧Q)→R = (P→R)∨(Q→R)",
+          "start_sec": 1916.2,
+          "end_sec": 1979.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1916200_1979300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词与联结词配对法则_3700_1917600"
+      ],
+      "rank": 14
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.201101,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "属于",
+          "natural_statement": "否定属于逻辑公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "否定属于命题公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "否定包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1444300_1594400",
+          "text": "接下来我们讲解关于否定词的等值式。首先是最重要的摩根律：\n\n¬(P ∨ Q) = ¬P ∧ ¬Q  \n¬(P ∧ Q) = ¬P ∨ ¬Q\n\n摩根律的核心在于运算符的对偶变换：与变或，或变与。双重否定律¬¬P = P相对简单，我们就不展开讨论了。\n\n关于蕴含的否定：  \n¬(P → Q) = P ∧ ¬Q  \n这是因为P → Q可以表示为¬P ∨ Q，对其取否定就得到这个结果。\n\n对于双向蕴含的否定：  \n¬(P ↔ Q) = ¬P ↔ Q = P ↔ ¬Q  \n= (P ∧ ¬Q) ∨ (¬P ∧ Q)\n\n这个等值式具有对称性，否定符号可以自由地放在P或Q前面。最后这个展开式可以不用记忆，因为我们已经知道P ↔ Q的等价形式。",
+          "start_sec": 1444.3,
+          "end_sec": 1594.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1444300_1594400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_特称否定命题翻译模板_8700_1951300",
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 15
+    },
+    {
+      "id": "等价关系/equivalence relation",
+      "zh": "等价关系",
+      "importance": 0.192663,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系…",
+      "definition": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系R，它具有自反性、对称性和传递性。等价关系将集合A中的元素划分为若干个互不相交的子集（等价类），这些等价类的全体构成A的划分。例如，在有理数域$Q$上，定义$a/b \\simeq c/d$当且仅当$a \\cdot d = b \\cdot c$，这构成了一个等价关系。",
+      "neighbors": [
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于关系"
+        },
+        {
+          "subject": "等势/equipotency",
+          "predicate": "belong_to",
+          "object": "等价关系/equivalence relation",
+          "label": "属于",
+          "natural_statement": "等势属于等价关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_2786900_3075100",
+          "text": "利用等值演算进行化简。电路图A是由3个与门和2个或门构造的逻辑电路，其逻辑表达式为：\n\n$Y = ((P \\land Q) \\lor (P \\land R)) \\land (Q \\lor R)$\n\n首先应用分配律：\n$= P \\land (Q \\lor R) \\land (Q \\lor R)$\n\n根据等幂律化简：\n$= P \\land (Q \\lor R)$\n\n最后应用摩根律转换为与非门形式：\n$= \\neg(\\neg(P \\land Q) \\land \\neg(P \\land R))$\n\n通过化简得到电路图B，以及仅使用与非门的电路图C。\n\n今天的课程介绍了等值演算的定义、八大基本等值式和等值定理。作业包括第一章内容和图论的附加题，请于下周二提交。",
+          "start_sec": 2786.9,
+          "end_sec": 3075.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2786900_3075100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_451400_685500",
+          "text": "推理演算是我们的蕴含关系。现在开始讲解等值演算。等值演算不仅涉及语法层面，更包含语义层面的等价关系。即在特定语义场景下，可以用一个等值命题替换另一个命题。\n\n等值的定义如下：给定两个命题公式A和B，设P1到Pn是出现在A和B中的所有命题变项。对于这n个变项，共有2^n种不同的解释（即真值表有2^n行）。如果在所有2^n种解释下，A和B的真值都相同，则称A和B等值（或逻辑等价），记作A=B或A⇔B。\n\n例如，我们已经证明过P→Q与¬P∨Q是等值的。这两个公式在语法结构上不同，但在语义上是等值的。这就是等值演算的基本概念。那么如何证明两个公式等值呢？",
+          "start_sec": 451.4,
+          "end_sec": 685.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_451400_685500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.181838,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理规则属于命题逻辑"
+        },
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题公式属于命题逻辑"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "重言式属于命题逻辑"
+        },
+        {
+          "subject": "命题联结词/propositional connective",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题联结词属于命题逻辑"
+        },
+        {
+          "subject": "概念/concept",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "概念属于命题逻辑"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "等值演算属于命题逻辑"
+        },
+        {
+          "subject": "空子句/empty clause",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "空子句属于命题逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1595300_1703500",
+          "text": "根据摩根律，p 等价 q 可以通过等值式推导得出。上面这个等值式比较特殊，建议重点记忆。\n\n接下来是幂等律和补余律，这些较为简单：p ∨ ¬p 是永真式，p ∧ ¬p 是永假式。当 p 蕴含 ¬p 时，结果等于 ¬p（即后件）。若前后件仅差一个否定符号，则结果等于后件。\n\n同一律部分：p ∨ F = p，p ∧ T = p。当前件为真时，结果等于后件的值；前件为假时，结果等于 ¬p ∨ q。这些可以通过逻辑运算推导得出，建议理解而非死记硬背。",
+          "start_sec": 1595.3,
+          "end_sec": 1703.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1595300_1703500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "析取/disjunction",
+      "zh": "析取",
+      "importance": 0.17785,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真…",
+      "definition": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更复杂的逻辑公式，例如将蕴含转化为只含否定、析取和合取的公式。",
+      "neighbors": [
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "表示",
+          "natural_statement": "析取表示逻辑公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_171800_450100",
+          "text": "好，现在我们开始上第二章的内容，这是命题逻辑的演算部分。命题逻辑的演算分为两部分：等值演算和推理演算。等值演算类似于算术中的运算，例如a²-b²=(a+b)(a-b)这样的等式变换。包括我们之前讨论的裁判问题化简，也属于等值演算的范畴。通过真值表得到逻辑公式，并将其化简为仅含否定和合取连接词的形式，这个过程就是等值演算。\n\n另一部分是推理演算，即从已知命题推导出新命题的过程。在等值演算中，主要涉及等价连接词的使用。",
+          "start_sec": 171.8,
+          "end_sec": 450.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_171800_450100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_451400_685500",
+          "text": "推理演算是我们的蕴含关系。现在开始讲解等值演算。等值演算不仅涉及语法层面，更包含语义层面的等价关系。即在特定语义场景下，可以用一个等值命题替换另一个命题。\n\n等值的定义如下：给定两个命题公式A和B，设P1到Pn是出现在A和B中的所有命题变项。对于这n个变项，共有2^n种不同的解释（即真值表有2^n行）。如果在所有2^n种解释下，A和B的真值都相同，则称A和B等值（或逻辑等价），记作A=B或A⇔B。\n\n例如，我们已经证明过P→Q与¬P∨Q是等值的。这两个公式在语法结构上不同，但在语义上是等值的。这就是等值演算的基本概念。那么如何证明两个公式等值呢？",
+          "start_sec": 451.4,
+          "end_sec": 685.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_451400_685500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "双条件式/Biconditional",
+      "zh": "双条件式",
+      "importance": 0.169554,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。",
+      "definition": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。当且仅当两个命题同为真或同为假时，双条件式为真。它可以被定义为两个单条件式的合取，即 $P \\leftrightarrow Q = (P \\rightarrow Q) \\land (Q \\rightarrow P)$，或等价地表示为仅包含否定、析取和合取的公式 $(P \\lor \\neg Q) \\land (\\neg P \\lor Q)$。双条件式为重言式意味着其被联结的两个命题在任何解释下都具有相同的真值。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "双条件式/Biconditional",
+          "label": "属于",
+          "natural_statement": "重言式属于双条件式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "命题联结词/propositional connective",
+          "label": "是...的实例",
+          "natural_statement": "双条件联结词是命题联结词的实例"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "property_of",
+          "object": "充分必要条件/necessary and sufficient condition",
+          "label": "表示",
+          "natural_statement": "双条件式表示充分必要条件"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1704400_1913900",
+          "text": "我们需要重点记忆这些等值式。其中，P蕴含Q等于非P或Q，这是非常重要的。如果记不住分配律等规律，可以直接将其转化为非P或Q的形式。根据交换律，非P或Q等于Q或非P。再根据摩根律，可以转化为非Q蕴含非P，这称为逆否定理。\n\n另一个重要的等值式是P等价Q。它等于非P等价非Q，这可以通过代入法理解。更重要的是，P等价Q表示P和Q互为充分必要条件，即等于（P蕴含Q）且（Q蕴含P）。此外，P等价Q还表示两者同真或同假，即（P∧Q）∨（¬P∧¬Q）。",
+          "start_sec": 1704.4,
+          "end_sec": 1913.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1704400_1913900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2412900_2650600",
+          "text": "置换规则是等值演算中的重要规则，指对公式的子公式用等值公式进行替换。与代入规则不同，置换只需对部分子公式进行替换。若对公式A的子公式置换后得到公式B，则A与B等值。这意味着虽然语法形式改变，但语义保持不变——在所有赋值情况下，真值与原公式一致。\n\n例如，若A是重言式，则置换得到的B也是重言式，因为A与B等值。这与代入规则有本质区别：代入要求对变量进行处处替换，且替换内容不需要与原变量等值；而置换只需对子公式进行局部替换，且要求替换公式与被替换子公式等值。\n\n在证明时，可将子公式及其替换公式视为新变元，通过判断A和B的同真假来验证等值性。这种基于基本等值式的演算方法，可用于公式的简化与证明。",
+          "start_sec": 2412.9,
+          "end_sec": 2650.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2412900_2650600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_686900_887900",
+          "text": "证明两个公式等值的方法有多种。第一种是真值表法：列出所有命题变量的可能取值，共有2^n种解释。若在每种解释下A和B的真值都相同，则A=B。第二种方法是利用等值定理。\n\n等值定理指出：对公式A和B，A=B当且仅当A↔B是重言式。重言式是指在所有解释下其真值都为真。根据↔的定义，A↔B为真当且仅当A和B同真或同假。因此，若A=B，则在所有解释下A和B真值相同，故A↔B必为重言式。\n\n需要区分两个符号：A↔B是命题公式，具有真值；而A=B表示两个命题公式之间的等值关系，本身不是命题公式。",
+          "start_sec": 686.9,
+          "end_sec": 887.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_686900_887900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.157975,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它…",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1988800_2412100",
+          "text": "第七个等值式比较重要，后面会经常用到。它等于两个前件P和Q的合取，可以通过真值表证明。合取后，前件可以交换位置，即P与Q可以变成Q与P，这称为交换前件。16、17这两个等值式非常重要。\n\n对于后件的与和或，前件的与可以这样变化，而后件的与和或保持不变。前件如果是与，分配进去会变成或；如果是或，分配进去会变成与。例如后件是P蕴含(Q与R)或(Q或R)，分配进去后件符号不变。但前件分配时符号会变化，因为蕴含式前有否定词。\n\n举例说明：P∨Q蕴含R，用分配律分配进去，等于¬(P∨Q)∨R，根据德摩根律变为¬P∧¬Q∨R。再通过分配律分配过去，就变成(¬P∨R)∧(¬Q∨R)，即(P→R)∧(Q→R)。这说明前件的或分配进去会变成与。\n\n后件分配时符号不变，因为后件没有否定词。这些就是我们常用的等值式，后续的等值演算都基于这些公式，包括同真同假、一真一假等情况。其他公式都可以用这些基本公式推导出来",
+          "start_sec": 1988.8,
+          "end_sec": 2412.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1988800_2412100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "同一律/同一律",
+      "zh": "同一律",
+      "importance": 0.157489,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "根据摩根律，p 等价 q 可以通过等值式推导得出。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "同一律/同一律",
+          "predicate": "belong_to",
+          "object": "逻辑运算/logical operation",
+          "label": "属于",
+          "natural_statement": "同一律属于逻辑运算"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "related_with",
+          "object": "同一律/同一律",
+          "label": "运用",
+          "natural_statement": "等值演算运用同一律"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1595300_1703500",
+          "text": "根据摩根律，p 等价 q 可以通过等值式推导得出。上面这个等值式比较特殊，建议重点记忆。\n\n接下来是幂等律和补余律，这些较为简单：p ∨ ¬p 是永真式，p ∧ ¬p 是永假式。当 p 蕴含 ¬p 时，结果等于 ¬p（即后件）。若前后件仅差一个否定符号，则结果等于后件。\n\n同一律部分：p ∨ F = p，p ∧ T = p。当前件为真时，结果等于后件的值；前件为假时，结果等于 ¬p ∨ q。这些可以通过逻辑运算推导得出，建议理解而非死记硬背。",
+          "start_sec": 1595.3,
+          "end_sec": 1703.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1595300_1703500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2651300_2786000",
+          "text": "我们可以通过等值演算进行证明。首先观察这两个部分满足分配律，将其应用分配律进行变换。这里分配律的应用方向可以从右到左或从左到右，我们选择从右到左应用分配律。\n\n接下来将表达式转换为（Q∨P）∧R的形式，然后应用结合律。随后使用摩根律进行变换，再应用分配律得到新的表达式。\n\n此时表达式呈现为¬(P∨Q)∨(P∨Q)的形式，这是一个永真式，可以用T表示。最后应用同一律，得到T∧R等价于R。\n\n整个等值演算过程运用了分配律、结合律、摩根律、置换规则和同一律等基本等值式。",
+          "start_sec": 2651.3,
+          "end_sec": 2786.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2651300_2786000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "偏序关系/partial order relation",
+      "zh": "偏序关系",
+      "importance": 0.151461,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "偏序关系（Partial Order Relation），又称弱偏序关系或半序关系，是集合论中…",
+      "definition": "偏序关系（Partial Order Relation），又称弱偏序关系或半序关系，是集合论中的一种二元关系，它在集合A上定义了一个偏序结构$\\langle A, R \\rangle$。它与等价关系同为重要的关系，其特点是具备自反性、反对称性和传递性。利用其良好性质，偏序关系的关系图可以简化为哈斯图，省略自圈、将有向边替换为无向边并只保留传递不可约的边。",
+      "neighbors": [
+        {
+          "subject": "偏序关系/partial order relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "偏序关系属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_686900_887900",
+          "text": "证明两个公式等值的方法有多种。第一种是真值表法：列出所有命题变量的可能取值，共有2^n种解释。若在每种解释下A和B的真值都相同，则A=B。第二种方法是利用等值定理。\n\n等值定理指出：对公式A和B，A=B当且仅当A↔B是重言式。重言式是指在所有解释下其真值都为真。根据↔的定义，A↔B为真当且仅当A和B同真或同假。因此，若A=B，则在所有解释下A和B真值相同，故A↔B必为重言式。\n\n需要区分两个符号：A↔B是命题公式，具有真值；而A=B表示两个命题公式之间的等值关系，本身不是命题公式。",
+          "start_sec": 686.9,
+          "end_sec": 887.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_686900_887900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "结合律/associative law",
+      "zh": "结合律",
+      "importance": 0.149602,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "结合律是数理逻辑与集合论中，一种二元运算的性质，指该运算应用于三个或多个元素时，分组方式不影响…",
+      "definition": "结合律是数理逻辑与集合论中，一种二元运算的性质，指该运算应用于三个或多个元素时，分组方式不影响最终结果。在逻辑运算中，析取（∨）、合取（∧）、双条件（↔）均满足结合律，例如 (P ∨ Q) ∨ R = P ∨ (Q ∨ R)。在集合论中，并集（∪）和交集（∩）也满足结合律，例如 (A ∪ B) ∪ C = A ∪ (B ∪ C)。但需注意，某些运算如笛卡尔积不满足结合律。",
+      "neighbors": [
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "基本等值式/basic equivalence formula",
+          "label": "属于",
+          "natural_statement": "结合律属于基本等值式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "结合律/associative law",
+          "label": "不满足",
+          "natural_statement": "蕴含不满足结合律"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "结合律表示等值公式"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "基本等值式",
+          "label": "是...的实例",
+          "natural_statement": "结合律是基本等值式的实例"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1117100_1169100",
+          "text": "利用真值表证明等值关系。第一种方法是使用真值表，这是最基础的方法。第二种方法是通过证明永真式来验证等值，但这种方法使用较少。第三种方法是等值推理，即利用基本等值式进行演算。第一类基本等值式是结合律。",
+          "start_sec": 1117.1,
+          "end_sec": 1169.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1117100_1169100.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_1170800_1307000",
+          "text": "基本等值式（等价定律）中的第一类是结合律。  \n\n在结合律中，蕴含是没有结合律和交换律的。以析取为例，公式 (P ∨ Q) ∨ R = P ∨ (Q ∨ R) 体现了结合律的性质。但需要注意，蕴含运算不满足结合律，也不满足交换律。  \n\n例如，P → Q 与 Q → P 是不同的逻辑关系：前者表示 P 是 Q 的充分条件，后者表示 Q 是 P 的充分条件。因此，蕴含运算不符合交换律。这一点可以通过真值表验证。  \n\n接下来是分配律的内容。",
+          "start_sec": 1170.8,
+          "end_sec": 1307.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1170800_1307000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_18_2412900_2650600",
+          "text": "置换规则是等值演算中的重要规则，指对公式的子公式用等值公式进行替换。与代入规则不同，置换只需对部分子公式进行替换。若对公式A的子公式置换后得到公式B，则A与B等值。这意味着虽然语法形式改变，但语义保持不变——在所有赋值情况下，真值与原公式一致。\n\n例如，若A是重言式，则置换得到的B也是重言式，因为A与B等值。这与代入规则有本质区别：代入要求对变量进行处处替换，且替换内容不需要与原变量等值；而置换只需对子公式进行局部替换，且要求替换公式与被替换子公式等值。\n\n在证明时，可将子公式及其替换公式视为新变元，通过判断A和B的同真假来验证等值性。这种基于基本等值式的演算方法，可用于公式的简化与证明。",
+          "start_sec": 2412.9,
+          "end_sec": 2650.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_2412900_2650600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "基本等值式/basic equivalence formula",
+      "zh": "基本等值式",
+      "importance": 0.139241,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "利用真值表证明等值关系。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "等值推理/equivalence reasoning",
+          "predicate": "depend_on",
+          "object": "基本等值式/basic equivalence formula",
+          "label": "依赖于",
+          "natural_statement": "等值推理依赖于基本等值式"
+        },
+        {
+          "subject": "结合律/associative law",
+          "predicate": "belong_to",
+          "object": "基本等值式/basic equivalence formula",
+          "label": "属于",
+          "natural_statement": "结合律属于基本等值式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_18_1117100_1169100",
+          "text": "利用真值表证明等值关系。第一种方法是使用真值表，这是最基础的方法。第二种方法是通过证明永真式来验证等值，但这种方法使用较少。第三种方法是等值推理，即利用基本等值式进行演算。第一类基本等值式是结合律。",
+          "start_sec": 1117.1,
+          "end_sec": 1169.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_18_1117100_1169100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

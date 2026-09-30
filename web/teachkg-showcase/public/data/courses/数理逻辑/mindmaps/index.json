@@ -1,0 +1,378 @@
+{
+  "courseId": "数理逻辑",
+  "title": "思维导图",
+  "items": [
+    {
+      "lecture_id": "course",
+      "chapter": "数理逻辑与集合论",
+      "root_zh": "数理逻辑与集合论",
+      "n_nodes": 91,
+      "max_depth": 2,
+      "orphan_count": 0,
+      "path": "mindmaps/course.json",
+      "scope": "course",
+      "source": "summary+kg"
+    },
+    {
+      "lecture_id": "chapter:第1章 命题逻辑的基本概念",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "chapter_id": "第1章 命题逻辑的基本概念",
+      "root_zh": "命题逻辑的基本概念",
+      "n_nodes": 27,
+      "max_depth": 2,
+      "orphan_count": 0,
+      "path": "mindmaps/chapter_命题逻辑的基本概念.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "1"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第2章 命题逻辑的等值和推理演算",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "chapter_id": "第2章 命题逻辑的等值和推理演算",
+      "root_zh": "命题逻辑的等值和推理演算",
+      "n_nodes": 30,
+      "max_depth": 2,
+      "orphan_count": 22,
+      "path": "mindmaps/chapter_命题逻辑的等值和推理演算.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "4",
+        "6"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第3章 命题逻辑的公理化",
+      "chapter": "第3章 命题逻辑的公理化",
+      "chapter_id": "第3章 命题逻辑的公理化",
+      "root_zh": "命题逻辑的公理化",
+      "n_nodes": 28,
+      "max_depth": 2,
+      "orphan_count": 14,
+      "path": "mindmaps/chapter_命题逻辑的公理化.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "7",
+        "9"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第4章 谓词逻辑的基本概念",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "chapter_id": "第4章 谓词逻辑的基本概念",
+      "root_zh": "谓词逻辑的基本概念",
+      "n_nodes": 31,
+      "max_depth": 2,
+      "orphan_count": 0,
+      "path": "mindmaps/chapter_谓词逻辑的基本概念.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "2",
+        "3"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "chapter_id": "第5章 谓词逻辑的等值和推理演算",
+      "root_zh": "谓词逻辑的等值和推理演算",
+      "n_nodes": 35,
+      "max_depth": 2,
+      "orphan_count": 14,
+      "path": "mindmaps/chapter_谓词逻辑的等值和推理演算.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "10",
+        "11"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第6章 谓词逻辑的公理化",
+      "chapter": "第6章 谓词逻辑的公理化",
+      "chapter_id": "第6章 谓词逻辑的公理化",
+      "root_zh": "谓词逻辑的公理化",
+      "n_nodes": 27,
+      "max_depth": 2,
+      "orphan_count": 6,
+      "path": "mindmaps/chapter_谓词逻辑的公理化.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "12"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第9章 集合",
+      "chapter": "第9章 集合",
+      "chapter_id": "第9章 集合",
+      "root_zh": "集合",
+      "n_nodes": 30,
+      "max_depth": 2,
+      "orphan_count": 23,
+      "path": "mindmaps/chapter_集合.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "13",
+        "14"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第10章 关系",
+      "chapter": "第10章 关系",
+      "chapter_id": "第10章 关系",
+      "root_zh": "关系",
+      "n_nodes": 56,
+      "max_depth": 3,
+      "orphan_count": 24,
+      "path": "mindmaps/chapter_关系.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "16",
+        "18"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第11章 函数",
+      "chapter": "第11章 函数",
+      "chapter_id": "第11章 函数",
+      "root_zh": "函数",
+      "n_nodes": 58,
+      "max_depth": 3,
+      "orphan_count": 1,
+      "path": "mindmaps/chapter_函数.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "19"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "chapter:第12章 实数集合与集合的基数",
+      "chapter": "第12章 实数集合与集合的基数",
+      "chapter_id": "第12章 实数集合与集合的基数",
+      "root_zh": "实数集合与集合的基数",
+      "n_nodes": 27,
+      "max_depth": 2,
+      "orphan_count": 10,
+      "path": "mindmaps/chapter_实数集合与集合的基数.json",
+      "scope": "chapter",
+      "lecture_ids": [
+        "25",
+        "26"
+      ],
+      "source": "review+kg"
+    },
+    {
+      "lecture_id": "1",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "root_zh": "命题逻辑",
+      "n_nodes": 19,
+      "max_depth": 4,
+      "orphan_count": 8,
+      "path": "mindmaps/lecture_1.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第1章 命题逻辑的基本概念"
+    },
+    {
+      "lecture_id": "2",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "root_zh": "谓词逻辑",
+      "n_nodes": 21,
+      "max_depth": 4,
+      "orphan_count": 27,
+      "path": "mindmaps/lecture_2.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第4章 谓词逻辑的基本概念"
+    },
+    {
+      "lecture_id": "3",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "root_zh": "谓词逻辑",
+      "n_nodes": 6,
+      "max_depth": 3,
+      "orphan_count": 27,
+      "path": "mindmaps/lecture_3.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第4章 谓词逻辑的基本概念"
+    },
+    {
+      "lecture_id": "4",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "root_zh": "命题逻辑",
+      "n_nodes": 25,
+      "max_depth": 4,
+      "orphan_count": 39,
+      "path": "mindmaps/lecture_4.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第2章 命题逻辑的等值和推理演算"
+    },
+    {
+      "lecture_id": "6",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "root_zh": "命题逻辑",
+      "n_nodes": 26,
+      "max_depth": 4,
+      "orphan_count": 46,
+      "path": "mindmaps/lecture_6.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第2章 命题逻辑的等值和推理演算"
+    },
+    {
+      "lecture_id": "7",
+      "chapter": "第3章 命题逻辑的公理化",
+      "root_zh": "命题逻辑的公理化",
+      "n_nodes": 23,
+      "max_depth": 4,
+      "orphan_count": 30,
+      "path": "mindmaps/lecture_7.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第3章 命题逻辑的公理化"
+    },
+    {
+      "lecture_id": "9",
+      "chapter": "第3章 命题逻辑的公理化",
+      "root_zh": "命题",
+      "n_nodes": 14,
+      "max_depth": 3,
+      "orphan_count": 9,
+      "path": "mindmaps/lecture_9.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第3章 命题逻辑的公理化"
+    },
+    {
+      "lecture_id": "10",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "root_zh": "谓词逻辑",
+      "n_nodes": 24,
+      "max_depth": 4,
+      "orphan_count": 13,
+      "path": "mindmaps/lecture_10.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第5章 谓词逻辑的等值和推理演算"
+    },
+    {
+      "lecture_id": "11",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "root_zh": "谓词",
+      "n_nodes": 30,
+      "max_depth": 4,
+      "orphan_count": 26,
+      "path": "mindmaps/lecture_11.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第5章 谓词逻辑的等值和推理演算"
+    },
+    {
+      "lecture_id": "12",
+      "chapter": "第6章 谓词逻辑的公理化",
+      "root_zh": "谓词逻辑的公理化",
+      "n_nodes": 28,
+      "max_depth": 4,
+      "orphan_count": 49,
+      "path": "mindmaps/lecture_12.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第6章 谓词逻辑的公理化"
+    },
+    {
+      "lecture_id": "13",
+      "chapter": "第9章 集合",
+      "root_zh": "集合论",
+      "n_nodes": 24,
+      "max_depth": 4,
+      "orphan_count": 62,
+      "path": "mindmaps/lecture_13.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第9章 集合"
+    },
+    {
+      "lecture_id": "14",
+      "chapter": "第9章 集合",
+      "root_zh": "集合",
+      "n_nodes": 28,
+      "max_depth": 4,
+      "orphan_count": 34,
+      "path": "mindmaps/lecture_14.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第9章 集合"
+    },
+    {
+      "lecture_id": "16",
+      "chapter": "第10章 关系",
+      "root_zh": "关系",
+      "n_nodes": 25,
+      "max_depth": 4,
+      "orphan_count": 52,
+      "path": "mindmaps/lecture_16.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第10章 关系"
+    },
+    {
+      "lecture_id": "18",
+      "chapter": "第10章 关系",
+      "root_zh": "关系",
+      "n_nodes": 38,
+      "max_depth": 4,
+      "orphan_count": 43,
+      "path": "mindmaps/lecture_18.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第10章 关系"
+    },
+    {
+      "lecture_id": "19",
+      "chapter": "第11章 函数",
+      "root_zh": "函数",
+      "n_nodes": 31,
+      "max_depth": 4,
+      "orphan_count": 34,
+      "path": "mindmaps/lecture_19.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第11章 函数"
+    },
+    {
+      "lecture_id": "25",
+      "chapter": "第12章 实数集合与集合的基数",
+      "root_zh": "实数集合与集合的基数",
+      "n_nodes": 19,
+      "max_depth": 4,
+      "orphan_count": 9,
+      "path": "mindmaps/lecture_25.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第12章 实数集合与集合的基数"
+    },
+    {
+      "lecture_id": "26",
+      "chapter": "第12章 实数集合与集合的基数",
+      "root_zh": "实数集合与集合的基数",
+      "n_nodes": 22,
+      "max_depth": 4,
+      "orphan_count": 18,
+      "path": "mindmaps/lecture_26.json",
+      "scope": "lecture",
+      "source": "kg",
+      "chapter_id": "第12章 实数集合与集合的基数"
+    }
+  ]
+}

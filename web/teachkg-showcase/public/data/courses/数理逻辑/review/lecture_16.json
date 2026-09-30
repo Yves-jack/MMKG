@@ -1,0 +1,1518 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "16",
+  "title": "第16讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/16_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/16_1.mp4",
+  "duration_sec": 3239.6,
+  "segments": [
+    {
+      "id": "数理逻辑_16_56500_514500",
+      "index": 1,
+      "start_sec": 56.5,
+      "end_sec": 514.5,
+      "title": "命题公式是在由命题变项通过联结词构成复杂命题…"
+    },
+    {
+      "id": "数理逻辑_16_515700_593700",
+      "index": 2,
+      "start_sec": 515.7,
+      "end_sec": 593.7,
+      "title": "判断符号串是否为合式公式，就是根据公式的合式…"
+    },
+    {
+      "id": "数理逻辑_16_594700_690000",
+      "index": 3,
+      "start_sec": 594.7,
+      "end_sec": 690.0,
+      "title": "我们可以进行优化，这样三个括号就变成了两个括…"
+    },
+    {
+      "id": "数理逻辑_16_691600_749700",
+      "index": 4,
+      "start_sec": 691.6,
+      "end_sec": 749.7,
+      "title": "中缀表示法需要用括号区分运算次序，括号扫描会…"
+    },
+    {
+      "id": "数理逻辑_16_750600_938300",
+      "index": 5,
+      "start_sec": 750.6,
+      "end_sec": 938.3,
+      "title": "我们需要一个操作符栈"
+    },
+    {
+      "id": "数理逻辑_16_938300_1053900",
+      "index": 6,
+      "start_sec": 938.3,
+      "end_sec": 1053.9,
+      "title": "命题公式的真值由其成分命题的真值决定，常用真…"
+    },
+    {
+      "id": "数理逻辑_16_1055300_1436900",
+      "index": 7,
+      "start_sec": 1055.3,
+      "end_sec": 1436.9,
+      "title": "或者叫指派，或者叫解释"
+    },
+    {
+      "id": "数理逻辑_16_1438100_1620800",
+      "index": 8,
+      "start_sec": 1438.1,
+      "end_sec": 1620.8,
+      "title": "那么这三类公式之间的关系是什么呢？A永真当且…"
+    },
+    {
+      "id": "数理逻辑_16_1622700_1740800",
+      "index": 9,
+      "start_sec": 1622.7,
+      "end_sec": 1740.8,
+      "title": "在继续之前，我们给大家介绍一下，因为后面的作…"
+    },
+    {
+      "id": "数理逻辑_16_1741900_1789800",
+      "index": 10,
+      "start_sec": 1741.9,
+      "end_sec": 1789.8,
+      "title": "完备的回溯搜索算法，称为DPLL算法"
+    },
+    {
+      "id": "数理逻辑_16_1791200_1869400",
+      "index": 11,
+      "start_sec": 1791.2,
+      "end_sec": 1869.4,
+      "title": "它能发展到如今，能处理10万个变量，即公式中…"
+    },
+    {
+      "id": "数理逻辑_16_1870900_2154900",
+      "index": 12,
+      "start_sec": 1870.9,
+      "end_sec": 2154.9,
+      "title": "首先，我们设定一个变元，设它为真或假"
+    },
+    {
+      "id": "数理逻辑_16_2155800_2401900",
+      "index": 13,
+      "start_sec": 2155.8,
+      "end_sec": 2401.9,
+      "title": "基本DPLL算法是对有限状态机的转移系统的实…"
+    },
+    {
+      "id": "数理逻辑_16_2403100_2426100",
+      "index": 14,
+      "start_sec": 2403.1,
+      "end_sec": 2426.1,
+      "title": "我就要回溯了，回溯可以回溯到前一个，也可以回…"
+    },
+    {
+      "id": "数理逻辑_16_2428100_2518600",
+      "index": 15,
+      "start_sec": 2428.1,
+      "end_sec": 2518.6,
+      "title": "接下来我们讲代入规则"
+    },
+    {
+      "id": "数理逻辑_16_2519800_2639800",
+      "index": 16,
+      "start_sec": 2519.8,
+      "end_sec": 2639.8,
+      "title": "代入规则是将公式A中的某个命题变元P的所有出…"
+    },
+    {
+      "id": "数理逻辑_16_2639800_2652700",
+      "index": 17,
+      "start_sec": 2639.8,
+      "end_sec": 2652.7,
+      "title": "那么将a代入，将b代入就可以了"
+    },
+    {
+      "id": "数理逻辑_16_2654100_2747800",
+      "index": 18,
+      "start_sec": 2654.1,
+      "end_sec": 2747.8,
+      "title": "自然语言的形式化表示，需要先确定简单命题，并…"
+    },
+    {
+      "id": "数理逻辑_16_2748800_2784500",
+      "index": 19,
+      "start_sec": 2748.8,
+      "end_sec": 2784.5,
+      "title": "不能同时选择，所以你要么就写成这个，要么就写…"
+    },
+    {
+      "id": "数理逻辑_16_2786400_2803300",
+      "index": 20,
+      "start_sec": 2786.4,
+      "end_sec": 2803.3,
+      "title": "张三或李四都可以上场"
+    },
+    {
+      "id": "数理逻辑_16_2804300_2832300",
+      "index": 21,
+      "start_sec": 2804.3,
+      "end_sec": 2832.3,
+      "title": "他虽然努力了，但最后还是失败了，就是“与"
+    },
+    {
+      "id": "数理逻辑_16_2833200_2880300",
+      "index": 22,
+      "start_sec": 2833.2,
+      "end_sec": 2880.3,
+      "title": "P除非Q，除非天下雨，那么就是非Q蕴含P"
+    },
+    {
+      "id": "数理逻辑_16_2881100_2965500",
+      "index": 23,
+      "start_sec": 2881.1,
+      "end_sec": 2965.5,
+      "title": "这些像都是蕴含"
+    },
+    {
+      "id": "数理逻辑_16_2966800_2979000",
+      "index": 24,
+      "start_sec": 2966.8,
+      "end_sec": 2979.0,
+      "title": "那么我们这一章的课程，第一章就上到这里了"
+    },
+    {
+      "id": "数理逻辑_16_2980000_3015800",
+      "index": 25,
+      "start_sec": 2980.0,
+      "end_sec": 3015.8,
+      "title": "我们不是下周二放假，下下周二有课，但会有作业"
+    },
+    {
+      "id": "数理逻辑_16_3087700_3239600",
+      "index": 26,
+      "start_sec": 3087.7,
+      "end_sec": 3239.6,
+      "title": "就一节课45分钟"
+    }
+  ],
+  "points": [
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.733701,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "域/field",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "域属于关系"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_1438100_1620800",
+          "text": "那么这三类公式之间的关系是什么呢？A永真当且仅当非A永假。A永真，非A永假。A可满足，那么非A就是非永真。A可满足，非A是非永真。A永真，非A永假。A永假，非A永真。A不是可满足，即A永假，A永假就是不可满足式。A非永假，那么A就是可满足。要搞清楚这些关系，可以画个真值表，否则光看文字容易出错。这就是三类公式之间的关系。",
+          "start_sec": 1438.1,
+          "end_sec": 1620.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1438100_1620800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.727643,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。",
+      "definition": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。集合由其元素完全决定，可以通过外延（列举元素）、内涵（描述性质）或运算构造。集合是数理逻辑与集合论课程中的核心概念，如整数集 $\\mathbb{Z}$、有理数集 $\\mathbb{Q}$、实数集 $\\mathbb{R}$ 等均是集合的实例。",
+      "neighbors": [
+        {
+          "subject": "元素/Element",
+          "predicate": "part_of",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "元素属于集合"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1438100_1620800",
+          "text": "那么这三类公式之间的关系是什么呢？A永真当且仅当非A永假。A永真，非A永假。A可满足，那么非A就是非永真。A可满足，非A是非永真。A永真，非A永假。A永假，非A永真。A不是可满足，即A永假，A永假就是不可满足式。A非永假，那么A就是可满足。要搞清楚这些关系，可以画个真值表，否则光看文字容易出错。这就是三类公式之间的关系。",
+          "start_sec": 1438.1,
+          "end_sec": 1620.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1438100_1620800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_1622700_1740800",
+          "text": "在继续之前，我们给大家介绍一下，因为后面的作业会让大家做这个判定，我们稍微过一下，不会很详细，让大家自己去学习。首先就是CNF-SAT问题，CNF-SAT就是SAT，即命题可满足性的判定问题，看这个公式是否可满足。输入一个公式给计算机，计算机输出true或false，true表示公式可满足，false表示不可满足。通常我们把一个公式化为合取范式，即conjunctive normal form，外面是合取，每个合取的因子是析取。我们把所有可满足性的判定问题转化为合取范式的可满足性判定问题。3-SAT就是每个析取中最多三个变元。这个问题在计算机科学领域非常重要，包括理论计算机科学、复杂性理论、自动定理证明、密码学等。1971年，SAT被证明为第一个NP完全问题。",
+          "start_sec": 1622.7,
+          "end_sec": 1740.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1622700_1740800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_750600_938300",
+          "text": "我们需要一个操作符栈。那么如何将中缀表达式转为后缀表达式呢？这个大家都会了吧？需要做一遍吗？有没有人没讲过的？都上过数据结构了吧？我们这个班可能这一步很快就过去了，很简单。首先就是遇到左括号，把五写下来，然后加号，把六写下来，然后乘号，因为每加进去的乘号，它的优先级不大于栈顶，就不入栈。那么现在六乘，然后左括号，然后是七，然后加号，然后是三，然后右括号，遇到右括号就把栈中元素出栈直到左括号，并输出。然后除号，除号前面有比它大的，先把它导出去。要比较优先级，不大于就不入栈。好，把乘号导出去，然后除号，然后是三，然后又是三，然后右括号，见到右括号就把栈中元素都推出去。到这里就没有了，然后再是四，然后加号，加号一看比它小，就要把乘号出栈，然后加号，然后是五，然后又是加号。就是这样过程，大家根据算法去做就行，所以很简单。好，讲完了语法，我们接下去跟大家讲语义。语义就是说，根据上面的这些方法，如何去",
+          "start_sec": 750.6,
+          "end_sec": 938.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_750600_938300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.46873,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "联结词属于命题公式"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "联结词属于合式公式"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "依赖",
+          "natural_statement": "公式依赖联结词"
+        },
+        {
+          "subject": "异或/exclusive or",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "表示",
+          "natural_statement": "异或表示联结词"
+        },
+        {
+          "subject": "二元连接词/binary connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "二元连接词属于联结词"
+        },
+        {
+          "subject": "一元连接词/unary connective",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "一元连接词属于联结词"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "property_of",
+          "object": "连接词优先级/operator precedence",
+          "label": "具有",
+          "natural_statement": "联结词具有连接词优先级"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "合取等价于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_2748800_2784500",
+          "text": "不能同时选择，所以你要么就写成这个，要么就写成这个，一定要注意，不能把所有的“和”都翻成“合取”，把所有的“或”都翻成“析取”，不是这样的。一定要注意，有些“和”它不是合取，有些“或”不一定就是简单的析取，它有可能是异或，排斥性或。",
+          "start_sec": 2748.8,
+          "end_sec": 2784.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2748800_2784500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2786400_2803300",
+          "text": "张三或李四都可以上场。讨论出场方案时写成P或Q，赛中换一人时写成排斥性选择的形式，写法不一样，就看你上下文。",
+          "start_sec": 2786.4,
+          "end_sec": 2803.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2786400_2803300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2881100_2965500",
+          "text": "这些像都是蕴含。那么哪个是充分条件？我们把充分条件放在前面就可以了。那么这是自然语言，逆水行舟，不进则退，你有各种不同的确定哪个是简单命题，所以我们可以有不同的翻译。如果我们逆水行舟，那么我们要不前进，要不后退，二者必居其一，那么就是P蕴含后面这样两个排斥性的选择，就是R异或S。那么或者，在逆水行舟环境下，我们要不前进，要不后退，二者必选其一，这个就变成这样。那么就看你的简单命题的这样的一种设计。晚会上同学们载歌载舞，一边唱歌一边跳舞，那就是P与Q。那么如果说晚会上同学们有的唱歌，有的跳舞，那就翻译成P或Q。自然语言的理解，如果你的理解不一样，你的翻译也会不一样，你的翻译就是我们的自然形式化也会不一样。",
+          "start_sec": 2881.1,
+          "end_sec": 2965.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2881100_2965500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "命题公式/propositional formula",
+      "zh": "命题公式",
+      "importance": 0.415853,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和…",
+      "definition": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和括号构成。在给定的命题变项的解释下，命题公式可以确定一个唯一的真值，常用于判断公式的等值性、重言式和矛盾式，且任何命题公式都存在与之等值的合取范式和析取范式。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "联结词属于命题公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "命题变项属于命题公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取属于命题公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取范式属于命题公式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取范式属于命题公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "否定属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_3087700_3239600",
+          "text": "就一节课45分钟。差不多吧。不然觉得这样子好像也挺好的。下面挺多狗的，找不到那种。就是他那个节目，我告诉你，我也有用，但是会把。你刚刚正要的时候，我觉得你也不用去下我的膝盖，对不对？小伙子是不是好好看？来，一起唱。儿子大爷。对呀。这个东西。你知道吧？",
+          "start_sec": 3087.7,
+          "end_sec": 3239.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_3087700_3239600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_938300_1053900",
+          "text": "命题公式的真值由其成分命题的真值决定，常用真值表方法计算。设公式A由成分命题P₁到Pₙ联结而成，对P₁到Pₙ的真值指派决定了A的真值，称为A的解释，可表示为真值表的一行。A共有2的n次方个解释，构成A的真值表，共2的n次方行。每一行就是P₁到Pₙ的一种取值组合，这一组我们称之为解释。",
+          "start_sec": 938.3,
+          "end_sec": 1053.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_938300_1053900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "命题变项/propositional variable",
+      "zh": "命题变项",
+      "importance": 0.268856,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。",
+      "definition": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其真值可根据赋值情况确定，例如n个命题变项共有2^n种取值情形。",
+      "neighbors": [
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "命题变项属于命题公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "极大项/maximal term",
+          "label": "包含",
+          "natural_statement": "命题变项包含极大项"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "合式公式/Well-formed formula(Wff)",
+      "zh": "合式公式",
+      "importance": 0.241873,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域…",
+      "definition": "合式公式（Well-formed formula, Wff）是数理逻辑中命题演算或谓词演算领域内，遵循特定符号形成规则（形成准则）构成的一类有意义的符号序列。它由基本原子命题（如命题常项、命题变项、原子谓词公式）通过逻辑联结词（如¬, ∧, ∨, →, ↔）以及量词（如∀, ∃）递归地组合而成，且其结构能够明确界定运算次序，确保语义的唯一性。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "联结词属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "合式公式/Well-formed formula(Wff)",
+          "label": "属于",
+          "natural_statement": "命题变项属于合式公式"
+        },
+        {
+          "subject": "合式公式/Well-formed formula(Wff)",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "具有",
+          "natural_statement": "合式公式具有公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_515700_593700",
+          "text": "判断符号串是否为合式公式，就是根据公式的合式定义，层层归约，直到原子命题即可判断。例如，否定词与合取词，这两个二元连接词和两个一元连接词不需要括号，而二元连接词必须有两个操作数，所以没有括号的肯定不是合式公式。像这个，外面需要加一对括号。而像这样简单的公式，如果也要加括号，似乎有些不可理喻，但对于电脑来说，进行推理或运算时，扫描括号的开销很大。为了减少括号数量，我们引入约定，即五个连接词有优先级顺序：否定词优先级最高，其次是合取，然后是析取，接着是蕴含，最后是等价。根据这个优先级定义，我们可以对公式进行优化。",
+          "start_sec": 515.7,
+          "end_sec": 593.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_515700_593700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_wff_recursive_check"
+      ],
+      "rank": 6
+    },
+    {
+      "id": "重言式/tautology",
+      "zh": "重言式",
+      "importance": 0.227169,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公…",
+      "definition": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公式。其核心功能在于代表逻辑规律和正确的推理形式。一个公式为重言式当且仅当其否定式为永假式。在实际应用中，重言式被用于证明公式的等值性，例如，$A \\leftrightarrow B$ 为重言式即表示 $A$ 与 $B$ 等价。常见的重言式包括逻辑公理和推理规则，它们是演绎体系的基石。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "等值式/equivalence formula",
+          "predicate": "belong_to",
+          "object": "重言式/tautology",
+          "label": "具有",
+          "natural_statement": "等值式具有重言式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "可满足式/satisfiable formula",
+          "label": "属于",
+          "natural_statement": "重言式属于可满足式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "双条件式/Biconditional",
+          "label": "属于",
+          "natural_statement": "重言式属于双条件式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "重言式属于公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2428100_2518600",
+          "text": "接下来我们讲代入规则。如果一个公式是重言式，比如P ∨ ¬P是重言式，那么把公式中的命题变元P的所有出现都替换成任意公式B，得到的公式仍然是重言式。注意要处处替换，不能只替换一处。例如，用R ∨ S替换P ∨ ¬P中的P，结果仍是重言式；但若用Q只替换一处P，得到的Q ∨ ¬P就不是重言式。",
+          "start_sec": 2428.1,
+          "end_sec": 2518.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2428100_2518600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.214961,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "命题包含公式"
+        },
+        {
+          "subject": "简单命题/simple proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "包含",
+          "natural_statement": "简单命题包含命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1622700_1740800",
+          "text": "在继续之前，我们给大家介绍一下，因为后面的作业会让大家做这个判定，我们稍微过一下，不会很详细，让大家自己去学习。首先就是CNF-SAT问题，CNF-SAT就是SAT，即命题可满足性的判定问题，看这个公式是否可满足。输入一个公式给计算机，计算机输出true或false，true表示公式可满足，false表示不可满足。通常我们把一个公式化为合取范式，即conjunctive normal form，外面是合取，每个合取的因子是析取。我们把所有可满足性的判定问题转化为合取范式的可满足性判定问题。3-SAT就是每个析取中最多三个变元。这个问题在计算机科学领域非常重要，包括理论计算机科学、复杂性理论、自动定理证明、密码学等。1971年，SAT被证明为第一个NP完全问题。",
+          "start_sec": 1622.7,
+          "end_sec": 1740.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1622700_1740800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_1741900_1789800",
+          "text": "完备的回溯搜索算法，称为DPLL算法。另一个是局部的贪婪和随机游走算法，称为WalkSAT算法。DPLL算法从1960年、1962年提出以后一直在进化，方法基本没变，但有一些简化和优化。最初它只能处理10个变量。",
+          "start_sec": 1741.9,
+          "end_sec": 1789.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1741900_1789800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2980000_3015800",
+          "text": "我们不是下周二放假，下下周二有课，但会有作业。预习题是周六交，也就是下周六，因为我们补周二的课。下周二也是周六的期中考试，你们把教学办上的题目都去做一下。今天讲了命题的语法和语义这两部分，也就是命题的简单语法和语义的概念。",
+          "start_sec": 2980.0,
+          "end_sec": 3015.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2980000_3015800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 8
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.21147,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真/true",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "真表示真值"
+        },
+        {
+          "subject": "假/false",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "表示",
+          "natural_statement": "假表示真值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_1870900_2154900",
+          "text": "首先，我们设定一个变元，设它为真或假。这里因为公式中有P1，就先设P1为真，这一步叫decide。设P1为真后，五个因子中有两个为真，剩下三个未知。接着第二步是deduce，即对已确定的赋值进行传播。在P1为真的情况下，找出为假的子句，再选一个值使其为真。这里我们让¬P2为真，即P2为假，于是第三个因子为真。此时剩下两个因子。若继续，很容易找到让¬P3为真，则这两个因子都为真，P4的值无关紧要。这样得到一组解：P1为真，P2为假，P3为假。但为了演示所有步骤，我们故意选择另一条路径。下一步是guess，即随意选一个未赋值的变元，比如选P3。我们设P3为真。然后进行deduce，这时需要让剩下的子句中有一个为真，于是设P4为真。但此时检查所有子句，发现有一个为假，不符合要求，说明前面的猜测出错。于是回溯到之前的decide步骤，这就是试错回溯的过程。",
+          "start_sec": 1870.9,
+          "end_sec": 2154.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1870900_2154900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2519800_2639800",
+          "text": "代入规则是将公式A中的某个命题变元P的所有出现都替换成公式B，记作A[P/B]。如果A是重言式，那么A[P/B]也是重言式。这是因为当P取真或假时，整个公式的真值由替换后的公式决定，而替换后的公式最终也只有真或假两种情况，所以仍然保持重言式。注意，必须处处代入，即所有出现P的地方都要替换。例如，P ∨ ¬P是一个重言式，如果只将其中一个P替换成Q，而另一个P不替换，得到的Q ∨ ¬P就不是重言式。因此，处处代入是保持重言式的关键。利用这个规则，我们可以证明一些公式是重言式。例如，要证明(R ∨ S) ∨ ¬(R ∨ S)是重言式，由于P ∨ ¬P是重言式，将(R ∨ S)代入P即得。又如，要证明((R ∨ S) ∧ ((R ∨ S) → (P ∨ Q))) → (P ∨ Q)是重言式，只需验证(A ∧ (A → B)) → B是重言式，然后代入相应的公式即可。",
+          "start_sec": 2519.8,
+          "end_sec": 2639.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2519800_2639800.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 9
+    },
+    {
+      "id": "合取/conjunction",
+      "zh": "合取",
+      "importance": 0.195378,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或…",
+      "definition": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$ 等价于 $\\neg (\\neg A \\vee \\neg B)$。它在命题逻辑和谓词逻辑中都扮演着基础角色，并且与析取（∨）、蕴含（→）、双条件（↔）等共同构成了逻辑系统的基本运算。",
+      "neighbors": [
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "合取属于命题公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "优先级高于",
+          "natural_statement": "否定词优先级高于合取"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "优先级高于",
+          "natural_statement": "合取优先级高于析取"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "命题联结词/propositional connective",
+          "label": "属于",
+          "natural_statement": "合取属于命题联结词"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "合取等价于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_2654100_2747800",
+          "text": "自然语言的形式化表示，需要先确定简单命题，并用p、q、r等命题符号表示，再根据自然语言的含义，用五个命题联结词将简单命题联结起来。但要注意自然语言的二义性。例如“张三不是学生”，可以把“张三是学生”作为简单命题，用否定词连接；也可以直接将“张三不是学生”作为一个简单命题。“张三既聪明又用功”，则用“与”连接p和q。“张三一感冒就发烧”，需要确定充分条件和必要条件，用蕴含连接。“有的唱歌，有的跳舞”，用“或”。“当且仅当”就是双向蕴含。另外，“张三与李四是表兄弟”是一个简单命题，但这类表述有歧义。例如“我们选择生存或死亡”，这是一个排斥性选择，要么选择生存，要么选择死亡，出自莎士比亚的名言。",
+          "start_sec": 2654.1,
+          "end_sec": 2747.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2654100_2747800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2748800_2784500",
+          "text": "不能同时选择，所以你要么就写成这个，要么就写成这个，一定要注意，不能把所有的“和”都翻成“合取”，把所有的“或”都翻成“析取”，不是这样的。一定要注意，有些“和”它不是合取，有些“或”不一定就是简单的析取，它有可能是异或，排斥性或。",
+          "start_sec": 2748.8,
+          "end_sec": 2784.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2748800_2784500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_515700_593700",
+          "text": "判断符号串是否为合式公式，就是根据公式的合式定义，层层归约，直到原子命题即可判断。例如，否定词与合取词，这两个二元连接词和两个一元连接词不需要括号，而二元连接词必须有两个操作数，所以没有括号的肯定不是合式公式。像这个，外面需要加一对括号。而像这样简单的公式，如果也要加括号，似乎有些不可理喻，但对于电脑来说，进行推理或运算时，扫描括号的开销很大。为了减少括号数量，我们引入约定，即五个连接词有优先级顺序：否定词优先级最高，其次是合取，然后是析取，接着是蕴含，最后是等价。根据这个优先级定义，我们可以对公式进行优化。",
+          "start_sec": 515.7,
+          "end_sec": 593.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_515700_593700.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_自然语言翻译为谓词逻辑的量词搭配法_4500_3036300",
+        "llm_theo_量词与联结词配对法则_3700_1917600"
+      ],
+      "rank": 10
+    },
+    {
+      "id": "析取/disjunction",
+      "zh": "析取",
+      "importance": 0.18845,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真…",
+      "definition": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更复杂的逻辑公式，例如将蕴含转化为只含否定、析取和合取的公式。",
+      "neighbors": [
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "析取属于命题公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "优先级高于",
+          "natural_statement": "合取优先级高于析取"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "belong_to",
+          "object": "命题联结词/propositional connective",
+          "label": "属于",
+          "natural_statement": "析取属于命题联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_2654100_2747800",
+          "text": "自然语言的形式化表示，需要先确定简单命题，并用p、q、r等命题符号表示，再根据自然语言的含义，用五个命题联结词将简单命题联结起来。但要注意自然语言的二义性。例如“张三不是学生”，可以把“张三是学生”作为简单命题，用否定词连接；也可以直接将“张三不是学生”作为一个简单命题。“张三既聪明又用功”，则用“与”连接p和q。“张三一感冒就发烧”，需要确定充分条件和必要条件，用蕴含连接。“有的唱歌，有的跳舞”，用“或”。“当且仅当”就是双向蕴含。另外，“张三与李四是表兄弟”是一个简单命题，但这类表述有歧义。例如“我们选择生存或死亡”，这是一个排斥性选择，要么选择生存，要么选择死亡，出自莎士比亚的名言。",
+          "start_sec": 2654.1,
+          "end_sec": 2747.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2654100_2747800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_515700_593700",
+          "text": "判断符号串是否为合式公式，就是根据公式的合式定义，层层归约，直到原子命题即可判断。例如，否定词与合取词，这两个二元连接词和两个一元连接词不需要括号，而二元连接词必须有两个操作数，所以没有括号的肯定不是合式公式。像这个，外面需要加一对括号。而像这样简单的公式，如果也要加括号，似乎有些不可理喻，但对于电脑来说，进行推理或运算时，扫描括号的开销很大。为了减少括号数量，我们引入约定，即五个连接词有优先级顺序：否定词优先级最高，其次是合取，然后是析取，接着是蕴含，最后是等价。根据这个优先级定义，我们可以对公式进行优化。",
+          "start_sec": 515.7,
+          "end_sec": 593.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_515700_593700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "中缀表达式/infix expression",
+      "zh": "中缀表达式",
+      "importance": 0.171988,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "depend_on",
+          "object": "操作符栈/operator stack",
+          "label": "需要",
+          "natural_statement": "中缀表达式需要操作符栈"
+        },
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "depend_on",
+          "object": "数据栈/data stack",
+          "label": "需要",
+          "natural_statement": "中缀表达式需要数据栈"
+        },
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "related_with",
+          "object": "后缀表达式/postfix expression",
+          "label": "可转换为",
+          "natural_statement": "中缀表达式可转换为后缀表达式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_691600_749700",
+          "text": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。波兰表示法（前缀）和逆波兰表示法（后缀）无需括号，便于计算机处理。中缀表达式需要两个栈，即操作符栈和数据栈；后缀表达式只需一个数据栈。在中缀转后缀或后缀转中缀的过程中，我们需要一个操作符栈。",
+          "start_sec": 691.6,
+          "end_sec": 749.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_691600_749700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_750600_938300",
+          "text": "我们需要一个操作符栈。那么如何将中缀表达式转为后缀表达式呢？这个大家都会了吧？需要做一遍吗？有没有人没讲过的？都上过数据结构了吧？我们这个班可能这一步很快就过去了，很简单。首先就是遇到左括号，把五写下来，然后加号，把六写下来，然后乘号，因为每加进去的乘号，它的优先级不大于栈顶，就不入栈。那么现在六乘，然后左括号，然后是七，然后加号，然后是三，然后右括号，遇到右括号就把栈中元素出栈直到左括号，并输出。然后除号，除号前面有比它大的，先把它导出去。要比较优先级，不大于就不入栈。好，把乘号导出去，然后除号，然后是三，然后又是三，然后右括号，见到右括号就把栈中元素都推出去。到这里就没有了，然后再是四，然后加号，加号一看比它小，就要把乘号出栈，然后加号，然后是五，然后又是加号。就是这样过程，大家根据算法去做就行，所以很简单。好，讲完了语法，我们接下去跟大家讲语义。语义就是说，根据上面的这些方法，如何去",
+          "start_sec": 750.6,
+          "end_sec": 938.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_750600_938300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "等值公式/equivalent formula",
+      "zh": "等值公式",
+      "importance": 0.167492,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。",
+      "definition": "在数理逻辑中，等值公式是指两个具有相同真值表的命题公式，它们在逻辑上可以相互替换。这些公式如双重否定律、结合律、交换律和分配律等，允许对公式进行结构性变换而不改变其逻辑含义。例如，将含有蕴含和双条件的公式转化为仅含否定、析取和合取的公式，即是一种利用等值公式的置换操作，这对于简化公式和证明其唯一的主析取范式至关重要。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.165138,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。",
+      "definition": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提条件的顺序交换（如 P → (Q → R) = Q → (P → R)），同时其逆否形式 ¬Q → ¬P 与原蕴含式等值。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "属于",
+          "natural_statement": "蕴含属于等值公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "依赖",
+          "natural_statement": "蕴含依赖公式"
+        },
+        {
+          "subject": "除非句式/unless pattern",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "可转换为",
+          "natural_statement": "除非句式可转换为蕴含"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "等价于",
+          "natural_statement": "蕴含等价于联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_2833200_2880300",
+          "text": "P除非Q，除非天下雨，那么就是非Q蕴含P。我们明天去白云山，除非天下雨，天不下雨我们就去爬山，所以是非Q蕴含P。如果P除非Q，那就是P蕴含Q。例如，若要人不知，除非己莫为。是这样子。那么这些就是，其实不管自然语言怎么样去变化，你只要去判断哪个是。",
+          "start_sec": 2833.2,
+          "end_sec": 2880.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2833200_2880300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2881100_2965500",
+          "text": "这些像都是蕴含。那么哪个是充分条件？我们把充分条件放在前面就可以了。那么这是自然语言，逆水行舟，不进则退，你有各种不同的确定哪个是简单命题，所以我们可以有不同的翻译。如果我们逆水行舟，那么我们要不前进，要不后退，二者必居其一，那么就是P蕴含后面这样两个排斥性的选择，就是R异或S。那么或者，在逆水行舟环境下，我们要不前进，要不后退，二者必选其一，这个就变成这样。那么就看你的简单命题的这样的一种设计。晚会上同学们载歌载舞，一边唱歌一边跳舞，那就是P与Q。那么如果说晚会上同学们有的唱歌，有的跳舞，那就翻译成P或Q。自然语言的理解，如果你的理解不一样，你的翻译也会不一样，你的翻译就是我们的自然形式化也会不一样。",
+          "start_sec": 2881.1,
+          "end_sec": 2965.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2881100_2965500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "操作符栈/operator stack",
+      "zh": "操作符栈",
+      "importance": 0.161812,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "depend_on",
+          "object": "操作符栈/operator stack",
+          "label": "需要",
+          "natural_statement": "中缀表达式需要操作符栈"
+        },
+        {
+          "subject": "中缀转后缀/infix-to-postfix conversion",
+          "predicate": "depend_on",
+          "object": "操作符栈/operator stack",
+          "label": "需要",
+          "natural_statement": "中缀转后缀需要操作符栈"
+        },
+        {
+          "subject": "后缀转中缀/postfix-to-infix conversion",
+          "predicate": "depend_on",
+          "object": "操作符栈/operator stack",
+          "label": "需要",
+          "natural_statement": "后缀转中缀需要操作符栈"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_691600_749700",
+          "text": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。波兰表示法（前缀）和逆波兰表示法（后缀）无需括号，便于计算机处理。中缀表达式需要两个栈，即操作符栈和数据栈；后缀表达式只需一个数据栈。在中缀转后缀或后缀转中缀的过程中，我们需要一个操作符栈。",
+          "start_sec": 691.6,
+          "end_sec": 749.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_691600_749700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "数据栈/data stack",
+      "zh": "数据栈",
+      "importance": 0.161812,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "数据栈/data stack",
+          "predicate": "related_with",
+          "object": "逆波兰式/Reverse Polish notation",
+          "label": "用于处理",
+          "natural_statement": "数据栈用于处理逆波兰式"
+        },
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "depend_on",
+          "object": "数据栈/data stack",
+          "label": "需要",
+          "natural_statement": "中缀表达式需要数据栈"
+        },
+        {
+          "subject": "后缀表达式/postfix expression",
+          "predicate": "depend_on",
+          "object": "数据栈/data stack",
+          "label": "需要",
+          "natural_statement": "后缀表达式需要数据栈"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_691600_749700",
+          "text": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。波兰表示法（前缀）和逆波兰表示法（后缀）无需括号，便于计算机处理。中缀表达式需要两个栈，即操作符栈和数据栈；后缀表达式只需一个数据栈。在中缀转后缀或后缀转中缀的过程中，我们需要一个操作符栈。",
+          "start_sec": 691.6,
+          "end_sec": 749.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_691600_749700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.160108,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "否定属于命题公式"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "优先级高于",
+          "natural_statement": "否定词优先级高于合取"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "包含",
+          "natural_statement": "否定包含公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_515700_593700",
+          "text": "判断符号串是否为合式公式，就是根据公式的合式定义，层层归约，直到原子命题即可判断。例如，否定词与合取词，这两个二元连接词和两个一元连接词不需要括号，而二元连接词必须有两个操作数，所以没有括号的肯定不是合式公式。像这个，外面需要加一对括号。而像这样简单的公式，如果也要加括号，似乎有些不可理喻，但对于电脑来说，进行推理或运算时，扫描括号的开销很大。为了减少括号数量，我们引入约定，即五个连接词有优先级顺序：否定词优先级最高，其次是合取，然后是析取，接着是蕴含，最后是等价。根据这个优先级定义，我们可以对公式进行优化。",
+          "start_sec": 515.7,
+          "end_sec": 593.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_515700_593700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_tech_特称否定命题翻译模板_8700_1951300",
+        "llm_theo_全称否定命题的两种形式等价_5100_1882900"
+      ],
+      "rank": 17
+    },
+    {
+      "id": "基本DPLL算法",
+      "zh": "基本DPLL算法",
+      "importance": 0.150661,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "基本DPLL算法是对有限状态机的转移系统的实现，包含四种转移规则：Decide、Propaga…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "基本DPLL算法",
+          "predicate": "related_with",
+          "object": "有限状态机的转移系统",
+          "label": "是...的实现",
+          "natural_statement": "基本DPLL算法是有限状态机的转移系统的实现"
+        },
+        {
+          "subject": "Decide规则",
+          "predicate": "part_of",
+          "object": "基本DPLL算法",
+          "label": "是...的组成部分",
+          "natural_statement": "Decide规则是基本DPLL算法的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_2155800_2401900",
+          "text": "基本DPLL算法是对有限状态机的转移系统的实现，包含四种转移规则：Decide、Propagate、Fail和Backjump。Decide规则：M ⊥ F → Ml* ∥ F，如果l或l的否定出现在F中，且l在M中未定义。Propagate规则：M | F, C ∨ l → Ml | F, C ∨ l，如果M使C为假，且l在M中未定义。Fail规则：M | F, C → fail，如果M使C为假，且M中不包含决策文字。Backjump规则：Ml*N | F, C → Mk | F, C，如果Ml*N使C为假，且存在某个子句D ∨ k满足F, C |= D ∨ k，M使D为假，k在M中未定义，k或k的否定出现在Ml*N | F, C中。Decide是随机选择未赋值的变元并赋值，但通常选择能尽量让剩余子句为真的值。Propagate是在当前赋值使某个子句为假时，强制将其中未赋值的文字赋值为真",
+          "start_sec": 2155.8,
+          "end_sec": 2401.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2155800_2401900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.147867,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它…",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "永假式/eternally false formula",
+      "zh": "永假式",
+      "importance": 0.145375,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "那么这三类公式之间的关系是什么呢？",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "永假式/eternally false formula",
+          "predicate": "synonym_of",
+          "object": "不可满足/unsatisfiable",
+          "label": "同义于",
+          "natural_statement": "永假式同义于不可满足"
+        },
+        {
+          "subject": "永假式/eternally false formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "永假式属于公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1438100_1620800",
+          "text": "那么这三类公式之间的关系是什么呢？A永真当且仅当非A永假。A永真，非A永假。A可满足，那么非A就是非永真。A可满足，非A是非永真。A永真，非A永假。A永假，非A永真。A不是可满足，即A永假，A永假就是不可满足式。A非永假，那么A就是可满足。要搞清楚这些关系，可以画个真值表，否则光看文字容易出错。这就是三类公式之间的关系。",
+          "start_sec": 1438.1,
+          "end_sec": 1620.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1438100_1620800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "成分命题/Component proposition",
+      "zh": "成分命题",
+      "importance": 0.137225,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "命题公式的真值由其成分命题的真值决定，常用真值表方法计算。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "depend_on",
+          "object": "成分命题/Component proposition",
+          "label": "真值由...决定",
+          "natural_statement": "命题公式真值由成分命题决定"
+        },
+        {
+          "subject": "成分命题/Component proposition",
+          "predicate": "part_of",
+          "object": "命题公式/propositional formula",
+          "label": "是...的组成部分",
+          "natural_statement": "成分命题是命题公式的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_938300_1053900",
+          "text": "命题公式的真值由其成分命题的真值决定，常用真值表方法计算。设公式A由成分命题P₁到Pₙ联结而成，对P₁到Pₙ的真值指派决定了A的真值，称为A的解释，可表示为真值表的一行。A共有2的n次方个解释，构成A的真值表，共2的n次方行。每一行就是P₁到Pₙ的一种取值组合，这一组我们称之为解释。",
+          "start_sec": 938.3,
+          "end_sec": 1053.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_938300_1053900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "后缀表达式/postfix expression",
+      "zh": "后缀表达式",
+      "importance": 0.135441,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "后缀表达式/postfix expression",
+          "predicate": "depend_on",
+          "object": "数据栈/data stack",
+          "label": "需要",
+          "natural_statement": "后缀表达式需要数据栈"
+        },
+        {
+          "subject": "中缀表达式/infix expression",
+          "predicate": "related_with",
+          "object": "后缀表达式/postfix expression",
+          "label": "可转换为",
+          "natural_statement": "中缀表达式可转换为后缀表达式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_691600_749700",
+          "text": "中缀表示法需要用括号区分运算次序，括号扫描会降低效率。波兰表示法（前缀）和逆波兰表示法（后缀）无需括号，便于计算机处理。中缀表达式需要两个栈，即操作符栈和数据栈；后缀表达式只需一个数据栈。在中缀转后缀或后缀转中缀的过程中，我们需要一个操作符栈。",
+          "start_sec": 691.6,
+          "end_sec": 749.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_691600_749700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_750600_938300",
+          "text": "我们需要一个操作符栈。那么如何将中缀表达式转为后缀表达式呢？这个大家都会了吧？需要做一遍吗？有没有人没讲过的？都上过数据结构了吧？我们这个班可能这一步很快就过去了，很简单。首先就是遇到左括号，把五写下来，然后加号，把六写下来，然后乘号，因为每加进去的乘号，它的优先级不大于栈顶，就不入栈。那么现在六乘，然后左括号，然后是七，然后加号，然后是三，然后右括号，遇到右括号就把栈中元素出栈直到左括号，并输出。然后除号，除号前面有比它大的，先把它导出去。要比较优先级，不大于就不入栈。好，把乘号导出去，然后除号，然后是三，然后又是三，然后右括号，见到右括号就把栈中元素都推出去。到这里就没有了，然后再是四，然后加号，加号一看比它小，就要把乘号出栈，然后加号，然后是五，然后又是加号。就是这样过程，大家根据算法去做就行，所以很简单。好，讲完了语法，我们接下去跟大家讲语义。语义就是说，根据上面的这些方法，如何去",
+          "start_sec": 750.6,
+          "end_sec": 938.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_750600_938300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "双条件式/Biconditional",
+      "zh": "双条件式",
+      "importance": 0.130623,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。",
+      "definition": "双条件式（Biconditional）是数理逻辑中的一种联结词，表示两个命题具有相同的真值。当且仅当两个命题同为真或同为假时，双条件式为真。它可以被定义为两个单条件式的合取，即 $P \\leftrightarrow Q = (P \\rightarrow Q) \\land (Q \\rightarrow P)$，或等价地表示为仅包含否定、析取和合取的公式 $(P \\lor \\neg Q) \\land (\\neg P \\lor Q)$。双条件式为重言式意味着其被联结的两个命题在任何解释下都具有相同的真值。",
+      "neighbors": [
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "等值公式/equivalent formula",
+          "label": "表示",
+          "natural_statement": "双条件式表示等值公式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "双条件式/Biconditional",
+          "label": "属于",
+          "natural_statement": "重言式属于双条件式"
+        },
+        {
+          "subject": "双条件式/Biconditional",
+          "predicate": "belong_to",
+          "object": "命题联结词/propositional connective",
+          "label": "属于",
+          "natural_statement": "双条件属于命题联结词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1055300_1436900",
+          "text": "或者叫指派，或者叫解释。如果有n个成分命题变量，那么它就有2的n次方种不同的解释，其真值表就有2的n次方行。根据真值表，如果在所有2的n次方种解释下，公式A的值都为真，这样的公式称为重言式，或永真式。重言式反映了逻辑规律。例如，P∨¬P是重言式。\n\n第二种叫可满足式。如果在所有解释中存在某一种解释使得A为真，那么公式A就是可满足的。可满足性的判定在计算机领域非常重要，称为SAT。3-SAT是第一个NP完全问题，于1971年确定。其算法DPLL就是用来判定一个公式是否可满足，即找到一种取值，让每个析取式都为真。\n\n第三类叫矛盾式，即永假式，或不可满足式。所有解释下A都为假，例如P∧¬P。因此公式可分为可满足式和不可满足式，矛盾式属于不可满足式，而重言式是可满足式的一种特殊情况。",
+          "start_sec": 1055.3,
+          "end_sec": 1436.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1055300_1436900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2654100_2747800",
+          "text": "自然语言的形式化表示，需要先确定简单命题，并用p、q、r等命题符号表示，再根据自然语言的含义，用五个命题联结词将简单命题联结起来。但要注意自然语言的二义性。例如“张三不是学生”，可以把“张三是学生”作为简单命题，用否定词连接；也可以直接将“张三不是学生”作为一个简单命题。“张三既聪明又用功”，则用“与”连接p和q。“张三一感冒就发烧”，需要确定充分条件和必要条件，用蕴含连接。“有的唱歌，有的跳舞”，用“或”。“当且仅当”就是双向蕴含。另外，“张三与李四是表兄弟”是一个简单命题，但这类表述有歧义。例如“我们选择生存或死亡”，这是一个排斥性选择，要么选择生存，要么选择死亡，出自莎士比亚的名言。",
+          "start_sec": 2654.1,
+          "end_sec": 2747.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2654100_2747800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_56500_514500",
+          "text": "命题公式是在由命题变项通过联结词构成复杂命题时，如何才是有意义的命题。例如，¬P ∧ Q → R，意义是否明确？命题公式定义如下：第一，命题变元（原子命题）是命题公式；第二，如果A、B是公式，那么¬A、(A ∧ B)、(A ∨ B)、(A → B)和(A ↔ B)是命题公式；第三，命题公式仅限于此。这种定义是递归定义，所定义的公式又称为合式公式（well-formed formula，简记为wff）。简单命题本身是格式良好的命题公式。如果A和B是合式公式，那么它们的合取、析取、蕴含、等价这些二元连接词都需要加括号，一元连接词不需要。这样就递归定义了新的合式公式。所有公式都可以通过这种方式递归定义。例如，如果一个公式含有三个二元连接词，那么它就需要三对括号，因为每个二元连接词都需要一对括号。这就是合式公式。",
+          "start_sec": 56.5,
+          "end_sec": 514.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_56500_514500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "未知/未知",
+      "zh": "未知",
+      "importance": 0.114931,
+      "mention_count": 2,
+      "origin": "lecture_only",
+      "summary": "首先，我们设定一个变元，设它为真或假。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "归结法证明/resolution proof",
+          "label": "属于",
+          "natural_statement": "未知属于归结法证明"
+        },
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "极大项/maximal term",
+          "label": "属于",
+          "natural_statement": "未知属于极大项"
+        },
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "函数代入/Function Substitution",
+          "label": "属于",
+          "natural_statement": "未知属于函数代入"
+        },
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "命题演算的重言式/tautology of propositional calculus",
+          "label": "属于",
+          "natural_statement": "未知属于命题演算的重言式"
+        },
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "判定问题/decidability problem",
+          "label": "属于",
+          "natural_statement": "未知属于判定问题"
+        },
+        {
+          "subject": "未知/未知",
+          "predicate": "belong_to",
+          "object": "代入规则/substitution rule",
+          "label": "属于",
+          "natural_statement": "未知属于代入规则"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_16_1870900_2154900",
+          "text": "首先，我们设定一个变元，设它为真或假。这里因为公式中有P1，就先设P1为真，这一步叫decide。设P1为真后，五个因子中有两个为真，剩下三个未知。接着第二步是deduce，即对已确定的赋值进行传播。在P1为真的情况下，找出为假的子句，再选一个值使其为真。这里我们让¬P2为真，即P2为假，于是第三个因子为真。此时剩下两个因子。若继续，很容易找到让¬P3为真，则这两个因子都为真，P4的值无关紧要。这样得到一组解：P1为真，P2为假，P3为假。但为了演示所有步骤，我们故意选择另一条路径。下一步是guess，即随意选一个未赋值的变元，比如选P3。我们设P3为真。然后进行deduce，这时需要让剩下的子句中有一个为真，于是设P4为真。但此时检查所有子句，发现有一个为假，不符合要求，说明前面的猜测出错。于是回溯到之前的decide步骤，这就是试错回溯的过程。",
+          "start_sec": 1870.9,
+          "end_sec": 2154.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_1870900_2154900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_16_2639800_2652700",
+          "text": "那么将a代入，将b代入就可以了。所以这就是代入法。最后我们很快介绍自然语言如何形式化。",
+          "start_sec": 2639.8,
+          "end_sec": 2652.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_16_2639800_2652700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

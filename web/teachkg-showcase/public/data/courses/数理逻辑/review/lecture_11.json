@@ -1,0 +1,1321 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "11",
+  "title": "第11讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/11_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/11_1.mp4",
+  "duration_sec": 3046.3,
+  "segments": [
+    {
+      "id": "数理逻辑_11_339300_810600",
+      "index": 1,
+      "start_sec": 339.3,
+      "end_sec": 810.6,
+      "title": "正式开始讲集合论了"
+    },
+    {
+      "id": "数理逻辑_11_811800_936200",
+      "index": 2,
+      "start_sec": 811.8,
+      "end_sec": 936.2,
+      "title": "集合的约束"
+    },
+    {
+      "id": "数理逻辑_11_942200_1017400",
+      "index": 3,
+      "start_sec": 942.2,
+      "end_sec": 1017.4,
+      "title": "我们一般用不同的大写字母表示不同的集合，并用…"
+    },
+    {
+      "id": "数理逻辑_11_1019000_1080800",
+      "index": 4,
+      "start_sec": 1019.0,
+      "end_sec": 1080.8,
+      "title": "外延表示法就是一一列举出集合的全体元素，例如…"
+    },
+    {
+      "id": "数理逻辑_11_1084800_1258500",
+      "index": 5,
+      "start_sec": 1084.8,
+      "end_sec": 1258.5,
+      "title": "关系包括等于、子集、真子集、包含、真包含等"
+    },
+    {
+      "id": "数理逻辑_11_1259400_1704600",
+      "index": 6,
+      "start_sec": 1259.4,
+      "end_sec": 1704.6,
+      "title": "那么第二个呢就是子集的概念"
+    },
+    {
+      "id": "数理逻辑_11_1705800_1822000",
+      "index": 7,
+      "start_sec": 1705.8,
+      "end_sec": 1822.0,
+      "title": "这是一个初始符号，而它是由子集来定义的，子集…"
+    },
+    {
+      "id": "数理逻辑_11_1822800_1839500",
+      "index": 8,
+      "start_sec": 1822.8,
+      "end_sec": 1839.5,
+      "title": "好，那么另外一个就是相交"
+    },
+    {
+      "id": "数理逻辑_11_1840500_1893600",
+      "index": 9,
+      "start_sec": 1840.5,
+      "end_sec": 1893.6,
+      "title": "空集是不含任何元素的集合，记作Φ"
+    },
+    {
+      "id": "数理逻辑_11_1896300_1924800",
+      "index": 10,
+      "start_sec": 1896.3,
+      "end_sec": 1924.8,
+      "title": "我们还介绍一个全集，全集包含所有的元素，全集…"
+    },
+    {
+      "id": "数理逻辑_11_1925600_2145300",
+      "index": 11,
+      "start_sec": 1925.6,
+      "end_sec": 2145.3,
+      "title": "我们跟大家介绍几种运算，其中有些运算大家比较…"
+    },
+    {
+      "id": "数理逻辑_11_2146100_2497800",
+      "index": 12,
+      "start_sec": 2146.1,
+      "end_sec": 2497.8,
+      "title": "我们介绍一个一元的运算叫广义并"
+    },
+    {
+      "id": "数理逻辑_11_2501000_2776000",
+      "index": 13,
+      "start_sec": 2501.0,
+      "end_sec": 2776.0,
+      "title": "我们来定义集合A的幂集"
+    },
+    {
+      "id": "数理逻辑_11_2781300_2958800",
+      "index": 14,
+      "start_sec": 2781.3,
+      "end_sec": 2958.8,
+      "title": "A和B的笛卡尔积定义为所有有序对(a,b)，…"
+    },
+    {
+      "id": "数理逻辑_11_2959700_3046300",
+      "index": 15,
+      "start_sec": 2959.7,
+      "end_sec": 3046.3,
+      "title": "n元有序组"
+    }
+  ],
+  "points": [
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.498594,
+      "mention_count": 13,
+      "origin": "shared",
+      "summary": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。",
+      "definition": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。集合由其元素完全决定，可以通过外延（列举元素）、内涵（描述性质）或运算构造。集合是数理逻辑与集合论课程中的核心概念，如整数集 $\\mathbb{Z}$、有理数集 $\\mathbb{Q}$、实数集 $\\mathbb{R}$ 等均是集合的实例。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "集合运算/set operation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "集合运算依赖集合"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合属于集合论"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "不自吞/self-not-containing",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束不自吞"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "无次序/no-order",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束无次序"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "不重复/no-duplication",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束不重复"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "确定性/determinacy",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束确定性"
+        },
+        {
+          "subject": "实数集合/set of real numbers",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "实数集合属于集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1019000_1080800",
+          "text": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一个{6,7,8}这样的表示。那么我们还会有一个内涵表示法，用谓词来描述集合中元素的性质，形式为{x | P(x)}或{x: P(x)}。例如，x属于自然数，且x大于等于6，小于等于8。这个外延表示法，待会我们还会介绍一个图示法。目前就是这两种表示方法。接下来我们介绍一些关系。",
+          "start_sec": 1019.0,
+          "end_sec": 1080.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1019000_1080800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1084800_1258500",
+          "text": "关系包括等于、子集、真子集、包含、真包含等。我们先来看等于的定义。如何定义两个集合相等？定义是：A = B 当且仅当对于任意 x，x 属于 A 等价于 x 属于 B。这是一个一阶谓词逻辑表达式，且 x 不是自由变元，所以它是一个命题。如果这个命题为真，则 A 等于 B 为真。相等关系满足三个性质：自反性，即 A = A；对称性，即 A = B 可推出 B = A；传递性，即 A = B 且 B = C 可推出 A = C。后面讲关系时会反复提到。接下来是外延公理，它表示：一个集合是由它的元素完全决定的。如果 A 和 B 相等，那么它们的元素都相同。例如，A = {7, 8, 9}，B = {x | x 是整数且 6 < x < 10}，C = {x | (x-7)(x-8)(x-9) = 0}，则 A = B = C。",
+          "start_sec": 1084.8,
+          "end_sec": 1258.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1084800_1258500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.270821,
+      "mention_count": 6,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "关系/relation",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "关系属于集合论"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "表示",
+          "natural_statement": "谓词表示关系"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "偏序关系/partial order relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "偏序关系属于关系"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于关系"
+        },
+        {
+          "subject": "二元关系/binary relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "二元关系属于关系"
+        },
+        {
+          "subject": "恒等关系/identity relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "恒等关系属于关系"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "有序对属于关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1019000_1080800",
+          "text": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一个{6,7,8}这样的表示。那么我们还会有一个内涵表示法，用谓词来描述集合中元素的性质，形式为{x | P(x)}或{x: P(x)}。例如，x属于自然数，且x大于等于6，小于等于8。这个外延表示法，待会我们还会介绍一个图示法。目前就是这两种表示方法。接下来我们介绍一些关系。",
+          "start_sec": 1019.0,
+          "end_sec": 1080.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1019000_1080800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1084800_1258500",
+          "text": "关系包括等于、子集、真子集、包含、真包含等。我们先来看等于的定义。如何定义两个集合相等？定义是：A = B 当且仅当对于任意 x，x 属于 A 等价于 x 属于 B。这是一个一阶谓词逻辑表达式，且 x 不是自由变元，所以它是一个命题。如果这个命题为真，则 A 等于 B 为真。相等关系满足三个性质：自反性，即 A = A；对称性，即 A = B 可推出 B = A；传递性，即 A = B 且 B = C 可推出 A = C。后面讲关系时会反复提到。接下来是外延公理，它表示：一个集合是由它的元素完全决定的。如果 A 和 B 相等，那么它们的元素都相同。例如，A = {7, 8, 9}，B = {x | x 是整数且 6 < x < 10}，C = {x | (x-7)(x-8)(x-9) = 0}，则 A = B = C。",
+          "start_sec": 1084.8,
+          "end_sec": 1258.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1084800_1258500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "谓词/predicate",
+      "zh": "谓词",
+      "importance": 0.260585,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x,…",
+      "definition": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕获了不同命题的共同结构，并通过量词与个体变量结合形成合式公式。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "谓词属于命题"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "表示",
+          "natural_statement": "谓词表示关系"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "性质/property",
+          "label": "具有",
+          "natural_statement": "谓词具有性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1019000_1080800",
+          "text": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一个{6,7,8}这样的表示。那么我们还会有一个内涵表示法，用谓词来描述集合中元素的性质，形式为{x | P(x)}或{x: P(x)}。例如，x属于自然数，且x大于等于6，小于等于8。这个外延表示法，待会我们还会介绍一个图示法。目前就是这两种表示方法。接下来我们介绍一些关系。",
+          "start_sec": 1019.0,
+          "end_sec": 1080.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1019000_1080800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_predicate_interpretation",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.23751,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "初始符号/initial symbols",
+          "label": "属于",
+          "natural_statement": "命题属于初始符号"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "谓词属于命题"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "公理系统/axiomatic system",
+      "zh": "公理系统",
+      "importance": 0.218669,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一…",
+      "definition": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一系列定理的抽象符号系统。其目的是构建一个形式化的演绎体系，如命题演算的重言式所构成的公理系统。公理系统的关键在于其公理的独立性、系统的可靠性（是否能推导出非重言式）及完备性（是否所有普遍有效的公式都能被证明）。",
+      "neighbors": [
+        {
+          "subject": "初始符号/initial symbols",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "表示",
+          "natural_statement": "初始符号表示公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "belong_to",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "初始符号/initial symbols",
+      "zh": "初始符号",
+      "importance": 0.218533,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "初始符号是形式语言或公理系统中构成合法符号序列（也称为合式公式）的基础元素，其种类根据具体系统…",
+      "definition": "初始符号是形式语言或公理系统中构成合法符号序列（也称为合式公式）的基础元素，其种类根据具体系统有所不同。例如，在命题逻辑中，初始符号包括命题变项（如p, q）和命题联结词（如¬, ∨）；在更广泛的数理逻辑语境下，还可能包括个体变项（如x, y）、谓词变项（如P, Q）以及量词（如∀, ∃），还有用于分隔和组织结构的括号等符号。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "初始符号/initial symbols",
+          "label": "属于",
+          "natural_statement": "命题属于初始符号"
+        },
+        {
+          "subject": "初始符号/initial symbols",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "表示",
+          "natural_statement": "初始符号表示公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "集合论/Set Theory",
+      "zh": "集合论",
+      "importance": 0.101533,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。",
+      "definition": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。它包含集合、运算、关系、函数和基数等基本概念，其公理系统（如外延公理）是其严谨性的体现，并探讨了如Russell悖论等重要问题。",
+      "neighbors": [
+        {
+          "subject": "集合运算/set operation",
+          "predicate": "part_of",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合运算属于集合论"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合属于集合论"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "关系属于集合论"
+        },
+        {
+          "subject": "运算/operation",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "运算属于集合论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2146100_2497800",
+          "text": "我们介绍一个一元的运算叫广义并。广义并要求A的元素都是集合。A的广义并，就是A的元素的元素的集合，即所有这样的x的集合：存在一个z，z属于A，且x属于z。广义交定义为：A的广义交是所有x的集合，使得对任意z，如果z属于A，则x属于z。例如，已知集合A={ {a,b,c}, {a,b}, {b,c,d} }，则广义并U A={a,b,c,d}，广义交∩A={b}。空集的广义并是空集，以空集为元素的广义并也是空集。空集的广义交不存在，以空集为元素的广义交是空集。用广义并和广义交可以定义并集和交集：A∪B = U{A,B}，A∩B = ∩{A,B}。广义并和广义交是并集和交集的拓展，可以实现任意多个集合的并集与交集。",
+          "start_sec": 2146.1,
+          "end_sec": 2497.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2146100_2497800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_811800_936200",
+          "text": "集合的约束。朴素的集合论简单但存在多种悖论，例如罗素悖论。为避免悖论，准确理解，特别应注意以下约束：第一，不自吞。集合的元素可以是任何事物，也可以是集合，但除自身外。第二，无次序。组成一个集合的各个元素在该集合中是无次序的。第三，不重复。一个集合的各个元素是可以互相区分开的，这意味着在一个集合中不会重复出现相同的元素。第四，确定性。任一事物是否属于一个集合，二者必居其一而不可兼而有之，且结论是确定的。罗素悖论违反了这一规定。",
+          "start_sec": 811.8,
+          "end_sec": 936.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_811800_936200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 7
+    },
+    {
+      "id": "性质/property",
+      "zh": "性质",
+      "importance": 0.078422,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "性质（Property）在数理逻辑与集合论中，是指一个谓词 P(x) 对于个体 x 的陈述，用…",
+      "definition": "性质（Property）在数理逻辑与集合论中，是指一个谓词 P(x) 对于个体 x 的陈述，用来指明该个体所具有的特性或特征。例如，当一个常项 c 具有性质 P 时，可以记作 P(c)。相等词作为一种特殊的谓词，也具有特定的性质，并且这些性质可以帮助我们判断个体之间的关系。此外，特征函数也表现出某些算术性质，如与加减乘法的关联。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "性质/property",
+          "label": "具有",
+          "natural_statement": "谓词具有性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1019000_1080800",
+          "text": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一个{6,7,8}这样的表示。那么我们还会有一个内涵表示法，用谓词来描述集合中元素的性质，形式为{x | P(x)}或{x: P(x)}。例如，x属于自然数，且x大于等于6，小于等于8。这个外延表示法，待会我们还会介绍一个图示法。目前就是这两种表示方法。接下来我们介绍一些关系。",
+          "start_sec": 1019.0,
+          "end_sec": 1080.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1019000_1080800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "不自吞/self-not-containing",
+      "zh": "不自吞",
+      "importance": 0.068679,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "集合的约束。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "不自吞/self-not-containing",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束不自吞"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_811800_936200",
+          "text": "集合的约束。朴素的集合论简单但存在多种悖论，例如罗素悖论。为避免悖论，准确理解，特别应注意以下约束：第一，不自吞。集合的元素可以是任何事物，也可以是集合，但除自身外。第二，无次序。组成一个集合的各个元素在该集合中是无次序的。第三，不重复。一个集合的各个元素是可以互相区分开的，这意味着在一个集合中不会重复出现相同的元素。第四，确定性。任一事物是否属于一个集合，二者必居其一而不可兼而有之，且结论是确定的。罗素悖论违反了这一规定。",
+          "start_sec": 811.8,
+          "end_sec": 936.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_811800_936200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "不重复/no-duplication",
+      "zh": "不重复",
+      "importance": 0.068679,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "集合的约束。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "不重复/no-duplication",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束不重复"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_811800_936200",
+          "text": "集合的约束。朴素的集合论简单但存在多种悖论，例如罗素悖论。为避免悖论，准确理解，特别应注意以下约束：第一，不自吞。集合的元素可以是任何事物，也可以是集合，但除自身外。第二，无次序。组成一个集合的各个元素在该集合中是无次序的。第三，不重复。一个集合的各个元素是可以互相区分开的，这意味着在一个集合中不会重复出现相同的元素。第四，确定性。任一事物是否属于一个集合，二者必居其一而不可兼而有之，且结论是确定的。罗素悖论违反了这一规定。",
+          "start_sec": 811.8,
+          "end_sec": 936.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_811800_936200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "无次序/no-order",
+      "zh": "无次序",
+      "importance": 0.068679,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "集合的约束。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "集合/set",
+          "predicate": "property_of",
+          "object": "无次序/no-order",
+          "label": "具有约束",
+          "natural_statement": "集合具有约束无次序"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_811800_936200",
+          "text": "集合的约束。朴素的集合论简单但存在多种悖论，例如罗素悖论。为避免悖论，准确理解，特别应注意以下约束：第一，不自吞。集合的元素可以是任何事物，也可以是集合，但除自身外。第二，无次序。组成一个集合的各个元素在该集合中是无次序的。第三，不重复。一个集合的各个元素是可以互相区分开的，这意味着在一个集合中不会重复出现相同的元素。第四，确定性。任一事物是否属于一个集合，二者必居其一而不可兼而有之，且结论是确定的。罗素悖论违反了这一规定。",
+          "start_sec": 811.8,
+          "end_sec": 936.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_811800_936200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "多重有序对/multiple ordered pair",
+      "zh": "多重有序对",
+      "importance": 0.067476,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "n元有序组。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "n元组/n-tuple",
+          "predicate": "synonym_of",
+          "object": "多重有序对/multiple ordered pair",
+          "label": "同义于",
+          "natural_statement": "n元组同义于多重有序对"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2959700_3046300",
+          "text": "n元有序组。定义：若n属于自然数且n>1，x1，x2，…，xn是n个元素，则n元有序组<x1，…，xn>定义为：当n=2时，二元组是有序对<x1，x2>；当n>2时，<x1，…，xn>=<<x1，…，x_{n-1}>，xn>。例如，<a，b，c，d>=<<<a，b>，c>，d>。按照这个定义，有序对就是二元组，n元有序组就是多重有序对。所有的n元有序对都是以二元有序对来定义的，比如三元有序对定义成二元有序对，把它先看作一个元素，然后和后面这两个元素的二元组。所以n元有序对全都是可以看成一个二元有序对的嵌套，也就是二元有序对的嵌套。",
+          "start_sec": 2959.7,
+          "end_sec": 3046.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2959700_3046300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "图示法/graphical representation method",
+      "zh": "图示法",
+      "importance": 0.066358,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "图示法/graphical representation method",
+          "predicate": "belong_to",
+          "object": "集合的表示法/Representation of sets",
+          "label": "是...种",
+          "natural_statement": "图示法是集合的表示法种"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1019000_1080800",
+          "text": "外延表示法就是一一列举出集合的全体元素，例如，将集合中的元素全部列出来，比如678，假设我列一个{6,7,8}这样的表示。那么我们还会有一个内涵表示法，用谓词来描述集合中元素的性质，形式为{x | P(x)}或{x: P(x)}。例如，x属于自然数，且x大于等于6，小于等于8。这个外延表示法，待会我们还会介绍一个图示法。目前就是这两种表示方法。接下来我们介绍一些关系。",
+          "start_sec": 1019.0,
+          "end_sec": 1080.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1019000_1080800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "定理/定理",
+      "zh": "定理",
+      "importance": 0.05908,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则…",
+      "definition": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则）从公理或预设前提中推导出的普遍有效（永真）的陈述或公式。定理的证明过程构成了公理系统的演绎体系，其成立与否与系统的完备性紧密相关，例如自然演绎系统为定理的证明提供了便利。",
+      "neighbors": [
+        {
+          "subject": "定理/定理",
+          "predicate": "belong_to",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "belong_to",
+          "object": "语句/Sentence",
+          "label": "具有",
+          "natural_statement": "定理具有语句"
+        },
+        {
+          "subject": "证明/proof",
+          "predicate": "part_of",
+          "object": "定理/定理",
+          "label": "属于",
+          "natural_statement": "证明属于定理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "集合运算/set operation",
+      "zh": "集合运算",
+      "importance": 0.055649,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "集合运算是集合论中用于由已知集合构造新集合的基本方法。",
+      "definition": "集合运算是集合论中用于由已知集合构造新集合的基本方法。它包含并集（$A \\cup B = {x \\mid x \\in A \\lor x \\in B}$）、交集（$A \\cap B = {x \\mid x \\in A \\land x \\in B}$）和余集（$-A = E - A = {x \\mid x \\notin A}$）等五种基本运算，这些运算通过逻辑关系（如“或”、“且”）或元素是否存在于集合中来定义新的集合。",
+      "neighbors": [
+        {
+          "subject": "集合运算/set operation",
+          "predicate": "part_of",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合运算属于集合论"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "属于",
+          "natural_statement": "幂集属于集合运算"
+        },
+        {
+          "subject": "交集/Intersection",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "表示",
+          "natural_statement": "交集表示集合运算"
+        },
+        {
+          "subject": "并集/union",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "表示",
+          "natural_statement": "并集表示集合运算"
+        },
+        {
+          "subject": "差集/Set Difference",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "属于",
+          "natural_statement": "差集属于集合运算"
+        },
+        {
+          "subject": "对称差/Symmetric difference",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "表示",
+          "natural_statement": "对称差表示集合运算"
+        },
+        {
+          "subject": "集合运算/set operation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "集合运算依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "幂集/power set",
+      "zh": "幂集",
+      "importance": 0.044162,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "幂集（Power Set）是集合论中定义的一种运算，表示一个给定集合所有子集的集合。",
+      "definition": "幂集（Power Set）是集合论中定义的一种运算，表示一个给定集合所有子集的集合。一个集合 $A$ 的幂集记作 $P(A)$ 或 $\\mathcal{P}(A)$，其元素是 $A$ 的所有子集，包括空集 $\\emptyset$ 和 $A$ 本身。对于有限集合 $A$，其幂集的元素个数 $|P(A)|$ 等于 $2^{|A|}$，并且对于无限集合，其幂集的势大于原集合的势，例如实数集 $\\mathbb{R}$ 的幂集是不可数的。幂集上的包含关系构成了偏序结构，且满足 $P(A) \\cap P(B) = P(A \\cap B)$ 等性质。",
+      "neighbors": [
+        {
+          "subject": "幂集/power set",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "属于",
+          "natural_statement": "幂集属于集合运算"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "幂集/power set",
+          "label": "属于",
+          "natural_statement": "空集属于幂集"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "幂集属于集合"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "幂集依赖集合"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "的元素是",
+          "natural_statement": "幂集的元素是集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2501000_2776000",
+          "text": "我们来定义集合A的幂集。A的幂集就是所有A的子集组成的集合，记作P(A)，即P(A)={x|x⊆A}。例如，P(∅)={∅}，P({∅})={∅,{∅}}，P({a,b})={∅,{a},{b},{a,b}}。对任意集合A，有∅∈P(A)，A∈P(A)。空集是所有集合的子集，所以空集是任何集合幂集的元素；A本身也是A的幂集的元素。因此，一个集合的幂集至少有两个元素，但当A是空集时，P(∅)只有一个元素∅。如果A不是空集，则至少有两个元素：空集和A本身。注意，幂集中的元素都是集合，例如当A={a}时，P({a})={∅,{a}}，这里{a}是集合，不能写成a。若A={a,b}，则P({a,b})={∅,{a},{b},{a,b}}，共四个元素。一般地，若A的元素个数为n，则A的幂集的元素个数为2的n次方。这就是幂集的概念。",
+          "start_sec": 2501.0,
+          "end_sec": 2776.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2501000_2776000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "有序对/ordered pair",
+      "zh": "有序对",
+      "importance": 0.042043,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "有序对（ordered pair）是数理逻辑与集合论中一种基本的二元组合，由两个元素 x 和…",
+      "definition": "有序对（ordered pair）是数理逻辑与集合论中一种基本的二元组合，由两个元素 x 和 y（允许 x=y）按特定次序排列而成，记作 <x, y>。其核心性质是 <x, y> = <u, v> 当且仅当 x = u 且 y = v，且若 x ≠ y，则 <x, y> ≠ <y, x>。有序对是构建笛卡尔积、定义关系和函数的基础，例如 A 和 B 的笛卡尔积 A×B 即由所有形如 <x, y> (x∈A, y∈B) 的有序对构成的集合。",
+      "neighbors": [
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "二元关系/binary relation",
+          "label": "属于",
+          "natural_statement": "有序对属于二元关系"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "有序对依赖集合"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "有序对属于关系"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "related_with",
+          "object": "有序对/ordered pair",
+          "label": "定义为所有",
+          "natural_statement": "笛卡儿积定义为所有有序对"
+        },
+        {
+          "subject": "元素/Element",
+          "predicate": "part_of",
+          "object": "有序对/ordered pair",
+          "label": "属于",
+          "natural_statement": "元素属于有序对"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_2781300_2958800",
+          "text": "A和B的笛卡尔积定义为所有有序对(a,b)，其中a属于A，b属于B。有序对是有次序的，<a,b>与<b,a>一般不相等。有序对可以用集合来定义，定义方式为：<x,y>={{x},{x,y}}。这个集合中有两个元素，第一个元素是{x}，第二个元素是{x,y}，这样就区分了第一元素和第二元素。在平面直角坐标系上，一个点的坐标就是一个有序对。",
+          "start_sec": 2781.3,
+          "end_sec": 2958.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2781300_2958800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_2959700_3046300",
+          "text": "n元有序组。定义：若n属于自然数且n>1，x1，x2，…，xn是n个元素，则n元有序组<x1，…，xn>定义为：当n=2时，二元组是有序对<x1，x2>；当n>2时，<x1，…，xn>=<<x1，…，x_{n-1}>，xn>。例如，<a，b，c，d>=<<<a，b>，c>，d>。按照这个定义，有序对就是二元组，n元有序组就是多重有序对。所有的n元有序对都是以二元有序对来定义的，比如三元有序对定义成二元有序对，把它先看作一个元素，然后和后面这两个元素的二元组。所以n元有序对全都是可以看成一个二元有序对的嵌套，也就是二元有序对的嵌套。",
+          "start_sec": 2959.7,
+          "end_sec": 3046.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2959700_3046300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "二元关系/binary relation",
+      "zh": "二元关系",
+      "importance": 0.040855,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "二元关系（或简称关系）是集合论和数理逻辑中的基本概念，指代两个集合之间的一种联系，形式上表现为…",
+      "definition": "二元关系（或简称关系）是集合论和数理逻辑中的基本概念，指代两个集合之间的一种联系，形式上表现为两个集合笛卡尔积的任意子集，即一组有序对的集合。在特定语境下，二元关系可以具有自反、对称、传递等性质，例如等价关系和偏序关系。二元关系是构建更复杂关系（如n元关系）的基础。",
+      "neighbors": [
+        {
+          "subject": "二元关系/binary relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "二元关系属于关系"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "二元关系/binary relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于二元关系"
+        },
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "part_of",
+          "object": "二元关系/binary relation",
+          "label": "属于",
+          "natural_statement": "有序对属于二元关系"
+        },
+        {
+          "subject": "偏序关系/partial order relation",
+          "predicate": "belong_to",
+          "object": "二元关系/binary relation",
+          "label": "属于",
+          "natural_statement": "偏序关系属于二元关系"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1705800_1822000",
+          "text": "这是一个初始符号，而它是由子集来定义的，子集是由属于这个符号来定义的。这里有一个定理一：两个集合相等的充要条件是它们互为子集。这就是我们刚才说的等值定理。以后会看到，子集是一种偏序关系，在讲关系时会介绍。偏序关系满足自反性，与等值关系一样：A是A的子集。它不满足对称性，对称性是A等于B则B等于A，而这里是反对称性：如果A是B的子集且B是A的子集，那么A必须等于B。它和等于一样满足传递性：A是B的子集，B是C的子集，则A是C的子集。偏序关系与等值关系唯一的不同在于中间这个性质：等值关系是对称性，A等于B则B等于A；偏序关系是反对称性，如果A是B的子集且B是A的子集，那么A和B相等。这就是等值关系和偏序关系的区别，在集合论第10章会介绍关系。",
+          "start_sec": 1705.8,
+          "end_sec": 1822.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1705800_1822000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "等价关系/equivalence relation",
+      "zh": "等价关系",
+      "importance": 0.040749,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系…",
+      "definition": "等价关系（equivalence relation）是集合论中一种定义在非空集合A上的二元关系R，它具有自反性、对称性和传递性。等价关系将集合A中的元素划分为若干个互不相交的子集（等价类），这些等价类的全体构成A的划分。例如，在有理数域$Q$上，定义$a/b \\simeq c/d$当且仅当$a \\cdot d = b \\cdot c$，这构成了一个等价关系。",
+      "neighbors": [
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于关系"
+        },
+        {
+          "subject": "等势/equipotency",
+          "predicate": "belong_to",
+          "object": "等价关系/equivalence relation",
+          "label": "属于",
+          "natural_statement": "等势属于等价关系"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "belong_to",
+          "object": "二元关系/binary relation",
+          "label": "属于",
+          "natural_statement": "等价关系属于二元关系"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "property_of",
+          "object": "对称性/Symmetry",
+          "label": "具有…性质",
+          "natural_statement": "等值关系具有对称性性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1084800_1258500",
+          "text": "关系包括等于、子集、真子集、包含、真包含等。我们先来看等于的定义。如何定义两个集合相等？定义是：A = B 当且仅当对于任意 x，x 属于 A 等价于 x 属于 B。这是一个一阶谓词逻辑表达式，且 x 不是自由变元，所以它是一个命题。如果这个命题为真，则 A 等于 B 为真。相等关系满足三个性质：自反性，即 A = A；对称性，即 A = B 可推出 B = A；传递性，即 A = B 且 B = C 可推出 A = C。后面讲关系时会反复提到。接下来是外延公理，它表示：一个集合是由它的元素完全决定的。如果 A 和 B 相等，那么它们的元素都相同。例如，A = {7, 8, 9}，B = {x | x 是整数且 6 < x < 10}，C = {x | (x-7)(x-8)(x-9) = 0}，则 A = B = C。",
+          "start_sec": 1084.8,
+          "end_sec": 1258.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1084800_1258500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1705800_1822000",
+          "text": "这是一个初始符号，而它是由子集来定义的，子集是由属于这个符号来定义的。这里有一个定理一：两个集合相等的充要条件是它们互为子集。这就是我们刚才说的等值定理。以后会看到，子集是一种偏序关系，在讲关系时会介绍。偏序关系满足自反性，与等值关系一样：A是A的子集。它不满足对称性，对称性是A等于B则B等于A，而这里是反对称性：如果A是B的子集且B是A的子集，那么A必须等于B。它和等于一样满足传递性：A是B的子集，B是C的子集，则A是C的子集。偏序关系与等值关系唯一的不同在于中间这个性质：等值关系是对称性，A等于B则B等于A；偏序关系是反对称性，如果A是B的子集且B是A的子集，那么A和B相等。这就是等值关系和偏序关系的区别，在集合论第10章会介绍关系。",
+          "start_sec": 1705.8,
+          "end_sec": 1822.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1705800_1822000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "笛卡儿积/Cartesian product",
+      "zh": "笛卡儿积",
+      "importance": 0.035756,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "笛卡儿积（Cartesian product），又称卡氏积、乘积或直积，是数理逻辑与集合论中的…",
+      "definition": "笛卡儿积（Cartesian product），又称卡氏积、乘积或直积，是数理逻辑与集合论中的一种集合二元运算。它是指由两个非空集合A和B的所有有序对<x,y>（其中x属于A，y属于B）构成的集合，记作A×B。笛卡儿积是定义关系概念的基础，其性质包括不满足交换律和结合律，但满足分配律，且两个有限集的笛卡儿积的基数等于它们各自基数的乘积。例如，两个可数集的笛卡儿积仍是可数集。",
+      "neighbors": [
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "related_with",
+          "object": "有序对/ordered pair",
+          "label": "定义为所有",
+          "natural_statement": "笛卡儿积定义为所有有序对"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2781300_2958800",
+          "text": "A和B的笛卡尔积定义为所有有序对(a,b)，其中a属于A，b属于B。有序对是有次序的，<a,b>与<b,a>一般不相等。有序对可以用集合来定义，定义方式为：<x,y>={{x},{x,y}}。这个集合中有两个元素，第一个元素是{x}，第二个元素是{x,y}，这样就区分了第一元素和第二元素。在平面直角坐标系上，一个点的坐标就是一个有序对。",
+          "start_sec": 2781.3,
+          "end_sec": 2958.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2781300_2958800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "空集/empty set",
+      "zh": "空集",
+      "importance": 0.034821,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "空集（empty set）是集合论中的一个基本概念，指不包含任何元素的集合。",
+      "definition": "空集（empty set）是集合论中的一个基本概念，指不包含任何元素的集合。它在数理逻辑和集合论中扮演着基础性的角色，是公理系统构造的第一个集合，并且是唯一的。空集的基数（元素个数）为0，记作$\\emptyset$或Ø。它具有特殊的性质，例如它是任何集合的子集，并且与全集互补。空集也是传递集合、开集和闭集。",
+      "neighbors": [
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "空集包含集合"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "是...的实例",
+          "natural_statement": "空集是集合的实例"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "幂集/power set",
+          "label": "属于",
+          "natural_statement": "空集属于幂集"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1259400_1704600",
+          "text": "那么第二个呢就是子集的概念。子集的定义：如果A是B的子集，那么对于任意的x，如果x属于A，可以推出x属于B。这是一个方向。由集合相等，我们可以推出A等于B当且仅当A是B的子集且B是A的子集。这个证明很好证。例如，A等于B，即任意的x，x属于A等价于x属于B，这等价于任意的x，x属于A蕴含x属于B，且x属于B蕴含x属于A。而任意对与是满足分配律的，所以可以写成任意的x，x属于A蕴含x属于B，且任意的x，x属于B蕴含x属于A。前者就是A是B的子集的定义，后者就是B是A的子集的定义。这样我们就得到了等值定理。所以这就是子集的概念。真子集的概念就相对简单：如果A是B的真子集，那么A是B的子集且A不等于B。\n\n大家一定要注意区分子集和属于这两个概念。现在可能觉得容易区分，但后面讲到空集和以空集为元素的集合时，很容易搞错。例如，有一个集合，它的元素是a、b，还有一个集合，它的元素只有a。那么以a为元素",
+          "start_sec": 1259.4,
+          "end_sec": 1704.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1259400_1704600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1840500_1893600",
+          "text": "空集是不含任何元素的集合，记作Φ。空集的定义可以写成Φ = {x | x ≠ x}。定理：对任意的集合A，Φ ⊆ A。推论：空集是唯一的。全集是在给定的问题中，所考虑的所有事物的集合，记作E。全集的定义可以写成E = {x | x = x}。",
+          "start_sec": 1840.5,
+          "end_sec": 1893.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1840500_1893600.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_2501000_2776000",
+          "text": "我们来定义集合A的幂集。A的幂集就是所有A的子集组成的集合，记作P(A)，即P(A)={x|x⊆A}。例如，P(∅)={∅}，P({∅})={∅,{∅}}，P({a,b})={∅,{a},{b},{a,b}}。对任意集合A，有∅∈P(A)，A∈P(A)。空集是所有集合的子集，所以空集是任何集合幂集的元素；A本身也是A的幂集的元素。因此，一个集合的幂集至少有两个元素，但当A是空集时，P(∅)只有一个元素∅。如果A不是空集，则至少有两个元素：空集和A本身。注意，幂集中的元素都是集合，例如当A={a}时，P({a})={∅,{a}}，这里{a}是集合，不能写成a。若A={a,b}，则P({a,b})={∅,{a},{b},{a,b}}，共四个元素。一般地，若A的元素个数为n，则A的幂集的元素个数为2的n次方。这就是幂集的概念。",
+          "start_sec": 2501.0,
+          "end_sec": 2776.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2501000_2776000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "交集/Intersection",
+      "zh": "交集",
+      "importance": 0.032205,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "交集（Intersection）是集合论中的一种二元运算，表示两个或多个集合共有的元素组成的集…",
+      "definition": "交集（Intersection）是集合论中的一种二元运算，表示两个或多个集合共有的元素组成的集合。数学上，集合A和集合B的交集记作$A \\cap B$，定义为$A \\cap B = {x \\mid x \\in A \\land x \\in B}$。在模糊集合论中，交集可以通过取成员隶属度（membership degree）的最小值来定义，即$\\mu_{A \\cap B}(x) = \\min(\\mu_A(x), \\mu_B(x))$。交集运算满足交换律、结合律，并且是闭集（任意闭集的交集是闭集）和开集（有限个开集的交集是开集）。",
+      "neighbors": [
+        {
+          "subject": "交集/Intersection",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "表示",
+          "natural_statement": "交集表示集合运算"
+        },
+        {
+          "subject": "交集/Intersection",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "交集依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2146100_2497800",
+          "text": "我们介绍一个一元的运算叫广义并。广义并要求A的元素都是集合。A的广义并，就是A的元素的元素的集合，即所有这样的x的集合：存在一个z，z属于A，且x属于z。广义交定义为：A的广义交是所有x的集合，使得对任意z，如果z属于A，则x属于z。例如，已知集合A={ {a,b,c}, {a,b}, {b,c,d} }，则广义并U A={a,b,c,d}，广义交∩A={b}。空集的广义并是空集，以空集为元素的广义并也是空集。空集的广义交不存在，以空集为元素的广义交是空集。用广义并和广义交可以定义并集和交集：A∪B = U{A,B}，A∩B = ∩{A,B}。广义并和广义交是并集和交集的拓展，可以实现任意多个集合的并集与交集。",
+          "start_sec": 2146.1,
+          "end_sec": 2497.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2146100_2497800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "并集/union",
+      "zh": "并集",
+      "importance": 0.03207,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "并集（union）是集合论中的一个基本二元运算，表示包含两个或多个集合中所有元素的集合。",
+      "definition": "并集（union）是集合论中的一个基本二元运算，表示包含两个或多个集合中所有元素的集合。具体而言，集合A与集合B的并集A ∪ B定义为所有属于A或属于B的元素的集合（{x | x ∈ A ∨ x ∈ B}）。并集运算在集合论、逻辑学以及许多数学分支中扮演核心角色，例如其性质A ∪ B = B ∪ A（交换律）在代数结构中尤为重要。在关系代数中，并集运算也广泛应用于复合关系的计算。",
+      "neighbors": [
+        {
+          "subject": "并集/union",
+          "predicate": "belong_to",
+          "object": "集合运算/set operation",
+          "label": "表示",
+          "natural_statement": "并集表示集合运算"
+        },
+        {
+          "subject": "并集/union",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "并集依赖集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_2146100_2497800",
+          "text": "我们介绍一个一元的运算叫广义并。广义并要求A的元素都是集合。A的广义并，就是A的元素的元素的集合，即所有这样的x的集合：存在一个z，z属于A，且x属于z。广义交定义为：A的广义交是所有x的集合，使得对任意z，如果z属于A，则x属于z。例如，已知集合A={ {a,b,c}, {a,b}, {b,c,d} }，则广义并U A={a,b,c,d}，广义交∩A={b}。空集的广义并是空集，以空集为元素的广义并也是空集。空集的广义交不存在，以空集为元素的广义交是空集。用广义并和广义交可以定义并集和交集：A∪B = U{A,B}，A∩B = ∩{A,B}。广义并和广义交是并集和交集的拓展，可以实现任意多个集合的并集与交集。",
+          "start_sec": 2146.1,
+          "end_sec": 2497.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_2146100_2497800.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_339300_810600",
+          "text": "正式开始讲集合论了。上周五我们简单介绍了集合论的发展历史，主要是从康托的朴素集合论到后面的ZFC公理系统，这两套系统我们都会介绍。首先先介绍一些朴素的集合论。集合大家都已经很熟悉了，从中学就开始接触集合的概念。我们知道集合就是一些元素，集合里面包含很多元素，这些元素不能重复，没有次序，不一定同质，可以是任何东西放在一起。集合中引入了这样一个初始的符号叫做“属于”，我们有“a属于A”这样的初始符号。“a属于A”是一个命题，它是一个逻辑语句，必须非真即假，要么属于，要么不属于。所以“a属于A”是一个命题，必须非真即假，或者“a不属于A”。下面这些都是例子。这些例子中，例1，A等于{9,8,8,7}，B等于{9,8,7}，则A等于B。集合可以表示成把元素一个一个列出来，这叫外延式表示。还可以用内涵表示法，比如例4，D等于{x|x等于1或存在y，y属于D且x等于{y}}，这是一个递归表示，或者用一",
+          "start_sec": 339.3,
+          "end_sec": 810.6,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_339300_810600.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "对称性/Symmetry",
+      "zh": "对称性",
+      "importance": 0.031936,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "对称性是数理逻辑与集合论中描述二元关系的一种性质。",
+      "definition": "对称性是数理逻辑与集合论中描述二元关系的一种性质。若在一个集合A上定义的关系R满足“若xRy，则yRx”的条件，即关系R是自反的、对称的、传递的，那么称R具有对称性。这在图论中表现为邻接矩阵是对称的，或图中任意两顶点之间若有单向边，则必有反向边。等势等性质也具有对称性。",
+      "neighbors": [
+        {
+          "subject": "对称性/Symmetry",
+          "predicate": "property_of",
+          "object": "相等关系/equality relation",
+          "label": "是…属性",
+          "natural_statement": "对称性是相等关系属性"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "property_of",
+          "object": "对称性/Symmetry",
+          "label": "具有…性质",
+          "natural_statement": "等值关系具有对称性性质"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_11_1084800_1258500",
+          "text": "关系包括等于、子集、真子集、包含、真包含等。我们先来看等于的定义。如何定义两个集合相等？定义是：A = B 当且仅当对于任意 x，x 属于 A 等价于 x 属于 B。这是一个一阶谓词逻辑表达式，且 x 不是自由变元，所以它是一个命题。如果这个命题为真，则 A 等于 B 为真。相等关系满足三个性质：自反性，即 A = A；对称性，即 A = B 可推出 B = A；传递性，即 A = B 且 B = C 可推出 A = C。后面讲关系时会反复提到。接下来是外延公理，它表示：一个集合是由它的元素完全决定的。如果 A 和 B 相等，那么它们的元素都相同。例如，A = {7, 8, 9}，B = {x | x 是整数且 6 < x < 10}，C = {x | (x-7)(x-8)(x-9) = 0}，则 A = B = C。",
+          "start_sec": 1084.8,
+          "end_sec": 1258.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1084800_1258500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_11_1705800_1822000",
+          "text": "这是一个初始符号，而它是由子集来定义的，子集是由属于这个符号来定义的。这里有一个定理一：两个集合相等的充要条件是它们互为子集。这就是我们刚才说的等值定理。以后会看到，子集是一种偏序关系，在讲关系时会介绍。偏序关系满足自反性，与等值关系一样：A是A的子集。它不满足对称性，对称性是A等于B则B等于A，而这里是反对称性：如果A是B的子集且B是A的子集，那么A必须等于B。它和等于一样满足传递性：A是B的子集，B是C的子集，则A是C的子集。偏序关系与等值关系唯一的不同在于中间这个性质：等值关系是对称性，A等于B则B等于A；偏序关系是反对称性，如果A是B的子集且B是A的子集，那么A和B相等。这就是等值关系和偏序关系的区别，在集合论第10章会介绍关系。",
+          "start_sec": 1705.8,
+          "end_sec": 1822.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_11_1705800_1822000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

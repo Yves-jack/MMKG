@@ -159,7 +159,7 @@ _SUPPLEMENT_LINE_RE = re.compile(
 
 
 @lru_cache(maxsize=4)
-def load_key_term_lexicon(course_hint: str = "shuliluoji") -> tuple[str, ...]:
+def load_key_term_lexicon(course_hint: str = "数理逻辑") -> tuple[str, ...]:
     """教材实体中文名（长到短），用作「修正专有名词」词典。"""
     del course_hint  # 预留按课程切换
     textbook_dirs = [
@@ -530,12 +530,14 @@ def rel_path(path: str | None, html_dir: Path) -> str:
     return Path(os.path.relpath(p, html_dir)).as_posix()
 
 
-def resolve_cue_media(cue: dict, trips: list[dict], html_dir: Path, course_id: str) -> tuple[str, str]:
+def resolve_cue_media(
+    cue: dict, trips: list[dict], html_dir: Path, course_id: str
+) -> tuple[str, str, list[str]]:
     """解析片段视频与 PPT 截图路径（相对 html_dir）。
 
     优先级：
     - clip：cue.clip_path → 三元组 clip_path
-    - ppt：Stage0 OCR 按主归属页 → cue.extra.ppt_frame_path → 三元组（旧路径易滞后）
+    - ppt / ppt_pages：Stage0 OCR 按 cue 时间窗连续页 → cue.extra → 三元组
     """
     clip = rel_path(cue.get("clip_path"), html_dir)
     if not clip:
@@ -544,11 +546,14 @@ def resolve_cue_media(cue: dict, trips: list[dict], html_dir: Path, course_id: s
             if clip:
                 break
 
-    # 片段与 PPT 截图对齐后，优先按时间主归属页取帧，避免旧三元组帧残留
-    ppt = _resolve_ppt_from_stage0(cue, html_dir, course_id)
+    # 片段与 PPT 截图对齐后，优先按时间窗取连续页，避免旧三元组帧残留
+    ppt_pages = _resolve_ppt_pages_from_stage0(cue, html_dir, course_id)
+    ppt = ppt_pages[0] if ppt_pages else ""
     if not ppt:
         extra = cue.get("extra") if isinstance(cue.get("extra"), dict) else {}
         ppt = rel_path(extra.get("ppt_frame_path"), html_dir)
+        if ppt:
+            ppt_pages = [ppt]
     if not ppt:
         for t in trips or []:
             ppt = rel_path(
@@ -556,37 +561,65 @@ def resolve_cue_media(cue: dict, trips: list[dict], html_dir: Path, course_id: s
                 html_dir,
             )
             if ppt:
+                ppt_pages = [ppt]
                 break
-    return clip, ppt
+    return clip, ppt, ppt_pages
 
 
-def _resolve_ppt_from_stage0(cue: dict, html_dir: Path, course_id: str) -> str:
-    """当 cue.extra 未挂 ppt 帧时，按主归属 PPT 页对齐 OCR 截图。"""
+def list_lecture_ppt_gallery(course_id: str, lecture_id: str, html_dir: Path) -> list[str]:
+    """列出该讲 OCR 目录下全部 ppt_page_*.jpg（按页码），供「全部片段」左右翻看。"""
+    lecture_id = str(lecture_id or "").strip()
+    if not lecture_id or not course_id:
+        return []
+    ocr_dir = ROOT / "data" / "segments" / course_id / "asr_work" / lecture_id / "ocr"
+    if not ocr_dir.is_dir():
+        return []
+    frames: list[tuple[int, Path]] = []
+    for p in ocr_dir.glob("ppt_page_*.jpg"):
+        stem = p.stem  # ppt_page_005
+        try:
+            idx = int(stem.rsplit("_", 1)[-1])
+        except ValueError:
+            continue
+        frames.append((idx, p))
+    frames.sort(key=lambda x: x[0])
+    out: list[str] = []
+    for _, p in frames:
+        rel = rel_path(str(p), html_dir)
+        if rel:
+            out.append(rel)
+    return out
+
+
+def _resolve_ppt_pages_from_stage0(
+    cue: dict, html_dir: Path, course_id: str
+) -> list[str]:
+    """按 cue 时间窗取连续 PPT 页 OCR 截图（可多张）。"""
     lecture_id = str(cue.get("lecture_id") or "").strip()
     if not lecture_id or not course_id:
-        return ""
+        return []
     try:
         start = float(cue.get("start_sec") or 0)
         end = float(cue.get("end_sec") or start)
     except (TypeError, ValueError):
-        return ""
+        return []
 
     segments_dir = ROOT / "data" / "segments"
     seg_txt = segments_dir / course_id / "ppt_change" / f"{lecture_id}_seg.txt"
     ocr_dir = segments_dir / course_id / "asr_work" / lecture_id / "ocr"
     if not seg_txt.is_file() or not ocr_dir.is_dir():
-        return ""
+        return []
 
     try:
         from teachkg.schemas import SubtitleCue
-        from teachkg.stage0_segmentation.ppt_page_utils import primary_page_for_cue
+        from teachkg.stage0_segmentation.ppt_page_utils import select_pages_for_cue
         from teachkg.stage1_alignment.stage0_frame import (
             load_ppt_pages,
             stage0_ocr_frame_path,
         )
         from teachkg.utils.time import parse_time_nodes_file
     except Exception:
-        return ""
+        return []
 
     try:
         nodes = parse_time_nodes_file(str(seg_txt))
@@ -596,18 +629,29 @@ def _resolve_ppt_from_stage0(cue: dict, html_dir: Path, course_id: str) -> str:
 
     pages = load_ppt_pages(segments_dir, course_id, lecture_id, duration)
     if not pages:
-        return ""
+        return []
 
-    primary = primary_page_for_cue(
+    selected = select_pages_for_cue(
         SubtitleCue(start_sec=start, end_sec=end, text=str(cue.get("asr_text") or "")),
         pages,
     )
-    if primary is None:
-        return ""
-    frame_path = stage0_ocr_frame_path(
-        segments_dir, course_id, lecture_id, primary.index
-    )
-    return rel_path(str(frame_path), html_dir)
+    out: list[str] = []
+    for page in selected:
+        frame_path = stage0_ocr_frame_path(
+            segments_dir, course_id, lecture_id, page.index
+        )
+        if not frame_path.is_file():
+            continue
+        rel = rel_path(str(frame_path), html_dir)
+        if rel:
+            out.append(rel)
+    return out
+
+
+def _resolve_ppt_from_stage0(cue: dict, html_dir: Path, course_id: str) -> str:
+    """兼容旧调用：返回主页（连续页中的第一张）。"""
+    pages = _resolve_ppt_pages_from_stage0(cue, html_dir, course_id)
+    return pages[0] if pages else ""
 
 def edge_from_trip(t: dict, *, stage: str, idx: int) -> dict:
     pred = t.get("abstract_relation") or t.get("predicate") or t.get("label") or ""
@@ -655,6 +699,11 @@ def edge_from_trip(t: dict, *, stage: str, idx: int) -> dict:
         "attribute_category": t.get("attribute_category") or "",
         "correction_action": action or None,
     }
+    kps = t.get("related_knowledge_points") or t.get("knowledge_points") or []
+    if isinstance(kps, list) and kps:
+        out["related_knowledge_points"] = [str(x).strip() for x in kps if str(x).strip()]
+    elif isinstance(kps, str) and kps.strip():
+        out["related_knowledge_points"] = [kps.strip()]
     if source == "cross_cue" and raw_source and raw_source != "cross_cue":
         out["extract_source"] = raw_source
         if not out["title"]:
@@ -938,8 +987,12 @@ def build_cross_cue_window_items(
     by_span: dict[str, list[dict]] = defaultdict(list)
     for t in trips_all:
         src = str(t.get("extract_source") or "")
-        if is_cross_cue_extract_source(src):
-            by_span[src].append(t)
+        span_key = str(t.get("cross_cue_span") or src)
+        if is_cross_cue_extract_source(src) or is_cross_cue_extract_source(span_key):
+            # 优先用窗口标题键（兼容 extract_source=cross_cue + cross_cue_span）
+            key = span_key if "讲的第" in span_key else src
+            if key:
+                by_span[key].append(t)
 
     # 去重掉的候选：记在 cue.stage1.triplet_validation.cross_cue_window_logs
     deduped_by_span: dict[str, list[dict]] = defaultdict(list)
@@ -1260,6 +1313,15 @@ def annotate_graph_node_kinds(
                 n["kind"] = "entity"
 
 
+def _config_for_course(course_id: str) -> Path:
+    """离散数学合并课用 teaching_lisan.yaml，其余默认 teaching.yaml。"""
+    if "图论" in str(course_id) or "离散数学(" in str(course_id):
+        alt = ROOT / "configs" / "teaching_lisan.yaml"
+        if alt.is_file():
+            return alt
+    return ROOT / "configs" / "teaching.yaml"
+
+
 def build_seed_retriever(course_id: str):
     """构建与 Stage1 一致的种子检索器（含 LLM 种子筛）。"""
     from teachkg.config import TeachKGConfig
@@ -1267,7 +1329,7 @@ def build_seed_retriever(course_id: str):
     from teachkg.textbook_kg import subgraph, theorem_edges
     from teachkg.textbook_kg.loader import TextbookKG
 
-    cfg = TeachKGConfig.from_yaml(ROOT / "configs/teaching.yaml")
+    cfg = TeachKGConfig.from_yaml(_config_for_course(course_id))
     tb = cfg.get("stage1", "textbook_kg", default={}) or {}
     rcfg = tb.get("subgraph", {}) or {}
     filter_cfg = rcfg.get("seed_llm_filter", {}) or {}
@@ -1383,6 +1445,7 @@ def build_cue_payload(
 
     tb = [t for t in trips if t.get("extract_source") == "textbook"]
     delta = [t for t in trips if t.get("extract_source") == "lecture_delta"]
+    kgc = [t for t in trips if t.get("extract_source") == "kg_completion"]
     fb = [t for t in trips if t.get("extract_source") == "llm_fallback"]
     # 跨段边：不进入段级 delta/merge 展示，单独挂在 item.cross_cue_edges，供讲次/课堂级并入
     cross = [
@@ -1431,10 +1494,14 @@ def build_cue_payload(
 
     tb_edges = [edge_from_trip(t, stage="textbook", idx=i) for i, t in enumerate(tb)]
     delta_edges = [edge_from_trip(t, stage="delta", idx=i) for i, t in enumerate(delta)]
+    kgc_edges = [
+        edge_from_trip(t, stage="delta", idx=len(delta) + i) for i, t in enumerate(kgc)
+    ]
     fb_edges = [edge_from_trip(t, stage="fallback", idx=i) for i, t in enumerate(fb)]
     cross_edges = [
         edge_from_trip(t, stage="cross_cue", idx=i) for i, t in enumerate(cross)
     ]
+    delta_all_edges = delta_edges + kgc_edges
     filtered_edges = resolve_filtered_textbook_edges(cue, tb_edges, retriever)
     textbook_stage_edges = tb_edges + filtered_edges
     textbook_nodes = {e["from"] for e in textbook_stage_edges} | {
@@ -1726,14 +1793,14 @@ def build_cue_payload(
     corr_stats = corr_meta.get("stats") or {}
 
     new_entities = set()
-    for t in delta:
+    for t in list(delta) + list(kgc):
         if t.get("subject_entity_ref") == "new":
             new_entities.add(t.get("subject") or "")
         if t.get("object_entity_ref") == "new":
             new_entities.add(t.get("object") or "")
     new_entities.discard("")
 
-    clip, ppt = resolve_cue_media(cue, trips, html_dir, cid)
+    clip, ppt, ppt_pages = resolve_cue_media(cue, trips, html_dir, cid)
 
     stages = [
         {
@@ -1759,7 +1826,7 @@ def build_cue_payload(
             "id": "preprocess",
             "title": "文本预处理",
             "subtitle": "校对文本 ↔ extract_text",
-            "blurb": "左为 PPT 校对后的口述文本，右为清洗后的可抽取文本（去寒暄与无关话术）。",
+            "blurb": "左为 PPT 校对后的口述文本，右为清洗后的可抽取文本（去寒暄、例子与介绍引入）。",
             "nodes": [],
             "edges": [],
             "focus": "text",
@@ -1794,7 +1861,7 @@ def build_cue_payload(
             "subtitle": "保留边须有课堂原文依据",
             "blurb": (
                 "左栏为处理原文：点边高亮其课堂依据。"
-                "右栏：绿边=写入（含依据），灰边=边筛过滤；琥珀/青=种子，绿节点=扩展实体。"
+                "右栏：绿边=写入（含课堂依据），灰边=边筛过滤；琥珀/青=种子，绿节点=扩展实体。"
             ),
             "nodes": _textbook_stage_nodes(
                 textbook_nodes,
@@ -1842,19 +1909,20 @@ def build_cue_payload(
         {
             "id": "delta",
             "title": "课堂增量",
-            "subtitle": "教材未覆盖的概念关系",
-            "blurb": "仅展示本段课堂增量边；粉色=教材中确无的新实体，绿色=教材已有实体（仅边新增）。",
+            "subtitle": "严格原文增量 + KG补全",
+            "blurb": "蓝=严格依据原文；橙=为知识点完整性的 KG 补全；粉色=教材中确无的新实体。",
             "nodes": nodes_from_names(
-                {e["from"] for e in delta_edges} | {e["to"] for e in delta_edges},
+                {e["from"] for e in delta_all_edges} | {e["to"] for e in delta_all_edges},
                 kind="delta",
                 importance=importance,
                 importance_base=importance_base,
             ),
-            "edges": delta_edges,
+            "edges": delta_all_edges,
             "focus": "graph",
             "text": extract,
             "stats": {
                 "delta_edges": len(delta_edges),
+                "kg_completion_edges": len(kgc_edges),
                 "new_entities": len(new_entities),
             },
             "new_entities": sorted(new_entities),
@@ -1865,7 +1933,7 @@ def build_cue_payload(
             "subtitle": "修正后教材 + 增量",
             "blurb": (
                 "左栏课堂原文（悬停/点选划线看关系）；右栏完成本段知识子图。"
-                "边色：绿=教材边（含课堂修订），蓝粗=课堂增量，灰虚线=过滤边；"
+                "边色：绿=教材边（含课堂修订），蓝=原文增量，橙=KG补全，灰虚线=过滤边；"
                 "粉节点=教材中确无的新实体；增量边端点若已在教材母图则按教材节点着色。"
             ),
             # 节点必须覆盖修正后 SPO（revise 可能改实体名），不能只用原始 trips
@@ -1873,8 +1941,8 @@ def build_cue_payload(
                 (
                     {e.get("from") for e in corr_edges}
                     | {e.get("to") for e in corr_edges}
-                    | {e.get("from") for e in delta_edges}
-                    | {e.get("to") for e in delta_edges}
+                    | {e.get("from") for e in delta_all_edges}
+                    | {e.get("to") for e in delta_all_edges}
                     | {e.get("from") for e in fb_edges}
                     | {e.get("to") for e in fb_edges}
                 )
@@ -1883,14 +1951,15 @@ def build_cue_payload(
                 importance=importance,
                 importance_base=importance_base,
             ),
-            "edges": corr_edges + delta_edges + fb_edges,
+            "edges": corr_edges + delta_all_edges + fb_edges,
             "focus": "multimodal",
             "text": extract,
             "stats": {
                 "textbook": len(corr_edges),
                 "delta": len(delta_edges),
+                "kg_completion": len(kgc_edges),
                 "fallback": len(fb_edges),
-                "total": len(corr_edges) + len(delta_edges) + len(fb_edges),
+                "total": len(corr_edges) + len(delta_all_edges) + len(fb_edges),
             },
         },
     ]
@@ -1906,7 +1975,7 @@ def build_cue_payload(
         stages,
         seed_nodes=seed_nodes,
         tb_edges=corr_edges or tb_edges,
-        delta_edges=delta_edges,
+        delta_edges=delta_all_edges,
         fb_edges=fb_edges,
         new_entities=new_entities,
         textbook_names=tb_names,
@@ -1928,7 +1997,7 @@ def build_cue_payload(
         "raw_asr_text": raw_asr,
         "extract_text": extract,
         "preprocess_status": s1.get("text_preprocess_status"),
-        "media": {"clip": clip, "ppt": ppt},
+        "media": {"clip": clip, "ppt": ppt, "ppt_pages": ppt_pages},
         "stages": stages,
         # 仅讲次/课堂级图谱读取；段级流水线页不展示
         "cross_cue_edges": cross_edges,
@@ -2037,7 +2106,7 @@ def lecture_graph_from_trips(
             e["source"] = t.get("extract_source") or "textbook"
         e["lecture_id"] = str(lecture_id)
         edges.append(e)
-        if t.get("extract_source") == "lecture_delta":
+        if t.get("extract_source") in {"lecture_delta", "kg_completion"}:
             if t.get("subject_entity_ref") == "new":
                 new_entities.add(t.get("subject") or "")
             if t.get("object_entity_ref") == "new":
@@ -2069,7 +2138,7 @@ def lecture_graph_from_trips(
         endpoints = {e.get("from") or "", e.get("to") or ""}
         endpoints.discard("")
         src = str(e.get("source") or "")
-        if src == "lecture_delta":
+        if src in {"lecture_delta", "kg_completion"}:
             delta_nodes |= endpoints
         elif src == "filtered":
             filtered_nodes |= endpoints
@@ -2138,6 +2207,7 @@ def lecture_graph_from_trips(
         "nodes": len(nodes),
         "textbook": src_counts.get("textbook", 0),
         "delta": src_counts.get("lecture_delta", 0),
+        "kg_completion": src_counts.get("kg_completion", 0),
         "filtered": src_counts.get("filtered", 0),
         "nodes_textbook": n_tb,
         "nodes_delta": n_delta,
@@ -2216,7 +2286,7 @@ def fuse_lecture_graphs(
         src = t.get("extract_source") or ""
         if src == "textbook":
             tb_ents |= endpoints
-        elif src in {"lecture_delta", "llm_fallback"}:
+        elif src in {"lecture_delta", "kg_completion", "llm_fallback"}:
             class_ents |= endpoints
 
     kind_a = f"lecture_{lec_a}"
@@ -2282,7 +2352,10 @@ def load_or_compute_importance(
     write: bool = True,
     lecture_id: str | None = None,
 ) -> dict[str, dict[str, float]]:
-    """计算课堂反馈重要性（P2 分章先验 + P3 时长融合）。"""
+    """计算课堂反馈重要性（P2 分章先验 + P3 时长融合）。
+
+    若已有 v2 正式反馈文件，优先复用，避免 session/单讲导出覆盖 merge 结果。
+    """
     from teachkg.config import TeachKGConfig
     from teachkg.textbook_kg.chapter_map import resolve_lecture_chapters
     from teachkg.textbook_kg.importance_feedback import (
@@ -2295,12 +2368,42 @@ def load_or_compute_importance(
         save_feedback,
     )
 
-    cfg = TeachKGConfig.from_yaml(ROOT / "configs/teaching.yaml")
+    cfg = TeachKGConfig.from_yaml(_config_for_course(course))
     tb = cfg.get("stage1", "textbook_kg", default={}) or {}
     fb_cfg = tb.get("importance_feedback", {}) or {}
     if not fb_cfg.get("enabled", True):
         return {"scores": {}, "base_norm": {}, "classroom_norm": {}}
     configure_entity_weights(fb_cfg)
+
+    out = (
+        ROOT
+        / "data/kg"
+        / course
+        / fb_cfg.get("output_filename", "entity_importance_feedback.json")
+    )
+    if out.is_file():
+        try:
+            existing = json.loads(out.read_text(encoding="utf-8"))
+        except Exception:
+            existing = {}
+        scores = existing.get("scores") or {}
+        # v2 / merged 正式产物：直接复用，不再写回覆盖
+        if scores and (
+            int(existing.get("version") or 0) >= 2
+            or existing.get("by_context")
+            or (existing.get("meta") or {}).get("source") == "merged_lectures"
+        ):
+            return {
+                "scores": {str(k): float(v) for k, v in scores.items()},
+                "base_norm": {
+                    str(k): float(v)
+                    for k, v in (existing.get("base_norm") or {}).items()
+                },
+                "classroom_norm": {
+                    str(k): float(v)
+                    for k, v in (existing.get("classroom_norm") or {}).items()
+                },
+            }
 
     base_path = ROOT / tb.get("path", "data/textbook")
     chapter_order: list[str] = []
@@ -2378,12 +2481,6 @@ def load_or_compute_importance(
         meta=meta,
     )
     if write:
-        out = (
-            ROOT
-            / "data/kg"
-            / course
-            / fb_cfg.get("output_filename", "entity_importance_feedback.json")
-        )
         save_feedback(out, result)
         print(
             f"wrote importance feedback → {out} "
@@ -2426,7 +2523,7 @@ def build_session_payload(
 ) -> dict:
     """一堂课（两讲，约 110 分钟）图谱融合展示。"""
     imp = load_or_compute_importance(
-        course, trips_a + trips_b, write=True, lecture_id=lec_a
+        course, trips_a + trips_b, write=False, lecture_id=lec_a
     )
     scores, base = imp["scores"], imp["base_norm"]
 
@@ -2537,6 +2634,8 @@ def build_session_payload(
         },
     ]
 
+    gallery_a = list_lecture_ppt_gallery(course, lec_a, ROOT / "data" / "viz" / course)
+    gallery_b = list_lecture_ppt_gallery(course, lec_b, ROOT / "data" / "viz" / course)
     return {
         "brand": "VAT-KG",
         "product": "TeachKG Pipeline",
@@ -2548,6 +2647,7 @@ def build_session_payload(
         "subtitle": "两段讲次分别构图，再按概念关系对齐；节点大小由教材先验+课堂反馈决定",
         "cue_count": 1,
         "importance_feedback": True,
+        "ppt_gallery": gallery_a + gallery_b,
         "items": [
             {
                 "cue_id": f"session_{lec_a}_{lec_b}",
@@ -2557,7 +2657,7 @@ def build_session_payload(
                 "asr_text": session_text,
                 "extract_text": session_text,
                 "preprocess_status": "",
-                "media": {"clip": "", "ppt": ""},
+                "media": {"clip": "", "ppt": "", "ppt_pages": []},
                 "stages": stages,
                 "triplets": [],
             }
@@ -2592,7 +2692,7 @@ def write_showcase_html(payload: dict, html_dir: Path, stem: str) -> tuple[Path,
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--course-id", default="shuliluoji")
+    parser.add_argument("--course-id", default="数理逻辑")
     parser.add_argument("--lecture-id", default="1")
     parser.add_argument(
         "--session-lectures",
@@ -2743,6 +2843,7 @@ def main() -> None:
     if until == "seeds":
         subtitle = "文本到种子筛选（别名+向量统一严筛；向量上限随文本长度动态变化）"
 
+    ppt_gallery = list_lecture_ppt_gallery(course, lec, html_dir)
     payload = {
         "brand": "VAT-KG",
         "product": "TeachKG Pipeline",
@@ -2756,6 +2857,7 @@ def main() -> None:
         "cross_cue_window_count": len(cross_items),
         "importance_feedback": True,
         "until_stage": until,
+        "ppt_gallery": ppt_gallery,
         "items": items + cross_items,
     }
     stem = f"pipeline_build_lecture_{lec}"

@@ -1,0 +1,652 @@
+{
+  "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
+  "root": {
+    "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+    "zh": "第5章 谓词逻辑的等值和推理演算",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/谓词逻辑",
+        "zh": "谓词逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.207057,
+            "relation": null,
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/集合",
+        "zh": "集合",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "集合论/Set Theory",
+            "zh": "集合论",
+            "importance": 0.251499,
+            "relation": "chapter_topic",
+            "related": [
+              "数学"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "无限集合/infinite set",
+            "zh": "无限集合",
+            "importance": 0.044082,
+            "relation": "belong_to",
+            "related": [
+              "幂集"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "实数集合/set of real numbers",
+            "zh": "实数集合",
+            "importance": 0.043945,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "自然数集合/Set of Natural Numbers",
+            "zh": "自然数集合",
+            "importance": 0.025646,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/数理逻辑",
+        "zh": "数理逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/公理系统",
+        "zh": "公理系统",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "二元关系/binary relation",
+            "zh": "二元关系",
+            "importance": 0.05108,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "等价关系/equivalence relation",
+            "zh": "等价关系",
+            "importance": 0.049531,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "偏序关系/partial order relation",
+            "zh": "偏序关系",
+            "importance": 0.041238,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "恒等关系/identity relation",
+            "zh": "恒等关系",
+            "importance": 0.027049,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "子集关系/subset relation",
+            "zh": "子集关系",
+            "importance": 0.022331,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题",
+        "zh": "命题",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.072955,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/映射",
+        "zh": "映射",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/集合论",
+        "zh": "集合论",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数",
+        "zh": "函数",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/选择公理",
+        "zh": "选择公理",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/替换公理模式",
+        "zh": "替换公理模式",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理",
+        "zh": "定理",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/双射",
+        "zh": "双射",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/幂集",
+        "zh": "幂集",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第5章 谓词逻辑的等值和推理演算/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "初始符号/initial symbols",
+            "zh": "初始符号",
+            "importance": 0.217983,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "整数集/set of integers",
+            "zh": "整数集",
+            "importance": 0.055125,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.053902,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "集合运算/set operation",
+            "zh": "集合运算",
+            "importance": 0.047554,
+            "relation": "part_of",
+            "related": [
+              "集合"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "等势/equipotency",
+            "zh": "等势",
+            "importance": 0.043373,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "全集/universal set",
+            "zh": "全集",
+            "importance": 0.037956,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "有序对/ordered pair",
+            "zh": "有序对",
+            "importance": 0.035761,
+            "relation": "part_of",
+            "related": [
+              "笛卡儿积",
+              "集合"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "空集/empty set",
+            "zh": "空集",
+            "importance": 0.03422,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+      "zh": "第5章 谓词逻辑的等值和推理演算",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/谓词逻辑",
+          "zh": "谓词逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.207057,
+              "relation": null,
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/集合",
+          "zh": "集合",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "集合论/Set Theory",
+              "zh": "集合论",
+              "importance": 0.251499,
+              "relation": "chapter_topic",
+              "related": [
+                "数学"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "无限集合/infinite set",
+              "zh": "无限集合",
+              "importance": 0.044082,
+              "relation": "belong_to",
+              "related": [
+                "幂集"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "实数集合/set of real numbers",
+              "zh": "实数集合",
+              "importance": 0.043945,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "自然数集合/Set of Natural Numbers",
+              "zh": "自然数集合",
+              "importance": 0.025646,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/数理逻辑",
+          "zh": "数理逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/公理系统",
+          "zh": "公理系统",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "二元关系/binary relation",
+              "zh": "二元关系",
+              "importance": 0.05108,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "等价关系/equivalence relation",
+              "zh": "等价关系",
+              "importance": 0.049531,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "偏序关系/partial order relation",
+              "zh": "偏序关系",
+              "importance": 0.041238,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "恒等关系/identity relation",
+              "zh": "恒等关系",
+              "importance": 0.027049,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "子集关系/subset relation",
+              "zh": "子集关系",
+              "importance": 0.022331,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题",
+          "zh": "命题",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "简单命题/simple proposition",
+              "zh": "简单命题",
+              "importance": 0.072955,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/映射",
+          "zh": "映射",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/集合论",
+          "zh": "集合论",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数",
+          "zh": "函数",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/选择公理",
+          "zh": "选择公理",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/替换公理模式",
+          "zh": "替换公理模式",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理",
+          "zh": "定理",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/双射",
+          "zh": "双射",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/幂集",
+          "zh": "幂集",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第5章 谓词逻辑的等值和推理演算/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "初始符号/initial symbols",
+              "zh": "初始符号",
+              "importance": 0.217983,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "整数集/set of integers",
+              "zh": "整数集",
+              "importance": 0.055125,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "全称量词/universal quantifier",
+              "zh": "全称量词",
+              "importance": 0.053902,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "集合运算/set operation",
+              "zh": "集合运算",
+              "importance": 0.047554,
+              "relation": "part_of",
+              "related": [
+                "集合"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "等势/equipotency",
+              "zh": "等势",
+              "importance": 0.043373,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "全集/universal set",
+              "zh": "全集",
+              "importance": 0.037956,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "有序对/ordered pair",
+              "zh": "有序对",
+              "importance": 0.035761,
+              "relation": "part_of",
+              "related": [
+                "笛卡儿积",
+                "集合"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "空集/empty set",
+              "zh": "空集",
+              "importance": 0.03422,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 35,
+  "max_depth": 2,
+  "orphan_count": 14,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_zh": "第5章 谓词逻辑的等值和推理演算",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "10",
+      "11"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

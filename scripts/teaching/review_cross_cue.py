@@ -21,7 +21,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Review cross_cue triplets")
-    parser.add_argument("--course-id", default="shuliluoji")
+    parser.add_argument("--course-id", default="数理逻辑")
     parser.add_argument("--lecture-id", action="append", dest="lecture_ids")
     parser.add_argument(
         "--triplets",

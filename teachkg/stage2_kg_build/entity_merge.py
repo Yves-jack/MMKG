@@ -459,6 +459,11 @@ def merge_triplets_to_kg(
     for name in sorted(entity_names):
         _, zh, en = parse_entity(name)
         rec = EntityRecord(canonical=name, zh=zh, en=en)
+        # synonym_of + 字符串/嵌入归并别名一并写入，供 Stage3 反查课堂原名
+        for alias, syn_target in synonym_map.items():
+            final = merge_map.get(syn_target, syn_target)
+            if final == name and alias != name:
+                rec.aliases.add(alias)
         for alias, target in merge_map.items():
             if target == name and alias != name:
                 rec.aliases.add(alias)

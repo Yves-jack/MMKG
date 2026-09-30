@@ -1,0 +1,24 @@
+{
+  "courseId": "离散数学(图论+数理逻辑与集合论)",
+  "title": "单课复习整理",
+  "items": [
+    {
+      "lecture_id": "1",
+      "title": "第1讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_1.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/1_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/1_1.mp4",
+      "duration_sec": 3292.5
+    },
+    {
+      "lecture_id": "2",
+      "title": "第2讲 · 知识点浓缩",
+      "n_points": 24,
+      "path": "review/lecture_2.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/2_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/2_1.mp4",
+      "duration_sec": 3299.5
+    }
+  ]
+}

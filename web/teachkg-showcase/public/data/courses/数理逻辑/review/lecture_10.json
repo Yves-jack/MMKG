@@ -1,0 +1,1331 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "10",
+  "title": "第10讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/10_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/10_1.mp4",
+  "duration_sec": 3111.8,
+  "segments": [
+    {
+      "id": "数理逻辑_10_335700_730400",
+      "index": 1,
+      "start_sec": 335.7,
+      "end_sec": 730.4,
+      "title": "我们来看定理六的证明"
+    },
+    {
+      "id": "数理逻辑_10_732400_754700",
+      "index": 2,
+      "start_sec": 732.4,
+      "end_sec": 754.7,
+      "title": "我们继续讨论定理七的证明"
+    },
+    {
+      "id": "数理逻辑_10_758800_2480200",
+      "index": 3,
+      "start_sec": 758.8,
+      "end_sec": 2480.2,
+      "title": "我们首先证明任意x(P(x)→Q(x))→(…"
+    },
+    {
+      "id": "数理逻辑_10_2482100_2505000",
+      "index": 4,
+      "start_sec": 2482.1,
+      "end_sec": 2505.0,
+      "title": "集合论这部分内容我先做一个简单介绍"
+    },
+    {
+      "id": "数理逻辑_10_2505800_2525900",
+      "index": 5,
+      "start_sec": 2505.8,
+      "end_sec": 2525.9,
+      "title": "集合论的历史可以追溯到1873年"
+    },
+    {
+      "id": "数理逻辑_10_2526800_3077900",
+      "index": 6,
+      "start_sec": 2526.8,
+      "end_sec": 3077.9,
+      "title": "从19世纪至今，集合论从朴素集合论发展为公理…"
+    },
+    {
+      "id": "数理逻辑_10_3085200_3102300",
+      "index": 7,
+      "start_sec": 3085.2,
+      "end_sec": 3102.3,
+      "title": "这不是我的课件？这是为什么？我也不清楚"
+    },
+    {
+      "id": "数理逻辑_10_3103300_3111800",
+      "index": 8,
+      "start_sec": 3103.3,
+      "end_sec": 3111.8,
+      "title": "我无法下载课件"
+    }
+  ],
+  "points": [
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.722087,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.603587,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。",
+      "definition": "集合是集合论中的基本数学对象，用于描述一组确定的、可区分的、无序的、不重复的事物的汇聚。集合由其元素完全决定，可以通过外延（列举元素）、内涵（描述性质）或运算构造。集合是数理逻辑与集合论课程中的核心概念，如整数集 $\\mathbb{Z}$、有理数集 $\\mathbb{Q}$、实数集 $\\mathbb{R}$ 等均是集合的实例。",
+      "neighbors": [
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "双射依赖集合"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "幂集依赖集合"
+        },
+        {
+          "subject": "元素/Element",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "具有属性",
+          "natural_statement": "集合具有属性元素"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "函数依赖集合"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "集合包含空集"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "具有属性",
+          "natural_statement": "集合具有属性幂集"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2482100_2505000",
+          "text": "集合论这部分内容我先做一个简单介绍。集合论作为数学大厦的基础和基石，具有极其重要的地位。",
+          "start_sec": 2482.1,
+          "end_sec": 2505.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2482100_2505000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_3103300_3111800",
+          "text": "我无法下载课件。好的，我去查看一下集合。",
+          "start_sec": 3103.3,
+          "end_sec": 3111.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_3103300_3111800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "数理逻辑/Mathematical Logic",
+      "zh": "数理逻辑",
+      "importance": 0.583585,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "数理逻辑，亦称符号逻辑，是数学的一个分支，它采用数学的符号化方法研究命题间最一般的真值规律。",
+      "definition": "数理逻辑，亦称符号逻辑，是数学的一个分支，它采用数学的符号化方法研究命题间最一般的真值规律。其研究内容广泛，包括命题演算、谓词演算、集合论、模型论、递归论和证明论。数理逻辑通过符号化表达和形式化的推理规则，对推理形式和推理演化进行严谨分析，这使得其在计算机科学等领域得到了广泛应用。",
+      "neighbors": [
+        {
+          "subject": "集合论/Set Theory",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "集合论属于数理逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词逻辑属于数理逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 3
+    },
+    {
+      "id": "公理系统/axiomatic system",
+      "zh": "公理系统",
+      "importance": 0.289571,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一…",
+      "definition": "公理系统是数理逻辑与集合论中，从一组初始公理出发，通过一套严格的推理（或称变形）规则，推导出一系列定理的抽象符号系统。其目的是构建一个形式化的演绎体系，如命题演算的重言式所构成的公理系统。公理系统的关键在于其公理的独立性、系统的可靠性（是否能推导出非重言式）及完备性（是否所有普遍有效的公式都能被证明）。",
+      "neighbors": [
+        {
+          "subject": "证明过程/proof process",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "证明过程属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "belong_to",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "depend_on",
+          "object": "公理系统/axiomatic system",
+          "label": "依赖",
+          "natural_statement": "定理依赖公理系统"
+        },
+        {
+          "subject": "连续统假设/continuum hypothesis",
+          "predicate": "depend_on",
+          "object": "公理系统/axiomatic system",
+          "label": "依赖",
+          "natural_statement": "连续统假设依赖公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.271825,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之…",
+      "definition": "关系（Relation）是在集合上定义的一种连接概念，具体指由序对构成的集合，常用于描述元素之间的联系或映射。在数理逻辑与集合论中，关系可以表示为笛卡尔积的子集，例如在自然数集上可以定义相等关系或小于关系。关系具有多种性质，如自反性、对称性、反对称性和传递性，这些性质是研究等价关系和偏序关系的基础。关系可以通过集合表达式、关系矩阵或关系图等方式描述，并可通过合成、逆运算等方式进行组合。",
+      "neighbors": [
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "域/field",
+          "predicate": "part_of",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "域属于关系"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "depend_on",
+          "object": "关系/relation",
+          "label": "依赖",
+          "natural_statement": "选择公理依赖关系"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "关系属于集合论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2505800_2525900",
+          "text": "集合论的历史可以追溯到1873年。著名数学家康托将其职业生涯都奉献给了集合论研究。",
+          "start_sec": 2505.8,
+          "end_sec": 2525.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2505800_2525900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.240867,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "属于",
+          "natural_statement": "命题属于前提"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "命题依赖集合"
+        },
+        {
+          "subject": "简单命题/simple proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "包含",
+          "natural_statement": "简单命题包含命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_3085200_3102300",
+          "text": "这不是我的课件？这是为什么？我也不清楚。  \n好的，我去查看一下，你是哪个班级的？我就是你班上的学生。",
+          "start_sec": 3085.2,
+          "end_sec": 3102.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_3085200_3102300.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 6
+    },
+    {
+      "id": "映射/mapping",
+      "zh": "映射",
+      "importance": 0.171208,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的…",
+      "definition": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的规则，它将定义域中的每个元素唯一地关联到值域中的一个元素。在逻辑学语境下，谓词可以被视为从个体域到集合 {T, F} 的一个映射。函数是映射的一种，可以将一个体域的元素映射到另一个体域的元素，例如将自然数集映射到 [0,1] 区间。",
+      "neighbors": [
+        {
+          "subject": "映射/mapping",
+          "predicate": "depend_on",
+          "object": "自然数集/natural number set",
+          "label": "依赖",
+          "natural_statement": "映射依赖自然数集"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+      ],
+      "rank": 7
+    },
+    {
+      "id": "集合论/Set Theory",
+      "zh": "集合论",
+      "importance": 0.139816,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。",
+      "definition": "集合论是数理逻辑的一个分支，研究无穷集和超穷集，是各数学分支的共同语言和基础。它包含集合、运算、关系、函数和基数等基本概念，其公理系统（如外延公理）是其严谨性的体现，并探讨了如Russell悖论等重要问题。",
+      "neighbors": [
+        {
+          "subject": "集合论/Set Theory",
+          "predicate": "part_of",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "集合论属于数理逻辑"
+        },
+        {
+          "subject": "连续统假设/continuum hypothesis",
+          "predicate": "part_of",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "连续统假设属于集合论"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合属于集合论"
+        },
+        {
+          "subject": "数学/mathematics",
+          "predicate": "depend_on",
+          "object": "集合论/Set Theory",
+          "label": "依赖",
+          "natural_statement": "数学依赖集合论"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "关系属于集合论"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "函数属于集合论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2482100_2505000",
+          "text": "集合论这部分内容我先做一个简单介绍。集合论作为数学大厦的基础和基石，具有极其重要的地位。",
+          "start_sec": 2482.1,
+          "end_sec": 2505.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2482100_2505000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_2505800_2525900",
+          "text": "集合论的历史可以追溯到1873年。著名数学家康托将其职业生涯都奉献给了集合论研究。",
+          "start_sec": 2505.8,
+          "end_sec": 2525.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2505800_2525900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "函数/function",
+      "zh": "函数",
+      "importance": 0.091814,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映…",
+      "definition": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写字母表示，例如 $f(x)$ 表示个体 $x$ 的某种变换。函数可以被看作是一种特殊的二元关系，其关系矩阵的每行恰好有一个1，或者在关系图中，定义域中的每个顶点恰好发出一条有向边。函数还可进一步区分为单射（一对一）、满射（映上）和双射（一一对应），并可以进行复合、求逆等运算。",
+      "neighbors": [
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "函数依赖集合"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "双射属于函数"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "特殊关系/special relation",
+          "label": "属于",
+          "natural_statement": "函数属于特殊关系"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "depend_on",
+          "object": "函数/function",
+          "label": "依赖",
+          "natural_statement": "选择公理依赖函数"
+        },
+        {
+          "subject": "象/image",
+          "predicate": "depend_on",
+          "object": "函数/function",
+          "label": "依赖",
+          "natural_statement": "象依赖函数"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "property_of",
+          "object": "函数/function",
+          "label": "具有属性",
+          "natural_statement": "函数具有属性双射"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "函数属于集合论"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "选择公理/选择公理",
+      "zh": "选择公理",
+      "importance": 0.075457,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "选择公理（Axiom of Choice, AC）是集合论中的一个公理，它断言对任意一个非空集…",
+      "definition": "选择公理（Axiom of Choice, AC）是集合论中的一个公理，它断言对任意一个非空集合族，都可以选取其中每个集合的一个元素，构成一个新的集合。它是一种存在性公理，本身不提供构造新集合的方法。选择公理有多种等价形式，例如，它蕴含了关系 R 存在一个函数 f，使得 f 是 R 的一个子集且 f 的定义域等于 R 的定义域。",
+      "neighbors": [
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "depend_on",
+          "object": "关系/relation",
+          "label": "依赖",
+          "natural_statement": "选择公理依赖关系"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "belong_to",
+          "object": "数学公理/Mathematical Axiom",
+          "label": "属于",
+          "natural_statement": "选择公理属于数学公理"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "part_of",
+          "object": "ZF 公理系统/ZF Axiom System",
+          "label": "属于",
+          "natural_statement": "选择公理属于ZF 公理系统"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "belong_to",
+          "object": "集合论公理化/axiomatization of set theory",
+          "label": "属于",
+          "natural_statement": "选择公理属于集合论公理化"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "depend_on",
+          "object": "函数/function",
+          "label": "依赖",
+          "natural_statement": "选择公理依赖函数"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "替换公理模式/替换公理模式",
+      "zh": "替换公理模式",
+      "importance": 0.073951,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "替换公理模式是集合论（特别是在ZF公理系统）中一个允许根据特定规则构造新集合的公理模式。",
+      "definition": "替换公理模式是集合论（特别是在ZF公理系统）中一个允许根据特定规则构造新集合的公理模式。它断言，对于任何集合及其上的一个可定义函数（通过公式表达），该函数作用于该集合的元素所形成的像集也必定是一个集合。具体来说，它保证了如果存在一个集合t，并且存在一个映射（由一个公式定义），能够将t中的每个元素x唯一地映射到一个集合y，那么所有这些对应的y组成的集合s也存在。",
+      "neighbors": [
+        {
+          "subject": "替换公理模式/替换公理模式",
+          "predicate": "belong_to",
+          "object": "集合论公理化/axiomatization of set theory",
+          "label": "属于",
+          "natural_statement": "替换公理模式属于集合论公理化"
+        },
+        {
+          "subject": "替换公理模式/替换公理模式",
+          "predicate": "part_of",
+          "object": "ZF 公理系统/ZF Axiom System",
+          "label": "属于",
+          "natural_statement": "替换公理模式属于ZF 公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "定理/定理",
+      "zh": "定理",
+      "importance": 0.061174,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则…",
+      "definition": "定理是数理逻辑与集合论中的一个概念，指在特定公理系统内，通过逻辑推理规则（如变形规则、推理规则）从公理或预设前提中推导出的普遍有效（永真）的陈述或公式。定理的证明过程构成了公理系统的演绎体系，其成立与否与系统的完备性紧密相关，例如自然演绎系统为定理的证明提供了便利。",
+      "neighbors": [
+        {
+          "subject": "证明过程/proof process",
+          "predicate": "depend_on",
+          "object": "定理/定理",
+          "label": "依赖",
+          "natural_statement": "证明过程依赖定理"
+        },
+        {
+          "subject": "证明/proof",
+          "predicate": "part_of",
+          "object": "定理/定理",
+          "label": "属于",
+          "natural_statement": "证明属于定理"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "belong_to",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "定理属于公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "depend_on",
+          "object": "公理系统/axiomatic system",
+          "label": "依赖",
+          "natural_statement": "定理依赖公理系统"
+        },
+        {
+          "subject": "定理/定理",
+          "predicate": "depend_on",
+          "object": "证明/proof",
+          "label": "依赖",
+          "natural_statement": "定理依赖证明"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_732400_754700",
+          "text": "我们继续讨论定理七的证明。该定理分为两部分，需要分别证明两个方向。首先我们证明其中一个方向。",
+          "start_sec": 732.4,
+          "end_sec": 754.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_732400_754700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 12
+    },
+    {
+      "id": "双射/bijective function",
+      "zh": "双射",
+      "importance": 0.059789,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "双射函数是数理逻辑与集合论中的一种映射关系，指一个既是单射又是满射的函数，能够建立两个集合之间…",
+      "definition": "双射函数是数理逻辑与集合论中的一种映射关系，指一个既是单射又是满射的函数，能够建立两个集合之间的一一对应关系。当两个集合之间存在双射函数时，称这两个集合等势。双射函数的复合运算仍为双射，且存在双射函数意味着该函数具有唯一的左逆和右逆。",
+      "neighbors": [
+        {
+          "subject": "双射/bijective function",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "双射依赖集合"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "双射属于函数"
+        },
+        {
+          "subject": "集合的基数/cardinality of a set",
+          "predicate": "depend_on",
+          "object": "双射/bijective function",
+          "label": "依赖",
+          "natural_statement": "集合的基数依赖双射"
+        },
+        {
+          "subject": "双射/bijective function",
+          "predicate": "property_of",
+          "object": "函数/function",
+          "label": "具有属性",
+          "natural_statement": "函数具有属性双射"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 13
+    },
+    {
+      "id": "幂集/power set",
+      "zh": "幂集",
+      "importance": 0.057288,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "幂集（Power Set）是集合论中定义的一种运算，表示一个给定集合所有子集的集合。",
+      "definition": "幂集（Power Set）是集合论中定义的一种运算，表示一个给定集合所有子集的集合。一个集合 $A$ 的幂集记作 $P(A)$ 或 $\\mathcal{P}(A)$，其元素是 $A$ 的所有子集，包括空集 $\\emptyset$ 和 $A$ 本身。对于有限集合 $A$，其幂集的元素个数 $|P(A)|$ 等于 $2^{|A|}$，并且对于无限集合，其幂集的势大于原集合的势，例如实数集 $\\mathbb{R}$ 的幂集是不可数的。幂集上的包含关系构成了偏序结构，且满足 $P(A) \\cap P(B) = P(A \\cap B)$ 等性质。",
+      "neighbors": [
+        {
+          "subject": "幂集/power set",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "幂集依赖集合"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "具有属性",
+          "natural_statement": "集合具有属性幂集"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "幂集/power set",
+          "label": "属于",
+          "natural_statement": "空集属于幂集"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "depend_on",
+          "object": "无限集合/infinite set",
+          "label": "依赖",
+          "natural_statement": "幂集依赖无限集合"
+        },
+        {
+          "subject": "幂集/power set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "幂集属于集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 14
+    },
+    {
+      "id": "ZF 公理系统/ZF Axiom System",
+      "zh": "ZF 公理系统",
+      "importance": 0.045784,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "ZF公理系统是集合论中用于形式化定义集合及其性质的一组基本公理，它包含10条公理，确立了集合论…",
+      "definition": "ZF公理系统是集合论中用于形式化定义集合及其性质的一组基本公理，它包含10条公理，确立了集合论的基础。该系统通过诸如外延公理、空集公理、配对公理、并集公理、幂集公理、分离公理模式、替换公理模式、正则公理（或称基础公理）以及选择公理等，严格界定了集合的构造和存在性，是现代数学的理论基石之一。",
+      "neighbors": [
+        {
+          "subject": "替换公理模式/替换公理模式",
+          "predicate": "part_of",
+          "object": "ZF 公理系统/ZF Axiom System",
+          "label": "属于",
+          "natural_statement": "替换公理模式属于ZF 公理系统"
+        },
+        {
+          "subject": "选择公理/选择公理",
+          "predicate": "part_of",
+          "object": "ZF 公理系统/ZF Axiom System",
+          "label": "属于",
+          "natural_statement": "选择公理属于ZF 公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 15
+    },
+    {
+      "id": "空集/empty set",
+      "zh": "空集",
+      "importance": 0.044314,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "空集（empty set）是集合论中的一个基本概念，指不包含任何元素的集合。",
+      "definition": "空集（empty set）是集合论中的一个基本概念，指不包含任何元素的集合。它在数理逻辑和集合论中扮演着基础性的角色，是公理系统构造的第一个集合，并且是唯一的。空集的基数（元素个数）为0，记作$\\emptyset$或Ø。它具有特殊的性质，例如它是任何集合的子集，并且与全集互补。空集也是传递集合、开集和闭集。",
+      "neighbors": [
+        {
+          "subject": "空集/empty set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "集合包含空集"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "幂集/power set",
+          "label": "属于",
+          "natural_statement": "空集属于幂集"
+        },
+        {
+          "subject": "空集/empty set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "空集包含集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "实数集合/set of real numbers",
+      "zh": "实数集合",
+      "importance": 0.041434,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "实数集合（Set of Real Numbers, R）是数学中的一个基本集合，其元素是实数。",
+      "definition": "实数集合（Set of Real Numbers, R）是数学中的一个基本集合，其元素是实数。在数理逻辑与集合论中，实数集合常与小于等于关系（≤）一起构成全序集 $\\langle R, \\le \\rangle$，但该序集并非良序集。实数集合是讨论实函数以及定义区间（如闭区间 $[a, b]$）的基础。",
+      "neighbors": [
+        {
+          "subject": "实数集合/set of real numbers",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "实数集合属于集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 17
+    },
+    {
+      "id": "无限集合/infinite set",
+      "zh": "无限集合",
+      "importance": 0.039526,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "无限集合是指非有限集合，即不存在一个自然数n使得该集合的基数等于n。",
+      "definition": "无限集合是指非有限集合，即不存在一个自然数n使得该集合的基数等于n。它是一种在数理逻辑与集合论中用于描述元素个数不受限的集合概念。无限集合的元素可以与自身的真子集建立双射，例如自然数集N和实数集R。若一个无限集合K存在与自然数集N的双射，则称其为可数无限集合，其基数记为$\\aleph_0$。对于任意无限集合K，其基数$\\aleph_0$不小于$\\aleph_0$，且其幂集P(K)是不可数的。",
+      "neighbors": [
+        {
+          "subject": "幂集/power set",
+          "predicate": "depend_on",
+          "object": "无限集合/infinite set",
+          "label": "依赖",
+          "natural_statement": "幂集依赖无限集合"
+        },
+        {
+          "subject": "无限集合/infinite set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "无限集合属于集合"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_3103300_3111800",
+          "text": "我无法下载课件。好的，我去查看一下集合。",
+          "start_sec": 3103.3,
+          "end_sec": 3111.8,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_3103300_3111800.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "连续统假设/continuum hypothesis",
+      "zh": "连续统假设",
+      "importance": 0.038708,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "连续统假设（CH）是集合论中的一个重要猜想，它断言不存在一个基数 $k$，其大小介于可数无穷集…",
+      "definition": "连续统假设（CH）是集合论中的一个重要猜想，它断言不存在一个基数 $k$，其大小介于可数无穷集合的基数 $\\aleph_0$ 和实数集（连续统）的基数 $2^{\\aleph_0}$ 之间。这意味着不存在一个基数 $k$ 满足 $\\aleph_0 < k < 2^{\\aleph_0}$。该假设的独特性在于，根据集合论的标准公理系统（ZFC），连续统假设的真伪是不可判定的，即既无法证明其为真，也无法证明其为假。",
+      "neighbors": [
+        {
+          "subject": "连续统假设/continuum hypothesis",
+          "predicate": "part_of",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "连续统假设属于集合论"
+        },
+        {
+          "subject": "连续统假设/continuum hypothesis",
+          "predicate": "depend_on",
+          "object": "公理系统/axiomatic system",
+          "label": "依赖",
+          "natural_statement": "连续统假设依赖公理系统"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "集合的基数/cardinality of a set",
+      "zh": "集合的基数",
+      "importance": 0.038278,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "集合的基数是集合中元素的个数，用于衡量集合的大小。",
+      "definition": "集合的基数是集合中元素的个数，用于衡量集合的大小。对于有限集合，基数即为元素个数；对于无限集合，则通过判断两个集合之间是否存在双射函数来比较其基数是否相等，这是一种核心的集合论概念。",
+      "neighbors": [
+        {
+          "subject": "集合的基数/cardinality of a set",
+          "predicate": "property_of",
+          "object": "集合/set",
+          "label": "包含",
+          "natural_statement": "集合包含集合的基数"
+        },
+        {
+          "subject": "集合的基数/cardinality of a set",
+          "predicate": "depend_on",
+          "object": "双射/bijective function",
+          "label": "依赖",
+          "natural_statement": "集合的基数依赖双射"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 20
+    },
+    {
+      "id": "简单命题/simple proposition",
+      "zh": "简单命题",
+      "importance": 0.030259,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "简单命题（或称原子命题）是数理逻辑中的基本命题单位，其特点是不包含任何逻辑联结词（如与、或、非…",
+      "definition": "简单命题（或称原子命题）是数理逻辑中的基本命题单位，其特点是不包含任何逻辑联结词（如与、或、非）的命题。简单命题是构建更复杂复合命题的基础，并且在命题逻辑中被视为不进一步分析内部结构的基本单元。例如，P、Q、A、B 都可以表示简单命题。",
+      "neighbors": [
+        {
+          "subject": "简单命题/simple proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "包含",
+          "natural_statement": "简单命题包含命题"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_3085200_3102300",
+          "text": "这不是我的课件？这是为什么？我也不清楚。  \n好的，我去查看一下，你是哪个班级的？我就是你班上的学生。",
+          "start_sec": 3085.2,
+          "end_sec": 3102.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_3085200_3102300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "自然数集/natural number set",
+      "zh": "自然数集",
+      "importance": 0.029967,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "自然数集（$\\mathbb{N}$）是数学中的一个基础集合，它包含非负整数（0, 1, 2,…",
+      "definition": "自然数集（$\\mathbb{N}$）是数学中的一个基础集合，它包含非负整数（0, 1, 2, ...）或正整数（1, 2, 3, ...），具体取决于上下文或定义选择。自然数集是可数集合，即它可以与自然数集自身或其真子集建立一一对应关系。在集合论中，自然数集的结构通常通过公理化方法（如皮亚诺公理）来建立。自然数集是实数集 $\\mathbb{R}$ 的一个真子集，其基数（势）小于实数集。可数集合的性质是理解集合论和拓扑学等领域的重要基础。",
+      "neighbors": [
+        {
+          "subject": "映射/mapping",
+          "predicate": "depend_on",
+          "object": "自然数集/natural number set",
+          "label": "依赖",
+          "natural_statement": "映射依赖自然数集"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_2526800_3077900",
+          "text": "从19世纪至今，集合论从朴素集合论发展为公理集合论。1873年，康托证明了实数集合是不可数的。集合论在有限集情况下较为简单，高中阶段已有所涉及；其核心难点在于无穷集合的研究，如自然数集、实数集、有理数集等。正是康托关于实数集不可数的证明，标志着现代集合论的诞生。\n\n集合论的重要性在于其为函数论的基础——函数本质上是两个集合间的特殊关系或映射。1878年，康托提出集合的基数和势的概念：基数指集合中元素的数量，有限集的基数容易确定，而无穷集的基数问题更为复杂。例如自然数集与实数集虽同为无穷集，但其基数存在差异。若两个集合间存在双射函数，则称其基数相等。\n\n1883年，康托提出著名的康托定理：任意集合的基数严格小于其幂集的基数。该定理揭示了无穷集合基数的不等性，例如自然数集的基数小于其幂集的基数。由此衍生出连续统假设等问题——实数集作为连续统，其基数可能与特定子集（如区间(0,1)内的实数集）相",
+          "start_sec": 2526.8,
+          "end_sec": 3077.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_2526800_3077900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "证明过程/proof process",
+      "zh": "证明过程",
+      "importance": 0.028715,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "证明过程是数理逻辑与集合论中，为了确立一个命题的真实性而进行的一系列逻辑推导步骤。",
+      "definition": "证明过程是数理逻辑与集合论中，为了确立一个命题的真实性而进行的一系列逻辑推导步骤。它利用既定的公理、定义以及之前已经证明过的定理，通过合式的推理规则（如将P V Q重写为¬P→Q）来逐步推导出目标命题。在证明论的自然推理系统、Gentzen 串形演算等形式系统中，证明过程是核心研究对象，而非孤立的公理系统。",
+      "neighbors": [
+        {
+          "subject": "证明过程/proof process",
+          "predicate": "part_of",
+          "object": "公理系统/axiomatic system",
+          "label": "属于",
+          "natural_statement": "证明过程属于公理系统"
+        },
+        {
+          "subject": "证明过程/proof process",
+          "predicate": "depend_on",
+          "object": "定理/定理",
+          "label": "依赖",
+          "natural_statement": "证明过程依赖定理"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_335700_730400",
+          "text": "我们来看定理六的证明。定理六的内容是：(∀x)P(x) ∨ (∀x)Q(x) → (∀x)(P(x) ∨ Q(x))。\n\n首先观察前件中存在析取符号\"∨\"，后件中也存在析取符号。这种情况下我们采用公理22进行证明。将(∀x)P(x)作为α，(∀x)Q(x)作为β，(∀x)(P(x) ∨ Q(x))作为γ。\n\n根据公理22，要证明α∨β→γ，需要先证明以下两个命题：\n1. (∀x)P(x)→(∀x)(P(x)∨Q(x))\n2. (∀x)Q(x)→(∀x)(P(x)∨Q(x))\n\n第一个命题的证明过程：\n第一步：(∀x)P(x)→P(x) （公理50）\n第二步：P(x)→P(x)∨Q(x) （公理20）\n第三步：通过三段论（公理12）作用于前两步，得到(∀x)P(x)→P(x)∨Q(x)\n第四步：添加全称量词得到(∀x)P(x)→(∀x)(P(x)∨Q(x))\n\n第二个命题同理可证，只需将公理",
+          "start_sec": 335.7,
+          "end_sec": 730.4,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_335700_730400.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.027717,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_10_758800_2480200",
+          "text": "我们首先证明任意x(P(x)→Q(x))→(P→∀xQ(x))方向。根据公理50，可以去除全称量词。第一步将∀x(P(x)→Q(x))作为前提，通过后件概括规则得到P→∀xQ(x)。\n\n接下来证明反方向(P→∀xQ(x))→∀x(P(x)→Q(x))。使用公理16，先去除P的干扰项，再应用全称推广规则即可完成证明。\n\n定理八的证明需要使用公理2-3。首先证明∃xP(x)→¬∀x¬P(x)方向：\n1. 根据公理50，从∀x¬P(x)→¬P(x)出发\n2. 应用公理2-3得到P(x)→¬∀x¬P(x)\n3. 通过存在量词推广得到∃xP(x)→¬∀x¬P(x)\n\n反方向¬∀x¬P(x)→∃xP(x)的证明：\n1. 使用公理141或142处理否定\n2. 通过存在量词引入规则\n3. 最后应用公理16完成等价证明\n\n这些证明展示了如何运用公理系统中的基本规则：\n1. 全称量词的去除与引入（公理50-5",
+          "start_sec": 758.8,
+          "end_sec": 2480.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_10_758800_2480200.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "llm_tech_全称_蕴含_存在_合取配对翻译法_3600_1205100",
+        "llm_tech_有限论域量词展开法_3600_3020500",
+        "llm_theo_量词与联结词配对法则_3700_1917600",
+        "llm_theo_量词约束自由变元定理_43300_422900",
+        "tech_aeio_square"
+      ],
+      "rank": 24
+    }
+  ]
+}

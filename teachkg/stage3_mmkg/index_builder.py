@@ -171,8 +171,20 @@ class MMKGIndex:
             self.bm25.save(index_dir / "bm25.json")
         if self._faiss_index is not None:
             import faiss
+            import shutil
+            import tempfile
 
-            faiss.write_index(self._faiss_index, str(index_dir / "faiss.index"))
+            # Windows 下 faiss C API 对含中文路径的 fopen 常失败；先写到 ASCII 临时文件再复制
+            target = (index_dir / "faiss.index").resolve()
+            fd, tmp_name = tempfile.mkstemp(prefix="faiss_", suffix=".index")
+            try:
+                import os
+
+                os.close(fd)
+                faiss.write_index(self._faiss_index, tmp_name)
+                shutil.copyfile(tmp_name, target)
+            finally:
+                Path(tmp_name).unlink(missing_ok=True)
         elif (index_dir / "faiss.index").is_file():
             (index_dir / "faiss.index").unlink(missing_ok=True)
         logger.info("Saved MMKG index to %s (%d records)", index_dir, len(self.records))

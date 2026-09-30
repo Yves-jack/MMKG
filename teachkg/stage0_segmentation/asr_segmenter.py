@@ -1,7 +1,8 @@
 """
 ASR 字幕生成（Qwen3-ASR-Flash）。
 
-长课堂视频：ffmpeg 抽音频 → 分块（≤10MB / chunk_duration）→ API 转写 → SRT。
+长课堂视频：AudioPreprocessor 抽音 + VAD 切段 → API 转写 → SRT。
+主流水线请优先用 asr_pipeline / asr_primary；本模块为便捷旧入口。
 """
 
 from __future__ import annotations

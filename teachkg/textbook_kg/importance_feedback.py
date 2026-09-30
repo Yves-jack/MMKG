@@ -510,17 +510,49 @@ class ImportanceFeedbackResult:
     contributions: dict[str, dict[str, float]] = field(default_factory=dict)
     channel_weights: dict[str, float] = field(default_factory=dict)
 
+    @staticmethod
+    def _positive_or_omit(value: float | None, *, digits: int = 6) -> float | None:
+        """无课堂证据时返回 None（序列化时省略），避免把缺省写成 0。"""
+        if value is None:
+            return None
+        v = float(value)
+        if not (v > 1e-12):
+            return None
+        return round(v, digits)
+
     def to_dict(self) -> dict[str, Any]:
         ranked = sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
         entities: dict[str, Any] = {}
         for name, score in ranked:
             contrib = self.contributions.get(name) or {}
-            entities[name] = {
+            rec: dict[str, Any] = {
                 "score": round(score, 6),
                 "contributions": {k: round(float(v), 6) for k, v in contrib.items()},
                 "base_norm": round(self.base_norm.get(name, 0.0), 6),
-                "classroom_norm": round(self.classroom_norm.get(name, 0.0), 6),
             }
+            cn = self._positive_or_omit(self.classroom_norm.get(name))
+            if cn is not None:
+                rec["classroom_norm"] = cn
+            entities[name] = rec
+        top_rows: list[dict[str, Any]] = []
+        for name, score in ranked[:40]:
+            row: dict[str, Any] = {
+                "name": name,
+                "zh": _zh(name),
+                "importance": round(score, 6),
+                "base_norm": round(self.base_norm.get(name, 0.0), 6),
+                "contributions": {
+                    k: round(float(v), 6)
+                    for k, v in (self.contributions.get(name) or {}).items()
+                },
+            }
+            cn = self._positive_or_omit(self.classroom_norm.get(name))
+            if cn is not None:
+                row["classroom_norm"] = cn
+            cr = self._positive_or_omit(self.classroom_raw.get(name))
+            if cr is not None:
+                row["classroom_raw"] = cr
+            top_rows.append(row)
         return {
             "version": 2,
             "alpha": self.alpha,
@@ -529,29 +561,19 @@ class ImportanceFeedbackResult:
             "entity_count": len(self.scores),
             "scores": {k: round(v, 6) for k, v in ranked},
             "entities": entities,
-            "top": [
-                {
-                    "name": name,
-                    "zh": _zh(name),
-                    "importance": round(score, 6),
-                    "base_norm": round(self.base_norm.get(name, 0.0), 6),
-                    "classroom_norm": round(self.classroom_norm.get(name, 0.0), 6),
-                    "classroom_raw": round(self.classroom_raw.get(name, 0.0), 6),
-                    "contributions": {
-                        k: round(float(v), 6)
-                        for k, v in (self.contributions.get(name) or {}).items()
-                    },
-                }
-                for name, score in ranked[:40]
-            ],
+            "top": top_rows,
         }
 
     def entity_records(self) -> dict[str, dict[str, Any]]:
-        """供 by_context 嵌套存储。"""
+        """供 by_context 嵌套存储（含 classroom/base，避免前端回退整课）。
+
+        无课堂通道证据时不写 classroom_norm（缺省 ≠ 0）。
+        """
         out: dict[str, dict[str, Any]] = {}
         for name, score in self.scores.items():
-            out[name] = {
+            rec: dict[str, Any] = {
                 "score": round(float(score), 6),
+                "base_norm": round(self.base_norm.get(name, 0.0), 6),
                 "contributions": {
                     k: round(float(v), 6)
                     for k, v in (self.contributions.get(name) or {}).items()
@@ -559,7 +581,26 @@ class ImportanceFeedbackResult:
                 "alpha": round(float(self.alpha), 4),
                 "chapter_ids": list((self.meta or {}).get("chapters") or []),
             }
+            cn = self._positive_or_omit(self.classroom_norm.get(name))
+            if cn is not None:
+                rec["classroom_norm"] = cn
+            out[name] = rec
         return out
+
+    def classroom_map(self) -> dict[str, float]:
+        """扁平课堂分，供 by_context.classroom / 前端 scope 直接读取。"""
+        return {
+            k: round(float(v), 6)
+            for k, v in self.classroom_norm.items()
+            if float(v) > 1e-12
+        }
+
+    def base_map(self) -> dict[str, float]:
+        return {
+            k: round(float(v), 6)
+            for k, v in self.base_norm.items()
+            if float(v) > 1e-12
+        }
 
 
 def compute_importance_feedback(
@@ -836,6 +877,8 @@ def pack_feedback_document(
                 k: round(v, 6)
                 for k, v in sorted(result.scores.items(), key=lambda x: -x[1])
             },
+            "classroom": result.classroom_map(),
+            "base": result.base_map(),
             "entities": result.entity_records(),
             "top": result.to_dict().get("top", []),
         }

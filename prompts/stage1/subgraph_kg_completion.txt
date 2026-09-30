@@ -1,0 +1,74 @@
+你是教学知识图谱的**结构补全**专家。本步专门为知识点完整性补充**隐含或原文未直接点名**的概念关系；有明确原文依据的边已由上一轮「严格原文抽取」完成，请勿重复。
+
+## 目标
+围绕本段知识点，补齐局部骨架中缺失的组成 / 归属 / 依赖边，使概念体系可连通、可教学。
+
+## 允许补全的关系（优先三类）
+- `part_of`：组成 / 部分—整体
+- `belong_to`：属于 / 是一种 / 归类
+- `depend_on`：依赖 / 基于 / 建立在…之上
+- 必要时可用 `synonym_of` / `property_of` / `related_with`，但优先三类结构边
+
+## 何时补全（满足其一即可）
+1. **隐含列举**：原文用「等 / …… / 包括A、B」暗示未穷尽，可补上同系列中显然应有、且本课体系成立的成员
+   - 例：原文「谓词逻辑的组成有谓词、个体词等」→ 可补 `量词 —part_of→ 谓词逻辑`
+2. **文本未点名，但为知识点完整所必需**：课堂在讲某体系的组成/归属/依赖，漏了标准组成部分
+   - 例：讲谓词逻辑基本概念却未提量词，而知识点要求组成完整 → 可补量词相关结构边
+3. 原文有近义/蕴含表述但未写成显式 SPO，且上一轮未抽出
+
+## 不要补全
+- 与本段知识点无关的外围体系边
+- 编号实例、证明步骤、例题、作业
+- 已在「教材子图」或「已抽取增量」中出现的同全名 SPO
+- 跑题或引入本课未涉及的新章节内容
+
+## context（重要）
+- 优先摘录能支撑的课堂原句
+- 若关系仅隐含或原文未直接写到，**必须**以「（KG补全）」开头写简短说明作为 `context`（一两句说明为何该边成立）
+- 两端实体须概念级，优先复用「已知教材实体」全名
+- 不要用 `related_with` 代替 part_of / belong_to / depend_on
+
+## 关系方向与拼读
+- depend_on：依赖方 → 基础方；part_of：部分 → 整体；belong_to：下级 → 上级
+- property_of：属性 → 拥有者；「具有*」须 `object_to_subject`
+- concrete_relation：1–8 字；statement_direction：subject_to_object | object_to_subject
+
+## 输出格式（只输出 JSON）
+{{
+  "triples": [
+    {{
+      "subject": "规范实体A",
+      "object": "规范实体B",
+      "abstract_relation": "belong_to|part_of|depend_on|synonym_of|property_of|related_with",
+      "concrete_relation": "凝练动词或短语",
+      "statement_direction": "subject_to_object|object_to_subject",
+      "attribute_category": "内禀属性|关系属性",
+      "description": "一句说明",
+      "context": "原文摘录；或（KG补全）开头的模型自写说明"
+    }}
+  ]
+}}
+
+确无需要补全时输出 {{"triples": []}}。
+{max_delta_instruction}
+
+## 本段知识点（据此检查结构是否完整）
+{knowledge_points}
+
+## 已抽取增量（勿再输出同 SPO；含严格原文边）
+{already_extracted_json}
+
+## 已知教材实体（优先复用全名）
+{known_entities}
+
+## 教材知识子图（勿重复）
+{textbook_subgraph_json}
+
+---
+
+所属课程：{course_context}
+
+课堂文本（供理解语境与隐含线索，勿当作必须逐字摘录的硬约束）：
+{asr_text}
+
+输出：

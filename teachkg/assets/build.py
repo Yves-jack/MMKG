@@ -10,12 +10,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from teachkg.assets.relink import relink_library_cards
 from teachkg.assets.schema import (
     AssetCard,
     AssetConceptLink,
     AssetGrounding,
     AssetLibrary,
     empty_links,
+    fill_grounding_times,
+    refine_grounding_times,
+    sort_cards_by_appearance,
     validate_card,
 )
 from teachkg.textbook_kg.loader import TextbookKG
@@ -195,12 +199,53 @@ def attach_lecture_grounding(cards: list[AssetCard], lecture_index: dict[str, li
 def merge_cards(
     textbook_cards: list[AssetCard],
     curated_cards: list[AssetCard],
+    llm_cards: list[AssetCard] | None = None,
 ) -> list[AssetCard]:
-    """curated 同 asset_id 覆盖 textbook；否则追加。"""
+    """合并优先级：llm > curated > textbook（同 asset_id）；llm 另按中文名覆盖同 kind 教材卡。"""
     by_id: dict[str, AssetCard] = {c.asset_id: c for c in textbook_cards}
     for card in curated_cards:
         by_id[card.asset_id] = card
-    return sorted(by_id.values(), key=lambda c: (c.kind, c.asset_id))
+    for card in llm_cards or []:
+        by_id[card.asset_id] = card
+
+    # llm 与 textbook 可能 id 不同但同名：保留 llm，丢掉同 kind+中文主名的 textbook
+    from teachkg.assets.overlap import primary_zh
+
+    llm_keys = {
+        (c.kind, primary_zh(c.name)): c.asset_id
+        for c in (llm_cards or [])
+        if primary_zh(c.name)
+    }
+    if llm_keys:
+        drop: list[str] = []
+        for aid, card in by_id.items():
+            if card.source == "llm":
+                continue
+            key = (card.kind, primary_zh(card.name))
+            if key in llm_keys and llm_keys[key] != aid:
+                drop.append(aid)
+        for aid in drop:
+            by_id.pop(aid, None)
+    return list(by_id.values())
+
+
+def _load_course_cues(kg_dir: Path, course_id: str) -> list[dict[str, Any]]:
+    data_root = Path(kg_dir).resolve().parent.parent
+    candidates = [
+        data_root / "pretty_view" / "processed" / course_id / "filtered_cues.json",
+        data_root / "pretty_view" / "segments" / course_id / "cues.json",
+        data_root / "processed" / course_id / "filtered_cues.json",
+    ]
+    for path in candidates:
+        if not path.is_file():
+            continue
+        try:
+            raw = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(raw, list) and raw:
+            return raw
+    return []
 
 
 def build_asset_library(
@@ -209,14 +254,21 @@ def build_asset_library(
     textbook_path: Path,
     curated_path: Path | None,
     kg_dir: Path,
+    llm_cards: list[AssetCard] | None = None,
+    include_textbook_theorems: bool = True,
 ) -> AssetLibrary:
     kg = TextbookKG.load(Path(textbook_path))
-    textbook_cards = cards_from_textbook(kg)
+    textbook_cards = cards_from_textbook(kg) if include_textbook_theorems else []
     curated_cards = cards_from_curated(Path(curated_path)) if curated_path else []
-    cards = merge_cards(textbook_cards, curated_cards)
+    cards = merge_cards(textbook_cards, curated_cards, llm_cards)
+    n_relink = relink_library_cards(cards, Path(kg_dir), course_id)
 
     lecture_index = _lecture_entity_index(Path(kg_dir), course_id)
     grounded = attach_lecture_grounding(cards, lecture_index)
+    timed = fill_grounding_times(cards)
+    cue_rows = _load_course_cues(Path(kg_dir), course_id)
+    refined = refine_grounding_times(cards, cue_rows) if cue_rows else 0
+    cards = sort_cards_by_appearance(cards)
 
     errors: list[str] = []
     for card in cards:
@@ -233,8 +285,13 @@ def build_asset_library(
         stats={
             "textbook_cards": len(textbook_cards),
             "curated_cards": len(curated_cards),
+            "llm_cards": len(llm_cards or []),
             "grounded_cards": grounded,
+            "timed_cards": timed,
+            "refined_times": refined,
+            "relinked_cards": n_relink,
             "lecture_entity_keys": len(lecture_index),
+            "with_evidence": sum(1 for c in cards if (c.evidence or "").strip()),
         },
     )
 

@@ -1,0 +1,443 @@
+project:
+  name: TeachKG
+  workspace_dir: data/raw
+  segments_dir: data/segments
+  output_dir: data/processed
+  kg_dir: data/kg
+  index_dir: data/index
+  pretty_dir: data/pretty_view
+  experiments_dir: data/experiments
+  data_dir: data
+# 批处理：无授课内容讲次（考试/行政）→ skipped，不记 fail、不反复重跑
+batch:
+  skip_lectures: ["17"]           # 已知考试场，跳过 Stage1–3
+  auto_skip_empty: true           # Stage1 后 0 三元组自动结案为 skipped
+llm:
+  api_key: null                  # null → LLM_API_KEY / SJTU_LLM_API_KEY
+  base_url: null                 # null → LLM_BASE_URL (SJTU)
+  model: deepseek-chat           # models.sjtu.edu.cn
+  max_retry: 6
+  retry_pause_sec: 5
+stage0:
+  ppt_detector:
+    coarse_interval_sec: 5
+    sample_interval_sec: 1
+    ssim_threshold: 0.15
+    min_gap_sec: 2.0
+    min_page_sec: 5.0
+    resize:
+    - 320
+    - 180
+    title_cluster_enabled: true
+    title_similarity_threshold: 0.82
+    upper_half_similarity_threshold: 0.78
+    title_crop:
+    - 0.0
+    - 0.0
+    - 0.65
+    - 0.14
+    upper_half_crop:
+    - 0.0
+    - 0.0
+    - 1.0
+    - 0.5
+    use_existing_seg: false
+  asr_pipeline:
+    use_existing_artifacts: true
+    preprocess:
+      sample_rate: 16000
+      denoise: true
+      loudnorm: true
+      vad_threshold: 0.55
+      min_speech_sec: 0.8
+      min_silence_sec: 0.8
+      max_segment_sec: 120.0
+      vad_split_overlap_sec: 0.5
+      torch_num_threads: null
+      onnx_intra_op_num_threads: null
+    primary_asr:
+      api_key: null
+      base_url: null
+      model: qwen3-asr-flash
+      max_local_file_mb: 10
+      chunk_duration_sec: 120
+      language: zh
+      enable_itn: true
+      context: ''
+      overlap_sec: 0.0
+      max_retry_pause_sec: 60.0
+      retry_jitter: true
+      remove_checkpoint_on_success: true
+      max_workers: 4
+    correction:
+      enabled: true
+      api_key: null
+      base_url: null
+      llm_model: null
+      ocr_model: qwen-vl-ocr
+      page_overlap_ratio: 0.333
+      group_consecutive_same_pages: true
+      min_page_duration_sec: 1.0
+      ocr_frame_margin_before_flip_sec: 3.0
+      ocr_frame_settle_after_flip_sec: 2.0
+      ocr_frame_short_page_ratio: 0.85
+      strip_prev_overlap: true
+      prev_overlap_min_chars: 8
+      prev_overlap_max_chars: 160
+      prev_overlap_max_ratio: 0.55
+      prev_context_chars: 120
+  cue_merge:
+    enabled: true
+    max_gap_sec: 3.0
+    cross_page_max_gap_sec: 0.5
+    max_merged_duration_sec: 120.0
+    min_merged_chars: 25
+    fragment_score_threshold: 0.42
+    max_passes: 3
+    absorb_short_duration_sec: 3.0
+    absorb_short_chars: 20
+    absorb_max_gap_sec: 3.0
+    merge_by_ppt_page: true
+  slicer:
+    min_duration_sec: 3
+    min_text_chars: 2
+    extract_clips: true
+    clip_subdir: cues
+    cleanup_orphan_clips: true
+  time_filter:
+    enabled: false
+    min_sec: 0
+    max_sec: null
+stage2:
+  use_existing_artifacts: true
+  input_filename: triplets.jsonl
+  output_filename: kg.json
+  merge_map_filename: entity_merge_map.json
+  report_filename: stage2_report.json
+  entity_merge:
+    drop_related_with_when_specific: true
+    min_subgraph_size: 0
+    textbook_canonical: true
+    merge_synonym_of: true
+    embedding_merge:
+      enabled: true
+      similarity_threshold: 0.93
+      max_statements: 2
+      block_structural_pairs: true
+      embedder_model: shibing624/text2vec-base-multilingual
+  entity_triage:
+    enabled: true
+    apply_merge: true
+    apply_drop: true
+    inject_parent_edges: true
+stage3:
+  use_existing_artifacts: true
+  input_kg: kg.json
+  input_triplets: triplets.jsonl
+  output_filename: mmkg.json
+  report_filename: stage3_mmkg_report.json
+  evidence_attach:
+    enabled: true
+  alignment:
+    enabled: true
+    clap_min_score: 0.2
+    clip_min_score: 0.2
+    skip_if_encoders_unavailable: true
+    video_grounding_enabled: true
+    video_max_frames: 4
+  entity_describe:
+    enabled: true
+  index:
+    enabled: true
+    subdir: mmkg_index
+    embedder_model: shibing624/text2vec-base-multilingual
+stage4:
+  rag:
+    top_k: 5
+    min_score: 0.15
+    index_subdir: mmkg_index
+    embedder_model: shibing624/text2vec-base-multilingual
+    check_enabled: true
+    check_strict: true
+    check_min_confidence: 0.75
+    hybrid_enabled: true
+    vector_weight: 0.65
+    bm25_weight: 0.35
+    graph_hops: 1
+    graph_max: 5
+    history_max_turns: 4
+    multi_turn:
+      enabled: true
+      retrieval_rewrite: true
+      max_context_turns: 2
+      score_threshold: 2.0
+      show_analysis: true
+    retrieval_scope: course
+    infer_lecture: false
+    reject_on_unsupported: false
+    append_citations: true
+    clap_downweight_threshold: 0.12
+    clap_downweight_factor: 0.5
+    pipeline:
+      evidence_boost: true
+      evidence_boost_factor: 1.15
+      attach_hit_images: true
+      max_evidence_images: 4
+      max_vision_images: 6
+    multimodal_query:
+      enabled: true
+      vision_model: qwen-vl-plus
+      vision_for_answer: true
+      max_file_chars: 8000
+      video_max_frames: 3
+      video_frame_interval_sec: 5.0
+stage1:
+  use_existing_artifacts: true
+  input_filename: cues.jsonl
+  output_filename: filtered_cues.jsonl
+  rejected_filename: rejected_cues.jsonl
+  triplets_filename: triplets.jsonl
+  llm_only:
+    enabled: false  # hybrid 主路径；零覆盖可当场 LLM 补边，thin 需另跑 llm_only 基线
+    triplets_filename: llm_only/triplets.jsonl
+    sync_active_triplets: false
+  textbook_kg:
+    enabled: true
+    path: data/textbook/CS2501-离散数学（图论+数理逻辑与集合论）
+    entity_file: entity_final.json
+    relations_file: relations_final.json
+    importance_file: entity_sorted_ppr.json
+    importance_bundle_file: importance_bundle.json
+    lecture_chapter_map:
+      '1':
+      - 第1章 命题逻辑的基本概念
+      - 第1章 图的基本概念与表示
+      - 第9章 集合
+      '2':
+      - 第1章 图的基本概念与表示
+      - 第2章 道路与回路
+      - 第4章 平面图与图的着色
+      '3': 第1章 图的基本概念与表示
+      '4': 第2章 道路与回路
+      '5': 第2章 道路与回路
+      '6': 第2章 道路与回路
+      '7': 第2章 道路与回路
+      '8': 第3章 树
+      '9': 第4章 平面图与图的着色
+      '10': 第4章 平面图与图的着色
+      '11': 第4章 平面图与图的着色
+      '12': 第4章 平面图与图的着色
+      '13':
+      - 第1章 命题逻辑的基本概念
+      - 第4章 谓词逻辑的基本概念
+      '14': 第1章 命题逻辑的基本概念
+      '15': 第9章 集合
+      '16': 第4章 平面图与图的着色
+      '17': 第8章 群
+      '18': 第2章 命题逻辑的等值和推理演算
+      '19': 第9章 集合
+      '20': 第2章 命题逻辑的等值和推理演算
+      '21': 第1章 命题逻辑的基本概念
+      '22': 第2章 命题逻辑的等值和推理演算
+      '23':
+      - 第1章 命题逻辑的基本概念
+      - 第12章 实数集合与集合的基数
+      '24': 第10章 关系
+      '25': 第5章 匹配
+      '26': 第8章 群
+      '27': 第2章 命题逻辑的等值和推理演算
+      '28': 第4章 谓词逻辑的基本概念
+      '29': 第9章 集合
+      '30':
+      - 第4章 谓词逻辑的基本概念
+      - 第2章 命题逻辑的等值和推理演算
+      '31': 第4章 谓词逻辑的基本概念
+      '32': 第2章 命题逻辑的等值和推理演算
+      '33': 第3章 树
+      '34': 第10章 关系
+      '35': 第10章 关系
+      '36': 第12章 实数集合与集合的基数
+      '37': 第10章 关系
+      '38': 第12章 实数集合与集合的基数
+      '39': 第10章 关系
+      '40': 第8章 群
+      '41': 第9章 集合
+      '42': 第3章 树
+      '43': 第3章 树
+      '44': 第12章 实数集合与集合的基数
+    importance_feedback:
+      enabled: true
+      alpha: 0.45
+      adaptive_alpha: true
+      adaptive_alpha_min: 0.28
+      adaptive_alpha_scope_classroom: true
+      chapter_mix: 0.7
+      chapter_boost: 1.35
+      multi_chapter_top_k: 3
+      multi_chapter_min_ratio: 0.45
+      secondary_chapter_cap: 0.25
+      off_chapter_penalty: 0.45
+      lecture_idf_power: 1.0
+      use_log_duration: false  # 已废弃：mention 通道只用次数+最长匹配
+      classroom_hub_penalty: 0.15
+      generic_weight: 0.25
+      meta_weight: 0.35
+      replace_generic_entities: false
+      replace_meta_titles: true
+      meta_titles:
+      - 数理逻辑与集合论
+      - 图论与代数结构
+      - 离散数学
+      - Mathematical Logic and Set Theory
+      - Graph Theory
+      - Discrete Mathematics
+      short_name_max_len: 0
+      short_name_weight: 0.55
+      channel_weights:
+        mention_time: 0.45
+        board_ppt: 0.25
+        discourse_role: 0.2
+        structure_graph: 0.1
+        app_feedback: 0.0
+      new_entity_scale: 0.88
+      new_entity_max: 0.75
+      assets_library: assets/library.json
+      app_feedback_events: app_feedback_events.jsonl
+      output_filename: entity_importance_feedback.json
+    subgraph:
+      max_hops: 1
+      max_edges_per_cue: null
+      max_edges_per_lecture: 60
+      min_edges_per_cue: 1
+      lecture_min_relation_score: 4.0
+      cue_min_relation_score: 4.0
+      require_text_anchor: false
+      require_both_ends_in_candidate_seeds: true
+      score_prune_edges: false
+      lecture_dynamic_cap: true
+      lecture_edges_per_cue_cap: 7.0
+      lecture_embedding_link_min_score: 0.92
+      max_seed_entities: 40
+      lecture_dedupe_textbook: true
+      embedding_link_enabled: true
+      embedding_cache_enabled: true
+      embedding_link_top_k: 40
+      embedding_link_words_per_seed: 25
+      embedding_link_min_score: 0.9
+      embedder_model: shibing624/text2vec-base-multilingual
+      include_theorem_edges: true
+      seed_llm_filter:
+        enabled: true
+        prompt: stage1/seed_filter.txt
+        temperature: 0.1
+        llm_model: null
+        min_candidates: 1
+        fallback_keep_all_on_empty: false
+      edge_llm_filter:
+        enabled: true
+        prompt: stage1/edge_filter.txt
+        temperature: 0.1
+        llm_model: null
+        min_candidates: 1
+        fallback_keep_all_on_empty: false
+        require_classroom_evidence: true
+        min_evidence_chars: 4
+        description_max_chars: 60
+      knowledge_point_extract:
+        enabled: false
+        prompt: stage1/knowledge_point_extract.txt
+        temperature: 0.1
+        llm_model: null
+    entity_registry:
+      link_delta_entities: true
+      output_path: entity_registry.json
+    extract:
+      mode: constrained_delta
+      prompt: stage1/subgraph_hybrid_extract.txt
+      use_corrected_textbook: true
+      include_textbook_in_output: true
+      conceptual_focus: true
+      delta_words_per_item: 0
+      max_delta_per_cue: null
+      delta_min_per_cue: 1
+      delta_completeness_pass: false  # 收敛：去掉 completeness 补锅层
+      delta_completeness_prompt: stage1/subgraph_hybrid_extract_complete.txt
+      kg_completion:
+        enabled: true
+        prompt: stage1/subgraph_kg_completion.txt
+        validate_prompt: stage1/triplet_validate_kg_completion.txt
+        max_triples: null
+      cross_cue_extract:
+        enabled: true
+        prompt: stage1/subgraph_cross_cue_extract.txt
+        max_triples: 8
+        char_budget: 1500
+        slide: half
+      dedupe_against_textbook: true
+      dedupe_textbook_match: exact_fullname
+      zero_coverage_fallback: true
+      thin_coverage_fallback: true
+      thin_coverage_ratio: 0.55
+      thin_coverage_min_llm: 3
+      llm_fallback_max: 5
+  rules:
+    require_clip: false  # clip 缺失不丢 ASR 可用 cue
+    min_text_chars: 5
+  ppt_frame:
+    enabled: true
+    source: stage0_ocr
+    min_page_duration_sec: 1.0
+    ocr_text:
+      enabled: true          # 抽取拼接 Stage0 页级 OCR
+      max_chars: 2000
+  text_preprocess:
+    enabled: true
+    extract_from_asr: false
+    # 中间接入 A：跑通畅；已有 extract_text 当作 B，不重跑 B / 不重抽
+    reuse_existing_extract_as_b: true
+    rules:
+      # 与 LLM two_pass 配套：轻规则只清版式/寒暄/例题标签
+      remove_markdown_noise: true
+      remove_classroom_admin: true
+      remove_intro_framing: false
+      remove_non_knowledge: false
+      knowledge_min_score: 1.0
+      remove_example_labels: true
+      dedupe_paragraphs: true
+    llm:
+      enabled: true
+      two_pass: true
+      # PPT 翻页切分上下文已够，不再整讲拼接
+      focus_lecture_level: false
+      # false：暂不跑 B（提示词已就位）；存量 extract_text 复用为 B
+      focus_pass: false
+      fluency_prompt: stage1/cue_text_fluency.txt   # A：按 cue 通畅+完整
+      focus_prompt: stage1/cue_text_focus.txt       # B：原 preprocess 改写（去非主线精炼）
+      focus_lecture_prompt: stage1/cue_text_focus_lecture.txt  # 可选整讲 B（已关）
+      prompt: stage1/cue_text_preprocess.txt          # two_pass=false 时的旧单段 prompt
+      llm_model: null
+      temperature: 0.1
+  triplet_extract:
+    enabled: true
+    prompt: stage1/subgraph_extract.txt
+    api_key: null
+    base_url: null
+    llm_model: null
+    temperature: 0.1
+    max_triplets_per_cue: 12
+    validate:
+      enabled: true
+      prompt: stage1/triplet_validate.txt
+      retry_prompt: null
+      llm_model: null
+      temperature: 0.0
+      retry:
+        enabled: true
+        fix_enabled: true
+        reextract_enabled: true
+        fix_fallback_reextract: true
+        max_fix_attempts: 1
+        max_reextract_attempts: 1
+        keep_original_on_retry_fail: true
+        fix_prompt: stage1/triplet_fix.txt
+        reextract_prompt: stage1/triplet_reextract.txt

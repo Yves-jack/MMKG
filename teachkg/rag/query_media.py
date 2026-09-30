@@ -216,7 +216,9 @@ def _sample_video_frames(
         if not ok or frame is None:
             continue
         fp = work_dir / f"{path.stem}_frame_{i:02d}.jpg"
-        if cv2.imwrite(str(fp), frame):
+        from teachkg.utils.cv_io import imwrite_unicode
+
+        if imwrite_unicode(fp, frame):
             out.append(fp)
     cap.release()
     return out

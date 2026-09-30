@@ -1,0 +1,226 @@
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.textPane {
+  flex: 1;
+  min-height: 0;
+  padding: 10px 14px 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 17, 22, 0.35);
+}
+
+.detailCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  background: rgba(10, 12, 16, 0.55);
+  border-left: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.detailHead {
+  flex-shrink: 0;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.detailHead h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text, #e6edf3);
+}
+
+.kindTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.kindTab,
+.kindTabActive {
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: transparent;
+  color: var(--muted, #8b97a8);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.kindTabActive {
+  background: rgba(88, 166, 255, 0.14);
+  color: #9ecbff;
+  border-color: rgba(88, 166, 255, 0.4);
+}
+
+.cardList {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card,
+.cardActive {
+  text-align: left;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+  background: rgba(22, 27, 34, 0.65);
+  border-radius: 8px;
+  padding: 9px 10px;
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card:hover {
+  border-color: rgba(88, 166, 255, 0.35);
+}
+
+.cardActive {
+  border-color: rgba(250, 204, 21, 0.55);
+  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.25);
+  background: rgba(250, 204, 21, 0.06);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cardHead strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.kindBadge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(176, 122, 161, 0.18);
+  color: #d8b4c8;
+  border: 1px solid rgba(176, 122, 161, 0.35);
+}
+
+.cardSummary {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted, #a8b3c2);
+}
+
+.cardEvidence {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(91, 141, 239, 0.08);
+  border: 1px solid rgba(91, 141, 239, 0.22);
+  color: #c9d6e8;
+}
+
+.cardEvidence > span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted, #8b97a8);
+}
+
+.cardConcepts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+
+.cardConcepts em,
+.cardConcepts a {
+  font-style: normal;
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted, #9aa8b8);
+  text-decoration: none;
+}
+
+.cardConcepts a:hover {
+  color: var(--accent, #3ecf8e);
+  border-color: rgba(62, 207, 142, 0.35);
+}
+
+.selectedExtra {
+  flex-shrink: 0;
+  max-height: 28%;
+  overflow: auto;
+  padding: 10px 14px 14px;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.selectedExtra h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--muted, #8b97a8);
+  font-weight: 600;
+}
+
+.peerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.peerChip {
+  font: inherit;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(91, 141, 239, 0.3);
+  background: rgba(91, 141, 239, 0.1);
+  color: #93c5fd;
+  cursor: pointer;
+}
+
+.peerChip:hover {
+  background: rgba(91, 141, 239, 0.2);
+}
+
+.statement {
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+  color: var(--text, #e6edf3);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text, #e6edf3);
+}
+
+.empty {
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--muted, #8b97a8);
+  font-size: 13px;
+}

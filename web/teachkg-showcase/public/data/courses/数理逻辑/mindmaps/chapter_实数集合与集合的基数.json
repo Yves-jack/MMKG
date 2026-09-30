@@ -1,0 +1,526 @@
+{
+  "lecture_id": "chapter:第12章 实数集合与集合的基数",
+  "root": {
+    "id": "__chapter__/第12章 实数集合与集合的基数",
+    "zh": "第12章 实数集合与集合的基数",
+    "importance": 0.75,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/定理",
+        "zh": "定理",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/公理系统",
+        "zh": "公理系统",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "公理/axiom",
+            "zh": "公理",
+            "importance": 0.298504,
+            "relation": "chapter_topic",
+            "related": [
+              "公理系统",
+              "定理",
+              "证明"
+            ],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/公理",
+        "zh": "公理",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "公理1/公理_1",
+            "zh": "公理1",
+            "importance": 0.034657,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/一阶理论",
+        "zh": "一阶理论",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/初始符号",
+        "zh": "初始符号",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑",
+        "zh": "命题逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.309623,
+            "relation": "chapter_topic",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/析取",
+        "zh": "析取",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/否定",
+        "zh": "否定",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/(1)",
+        "zh": "(1)",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/(2)",
+        "zh": "(2)",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/经典逻辑",
+        "zh": "经典逻辑",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/蕴含",
+        "zh": "蕴含",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/合取",
+        "zh": "合取",
+        "importance": 0.4,
+        "relation": "toc_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/第12章 实数集合与集合的基数/其他要点",
+        "zh": "其他要点",
+        "importance": 0.3,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.427091,
+            "relation": "chapter_topic",
+            "related": [
+              "公式",
+              "合式公式",
+              "定理证明"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "合式公式/Well-formed formula(Wff)",
+            "zh": "合式公式",
+            "importance": 0.214375,
+            "relation": "chapter_topic",
+            "related": [
+              "原子语句",
+              "析取",
+              "联结词"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "推理公式/inference formula",
+            "zh": "推理公式",
+            "importance": 0.112839,
+            "relation": "belong_to",
+            "related": [
+              "命题逻辑公理系统"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "变形规则/transformation rule",
+            "zh": "变形规则",
+            "importance": 0.102449,
+            "relation": "part_of",
+            "related": [
+              "定理"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.058578,
+            "relation": "belong_to",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "分离规则/rule of detachment",
+            "zh": "分离规则",
+            "importance": 0.034741,
+            "relation": "part_of",
+            "related": [
+              "前提",
+              "证明"
+            ],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "规则/rule",
+            "zh": "规则",
+            "importance": 0.030726,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          },
+          {
+            "id": "极大项/maximal term",
+            "zh": "极大项",
+            "importance": 0.028579,
+            "relation": "part_of",
+            "related": [],
+            "deps": [],
+            "children": []
+          }
+        ],
+        "weak": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第12章 实数集合与集合的基数",
+      "zh": "第12章 实数集合与集合的基数",
+      "importance": 0.75,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/定理",
+          "zh": "定理",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/公理系统",
+          "zh": "公理系统",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "公理/axiom",
+              "zh": "公理",
+              "importance": 0.298504,
+              "relation": "chapter_topic",
+              "related": [
+                "公理系统",
+                "定理",
+                "证明"
+              ],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/公理",
+          "zh": "公理",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "公理1/公理_1",
+              "zh": "公理1",
+              "importance": 0.034657,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/一阶理论",
+          "zh": "一阶理论",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/初始符号",
+          "zh": "初始符号",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑",
+          "zh": "命题逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.309623,
+              "relation": "chapter_topic",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/析取",
+          "zh": "析取",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/否定",
+          "zh": "否定",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/(1)",
+          "zh": "(1)",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/(2)",
+          "zh": "(2)",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/经典逻辑",
+          "zh": "经典逻辑",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/蕴含",
+          "zh": "蕴含",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/合取",
+          "zh": "合取",
+          "importance": 0.4,
+          "relation": "toc_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/第12章 实数集合与集合的基数/其他要点",
+          "zh": "其他要点",
+          "importance": 0.3,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.427091,
+              "relation": "chapter_topic",
+              "related": [
+                "公式",
+                "合式公式",
+                "定理证明"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "合式公式/Well-formed formula(Wff)",
+              "zh": "合式公式",
+              "importance": 0.214375,
+              "relation": "chapter_topic",
+              "related": [
+                "原子语句",
+                "析取",
+                "联结词"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "推理公式/inference formula",
+              "zh": "推理公式",
+              "importance": 0.112839,
+              "relation": "belong_to",
+              "related": [
+                "命题逻辑公理系统"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "变形规则/transformation rule",
+              "zh": "变形规则",
+              "importance": 0.102449,
+              "relation": "part_of",
+              "related": [
+                "定理"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "等值式/equivalence formula",
+              "zh": "等值式",
+              "importance": 0.058578,
+              "relation": "belong_to",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "分离规则/rule of detachment",
+              "zh": "分离规则",
+              "importance": 0.034741,
+              "relation": "part_of",
+              "related": [
+                "前提",
+                "证明"
+              ],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "规则/rule",
+              "zh": "规则",
+              "importance": 0.030726,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            },
+            {
+              "id": "极大项/maximal term",
+              "zh": "极大项",
+              "importance": 0.028579,
+              "relation": "part_of",
+              "related": [],
+              "deps": [],
+              "children": []
+            }
+          ],
+          "weak": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 27,
+  "max_depth": 2,
+  "orphan_count": 10,
+  "meta": {
+    "chapter": "第12章 实数集合与集合的基数",
+    "root_zh": "第12章 实数集合与集合的基数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "25",
+      "26"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "skeleton_source": "classroom_review",
+    "n_sections": 14
+  }
+}

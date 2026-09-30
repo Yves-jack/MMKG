@@ -1,0 +1,146 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px 0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.legItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legKp {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+  background: color-mix(in srgb, #0ea5e9 55%, transparent);
+  border: 1px solid #0284c7;
+}
+
+.count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cols {
+  flex: 1;
+  min-height: 0;
+  margin-top: 8px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px 6px;
+  flex-shrink: 0;
+}
+
+.head strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.head span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.inlineTex {
+  display: inline;
+}
+
+.hlKp {
+  background: color-mix(in srgb, #0ea5e9 28%, transparent);
+  border-radius: 3px;
+  padding: 0 2px;
+  box-decoration-break: clone;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 12px 4px;
+}
+
+.chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, #0ea5e9 10%, var(--bg-elev));
+  border: 1px solid color-mix(in srgb, #0284c7 35%, transparent);
+}
+
+.chipIdx {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 650;
+  color: #0369a1;
+  background: color-mix(in srgb, #0ea5e9 22%, transparent);
+}
+
+.chipLabel {
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 550;
+}

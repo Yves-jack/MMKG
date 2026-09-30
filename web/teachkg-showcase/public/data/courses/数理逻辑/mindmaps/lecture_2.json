@@ -1,0 +1,243 @@
+{
+  "lecture_id": "2",
+  "root": {
+    "id": "谓词逻辑/Predicate Logic",
+    "zh": "谓词逻辑",
+    "importance": 0.366058,
+    "relation": null,
+    "related": [
+      "命题逻辑"
+    ],
+    "children": [
+      {
+        "id": "谓词/predicate",
+        "zh": "谓词",
+        "importance": 0.20802,
+        "relation": "part_of",
+        "related": [
+          "个体变项"
+        ],
+        "children": [
+          {
+            "id": "谓词变项/predicate variable",
+            "zh": "谓词变项",
+            "importance": 0.073121,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词常项/predicate constant",
+            "zh": "谓词常项",
+            "importance": 0.023157,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "逻辑公式/logical formula",
+        "zh": "逻辑公式",
+        "importance": 0.172211,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "蕴含/implication",
+            "zh": "蕴含",
+            "importance": 0.092276,
+            "relation": "part_of",
+            "related": [
+              "全称命题",
+              "全称肯定命题",
+              "全称量词",
+              "合取"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "量词/quantifier",
+        "zh": "量词",
+        "importance": 0.154404,
+        "relation": "part_of",
+        "related": [
+          "个体变项",
+          "约束变元",
+          "自由变元",
+          "论域"
+        ],
+        "children": []
+      },
+      {
+        "id": "变项/variable",
+        "zh": "变项",
+        "importance": 0.07609,
+        "relation": "part_of",
+        "related": [],
+        "children": [
+          {
+            "id": "命题变项/propositional variable",
+            "zh": "命题变项",
+            "importance": 0.211055,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "个体变项/individual variable",
+            "zh": "个体变项",
+            "importance": 0.104022,
+            "relation": "belong_to",
+            "related": [
+              "真值",
+              "谓词",
+              "量词"
+            ],
+            "children": [
+              {
+                "id": "自由变元/free variable",
+                "zh": "自由变元",
+                "importance": 0.025285,
+                "relation": "belong_to",
+                "related": [
+                  "个体常项",
+                  "全称量词",
+                  "存在量词",
+                  "量词"
+                ],
+                "children": []
+              },
+              {
+                "id": "约束变元/bound variable",
+                "zh": "约束变元",
+                "importance": 0.020913,
+                "relation": "belong_to",
+                "related": [
+                  "量词"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "个体/Individual",
+        "zh": "个体",
+        "importance": 0.057536,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "全称量词/universal quantifier",
+        "zh": "全称量词",
+        "importance": 0.053902,
+        "relation": "part_of",
+        "related": [
+          "合取",
+          "存在量词",
+          "自由变元",
+          "蕴含"
+        ],
+        "children": []
+      },
+      {
+        "id": "存在量词/existential quantifier",
+        "zh": "存在量词",
+        "importance": 0.053006,
+        "relation": "part_of",
+        "related": [
+          "全称量词",
+          "合取",
+          "自由变元"
+        ],
+        "children": []
+      },
+      {
+        "id": "一阶谓词逻辑/first-order predicate logic",
+        "zh": "一阶谓词逻辑",
+        "importance": 0.040805,
+        "relation": "belong_to",
+        "related": [
+          "公理",
+          "自然数公理"
+        ],
+        "children": [
+          {
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.413859,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.103909,
+                "relation": "belong_to",
+                "related": [
+                  "全称量词",
+                  "存在量词",
+                  "蕴含"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "个体常项/individual constant",
+            "zh": "个体常项",
+            "importance": 0.063297,
+            "relation": "part_of",
+            "related": [
+              "代入",
+              "自由变元"
+            ],
+            "children": []
+          },
+          {
+            "id": "四种形式/AEIO",
+            "zh": "四种形式",
+            "importance": 0.010279,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "全称肯定命题/universal affirmative proposition",
+                "zh": "全称肯定命题",
+                "importance": 0.010495,
+                "relation": "belong_to",
+                "related": [
+                  "合取式",
+                  "蕴含"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "n_nodes": 21,
+  "max_depth": 4,
+  "orphan_count": 27,
+  "meta": {
+    "chapter": "第4章 谓词逻辑的基本概念",
+    "root_id": "谓词逻辑/Predicate Logic",
+    "root_zh": "谓词逻辑",
+    "virtual_root": false,
+    "max_nodes": 64,
+    "max_depth_cap": 4,
+    "max_children": 8,
+    "n_entities_raw": 48,
+    "n_edges_raw": 58,
+    "n_hierarchy_candidates": 42,
+    "attached_orphans": 0,
+    "alias_merged": 0
+  }
+}

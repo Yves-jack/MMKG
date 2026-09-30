@@ -10,6 +10,7 @@ import {
   lookupTextbookEntity,
   type TextbookEntityIndex,
 } from "@/lib/kg/textbookEntityIndex";
+import { withBase } from "@/lib/withBase";
 
 export type KgGrounding = {
   lecture_id?: string | number;
@@ -69,18 +70,25 @@ export type KgCue = {
   edgeCount: number;
 };
 
-/** data\\segments\\... → /repo-data/segments/... */
+/** data\\segments\\... → /repo-data/segments/...（路径分段编码，兼容中文课程名） */
 export function toMediaUrl(raw?: string | null): string | null {
   if (!raw) return null;
   let p = String(raw).replace(/\\/g, "/");
-  if (p.startsWith("/repo-data/")) return p;
   if (p.startsWith("http://") || p.startsWith("https://")) return p;
-  const idx = p.indexOf("/data/");
-  if (idx >= 0) p = p.slice(idx + "/data/".length);
-  else if (p.startsWith("data/")) p = p.slice("data/".length);
+  if (p.startsWith("/repo-data/")) {
+    p = p.slice("/repo-data/".length);
+  } else {
+    const idx = p.indexOf("/data/");
+    if (idx >= 0) p = p.slice(idx + "/data/".length);
+    else if (p.startsWith("data/")) p = p.slice("data/".length);
+  }
   p = p.replace(/^\/+/, "");
   if (!p) return null;
-  return `/repo-data/${p}`;
+  const encoded = p
+    .split("/")
+    .map((seg) => encodeURIComponent(decodeURIComponent(seg)))
+    .join("/");
+  return withBase(`/repo-data/${encoded}`);
 }
 
 export function fmtSec(n?: number) {
@@ -104,7 +112,7 @@ function edgeSource(e: KgEdge, dataSource: "kg" | "mmkg"): string {
   ) {
     return "cross_cue";
   }
-  if (raw === "textbook" || raw === "lecture_delta" || raw === "llm_fallback" || raw === "llm_only") {
+  if (raw === "textbook" || raw === "lecture_delta" || raw === "kg_completion" || raw === "llm_fallback" || raw === "llm_only") {
     return raw;
   }
   if (raw.includes("textbook")) return "textbook";
@@ -220,10 +228,32 @@ export function lookupImportance(
   return null;
 }
 
+/** 与 lookupImportance 同策略匹配贡献拆解 */
+export function lookupContributions(
+  map: Record<string, Record<string, number>> | null | undefined,
+  entityId: string
+): Record<string, number> | null {
+  if (!map) return null;
+  const id = String(entityId || "").trim();
+  if (!id) return null;
+  const direct = map[id];
+  if (direct && typeof direct === "object") return direct;
+  const zh = zhLabel(id);
+  if (zh && map[zh] && typeof map[zh] === "object") return map[zh];
+  const idLower = id.toLowerCase();
+  const zhLower = zh.toLowerCase();
+  for (const [k, v] of Object.entries(map)) {
+    if (!v || typeof v !== "object") continue;
+    if (k.toLowerCase() === idLower) return v;
+    if (zhLabel(k).toLowerCase() === zhLower) return v;
+  }
+  return null;
+}
+
 function sizeFromImportance(score: number) {
   const s = Math.max(0, Math.min(1, score));
-  // 与后端 importance_to_node_size 对齐：min + (max-min)·√score
-  return 10 + (36 - 10) * Math.sqrt(s);
+  // 讲次课堂分已是 [0,1]，线性映射半径与观感一致
+  return 10 + (36 - 10) * s;
 }
 
 export type AdaptKgOptions = {
@@ -244,7 +274,7 @@ export type AdaptKgOptions = {
   importanceBase?: Record<string, number> | null;
   /** 实体贡献拆解（prior / mention_time / ...） */
   importanceContributions?: Record<string, Record<string, number>> | null;
-  /** 重要性过滤阈值：score < τ 且非 1-hop 邻接的节点视为被筛 */
+  /** 重要性过滤阈值：score < τ 的节点视为被筛 */
   importanceMin?: number | null;
   /** hide=删除被筛节点；reveal=保留并标记 filtered_by_importance */
   importanceFilterMode?: "hide" | "reveal";
@@ -370,19 +400,13 @@ export function adaptKgToPipeline(
         const prev = entityIndex.get(from);
         if (prev) {
           const existing = entityIndex.get(to);
-          const mergedAliases = [
-            ...new Set([
-              ...(existing?.aliases || []),
-              ...(prev.aliases || []),
-              from,
-            ]),
-          ].filter((a) => a && a !== to);
+          // 链接/归并重写端点：不写入 aliases（别名仅来自 synonym_of）
           entityIndex.set(to, {
             ...(existing || prev),
             id: to,
             name: to,
             zh: existing?.zh || prev.zh || zhLabel(to),
-            aliases: mergedAliases,
+            aliases: existing?.aliases || prev.aliases || [],
           });
         }
       }
@@ -432,7 +456,8 @@ export function adaptKgToPipeline(
         ? sizeFromImportance(fb)
         : base != null
           ? sizeFromImportance(base)
-          : 14 + Math.min(16, mentions);
+          : 14 + Math.min(16, Math.log1p(mentions) * 4);
+    const aliasList = (ent.aliases || []).filter((a) => a && a !== id);
     pipeNodes.push({
       id,
       label: zhLabel(ent.zh || ent.name || id).slice(0, 18),
@@ -443,7 +468,7 @@ export function adaptKgToPipeline(
       importance_base,
       importance_delta,
       importance_contributions,
-      aliases: (ent.aliases || []).filter((a) => a && a !== id),
+      ...(aliasList.length ? { aliases: aliasList } : {}),
     });
   }
 
@@ -507,7 +532,7 @@ export function adaptKgToPipeline(
     brand: "TeachKG",
     product: "知识图谱",
     mode: "lecture",
-    course_id: opts.courseId || "shuliluoji",
+    course_id: opts.courseId || "数理逻辑",
     lecture_id: opts.lectureId,
     title: opts.title || stage.title,
     subtitle: opts.subtitle || stage.subtitle,

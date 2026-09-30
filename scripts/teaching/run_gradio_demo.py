@@ -18,7 +18,7 @@ from teachkg.rag.mmkg_rag import MMKGRAG
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--config", default=str(ROOT / "configs" / "teaching.yaml"))
-    p.add_argument("--course-id", default="shuliluoji")
+    p.add_argument("--course-id", default="数理逻辑")
     p.add_argument("--lecture-id", default="all")
     p.add_argument("--mock", action="store_true")
     p.add_argument("--port", type=int, default=7860)

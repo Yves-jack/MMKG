@@ -31,14 +31,20 @@
 只输出 JSON，不要解释：
 {{
   "keep": [
-    {{"i": 1, "evidence": "从 extract_text 原样摘录的连续片段"}},
-    {{"i": 3, "evidence": "另一段原样子串"}}
+    {{
+      "i": 1,
+      "evidence": "从 extract_text 原样摘录的连续片段"
+    }},
+    {{
+      "i": 3,
+      "evidence": "另一段原样子串"
+    }}
   ],
   "note": "一句话说明筛选侧重点（可空字符串）"
 }}
 
 要求：
-- keep 中每项必须含序号 i（正整数，对应候选列表）与 evidence（非空字符串）
+- keep 中每项必须含序号 i（正整数）与 evidence（非空字符串）
 - 禁止只输出序号而不给 evidence
 - 若没有任何合适边，输出 {{"keep": [], "note": "无合适边"}}
 

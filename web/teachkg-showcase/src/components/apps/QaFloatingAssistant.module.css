@@ -1,0 +1,244 @@
+.root {
+  position: fixed;
+  right: var(--qa-right, 20px);
+  bottom: var(--qa-bottom, 20px);
+  width: 48px;
+  height: 48px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.root > * {
+  pointer-events: auto;
+}
+
+.root[data-dragging="1"] {
+  user-select: none;
+}
+
+.fab {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: var(--text, #e8eaed);
+  color: #0e1116;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: grab;
+  touch-action: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.fab:hover {
+  filter: brightness(1.05);
+}
+
+.root[data-dragging="1"] .fab {
+  cursor: grabbing;
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: min(400px, calc(100vw - var(--qa-right, 20px) - 8px));
+  height: min(
+    560px,
+    calc(100vh - var(--qa-bottom, 20px) - 48px - 10px - 8px)
+  );
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(14, 17, 22, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.root[data-panel="below"] .panel {
+  bottom: auto;
+  top: calc(100% + 10px);
+  height: min(560px, calc(var(--qa-bottom, 20px) - 10px - 8px));
+}
+
+.panelHead {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+  cursor: grab;
+  touch-action: none;
+}
+
+.root[data-dragging="1"] .panelHead {
+  cursor: grabbing;
+}
+
+.panelHead strong {
+  display: block;
+  font-size: 13px;
+}
+
+.panelHead em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted, #9aa0a6);
+}
+
+.dragHint {
+  margin: 4px 0 0;
+  font-size: 10px;
+  color: var(--muted, #9aa0a6);
+  opacity: 0.85;
+}
+
+.panelActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lecSelect,
+.iconBtn,
+.sendBtn {
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: transparent;
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.lecSelect {
+  max-width: 88px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.iconBtn {
+  padding: 4px 8px;
+}
+
+.iconBtn:hover,
+.sendBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.chat {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty,
+.muted,
+.extraTag,
+.err {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted, #9aa0a6);
+}
+
+.err {
+  padding: 0 12px 8px;
+  color: #c45c5c;
+}
+
+.evidence {
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.evidence p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted, #9aa0a6);
+}
+
+.extraTag {
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.bubbleUser,
+.bubbleBot {
+  max-width: 92%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.bubbleUser {
+  align-self: flex-end;
+  background: rgba(62, 207, 142, 0.16);
+  border: 1px solid rgba(62, 207, 142, 0.28);
+}
+
+.bubbleBot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.bubbleBot h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.bubbleBot p {
+  margin: 0;
+}
+
+.bubbleBot ul {
+  margin: 6px 0 0;
+  padding-left: 1.1em;
+}
+
+.composer {
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font-size: 13px;
+}
+
+.sendBtn {
+  padding: 8px 12px;
+  background: var(--text, #e8eaed);
+  border-color: transparent;
+  color: #0e1116;
+  font-weight: 600;
+}
+
+.sendBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}

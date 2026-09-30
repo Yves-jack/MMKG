@@ -1,0 +1,1473 @@
+{
+  "course_id": "数理逻辑",
+  "lecture_id": "4",
+  "title": "第4讲 · 知识点浓缩",
+  "n_points": 24,
+  "class_video": "data/raw/数理逻辑/video/class/4_0.mp4",
+  "ppt_video": "data/raw/数理逻辑/video/ppt/4_1.mp4",
+  "duration_sec": 3441.0,
+  "segments": [
+    {
+      "id": "数理逻辑_4_339800_356100",
+      "index": 1,
+      "start_sec": 339.8,
+      "end_sec": 356.1,
+      "title": "我们继续讲解谓词公式的解释和真假性"
+    },
+    {
+      "id": "数理逻辑_4_365400_447100",
+      "index": 2,
+      "start_sec": 365.4,
+      "end_sec": 447.1,
+      "title": "例如普遍有效公式，通常将命题公式中的重言式，…"
+    },
+    {
+      "id": "数理逻辑_4_447900_1534900",
+      "index": 3,
+      "start_sec": 447.9,
+      "end_sec": 1534.9,
+      "title": "在有限域上，我们讨论三个定理"
+    },
+    {
+      "id": "数理逻辑_4_1538600_2173000",
+      "index": 4,
+      "start_sec": 1538.6,
+      "end_sec": 2173.0,
+      "title": "我们来看一个例子：在二元域上证明公式 ∀xF…"
+    },
+    {
+      "id": "数理逻辑_4_2176800_2284700",
+      "index": 5,
+      "start_sec": 2176.8,
+      "end_sec": 2284.7,
+      "title": "判定问题（Entscheidungsprob…"
+    },
+    {
+      "id": "数理逻辑_4_2285900_2367500",
+      "index": 6,
+      "start_sec": 2285.9,
+      "end_sec": 2367.5,
+      "title": "当论域即使不是无限但足够大时，其解释空间已足…"
+    },
+    {
+      "id": "数理逻辑_4_2369400_2375600",
+      "index": 7,
+      "start_sec": 2369.4,
+      "end_sec": 2375.6,
+      "title": "课程到此结束，还有10分钟"
+    },
+    {
+      "id": "数理逻辑_4_2378300_2385200",
+      "index": 8,
+      "start_sec": 2378.3,
+      "end_sec": 2385.2,
+      "title": "本章主要内容包括： 谓词公式的等值 等值演算…"
+    },
+    {
+      "id": "数理逻辑_4_2389000_2475700",
+      "index": 9,
+      "start_sec": 2389.0,
+      "end_sec": 2475.7,
+      "title": "第五章的内容与第二章基本相同，只需将命题变元…"
+    },
+    {
+      "id": "数理逻辑_4_2476600_2730700",
+      "index": 10,
+      "start_sec": 2476.6,
+      "end_sec": 2730.7,
+      "title": "范式的用途是用来做什么？请大家回忆一下第二章…"
+    },
+    {
+      "id": "数理逻辑_4_2731900_2770300",
+      "index": 11,
+      "start_sec": 2731.9,
+      "end_sec": 2770.3,
+      "title": "我们举个例子，这些等值定理与第二章的定义相同"
+    },
+    {
+      "id": "数理逻辑_4_2773600_3020500",
+      "index": 12,
+      "start_sec": 2773.6,
+      "end_sec": 3020.5,
+      "title": "量词否定型等值式涉及量词否定词的深入： $¬…"
+    },
+    {
+      "id": "数理逻辑_4_3031600_3441000",
+      "index": 13,
+      "start_sec": 3031.6,
+      "end_sec": 3441.0,
+      "title": "关键问题出在这个谓词"
+    }
+  ],
+  "points": [
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.944481,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "可判定性/decidability",
+          "predicate": "property_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "具有",
+          "natural_statement": "命题逻辑具有可判定性"
+        },
+        {
+          "subject": "谓词逻辑/Predicate Logic",
+          "predicate": "depend_on",
+          "object": "命题逻辑/propositional logic",
+          "label": "建立在…基础上",
+          "natural_statement": "谓词逻辑建立在命题逻辑基础上"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2285900_2367500",
+          "text": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。因此谓词逻辑是不可判定的。但其部分子类是可判定的：命题逻辑是可判定的，可用真值表法判定是否为重言式；只含一元谓词变项的公式（如P(x)、Q(x)）也是可判定的。以下两种范式同样可判定：全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$和存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$。此外，当个体域有穷时，谓词公式也是可判定的。由于谓词公式的解释空间过于复杂，一般情况下其判定问题被证明是不可判定的。",
+          "start_sec": 2285.9,
+          "end_sec": 2367.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2285900_2367500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 1
+    },
+    {
+      "id": "命题公式/propositional formula",
+      "zh": "命题公式",
+      "importance": 0.530502,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和…",
+      "definition": "命题公式是数理逻辑与集合论中用于表示命题的符号表达式，由命题变项、联结词（如¬, V, ∧）和括号构成。在给定的命题变项的解释下，命题公式可以确定一个唯一的真值，常用于判断公式的等值性、重言式和矛盾式，且任何命题公式都存在与之等值的合取范式和析取范式。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "矛盾式属于命题公式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_365400_447100",
+          "text": "例如普遍有效公式，通常将命题公式中的重言式，如 \\( P \\vee \\neg P \\) 是重言式，其中的 \\( P \\) 可以用任意谓词公式代入，这样的谓词公式就是普遍有效的。例如 \\( (\\forall x) P(x) \\rightarrow P(a) \\)（a 是 x 个体域中的元素）也是普遍有效公式。大部分公式是可满足的，而不可满足公式则是将命题公式中的矛盾式，如 \\( P \\wedge \\neg P \\)，用任意谓词公式代入得到的。需要注意的是，代入时必须用同一个谓词公式替换所有相同的命题变元。",
+          "start_sec": 365.4,
+          "end_sec": 447.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_365400_447100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 2
+    },
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 0.502286,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖于",
+          "natural_statement": "谓词依赖于论域"
+        },
+        {
+          "subject": "谓词公式的解释/interpretation of predicate formula",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖于",
+          "natural_statement": "谓词公式的解释依赖于论域"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_3031600_3441000",
+          "text": "关键问题出在这个谓词。谓词是有限的，当你的论域是有限的。例如，假设论域是{1,2,3}，那么谓词Q(x)表示x小于某个值。这里只能出现1、2、3，不能超过这个范围。谓词中可以出现不止1、2、3这些元素，但不能出现变量。我用Q(x)表示谓词x<4，这只是简写。\n\n谓词是否有无穷多个解？x<4为什么有无穷多个解？可以x<5、x<6，但这不是无穷多解。需要先确定R的值。Q(R)本身有无穷多个谓词，因此有无穷多个解。虽然解释有很多种，但对于给定的论域{1,2,3}，谓词Q(x)的取值只能是真或假两种情况。\n\n在个体域{1,2,3}下，谓词P(x)表示x<4，Q(x)表示x<5。无论代入哪个个体，其真值都一致，这类谓词可以视为等价类。映射是从谓词的等价类到谓词，而不是直接映射谓词本身。在不同论域上的映射需要考虑域的变化。例如，将x<5从数字域映射到桌椅域就没有意义。\n\n大勇推小勇的证明很复杂，但如果",
+          "start_sec": 3031.6,
+          "end_sec": 3441.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_3031600_3441000.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_先指明论域_89100_980600",
+        "llm_theo_全称量词真值条件_9300_2687400",
+        "llm_theo_存在量词真值条件_9300_2687400",
+        "prin_domain_of_discourse",
+        "prin_interpretation_determines_truth",
+        "tech_finite_domain_expand"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "推理演算/inference calculus",
+      "zh": "推理演算",
+      "importance": 0.353393,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。",
+      "definition": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实现逻辑证明的关键手段。例如，在谓词逻辑中，结合归结法进行推理演算，可以高效地进行逻辑推导。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        },
+        {
+          "subject": "归结/resolution",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "组成部分",
+          "natural_statement": "归结组成部分推理演算"
+        },
+        {
+          "subject": "归结/resolution",
+          "predicate": "belong_to",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "归结属于推理演算"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "推理演算依赖量词"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "是…的一部分",
+          "natural_statement": "等值演算是推理演算的一部分"
+        },
+        {
+          "subject": "归结/resolution",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "是…的一部分",
+          "natural_statement": "归结是推理演算的一部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2378300_2385200",
+          "text": "本章主要内容包括：\n谓词公式的等值\n等值演算\n范式（PNF与Skolem范式）\n推理式及推理演算\n归结推理",
+          "start_sec": 2378.3,
+          "end_sec": 2385.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2378300_2385200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2389000_2475700",
+          "text": "第五章的内容与第二章基本相同，只需将命题变元替换为谓词公式即可直接应用。唯一的区别在于引入了量词这一新概念，因此需要针对量词建立专门的等值式和推理式。由于新增了量词符号，我们将学习与之对应的新公式。在讲解等值演算时，也会介绍范式。请大家回忆第二章中范式的作用是什么？",
+          "start_sec": 2389.0,
+          "end_sec": 2475.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2389000_2475700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 4
+    },
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.327177,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "判定问题/decidability problem",
+          "predicate": "property_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "具有属性",
+          "natural_statement": "谓词逻辑具有属性判定问题"
+        },
+        {
+          "subject": "一阶逻辑/first-order logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是一种",
+          "natural_statement": "一阶逻辑是一种谓词逻辑"
+        },
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "谓词公式组成谓词逻辑"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "存在量词表示谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "表示",
+          "natural_statement": "全称量词表示谓词逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于谓词逻辑"
+        },
+        {
+          "subject": "不可判定性/undecidability",
+          "predicate": "property_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "具有",
+          "natural_statement": "谓词逻辑具有不可判定性"
+        },
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "是…的基本表达式",
+          "natural_statement": "谓词公式是谓词逻辑的基本表达式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2176800_2284700",
+          "text": "判定问题（Entscheidungsproblem或decision problem）是指是否存在一个算法，能够以形式语言的语句作为输入，判断其真值并输出T或F。  \n这一问题由Hilbert于1928年提出，但可追溯至Leibniz的构想。  \n\n可计算性（computable）指实际问题可通过特定算法由计算机解决；  \n能行性（effective）要求算法能机械执行并在有限步内完成。  \n\nChurch与Turing（1936-37）证明算术系统不可判定。  \n特别地，一阶逻辑的判定问题关注能否用能行方法判定公式是否普遍有效。  \n\n例如汉诺塔问题虽可计算（存在递归算法），但因计算复杂度呈指数增长（如移动26次需数年），不满足能行性要求。  \n判定谓词公式的可满足性或普遍有效性，需同时满足可计算且复杂度可控（多项式级别），即能行可计算。  \n目前，谓词公式的解释空间过于庞大，其判定问题",
+          "start_sec": 2176.8,
+          "end_sec": 2284.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2176800_2284700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2285900_2367500",
+          "text": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。因此谓词逻辑是不可判定的。但其部分子类是可判定的：命题逻辑是可判定的，可用真值表法判定是否为重言式；只含一元谓词变项的公式（如P(x)、Q(x)）也是可判定的。以下两种范式同样可判定：全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$和存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$。此外，当个体域有穷时，谓词公式也是可判定的。由于谓词公式的解释空间过于复杂，一般情况下其判定问题被证明是不可判定的。",
+          "start_sec": 2285.9,
+          "end_sec": 2367.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2285900_2367500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2378300_2385200",
+          "text": "本章主要内容包括：\n谓词公式的等值\n等值演算\n范式（PNF与Skolem范式）\n推理式及推理演算\n归结推理",
+          "start_sec": 2378.3,
+          "end_sec": 2385.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2378300_2385200.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 5
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.29072,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它…",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_1538600_2173000",
+          "text": "我们来看一个例子：在二元域上证明公式 ∀xF(x)→∃xF(x) 的永真性。虽然该公式在所有k元域上都永真，但这里我们以二元域为例进行分析。\n\n首先考虑谓词F(x)的解释数量。在二元域上，F(x)共有四种可能的解释。观察这四种解释下公式的真值，可以发现均为真，因此公式在二元域上是永真的。\n\n现在考虑具体实例：设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。\n\n正确的做法是：若2映射到a，3映射到b，则F₂(a)=T，F₂(b)=F。这样在I₂上，∀xF₂(x)=F，∃xF₂(x)=T，公式的真值保持为T→T=T。\n\n需要强调的是，谓词的真值表必须严格通过映射保持。若I₁上F(x)取值为F→T，则I₂上对应的F₂(x)也必须保持相同的真值模式。这种严格的对",
+          "start_sec": 1538.6,
+          "end_sec": 2173.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_1538600_2173000.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 6
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.256412,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "量词组成谓词公式"
+        },
+        {
+          "subject": "范式/normal form",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖于",
+          "natural_statement": "范式依赖于量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "量词属于公式"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "property_of",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "具有属性",
+          "natural_statement": "前束范式具有属性量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "属于",
+          "natural_statement": "量词属于前束范式"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "等值演算依赖量词"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "推理演算依赖量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "量词属于谓词逻辑"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2389000_2475700",
+          "text": "第五章的内容与第二章基本相同，只需将命题变元替换为谓词公式即可直接应用。唯一的区别在于引入了量词这一新概念，因此需要针对量词建立专门的等值式和推理式。由于新增了量词符号，我们将学习与之对应的新公式。在讲解等值演算时，也会介绍范式。请大家回忆第二章中范式的作用是什么？",
+          "start_sec": 2389.0,
+          "end_sec": 2475.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2389000_2475700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2731900_2770300",
+          "text": "我们举个例子，这些等值定理与第二章的定义相同。所有命题逻辑的等值式都可以移植到谓词逻辑中使用。例如双重否定律¬¬P(x)⇔P(x)，这里的命题P可以替换为任意谓词公式，等值关系依然成立，只需进行相应代入即可。\n\n唯一需要注意的是量词的否定演算。",
+          "start_sec": 2731.9,
+          "end_sec": 2770.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2731900_2770300.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_形式化是推理的第一步_4500_3036300",
+        "llm_prin_量词仅约束个体_3600_1205100",
+        "prin_domain_of_discourse",
+        "tech_bound_free_split",
+        "tech_quantifier_negation",
+        "tech_rename_bound_var"
+      ],
+      "rank": 7
+    },
+    {
+      "id": "等值式/equivalence formula",
+      "zh": "等值式",
+      "importance": 0.235108,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "等值式是数理逻辑中，两个命题公式在任何解释下都具有相同真值的关系，即它们总是同真同假，因此等值…",
+      "definition": "等值式是数理逻辑中，两个命题公式在任何解释下都具有相同真值的关系，即它们总是同真同假，因此等值式本身也必然是重言式。在命题逻辑和谓词逻辑中，等值式是建立逻辑推理和公式简化的重要工具，常用于将复杂逻辑表达式（如包含蕴含、等价的公式）转换为更基本的联结词（如否定、析取、合取）形式，并且许多等值式可由公理系统推导出，反映了逻辑的普遍有效性。",
+      "neighbors": [
+        {
+          "subject": "等值式/equivalence formula",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "等值式属于谓词逻辑"
+        },
+        {
+          "subject": "量词否定/quantifier negation",
+          "predicate": "belong_to",
+          "object": "等值式/equivalence formula",
+          "label": "是一种",
+          "natural_statement": "量词否定是一种等值式"
+        },
+        {
+          "subject": "量词的摩根律/De Morgan's laws for quantifiers",
+          "predicate": "belong_to",
+          "object": "等值式/equivalence formula",
+          "label": "是一种",
+          "natural_statement": "量词的摩根律是一种等值式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 8
+    },
+    {
+      "id": "重言式/tautology",
+      "zh": "重言式",
+      "importance": 0.22866,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公…",
+      "definition": "重言式（tautology），又称永真式，是数理逻辑与集合论中指在任何解释下真值恒为真的合式公式。其核心功能在于代表逻辑规律和正确的推理形式。一个公式为重言式当且仅当其否定式为永假式。在实际应用中，重言式被用于证明公式的等值性，例如，$A \\leftrightarrow B$ 为重言式即表示 $A$ 与 $B$ 等价。常见的重言式包括逻辑公理和推理规则，它们是演绎体系的基石。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "包含",
+          "natural_statement": "重言式包含命题公式"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "related_with",
+          "object": "矛盾式/contradiction",
+          "label": "具有",
+          "natural_statement": "重言式具有矛盾式"
+        },
+        {
+          "subject": "普遍有效/universally valid",
+          "predicate": "depend_on",
+          "object": "重言式/tautology",
+          "label": "基于",
+          "natural_statement": "普遍有效基于重言式"
+        },
+        {
+          "subject": "真值表法/Truth Table Method",
+          "predicate": "related_with",
+          "object": "重言式/tautology",
+          "label": "用于判定",
+          "natural_statement": "真值表法用于判定重言式"
+        },
+        {
+          "subject": "公理/axiom",
+          "predicate": "depend_on",
+          "object": "重言式/tautology",
+          "label": "代入得到",
+          "natural_statement": "普遍有效公式代入得到重言式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2285900_2367500",
+          "text": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。因此谓词逻辑是不可判定的。但其部分子类是可判定的：命题逻辑是可判定的，可用真值表法判定是否为重言式；只含一元谓词变项的公式（如P(x)、Q(x)）也是可判定的。以下两种范式同样可判定：全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$和存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$。此外，当个体域有穷时，谓词公式也是可判定的。由于谓词公式的解释空间过于复杂，一般情况下其判定问题被证明是不可判定的。",
+          "start_sec": 2285.9,
+          "end_sec": 2367.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2285900_2367500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_365400_447100",
+          "text": "例如普遍有效公式，通常将命题公式中的重言式，如 \\( P \\vee \\neg P \\) 是重言式，其中的 \\( P \\) 可以用任意谓词公式代入，这样的谓词公式就是普遍有效的。例如 \\( (\\forall x) P(x) \\rightarrow P(a) \\)（a 是 x 个体域中的元素）也是普遍有效公式。大部分公式是可满足的，而不可满足公式则是将命题公式中的矛盾式，如 \\( P \\wedge \\neg P \\)，用任意谓词公式代入得到的。需要注意的是，代入时必须用同一个谓词公式替换所有相同的命题变元。",
+          "start_sec": 365.4,
+          "end_sec": 447.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_365400_447100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 9
+    },
+    {
+      "id": "等值/equivalence",
+      "zh": "等值",
+      "importance": 0.222456,
+      "mention_count": 4,
+      "origin": "shared",
+      "summary": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。",
+      "definition": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍有效公式），则称它们是等值的。等值关系允许在公式中用等值的公式进行替换，是判断重言式、矛盾式及公式化简的基础。",
+      "neighbors": [
+        {
+          "subject": "范式/normal form",
+          "predicate": "property_of",
+          "object": "等值/equivalence",
+          "label": "具有",
+          "natural_statement": "等值具有范式"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "depend_on",
+          "object": "等值/equivalence",
+          "label": "基于",
+          "natural_statement": "等值演算基于等值"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "property_of",
+          "object": "等值/equivalence",
+          "label": "具有属性",
+          "natural_statement": "等值具有属性公式"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "property_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "具有属性",
+          "natural_statement": "谓词逻辑具有属性等值"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2378300_2385200",
+          "text": "本章主要内容包括：\n谓词公式的等值\n等值演算\n范式（PNF与Skolem范式）\n推理式及推理演算\n归结推理",
+          "start_sec": 2378.3,
+          "end_sec": 2385.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2378300_2385200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2389000_2475700",
+          "text": "第五章的内容与第二章基本相同，只需将命题变元替换为谓词公式即可直接应用。唯一的区别在于引入了量词这一新概念，因此需要针对量词建立专门的等值式和推理式。由于新增了量词符号，我们将学习与之对应的新公式。在讲解等值演算时，也会介绍范式。请大家回忆第二章中范式的作用是什么？",
+          "start_sec": 2389.0,
+          "end_sec": 2475.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2389000_2475700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 10
+    },
+    {
+      "id": "公理/axiom",
+      "zh": "公理",
+      "importance": 0.220705,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "公理（axiom）是数理逻辑与集合论中作为演绎体系的起点，不需证明、被视为真理的基础性命题或永…",
+      "definition": "公理（axiom）是数理逻辑与集合论中作为演绎体系的起点，不需证明、被视为真理的基础性命题或永真公式。它们构成了公理系统的基石，通过逻辑推理规则（如蕴含、联结词的引入与消去）可以推导出一系列定理，从而建立起完整的数学理论。公理可以是对基本集合的构造性陈述，或为普遍有效的公式模式。",
+      "neighbors": [
+        {
+          "subject": "公理/axiom",
+          "predicate": "belong_to",
+          "object": "谓词逻辑公式/predicate logic formula",
+          "label": "属于",
+          "natural_statement": "普遍有效公式属于谓词逻辑公式"
+        },
+        {
+          "subject": "公理/axiom",
+          "predicate": "depend_on",
+          "object": "重言式/tautology",
+          "label": "代入得到",
+          "natural_statement": "普遍有效公式代入得到重言式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_339800_356100",
+          "text": "我们继续讲解谓词公式的解释和真假性。谓词逻辑的公式按真假性分为三类：普遍有效公式、可满足公式和不可满足公式。普遍有效公式是指在任一解释下都为真的谓词公式。可满足公式是指在某个解释下为真的谓词公式。不可满足公式是指在任一解释下都为假的谓词公式。",
+          "start_sec": 339.8,
+          "end_sec": 356.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_339800_356100.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 11
+    },
+    {
+      "id": "谓词公式的解释/interpretation of predicate formula",
+      "zh": "谓词公式的解释",
+      "importance": 0.210298,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "谓词公式的解释是数理逻辑中为谓词公式赋值的一种方式，它在确定论域后，为谓词变项、命题变项、函数…",
+      "definition": "谓词公式的解释是数理逻辑中为谓词公式赋值的一种方式，它在确定论域后，为谓词变项、命题变项、函数和自由个体进行具体设定。这种解释是判断谓词公式真值的关键，直接决定了公式的语义意义。",
+      "neighbors": [
+        {
+          "subject": "谓词公式的解释/interpretation of predicate formula",
+          "predicate": "depend_on",
+          "object": "六项要素/six elements",
+          "label": "取决于",
+          "natural_statement": "谓词公式的解释取决于六项要素"
+        },
+        {
+          "subject": "谓词公式的解释/interpretation of predicate formula",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖于",
+          "natural_statement": "谓词公式的解释依赖于论域"
+        },
+        {
+          "subject": "不可判定性/undecidability",
+          "predicate": "depend_on",
+          "object": "谓词公式的解释/interpretation of predicate formula",
+          "label": "源于解释空间过大",
+          "natural_statement": "不可判定性源于解释空间过大谓词公式的解释"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_3031600_3441000",
+          "text": "关键问题出在这个谓词。谓词是有限的，当你的论域是有限的。例如，假设论域是{1,2,3}，那么谓词Q(x)表示x小于某个值。这里只能出现1、2、3，不能超过这个范围。谓词中可以出现不止1、2、3这些元素，但不能出现变量。我用Q(x)表示谓词x<4，这只是简写。\n\n谓词是否有无穷多个解？x<4为什么有无穷多个解？可以x<5、x<6，但这不是无穷多解。需要先确定R的值。Q(R)本身有无穷多个谓词，因此有无穷多个解。虽然解释有很多种，但对于给定的论域{1,2,3}，谓词Q(x)的取值只能是真或假两种情况。\n\n在个体域{1,2,3}下，谓词P(x)表示x<4，Q(x)表示x<5。无论代入哪个个体，其真值都一致，这类谓词可以视为等价类。映射是从谓词的等价类到谓词，而不是直接映射谓词本身。在不同论域上的映射需要考虑域的变化。例如，将x<5从数字域映射到桌椅域就没有意义。\n\n大勇推小勇的证明很复杂，但如果",
+          "start_sec": 3031.6,
+          "end_sec": 3441.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_3031600_3441000.mp4"
+        }
+      ],
+      "asset_ids": [
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation"
+      ],
+      "rank": 12
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.185705,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "可满足/satisfiable",
+          "predicate": "depend_on",
+          "object": "真值/truth value",
+          "label": "依赖",
+          "natural_statement": "可满足性依赖真值"
+        },
+        {
+          "subject": "普遍有效/universally valid",
+          "predicate": "depend_on",
+          "object": "真值/truth value",
+          "label": "依赖",
+          "natural_statement": "普遍有效性依赖真值"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "属于",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "property_of",
+          "object": "谓词/predicate",
+          "label": "是…的属性",
+          "natural_statement": "真值是谓词的属性"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_1538600_2173000",
+          "text": "我们来看一个例子：在二元域上证明公式 ∀xF(x)→∃xF(x) 的永真性。虽然该公式在所有k元域上都永真，但这里我们以二元域为例进行分析。\n\n首先考虑谓词F(x)的解释数量。在二元域上，F(x)共有四种可能的解释。观察这四种解释下公式的真值，可以发现均为真，因此公式在二元域上是永真的。\n\n现在考虑具体实例：设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。\n\n正确的做法是：若2映射到a，3映射到b，则F₂(a)=T，F₂(b)=F。这样在I₂上，∀xF₂(x)=F，∃xF₂(x)=T，公式的真值保持为T→T=T。\n\n需要强调的是，谓词的真值表必须严格通过映射保持。若I₁上F(x)取值为F→T，则I₂上对应的F₂(x)也必须保持相同的真值模式。这种严格的对",
+          "start_sec": 1538.6,
+          "end_sec": 2173.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_1538600_2173000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_447900_1534900",
+          "text": "在有限域上，我们讨论三个定理。定理一：公式是否普遍有效或可满足，仅取决于个体域的大小k，与具体个体域无关。例如，若公式在自然数集1-10上普遍有效，则在任意5元素域上也普遍有效。\n\n定理二：大永真推出小永真。若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效。\n\n定理三：小可满足推出大可满足。若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足。\n\n现在证明定理一。关键在于解释的映射关系。设有两个k-个体域D1和D2，分别包含元素x1...xk和y1...yk。建立它们之间的一一映射：xi↔yi。对于D1上的任意解释I1，若公式在I1下为真，则可通过映射构造D2上的解释I2，使公式在I2下也为真。具体方法：\n1. 命题变元直接对应\n2. 谓词符号的真值表通过映射保持\n3. 函数符号通过元素映射保持\n\n通过这种构造，可证明公式在D1上的解释与D2上的解释具有相同的真值。",
+          "start_sec": 447.9,
+          "end_sec": 1534.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_447900_1534900.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_谓词公式真值唯一确定性_6500_2043100",
+        "prin_interpretation_determines_truth",
+        "tech_predicate_interpretation",
+        "tech_truth_classification"
+      ],
+      "rank": 13
+    },
+    {
+      "id": "个体域/domain of individuals",
+      "zh": "个体域",
+      "importance": 0.164821,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "个体域（或称论域），通常用 $D$ 表示，是逻辑学中指代个体变项（如 $x, y$）可取值的集…",
+      "definition": "个体域（或称论域），通常用 $D$ 表示，是逻辑学中指代个体变项（如 $x, y$）可取值的集合。谓词在此个体域上定义为一个映射，将域中的个体映射到真值（T）或假值（F）。个体域的大小和构成对公式的可满足性至关重要，例如，一个公式可能在 {1,2} 的个体域上可满足，但在 {1} 的个体域上不可满足。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "个体域/domain of individuals",
+          "label": "依赖",
+          "natural_statement": "公式依赖个体域"
+        },
+        {
+          "subject": "个体的个数/number of individuals",
+          "predicate": "property_of",
+          "object": "个体域/domain of individuals",
+          "label": "具有",
+          "natural_statement": "个体域具有个体的个数"
+        },
+        {
+          "subject": "有限域/finite domain",
+          "predicate": "belong_to",
+          "object": "个体域/domain of individuals",
+          "label": "是一种",
+          "natural_statement": "有限域是一种个体域"
+        },
+        {
+          "subject": "可满足/satisfiable",
+          "predicate": "depend_on",
+          "object": "个体域/domain of individuals",
+          "label": "依赖",
+          "natural_statement": "可满足性依赖个体域"
+        },
+        {
+          "subject": "普遍有效/universally valid",
+          "predicate": "depend_on",
+          "object": "个体域/domain of individuals",
+          "label": "依赖",
+          "natural_statement": "普遍有效性依赖个体域"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_447900_1534900",
+          "text": "在有限域上，我们讨论三个定理。定理一：公式是否普遍有效或可满足，仅取决于个体域的大小k，与具体个体域无关。例如，若公式在自然数集1-10上普遍有效，则在任意5元素域上也普遍有效。\n\n定理二：大永真推出小永真。若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效。\n\n定理三：小可满足推出大可满足。若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足。\n\n现在证明定理一。关键在于解释的映射关系。设有两个k-个体域D1和D2，分别包含元素x1...xk和y1...yk。建立它们之间的一一映射：xi↔yi。对于D1上的任意解释I1，若公式在I1下为真，则可通过映射构造D2上的解释I2，使公式在I2下也为真。具体方法：\n1. 命题变元直接对应\n2. 谓词符号的真值表通过映射保持\n3. 函数符号通过元素映射保持\n\n通过这种构造，可证明公式在D1上的解释与D2上的解释具有相同的真值。",
+          "start_sec": 447.9,
+          "end_sec": 1534.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_447900_1534900.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_大永真推出小永真_7900_1534900",
+        "llm_theo_小可满足推出大可满足_7900_1534900",
+        "llm_theo_有限域普遍有效性与可满足性仅依赖个体域大小_7900_1534900"
+      ],
+      "rank": 14
+    },
+    {
+      "id": "矛盾式/contradiction",
+      "zh": "矛盾式",
+      "importance": 0.158887,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。",
+      "definition": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。这类公式是逻辑上不可满足的，例如，如果一个公式可以被归结为空子句（□），则证明其为矛盾式。理解矛盾式对于判断公式的等值性、重言式以及证明推理的有效性至关重要，定理2.8.2表明，$A \\Rightarrow B$ 成立的充分必要条件是 $A \\wedge \\neg B$ 是矛盾式。",
+      "neighbors": [
+        {
+          "subject": "重言式/tautology",
+          "predicate": "related_with",
+          "object": "矛盾式/contradiction",
+          "label": "具有",
+          "natural_statement": "重言式具有矛盾式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "belong_to",
+          "object": "命题公式/propositional formula",
+          "label": "属于",
+          "natural_statement": "矛盾式属于命题公式"
+        },
+        {
+          "subject": "不可满足/unsatisfiable",
+          "predicate": "depend_on",
+          "object": "矛盾式/contradiction",
+          "label": "基于",
+          "natural_statement": "不可满足基于矛盾式"
+        },
+        {
+          "subject": "矛盾的公式/Contradictory Formula",
+          "predicate": "depend_on",
+          "object": "矛盾式/contradiction",
+          "label": "代入得到",
+          "natural_statement": "不可满足公式代入得到矛盾式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_365400_447100",
+          "text": "例如普遍有效公式，通常将命题公式中的重言式，如 \\( P \\vee \\neg P \\) 是重言式，其中的 \\( P \\) 可以用任意谓词公式代入，这样的谓词公式就是普遍有效的。例如 \\( (\\forall x) P(x) \\rightarrow P(a) \\)（a 是 x 个体域中的元素）也是普遍有效公式。大部分公式是可满足的，而不可满足公式则是将命题公式中的矛盾式，如 \\( P \\wedge \\neg P \\)，用任意谓词公式代入得到的。需要注意的是，代入时必须用同一个谓词公式替换所有相同的命题变元。",
+          "start_sec": 365.4,
+          "end_sec": 447.1,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_365400_447100.mp4"
+        }
+      ],
+      "asset_ids": [
+        "tech_truth_classification"
+      ],
+      "rank": 15
+    },
+    {
+      "id": "谓词符号/predicate symbol",
+      "zh": "谓词符号",
+      "importance": 0.155647,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "谓词符号是数理逻辑和集合论中用于表示命题结构的符号，可以看作是一个具有特定变元个数（arity…",
+      "definition": "谓词符号是数理逻辑和集合论中用于表示命题结构的符号，可以看作是一个具有特定变元个数（arity）的函数，其返回值是真或假。它与一个或多个项（terms）组合，形成一个公式，例如 P(x) 表示“x 是学生”。每个谓词符号都关联一个正整数 k>0，表示其变元个数，例如 k=1 的谓词 P 作用于项 t1，形成 P(t1)，在特定论域 U 上对应一个 k 元关系 R。",
+      "neighbors": [
+        {
+          "subject": "谓词符号/predicate symbol",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "谓词符号组成公式"
+        },
+        {
+          "subject": "谓词符号/predicate symbol",
+          "predicate": "related_with",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词符号表示谓词"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_1538600_2173000",
+          "text": "我们来看一个例子：在二元域上证明公式 ∀xF(x)→∃xF(x) 的永真性。虽然该公式在所有k元域上都永真，但这里我们以二元域为例进行分析。\n\n首先考虑谓词F(x)的解释数量。在二元域上，F(x)共有四种可能的解释。观察这四种解释下公式的真值，可以发现均为真，因此公式在二元域上是永真的。\n\n现在考虑具体实例：设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。\n\n正确的做法是：若2映射到a，3映射到b，则F₂(a)=T，F₂(b)=F。这样在I₂上，∀xF₂(x)=F，∃xF₂(x)=T，公式的真值保持为T→T=T。\n\n需要强调的是，谓词的真值表必须严格通过映射保持。若I₁上F(x)取值为F→T，则I₂上对应的F₂(x)也必须保持相同的真值模式。这种严格的对",
+          "start_sec": 1538.6,
+          "end_sec": 2173.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_1538600_2173000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_447900_1534900",
+          "text": "在有限域上，我们讨论三个定理。定理一：公式是否普遍有效或可满足，仅取决于个体域的大小k，与具体个体域无关。例如，若公式在自然数集1-10上普遍有效，则在任意5元素域上也普遍有效。\n\n定理二：大永真推出小永真。若公式在k-个体域上普遍有效，则在(k-1)-个体域上也普遍有效。\n\n定理三：小可满足推出大可满足。若公式在k-个体域上可满足，则在(k+1)-个体域上也可满足。\n\n现在证明定理一。关键在于解释的映射关系。设有两个k-个体域D1和D2，分别包含元素x1...xk和y1...yk。建立它们之间的一一映射：xi↔yi。对于D1上的任意解释I1，若公式在I1下为真，则可通过映射构造D2上的解释I2，使公式在I2下也为真。具体方法：\n1. 命题变元直接对应\n2. 谓词符号的真值表通过映射保持\n3. 函数符号通过元素映射保持\n\n通过这种构造，可证明公式在D1上的解释与D2上的解释具有相同的真值。",
+          "start_sec": 447.9,
+          "end_sec": 1534.9,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_447900_1534900.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 16
+    },
+    {
+      "id": "谓词/predicate",
+      "zh": "谓词",
+      "importance": 0.127907,
+      "mention_count": 5,
+      "origin": "shared",
+      "summary": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x,…",
+      "definition": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕获了不同命题的共同结构，并通过量词与个体变量结合形成合式公式。",
+      "neighbors": [
+        {
+          "subject": "谓词符号/predicate symbol",
+          "predicate": "related_with",
+          "object": "谓词/predicate",
+          "label": "表示",
+          "natural_statement": "谓词符号表示谓词"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "可视为",
+          "natural_statement": "谓词可视为映射"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "property_of",
+          "object": "谓词/predicate",
+          "label": "是…的属性",
+          "natural_statement": "真值是谓词的属性"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成部分",
+          "natural_statement": "谓词组成部分谓词公式"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "谓词组成谓词公式"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖于",
+          "natural_statement": "谓词依赖于论域"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "等价类/Equivalence Class",
+          "label": "属于",
+          "natural_statement": "谓词属于等价类"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "是…的组成部分",
+          "natural_statement": "谓词是谓词公式的组成部分"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_1538600_2173000",
+          "text": "我们来看一个例子：在二元域上证明公式 ∀xF(x)→∃xF(x) 的永真性。虽然该公式在所有k元域上都永真，但这里我们以二元域为例进行分析。\n\n首先考虑谓词F(x)的解释数量。在二元域上，F(x)共有四种可能的解释。观察这四种解释下公式的真值，可以发现均为真，因此公式在二元域上是永真的。\n\n现在考虑具体实例：设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。\n\n正确的做法是：若2映射到a，3映射到b，则F₂(a)=T，F₂(b)=F。这样在I₂上，∀xF₂(x)=F，∃xF₂(x)=T，公式的真值保持为T→T=T。\n\n需要强调的是，谓词的真值表必须严格通过映射保持。若I₁上F(x)取值为F→T，则I₂上对应的F₂(x)也必须保持相同的真值模式。这种严格的对",
+          "start_sec": 1538.6,
+          "end_sec": 2173.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_1538600_2173000.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2378300_2385200",
+          "text": "本章主要内容包括：\n谓词公式的等值\n等值演算\n范式（PNF与Skolem范式）\n推理式及推理演算\n归结推理",
+          "start_sec": 2378.3,
+          "end_sec": 2385.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2378300_2385200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2389000_2475700",
+          "text": "第五章的内容与第二章基本相同，只需将命题变元替换为谓词公式即可直接应用。唯一的区别在于引入了量词这一新概念，因此需要针对量词建立专门的等值式和推理式。由于新增了量词符号，我们将学习与之对应的新公式。在讲解等值演算时，也会介绍范式。请大家回忆第二章中范式的作用是什么？",
+          "start_sec": 2389.0,
+          "end_sec": 2475.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2389000_2475700.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_prin_代入时同一变元必须使用同一谓词公式_65400_447100",
+        "prin_predicate_as_propositional_function",
+        "prin_zero_ary_predicate_as_proposition",
+        "tech_predicate_interpretation",
+        "tech_propositionalize_predicate"
+      ],
+      "rank": 17
+    },
+    {
+      "id": "Skolem范式/Skolem Normal Form",
+      "zh": "Skolem范式",
+      "importance": 0.123475,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "范式的用途是用来做什么？",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "Skolem范式/Skolem Normal Form",
+          "predicate": "related_with",
+          "object": "公式/formula",
+          "label": "等不可满足于",
+          "natural_statement": "Skolem范式等不可满足于公式"
+        },
+        {
+          "subject": "归结推理/Resolution Inference",
+          "predicate": "depend_on",
+          "object": "Skolem范式/Skolem Normal Form",
+          "label": "依赖",
+          "natural_statement": "归结推理依赖Skolem范式"
+        },
+        {
+          "subject": "Skolem范式/Skolem Normal Form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "Skolem范式属于范式"
+        },
+        {
+          "subject": "Skolem范式/Skolem Normal Form",
+          "predicate": "depend_on",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "依赖",
+          "natural_statement": "Skolem范式依赖前束范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 18
+    },
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.101948,
+      "mention_count": 3,
+      "origin": "shared",
+      "summary": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。",
+      "definition": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范式不唯一，但λ-演算中的范式（即不含β-归约形式的项）是唯一的，且任何项经有限步β-归约后必能终止于其唯一的范式。",
+      "neighbors": [
+        {
+          "subject": "范式/normal form",
+          "predicate": "property_of",
+          "object": "等值/equivalence",
+          "label": "具有",
+          "natural_statement": "等值具有范式"
+        },
+        {
+          "subject": "范式/normal form",
+          "predicate": "related_with",
+          "object": "公式/formula",
+          "label": "表示",
+          "natural_statement": "范式表示公式"
+        },
+        {
+          "subject": "范式/normal form",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖于",
+          "natural_statement": "范式依赖于量词"
+        },
+        {
+          "subject": "前束范式/Prenex Normal Form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "前束范式属于范式"
+        },
+        {
+          "subject": "归结算法/Resolution Algorithm",
+          "predicate": "depend_on",
+          "object": "范式/normal form",
+          "label": "依赖",
+          "natural_statement": "归结算法依赖范式"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "合取范式属于范式"
+        },
+        {
+          "subject": "Skolem范式/Skolem Normal Form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "Skolem范式属于范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2378300_2385200",
+          "text": "本章主要内容包括：\n谓词公式的等值\n等值演算\n范式（PNF与Skolem范式）\n推理式及推理演算\n归结推理",
+          "start_sec": 2378.3,
+          "end_sec": 2385.2,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2378300_2385200.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2389000_2475700",
+          "text": "第五章的内容与第二章基本相同，只需将命题变元替换为谓词公式即可直接应用。唯一的区别在于引入了量词这一新概念，因此需要针对量词建立专门的等值式和推理式。由于新增了量词符号，我们将学习与之对应的新公式。在讲解等值演算时，也会介绍范式。请大家回忆第二章中范式的作用是什么？",
+          "start_sec": 2389.0,
+          "end_sec": 2475.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2389000_2475700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 19
+    },
+    {
+      "id": "映射/mapping",
+      "zh": "映射",
+      "importance": 0.096308,
+      "mention_count": 1,
+      "origin": "shared",
+      "summary": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的…",
+      "definition": "映射（mapping）在数理逻辑与集合论中，是指一个从某个集合（定义域）到另一个集合（值域）的规则，它将定义域中的每个元素唯一地关联到值域中的一个元素。在逻辑学语境下，谓词可以被视为从个体域到集合 {T, F} 的一个映射。函数是映射的一种，可以将一个体域的元素映射到另一个体域的元素，例如将自然数集映射到 [0,1] 区间。",
+      "neighbors": [
+        {
+          "subject": "同构/Isomorphism",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "是一种",
+          "natural_statement": "同构是一种映射"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "映射/mapping",
+          "label": "可视为",
+          "natural_statement": "谓词可视为映射"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_1538600_2173000",
+          "text": "我们来看一个例子：在二元域上证明公式 ∀xF(x)→∃xF(x) 的永真性。虽然该公式在所有k元域上都永真，但这里我们以二元域为例进行分析。\n\n首先考虑谓词F(x)的解释数量。在二元域上，F(x)共有四种可能的解释。观察这四种解释下公式的真值，可以发现均为真，因此公式在二元域上是永真的。\n\n现在考虑具体实例：设解释I₁={2,3}，谓词F(x)为\"x为偶数\"。在I₁上，F(2)=T，F(3)=F。现在要求在解释I₂={a,b}上找到对应的谓词F₂(x)，使得两个解释通过映射保持真值对应关系。\n\n正确的做法是：若2映射到a，3映射到b，则F₂(a)=T，F₂(b)=F。这样在I₂上，∀xF₂(x)=F，∃xF₂(x)=T，公式的真值保持为T→T=T。\n\n需要强调的是，谓词的真值表必须严格通过映射保持。若I₁上F(x)取值为F→T，则I₂上对应的F₂(x)也必须保持相同的真值模式。这种严格的对",
+          "start_sec": 1538.6,
+          "end_sec": 2173.0,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_1538600_2173000.mp4"
+        }
+      ],
+      "asset_ids": [
+        "llm_theo_xf_x_xf_x_在有限域上永真_8600_2173000"
+      ],
+      "rank": 20
+    },
+    {
+      "id": "全称量词前置的公式/formula with universal quantifiers prefixed",
+      "zh": "全称量词前置的公式",
+      "importance": 0.094568,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "可判定性/decidability",
+          "predicate": "property_of",
+          "object": "全称量词前置的公式/formula with universal quantifiers prefixed",
+          "label": "具有",
+          "natural_statement": "全称量词前置的公式具有可判定性"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2285900_2367500",
+          "text": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。因此谓词逻辑是不可判定的。但其部分子类是可判定的：命题逻辑是可判定的，可用真值表法判定是否为重言式；只含一元谓词变项的公式（如P(x)、Q(x)）也是可判定的。以下两种范式同样可判定：全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$和存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$。此外，当个体域有穷时，谓词公式也是可判定的。由于谓词公式的解释空间过于复杂，一般情况下其判定问题被证明是不可判定的。",
+          "start_sec": 2285.9,
+          "end_sec": 2367.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2285900_2367500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 21
+    },
+    {
+      "id": "只含一元谓词变项的公式/formula with only unary predicate variables",
+      "zh": "只含一元谓词变项的公式",
+      "importance": 0.094568,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "可判定性/decidability",
+          "predicate": "property_of",
+          "object": "只含一元谓词变项的公式/formula with only unary predicate variables",
+          "label": "具有",
+          "natural_statement": "只含一元谓词变项的公式具有可判定性"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2285900_2367500",
+          "text": "当论域即使不是无限但足够大时，其解释空间已足够庞大，无法通过穷举法实现判定。因此谓词逻辑是不可判定的。但其部分子类是可判定的：命题逻辑是可判定的，可用真值表法判定是否为重言式；只含一元谓词变项的公式（如P(x)、Q(x)）也是可判定的。以下两种范式同样可判定：全称量词前置的$(\\forall x_1)...(\\forall x_n)A(x_1,...,x_n)$和存在量词前置的$(\\exists x_1)...(\\exists x_n)A(x_1,...,x_n)$。此外，当个体域有穷时，谓词公式也是可判定的。由于谓词公式的解释空间过于复杂，一般情况下其判定问题被证明是不可判定的。",
+          "start_sec": 2285.9,
+          "end_sec": 2367.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2285900_2367500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 22
+    },
+    {
+      "id": "前束范式/Prenex Normal Form",
+      "zh": "前束范式",
+      "importance": 0.066297,
+      "mention_count": 2,
+      "origin": "shared",
+      "summary": "前束范式是数理逻辑中一阶语言的一类特殊公式，其所有量词（全称量词和存在量词）均位于公式的最左边…",
+      "definition": "前束范式是数理逻辑中一阶语言的一类特殊公式，其所有量词（全称量词和存在量词）均位于公式的最左边，并且其辖域延伸至整个公式的末端。任何带量词的公式都可以等值地转化为前束范式，但这种转化并非唯一，因为量词的顺序和自由变量的引入可能产生多种形式。前束范式是化为 Skolem 标准形的关键中间步骤，用于消去存在量词。",
+      "neighbors": [
+        {
+          "subject": "前束范式/Prenex Normal Form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "前束范式属于范式"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "property_of",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "具有属性",
+          "natural_statement": "前束范式具有属性量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "属于",
+          "natural_statement": "量词属于前束范式"
+        },
+        {
+          "subject": "前束范式/Prenex Normal Form",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "前束范式属于公式"
+        },
+        {
+          "subject": "前束范式/Prenex Normal Form",
+          "predicate": "property_of",
+          "object": "公式/formula",
+          "label": "具有属性",
+          "natural_statement": "公式具有属性前束范式"
+        },
+        {
+          "subject": "Skolem范式/Skolem Normal Form",
+          "predicate": "depend_on",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "依赖",
+          "natural_statement": "Skolem范式依赖前束范式"
+        },
+        {
+          "subject": "前束范式/Prenex Normal Form",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖于",
+          "natural_statement": "前束范式依赖于量词"
+        },
+        {
+          "subject": "Skolem 化/Skolemization",
+          "predicate": "depend_on",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "基于",
+          "natural_statement": "Skolem 化基于前束范式"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2476600_2730700",
+          "text": "范式的用途是用来做什么？请大家回忆一下第二章的内容。我们讲过合取范式和析取范式，它们的主要作用是用于判定。通常我们通过真值表来推导范式，这是常见的应用方式。在数字电路设计中，布尔逻辑就是用于电路设计的，这是范式的重要应用之一。\n\n归结算法是否使用了范式？首先需要将公式转化为合取范式，得到子句，然后对这些子句进行归结。因此，范式的一个重要用途就是为归结算法做准备。在这一章中，我们会学习如何将公式转化为前束范式，最终得到Skolem范式。\n\n需要注意的是，第二章介绍的范式与原公式是等值的，而本章要讲的Skolem范式与原公式不等值，但具有等不可满足性。这意味着只要Skolem范式不可满足，就能证明原公式矛盾。这就是Skolem范式的主要用途，为归结推理做准备。\n\n关于推理演算和等值演算，本章内容大部分可以直接应用第二章的知识，新增部分主要是关于量词的等值演算和推理演算。因此本章内容相对简单。",
+          "start_sec": 2476.6,
+          "end_sec": 2730.7,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2476600_2730700.mp4"
+        },
+        {
+          "cue_id": "数理逻辑_4_2731900_2770300",
+          "text": "我们举个例子，这些等值定理与第二章的定义相同。所有命题逻辑的等值式都可以移植到谓词逻辑中使用。例如双重否定律¬¬P(x)⇔P(x)，这里的命题P可以替换为任意谓词公式，等值关系依然成立，只需进行相应代入即可。\n\n唯一需要注意的是量词的否定演算。",
+          "start_sec": 2731.9,
+          "end_sec": 2770.3,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2731900_2770300.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 23
+    },
+    {
+      "id": "论域大小/domain size",
+      "zh": "论域大小",
+      "importance": 0.054657,
+      "mention_count": 1,
+      "origin": "lecture_only",
+      "summary": "量词否定型等值式涉及量词否定词的深入： $¬(∀x)P(x)≡(∃x)¬P(x)$ $(∀x)…",
+      "definition": "",
+      "neighbors": [
+        {
+          "subject": "公式的普遍有效性/universal validity of formula",
+          "predicate": "depend_on",
+          "object": "论域大小/domain size",
+          "label": "取决于",
+          "natural_statement": "公式的普遍有效性取决于论域大小"
+        },
+        {
+          "subject": "公式的可满足性/satisfiability of formula",
+          "predicate": "depend_on",
+          "object": "论域大小/domain size",
+          "label": "取决于",
+          "natural_statement": "公式的可满足性取决于论域大小"
+        }
+      ],
+      "evidence": [
+        {
+          "cue_id": "数理逻辑_4_2773600_3020500",
+          "text": "量词否定型等值式涉及量词否定词的深入：\n$¬(∀x)P(x)≡(∃x)¬P(x)$\n$(∀x)P(x)≡¬(∃x)¬P(x)$\n$¬(∃x)P(x)≡(∀x)¬P(x)$\n$(∃x)P(x)≡¬(∀x)¬P(x)$\n\n以\"所有有理数都不是无理数\"为例，其谓词逻辑表示为：\n$(∀x)(Rational(x)→¬Irrational(x))$\n通过等值演算可转化为：\n$¬(∃x)(Rational(x)∧Irrational(x))$\n\n这体现了量词的摩根律：当否定词深入量词内部时，全称量词与存在量词需要相互转换。第四章主要内容包括：\n1. 谓词公式的解释由六项要素决定\n2. 有限论域上可将$(∀x)P(x)$展开为合取式，$(∃x)P(x)$展开为析取式\n3. 公式的普遍有效性或可满足性仅取决于论域大小\n4. 通过映射证明两个公式在特定条件下的等值关系\n\n课程至此结束，请完成相关作业。",
+          "start_sec": 2773.6,
+          "end_sec": 3020.5,
+          "clip_path": "data\\segments\\数理逻辑\\cues\\数理逻辑_4_2773600_3020500.mp4"
+        }
+      ],
+      "asset_ids": [],
+      "rank": 24
+    }
+  ]
+}

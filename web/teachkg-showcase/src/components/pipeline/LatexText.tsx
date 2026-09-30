@@ -81,7 +81,7 @@ function renderKatex(tex: string, displayMode: boolean): string {
 export function LatexText({
   text,
   className,
-  as: Tag = "div",
+  as: Tag = "span",
   compact = false,
 }: {
   text: string;

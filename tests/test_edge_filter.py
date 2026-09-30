@@ -18,6 +18,11 @@ class _Rel:
     description: str = ""
     context: str = ""
     classroom_evidence: str = ""
+    related_knowledge_points: list = None  # type: ignore[assignment]
+
+    def __post_init__(self):
+        if self.related_knowledge_points is None:
+            object.__setattr__(self, "related_knowledge_points", [])
 
 
 def _load_edge_filter():
@@ -135,6 +140,33 @@ def test_require_evidence_rejects_fabricated_quote():
         require_classroom_evidence=True,
     )
     assert kept == []
+
+
+def test_parse_keep_edges_attaches_related_knowledge_points():
+    ef = _load_edge_filter()
+    cands = [
+        _rel("谓词/p", "part_of", "谓词逻辑/pl"),
+        _rel("C/c", "part_of", "D/d"),
+    ]
+    src = "接下来讲谓词，它是谓词逻辑的基本组成。"
+    raw = json_dumps_keep(
+        [
+            {
+                "i": 1,
+                "evidence": "谓词，它是谓词逻辑的基本组成",
+                "related_knowledge_points": ["谓词", "谓词逻辑"],
+            }
+        ]
+    )
+    kept = ef.parse_keep_edges(
+        raw,
+        cands,
+        extract_text=src,
+        require_classroom_evidence=True,
+        knowledge_points=["谓词", "谓词逻辑", "个体"],
+    )
+    assert len(kept) == 1
+    assert kept[0].related_knowledge_points == ["谓词", "谓词逻辑"]
 
 
 def json_dumps_keep(items):

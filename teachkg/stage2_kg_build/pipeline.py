@@ -10,6 +10,12 @@ from typing import Any
 from teachkg.config import TeachKGConfig
 from teachkg.stage2_kg_build.entity_merge import merge_triplets_to_kg
 from teachkg.stage2_kg_build.entity_triage import EntityTriageConfig, triage_triplets
+from teachkg.utils.artifact_fingerprint import (
+    can_reuse,
+    file_identity,
+    hash_jsonl_rows,
+    save_meta,
+)
 from teachkg.utils.io import load_jsonl
 
 logger = logging.getLogger(__name__)
@@ -113,7 +119,17 @@ class Stage2KGPipeline:
         if not input_path.is_file():
             raise FileNotFoundError(f"Stage 1 triplets not found: {input_path}")
 
-        if self.use_existing and not force and kg_path.is_file():
+        meta_path = kg_path.with_name(kg_path.stem + "_input_meta.json")
+        expected_meta = {
+            "course_id": course_id,
+            "lecture_id": str(lecture_id) if lecture_id else None,
+            "triplets_file": file_identity(input_path),
+            "triplets_fp": hash_jsonl_rows(input_path, lecture_id=lecture_id),
+            "input_filename": input_name,
+            "embedding_merge_enabled": bool(self.embedding_merge_enabled),
+            "triage_enabled": bool(self.triage_cfg.enabled),
+        }
+        if self.use_existing and not force and can_reuse(kg_path, meta_path, expected_meta):
             logger.info("Reuse existing Stage 2 KG: %s", kg_path)
             return kg_path
 
@@ -224,6 +240,7 @@ class Stage2KGPipeline:
 
         kg_path.parent.mkdir(parents=True, exist_ok=True)
         kg_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        save_meta(meta_path, expected_meta)
 
         merge_path.write_text(
             json.dumps(
