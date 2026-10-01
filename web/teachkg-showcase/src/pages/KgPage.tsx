@@ -1088,6 +1088,26 @@ export function KgPage() {
       lectureFilter: scope === "course" ? lecFilter || null : null,
       courseId: course,
     });
+    if (embedMode && integrationCourseId) {
+      const stage: PipelineStage = {
+        ...built.stage,
+        id: "mmkg-live",
+        focus: "graph",
+        nodes: built.stage.nodes || [],
+        edges: built.stage.edges || [],
+        stats: {
+          ...(built.stage.stats || {}),
+          total: (built.stage.edges || []).length,
+        },
+      };
+      return {
+        payload: built.payload,
+        stage,
+        fullStage: stage,
+        cues: built.cues,
+        activeCue: built.activeCue,
+      };
+    }
     const processed = processLectureKg(
       built.stage.nodes || [],
       built.stage.edges || [],
@@ -1216,6 +1236,8 @@ export function KgPage() {
     importanceMin,
     revealFilteredEntities,
     multiRelDecisions,
+    embedMode,
+    integrationCourseId,
     hideRelatedWith,
     kgPatch,
   ]);
@@ -1234,11 +1256,17 @@ export function KgPage() {
     if (!displayStage || !payload) {
       return { nodes: [] as PipelineNode[], edges: [] as PipelineEdge[] };
     }
+    if (embedMode && integrationCourseId) {
+      return {
+        nodes: displayStage.nodes || [],
+        edges: displayStage.edges || [],
+      };
+    }
     const mode = payload.mode || "lecture";
     const edges = stageEdgesForDisplay(mode, displayStage, graphHideFiltered);
     const nodes = stageNodesForDisplay(mode, displayStage, edges, graphHideFiltered);
     return { nodes, edges };
-  }, [displayStage, payload, graphHideFiltered]);
+  }, [displayStage, payload, graphHideFiltered, embedMode, integrationCourseId]);
 
   /** 未做重要性 / related_with 筛选的全量规模（调课堂分时总数保持稳定） */
   const totalGraph = useMemo(() => {
@@ -1919,6 +1947,19 @@ export function KgPage() {
                                 role="option"
                                 className={styles.entitySearchItem}
                                 onClick={() => focusEntity(m.id)}
+                                onContextMenu={(event) => {
+                                  event.preventDefault();
+                                  setEntitySearchOpen(false);
+                                  void openResourceMenu(
+                                    m.id,
+                                    {
+                                      id: m.id,
+                                      label: m.label,
+                                      _kind: m.kind || "entity",
+                                    },
+                                    { clientX: event.clientX, clientY: event.clientY },
+                                  );
+                                }}
                                 title={m.id}
                               >
                                 <span>{m.label}</span>
@@ -1929,11 +1970,23 @@ export function KgPage() {
                                 </em>
                               </button>
                             ))
-                          )}
+                        )}
                         </div>
                       )}
                     </div>
                     <div className={styles.graphChromeEnd}>
+                      <button
+                        type="button"
+                        className={styles.kgExportBtn}
+                        disabled={!selectedNode?.id || !integrationCourseId}
+                        onClick={() => void openResourceMenu(
+                          String(selectedNode?.id || ""),
+                          selectedNode || ({ id: "", label: "" } as VisNode),
+                          { clientX: window.innerWidth / 2, clientY: 160 },
+                        )}
+                      >
+                        关联资源
+                      </button>
                       <label
                         className={`${styles.editModeToggle} ${editMode ? styles.editModeOn : ""}`}
                         title="开启后可修改实体名、关系，并删除 PPT / 板书截图"
@@ -2157,7 +2210,7 @@ export function KgPage() {
                               : sessionPair?.[0],
                           t: firstAssetWatch(
                             assetsLibrary,
-                            String(selectedNode.id),
+                          String(selectedNode.id),
                             {
                               lectureId:
                                 scope === "lecture"

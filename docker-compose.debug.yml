@@ -38,10 +38,12 @@ services:
     environment:
       AI_TEACHING_API_URL: http://debug-ai-teaching-backend-main:5001
       MMKG_API_URL: http://mmkg-backend:8000/api
-      VITE_MMKG_API_BASE: /mmkg-api
-      VITE_BASE_PATH: /
+      VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
+      VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
     networks:
-      - staging-runtime
+      staging-runtime:
+        aliases:
+          - mmkg-frontend
     depends_on:
       - mmkg-backend
 
