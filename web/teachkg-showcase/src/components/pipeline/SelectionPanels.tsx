@@ -1248,31 +1248,46 @@ function AssetCardItem({
 /** 选中概念时展示关联的资源层卡片（公式 / 例子 / 定理·原理·方法） */
 export function RelatedAssetsPanel({
   entityId,
+  entityAliases = [],
   library,
   lectureId = null,
   lectureOnly = false,
+  kinds = null,
   maxItems = 12,
   hideEmpty = false,
 }: {
   entityId: string | null;
+  /** 同一图节点的显示名等别名；嵌入图常用内部 id，资产索引使用课程实体名。 */
+  entityAliases?: string[];
   library: AssetsLibrary | null;
   lectureId?: string | null;
   /** 讲次课堂 KG：只显示本讲抽取，避免精选种子盖住新结果 */
   lectureOnly?: boolean;
+  /** 仅展示指定资产类型；公式嵌入使用 ["formula"]。 */
+  kinds?: string[] | null;
   maxItems?: number;
   hideEmpty?: boolean;
 }) {
-  const cards = useMemo(
-    () =>
-      entityId
-        ? findAssetsForEntity(library, entityId, {
-            lectureId,
-            lectureOnly,
-            llmPrinciplesOnly: true,
-          })
-        : [],
-    [entityId, library, lectureId, lectureOnly]
-  );
+  const aliasKey = entityAliases.join("\u0000");
+  const kindKey = kinds?.join("\u0000") || "";
+  const cards = useMemo(() => {
+    const ids = [entityId, ...entityAliases]
+      .map((value) => String(value || "").trim())
+      .filter(Boolean);
+    const seen = new Set<string>();
+    return ids.flatMap((id) =>
+      findAssetsForEntity(library, id, {
+        lectureId,
+        lectureOnly,
+        llmPrinciplesOnly: true,
+        kinds,
+      }).filter((card) => {
+        if (seen.has(card.asset_id)) return false;
+        seen.add(card.asset_id);
+        return true;
+      })
+    );
+  }, [entityId, aliasKey, library, lectureId, lectureOnly, kindKey]);
   if (!entityId) {
     if (hideEmpty) return null;
     return <div className={styles.sideEmpty}>选中实体后显示相关公式、例子与定理</div>;
@@ -1283,9 +1298,12 @@ export function RelatedAssetsPanel({
   }
   if (!cards.length) {
     if (hideEmpty) return null;
+    const onlyFormula = kinds?.length === 1 && kinds[0] === "formula";
     return (
       <div className={styles.sideEmpty}>
-        {lectureOnly
+        {onlyFormula
+          ? "该知识节点暂无 MMKG 关联公式"
+          : lectureOnly
           ? "本讲暂无挂到该实体的公式 / 例子 / 定理"
           : "暂无关联的公式、例子或定理·原理·方法"}
       </div>

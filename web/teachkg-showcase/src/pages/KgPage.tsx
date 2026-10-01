@@ -387,14 +387,6 @@ export function KgPage() {
     }
   };
 
-  useEffect(() => {
-    if (embedMode !== "ai-teaching" || !integrationCourseId || !selectedNode?.id) return;
-    void openResourceMenu(String(selectedNode.id), selectedNode, {
-      clientX: window.innerWidth / 2,
-      clientY: 160,
-    });
-  }, [embedMode, integrationCourseId, selectedNode?.id]);
-
   const openLinkedResource = (resource: LinkedKnowledgeResource) => {
     if (embedMode === "ai-teaching" && parentOrigin) {
       emitKnowledgeResourceOpen(resource, parentOrigin);
@@ -2042,13 +2034,23 @@ export function KgPage() {
                         keepLayout={scope === "session"}
                         focusNodeRequest={focusNodeRequest}
                         onFocusNodeConsumed={() => setFocusNodeRequest(null)}
-                        onSelectNode={(_id, meta) => {
+                        onSelectNode={(_id, meta, point) => {
                           setFocusNodeRequest(null);
-                          setSelectedNode(meta || null);
                           if (_id) {
                             setSelectedEdgeId(null);
                             setFocusEdgeIds(null);
                             void notifyNodeSelected(String(_id), meta);
+                            if (embedMode === "ai-teaching" && meta) {
+                              void openResourceMenu(
+                                String(_id),
+                                meta,
+                                point || { clientX: window.innerWidth / 2, clientY: 160 },
+                              );
+                            } else {
+                              setSelectedNode(meta || null);
+                            }
+                          } else {
+                            setSelectedNode(null);
                           }
                         }}
                         onContextNode={(id, meta, point) => {
@@ -2341,35 +2343,45 @@ export function KgPage() {
             ×
           </button>
         </div>
-        {resourceMenu.loading ? (
-          <div className={styles.resourceMenuState}>正在查询视频、练习、动画与公式…</div>
-        ) : resourceMenu.error ? (
-          <div className={styles.resourceMenuError}>{resourceMenu.error}</div>
-        ) : resourceMenu.resources.length ? (
-          <div className={styles.resourceMenuGroups}>
-            {(["video", "exercise", "animation", "formula"] as const).map((kind) => {
-              const rows = resourceMenu.resources.filter((item) => item.resource_type === kind);
-              if (!rows.length) return null;
-              return (
-                <section key={kind}>
-                  <h3>{RESOURCE_LABELS[kind]} · {rows.length}</h3>
-                  {rows.map((resource) => (
-                    <button
-                      type="button"
-                      key={`${kind}:${resource.resource_id}`}
-                      onClick={() => openLinkedResource(resource)}
-                    >
-                      <span>{resource.title || `${RESOURCE_LABELS[kind]} ${resource.resource_id}`}</span>
-                      <em>{resource.resource_id}</em>
-                    </button>
-                  ))}
-                </section>
-              );
-            })}
-          </div>
-        ) : (
-          <div className={styles.resourceMenuState}>该知识结点暂无关联资源</div>
-        )}
+        <div className={styles.resourceMenuGroups}>
+          <section>
+            <h3>公式 · MMKG 内部关联</h3>
+            <RelatedAssetsPanel
+              entityId={resourceMenu.nodeId}
+              entityAliases={[resourceMenu.nodeLabel]}
+              library={assetsLibrary}
+              kinds={["formula"]}
+              maxItems={6}
+            />
+          </section>
+          {resourceMenu.loading ? (
+            <div className={styles.resourceMenuState}>正在查询视频、练习与动画…</div>
+          ) : resourceMenu.error ? (
+            <div className={styles.resourceMenuError}>{resourceMenu.error}</div>
+          ) : (
+            <>
+              {(["video", "exercise", "animation"] as const).map((kind) => {
+                const rows = resourceMenu.resources.filter((item) => item.resource_type === kind);
+                if (!rows.length) return null;
+                return (
+                  <section key={kind}>
+                    <h3>{RESOURCE_LABELS[kind]} · {rows.length}</h3>
+                    {rows.map((resource) => (
+                      <button
+                        type="button"
+                        key={`${kind}:${resource.resource_id}`}
+                        onClick={() => openLinkedResource(resource)}
+                      >
+                        <span>{resource.title || `${RESOURCE_LABELS[kind]} ${resource.resource_id}`}</span>
+                        <em>{resource.resource_id}</em>
+                      </button>
+                    ))}
+                  </section>
+                );
+              })}
+            </>
+          )}
+        </div>
         {resourceMenu.warnings.length ? (
           <details className={styles.resourceMenuWarnings}>
             <summary>部分服务暂不可用</summary>

@@ -129,13 +129,13 @@ function serveRepoData() {
   };
 }
 
-/** 子路径部署时，把 /teachkg/api|/repo-data 还原成中间件认识的根路径 */
+/** 子路径部署时，把 API 与静态数据路径还原成中间件认识的根路径。 */
 function stripBaseForApiPlugin(basePath: string) {
   const base = (basePath || "/").replace(/\/$/, "");
   const rewrite = (req: any, _res: any, next: () => void) => {
     if (!base || base === "/") return next();
     const url = String(req.url || "");
-    for (const prefix of ["/api/", "/repo-data/"]) {
+    for (const prefix of ["/api/", "/repo-data/", "/data/"]) {
       if (url.startsWith(`${base}${prefix}`)) {
         req.url = url.slice(base.length);
         break;

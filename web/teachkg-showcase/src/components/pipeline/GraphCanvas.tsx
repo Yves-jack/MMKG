@@ -78,7 +78,11 @@ type Props = {
   onFocusNodeConsumed?: () => void;
   /** 图例：只挂在图谱区内，不覆盖文本栏 */
   legend?: ReactNode;
-  onSelectNode: (id: string | null, meta?: VisNode | null) => void;
+  onSelectNode: (
+    id: string | null,
+    meta?: VisNode | null,
+    point?: { clientX: number; clientY: number },
+  ) => void;
   onSelectEdge: (id: string | null, groupIds?: string[]) => void;
   onContextNode?: (
     id: string,
@@ -771,7 +775,11 @@ function GraphCanvasInner(
           label: id.split("/")[0] || id,
         };
         // 只通知节点选中；由页面在 id!=null 时清边，避免 onSelectEdge(null) 误清节点
-        onSelectNodeRef.current(id, meta);
+        const sourceEvent = params.event?.srcEvent || params.event;
+        onSelectNodeRef.current(id, meta, {
+          clientX: Number(sourceEvent?.clientX || 0),
+          clientY: Number(sourceEvent?.clientY || 0),
+        });
         return;
       }
       if (params.edges?.length) {
