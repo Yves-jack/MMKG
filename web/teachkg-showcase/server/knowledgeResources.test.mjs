@@ -14,7 +14,6 @@ test("combines AI-Teaching resources with KG-owned video relations", async () =>
   const calls = [];
   const fetchImpl = async (url, init = {}) => {
     calls.push({ url: String(url), init });
-    if (String(url).endsWith("/jxb_login")) return response({ access_token: "kg-access" });
     if (String(url).includes("video-segments")) return response({ segment_ids: ["seg-1"] });
     return response({
       resources: [
@@ -28,10 +27,15 @@ test("combines AI-Teaching resources with KG-owned video relations", async () =>
   };
 
   const result = await loadKnowledgeResources(
-    { courseId: "92311", knowledgePointId: "集合/set", kgToken: "launch-token" },
+    {
+      courseId: "92311",
+      knowledgePointId: "集合/set",
+      kgToken: "launch-token",
+      accessToken: "mmkg-access",
+    },
     {
       AI_TEACHING_API_URL: "http://ai:5001",
-      KNOWLEDGE_GRAPH_API_URL: "http://kg:8000/api",
+      MMKG_API_URL: "http://mmkg:8000/api",
     },
     fetchImpl,
   );
@@ -43,20 +47,23 @@ test("combines AI-Teaching resources with KG-owned video relations", async () =>
   assert.equal(result.warnings.length, 0);
   assert.match(calls[0].url, /knowledge-points\/%E9%9B%86%E5%90%88%2Fset\/resources$/);
   assert.equal(calls[0].init.headers["X-KG-Token"], "launch-token");
-  assert.equal(JSON.parse(calls[1].init.body).kg_token, "launch-token");
-  assert.equal(calls[2].init.headers.Authorization, "Bearer kg-access");
+  assert.equal(calls[1].init.headers.Authorization, "Bearer mmkg-access");
 });
 
 test("returns partial results and warnings when one dependency fails", async () => {
   const result = await loadKnowledgeResources(
-    { courseId: "92311", knowledgePointId: "kp-1", kgToken: "launch-token" },
+    {
+      courseId: "92311",
+      knowledgePointId: "kp-1",
+      kgToken: "launch-token",
+      accessToken: "mmkg-access",
+    },
     {
       AI_TEACHING_API_URL: "http://ai:5001",
-      KNOWLEDGE_GRAPH_API_URL: "http://kg:8000/api",
+      MMKG_API_URL: "http://mmkg:8000/api",
     },
     async (url) => {
       if (String(url).startsWith("http://ai")) return response({}, 503);
-      if (String(url).endsWith("/jxb_login")) return response({ access_token: "kg-token" });
       return response({ segment_ids: ["seg-2"] });
     },
   );

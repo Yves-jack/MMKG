@@ -23,25 +23,13 @@ async function responseJson(response, label) {
   return response.json();
 }
 
-async function kgAccessToken({ kgBase, kgToken, fetchImpl }) {
-  if (!kgToken) throw new Error("missing kg_token for video relation lookup");
-  const response = await fetchImpl(`${kgBase}/jxb_login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ kg_token: kgToken }),
-  });
-  const payload = await responseJson(response, "Knowledge-Graph login");
-  if (!payload.access_token) throw new Error("Knowledge-Graph login omitted access_token");
-  return String(payload.access_token);
-}
-
 export async function loadKnowledgeResources(
-  { courseId, knowledgePointId, kgToken },
+  { courseId, knowledgePointId, kgToken, accessToken },
   env = process.env,
   fetchImpl = fetch,
 ) {
   const aiBase = normalizedBase(env.AI_TEACHING_API_URL);
-  const kgBase = normalizedBase(env.KNOWLEDGE_GRAPH_API_URL);
+  const mmkgBase = normalizedBase(env.MMKG_API_URL);
   const resources = [];
   const warnings = [];
   const encodedCourse = encodeURIComponent(courseId);
@@ -62,18 +50,13 @@ export async function loadKnowledgeResources(
     warnings.push("AI-Teaching resource integration or kg_token is not configured");
   }
 
-  if (kgBase) {
+  if (mmkgBase && accessToken) {
     try {
-      const token = await kgAccessToken({
-        kgBase,
-        kgToken,
-        fetchImpl,
-      });
       const response = await fetchImpl(
-        `${kgBase}/v1/courses/${encodedCourse}/knowledge-points/${encodedPoint}/video-segments`,
-        { headers: bearer(token) },
+        `${mmkgBase}/v1/courses/${encodedCourse}/knowledge-points/${encodedPoint}/video-segments`,
+        { headers: bearer(accessToken) },
       );
-      const payload = await responseJson(response, "Knowledge-Graph video relations");
+      const payload = await responseJson(response, "MMKG video relations");
       const ids = Array.isArray(payload.segment_ids) ? payload.segment_ids : [];
       for (const id of ids) {
         const resourceId = String(id || "").trim();
@@ -91,7 +74,7 @@ export async function loadKnowledgeResources(
       warnings.push(error instanceof Error ? error.message : String(error));
     }
   } else {
-    warnings.push("Knowledge-Graph video relation integration is not configured");
+    warnings.push("MMKG API or access token is not configured");
   }
 
   const seen = new Set();
@@ -122,7 +105,9 @@ export function knowledgeResourcesMiddleware(env = process.env, fetchImpl = fetc
     const url = new URL(rawUrl, "http://localhost");
     const courseId = String(url.searchParams.get("course_id") || "").trim();
     const knowledgePointId = String(url.searchParams.get("knowledge_point_id") || "").trim();
-    const kgToken = String(url.searchParams.get("kg_token") || "").trim();
+    const kgToken = String(req.headers?.["x-kg-token"] || "").trim();
+    const authorization = String(req.headers?.authorization || "");
+    const [scheme, accessToken] = authorization.split(/\s+/, 2);
     if (!courseId || !knowledgePointId) {
       return json(res, 400, { error: "course_id and knowledge_point_id are required" });
     }
@@ -131,7 +116,12 @@ export function knowledgeResourcesMiddleware(env = process.env, fetchImpl = fetc
         res,
         200,
         await loadKnowledgeResources(
-          { courseId, knowledgePointId, kgToken },
+          {
+            courseId,
+            knowledgePointId,
+            kgToken,
+            accessToken: scheme?.toLowerCase() === "bearer" ? accessToken : "",
+          },
           env,
           fetchImpl,
         ),

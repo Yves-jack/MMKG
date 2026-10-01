@@ -64,8 +64,13 @@ import {
 } from "@/lib/pipeline/graphLogic";
 import type { PipelineEdge, PipelineNode, PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
 import {
+  deleteMmkgEdge,
+  deleteMmkgNode,
   emitKnowledgeResourceOpen,
   fetchLinkedKnowledgeResources,
+  fetchMmkgGraph,
+  updateMmkgEdge,
+  updateMmkgNode,
   type LinkedKnowledgeResource,
 } from "@/lib/integration/knowledgeResources";
 import shell from "@/styles/shell.module.css";
@@ -257,6 +262,7 @@ export function KgPage() {
   const [editMode, setEditMode] = useState(false);
   const [kgPatch, setKgPatch] = useState<KgEditPatch>(() => emptyKgEditPatch());
   const [editBusy, setEditBusy] = useState(false);
+  const [liveGraphVersion, setLiveGraphVersion] = useState(0);
   const [focusEdgeIds, setFocusEdgeIds] = useState<string[] | null>(null);
   const [showEvidence, setShowEvidence] = useState(true);
   const [hideRelatedWith, setHideRelatedWith] = useState(true);
@@ -296,8 +302,23 @@ export function KgPage() {
     }
   }, [requestedParentOrigin]);
 
-  const notifyNodeSelected = (id: string, meta?: VisNode | null) => {
+  const notifyNodeSelected = async (id: string, meta?: VisNode | null) => {
     if (embedMode !== "video-search" || !parentOrigin || window.parent === window) return;
+    let segmentIds: string[] = [];
+    if (integrationCourseId && kgLaunchToken) {
+      try {
+        const linked = await fetchLinkedKnowledgeResources({
+          courseId: integrationCourseId,
+          knowledgePointId: id,
+          kgToken: kgLaunchToken,
+        });
+        segmentIds = linked.resources
+          .filter((item) => item.resource_type === "video")
+          .map((item) => item.resource_id);
+      } catch {
+        // The keyword remains useful to VideoSearch when no relation is available.
+      }
+    }
     window.parent.postMessage(
       {
         type: "kg:node-selected",
@@ -305,6 +326,7 @@ export function KgPage() {
           id,
           name: meta?.label || id.split("/")[0] || id,
           keyword: meta?.label || id.split("/")[0] || id,
+          segment_ids: segmentIds,
         },
       },
       parentOrigin,
@@ -586,6 +608,50 @@ export function KgPage() {
           : "course";
 
     const run = async () => {
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        const live = await fetchMmkgGraph(integrationCourseId, kgLaunchToken, "fused");
+        if (cancelled) return;
+        const nodes = (Array.isArray(live.nodes) ? live.nodes : []).map((node) => ({
+          ...node,
+          id: String(node.id || ""),
+          label: String(node.zh_name || node.name || node.en_name || node.id || ""),
+          title: String(node.info || node.description || ""),
+        })).filter((node) => node.id);
+        const edges = (Array.isArray(live.edges) ? live.edges : []).map((edge, index) => ({
+          ...edge,
+          id: String(edge.id || `mmkg-edge:${index}`),
+          from: String(edge.source || edge.from || ""),
+          to: String(edge.target || edge.to || ""),
+          label: String(edge.relation || edge.label || ""),
+          relation: String(edge.relation || edge.label || ""),
+        })).filter((edge) => edge.from && edge.to);
+        if (parentOrigin && window.parent !== window) {
+          window.parent.postMessage(
+            {
+              type: "kg:graph-ready",
+              payload: {
+                course_id: integrationCourseId,
+                nodes,
+              },
+            },
+            parentOrigin,
+          );
+        }
+        setPipelineCues([{
+          cueId: "mmkg-live",
+          lectureId: "all",
+          text: "",
+          nodes,
+          edges,
+          edgeCount: edges.length,
+        }]);
+        setPptGallery([]);
+        setMultiRelDecisions({});
+        setMmkgEnrichment(new Map());
+        setKgPatch(emptyKgEditPatch(course, "course"));
+        setLoading(false);
+        return;
+      }
       const patchPromise = fetchKgEdits(course, patchScopeId).catch(() =>
         emptyKgEditPatch(course, patchScopeId)
       );
@@ -696,6 +762,11 @@ export function KgPage() {
     lectureId,
     sessionPair,
     course,
+    embedMode,
+    integrationCourseId,
+    kgLaunchToken,
+    parentOrigin,
+    liveGraphVersion,
     // 仅整课依赖讲次清单；避免 catalog 晚到时重载单讲
     scope === "course" ? [...readyLectures].sort().join(",") : "",
   ]);
@@ -719,6 +790,19 @@ export function KgPage() {
     if (!nextName || nextName === currentId) return;
     setEditBusy(true);
     try {
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        const names = splitCanonicalName(nextName);
+        await updateMmkgNode(integrationCourseId, kgLaunchToken, currentId, {
+          id: nextName,
+          zh_name: names.zh,
+          en_name: names.en || null,
+          name: names.zh || nextName,
+        });
+        setSelectedNode(null);
+        setSelectedEdgeId(null);
+        setLiveGraphVersion((value) => value + 1);
+        return;
+      }
       const renames = withEntityRename(kgPatch.entityRenames || {}, currentId, nextName);
       const saved = await saveKgEdits(course, editScopeId, {
         replaceEntityRenames: true,
@@ -744,6 +828,20 @@ export function KgPage() {
   const handleSaveEdgeEdit = async (edgeId: string, edit: EdgeEdit) => {
     setEditBusy(true);
     try {
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        const edge = pipelineCues
+          .flatMap((cue) => cue.edges || [])
+          .find((item) => String(item.id) === edgeId);
+        if (!edge) throw new Error(`未找到关系 ${edgeId}`);
+        await updateMmkgEdge(integrationCourseId, kgLaunchToken, edgeId, {
+          source: edit.reversed ? edge.to : edge.from,
+          target: edit.reversed ? edge.from : edge.to,
+          relation: edit.relation || edit.label || edge.relation || edge.label || "related_to",
+        });
+        setSelectedEdgeId(null);
+        setLiveGraphVersion((value) => value + 1);
+        return;
+      }
       const saved = await saveKgEdits(course, editScopeId, {
         edgeEdits: { [edgeId]: edit },
       });
@@ -773,6 +871,13 @@ export function KgPage() {
     const original = findOriginalEntityId(currentId, kgPatch.entityRenames || {});
     setEditBusy(true);
     try {
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        await deleteMmkgNode(integrationCourseId, kgLaunchToken, currentId);
+        setSelectedNode(null);
+        setSelectedEdgeId(null);
+        setLiveGraphVersion((value) => value + 1);
+        return;
+      }
       const saved = await saveKgEdits(course, editScopeId, {
         deletedEntities: { [original]: true },
       });
@@ -789,6 +894,12 @@ export function KgPage() {
   const handleDeleteEdge = async (edgeId: string) => {
     setEditBusy(true);
     try {
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        await deleteMmkgEdge(integrationCourseId, kgLaunchToken, edgeId);
+        setSelectedEdgeId(null);
+        setLiveGraphVersion((value) => value + 1);
+        return;
+      }
       const saved = await saveKgEdits(course, editScopeId, {
         deletedEdges: { [edgeId]: true },
         // clear relation edits for this edge (optional cleanup)
@@ -1876,7 +1987,7 @@ export function KgPage() {
                           if (_id) {
                             setSelectedEdgeId(null);
                             setFocusEdgeIds(null);
-                            notifyNodeSelected(String(_id), meta);
+                            void notifyNodeSelected(String(_id), meta);
                           }
                         }}
                         onContextNode={(id, meta, point) => {
@@ -2016,8 +2127,9 @@ export function KgPage() {
                   onDeleteEdge={handleDeleteEdge}
                   onRestoreEntity={handleRestoreEntity}
                   onRestoreEdge={handleRestoreEdge}
+                  permanentDelete={Boolean(embedMode)}
                 />
-                {editMode ? (
+                {editMode && !embedMode ? (
                   <DeletedItemsPanel
                     kgPatch={kgPatch}
                     busy={editBusy}

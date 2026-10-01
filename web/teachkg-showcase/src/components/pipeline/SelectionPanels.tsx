@@ -467,6 +467,7 @@ export function SelectionDetail({
   onDeleteEdge,
   onRestoreEntity,
   onRestoreEdge,
+  permanentDelete = false,
 }: {
   stage: PipelineStage;
   selectedNodeId: string | null;
@@ -484,6 +485,7 @@ export function SelectionDetail({
   onDeleteEdge?: (edgeId: string) => void | Promise<void>;
   onRestoreEntity?: (originalId: string) => void | Promise<void>;
   onRestoreEdge?: (edgeId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const edge = resolveEdgeForDetail(stage, selectedEdgeId);
   const stageNode = selectedNodeId
@@ -519,6 +521,7 @@ export function SelectionDetail({
             onSave={onSaveEdgeEdit}
             onClear={onClearEdgeEdit}
             onDelete={onDeleteEdge}
+            permanentDelete={permanentDelete}
           />
         ) : null}
         <DetailRows
@@ -603,6 +606,7 @@ export function SelectionDetail({
             busy={editBusy}
             onSave={onRenameEntity}
             onDelete={onDeleteEntity}
+            permanentDelete={permanentDelete}
           />
         ) : null}
         <DetailRows
@@ -757,11 +761,13 @@ function EntityRenameForm({
   busy,
   onSave,
   onDelete,
+  permanentDelete,
 }: {
   entityId: string;
   busy?: boolean;
   onSave: (currentId: string, newId: string) => void | Promise<void>;
   onDelete?: (currentId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const initial = splitCanonicalName(entityId);
   const [zh, setZh] = useState(initial.zh);
@@ -813,7 +819,7 @@ function EntityRenameForm({
             onClick={() => {
               if (
                 window.confirm(
-                  `删除实体「${shortName(entityId)}」？其关联关系也会从展示中移除（可撤销）。`
+                  `删除实体「${shortName(entityId)}」？其关联关系也会一并移除${permanentDelete ? "，且此操作不可撤销" : "（可撤销）"}。`
                 )
               ) {
                 void onDelete(entityId);
@@ -836,6 +842,7 @@ function EdgeEditForm({
   onSave,
   onClear,
   onDelete,
+  permanentDelete,
 }: {
   edge: PipelineEdge;
   pred: string;
@@ -844,6 +851,7 @@ function EdgeEditForm({
   onSave: (edgeId: string, edit: EdgeEdit) => void | Promise<void>;
   onClear?: (edgeId: string) => void | Promise<void>;
   onDelete?: (edgeId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const edgeId = String(edge.id || "");
   const [rel, setRel] = useState(pred);
@@ -917,7 +925,7 @@ function EdgeEditForm({
             onClick={() => {
               if (
                 window.confirm(
-                  `删除关系「${shortName(edge.from)} —[${pred}]→ ${shortName(edge.to)}」？（可撤销）`
+                  `删除关系「${shortName(edge.from)} —[${pred}]→ ${shortName(edge.to)}」？${permanentDelete ? "此操作不可撤销。" : "（可撤销）"}`
                 )
               ) {
                 void onDelete(edgeId);

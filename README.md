@@ -84,23 +84,62 @@ pip install -r requirements.txt
 }
 ```
 
-## 使用方法
+## MMKG 服务与 AI-Teaching 集成
 
-### AI-Teaching 全量链接调试
+MMKG 是教学知识图谱的唯一运行时。`service/mmkg_api` 在原有 VAT-KG 构建代码之外统一提供：
 
-`web/teachkg-showcase` 支持作为 AI-Teaching 的知识图谱 iframe：右键知识结点会从
-AI-Teaching 查询练习、动画、公式，并从 Knowledge-Graph 查询视频片段。点击资源时通过
-`kg:open-resource` `postMessage` 把资源类型和 ID 交给父页面跳转。
+- `jxb_login`、`jaccount_login`（并兼容历史拼写 `jaccount_loggin`）和课程级读写权限；
+- 节点、关系的增删改查，以及 base/document/video/fused 图谱、配置、覆盖层、PDF 作业等 API；
+- `POST /api/v1/courses/{course_id}/video-chunks` 接收 VideoSearch chunk，生成动态图谱和视频锚点；
+- `GET /api/v1/courses/{course_id}/knowledge-points` 一次返回课程全部知识节点；
+- `web/teachkg-showcase` iframe 直接读取、编辑 MMKG 实时融合图，并发送
+  `kg:graph-ready`（携带全部知识节点）、`kg:node-selected` 和 `kg:open-resource` 事件。
 
-只使用 debug Compose 启动展示端：
+AI-Teaching 仍拥有练习、动画和公式资源关系；MMKG 的服务端中间件仅携带 iframe 的短期签名
+`kg_token` 查询这些关系，不保存 AI-Teaching 内部凭据。视频关系、图谱数据和所有图谱 API
+均由 MMKG 自己提供，不依赖旧 Knowledge-Graph 项目。
+
+仅使用 debug Compose 调试：
 
 ```bash
 docker compose -f docker-compose.debug.yml up
 ```
 
-中间件只转发并校验短期签名的课程 `kg_token`，不持有 AI-Teaching 内部服务凭据。
 嵌入 URL 需携带 `course_id`、`kg_token`、`embed=ai-teaching` 和 `parent_origin`；
 `parent_origin` 必须与浏览器 referrer 的来源一致。
+
+后端回归测试也必须在 debug 容器执行：
+
+```bash
+docker compose -f docker-compose.debug.yml run --rm mmkg-backend python -m pytest
+```
+
+### 必需配置
+
+- `MMKG_JWT_SECRET`：MMKG access token 的签名密钥；
+- `JXB_PUBLIC_KEY_PATH`：AI-Teaching 签发 `kg_token` 所用 Ed25519 公钥；
+- `VIDEO_SEARCH_INGEST_TOKEN`：VideoSearch 写入 chunk 的独立 Bearer token；
+- `JACCOUNT_CLIENT_ID`、`JACCOUNT_CLIENT_SECRET`、`JACCOUNT_REDIRECT_URI`：启用 JAccount 时配置；
+
+### 迁移旧数据
+
+旧项目仅可作为迁移输入，不能作为运行时依赖。示例把旧课程 `40` 导入 Canvas 课程 `92311`：
+
+```bash
+docker compose -f docker-compose.debug.yml run --rm mmkg-backend \
+  python scripts/migrate_legacy.py --source /legacy-data --target /data --map 40:92311
+```
+
+迁移完成后，AI-Teaching 和 VideoSearch 都只连接 `mmkg-backend:8000`。
+
+生产镜像分别以 `/kg/`、`/kg-api` 构建浏览器路径；staging 使用对应覆盖文件构建为
+`/staging/kg/`、`/staging/kg-api`：
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.staging.yml build
+```
+
+## VAT-KG 使用方法
 
 ### 快速干跑（无需 GPU / 模型权重）
 

@@ -188,6 +188,8 @@ function recommendSearchPlugin(env: Record<string, string>) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, "");
   const base = env.VITE_BASE_PATH || process.env.VITE_BASE_PATH || "/";
+  const mmkgApi = env.MMKG_API_URL || process.env.MMKG_API_URL || "http://mmkg-backend:8000/api";
+  const mmkgOrigin = new URL(mmkgApi).origin;
   return {
     base,
     plugins: [
@@ -204,11 +206,25 @@ export default defineConfig(({ mode }) => {
     server: {
       fs: { allow: [repoRoot] },
       port: 5173,
+      proxy: {
+        "/mmkg-api": {
+          target: mmkgOrigin,
+          changeOrigin: true,
+          rewrite: (url: string) => url.replace(/^\/mmkg-api/, "/api"),
+        },
+      },
     },
     preview: {
       host: true,
       port: 5173,
       allowedHosts: true,
+      proxy: {
+        "/mmkg-api": {
+          target: mmkgOrigin,
+          changeOrigin: true,
+          rewrite: (url: string) => url.replace(/^\/mmkg-api/, "/api"),
+        },
+      },
     },
   };
 });
