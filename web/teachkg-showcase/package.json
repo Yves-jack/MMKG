@@ -10,7 +10,8 @@
     "dev": "vite",
     "prebuild": "node scripts/sync-data.mjs",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:integration": "node --test server/knowledgeResources.test.mjs"
   },
   "dependencies": {
     "katex": "^0.18.1",

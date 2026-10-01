@@ -63,6 +63,11 @@ import {
   type VisNode,
 } from "@/lib/pipeline/graphLogic";
 import type { PipelineEdge, PipelineNode, PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
+import {
+  emitKnowledgeResourceOpen,
+  fetchLinkedKnowledgeResources,
+  type LinkedKnowledgeResource,
+} from "@/lib/integration/knowledgeResources";
 import shell from "@/styles/shell.module.css";
 import pipe from "./PipelinePage.module.css";
 import tb from "./TextbookPage.module.css";
@@ -88,6 +93,12 @@ function formatEvidenceText(raw: string): string {
 /** 重要性阈值默认：去掉显式零分（τ=0.01）；无课堂分实体仍保留 */
 const DEFAULT_IMPORTANCE_FILTER = 0.01;
 const IMPORTANCE_MAX = 1;
+const RESOURCE_LABELS: Record<LinkedKnowledgeResource["resource_type"], string> = {
+  video: "视频",
+  exercise: "练习",
+  animation: "动画",
+  formula: "公式",
+};
 
 function clampImportance(v: number): number {
   if (!Number.isFinite(v)) return 0;
@@ -127,6 +138,10 @@ export function KgPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const focusParam = searchParams.get("focus");
+  const integrationCourseId = String(searchParams.get("course_id") || "").trim();
+  const kgLaunchToken = String(searchParams.get("kg_token") || "").trim();
+  const embedMode = String(searchParams.get("embed") || "").trim();
+  const requestedParentOrigin = String(searchParams.get("parent_origin") || "").trim();
   const course = useCourseId();
   const sessionPair = useMemo(() => parseSessionId(rawSessionId), [rawSessionId]);
   const scope = sessionPair ? "session" : lectureId ? "lecture" : "course";
@@ -255,6 +270,129 @@ export function KgPage() {
   const entitySearchRef = useRef<HTMLDivElement>(null);
   const posCacheRef = useRef<Record<string, { x: number; y: number }>>({});
   const graphRef = useRef<GraphCanvasHandle>(null);
+  const resourceMenuRef = useRef<HTMLDivElement>(null);
+  const resourceRequestSeq = useRef(0);
+  const [resourceMenu, setResourceMenu] = useState<{
+    nodeId: string;
+    nodeLabel: string;
+    x: number;
+    y: number;
+    loading: boolean;
+    resources: LinkedKnowledgeResource[];
+    warnings: string[];
+    error: string;
+  } | null>(null);
+
+  const parentOrigin = useMemo(() => {
+    if (typeof document === "undefined" || !document.referrer) return "";
+    try {
+      const referrerOrigin = new URL(document.referrer).origin;
+      if (!requestedParentOrigin) return referrerOrigin;
+      return new URL(requestedParentOrigin).origin === referrerOrigin
+        ? referrerOrigin
+        : "";
+    } catch {
+      return "";
+    }
+  }, [requestedParentOrigin]);
+
+  const notifyNodeSelected = (id: string, meta?: VisNode | null) => {
+    if (embedMode !== "video-search" || !parentOrigin || window.parent === window) return;
+    window.parent.postMessage(
+      {
+        type: "kg:node-selected",
+        payload: {
+          id,
+          name: meta?.label || id.split("/")[0] || id,
+          keyword: meta?.label || id.split("/")[0] || id,
+        },
+      },
+      parentOrigin,
+    );
+  };
+
+  const openResourceMenu = async (
+    nodeId: string,
+    meta: VisNode,
+    point: { clientX: number; clientY: number },
+  ) => {
+    setSelectedNode(meta);
+    setSelectedEdgeId(null);
+    setFocusEdgeIds(null);
+    const seq = ++resourceRequestSeq.current;
+    const x = Math.min(Math.max(12, point.clientX), Math.max(12, window.innerWidth - 340));
+    const y = Math.min(Math.max(12, point.clientY), Math.max(12, window.innerHeight - 420));
+    setResourceMenu({
+      nodeId,
+      nodeLabel: meta.label || nodeId.split("/")[0] || nodeId,
+      x,
+      y,
+      loading: true,
+      resources: [],
+      warnings: [],
+      error: "",
+    });
+    if (!integrationCourseId) {
+      setResourceMenu((current) => current && current.nodeId === nodeId
+        ? { ...current, loading: false, error: "嵌入地址缺少 course_id" }
+        : current);
+      return;
+    }
+    try {
+      const result = await fetchLinkedKnowledgeResources({
+        courseId: integrationCourseId,
+        knowledgePointId: nodeId,
+        kgToken: kgLaunchToken,
+      });
+      if (seq !== resourceRequestSeq.current) return;
+      setResourceMenu((current) => current && current.nodeId === nodeId
+        ? {
+            ...current,
+            loading: false,
+            resources: result.resources,
+            warnings: result.warnings,
+          }
+        : current);
+    } catch (reason) {
+      if (seq !== resourceRequestSeq.current) return;
+      setResourceMenu((current) => current && current.nodeId === nodeId
+        ? {
+            ...current,
+            loading: false,
+            error: reason instanceof Error ? reason.message : String(reason),
+          }
+        : current);
+    }
+  };
+
+  const openLinkedResource = (resource: LinkedKnowledgeResource) => {
+    if (embedMode === "ai-teaching" && parentOrigin) {
+      emitKnowledgeResourceOpen(resource, parentOrigin);
+      setResourceMenu(null);
+      return;
+    }
+    if (resource.url) {
+      window.open(resource.url, "_blank", "noopener,noreferrer");
+      setResourceMenu(null);
+      return;
+    }
+    window.alert("该资源需要从 AI-Teaching 嵌入页面打开");
+  };
+
+  useEffect(() => {
+    const close = (event: MouseEvent) => {
+      if (!resourceMenuRef.current?.contains(event.target as Node)) setResourceMenu(null);
+    };
+    const key = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setResourceMenu(null);
+    };
+    document.addEventListener("mousedown", close);
+    document.addEventListener("keydown", key);
+    return () => {
+      document.removeEventListener("mousedown", close);
+      document.removeEventListener("keydown", key);
+    };
+  }, []);
 
   useEffect(() => {
     loadManifest(course)
@@ -1319,6 +1457,7 @@ export function KgPage() {
   }, [selectedNode?.id, selectedEdgeId]);
 
   return (
+    <>
     <ResizableShell
       storagePrefix="shell-kg"
       detailFixedRightPx={detailCollapsed ? 32 : undefined}
@@ -1737,7 +1876,11 @@ export function KgPage() {
                           if (_id) {
                             setSelectedEdgeId(null);
                             setFocusEdgeIds(null);
+                            notifyNodeSelected(String(_id), meta);
                           }
+                        }}
+                        onContextNode={(id, meta, point) => {
+                          void openResourceMenu(id, meta, point);
                         }}
                         onSelectEdge={(id, groupIds) => {
                           setFocusNodeRequest(null);
@@ -2006,5 +2149,62 @@ export function KgPage() {
         )
       }
     />
+    {resourceMenu ? (
+      <div
+        ref={resourceMenuRef}
+        className={styles.resourceMenu}
+        style={{ left: resourceMenu.x, top: resourceMenu.y }}
+        role="dialog"
+        aria-label={`${resourceMenu.nodeLabel} 关联资源`}
+      >
+        <div className={styles.resourceMenuHead}>
+          <div>
+            <strong>{resourceMenu.nodeLabel}</strong>
+            <span>关联资源</span>
+          </div>
+          <button type="button" onClick={() => setResourceMenu(null)} aria-label="关闭">
+            ×
+          </button>
+        </div>
+        {resourceMenu.loading ? (
+          <div className={styles.resourceMenuState}>正在查询视频、练习、动画与公式…</div>
+        ) : resourceMenu.error ? (
+          <div className={styles.resourceMenuError}>{resourceMenu.error}</div>
+        ) : resourceMenu.resources.length ? (
+          <div className={styles.resourceMenuGroups}>
+            {(["video", "exercise", "animation", "formula"] as const).map((kind) => {
+              const rows = resourceMenu.resources.filter((item) => item.resource_type === kind);
+              if (!rows.length) return null;
+              return (
+                <section key={kind}>
+                  <h3>{RESOURCE_LABELS[kind]} · {rows.length}</h3>
+                  {rows.map((resource) => (
+                    <button
+                      type="button"
+                      key={`${kind}:${resource.resource_id}`}
+                      onClick={() => openLinkedResource(resource)}
+                    >
+                      <span>{resource.title || `${RESOURCE_LABELS[kind]} ${resource.resource_id}`}</span>
+                      <em>{resource.resource_id}</em>
+                    </button>
+                  ))}
+                </section>
+              );
+            })}
+          </div>
+        ) : (
+          <div className={styles.resourceMenuState}>该知识结点暂无关联资源</div>
+        )}
+        {resourceMenu.warnings.length ? (
+          <details className={styles.resourceMenuWarnings}>
+            <summary>部分服务暂不可用</summary>
+            {resourceMenu.warnings.map((warning, index) => (
+              <p key={`${index}:${warning}`}>{warning}</p>
+            ))}
+          </details>
+        ) : null}
+      </div>
+    ) : null}
+    </>
   );
 }

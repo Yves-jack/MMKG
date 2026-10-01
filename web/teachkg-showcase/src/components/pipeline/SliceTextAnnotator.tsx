@@ -634,18 +634,17 @@ export function SliceTextAnnotator({
     const run = () => {
       const root = rootRef.current;
       if (!root || cancelled) return;
-      const nodes = root.querySelectorAll<HTMLElement>("[data-edge-ids]");
-      let target: HTMLElement | null = null;
-      nodes.forEach((n) => {
+      const nodes = Array.from(root.querySelectorAll<HTMLElement>("[data-edge-ids]"));
+      const target = nodes.find((n) => {
         const ids = (n.getAttribute("data-edge-ids") || "").split(/\s+/).filter(Boolean);
-        if (ids.includes(id)) target = n;
+        return ids.includes(id);
       });
       if (!target) return;
 
       target.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
       const onScrollEnd = () => {
-        if (target) reveal(target);
+        reveal(target);
       };
 
       const scroller =
@@ -656,7 +655,7 @@ export function SliceTextAnnotator({
         scroller.addEventListener("scrollend", onScrollEnd, { once: true });
       }
       settleTimer = window.setTimeout(() => {
-        if (target) reveal(target);
+        reveal(target);
       }, 420);
     };
 

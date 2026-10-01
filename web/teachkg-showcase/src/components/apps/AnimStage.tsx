@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { AnimEdge, AnimFrame, AnimNode } from "@/lib/apps/animate/types";
+import type { AnimEdge, AnimFrame, AnimNode, AnimNodeState } from "@/lib/apps/animate/types";
 import styles from "./AnimStage.module.css";
 
 const STATE_FILL: Record<string, string> = {
@@ -103,7 +103,7 @@ function textFromFrame(frame: AnimFrame) {
   };
 }
 
-const LEGEND: { state: string; label: string; color: string }[] = [
+const LEGEND: { state: AnimNodeState; label: string; color: string }[] = [
   { state: "idle", label: "其余", color: STATE_FILL.idle },
   { state: "frontier", label: "候选", color: STATE_FILL.frontier },
   { state: "active", label: "当前", color: STATE_FILL.active },

@@ -80,6 +80,11 @@ type Props = {
   legend?: ReactNode;
   onSelectNode: (id: string | null, meta?: VisNode | null) => void;
   onSelectEdge: (id: string | null, groupIds?: string[]) => void;
+  onContextNode?: (
+    id: string,
+    meta: VisNode,
+    point: { clientX: number; clientY: number },
+  ) => void;
 };
 
 /** 重要性从紧到松等场景会突然补回大量节点；原地塞位会乱，需整图重布局 */
@@ -108,6 +113,7 @@ function GraphCanvasInner(
     legend = null,
     onSelectNode,
     onSelectEdge,
+    onContextNode,
   }: Props,
   ref: ForwardedRef<GraphCanvasHandle>
 ) {
@@ -119,6 +125,7 @@ function GraphCanvasInner(
   const edgeSmoothCacheRef = useRef<Record<string, VisEdge["smooth"]>>({});
   const onSelectNodeRef = useRef(onSelectNode);
   const onSelectEdgeRef = useRef(onSelectEdge);
+  const onContextNodeRef = useRef(onContextNode);
   const onFocusConsumedRef = useRef(onFocusNodeConsumed);
   /** 用户/搜索视口：缩放平移后记住，避免改布局尺寸时被冲掉 */
   const viewRef = useRef<{ scale: number; position: { x: number; y: number } } | null>(
@@ -126,6 +133,7 @@ function GraphCanvasInner(
   );
   onSelectNodeRef.current = onSelectNode;
   onSelectEdgeRef.current = onSelectEdge;
+  onContextNodeRef.current = onContextNode;
   onFocusConsumedRef.current = onFocusNodeConsumed;
 
   useImperativeHandle(
@@ -772,6 +780,21 @@ function GraphCanvasInner(
       }
       onSelectNodeRef.current(null);
       onSelectEdgeRef.current(null);
+    });
+    net.on("oncontext", (params: any) => {
+      params.event?.preventDefault?.();
+      const id = net.getNodeAt(params.pointer?.DOM);
+      if (id == null) return;
+      const nodeId = String(id);
+      const meta = (nodeDS.current?.get(nodeId) as unknown as VisNode | null) || {
+        id: nodeId,
+        label: nodeId.split("/")[0] || nodeId,
+      };
+      const sourceEvent = params.event?.srcEvent || params.event;
+      onContextNodeRef.current?.(nodeId, meta, {
+        clientX: Number(sourceEvent?.clientX || 0),
+        clientY: Number(sourceEvent?.clientY || 0),
+      });
     });
     net.on("dragEnd", () => {
       snapshot();

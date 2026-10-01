@@ -9,6 +9,7 @@ import { reviewNotesMiddleware } from "./server/reviewNotes.mjs";
 import { practiceQuizMiddleware } from "./server/practiceQuiz.mjs";
 import { kgEditsMiddleware } from "./server/kgEdits.mjs";
 import { mindmapOutlineMiddleware } from "./server/mindmapOutline.mjs";
+import { knowledgeResourcesMiddleware } from "./server/knowledgeResources.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../..");
@@ -160,6 +161,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
   const practiceMw = practiceQuizMiddleware({ ...process.env, ...env });
   const kgEditsMw = kgEditsMiddleware({ ...process.env, ...env });
   const outlineMw = mindmapOutlineMiddleware({ ...process.env, ...env });
+  const resourcesMw = knowledgeResourcesMiddleware({ ...process.env, ...env });
   return {
     name: "recommend-search-api",
     configureServer(server: any) {
@@ -169,6 +171,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
       server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
+      server.middlewares.use(resourcesMw);
     },
     configurePreviewServer(server: any) {
       server.middlewares.use(searchMw);
@@ -177,6 +180,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
       server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
+      server.middlewares.use(resourcesMw);
     },
   };
 }

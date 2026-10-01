@@ -1,0 +1,27 @@
+services:
+  mmkg-debug:
+    image: node:22-alpine
+    container_name: debug-mmkg-showcase
+    working_dir: /workspace/web/teachkg-showcase
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "127.0.0.1:${MMKG_DEBUG_PORT:-5174}:5173"
+    volumes:
+      - .:/workspace
+      - debug-mmkg-node-modules:/workspace/web/teachkg-showcase/node_modules
+      - debug-mmkg-public-data:/workspace/web/teachkg-showcase/public/data
+    environment:
+      AI_TEACHING_API_URL: http://debug-ai-teaching-backend-main:5001
+      KNOWLEDGE_GRAPH_API_URL: http://kg-backend:8000/api
+      VITE_BASE_PATH: /
+    networks:
+      - staging-runtime
+
+volumes:
+  debug-mmkg-node-modules:
+  debug-mmkg-public-data:
+
+networks:
+  staging-runtime:
+    external: true
+    name: staging-runtime

@@ -20,12 +20,13 @@ function buildSegments(
   if (same && afterHit && !beforeHit) beforeHit = afterHit;
 
   if (same && beforeHit) {
+    const segs: Seg[] = [
+      { text: text.slice(0, beforeHit.start), role: null },
+      { text: text.slice(beforeHit.start, beforeHit.end), role: "both" },
+      { text: text.slice(beforeHit.end), role: null },
+    ];
     return {
-      segs: [
-        { text: text.slice(0, beforeHit.start), role: null },
-        { text: text.slice(beforeHit.start, beforeHit.end), role: "both" },
-        { text: text.slice(beforeHit.end), role: null },
-      ].filter((s) => s.text),
+      segs: segs.filter((s) => s.text),
       foundBefore: true,
       foundAfter: true,
       same: true,
@@ -92,12 +93,13 @@ function buildEvidenceSegments(
   if (!hit) {
     return { segs: [{ text, role: null }], found: false };
   }
+  const segs: Seg[] = [
+    { text: text.slice(0, hit.start), role: null },
+    { text: text.slice(hit.start, hit.end), role: "evidence" },
+    { text: text.slice(hit.end), role: null },
+  ];
   return {
-    segs: [
-      { text: text.slice(0, hit.start), role: null },
-      { text: text.slice(hit.start, hit.end), role: "evidence" },
-      { text: text.slice(hit.end), role: null },
-    ].filter((s) => s.text),
+    segs: segs.filter((s) => s.text),
     found: true,
   };
 }

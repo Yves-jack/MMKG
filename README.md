@@ -86,6 +86,22 @@ pip install -r requirements.txt
 
 ## 使用方法
 
+### AI-Teaching 全量链接调试
+
+`web/teachkg-showcase` 支持作为 AI-Teaching 的知识图谱 iframe：右键知识结点会从
+AI-Teaching 查询练习、动画、公式，并从 Knowledge-Graph 查询视频片段。点击资源时通过
+`kg:open-resource` `postMessage` 把资源类型和 ID 交给父页面跳转。
+
+只使用 debug Compose 启动展示端：
+
+```bash
+docker compose -f docker-compose.debug.yml up
+```
+
+中间件只转发并校验短期签名的课程 `kg_token`，不持有 AI-Teaching 内部服务凭据。
+嵌入 URL 需携带 `course_id`、`kg_token`、`embed=ai-teaching` 和 `parent_origin`；
+`parent_origin` 必须与浏览器 referrer 的来源一致。
+
 ### 快速干跑（无需 GPU / 模型权重）
 
 ```bash

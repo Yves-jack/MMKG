@@ -514,7 +514,7 @@ export async function polishPracticeQuiz(input: {
       return ensureQuizItemAnswer(merged, seed ? stripContext(seed) : undefined);
     });
     // 按种子 id 重排，避免批处理乱序
-    const byId = new Map(items.map((x) => [x.id, x]));
+    const byId = new Map(items.map((x: QuizItem) => [x.id, x]));
     const ordered = input.items.map((s, i) => {
       const hit = byId.get(s.id) || items[i];
       if (hit) return ensureQuizItemAnswer(hit, stripContext(s));
