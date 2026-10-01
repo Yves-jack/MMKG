@@ -5,7 +5,9 @@ services:
       dockerfile: deploy/Dockerfile.backend
       target: debug
     container_name: debug-mmkg-backend
-    command: uvicorn mmkg_api.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn mmkg_api.main:app --host 0.0.0.0 --port 8000
+    mem_limit: 160m
+    cpus: 0.75
     volumes:
       - ./service:/app
       - debug-mmkg-data:/data
@@ -25,18 +27,20 @@ services:
           - mmkg-backend
 
   mmkg-debug:
-    image: node:22-alpine
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+      args:
+        VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
+        VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
+    image: mmkg-showcase-debug:latest
     container_name: debug-mmkg-showcase
-    working_dir: /workspace/web/teachkg-showcase
-    # 已提交的 public/data 是公式等内部资产的权威产物；调试启动不得用 predev 重建覆盖。
-    command: sh -c "npm ci && npx vite --host 0.0.0.0 --port 5173"
+    mem_limit: 192m
+    cpus: 0.75
     ports:
       - "127.0.0.1:${MMKG_DEBUG_PORT:-5174}:5173"
-    volumes:
-      - .:/workspace
-      - debug-mmkg-node-modules:/workspace/web/teachkg-showcase/node_modules
-      - ./web/teachkg-showcase/public/data:/workspace/web/teachkg-showcase/public/data:ro
     environment:
+      NODE_OPTIONS: --max-old-space-size=128
       AI_TEACHING_API_URL: http://debug-ai-teaching-backend-main:5001
       MMKG_API_URL: http://mmkg-backend:8000/api
       VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
@@ -49,7 +53,6 @@ services:
       - mmkg-backend
 
 volumes:
-  debug-mmkg-node-modules:
   debug-mmkg-data:
 
 networks:
