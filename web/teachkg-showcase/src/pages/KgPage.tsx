@@ -2240,7 +2240,7 @@ export function KgPage() {
             )}
           </CollapsiblePanel>
 
-          {selectedNode?.id != null && !selectedEdgeId ? (
+          {selectedNode?.id != null && !selectedEdgeId && embedMode !== "ai-teaching" ? (
             <CollapsiblePanel
               title="相关资产"
               storageKey="kg-panel-assets-v2"
@@ -2291,7 +2291,8 @@ export function KgPage() {
             </CollapsiblePanel>
           ) : null}
 
-          <CollapsiblePanel title="多模态证据" storageKey="kg-panel-media-v2" defaultOpen={false}>
+          {embedMode !== "ai-teaching" ? (
+            <CollapsiblePanel title="多模态证据" storageKey="kg-panel-media-v2" defaultOpen={false}>
             <div className={pipe.mm}>
               <div>
                 <div className={pipe.mmLabel}>课堂切片</div>
@@ -2317,7 +2318,8 @@ export function KgPage() {
                 )}
               </div>
             </div>
-          </CollapsiblePanel>
+            </CollapsiblePanel>
+          ) : null}
         </aside>
         )
       }
