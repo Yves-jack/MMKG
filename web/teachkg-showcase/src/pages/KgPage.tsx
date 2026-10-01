@@ -387,6 +387,14 @@ export function KgPage() {
     }
   };
 
+  useEffect(() => {
+    if (embedMode !== "ai-teaching" || !integrationCourseId || !selectedNode?.id) return;
+    void openResourceMenu(String(selectedNode.id), selectedNode, {
+      clientX: window.innerWidth / 2,
+      clientY: 160,
+    });
+  }, [embedMode, integrationCourseId, selectedNode?.id]);
+
   const openLinkedResource = (resource: LinkedKnowledgeResource) => {
     if (embedMode === "ai-teaching" && parentOrigin) {
       emitKnowledgeResourceOpen(resource, parentOrigin);
