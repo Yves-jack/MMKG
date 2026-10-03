@@ -108,6 +108,83 @@ class JobStore:
         except Exception as error:
             self.update(job_id, status="failed", stage="failed", message="failed", error=str(error))
 
+    def create_video_extraction(
+        self, course_id: str, segment_ids: list[str]
+    ) -> dict[str, Any]:
+        pending = self.graphs.video_chunks_needing_extraction(course_id, segment_ids)
+        job = self._new(
+            course_id,
+            "video_extract",
+            segment_ids=[str(row["segment_id"]) for row in pending],
+            requested_segment_ids=list(dict.fromkeys(segment_ids)),
+        )
+        if not pending:
+            return self.update(
+                job["job_id"],
+                status="completed",
+                stage="done",
+                progress=100,
+                message="all chunks already extracted",
+                result={"processed": 0, "failed": 0, "skipped": len(segment_ids)},
+            )
+        _executor.submit(self._run_video_extraction, job["job_id"])
+        return job
+
+    def _run_video_extraction(self, job_id: str) -> None:
+        from .video_extraction import chunk_fingerprint, extract_video_chunk
+
+        try:
+            job = self.update(
+                job_id,
+                status="running",
+                stage="extracting_video_chunks",
+                progress=1,
+            )
+            chunks = self.graphs.video_chunks_needing_extraction(
+                job["courseid"], list(job.get("segment_ids") or [])
+            )
+            failures: list[dict[str, str]] = []
+            processed = 0
+            total = max(1, len(chunks))
+            for index, chunk in enumerate(chunks, start=1):
+                try:
+                    extraction = extract_video_chunk(job["courseid"], chunk)
+                    self.graphs.write_video_extraction(job["courseid"], extraction)
+                    processed += 1
+                except Exception as error:
+                    failures.append(
+                        {"segment_id": str(chunk.get("segment_id")), "error": str(error)}
+                    )
+                    self.graphs.write_video_extraction(
+                        job["courseid"],
+                        {
+                            "segment_id": str(chunk.get("segment_id")),
+                            "lesson_id": str(chunk.get("lesson_id")),
+                            "input_hash": chunk_fingerprint(chunk),
+                            "status": "failed",
+                            "error": str(error),
+                            "triplets": [],
+                        },
+                    )
+                self.update(
+                    job_id,
+                    progress=min(95, int(index / total * 90) + 5),
+                    message=f"processed {index}/{len(chunks)}",
+                )
+            graph = self.graphs.rebuild_video(job["courseid"])
+            result = {"processed": processed, "failed": len(failures), "failures": failures, **graph}
+            self.update(
+                job_id,
+                status="failed" if failures else "completed",
+                stage="failed" if failures else "done",
+                progress=100,
+                message="video extraction failed" if failures else "completed",
+                error=json.dumps(failures, ensure_ascii=False) if failures else None,
+                result=result,
+            )
+        except Exception as error:
+            self.update(job_id, status="failed", stage="failed", message="failed", error=str(error))
+
     def create_extraction(self, course_id: str, filename: str, source: BinaryIO) -> dict[str, Any]:
         job = self._new(course_id, "extract", filename=filename)
         uploads = self.root / "uploads"
@@ -145,7 +222,10 @@ class JobStore:
 
     def course_status(self, course_id: str) -> dict[str, Any]:
         rebuilds = [job for job in self.list(course_id, 100) if job.get("kind") == "rebuild"]
+        video_extracts = [
+            job for job in self.list(course_id, 100) if job.get("kind") == "video_extract"
+        ]
         rebuild = rebuilds[0] if rebuilds else {"state": "idle"}
         if rebuilds:
             rebuild = {**rebuild, "state": {"completed": "idle", "failed": "error"}.get(rebuild.get("status"), rebuild.get("status"))}
-        return {"courseid": str(course_id), "stale": False, "rebuild": rebuild, "diff": {"added": [], "changed": [], "removed": []}}
+        return {"courseid": str(course_id), "stale": False, "rebuild": rebuild, "video_extract": video_extracts[0] if video_extracts else {"state": "idle"}, "diff": {"added": [], "changed": [], "removed": []}}

@@ -9,11 +9,17 @@ export type LinkedKnowledgeResource = {
   url?: string | null;
   metadata?: Record<string, unknown>;
   start_sec?: number;
+  end_sec?: number;
+  knowledge_point_ids?: string[];
 };
 
 export type LinkedKnowledgeResources = {
   resources: LinkedKnowledgeResource[];
   warnings: string[];
+  match?: {
+    method?: string;
+    matched_knowledge_points?: Array<{ id: string; content?: string; score?: number }>;
+  };
 };
 
 const MMKG_API_BASE = String(import.meta.env.VITE_MMKG_API_BASE || "/mmkg-api").replace(/\/+$/, "");
@@ -116,11 +122,19 @@ export async function fetchLinkedKnowledgeResources(input: {
   courseId: string;
   knowledgePointId: string;
   kgToken?: string;
+  nodeName?: string;
+  nodeAliases?: string[];
+  nodeContent?: string;
 }): Promise<LinkedKnowledgeResources> {
   const query = new URLSearchParams({
     course_id: input.courseId,
     knowledge_point_id: input.knowledgePointId,
   });
+  if (input.nodeName) query.set("node_name", input.nodeName);
+  for (const alias of input.nodeAliases || []) {
+    if (alias) query.append("node_alias", alias);
+  }
+  if (input.nodeContent) query.set("node_content", input.nodeContent);
   if (!input.kgToken) throw new Error("kg_token is required");
   const accessToken = await mmkgAccessToken(input.kgToken);
   const response = await fetch(withBase(`/api/knowledge-resources?${query}`), {
@@ -135,6 +149,7 @@ export async function fetchLinkedKnowledgeResources(input: {
   return {
     resources: Array.isArray(payload.resources) ? payload.resources : [],
     warnings: Array.isArray(payload.warnings) ? payload.warnings.map(String) : [],
+    match: payload.match && typeof payload.match === "object" ? payload.match : undefined,
   };
 }
 

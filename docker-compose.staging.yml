@@ -7,6 +7,8 @@ services:
           - mmkg-backend
 
   mmkg-frontend:
+    environment:
+      VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
     container_name: staging-mmkg-frontend
     build:
       args:

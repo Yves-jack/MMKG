@@ -97,6 +97,7 @@ function formatEvidenceText(raw: string): string {
 
 /** 重要性阈值默认：去掉显式零分（τ=0.01）；无课堂分实体仍保留 */
 const DEFAULT_IMPORTANCE_FILTER = 0.01;
+const AI_TEACHING_DEFAULT_IMPORTANCE_FILTER = 0.25;
 const IMPORTANCE_MAX = 1;
 const RESOURCE_LABELS: Record<LinkedKnowledgeResource["resource_type"], string> = {
   video: "视频",
@@ -104,6 +105,44 @@ const RESOURCE_LABELS: Record<LinkedKnowledgeResource["resource_type"], string> 
   animation: "动画",
   formula: "公式",
 };
+
+
+function linkedResourceNodeContext(node?: VisNode | null) {
+  const aliases = Array.isArray(node?.aliases)
+    ? node.aliases.map((value) => String(value || "").trim()).filter(Boolean)
+    : [];
+  return {
+    nodeName: String(node?.label || node?.name || node?.zh_name || "").trim(),
+    nodeAliases: aliases,
+    nodeContent: String(node?.description || node?.info || "").trim(),
+  };
+}
+
+function resourceTime(value: number | undefined): string {
+  if (value == null || !Number.isFinite(value)) return "--:--";
+  const total = Math.max(0, Math.floor(value));
+  const minutes = Math.floor(total / 60);
+  const seconds = total % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function resourceMeta(resource: LinkedKnowledgeResource): string {
+  if (resource.resource_type === "video") {
+    return `${resourceTime(resource.start_sec)}–${resourceTime(resource.end_sec)}`;
+  }
+  if (resource.resource_type === "exercise") {
+    const questionType = String(resource.metadata?.question_type || "").toLowerCase();
+    return questionType === "judge" ? "判断题" : questionType === "choice" ? "选择题" : "练习题";
+  }
+  return RESOURCE_LABELS[resource.resource_type];
+}
+
+function resourceDetail(resource: LinkedKnowledgeResource, nodeLabel: string): string {
+  if (resource.resource_type === "exercise") {
+    return `知识点 · ${nodeLabel}`;
+  }
+  return String(resource.content || "").trim();
+}
 
 function clampImportance(v: number): number {
   if (!Number.isFinite(v)) return 0;
@@ -144,8 +183,17 @@ export function KgPage() {
   const [searchParams] = useSearchParams();
   const focusParam = searchParams.get("focus");
   const integrationCourseId = String(searchParams.get("course_id") || "").trim();
+  const resourceCourseId = String(
+    searchParams.get("resource_course_id") || integrationCourseId,
+  ).trim();
   const kgLaunchToken = String(searchParams.get("kg_token") || "").trim();
   const embedMode = String(searchParams.get("embed") || "").trim();
+  const isAiTeachingEmbed = embedMode === "ai-teaching";
+  const isEmbeddedGraph =
+    isAiTeachingEmbed || embedMode === "video-search";
+  const defaultImportanceFilter = isEmbeddedGraph
+    ? AI_TEACHING_DEFAULT_IMPORTANCE_FILTER
+    : DEFAULT_IMPORTANCE_FILTER;
   const requestedParentOrigin = String(searchParams.get("parent_origin") || "").trim();
   const course = useCourseId();
   const sessionPair = useMemo(() => parseSessionId(rawSessionId), [rawSessionId]);
@@ -203,12 +251,12 @@ export function KgPage() {
   > | null>(null);
   const [assetsLibrary, setAssetsLibrary] = useState<AssetsLibrary | null>(null);
   const [importanceBase, setImportanceBase] = useState<Record<string, number> | null>(null);
-  const [importanceMin, setImportanceMin] = useState(DEFAULT_IMPORTANCE_FILTER);
+  const [importanceMin, setImportanceMin] = useState(defaultImportanceFilter);
   /** 三位数字草稿（编辑中可暂时为空）；提交后与 importanceMin 同步 */
   const [importanceDigitDraft, setImportanceDigitDraft] = useState<
     [string, string, string]
   >(() => {
-    const [a, b, c] = importanceDigits(DEFAULT_IMPORTANCE_FILTER);
+    const [a, b, c] = importanceDigits(defaultImportanceFilter);
     return [String(a), String(b), String(c)];
   });
   /** reveal=临时显示被重要性阈值筛掉的实体（灰色弱化）；hide=删除 */
@@ -281,6 +329,7 @@ export function KgPage() {
   const [resourceMenu, setResourceMenu] = useState<{
     nodeId: string;
     nodeLabel: string;
+    nodeAliases: string[];
     x: number;
     y: number;
     loading: boolean;
@@ -304,29 +353,34 @@ export function KgPage() {
 
   const notifyNodeSelected = async (id: string, meta?: VisNode | null) => {
     if (embedMode !== "video-search" || !parentOrigin || window.parent === window) return;
-    let segmentIds: string[] = [];
-    if (integrationCourseId && kgLaunchToken) {
+    let videoRefs: Array<{ video_id: string; start_sec: number }> = [];
+    if (resourceCourseId && kgLaunchToken) {
       try {
         const linked = await fetchLinkedKnowledgeResources({
-          courseId: integrationCourseId,
+          courseId: resourceCourseId,
           knowledgePointId: id,
           kgToken: kgLaunchToken,
+          ...linkedResourceNodeContext(meta),
         });
-        segmentIds = linked.resources
-          .filter((item) => item.resource_type === "video")
-          .map((item) => item.resource_id);
+        const videos = linked.resources.filter((item) => item.resource_type === "video");
+        videoRefs = videos.flatMap((item) => {
+          const videoId = String(item.metadata?.video_id || item.resource_id).trim();
+          const startSec = Number(item.start_sec);
+          if (!videoId || item.start_sec == null || !Number.isFinite(startSec)) return [];
+          return [{ video_id: videoId, start_sec: startSec }];
+        });
       } catch {
-        // The keyword remains useful to VideoSearch when no relation is available.
+        // No fallback: an unavailable relation stays unavailable.
       }
     }
     window.parent.postMessage(
       {
         type: "kg:node-selected",
         payload: {
+          course_id: resourceCourseId,
           id,
           name: meta?.label || id.split("/")[0] || id,
-          keyword: meta?.label || id.split("/")[0] || id,
-          segment_ids: segmentIds,
+          video_refs: videoRefs,
         },
       },
       parentOrigin,
@@ -342,11 +396,24 @@ export function KgPage() {
     setSelectedEdgeId(null);
     setFocusEdgeIds(null);
     const seq = ++resourceRequestSeq.current;
-    const x = Math.min(Math.max(12, point.clientX), Math.max(12, window.innerWidth - 340));
-    const y = Math.min(Math.max(12, point.clientY), Math.max(12, window.innerHeight - 420));
+    const menuGutter = 12;
+    const menuWidth = Math.min(390, Math.max(0, window.innerWidth - menuGutter * 2));
+    const menuHeight = Math.min(560, Math.max(0, window.innerHeight - menuGutter * 2));
+    const x = Math.min(
+      Math.max(menuGutter, point.clientX),
+      Math.max(menuGutter, window.innerWidth - menuWidth - menuGutter),
+    );
+    const y = Math.min(
+      Math.max(menuGutter, point.clientY),
+      Math.max(menuGutter, window.innerHeight - menuHeight - menuGutter),
+    );
+    const nodeAliases = Array.isArray(meta.aliases)
+      ? meta.aliases.map((value) => String(value || "").trim()).filter(Boolean)
+      : [];
     setResourceMenu({
       nodeId,
       nodeLabel: meta.label || nodeId.split("/")[0] || nodeId,
+      nodeAliases,
       x,
       y,
       loading: true,
@@ -354,7 +421,7 @@ export function KgPage() {
       warnings: [],
       error: "",
     });
-    if (!integrationCourseId) {
+    if (!resourceCourseId) {
       setResourceMenu((current) => current && current.nodeId === nodeId
         ? { ...current, loading: false, error: "嵌入地址缺少 course_id" }
         : current);
@@ -362,9 +429,10 @@ export function KgPage() {
     }
     try {
       const result = await fetchLinkedKnowledgeResources({
-        courseId: integrationCourseId,
+        courseId: resourceCourseId,
         knowledgePointId: nodeId,
         kgToken: kgLaunchToken,
+        ...linkedResourceNodeContext(meta),
       });
       if (seq !== resourceRequestSeq.current) return;
       setResourceMenu((current) => current && current.nodeId === nodeId
@@ -488,6 +556,7 @@ export function KgPage() {
       })
       .catch(() => setAssetsLibrary(null));
   }, [course]);
+
 
   const readyLectures = useMemo(() => {
     const s = new Set<string>();
@@ -1130,7 +1199,7 @@ export function KgPage() {
         (e.source || "") !== "process_node" &&
         (e.source || "") !== "process_isolated"
     );
-    const processOnly = edited.edges.filter(
+    const processOnly = isAiTeachingEmbed ? [] : edited.edges.filter(
       (e) =>
         (e.source || "") === "process_rule" ||
         (e.source || "") === "process_node" ||
@@ -1231,9 +1300,9 @@ export function KgPage() {
     scopedImportance,
     displayClassroom,
     importanceSource,
+    importanceMin,
     importanceBase,
     mmkgEnrichment,
-    importanceMin,
     revealFilteredEntities,
     multiRelDecisions,
     embedMode,
@@ -1266,7 +1335,13 @@ export function KgPage() {
     const edges = stageEdgesForDisplay(mode, displayStage, graphHideFiltered);
     const nodes = stageNodesForDisplay(mode, displayStage, edges, graphHideFiltered);
     return { nodes, edges };
-  }, [displayStage, payload, graphHideFiltered, embedMode, integrationCourseId]);
+  }, [
+    displayStage,
+    payload,
+    graphHideFiltered,
+    embedMode,
+    integrationCourseId,
+  ]);
 
   /** 未做重要性 / related_with 筛选的全量规模（调课堂分时总数保持稳定） */
   const totalGraph = useMemo(() => {
@@ -1463,9 +1538,18 @@ export function KgPage() {
     return Array.from(s).sort((a, b) => Number(a) - Number(b));
   }, [scope, pipelineCues]);
 
-  const goCourse = () => navigate(coursePath(course, "/kg/course"));
-  const goLecture = (id: string) => navigate(coursePath(course, `/kg/lecture/${id}`));
-  const goSession = (id: string) => navigate(coursePath(course, `/kg/session/${id}`));
+  const navigateWithinKg = (pathname: string) => {
+    const query = searchParams.toString();
+    navigate({
+      pathname,
+      search: query ? `?${query}` : "",
+    });
+  };
+  const goCourse = () => navigateWithinKg(coursePath(course, "/kg/course"));
+  const goLecture = (id: string) =>
+    navigateWithinKg(coursePath(course, `/kg/lecture/${id}`));
+  const goSession = (id: string) =>
+    navigateWithinKg(coursePath(course, `/kg/session/${id}`));
 
   const title =
     displayStage?.title ||
@@ -1602,7 +1686,7 @@ export function KgPage() {
       detailFixedRightPx={detailCollapsed ? 32 : undefined}
       detailMinRightPx={220}
       detailInitialRightPx={340}
-      nav={
+      nav={isEmbeddedGraph ? undefined : (
         <aside className={shell.sidebar}>
           <div className={shell.sideHead}>
             <Link className={shell.back} to={coursePath(course)}>
@@ -1666,9 +1750,9 @@ export function KgPage() {
             </div>
           ) : null}
         </aside>
-      }
+      )}
       main={
-        <main className={pipe.mainCol}>
+        <main className={`${pipe.mainCol} ${isEmbeddedGraph ? styles.embeddedMain : ""}`}>
           <header className={styles.kgTopbar}>
             <div className={styles.kgToolbar}>
               {scope === "course" && edgeLectures.length > 0 ? (
@@ -1817,7 +1901,7 @@ export function KgPage() {
                   setRevealFilteredEntities((on) => {
                     const next = !on;
                     if (next && importanceMin <= 0) {
-                      commitImportanceMin(DEFAULT_IMPORTANCE_FILTER);
+                      commitImportanceMin(defaultImportanceFilter);
                     }
                     return next;
                   });
@@ -1834,14 +1918,14 @@ export function KgPage() {
               >
                 {revealFilteredEntities ? "隐藏被筛实体" : "显示被筛实体"}
               </button>
-              <button
+              {!isEmbeddedGraph ? (<button
                 type="button"
                 className={`${styles.kgChip} ${evidenceVisible ? styles.kgChipActive : ""}`}
                 disabled={!hasEvidenceText}
                 onClick={() => setShowEvidence((v) => !v)}
               >
                 {evidenceVisible ? "隐藏文本" : "显示文本"}
-              </button>
+              </button>) : null}
 
               <div className={styles.kgStats} aria-label="图谱规模">
                 <div
@@ -1883,7 +1967,7 @@ export function KgPage() {
               initialLeftRatio={0.5}
               minLeftPx={260}
               minRightPx={300}
-              enabled={evidenceVisible}
+              enabled={!isEmbeddedGraph && evidenceVisible}
               leftClassName={tb.slicePane}
               rightClassName={`${pipe.viewport} ${styles.graphViewport}`}
               left={
@@ -1950,12 +2034,16 @@ export function KgPage() {
                                 onContextMenu={(event) => {
                                   event.preventDefault();
                                   setEntitySearchOpen(false);
+                                  const fullNode = displayStage?.nodes?.find(
+                                    (node) => String(node.id) === m.id,
+                                  );
                                   void openResourceMenu(
                                     m.id,
                                     {
+                                      ...fullNode,
                                       id: m.id,
                                       label: m.label,
-                                      _kind: m.kind || "entity",
+                                      _kind: fullNode?.kind || m.kind || "entity",
                                     },
                                     { clientX: event.clientX, clientY: event.clientY },
                                   );
@@ -1974,11 +2062,19 @@ export function KgPage() {
                         </div>
                       )}
                     </div>
-                    <div className={styles.graphChromeEnd}>
+                    {isEmbeddedGraph ? (
+                      <span
+                        className={styles.videoIndexHint}
+                        title="视频资源按当前课程内的 video_id 定位，并按片段起始时间播放"
+                      >
+                        视频跳转：video_id
+                      </span>
+                    ) : null}
+                    {!isEmbeddedGraph ? (<div className={styles.graphChromeEnd}>
                       <button
                         type="button"
                         className={styles.kgExportBtn}
-                        disabled={!selectedNode?.id || !integrationCourseId}
+                        disabled={!selectedNode?.id || !resourceCourseId}
                         onClick={() => void openResourceMenu(
                           String(selectedNode?.id || ""),
                           selectedNode || ({ id: "", label: "" } as VisNode),
@@ -2007,7 +2103,7 @@ export function KgPage() {
                       >
                         {exportingPng ? "导出中…" : "导出图片"}
                       </button>
-                    </div>
+                    </div>) : null}
                   </div>
                   <div className={styles.graphBody}>
                     {loading && <div className={pipe.emptyPane}>加载图谱…</div>}
@@ -2102,7 +2198,7 @@ export function KgPage() {
           </div>
         </main>
       }
-      detail={
+      detail={isEmbeddedGraph ? undefined : (
         detailCollapsed ? (
           <aside className={styles.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -2324,7 +2420,7 @@ export function KgPage() {
           ) : null}
         </aside>
         )
-      }
+      )}
     />
     {resourceMenu ? (
       <div
@@ -2348,7 +2444,7 @@ export function KgPage() {
             <h3>公式 · MMKG 内部关联</h3>
             <RelatedAssetsPanel
               entityId={resourceMenu.nodeId}
-              entityAliases={[resourceMenu.nodeLabel]}
+              entityAliases={[resourceMenu.nodeLabel, ...resourceMenu.nodeAliases]}
               library={assetsLibrary}
               kinds={["formula"]}
               maxItems={6}
@@ -2370,10 +2466,21 @@ export function KgPage() {
                       <button
                         type="button"
                         key={`${kind}:${resource.resource_id}`}
+                        className={styles.resourceCard}
                         onClick={() => openLinkedResource(resource)}
                       >
-                        <span>{resource.title || `${RESOURCE_LABELS[kind]} ${resource.resource_id}`}</span>
-                        <em>{resource.resource_id}</em>
+                        <span className={styles.resourceCardHead}>
+                          <strong>{resource.title}</strong>
+                          <em>{resourceMeta(resource)}</em>
+                        </span>
+                        {resourceDetail(resource, resourceMenu.nodeLabel) ? (
+                          <span className={styles.resourceCardDetail}>
+                            {resourceDetail(resource, resourceMenu.nodeLabel)}
+                          </span>
+                        ) : null}
+                        <span className={styles.resourceCardAction}>
+                          {kind === "video" ? "打开视频" : kind === "exercise" ? "进入做题" : "查看动画"}
+                        </span>
                       </button>
                     ))}
                   </section>

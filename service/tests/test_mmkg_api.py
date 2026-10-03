@@ -158,7 +158,7 @@ def test_legacy_api_surface_is_present():
         "/api/graph/{course_id}/relations",
         "/api/v1/courses/{course_id}/video-chunks",
         "/api/v1/courses/{course_id}/video-relations/import",
-        "/api/v1/courses/{course_id}/knowledge-points/{point_id}/video-segments",
+        "/api/v1/courses/{course_id}/knowledge-points/{point_id:path}/video-segments",
         "/api/v1/courses/{course_id}/graphs/{view}",
         "/api/v1/courses/{course_id}/extract/jobs",
         "/api/v1/jobs/{job_id}",
@@ -168,38 +168,90 @@ def test_legacy_api_surface_is_present():
 
 def test_video_chunks_are_authenticated_and_rebuild_dynamic_graph(tmp_path, monkeypatch):
     client, key = setup_api(tmp_path, monkeypatch)
+    monkeypatch.setenv("MMKG_VIDEO_EXTRACT_MOCK", "1")
     headers = login(client, key)
-    client.put(
-        "/api/v1/courses/92311/graphs/base",
-        headers=headers,
-        json={"nodes": [{"id": "kp:set", "name": "集合"}], "edges": []},
-    )
     payload = {
         "chunks": [{
             "segment_id": "seg-1",
             "lesson_id": "1",
-            "summary": "本段介绍集合与集合运算",
+            "video_id": "video-1",
+            "asr_text": "命题是一个非真即假的陈述句。",
+            "text": "命题是一个非真即假的陈述句。",
             "start_sec": 10,
             "end_sec": 20,
             "link": "https://video.example/1.mp4",
         }]
     }
     assert client.post("/api/v1/courses/92311/video-chunks", json=payload).status_code == 401
+    invalid = {"chunks": [{**payload["chunks"][0], "asr_text": ""}]}
+    assert client.post(
+        "/api/v1/courses/92311/video-chunks",
+        headers={"Authorization": "Bearer ingest-secret"},
+        json=invalid,
+    ).status_code == 422
     ingested = client.post(
         "/api/v1/courses/92311/video-chunks",
         headers={"Authorization": "Bearer ingest-secret"},
         json=payload,
     )
-    assert ingested.status_code == 200, ingested.text
-    assert ingested.json()["video_nodes"] == 1
+    assert ingested.status_code == 202, ingested.text
+    job_id = ingested.json()["extraction_job"]["job_id"]
+    for _ in range(100):
+        job = client.get(f"/api/v1/jobs/{job_id}", headers=headers).json()
+        if job["status"] in {"completed", "failed"}:
+            break
+        time.sleep(0.01)
+    assert job["status"] == "completed", job
+    assert job["result"]["video_nodes"] == 2
+    assert job["result"]["video_edges"] == 1
 
     relation = client.get(
-        "/api/v1/courses/92311/knowledge-points/kp:set/video-segments",
+        "/api/v1/courses/92311/knowledge-points/%E5%91%BD%E9%A2%98%2Fproposition/video-segments",
         headers=headers,
     )
-    assert relation.json() == {"segment_ids": ["seg-1"]}
+    assert relation.json() == {
+        "video_refs": [{
+            "segment_id": "seg-1",
+            "video_id": "video-1",
+            "start_sec": 10.0,
+            "end_sec": 20.0,
+        }],
+    }
     fused = client.get("/api/v1/courses/92311/graphs/fused", headers=headers).json()
-    assert fused["nodes"][0]["video_anchors"][0]["segment_id"] == "seg-1"
+    assert any(
+        node.get("video_anchors", [{}])[0].get("segment_id") == "seg-1"
+        for node in fused["nodes"]
+        if node.get("video_anchors")
+    )
+
+
+def test_video_relation_lookup_matches_bilingual_alias_parts(tmp_path):
+    store = GraphStore(tmp_path / "data")
+    store._write(
+        store._path("92311", "video_chunks.json"),
+        {
+            "courseid": "92311",
+            "chunks": [{
+                "segment_id": "segment-set",
+                "lesson_id": "2",
+                "video_id": "video-2",
+                "asr_text": "集合的基本概念",
+                "text": "集合的基本概念",
+                "start_sec": 20,
+                "end_sec": 30,
+                "link": "https://video.example/2.mp4",
+            }],
+        },
+    )
+    store.import_video_relations("92311", [{
+        "knowledge_point_id": "legacy-set",
+        "knowledge_point_name": "??/set",
+        "segment_ids": ["segment-set"],
+    }])
+
+    assert store.find_video_segments("92311", "集合/set", "集合") == [
+        "segment-set"
+    ]
 
 
 def test_jaccount_login_and_misspelled_compatibility_path(tmp_path, monkeypatch):

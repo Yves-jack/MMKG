@@ -428,13 +428,16 @@
 .resourceMenu {
   position: fixed;
   z-index: 1200;
-  width: min(320px, calc(100vw - 24px));
-  max-height: min(400px, calc(100vh - 24px));
+  box-sizing: border-box;
+  width: min(390px, calc(100vw - 24px));
+  max-height: min(560px, calc(100vh - 24px));
   overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   padding: 12px;
   color: var(--text);
   background: #111a2b;
-  border: 1px solid rgba(96, 165, 250, 0.45);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
   border-radius: 12px;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.48);
 }
@@ -475,15 +478,15 @@
 .resourceMenuGroups section { display: grid; gap: 5px; }
 .resourceMenuGroups h3 {
   margin: 0;
-  color: #93c5fd;
+  color: var(--accent);
   font-size: 11px;
   letter-spacing: 0.06em;
 }
 .resourceMenuGroups button {
   display: grid;
-  gap: 2px;
+  gap: 7px;
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px 12px;
   text-align: left;
   color: var(--text);
   background: rgba(30, 41, 59, 0.8);
@@ -492,17 +495,46 @@
   cursor: pointer;
 }
 .resourceMenuGroups button:hover {
-  border-color: rgba(96, 165, 250, 0.65);
-  background: rgba(37, 99, 235, 0.18);
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--line));
+  background: var(--accent-dim);
 }
-.resourceMenuGroups button span { font-size: 12px; line-height: 1.4; }
-.resourceMenuGroups button em {
+.resourceCardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.resourceCardHead strong {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.resourceCardHead em {
+  flex: none;
+  color: color-mix(in srgb, var(--accent) 72%, var(--text));
+  font-size: 11px;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+}
+.resourceCardDetail {
+  display: -webkit-box;
   overflow: hidden;
   color: var(--muted);
-  font-size: 10px;
-  font-style: normal;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.resourceCardAction {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
 }
 .resourceMenuWarnings { margin-top: 10px; color: #fbbf24; font-size: 10px; }
 .resourceMenuWarnings p { margin: 5px 0 0; overflow-wrap: anywhere; }
@@ -573,6 +605,11 @@
   white-space: pre-wrap;
 }
 
+.embeddedMain {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
 .graphSplit {
   flex: 1;
   min-height: 0;
@@ -608,6 +645,13 @@
   flex: 1 1 auto;
   min-width: 120px;
   max-width: 240px;
+}
+
+.videoIndexHint {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
 }
 
 .graphChromeEnd {

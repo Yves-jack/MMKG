@@ -13,6 +13,10 @@ services:
       JXB_PUBLIC_KEY_PATH: /tmp/key/public.pem
       KG_TOKEN_AUDIENCE: knowledge-graph
       VIDEO_SEARCH_INGEST_TOKEN: ${VIDEO_SEARCH_INGEST_TOKEN:?set VIDEO_SEARCH_INGEST_TOKEN}
+      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://api.xi-ai.cn/v1}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-v4-flash-0731}
+      MMKG_VIDEO_EXTRACT_MOCK: ${MMKG_VIDEO_EXTRACT_MOCK:-0}
       MMKG_CORS_ORIGINS: ${MMKG_CORS_ORIGINS:-}
       JACCOUNT_CLIENT_ID: ${JACCOUNT_CLIENT_ID:-}
       JACCOUNT_CLIENT_SECRET: ${JACCOUNT_CLIENT_SECRET:-}
@@ -40,6 +44,7 @@ services:
     environment:
       MMKG_API_URL: http://mmkg-backend:8000/api
       AI_TEACHING_API_URL: ${AI_TEACHING_API_URL:-http://ai-teaching-backend-main:5001}
+      VIDEO_SEARCH_API_URL: ${VIDEO_SEARCH_API_URL:-http://video-search-api:8000}
     expose:
       - "5173"
     networks:

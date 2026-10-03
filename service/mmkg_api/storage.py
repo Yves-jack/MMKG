@@ -33,6 +33,19 @@ def _identity(node: Graph) -> str:
     return re.sub(r"\s+", "", str(raw or "")).casefold()
 
 
+def _knowledge_aliases(*values: Any) -> set[str]:
+    aliases: set[str] = set()
+    for value in values:
+        raw = str(value or "").strip()
+        if not raw:
+            continue
+        for part in (raw, *re.split(r"[/／|]", raw)):
+            normalized = re.sub(r"[^\w]+", "", part.casefold())
+            if normalized:
+                aliases.add(normalized)
+    return aliases
+
+
 class GraphStore:
     def __init__(self, root: str | Path | None = None) -> None:
         self.root = Path(root or os.environ.get("MMKG_DATA_DIR") or "/data")
@@ -220,43 +233,83 @@ class GraphStore:
 
     def ingest_video_chunks(self, course_id: str, chunks: list[Graph]) -> Graph:
         existing = {str(row["segment_id"]): row for row in self.read_video_chunks(course_id)}
+        accepted: list[str] = []
         for raw in chunks:
-            row = {key: raw[key] for key in ("segment_id", "lesson_id", "summary", "start_sec", "end_sec", "link")}
+            row = {
+                "segment_id": raw["segment_id"],
+                "lesson_id": raw["lesson_id"],
+                "video_id": raw.get("video_id") or raw["lesson_id"],
+                "asr_text": raw["asr_text"],
+                "text": raw["text"],
+                "start_sec": raw["start_sec"],
+                "end_sec": raw["end_sec"],
+                "link": raw["link"],
+            }
+            if not str(row["asr_text"]).strip() or not str(row["text"]).strip():
+                raise ValueError("video chunk requires non-empty asr_text and text")
             existing[str(row["segment_id"])] = row
+            accepted.append(str(row["segment_id"]))
         stored = list(existing.values())
         self._write(self._path(course_id, "video_chunks.json"), {"courseid": str(course_id), "version": 1, "chunks": stored})
-        return self.rebuild_video(course_id)
+        return {
+            "courseid": str(course_id),
+            "stored_chunks": len(stored),
+            "accepted_segment_ids": accepted,
+        }
 
-    @staticmethod
-    def _labels(node: Graph) -> list[str]:
-        return [str(value).strip() for value in (node.get("name"), node.get("zh_name"), node.get("en_name")) if str(value or "").strip()]
+    def _video_extraction_path(self, course_id: str, segment_id: str) -> Path:
+        name = hashlib.sha256(str(segment_id).encode()).hexdigest() + ".json"
+        return self._path(course_id, "video_extractions") / name
+
+    def read_video_extractions(self, course_id: str) -> list[Graph]:
+        root = self._path(course_id, "video_extractions")
+        if not root.is_dir():
+            return []
+        rows: list[Graph] = []
+        for path in sorted(root.glob("*.json")):
+            payload = self._read(path, {})
+            if isinstance(payload, dict) and payload.get("segment_id"):
+                rows.append(payload)
+        return rows
+
+    def write_video_extraction(self, course_id: str, extraction: Graph) -> Graph:
+        segment_id = str(extraction.get("segment_id") or "").strip()
+        if not segment_id:
+            raise ValueError("video extraction requires segment_id")
+        return self._write(
+            self._video_extraction_path(course_id, segment_id), extraction
+        )
+
+    def video_chunks_needing_extraction(
+        self, course_id: str, segment_ids: list[str]
+    ) -> list[Graph]:
+        from .video_extraction import chunk_fingerprint
+
+        wanted = set(segment_ids)
+        done = {
+            str(row.get("segment_id")): str(row.get("input_hash"))
+            for row in self.read_video_extractions(course_id)
+            if row.get("status") == "completed"
+        }
+        return [
+            chunk
+            for chunk in self.read_video_chunks(course_id)
+            if str(chunk.get("segment_id")) in wanted
+            and done.get(str(chunk.get("segment_id"))) != chunk_fingerprint(chunk)
+        ]
 
     def rebuild_video(self, course_id: str) -> Graph:
+        from .video_extraction import build_video_graph
+
         chunks = self.read_video_chunks(course_id)
-        candidates: list[Graph] = []
-        for view in ("base", "document"):
-            candidates.extend(self.read_view(course_id, view)["nodes"])
-        nodes, relations, seen = [], [], set()
-        for candidate in candidates:
-            node_id, labels = str(candidate.get("id") or "").strip(), self._labels(candidate)
-            identity = node_id or (labels[0] if labels else "")
-            if not identity or identity in seen or not labels:
-                continue
-            anchors = []
-            for chunk in chunks:
-                summary = re.sub(r"\s+", "", str(chunk.get("summary") or "")).casefold()
-                if summary and any(re.sub(r"\s+", "", label).casefold() in summary for label in labels):
-                    anchors.append({key: chunk[key] for key in ("segment_id", "lesson_id", "start_sec", "end_sec", "link")})
-            if anchors:
-                node = {**candidate, "id": identity, "video_anchors": anchors}
-                nodes.append(node)
-                relations.append({"knowledge_point_id": identity, "knowledge_point_name": labels[0], "segment_ids": [str(a["segment_id"]) for a in anchors]})
-                seen.add(identity)
-        video = self.normalize_graph(course_id, "video", {"nodes": nodes, "edges": [], "source_type": "video_chunks"})
+        video, relations = build_video_graph(
+            course_id, chunks, self.read_video_extractions(course_id)
+        )
+        video = self.normalize_graph(course_id, "video", video)
         self._write(self._path(course_id, "video.json"), video)
         self._write(self._path(course_id, "knowledge_point_videos.json"), {"courseid": str(course_id), "version": 1, "relations": relations})
         fused = self.rebuild_fused(course_id)
-        return {"courseid": str(course_id), "stored_chunks": len(chunks), "relations": len(relations), "video_nodes": len(nodes), "fused_nodes": len(fused["nodes"])}
+        return {"courseid": str(course_id), "stored_chunks": len(chunks), "relations": len(relations), "video_nodes": len(video["nodes"]), "video_edges": len(video["edges"]), "fused_nodes": len(fused["nodes"])}
 
     def read_video_relations(self, course_id: str) -> list[Graph]:
         generated = self._read(self._path(course_id, "knowledge_point_videos.json"), {"relations": []})
@@ -267,13 +320,51 @@ class GraphStore:
         return rows
 
     def find_video_segments(self, course_id: str, point_id: str, name: str | None = None) -> list[str]:
-        wanted_name = re.sub(r"\s+", "", str(name or "")).casefold()
+        wanted = _knowledge_aliases(point_id, name)
         result: list[str] = []
         for relation in self.read_video_relations(course_id):
-            relation_name = re.sub(r"\s+", "", str(relation.get("knowledge_point_name") or "")).casefold()
-            if str(relation.get("knowledge_point_id")) == str(point_id) or (wanted_name and relation_name == wanted_name):
+            relation_aliases = _knowledge_aliases(
+                relation.get("knowledge_point_id"),
+                relation.get("knowledge_point_name"),
+            )
+            if wanted.intersection(relation_aliases):
                 result.extend(str(value) for value in relation.get("segment_ids", []) if str(value))
         return list(dict.fromkeys(result))
+
+    def find_video_references(
+        self, course_id: str, point_id: str, name: str | None = None
+    ) -> list[Graph]:
+        segment_ids = self.find_video_segments(course_id, point_id, name)
+        chunks = {
+            str(row.get("segment_id")): row
+            for row in self.read_video_chunks(course_id)
+        }
+        refs: list[Graph] = []
+        seen: set[tuple[str, float]] = set()
+        for segment_id in segment_ids:
+            chunk = chunks.get(segment_id)
+            if not chunk:
+                continue
+            video_id = str(
+                chunk.get("video_id") or chunk.get("lesson_id") or ""
+            ).strip()
+            if not video_id:
+                continue
+            start_sec = float(chunk.get("start_sec") or 0)
+            key = (video_id, start_sec)
+            if key in seen:
+                continue
+            seen.add(key)
+            refs.append(
+                {
+                    "video_id": video_id,
+                    "segment_id": segment_id,
+                    "start_sec": start_sec,
+                    "end_sec": float(chunk.get("end_sec") or start_sec),
+                    "link": str(chunk.get("link") or ""),
+                }
+            )
+        return refs
 
     def import_video_relations(self, course_id: str, relations: list[Graph]) -> Graph:
         normalized = []

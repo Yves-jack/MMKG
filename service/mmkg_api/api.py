@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from typing import Any, Literal
 
 from fastapi import APIRouter, Body, Depends, File, Header, HTTPException, Query, UploadFile
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from . import auth
 from .jobs import JobStore
@@ -66,10 +66,20 @@ class GraphPayload(BaseModel):
 class VideoChunk(BaseModel):
     segment_id: str = Field(min_length=1, max_length=196)
     lesson_id: str = Field(min_length=1, max_length=196)
-    summary: str = Field(min_length=1, max_length=10000)
+    video_id: str | None = Field(default=None, min_length=1, max_length=196)
+    asr_text: str = Field(min_length=1, max_length=100000)
+    text: str = Field(min_length=1, max_length=100000)
     start_sec: float = Field(ge=0)
     end_sec: float = Field(gt=0)
     link: str = Field(min_length=1, max_length=2048)
+
+    @field_validator("asr_text", "text")
+    @classmethod
+    def require_non_blank_text(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("must not be blank")
+        return value
 
 
 class VideoChunksPayload(BaseModel):
@@ -295,10 +305,13 @@ def relations(course_id: str, user=Depends(auth.get_current_user)) -> dict[str, 
     return {"relations": values}
 
 
-@router.post("/v1/courses/{course_id}/video-chunks")
+@router.post("/v1/courses/{course_id}/video-chunks", status_code=202)
 def video_chunks(course_id: str, body: VideoChunksPayload, authorization: str | None = Header(default=None)) -> dict[str, Any]:
     _require_ingest(authorization)
-    return store.ingest_video_chunks(_storage_course(course_id), [_dump(item) for item in body.chunks])
+    storage_course = _storage_course(course_id)
+    ingested = store.ingest_video_chunks(storage_course, [_dump(item) for item in body.chunks])
+    job = jobs.create_video_extraction(storage_course, ingested["accepted_segment_ids"])
+    return {**ingested, "extraction_job": job}
 
 
 @router.put("/v1/courses/{course_id}/video-relations/import")
@@ -313,10 +326,26 @@ def relation_status(course_id: str, authorization: str | None = Header(default=N
     return store.video_relation_status(_storage_course(course_id))
 
 
-@router.get("/v1/courses/{course_id}/knowledge-points/{point_id}/video-segments")
-def point_segments(course_id: str, point_id: str, name: str | None = Query(default=None, max_length=1024), user=Depends(auth.get_current_user)) -> dict[str, list[str]]:
+@router.get("/v1/courses/{course_id}/knowledge-points/{point_id:path}/video-segments")
+def point_segments(course_id: str, point_id: str, name: str | None = Query(default=None, max_length=1024), user=Depends(auth.get_current_user)) -> dict[str, Any]:
     auth.require_course(user, course_id)
-    return {"segment_ids": store.find_video_segments(_storage_course(course_id), point_id, name)}
+    video_refs = store.find_video_references(
+        _storage_course(course_id), point_id, name
+    )
+    return {
+        "video_refs": [
+            {
+                "segment_id": str(item["segment_id"]),
+                "video_id": str(item["video_id"]),
+                "start_sec": float(item["start_sec"]),
+                "end_sec": float(item["end_sec"]),
+            }
+            for item in video_refs
+            if str(item.get("segment_id") or "").strip()
+            and str(item.get("video_id") or "").strip()
+            and item.get("start_sec") is not None
+        ],
+    }
 
 
 @router.get("/v1/courses/{course_id}/knowledge-points")
