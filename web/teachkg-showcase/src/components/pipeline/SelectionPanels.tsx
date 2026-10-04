@@ -467,6 +467,7 @@ export function SelectionDetail({
   onDeleteEdge,
   onRestoreEntity,
   onRestoreEdge,
+  permanentDelete = false,
 }: {
   stage: PipelineStage;
   selectedNodeId: string | null;
@@ -484,6 +485,7 @@ export function SelectionDetail({
   onDeleteEdge?: (edgeId: string) => void | Promise<void>;
   onRestoreEntity?: (originalId: string) => void | Promise<void>;
   onRestoreEdge?: (edgeId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const edge = resolveEdgeForDetail(stage, selectedEdgeId);
   const stageNode = selectedNodeId
@@ -519,6 +521,7 @@ export function SelectionDetail({
             onSave={onSaveEdgeEdit}
             onClear={onClearEdgeEdit}
             onDelete={onDeleteEdge}
+            permanentDelete={permanentDelete}
           />
         ) : null}
         <DetailRows
@@ -603,6 +606,7 @@ export function SelectionDetail({
             busy={editBusy}
             onSave={onRenameEntity}
             onDelete={onDeleteEntity}
+            permanentDelete={permanentDelete}
           />
         ) : null}
         <DetailRows
@@ -757,11 +761,13 @@ function EntityRenameForm({
   busy,
   onSave,
   onDelete,
+  permanentDelete,
 }: {
   entityId: string;
   busy?: boolean;
   onSave: (currentId: string, newId: string) => void | Promise<void>;
   onDelete?: (currentId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const initial = splitCanonicalName(entityId);
   const [zh, setZh] = useState(initial.zh);
@@ -813,7 +819,7 @@ function EntityRenameForm({
             onClick={() => {
               if (
                 window.confirm(
-                  `删除实体「${shortName(entityId)}」？其关联关系也会从展示中移除（可撤销）。`
+                  `删除实体「${shortName(entityId)}」？其关联关系也会一并移除${permanentDelete ? "，且此操作不可撤销" : "（可撤销）"}。`
                 )
               ) {
                 void onDelete(entityId);
@@ -836,6 +842,7 @@ function EdgeEditForm({
   onSave,
   onClear,
   onDelete,
+  permanentDelete,
 }: {
   edge: PipelineEdge;
   pred: string;
@@ -844,6 +851,7 @@ function EdgeEditForm({
   onSave: (edgeId: string, edit: EdgeEdit) => void | Promise<void>;
   onClear?: (edgeId: string) => void | Promise<void>;
   onDelete?: (edgeId: string) => void | Promise<void>;
+  permanentDelete?: boolean;
 }) {
   const edgeId = String(edge.id || "");
   const [rel, setRel] = useState(pred);
@@ -917,7 +925,7 @@ function EdgeEditForm({
             onClick={() => {
               if (
                 window.confirm(
-                  `删除关系「${shortName(edge.from)} —[${pred}]→ ${shortName(edge.to)}」？（可撤销）`
+                  `删除关系「${shortName(edge.from)} —[${pred}]→ ${shortName(edge.to)}」？${permanentDelete ? "此操作不可撤销。" : "（可撤销）"}`
                 )
               ) {
                 void onDelete(edgeId);
@@ -1240,31 +1248,46 @@ function AssetCardItem({
 /** 选中概念时展示关联的资源层卡片（公式 / 例子 / 定理·原理·方法） */
 export function RelatedAssetsPanel({
   entityId,
+  entityAliases = [],
   library,
   lectureId = null,
   lectureOnly = false,
+  kinds = null,
   maxItems = 12,
   hideEmpty = false,
 }: {
   entityId: string | null;
+  /** 同一图节点的显示名等别名；嵌入图常用内部 id，资产索引使用课程实体名。 */
+  entityAliases?: string[];
   library: AssetsLibrary | null;
   lectureId?: string | null;
   /** 讲次课堂 KG：只显示本讲抽取，避免精选种子盖住新结果 */
   lectureOnly?: boolean;
+  /** 仅展示指定资产类型；公式嵌入使用 ["formula"]。 */
+  kinds?: string[] | null;
   maxItems?: number;
   hideEmpty?: boolean;
 }) {
-  const cards = useMemo(
-    () =>
-      entityId
-        ? findAssetsForEntity(library, entityId, {
-            lectureId,
-            lectureOnly,
-            llmPrinciplesOnly: true,
-          })
-        : [],
-    [entityId, library, lectureId, lectureOnly]
-  );
+  const aliasKey = entityAliases.join("\u0000");
+  const kindKey = kinds?.join("\u0000") || "";
+  const cards = useMemo(() => {
+    const ids = [entityId, ...entityAliases]
+      .map((value) => String(value || "").trim())
+      .filter(Boolean);
+    const seen = new Set<string>();
+    return ids.flatMap((id) =>
+      findAssetsForEntity(library, id, {
+        lectureId,
+        lectureOnly,
+        llmPrinciplesOnly: true,
+        kinds,
+      }).filter((card) => {
+        if (seen.has(card.asset_id)) return false;
+        seen.add(card.asset_id);
+        return true;
+      })
+    );
+  }, [entityId, aliasKey, library, lectureId, lectureOnly, kindKey]);
   if (!entityId) {
     if (hideEmpty) return null;
     return <div className={styles.sideEmpty}>选中实体后显示相关公式、例子与定理</div>;
@@ -1275,9 +1298,12 @@ export function RelatedAssetsPanel({
   }
   if (!cards.length) {
     if (hideEmpty) return null;
+    const onlyFormula = kinds?.length === 1 && kinds[0] === "formula";
     return (
       <div className={styles.sideEmpty}>
-        {lectureOnly
+        {onlyFormula
+          ? "该知识节点暂无 MMKG 关联公式"
+          : lectureOnly
           ? "本讲暂无挂到该实体的公式 / 例子 / 定理"
           : "暂无关联的公式、例子或定理·原理·方法"}
       </div>

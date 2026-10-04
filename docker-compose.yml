@@ -1,0 +1,63 @@
+services:
+  mmkg-backend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+      target: runtime
+    image: mmkg-backend:latest
+    container_name: mmkg-backend
+    restart: unless-stopped
+    environment:
+      MMKG_DATA_DIR: /data
+      MMKG_JWT_SECRET: ${MMKG_JWT_SECRET:?set MMKG_JWT_SECRET}
+      JXB_PUBLIC_KEY_PATH: /tmp/key/public.pem
+      KG_TOKEN_AUDIENCE: knowledge-graph
+      VIDEO_SEARCH_INGEST_TOKEN: ${VIDEO_SEARCH_INGEST_TOKEN:?set VIDEO_SEARCH_INGEST_TOKEN}
+      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://api.xi-ai.cn/v1}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-v4-flash-0731}
+      MMKG_VIDEO_EXTRACT_MOCK: ${MMKG_VIDEO_EXTRACT_MOCK:-0}
+      MMKG_CORS_ORIGINS: ${MMKG_CORS_ORIGINS:-}
+      JACCOUNT_CLIENT_ID: ${JACCOUNT_CLIENT_ID:-}
+      JACCOUNT_CLIENT_SECRET: ${JACCOUNT_CLIENT_SECRET:-}
+      JACCOUNT_REDIRECT_URI: ${JACCOUNT_REDIRECT_URI:-}
+    volumes:
+      - mmkg-data:/data
+      - /home/canvas/deploy/key:/tmp/key:ro
+    expose:
+      - "8000"
+    networks:
+      runtime:
+        aliases:
+          - mmkg-backend
+
+  mmkg-frontend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+      args:
+        VITE_BASE_PATH: ${MMKG_BASE_PATH:-/kg/}
+        VITE_MMKG_API_BASE: ${MMKG_BROWSER_API_BASE:-/kg-api}
+    image: mmkg-frontend:latest
+    container_name: mmkg-frontend
+    restart: unless-stopped
+    environment:
+      MMKG_API_URL: http://mmkg-backend:8000/api
+      AI_TEACHING_API_URL: ${AI_TEACHING_API_URL:-http://ai-teaching-backend-main:5001}
+      VIDEO_SEARCH_API_URL: ${VIDEO_SEARCH_API_URL:-http://video-search-api:8000}
+    expose:
+      - "5173"
+    networks:
+      runtime:
+        aliases:
+          - mmkg-frontend
+    depends_on:
+      - mmkg-backend
+
+volumes:
+  mmkg-data:
+
+networks:
+  runtime:
+    name: ${RUNTIME_NETWORK:-production-runtime}
+    external: true

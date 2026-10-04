@@ -9,6 +9,7 @@ import { reviewNotesMiddleware } from "./server/reviewNotes.mjs";
 import { practiceQuizMiddleware } from "./server/practiceQuiz.mjs";
 import { kgEditsMiddleware } from "./server/kgEdits.mjs";
 import { mindmapOutlineMiddleware } from "./server/mindmapOutline.mjs";
+import { knowledgeResourcesMiddleware } from "./server/knowledgeResources.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../..");
@@ -128,13 +129,13 @@ function serveRepoData() {
   };
 }
 
-/** 子路径部署时，把 /teachkg/api|/repo-data 还原成中间件认识的根路径 */
+/** 子路径部署时，把 API 与静态数据路径还原成中间件认识的根路径。 */
 function stripBaseForApiPlugin(basePath: string) {
   const base = (basePath || "/").replace(/\/$/, "");
   const rewrite = (req: any, _res: any, next: () => void) => {
     if (!base || base === "/") return next();
     const url = String(req.url || "");
-    for (const prefix of ["/api/", "/repo-data/"]) {
+    for (const prefix of ["/api/", "/repo-data/", "/data/"]) {
       if (url.startsWith(`${base}${prefix}`)) {
         req.url = url.slice(base.length);
         break;
@@ -160,6 +161,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
   const practiceMw = practiceQuizMiddleware({ ...process.env, ...env });
   const kgEditsMw = kgEditsMiddleware({ ...process.env, ...env });
   const outlineMw = mindmapOutlineMiddleware({ ...process.env, ...env });
+  const resourcesMw = knowledgeResourcesMiddleware({ ...process.env, ...env });
   return {
     name: "recommend-search-api",
     configureServer(server: any) {
@@ -169,6 +171,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
       server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
+      server.middlewares.use(resourcesMw);
     },
     configurePreviewServer(server: any) {
       server.middlewares.use(searchMw);
@@ -177,6 +180,7 @@ function recommendSearchPlugin(env: Record<string, string>) {
       server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
+      server.middlewares.use(resourcesMw);
     },
   };
 }
@@ -184,6 +188,8 @@ function recommendSearchPlugin(env: Record<string, string>) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, "");
   const base = env.VITE_BASE_PATH || process.env.VITE_BASE_PATH || "/";
+  const mmkgApi = env.MMKG_API_URL || process.env.MMKG_API_URL || "http://mmkg-backend:8000/api";
+  const mmkgOrigin = new URL(mmkgApi).origin;
   return {
     base,
     plugins: [
@@ -199,12 +205,27 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       fs: { allow: [repoRoot] },
+      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase"],
       port: 5173,
+      proxy: {
+        "/mmkg-api": {
+          target: mmkgOrigin,
+          changeOrigin: true,
+          rewrite: (url: string) => url.replace(/^\/mmkg-api/, "/api"),
+        },
+      },
     },
     preview: {
       host: true,
       port: 5173,
-      allowedHosts: true,
+      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase"],
+      proxy: {
+        "/mmkg-api": {
+          target: mmkgOrigin,
+          changeOrigin: true,
+          rewrite: (url: string) => url.replace(/^\/mmkg-api/, "/api"),
+        },
+      },
     },
   };
 });

@@ -1,0 +1,68 @@
+services:
+  mmkg-backend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+      target: debug
+    container_name: debug-mmkg-backend
+    command: uvicorn mmkg_api.main:app --host 0.0.0.0 --port 8000
+    mem_limit: 160m
+    cpus: 0.75
+    volumes:
+      - ./service:/app
+      - ./teachkg:/app/teachkg:ro
+      - ./prompts:/app/prompts:ro
+      - debug-mmkg-data:/data
+      - /home/canvas/deploy/key:/tmp/key:ro
+    environment:
+      MMKG_DATA_DIR: /data
+      MMKG_JWT_SECRET: debug-only-mmkg-secret
+      JXB_PUBLIC_KEY_PATH: /tmp/key/public.pem
+      KG_TOKEN_AUDIENCE: knowledge-graph
+      VIDEO_SEARCH_INGEST_TOKEN: ${VIDEO_SEARCH_INGEST_TOKEN:-debug-only-video-token}
+      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://api.xi-ai.cn/v1}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-v4-flash-0731}
+      MMKG_VIDEO_EXTRACT_MOCK: ${MMKG_VIDEO_EXTRACT_MOCK:-0}
+      MMKG_CORS_ORIGINS: http://127.0.0.1:${MMKG_DEBUG_PORT:-5174}
+    expose:
+      - "8000"
+    networks:
+      staging-runtime:
+        aliases:
+          - mmkg-backend
+
+  mmkg-debug:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+      args:
+        VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
+        VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
+    image: mmkg-showcase-debug:latest
+    container_name: debug-mmkg-showcase
+    mem_limit: 192m
+    cpus: 0.75
+    ports:
+      - "127.0.0.1:${MMKG_DEBUG_PORT:-5174}:5173"
+    environment:
+      NODE_OPTIONS: --max-old-space-size=128
+      AI_TEACHING_API_URL: http://debug-ai-teaching-backend-main:5001
+      MMKG_API_URL: http://mmkg-backend:8000/api
+      VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
+      VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
+      VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
+    networks:
+      staging-runtime:
+        aliases:
+          - mmkg-frontend
+    depends_on:
+      - mmkg-backend
+
+volumes:
+  debug-mmkg-data:
+
+networks:
+  staging-runtime:
+    external: true
+    name: staging-runtime

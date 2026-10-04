@@ -1,0 +1,13 @@
+FROM node:22-alpine
+
+WORKDIR /workspace
+COPY . .
+WORKDIR /workspace/web/teachkg-showcase
+ARG VITE_BASE_PATH=/kg/
+ARG VITE_MMKG_API_BASE=/kg-api
+ENV VITE_BASE_PATH=${VITE_BASE_PATH}
+ENV VITE_MMKG_API_BASE=${VITE_MMKG_API_BASE}
+# public/data is a committed course artifact. Build it as-is instead of running
+# the package prebuild hook, which regenerates data and increases peak memory.
+RUN npm ci && npx tsc -b && npx vite build
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]

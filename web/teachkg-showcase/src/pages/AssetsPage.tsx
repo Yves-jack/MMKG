@@ -455,7 +455,7 @@ export function AssetsPage() {
               <h4>陈述 / 步骤</h4>
               {selected.statement ? (
                 <div className={styles.statement}>
-                  <LatexText text={selected.statement} block />
+                  <LatexText text={selected.statement} as="div" />
                 </div>
               ) : null}
               {selected.steps?.length ? (

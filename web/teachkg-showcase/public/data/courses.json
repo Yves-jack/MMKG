@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-28T16:21:54.564Z",
-  "defaultCourseId": "离散数学(图论+数理逻辑与集合论)",
+  "generatedAt": "2026-10-02T16:34:52.526Z",
+  "defaultCourseId": "shuliluoji",
   "courses": [
     {
-      "id": "离散数学(图论+数理逻辑与集合论)",
-      "title": "离散数学(图论+数理逻辑与集合论)",
-      "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)",
-      "lectureCount": 43,
-      "hasPipeline": true,
-      "hasKg": true
+      "id": "shuliluoji",
+      "title": "shuliluoji",
+      "href": "/course/shuliluoji",
+      "lectureCount": 0,
+      "hasPipeline": false,
+      "hasKg": false
     }
   ]
 }
