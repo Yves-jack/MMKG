@@ -121,16 +121,19 @@ docker compose -f docker-compose.debug.yml run --rm mmkg-backend python -m pytes
 - `VIDEO_SEARCH_INGEST_TOKEN`：VideoSearch 写入 chunk 的独立 Bearer token；
 - `JACCOUNT_CLIENT_ID`、`JACCOUNT_CLIENT_SECRET`、`JACCOUNT_REDIRECT_URI`：启用 JAccount 时配置；
 
-### 迁移旧数据
+### 离散数学教材课程
 
-旧项目仅可作为迁移输入，不能作为运行时依赖。示例把旧课程 `40` 导入 Canvas 课程 `92311`：
+Debug课程92311直接使用项目中的教材图谱，来源目录为
+`data/textbook/CS2501-离散数学（数理逻辑与集合论）`，1482个实体、2754条关系。
+以实体名称生成稳定ID，保留定义、定理和教材importance；不读取旧Knowledge-Graph数据。
 
 ```bash
-docker compose -f docker-compose.debug.yml run --rm mmkg-backend \
-  python scripts/migrate_legacy.py --source /legacy-data --target /data --map 40:92311
+docker cp "data/textbook/CS2501-离散数学（数理逻辑与集合论）" debug-mmkg-backend:/tmp/mmkg-discrete-textbook
+docker exec debug-mmkg-backend python -m scripts.import_textbook --source /tmp/mmkg-discrete-textbook --target /data --course-id 92311
 ```
 
-迁移完成后，AI-Teaching 和 VideoSearch 都只连接 `mmkg-backend:8000`。
+已有课程中存在其他来源的图谱时，不要直接混入教材图；需先明确清理范围。
+导入器拒绝覆盖其他来源的非空图谱；教材重复导入保持节点ID稳定，并保留已有课程配置。
 
 生产镜像分别以 `/kg/`、`/kg-api` 构建浏览器路径；staging 使用对应覆盖文件构建为
 `/staging/kg/`、`/staging/kg-api`：

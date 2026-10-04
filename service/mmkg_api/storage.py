@@ -439,4 +439,4 @@ class GraphStore:
         root = self.root / "courses"
         if not root.is_dir():
             return []
-        return [{"id": path.name, "name": path.name} for path in sorted(root.iterdir()) if path.is_dir()]
+        return [{"id": path.name, "name": self.read_metadata(path.name, "config", {}).get("course_name") or path.name} for path in sorted(root.iterdir()) if path.is_dir()]
