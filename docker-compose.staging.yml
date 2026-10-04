@@ -1,0 +1,28 @@
+services:
+  mmkg-backend:
+    container_name: staging-mmkg-backend
+    networks:
+      runtime:
+        aliases:
+          - mmkg-backend
+
+  mmkg-frontend:
+    environment:
+      VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
+    container_name: staging-mmkg-frontend
+    build:
+      args:
+        VITE_BASE_PATH: /staging/kg/
+        VITE_MMKG_API_BASE: /staging/kg-api
+    networks:
+      runtime:
+        aliases:
+          - mmkg-frontend
+
+volumes:
+  mmkg-data:
+    name: staging-mmkg-data
+
+networks:
+  runtime:
+    name: staging-runtime

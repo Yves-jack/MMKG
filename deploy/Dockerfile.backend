@@ -1,0 +1,19 @@
+FROM python:3.12-slim AS runtime
+
+WORKDIR /app
+COPY deploy/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+COPY service /app
+COPY teachkg /app/teachkg
+COPY prompts /app/prompts
+CMD ["uvicorn", "mmkg_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+FROM python:3.12-slim AS debug
+WORKDIR /app
+COPY deploy/requirements.txt /tmp/requirements.txt
+COPY deploy/requirements.debug.txt /tmp/requirements.debug.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt -r /tmp/requirements.debug.txt
+COPY service /app
+COPY teachkg /app/teachkg
+COPY prompts /app/prompts
+CMD ["uvicorn", "mmkg_api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
