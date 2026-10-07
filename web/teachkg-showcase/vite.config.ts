@@ -205,7 +205,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       fs: { allow: [repoRoot] },
-      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase"],
+      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase", "dlc.sjtu.edu.cn"],
       port: 5173,
       proxy: {
         "/mmkg-api": {
@@ -218,7 +218,7 @@ export default defineConfig(({ mode }) => {
     preview: {
       host: true,
       port: 5173,
-      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase"],
+      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase", "dlc.sjtu.edu.cn"],
       proxy: {
         "/mmkg-api": {
           target: mmkgOrigin,
