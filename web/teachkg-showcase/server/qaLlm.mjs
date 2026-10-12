@@ -104,6 +104,7 @@ export async function callLlm(env, messages, opts = {}) {
 
   const base = String(
     env.LLM_BASE_URL ||
+      env.EXERCISE_LLM_BASE_URL ||
       env.OPENAI_BASE_URL ||
       env.DASHSCOPE_BASE_URL ||
       env.VITE_LLM_BASE_URL ||
@@ -111,80 +112,81 @@ export async function callLlm(env, messages, opts = {}) {
   ).replace(/\/$/, "");
   const model =
     env.LLM_MODEL ||
+    env.LLM_DEFAULT_MODEL ||
+    env.EXERCISE_LLM_MODEL ||
     env.OPENAI_MODEL ||
     env.VITE_LLM_MODEL ||
-    "deepseek-v4-flash-0731";
+    "deepseek-chat";
 
   const timeoutMs = Number(opts.timeoutMs) > 0 ? Number(opts.timeoutMs) : 60000;
   const temperature = opts.temperature != null ? Number(opts.temperature) : 0.2;
+  const maxAttempts = Number(opts.retries) >= 0 ? Number(opts.retries) + 1 : 2;
 
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    const r = await fetch(`${base}/chat/completions`, {
-      method: "POST",
-      signal: ctrl.signal,
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        temperature,
-        response_format: { type: "json_object" },
-        messages,
-      }),
-    });
-    const text = await r.text();
-    let data = null;
+  const postOnce = async (withJsonFormat) => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
     try {
-      data = text ? JSON.parse(text) : null;
-    } catch {
-      data = null;
-    }
-    if (!r.ok) {
-      // 部分兼容网关不支持 response_format，再试一次
-      const msg =
-        data?.error?.message || data?.message || text.slice(0, 240) || `HTTP ${r.status}`;
-      if (/response_format|json_object|unsupported/i.test(msg)) {
-        const r2 = await fetch(`${base}/chat/completions`, {
-          method: "POST",
-          signal: ctrl.signal,
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model,
-            temperature,
-            messages,
-          }),
-        });
-        const text2 = await r2.text();
-        let data2 = null;
-        try {
-          data2 = text2 ? JSON.parse(text2) : null;
-        } catch {
-          data2 = null;
-        }
-        if (!r2.ok) {
-          throw new Error(
-            data2?.error?.message || data2?.message || text2.slice(0, 240) || `HTTP ${r2.status}`
-          );
-        }
-        return {
-          content: data2?.choices?.[0]?.message?.content || "",
+      const r = await fetch(`${base}/chat/completions`, {
+        method: "POST",
+        signal: ctrl.signal,
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           model,
-          raw: data2,
-        };
+          temperature,
+          ...(withJsonFormat ? { response_format: { type: "json_object" } } : {}),
+          messages,
+        }),
+      });
+      const text = await r.text();
+      let data = null;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = null;
       }
-      throw new Error(msg);
+      return { r, text, data };
+    } finally {
+      clearTimeout(timer);
     }
-    const content = data?.choices?.[0]?.message?.content || "";
-    return { content, model, raw: data };
-  } finally {
-    clearTimeout(timer);
+  };
+
+  let lastErr = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      let { r, text, data } = await postOnce(true);
+      if (!r.ok) {
+        const msg =
+          data?.error?.message || data?.message || text.slice(0, 240) || `HTTP ${r.status}`;
+        if (/response_format|json_object|unsupported/i.test(msg)) {
+          ({ r, text, data } = await postOnce(false));
+          if (!r.ok) {
+            throw new Error(
+              data?.error?.message || data?.message || text.slice(0, 240) || `HTTP ${r.status}`
+            );
+          }
+        } else {
+          throw new Error(msg);
+        }
+      }
+      return {
+        content: data?.choices?.[0]?.message?.content || "",
+        model,
+        raw: data,
+      };
+    } catch (e) {
+      lastErr = e;
+      const msg = String(e?.message || e);
+      const retryable = /fetch failed|ECONNREFUSED|ECONNRESET|ETIMEDOUT|UND_ERR|aborted|network/i.test(
+        msg
+      );
+      if (!retryable || attempt >= maxAttempts) break;
+      await new Promise((resolve) => setTimeout(resolve, 400 * attempt));
+    }
   }
+  throw lastErr || new Error("LLM request failed");
 }
 
 function parseModelJson(content) {

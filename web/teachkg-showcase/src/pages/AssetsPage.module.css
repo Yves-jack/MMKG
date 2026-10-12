@@ -125,23 +125,60 @@
   color: var(--muted, #a8b3c2);
 }
 
+.cardLatex {
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: #fde68a;
+  overflow-x: auto;
+}
+
 .cardEvidence {
   font-size: 12px;
   line-height: 1.5;
-  padding: 6px 8px;
+  padding: 4px 8px 6px;
   border-radius: 6px;
   background: rgba(91, 141, 239, 0.08);
   border: 1px solid rgba(91, 141, 239, 0.22);
   color: #c9d6e8;
 }
 
-.cardEvidence > span {
-  display: block;
-  margin-bottom: 3px;
+.evidenceToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #8b97a8);
+  font: inherit;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--muted, #8b97a8);
+  cursor: pointer;
+  list-style: none;
+}
+
+.evidenceToggle::-webkit-details-marker {
+  display: none;
+}
+
+.evidenceToggle span {
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #93c5fd;
+}
+
+.evidenceBody {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(91, 141, 239, 0.25);
 }
 
 .cardConcepts {
@@ -223,4 +260,59 @@
   text-align: center;
   color: var(--muted, #8b97a8);
   font-size: 13px;
+}
+
+.navEmpty {
+  margin: 4px 8px;
+  padding: 8px;
+  font-size: 12px;
+  color: var(--muted, #8b97a8);
+}
+
+.partGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.partToggle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  /* 章节滚动时分册标题吸顶，不随章名滑走 */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.partToggle:hover {
+  background: var(--accent-dim);
+}
+
+.partToggle em {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--muted, #8b97a8);
+  white-space: nowrap;
+}
+
+/* 仅章名列表滚动；分册标题 sticky 留在顶部 */
+.partChapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

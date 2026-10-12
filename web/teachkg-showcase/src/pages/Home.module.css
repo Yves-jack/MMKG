@@ -136,12 +136,15 @@
 .courseCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
   padding: 22px 18px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: color-mix(in srgb, var(--bg-elev) 85%, transparent);
   min-height: 132px;
+  text-align: center;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 
@@ -161,12 +164,15 @@
 .mainLink {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
   padding: 14px 14px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: color-mix(in srgb, var(--bg-elev) 85%, transparent);
   min-height: 92px;
+  text-align: center;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
@@ -181,6 +187,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+  text-align: center;
 }
 
 .title {
@@ -188,6 +195,7 @@
   font-size: 20px;
   font-weight: 650;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .desc {
@@ -195,6 +203,7 @@
   font-size: 14px;
   line-height: 1.45;
   color: #c5cedb;
+  text-align: center;
 }
 
 .extra {

@@ -10,7 +10,7 @@
  */
 import type { MindmapDoc, MindmapTreeNode } from "@/components/mindmap/MindmapTree";
 import { isProcessEdgeSource } from "@/lib/kg/lectureKgProcess";
-import type { PipelineEdge, PipelineNode } from "@/lib/pipeline/types";
+import type { PipelineEdge, PipelineNode } from "@/lib/graph/types";
 
 const REL_STRENGTH: Record<string, number> = {
   belong_to: 1,

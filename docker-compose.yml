@@ -9,13 +9,21 @@ services:
     restart: unless-stopped
     environment:
       MMKG_DATA_DIR: /data
+      MMKG_REPO_ROOT: /app
+      MMKG_TEACHKG_DATA: /app/data
+      PYTHONPATH: /app
       MMKG_JWT_SECRET: ${MMKG_JWT_SECRET:?set MMKG_JWT_SECRET}
       JXB_PUBLIC_KEY_PATH: /tmp/key/public.pem
       KG_TOKEN_AUDIENCE: knowledge-graph
       VIDEO_SEARCH_INGEST_TOKEN: ${VIDEO_SEARCH_INGEST_TOKEN:?set VIDEO_SEARCH_INGEST_TOKEN}
+      # TeachKG Stage1+ defaults to SJTU OpenAI-compatible endpoint.
       LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
-      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://api.xi-ai.cn/v1}
-      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-v4-flash-0731}
+      SJTU_LLM_API_KEY: ${SJTU_LLM_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://models.sjtu.edu.cn/api}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-chat}
+      TEACHKG_CUE_WORKERS: ${TEACHKG_CUE_WORKERS:-4}
+      LLM_API_KEYS: ${MMKG_LLM_API_KEYS:-}
+      MMKG_AUTO_LECTURE_PIPELINE: ${MMKG_AUTO_LECTURE_PIPELINE:-1}
       MMKG_VIDEO_EXTRACT_MOCK: ${MMKG_VIDEO_EXTRACT_MOCK:-0}
       MMKG_CORS_ORIGINS: ${MMKG_CORS_ORIGINS:-}
       JACCOUNT_CLIENT_ID: ${JACCOUNT_CLIENT_ID:-}

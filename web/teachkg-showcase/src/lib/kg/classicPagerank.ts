@@ -2,7 +2,7 @@
  * 经典加权 PageRank（在后处理图上计算）。
  * 应在 processLectureKg（含多关系合并为单条）之后调用，与展示拓扑一致。
  */
-import type { PipelineEdge, PipelineNode } from "@/lib/pipeline/types";
+import type { PipelineEdge, PipelineNode } from "@/lib/graph/types";
 
 const RELATION_WEIGHTS: Record<string, number> = {
   part_of: 3,

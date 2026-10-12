@@ -62,10 +62,24 @@ function parseQuery(rawUrl) {
   };
 }
 
+const COURSE_SKELETON_KEY = "__course_skeleton__";
+
+function isCourseSkeletonKey(chapter) {
+  const s = String(chapter || "").trim();
+  return s === COURSE_SKELETON_KEY || s === "course:skeleton";
+}
+
 function summaryPaths(courseId, chapter) {
   const course = safeSegment(courseId);
+  if (!course) return [];
+  if (isCourseSkeletonKey(chapter)) {
+    return [
+      path.join(repoRoot, "data/viz", courseId, "summaries", "course_skeleton.json"),
+      path.join(showcasePublic, courseId, "summaries", "course_skeleton.json"),
+    ];
+  }
   const slug = chapterFileSlug(chapter);
-  if (!course || !slug) return [];
+  if (!slug) return [];
   const name = `chapter_${slug}.json`;
   return [
     path.join(repoRoot, "data/viz", courseId, "summaries", name),
@@ -75,8 +89,15 @@ function summaryPaths(courseId, chapter) {
 
 function mindmapPaths(courseId, chapter) {
   const course = safeSegment(courseId);
+  if (!course) return [];
+  if (isCourseSkeletonKey(chapter)) {
+    return [
+      path.join(repoRoot, "data/viz", courseId, "mindmaps", "course_skeleton.json"),
+      path.join(showcasePublic, courseId, "mindmaps", "course_skeleton.json"),
+    ];
+  }
   const slug = chapterFileSlug(chapter);
-  if (!course || !slug) return [];
+  if (!slug) return [];
   const name = `chapter_${slug}.json`;
   return [
     path.join(repoRoot, "data/viz", courseId, "mindmaps", name),
@@ -196,6 +217,63 @@ function parseModelJson(content) {
   }
 }
 
+const COURSE_SKELETON_SYSTEM = `你是课程助教，只整理「整课大纲层级」：章 → 节/一级主题。
+
+任务：从用户草稿中抽出课程结构骨架，用于「骨架展示」思维导图。最外层必须是章。
+
+严格规则：
+1. 只保留章名与其下节/一级主题名；不要输出细概念、实体术语列表、例题、公式、证明步骤。
+2. 章标题尽量规范为「第N章 …」；若草稿已有章号则保留顺序。
+3. 每章下挂 0–12 个节/主题；节标题短（≤16 字），不要再嵌套第三层细节。
+4. 不要发明草稿里没有的大块新章；可轻微规范化用词与合并同义节名。
+5. 必须输出 JSON（不要 Markdown 围栏）：
+{
+  "chapters": [
+    { "title": "第N章 xxx", "sections": ["主题A", "主题B"] }
+  ],
+  "notes": "一句说明归纳了哪些层级"
+}`;
+
+const COURSE_SKELETON_INCREMENTAL_SYSTEM = `你是课程助教，把「已有整课大纲骨架」与「本次新增/修改」做增量合并。
+
+任务：输出合并后的完整 章→节 骨架（覆盖已有 + 新增）。不要输出实体细节。
+
+合并原则：
+1. 以已有章节结构为骨架，无故不删已有章/节。
+2. 新内容并入最合适的章；必要时新增少量章或节。
+3. 同义去重；标题短；不要细概念叶。
+4. 必须输出 JSON：
+{
+  "chapters": [
+    { "title": "第N章 xxx", "sections": ["主题A", "主题B"] }
+  ],
+  "notes": "一句说明合并了什么"
+}`;
+
+function courseSkeletonOutlineTextFromJson(parsed) {
+  const chapters = Array.isArray(parsed?.chapters) ? parsed.chapters : [];
+  const lines = [];
+  for (const ch of chapters) {
+    const title = String(ch?.title || "").trim();
+    if (!title) continue;
+    lines.push(title);
+    const secs = Array.isArray(ch?.sections) ? ch.sections : [];
+    for (const s of secs) {
+      const name =
+        typeof s === "string"
+          ? String(s).trim()
+          : String(s?.title || "").trim();
+      if (name) lines.push(`  ${name}`);
+    }
+    lines.push("");
+  }
+  if (lines.length) return lines.join("\n").trim();
+  if (typeof parsed?.outline_text === "string" && parsed.outline_text.trim()) {
+    return parsed.outline_text.trim();
+  }
+  return "";
+}
+
 const NORMALIZE_SYSTEM = `你是课程助教，负责把老师随手写的不规则笔记整理成「章导图骨架」。
 
 任务：从用户草稿中抽取 2–3 级主题大纲，用于思维导图骨架（不是写讲义、不扩写教材）。
@@ -250,6 +328,7 @@ async function normalizeOutlineWithLlm(
   const draft = String(rawText || "").trim();
   const existing = String(opts.existingOutline || "").trim();
   const incremental = Boolean(opts.incremental) && Boolean(existing);
+  const courseSkeleton = Boolean(opts.courseSkeleton) || isCourseSkeletonKey(chapter);
 
   if (!draft) {
     const err = new Error("empty outline");
@@ -257,9 +336,29 @@ async function normalizeOutlineWithLlm(
     throw err;
   }
 
-  let system = NORMALIZE_SYSTEM;
+  let system = courseSkeleton ? COURSE_SKELETON_SYSTEM : NORMALIZE_SYSTEM;
   let user;
-  if (incremental) {
+  if (courseSkeleton) {
+    if (incremental) {
+      system = COURSE_SKELETON_INCREMENTAL_SYSTEM;
+      user = [
+        "【已有整课大纲骨架】（章→节）",
+        existing.slice(0, 8000),
+        "",
+        "【本次新增或修改】",
+        draft.slice(0, 8000),
+        "",
+        "请输出合并后的完整 章→节 JSON。不要输出细概念。",
+      ].join("\n");
+    } else {
+      user = [
+        "【老师草稿 / 课程大纲素材】",
+        draft.slice(0, 8000),
+        "",
+        "请整理成整课 章→节 骨架 JSON。最外层是章；不要细概念。",
+      ].join("\n");
+    }
+  } else if (incremental) {
     system = INCREMENTAL_SYSTEM;
     user = [
       `课程章名：${chapter}`,
@@ -293,7 +392,9 @@ async function normalizeOutlineWithLlm(
     { temperature: 0.2, timeoutMs: 90000 }
   );
   const parsed = parseModelJson(content);
-  const outline_text = outlineTextFromLlmJson(parsed || {});
+  const outline_text = courseSkeleton
+    ? courseSkeletonOutlineTextFromJson(parsed || {})
+    : outlineTextFromLlmJson(parsed || {});
   if (!outline_text.trim()) {
     const err = new Error("LLM 未返回可用大纲");
     err.code = "BAD_LLM";
@@ -307,6 +408,8 @@ async function normalizeOutlineWithLlm(
     raw_draft: draft,
     incremental,
     existing_outline: incremental ? existing : undefined,
+    chapters: courseSkeleton ? parsed?.chapters : undefined,
+    course_skeleton: courseSkeleton,
   };
 }
 
@@ -336,6 +439,27 @@ function writeSummary(courseId, chapter, doc) {
 }
 
 function writeMindmapDoc(courseId, chapter, mindmap) {
+  if (isCourseSkeletonKey(chapter)) {
+    const relPath = "mindmaps/course_skeleton.json";
+    const doc = {
+      ...mindmap,
+      lecture_id: "course:skeleton",
+      meta: {
+        ...(mindmap?.meta || {}),
+        scope: "course",
+        skeleton_view: true,
+        virtual_root: true,
+      },
+    };
+    const written = [];
+    for (const p of mindmapPaths(courseId, chapter)) {
+      fs.mkdirSync(path.dirname(p), { recursive: true });
+      fs.writeFileSync(p, JSON.stringify(doc, null, 2) + "\n", "utf8");
+      written.push(path.relative(repoRoot, p).replace(/\\/g, "/"));
+    }
+    return { written, path: relPath, doc };
+  }
+
   const slug = chapterFileSlug(chapter);
   const relPath = `mindmaps/chapter_${slug}.json`;
   const doc = {
@@ -503,6 +627,7 @@ export function mindmapOutlineMiddleware(env = process.env) {
             llmMeta = await normalizeOutlineWithLlm(env, chapter, outline_text, {
               incremental: wantIncremental,
               existingOutline,
+              courseSkeleton: isCourseSkeletonKey(chapter) || Boolean(body.course_skeleton),
             });
             outline_text = llmMeta.outline_text;
             source = "manual_llm";
@@ -520,13 +645,26 @@ export function mindmapOutlineMiddleware(env = process.env) {
           }
         }
 
-        const doc = {
-          ...parseOutlineText(chapter, outline_text, source),
-          raw_draft: llmMeta?.raw_draft || undefined,
-          llm_notes: llmMeta?.notes || undefined,
-          llm_model: llmMeta?.model || undefined,
-          incremental: llmMeta?.incremental || false,
-        };
+        const doc = isCourseSkeletonKey(chapter)
+          ? {
+              courseId,
+              chapter: COURSE_SKELETON_KEY,
+              source,
+              outline_text,
+              chapters: llmMeta?.chapters || undefined,
+              raw_draft: llmMeta?.raw_draft || undefined,
+              llm_notes: llmMeta?.notes || undefined,
+              llm_model: llmMeta?.model || undefined,
+              incremental: llmMeta?.incremental || false,
+              course_skeleton: true,
+            }
+          : {
+              ...parseOutlineText(chapter, outline_text, source),
+              raw_draft: llmMeta?.raw_draft || undefined,
+              llm_notes: llmMeta?.notes || undefined,
+              llm_model: llmMeta?.model || undefined,
+              incremental: llmMeta?.incremental || false,
+            };
         const written = writeSummary(courseId, chapter, doc);
         let written_mindmap = null;
         let mindmap_path = null;

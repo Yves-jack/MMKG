@@ -6,3 +6,6 @@ httpx==0.28.1
 pypdf==6.0.0
 python-multipart==0.0.20
 openai>=1.0.0,<3
+# teachkg orchestration (see also requirements.teachkg.txt)
+pyyaml>=6.0
+python-dotenv>=1.0.0

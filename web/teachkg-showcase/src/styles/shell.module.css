@@ -7,9 +7,26 @@
   height: 100dvh;
   overflow: hidden;
   background:
-    radial-gradient(900px 480px at 0% 0%, rgba(62, 207, 142, 0.07), transparent 55%),
-    radial-gradient(700px 420px at 100% 10%, rgba(91, 141, 239, 0.05), transparent 50%),
+    radial-gradient(900px 480px at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 55%),
+    radial-gradient(700px 420px at 100% 10%, color-mix(in srgb, var(--delta) 6%, transparent), transparent 50%),
     var(--bg);
+}
+
+:global(html[data-embed="ai-teaching"]) .shell {
+  height: 100%;
+  width: 100%;
+}
+
+/* 无侧栏/详情时主区铺满（动态图谱 embed） */
+.shellSolo {
+  flex-direction: column;
+}
+
+.shellSolo > * {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 .shellWide {
@@ -258,7 +275,7 @@
 
 .navItemActive {
   background: var(--accent-dim);
-  border-color: rgba(62, 207, 142, 0.28);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
   color: var(--accent);
   font-weight: 600;
 }

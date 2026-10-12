@@ -57,7 +57,45 @@ select {
 
 button:hover,
 select:hover {
-  border-color: #3d4a60;
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+html[data-embed="ai-teaching"] {
+  --bg: #f7f4ef;
+  --bg-elev: #ffffff;
+  --bg-soft: #faf6f0;
+  --line: #e4ddd4;
+  --text: #111111;
+  --muted: #3d3a36;
+  --accent: #97242d;
+  --accent-dim: #fbeae7;
+  --warn: #8a6a20;
+  --delta: #97242d;
+  --new: #97242d;
+  --shared: #8a6a20;
+  --radius: 14px;
+  --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --display: "Songti SC", "STSong", "Noto Serif SC", "SimSun", Georgia, serif;
+}
+
+html[data-embed="ai-teaching"],
+html[data-embed="ai-teaching"] body,
+html[data-embed="ai-teaching"] #root {
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+}
+
+html[data-embed="ai-teaching"] body {
+  color: var(--text);
+  background:
+    radial-gradient(900px 420px at 100% -10%, #fdf1ee 0%, transparent 60%),
+    var(--bg);
+}
+
+html[data-embed="ai-teaching"] button.primary {
+  color: #fff;
 }
 
 button.primary {

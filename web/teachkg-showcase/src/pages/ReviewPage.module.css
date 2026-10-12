@@ -14,9 +14,9 @@
 /* —— 中右顶部：标题 + 跳转 —— */
 .workspaceTop {
   flex-shrink: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
   padding: 0 18px;
   min-height: 48px;
@@ -76,7 +76,12 @@
 }
 
 .workspaceTitle p {
-  display: none;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .jumpRow {
@@ -172,6 +177,41 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+}
+
+.clearFilter {
+  margin: 8px 10px 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(22, 27, 34, 0.55);
+  color: inherit;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.clearFilter:hover {
+  border-color: rgba(62, 207, 142, 0.4);
+  color: #9decc4;
+}
+
+.listHint {
+  padding: 12px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.videoSnippet {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 .videoMeta strong {
@@ -315,7 +355,17 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* 允许重要性滑条悬浮百分数冒出，画布区自行裁剪 */
+  overflow: visible;
+}
+
+.mapToolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line, #e8e1d7);
 }
 
 .graphHost > div {
@@ -616,17 +666,290 @@
 
 @media (max-width: 900px) {
   .workspaceTop {
-    grid-template-columns: 1fr;
-    justify-items: stretch;
-  }
-
-  .workspaceLeft,
-  .workspaceCenter,
-  .workspaceRight {
-    justify-self: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .workspaceRight {
-    justify-content: flex-start;
+    justify-content: flex-end;
+    width: 100%;
   }
+}
+
+.navSide {
+  position: relative;
+  overflow: visible;
+}
+
+.navCollapseBtn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 3;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line, #e8e1d7);
+  border-radius: 999px;
+  background: var(--bg-elev, #fff);
+  color: var(--muted, #6b645c);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.navCollapseBtn:hover {
+  color: var(--text, #2b2724);
+  border-color: var(--accent, #97242d);
+}
+
+.notesSide {
+  position: relative;
+  overflow: visible;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.notesCollapseBtn {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line, #e8e1d7);
+  border-radius: 999px;
+  background: var(--bg-elev, #fff);
+  color: var(--muted, #6b645c);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.notesCollapseBtn:hover {
+  color: var(--text, #2b2724);
+  border-color: var(--accent, #97242d);
+}
+
+.navSearchRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 12px 10px 10px;
+  flex-shrink: 0;
+}
+
+.entitySearchWrap {
+  position: relative;
+  min-width: 0;
+  z-index: 5;
+}
+
+.entitySearchMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 240px;
+  overflow: auto;
+  padding: 4px;
+  background: var(--bg-elev, #fff);
+  border: 1px solid var(--line, #e8e1d7);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(43, 39, 36, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.entitySearchItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text, #111);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.entitySearchItem:hover {
+  background: var(--accent-dim, rgba(151, 36, 45, 0.08));
+  color: var(--accent, #97242d);
+}
+
+.entitySearchEmpty {
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--muted, #3d3a36);
+}
+
+.mapViewChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.entitySearchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.entitySearchInput {
+  min-width: 0;
+  flex: 1;
+  max-width: none;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line, #e8e1d7);
+  background: var(--bg-elev, #fff);
+  color: var(--text, #2b2724);
+  font: inherit;
+  font-size: 12px;
+}
+
+.workspaceHint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted, #6b645c);
+}
+
+.practiceGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.practiceSelect {
+  height: 32px;
+  min-width: 120px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line, #e8e1d7);
+  background: var(--bg-elev, #fff);
+  color: var(--text, #2b2724);
+  font: inherit;
+  font-size: 12px;
+}
+
+/* 交学伴纸面：覆盖 Review 深色硬编码，与浅色整体一致（含其他讲次空态） */
+:global(html[data-embed="ai-teaching"]) .workspaceTop,
+:global(html[data-embed="ai-teaching"]) .navSearchRow,
+:global(html[data-embed="ai-teaching"]) .mapViewChips,
+:global(html[data-embed="ai-teaching"]) .entitySearchMenu,
+:global(html[data-embed="ai-teaching"]) .entitySearchInput,
+:global(html[data-embed="ai-teaching"]) .practiceSelect,
+:global(html[data-embed="ai-teaching"]) .navCollapseBtn,
+:global(html[data-embed="ai-teaching"]) .notesCollapseBtn,
+:global(html[data-embed="ai-teaching"]) .backLink,
+:global(html[data-embed="ai-teaching"]) .jump,
+:global(html[data-embed="ai-teaching"]) .clearFilter,
+:global(html[data-embed="ai-teaching"]) .videoItem,
+:global(html[data-embed="ai-teaching"]) .videoActive,
+:global(html[data-embed="ai-teaching"]) .videoPartBtn,
+:global(html[data-embed="ai-teaching"]) .videoPartActive,
+:global(html[data-embed="ai-teaching"]) .mapTab,
+:global(html[data-embed="ai-teaching"]) .mapTabActive,
+:global(html[data-embed="ai-teaching"]) .mapToolbar,
+:global(html[data-embed="ai-teaching"]) .playerEmpty,
+:global(html[data-embed="ai-teaching"]) .listHint,
+:global(html[data-embed="ai-teaching"]) .playerBlock,
+:global(html[data-embed="ai-teaching"]) .pointsBlock,
+:global(html[data-embed="ai-teaching"]) .mapHead,
+:global(html[data-embed="ai-teaching"]) .mapStack,
+:global(html[data-embed="ai-teaching"]) .mapPane,
+:global(html[data-embed="ai-teaching"]) .graphHost,
+:global(html[data-embed="ai-teaching"]) .mindmapHost,
+:global(html[data-embed="ai-teaching"]) .detailPane,
+:global(html[data-embed="ai-teaching"]) .notesSide,
+:global(html[data-embed="ai-teaching"]) .navSide,
+:global(html[data-embed="ai-teaching"]) .seekBtn,
+:global(html[data-embed="ai-teaching"]) .statChips,
+:global(html[data-embed="ai-teaching"]) .emptyPage {
+  background: var(--bg-elev, #fff);
+  border-color: var(--line, #e8e1d7);
+  color: var(--text, #111);
+}
+
+:global(html[data-embed="ai-teaching"]) .mainCol,
+:global(html[data-embed="ai-teaching"]) .centerPane,
+:global(html[data-embed="ai-teaching"]) .edgeList li,
+:global(html[data-embed="ai-teaching"]) .evList li {
+  background: var(--bg, #f7f4ef);
+  border-color: var(--line, #e8e1d7);
+  color: var(--text, #111);
+}
+
+:global(html[data-embed="ai-teaching"]) .workspaceTop,
+:global(html[data-embed="ai-teaching"]) .mapToolbar,
+:global(html[data-embed="ai-teaching"]) .mapHead {
+  background: var(--bg-soft, #faf6f0);
+}
+
+:global(html[data-embed="ai-teaching"]) .backLink:hover,
+:global(html[data-embed="ai-teaching"]) .jump:hover,
+:global(html[data-embed="ai-teaching"]) .clearFilter:hover {
+  border-color: var(--accent, #97242d);
+  color: var(--accent, #97242d);
+}
+
+:global(html[data-embed="ai-teaching"]) .videoItem:hover,
+:global(html[data-embed="ai-teaching"]) .videoPartBtn:hover,
+:global(html[data-embed="ai-teaching"]) .mapTab:hover {
+  border-color: color-mix(in srgb, var(--accent, #97242d) 45%, transparent);
+}
+
+:global(html[data-embed="ai-teaching"]) .videoActive,
+:global(html[data-embed="ai-teaching"]) .videoPartActive,
+:global(html[data-embed="ai-teaching"]) .mapTabActive {
+  border-color: var(--accent, #97242d);
+  background: var(--accent-dim, rgba(151, 36, 45, 0.08));
+}
+
+:global(html[data-embed="ai-teaching"]) .videoBadge {
+  background: var(--accent-dim, rgba(151, 36, 45, 0.1));
+  color: var(--accent, #97242d);
+}
+
+:global(html[data-embed="ai-teaching"]) .videoMeta,
+:global(html[data-embed="ai-teaching"]) .videoMeta strong,
+:global(html[data-embed="ai-teaching"]) .videoSnippet,
+:global(html[data-embed="ai-teaching"]) .workspaceHint,
+:global(html[data-embed="ai-teaching"]) .playerEmpty,
+:global(html[data-embed="ai-teaching"]) .empty,
+:global(html[data-embed="ai-teaching"]) .listHint,
+:global(html[data-embed="ai-teaching"]) .emptyPage {
+  color: var(--text, #111);
+}
+
+:global(html[data-embed="ai-teaching"]) .videoSnippet,
+:global(html[data-embed="ai-teaching"]) .workspaceHint,
+:global(html[data-embed="ai-teaching"]) .listHint {
+  color: var(--muted, #3d3a36);
 }

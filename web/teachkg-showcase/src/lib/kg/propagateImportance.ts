@@ -1,11 +1,11 @@
 /**
- * 课堂重要性向上传递：以课堂分为初值，按拓扑层从子节点向父节点贡献重要性。
+ * 课堂重要性沿图谱层次向上传递：以课堂分为初值，按箭头方向贡献。
  *
- * 规则（v3，与后端 propagate_importance.py 同源）：
- * - 父边：belong_to / part_of / depend_on（from=子 → to=父）
+ * 规则（v5）：
+ * - 层次边：belong_to / part_of / depend_on；箭头 from=子 → to=父
  * - 自底向上；每个子向各父贡献 child×RATE/√父数（RATE=0.22）
- * - 用渐近饱和合并：parent = own + (1-own)·(1-e^(-boost/τ))
- *   避免线性累加把大量枢纽直接顶到 1.0
+ * - 线性累加：parent = own + boost（不软加）
+ * - 传递结束后按最大值归一：I' = I / max(I)，最大为 1
  * - 子节点自身不扣减
  */
 import type { PipelineEdge, PipelineNode } from "@/lib/pipeline/types";
@@ -14,7 +14,7 @@ const PARENT_RELS = new Set(["belong_to", "part_of", "depend_on"]);
 
 /** 与后端 PROPAGATE_RATE 对齐 */
 export const PROPAGATE_RATE = 0.22;
-/** 渐近饱和尺度：boost 约等于 τ 时吃掉约 63% 剩余空间 */
+/** @deprecated 不再软加；保留常量以免旧调用报错 */
 export const PROPAGATE_TAU = 0.45;
 
 function relOf(e: PipelineEdge): string {
@@ -33,16 +33,14 @@ function isProcessSource(src?: string | null) {
 }
 
 function sizeFromImportance(score: number) {
+  // 归一后 I∈[0,1]，直接映射点大小
   const s = Math.max(0, Math.min(1, score));
   return 10 + (36 - 10) * s;
 }
 
-function mergeBoost(own: number, boost: number, tau = PROPAGATE_TAU): number {
-  const o = Math.max(0, Math.min(1, own));
-  const b = Math.max(0, boost);
-  if (b <= 1e-12) return o;
-  const t = Math.max(1e-6, tau);
-  return o + (1 - o) * (1 - Math.exp(-b / t));
+/** 线性累加：own + boost */
+function mergeBoost(own: number, boost: number): number {
+  return Math.max(0, own) + Math.max(0, boost);
 }
 
 function buildParentAdj(
@@ -108,11 +106,24 @@ function pickLayerSeeds(
   return seeds;
 }
 
+/** 有分值的节点除以最大值；全 0 则不变 */
+function maxNormalize(scores: Map<string, number>): void {
+  let hi = 0;
+  for (const v of scores.values()) {
+    if (v > hi) hi = v;
+  }
+  if (hi <= 1e-12) return;
+  for (const [id, v] of scores) {
+    scores.set(id, v / hi);
+  }
+}
+
 export type PropagateImportanceStats = {
   layers: number;
   edges_used: number;
   boosted_nodes: number;
   started_from_min_outdiff: boolean;
+  max_before_norm: number;
 };
 
 export function propagateImportanceToParents(
@@ -121,7 +132,6 @@ export function propagateImportanceToParents(
   opts: { rate?: number; tau?: number } = {}
 ): { nodes: PipelineNode[]; stats: PropagateImportanceStats } {
   const rate = opts.rate ?? PROPAGATE_RATE;
-  const tau = opts.tau ?? PROPAGATE_TAU;
   const nodeIds = new Set(nodes.map((n) => n.id).filter(Boolean));
   const adj = buildParentAdj(nodeIds, edges);
   let edgeCount = 0;
@@ -142,80 +152,76 @@ export function propagateImportanceToParents(
     hadInitial.set(n.id, has);
   }
 
-  if (!edgeCount) {
-    return {
-      nodes,
-      stats: {
-        layers: 0,
-        edges_used: 0,
-        boosted_nodes: 0,
-        started_from_min_outdiff: false,
-      },
-    };
-  }
-
-  const { indeg: baseIndeg, outdeg } = degrees(adj);
-  const indeg = new Map(baseIndeg);
-  const remaining = new Set(nodeIds);
   let layer = 0;
   let startedFromMinOutdiff = false;
-  let firstPick = true;
 
-  while (remaining.size) {
-    const seeds = pickLayerSeeds(remaining, indeg, outdeg);
-    if (!seeds.length) break;
+  if (edgeCount) {
+    const { indeg: baseIndeg, outdeg } = degrees(adj);
+    const indeg = new Map(baseIndeg);
+    const remaining = new Set(nodeIds);
+    let firstPick = true;
 
-    if (firstPick) {
-      const anyZero = seeds.some((id) => (baseIndeg.get(id) || 0) === 0);
-      startedFromMinOutdiff = !anyZero;
-      firstPick = false;
-    }
+    while (remaining.size) {
+      const seeds = pickLayerSeeds(remaining, indeg, outdeg);
+      if (!seeds.length) break;
 
-    // 本层先结算渐近合并，再向父累计 boost（用合并后的分）
-    for (const id of seeds) {
-      const own = initial.get(id) || 0;
-      const boost = boostAcc.get(id) || 0;
-      scores.set(id, mergeBoost(own, boost, tau));
-    }
+      if (firstPick) {
+        const anyZero = seeds.some((id) => (baseIndeg.get(id) || 0) === 0);
+        startedFromMinOutdiff = !anyZero;
+        firstPick = false;
+      }
 
-    const layerSnap = new Map<string, number>();
-    for (const id of seeds) layerSnap.set(id, scores.get(id) || 0);
+      // 本层先线性合并，再向父累计 boost（用合并后的分）
+      for (const id of seeds) {
+        const own = initial.get(id) || 0;
+        const boost = boostAcc.get(id) || 0;
+        scores.set(id, mergeBoost(own, boost));
+      }
 
-    for (const id of seeds) {
-      const imp = layerSnap.get(id) || 0;
-      const parents = adj.get(id) || [];
-      if (imp > 0 && rate > 0 && parents.length) {
-        const share = (imp * rate) / Math.sqrt(parents.length);
-        for (const parent of parents) {
-          if (!nodeIds.has(parent)) continue;
-          boostAcc.set(parent, (boostAcc.get(parent) || 0) + share);
+      const layerSnap = new Map<string, number>();
+      for (const id of seeds) layerSnap.set(id, scores.get(id) || 0);
+
+      for (const id of seeds) {
+        const imp = layerSnap.get(id) || 0;
+        const parents = adj.get(id) || [];
+        if (imp > 0 && rate > 0 && parents.length) {
+          const share = (imp * rate) / Math.sqrt(parents.length);
+          for (const parent of parents) {
+            if (!nodeIds.has(parent)) continue;
+            boostAcc.set(parent, (boostAcc.get(parent) || 0) + share);
+          }
+        }
+        remaining.delete(id);
+      }
+
+      for (const id of seeds) {
+        for (const parent of adj.get(id) || []) {
+          if (!remaining.has(parent)) continue;
+          indeg.set(parent, Math.max(0, (indeg.get(parent) || 0) - 1));
         }
       }
-      remaining.delete(id);
+
+      layer += 1;
+      if (layer > nodeIds.size + 2) break;
     }
 
-    for (const id of seeds) {
-      for (const parent of adj.get(id) || []) {
-        if (!remaining.has(parent)) continue;
-        indeg.set(parent, Math.max(0, (indeg.get(parent) || 0) - 1));
-      }
+    for (const id of nodeIds) {
+      const own = initial.get(id) || 0;
+      const boost = boostAcc.get(id) || 0;
+      scores.set(id, mergeBoost(own, boost));
     }
-
-    layer += 1;
-    if (layer > nodeIds.size + 2) break;
   }
 
-  // 剩余未出队的节点也做一次合并
-  for (const id of nodeIds) {
-    const own = initial.get(id) || 0;
-    const boost = boostAcc.get(id) || 0;
-    scores.set(id, mergeBoost(own, boost, tau));
+  let maxBeforeNorm = 0;
+  for (const v of scores.values()) {
+    if (v > maxBeforeNorm) maxBeforeNorm = v;
   }
+  maxNormalize(scores);
 
   let boosted = 0;
   const out = nodes.map((n) => {
     const before = initial.get(n.id) || 0;
-    const after = Math.min(1, Math.max(0, scores.get(n.id) || 0));
+    const after = Math.max(0, scores.get(n.id) || 0);
     const had = hadInitial.get(n.id) === true;
     // 无课堂初值且传递后仍≈0：保持缺失，供「去掉零分」保留未标注实体
     if (!had && after <= 1e-12) {
@@ -226,7 +232,9 @@ export function propagateImportanceToParents(
         importance_delta: null,
       };
     }
-    if (after > before + 1e-12) boosted += 1;
+    const rawAfter =
+      maxBeforeNorm > 1e-12 ? after * maxBeforeNorm : after;
+    if (rawAfter > before + 1e-12) boosted += 1;
     return {
       ...n,
       importance: after,
@@ -243,6 +251,7 @@ export function propagateImportanceToParents(
       edges_used: edgeCount,
       boosted_nodes: boosted,
       started_from_min_outdiff: startedFromMinOutdiff,
+      max_before_norm: maxBeforeNorm,
     },
   };
 }

@@ -9,21 +9,23 @@ services:
     mem_limit: 160m
     cpus: 0.75
     volumes:
-      - ./service:/app
-      - ./teachkg:/app/teachkg:ro
-      - ./prompts:/app/prompts:ro
+      - ./service:/app/service
+      - ./teachkg:/app/teachkg
+      - ./scripts:/app/scripts
+      - ./configs:/app/configs
+      - ./prompts:/app/prompts
+      - ./data:/app/data
       - debug-mmkg-data:/data
-      - /home/canvas/deploy/key:/tmp/key:ro
+      - ../AI-Teaching/deploy/key:/tmp/key:ro
     environment:
       MMKG_DATA_DIR: /data
+      MMKG_REPO_ROOT: /app
+      MMKG_TEACHKG_DATA: /app/data
+      PYTHONPATH: /app
       MMKG_JWT_SECRET: debug-only-mmkg-secret
       JXB_PUBLIC_KEY_PATH: /tmp/key/public.pem
       KG_TOKEN_AUDIENCE: knowledge-graph
       VIDEO_SEARCH_INGEST_TOKEN: ${VIDEO_SEARCH_INGEST_TOKEN:-debug-only-video-token}
-      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
-      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://api.xi-ai.cn/v1}
-      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-v4-flash-0731}
-      MMKG_VIDEO_EXTRACT_MOCK: ${MMKG_VIDEO_EXTRACT_MOCK:-0}
       MMKG_CORS_ORIGINS: http://127.0.0.1:${MMKG_DEBUG_PORT:-5174}
     expose:
       - "8000"
@@ -37,21 +39,36 @@ services:
       context: .
       dockerfile: deploy/Dockerfile.frontend
       args:
-        VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
-        VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
+        # Local debug is opened at http://127.0.0.1:5174 (AI-Teaching ENDPOINT_KG),
+        # so serve at root and proxy browser API via Vite's /mmkg-api rule.
+        VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/}
+        VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/mmkg-api}
     image: mmkg-showcase-debug:latest
     container_name: debug-mmkg-showcase
-    mem_limit: 192m
-    cpus: 0.75
+    mem_limit: 384m
+    cpus: 1.0
     ports:
       - "127.0.0.1:${MMKG_DEBUG_PORT:-5174}:5173"
+    volumes:
+      # preview 的 /repo-data 读这里；课堂视频在 ./data/raw/<course>/video/class
+      - ./data:/workspace/data
+      - ./web/teachkg-showcase/public/data:/workspace/web/teachkg-showcase/public/data
+      - ./web/teachkg-showcase/dist/data:/workspace/web/teachkg-showcase/dist/data
+      - ./web/teachkg-showcase/src:/workspace/web/teachkg-showcase/src
     environment:
       NODE_OPTIONS: --max-old-space-size=128
       AI_TEACHING_API_URL: http://debug-ai-teaching-backend-main:5001
       MMKG_API_URL: http://mmkg-backend:8000/api
-      VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
-      VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/staging/kg-api}
-      VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/staging/kg/}
+      # Prefer public staging VideoSearch when local stack has no video-search container.
+      VIDEO_SEARCH_API_URL: ${VIDEO_SEARCH_API_URL:-https://dlc.sjtu.edu.cn/staging/video-search}
+      VITE_MMKG_API_BASE: ${MMKG_DEBUG_BROWSER_API_BASE:-/mmkg-api}
+      VITE_BASE_PATH: ${MMKG_DEBUG_BASE_PATH:-/}
+      # 课堂笔记 / 问答：与 AI-Teaching debug 同源（宿主机 :18765 代理）
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-http://host.docker.internal:18765/api}
+      LLM_MODEL: ${LLM_MODEL:-deepseek-chat}
+      LLM_DEFAULT_MODEL: ${LLM_DEFAULT_MODEL:-deepseek-chat}
     networks:
       staging-runtime:
         aliases:

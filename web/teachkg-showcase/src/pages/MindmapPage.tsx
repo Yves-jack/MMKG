@@ -1,16 +1,24 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { CollapsiblePanel } from "@/components/pipeline/CollapsiblePanel";
-import { RelatedAssetsPanel } from "@/components/pipeline/SelectionPanels";
-import { ResizableShell } from "@/components/pipeline/ResizableShell";
+import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
+import { RelatedAssetsPanel, SelectionDetail, countRelatedAssets } from "@/components/graph/SelectionPanels";
+import { ResizableShell } from "@/components/graph/ResizableShell";
 import {
   MindmapTree,
   type MindmapDoc,
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
-import { firstAssetWatch, type AssetsLibrary } from "@/lib/kg/assetsLibrary";
-import { loadReviewLectureMindmap } from "@/lib/apps/loadReviewClassroomGraph";
-import { reviewWatchPath } from "@/lib/apps/reviewSeek";
+import {
+  groupChaptersByPart,
+  type AssetsChapterCatalog,
+  type AssetsLibrary,
+} from "@/lib/kg/assetsLibrary";
+import { loadReviewLectureMindmap } from "@/lib/review/loadReviewClassroomGraph";
+import {
+  pairLecturesIntoSessions,
+  parseSessionRouteId,
+  sessionIndexFromLectureIds,
+} from "@/lib/review/reviewSession";
 import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
 import { ChapterOutlinePanel } from "@/components/mindmap/ChapterOutlinePanel";
 import { MindmapHistoryPanel } from "@/components/mindmap/MindmapHistoryPanel";
@@ -18,36 +26,111 @@ import {
   buildChapterMindmapDoc,
   mergeMindmapIndexWithChapters,
 } from "@/lib/kg/mindmapChapterMerge";
-import { loadCourseMindmapStitched } from "@/lib/kg/mindmapComposeLoad";
 import {
   buildChapterMindmapFromSkeleton,
   leavesFromReviewPoints,
   parseOutlineText,
 } from "@/lib/kg/mindmapChapterSkeleton";
-import { withBase } from "@/lib/withBase";
+import {
+  loadChapterCatalog,
+  loadCourseMindmapStitched,
+  tryLoadMindmapSlicedFromChapters,
+} from "@/lib/kg/mindmapComposeLoad";
+import { pruneMindmapRedundancy } from "@/lib/kg/mindmapPruneRedundancy";
+import { loadWrappedLectureMindmap } from "@/lib/kg/mindmapLectureTree";
+import {
+  readSharedEntitySelection,
+  SHARED_PANEL_KEYS,
+  writeSharedEntitySelection,
+} from "@/lib/kg/sharedEntitySelection";
+import { LinkedResourceCardList } from "@/components/graph/LinkedResourceCards";
 import {
   applyMindmapEditPatch,
+  clearMindmapEditPatch,
+  isStaleMindmapEditPatch,
   loadMindmapEditPatch,
   type MindmapHistoryItem,
-} from "@/lib/apps/mindmapEdits";
+} from "@/lib/review/mindmapEdits";
 import {
   chapterFileSlug,
   chapterNavId,
+  displayChapterName,
+  isAnyCourseNavId,
   isCourseNavId,
+  isCourseSkeletonNavId,
   parseChapterNavId,
   type MindmapIndexDoc,
   type MindmapIndexItem,
 } from "@/lib/kg/mindmapTypes";
-import pipe from "@/pages/PipelinePage.module.css";
+import type { PipelineNode, PipelineStage } from "@/lib/graph/types";
+import { canEditKnowledgeGraph } from "@/lib/integration/editPermission";
+import {
+  emitKnowledgeResourceOpen,
+  fetchLinkedKnowledgeResources,
+  mmkgCachedRole,
+  mmkgLogin,
+  type LinkedKnowledgeResource,
+} from "@/lib/integration/knowledgeResources";
+import { withBase } from "@/lib/withBase";
+import pipe from "@/styles/panels.module.css";
+import assetsNav from "@/pages/AssetsPage.module.css";
+import kg from "@/pages/KgPage.module.css";
 import shell from "@/styles/shell.module.css";
+
+async function loadStaticLectureMindmap(
+  courseId: string,
+  lectureId: string,
+  chapterHint?: string | null,
+  chapterOrder?: string[] | null,
+  variant?: string | null
+): Promise<MindmapDoc | null> {
+  const file =
+    variant === "deep"
+      ? `mindmaps/lecture_${lectureId}.deep.json`
+      : `mindmaps/lecture_${lectureId}.json`;
+  try {
+    const r = await fetch(
+      `${courseDataUrl(courseId, file)}?t=${Date.now()}`,
+      { cache: "no-store" }
+    );
+    if (!r.ok) {
+      if (variant === "deep") {
+        return loadStaticLectureMindmap(
+          courseId,
+          lectureId,
+          chapterHint,
+          chapterOrder,
+          null
+        );
+      }
+      return null;
+    }
+    const d = (await r.json()) as MindmapDoc;
+    if (!d?.root && !d?.roots?.length) return null;
+    return loadWrappedLectureMindmap(courseId, lectureId, d, {
+      chapterHint: chapterHint || d.meta?.chapter,
+      chapterOrder: chapterOrder || null,
+    });
+  } catch {
+    return null;
+  }
+}
 
 async function loadMindmapDoc(
   courseId: string,
   navId: string,
-  items: MindmapIndexItem[]
+  items: MindmapIndexItem[],
+  catalog?: AssetsChapterCatalog | null,
+  lectureVariant?: string | null
 ): Promise<MindmapDoc> {
+  if (isCourseSkeletonNavId(navId)) {
+    return loadCourseMindmapStitched(courseId, items, {
+      catalog,
+      skeletonOnly: true,
+    });
+  }
   if (isCourseNavId(navId)) {
-    return loadCourseMindmapStitched(courseId, items);
+    return loadCourseMindmapStitched(courseId, items, { catalog });
   }
 
   const chapterTitle = parseChapterNavId(navId);
@@ -67,7 +150,7 @@ async function loadMindmapDoc(
       });
       if (r.ok) {
         const d = (await r.json()) as MindmapDoc;
-        return {
+        return pruneMindmapRedundancy({
           ...d,
           meta: {
             ...d.meta,
@@ -76,7 +159,7 @@ async function loadMindmapDoc(
             lecture_ids: d.meta?.lecture_ids || item?.lecture_ids,
             source: d.meta?.source || item?.source || "kg",
           },
-        };
+        });
       }
     } catch {
       /* fall through to runtime merge */
@@ -132,48 +215,330 @@ async function loadMindmapDoc(
 
     const lectures: { lectureId: string; doc: MindmapDoc }[] = [];
     for (const lid of lids) {
+      const staticDoc = await loadStaticLectureMindmap(
+        courseId,
+        String(lid),
+        chapterTitle,
+        undefined,
+        lectureVariant
+      );
+      if (staticDoc) {
+        // 章导图合并用裸主题树：若已包成讲次→章，则只取匹配本章的子树
+        const roots = staticDoc.roots?.length
+          ? staticDoc.roots
+          : staticDoc.root
+            ? [staticDoc.root]
+            : [];
+        let body = roots;
+        if (
+          roots.length === 1 &&
+          String(roots[0].id).startsWith("__lecture__/")
+        ) {
+          const bare = chapterTitle.replace(/^第\s*\d+\s*章\s*/, "").trim();
+          const chKids = (roots[0].children || []).filter(
+            (c) =>
+              c.zh === chapterTitle ||
+              String(c.id).includes(bare) ||
+              String(c.zh || "").includes(bare)
+          );
+          body = chKids.length
+            ? chKids.flatMap((c) => c.children || [])
+            : [];
+          // 本讲包装里没有本章枝：若 index 把该讲标成此章，则用整讲主题森林兜底
+          if (!body.length) {
+            body = (roots[0].children || []).flatMap((c) => {
+              if (String(c.id || "").startsWith("__chapter__/")) {
+                return c.children || [];
+              }
+              return [c];
+            });
+          }
+        }
+        lectures.push({
+          lectureId: String(lid),
+          doc: {
+            ...staticDoc,
+            root: body[0] || {
+              id: `__tmp__/${lid}`,
+              zh: chapterTitle,
+              importance: 0.4,
+              relation: null,
+              related: [],
+              children: body,
+            },
+            roots: body.length
+              ? body
+              : [
+                  {
+                    id: `__tmp__/${lid}`,
+                    zh: chapterTitle,
+                    importance: 0.4,
+                    relation: null,
+                    related: [],
+                    children: [],
+                  },
+                ],
+          },
+        });
+        continue;
+      }
       const doc = await loadReviewLectureMindmap(courseId, lid, {
         chapter: chapterTitle,
         preferChapterSlice: false,
       });
-      lectures.push({ lectureId: lid, doc });
+      lectures.push({ lectureId: lid, doc: pruneMindmapRedundancy(doc) });
     }
     const hasReview = lectures.some((l) => l.doc.meta?.source === "review+kg");
-    return buildChapterMindmapDoc(chapterTitle, lectures, {
-      source: hasReview ? "review+kg" : "kg",
+    return pruneMindmapRedundancy(
+      buildChapterMindmapDoc(chapterTitle, lectures, {
+        source: hasReview ? "review+kg" : "kg",
+      })
+    );
+  }
+
+  // 课次（1_2）或单讲：优先从章导图裁剪，否则投影/静态
+  const sessionParsed = parseSessionRouteId(navId);
+  if (sessionParsed) {
+    const lids = sessionParsed.lectureIds;
+    const sliced = await tryLoadMindmapSlicedFromChapters(courseId, lids, {
+      items,
+      sessionId: sessionParsed.id,
+    });
+    if (sliced) return pruneMindmapRedundancy(sliced);
+
+    if (lids.length === 1) {
+      const lid = lids[0];
+      const lectureItem = items.find((i) => i.lecture_id === lid);
+      const staticLec = await loadStaticLectureMindmap(
+        courseId,
+        lid,
+        lectureItem?.chapter,
+        catalog?.chapter_order || null,
+        lectureVariant
+      );
+      if (staticLec) return staticLec;
+      const projected = await loadReviewLectureMindmap(courseId, lid, {
+        chapter: lectureItem?.chapter,
+        preferChapterSlice: false,
+      });
+      return loadWrappedLectureMindmap(
+        courseId,
+        lid,
+        pruneMindmapRedundancy(projected),
+        {
+          chapterHint: lectureItem?.chapter,
+          chapterOrder: catalog?.chapter_order || null,
+        }
+      );
+    }
+
+    // 双讲课次：合并两讲静态/投影树
+    const kids: MindmapTreeNode[] = [];
+    for (const lid of lids) {
+      const lectureItem = items.find((i) => i.lecture_id === lid);
+      const staticLec = await loadStaticLectureMindmap(
+        courseId,
+        lid,
+        lectureItem?.chapter,
+        catalog?.chapter_order || null,
+        lectureVariant
+      );
+      if (staticLec) {
+        const roots = staticLec.roots?.length
+          ? staticLec.roots
+          : staticLec.root
+            ? [staticLec.root]
+            : [];
+        kids.push(...roots);
+        continue;
+      }
+      try {
+        const projected = await loadReviewLectureMindmap(courseId, lid, {
+          chapter: lectureItem?.chapter,
+          preferChapterSlice: false,
+        });
+        const wrapped = await loadWrappedLectureMindmap(
+          courseId,
+          lid,
+          pruneMindmapRedundancy(projected),
+          {
+            chapterHint: lectureItem?.chapter,
+            chapterOrder: catalog?.chapter_order || null,
+          }
+        );
+        const roots = wrapped.roots?.length
+          ? wrapped.roots
+          : wrapped.root
+            ? [wrapped.root]
+            : [];
+        kids.push(...roots);
+      } catch {
+        /* skip */
+      }
+    }
+    const label = `第 ${sessionIndexFromLectureIds(lids)} 次课`;
+    const root: MindmapTreeNode = {
+      id: `__lecture__/${sessionParsed.id}`,
+      zh: label,
+      importance: 0.7,
+      relation: null,
+      related: [],
+      children: kids,
+    };
+    return pruneMindmapRedundancy({
+      lecture_id: sessionParsed.id,
+      root,
+      roots: [root],
+      n_nodes: 1,
+      max_depth: 1,
+      orphan_count: 0,
+      meta: {
+        root_zh: label,
+        virtual_root: true,
+        scope: "lecture",
+        lecture_ids: lids,
+        source: "kg",
+        composed_from: "chapters",
+      },
     });
   }
 
-  const lectureItem = items.find((i) => i.lecture_id === navId);
-  return loadReviewLectureMindmap(courseId, navId, {
-    chapter: lectureItem?.chapter,
-  });
+  // 兜底：未知导航键
+  throw new Error(`无法加载导图：${navId || "(空)"}`);
 }
 
-function sourceLabel(src?: string, composedFrom?: string) {
-  if (composedFrom === "chapters") return "章拼接";
-  if (composedFrom === "chapter_slice") return "章裁剪";
-  if (src === "summary+kg") return "大纲+图谱";
-  if (src === "review+kg") return "课堂复习+图谱";
-  return "图谱投影";
+function isSyntheticMindmapNode(node: MindmapTreeNode) {
+  const id = String(node.id || "");
+  return (
+    id.startsWith("__") ||
+    id.startsWith("chapter:") ||
+    id.startsWith("part:")
+  );
+}
+
+function shortEntityKey(id: string) {
+  return String(id || "").split("/")[0]?.trim() || "";
+}
+
+function matchKgEntityId(
+  node: MindmapTreeNode,
+  kgIds: Set<string>,
+  kgByShort: Map<string, string>,
+  redirects?: Record<string, string> | null
+): string | null {
+  if (isSyntheticMindmapNode(node)) return null;
+  const tryIds = [node.id, node.zh, redirects?.[node.id], redirects?.[node.zh]]
+    .map((v) => String(v || "").trim())
+    .filter(Boolean);
+  for (const raw of tryIds) {
+    if (kgIds.has(raw)) return raw;
+    const short = shortEntityKey(raw);
+    if (short && kgIds.has(short)) return short;
+    const hit = kgByShort.get(raw) || (short ? kgByShort.get(short) : undefined);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+function findMindmapNodeByFocus(
+  doc: MindmapDoc,
+  raw: string
+): MindmapTreeNode | null {
+  const decoded = (() => {
+    try {
+      return decodeURIComponent(String(raw || "").trim()).trim();
+    } catch {
+      return String(raw || "").trim();
+    }
+  })();
+  if (!decoded) return null;
+  const zh = shortEntityKey(decoded).toLowerCase();
+  const roots = doc.roots?.length ? doc.roots : doc.root ? [doc.root] : [];
+  let hit: MindmapTreeNode | null = null;
+  const walk = (n: MindmapTreeNode) => {
+    if (hit) return;
+    if (!isSyntheticMindmapNode(n)) {
+      const id = String(n.id || "");
+      const label = String(n.zh || "");
+      if (
+        id === decoded ||
+        label === decoded ||
+        shortEntityKey(id).toLowerCase() === zh ||
+        shortEntityKey(label).toLowerCase() === zh
+      ) {
+        hit = n;
+        return;
+      }
+    }
+    for (const c of n.children || []) walk(c);
+  };
+  for (const r of roots) walk(r);
+  return hit;
 }
 
 export function MindmapPage() {
   const courseId = useCourseId();
   const [sp, setSp] = useSearchParams();
   const [index, setIndex] = useState<MindmapIndexDoc | null>(null);
+  const [catalog, setCatalog] = useState<AssetsChapterCatalog | null>(null);
   const [doc, setDoc] = useState<MindmapDoc | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [expandAll, setExpandAll] = useState(false);
   const [mapKey, setMapKey] = useState(0);
   const [selected, setSelected] = useState<MindmapTreeNode | null>(null);
+  const [detailPanelOpen, setDetailPanelOpen] = useState(false);
+  const [assetsPanelOpen, setAssetsPanelOpen] = useState(false);
+  const [videoPanelOpen, setVideoPanelOpen] = useState(false);
+  const [exercisePanelOpen, setExercisePanelOpen] = useState(false);
+  const [animationPanelOpen, setAnimationPanelOpen] = useState(false);
+  const focusAppliedRef = useRef("");
   const [library, setLibrary] = useState<AssetsLibrary | null>(null);
+  const [entityDefinitions, setEntityDefinitions] = useState<Record<string, string> | null>(null);
+  const [kgIds, setKgIds] = useState<Set<string>>(() => new Set());
+  const [kgByShort, setKgByShort] = useState<Map<string, string>>(() => new Map());
+  const [kgClassroom, setKgClassroom] = useState<Record<string, number> | null>(null);
+  const [sideLinkedResources, setSideLinkedResources] = useState<{
+    nodeId: string;
+    loading: boolean;
+    resources: LinkedKnowledgeResource[];
+    error: string;
+  } | null>(null);
+  const sideResourceSeq = useRef(0);
   const [historyItems, setHistoryItems] = useState<MindmapHistoryItem[]>([]);
+  const [lectureNavOpen, setLectureNavOpen] = useState(true);
+  const [chapterNavOpen, setChapterNavOpen] = useState(true);
+  const [partOpen, setPartOpen] = useState<Record<string, boolean>>({});
+  const [detailCollapsed, setDetailCollapsed] = useState(false);
   const mindUndoRef = useRef<(() => void) | null>(null);
   /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
   const skipNextDocLoadRef = useRef(false);
 
   const navId = sp.get("lecture") || "";
+  const focusParam = String(sp.get("focus") || "").trim();
+  const lectureVariant = sp.get("deep") === "1" ? "deep" : null;
+  const lectureQuery = (lecture: string) => {
+    const next = new URLSearchParams(sp);
+    next.set("lecture", lecture);
+    if (lectureVariant === "deep") next.set("deep", "1");
+    else next.delete("deep");
+    return next;
+  };
+  const embedMode = String(sp.get("embed") || "").trim();
+  const isAiTeachingEmbed = embedMode === "ai-teaching";
+  const integrationCourseId = String(sp.get("course_id") || "").trim();
+  const resourceCourseId = String(sp.get("resource_course_id") || integrationCourseId).trim();
+  const kgLaunchToken = String(sp.get("kg_token") || "").trim();
+  const roleParam = String(sp.get("role") || "").trim();
+  const requestedParentOrigin = String(sp.get("parent_origin") || "").trim();
+  const [verifiedRole, setVerifiedRole] = useState("");
+  const canEditMindmap = useMemo(
+    () =>
+      canEditKnowledgeGraph({
+        embedMode,
+        role: roleParam || verifiedRole || mmkgCachedRole(kgLaunchToken),
+        kgToken: kgLaunchToken,
+      }),
+    [embedMode, roleParam, verifiedRole, kgLaunchToken],
+  );
   const items = index?.items || [];
 
   const courseItems = useMemo(
@@ -189,127 +554,151 @@ export function MindmapPage() {
   );
   const lectureItems = useMemo(
     () =>
-      items.filter(
-        (i) =>
-          i.lecture_id !== "course" &&
-          i.scope !== "course" &&
-          i.scope !== "chapter" &&
-          !String(i.lecture_id).startsWith("chapter:")
-      ),
+      items
+        .filter(
+          (i) =>
+            i.lecture_id !== "course" &&
+            i.scope !== "course" &&
+            i.scope !== "chapter" &&
+            !String(i.lecture_id).startsWith("chapter:")
+        )
+        .sort(
+          (a, b) =>
+            Number(a.lecture_id) - Number(b.lecture_id) ||
+            String(a.lecture_id).localeCompare(String(b.lecture_id), "zh")
+        ),
     [items]
   );
 
-  const activeChapter =
-    parseChapterNavId(navId) ||
-    items.find((i) => i.lecture_id === navId)?.chapter ||
-    "";
-
-  const lecturesForNav = useMemo(() => {
-    if (!activeChapter) return lectureItems;
-    const inChapter = lectureItems.filter((i) => i.chapter === activeChapter);
-    return inChapter.length ? inChapter : lectureItems;
-  }, [lectureItems, activeChapter]);
-
-  const lectureIdForLinks = useMemo(() => {
-    if (!navId || isCourseNavId(navId) || parseChapterNavId(navId)) {
-      const lids = doc?.meta?.lecture_ids;
-      return lids?.[0] || "";
+  const chapterGroups = useMemo(() => {
+    // 只列本学期有导图的章（有讲次内容），不把目录里未讲的空章塞进侧栏
+    const names = new Set<string>();
+    for (const it of chapterItems) {
+      const n = String(it.chapter || it.root_zh || "").trim();
+      if (!n) continue;
+      const nodes = Number(it.n_nodes) || 0;
+      const lids = it.lecture_ids?.length || 0;
+      if (nodes <= 1 && lids === 0) continue;
+      names.add(n);
     }
-    return navId;
-  }, [navId, doc]);
+    return groupChaptersByPart([...names], catalog || library?.chapter_catalog);
+  }, [chapterItems, catalog, library?.chapter_catalog]);
 
   useEffect(() => {
-    fetch(`${courseDataUrl(courseId, "assets_library.json")}?t=${Date.now()}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => setLibrary(d && Array.isArray(d.cards) ? d : null))
-      .catch(() => setLibrary(null));
-  }, [courseId]);
+    if (!chapterGroups.length) return;
+    setPartOpen((prev) => {
+      const next = { ...prev };
+      for (const p of chapterGroups) {
+        if (next[p.id] === undefined) next[p.id] = true;
+      }
+      return next;
+    });
+  }, [chapterGroups]);
 
   useEffect(() => {
-    fetch(courseDataUrl(courseId, "mindmap_showcase.json"))
-      .then((r) => {
-        if (!r.ok) throw new Error("缺少 mindmap_showcase.json，请先运行 run_mindmap_tree.py");
-        return r.json();
-      })
-      .then((d: MindmapIndexDoc) => {
-        const merged: MindmapIndexDoc = {
-          ...d,
-          items: mergeMindmapIndexWithChapters(d.items || []),
-        };
-        setIndex(merged);
-        const preferred =
-          navId ||
-          merged.items.find((i) => i.lecture_id === "course")?.lecture_id ||
-          merged.items.find((i) => i.scope === "chapter")?.lecture_id ||
-          merged.items[0]?.lecture_id;
-        if (preferred && !navId) {
-          setSp({ lecture: preferred }, { replace: true });
-        }
-      })
-      .catch((e) => setError(String(e.message || e)));
-  }, [courseId]);
-
-  useEffect(() => {
-    if (!navId || !index) return;
-    if (skipNextDocLoadRef.current) {
-      skipNextDocLoadRef.current = false;
+    if (!embedMode || !kgLaunchToken) {
+      setVerifiedRole("");
       return;
     }
-    setError(null);
-    setExpandAll(false);
-    setMapKey((k) => k + 1);
-    setSelected(null);
     let cancelled = false;
-    loadMindmapDoc(courseId, navId, index.items)
-      .then((d) => {
-        if (cancelled) return;
-        const patched = applyMindmapEditPatch(
-          d,
-          loadMindmapEditPatch(courseId, navId)
-        );
-        setDoc(patched);
+    mmkgLogin(kgLaunchToken)
+      .then((claims) => {
+        if (!cancelled) setVerifiedRole(claims.role || "");
       })
-      .catch((e) => {
-        if (cancelled) return;
-        setDoc(null);
-        setError(String(e.message || e));
+      .catch(() => {
+        if (!cancelled) setVerifiedRole("");
       });
     return () => {
       cancelled = true;
     };
-  }, [courseId, navId, index]);
+  }, [embedMode, kgLaunchToken]);
 
-  const current = items.find((i) => i.lecture_id === navId);
-  const chapterForOutline =
-    parseChapterNavId(navId) ||
-    (current?.scope === "chapter" ? current.chapter : "") ||
-    current?.chapter ||
-    "";
-  const nodeWatch = useMemo(
-    () =>
-      selected && lectureIdForLinks
-        ? firstAssetWatch(library, selected.id, {
-            lectureId: lectureIdForLinks,
-            lectureOnly: true,
-          })
-        : null,
-    [selected, library, lectureIdForLinks]
-  );
+  /** 仅在选中「章」导图时高亮对应章；选讲次不高亮章 */
+  const selectedChapterNav = parseChapterNavId(navId) || "";
 
-  const titleText = (() => {
-    if (isCourseNavId(navId)) return "整课思维导图";
-    const ch = parseChapterNavId(navId);
-    if (ch) return ch;
-    if (navId) return `第 ${navId} 讲`;
-    return "思维导图";
-  })();
+  const sessionNavItems = useMemo(() => {
+    const lids = lectureItems.map((i) => String(i.lecture_id));
+    return pairLecturesIntoSessions(lids).map((s) => {
+      const idx = sessionIndexFromLectureIds(s.lectureIds);
+      return {
+        id: s.id,
+        lectureIds: s.lectureIds,
+        index: idx,
+        label: String(idx),
+        title:
+          s.lectureIds.length === 2
+            ? `第 ${idx} 次课（第 ${s.lectureIds[0]}–${s.lectureIds[1]} 讲）`
+            : `第 ${idx} 次课（第 ${s.lectureIds[0]} 讲）`,
+      };
+    });
+  }, [lectureItems]);
+
+  const lectureIdForLinks = useMemo(() => {
+    if (!navId || isAnyCourseNavId(navId) || parseChapterNavId(navId)) {
+      const lids = doc?.meta?.lecture_ids;
+      return lids?.[0] || "";
+    }
+    const parsed = parseSessionRouteId(navId);
+    return parsed?.lectureIds[0] || navId;
+  }, [navId, doc]);
+
+  const parentOrigin = useMemo(() => {
+    if (typeof document === "undefined" || !document.referrer) return "";
+    try {
+      const referrerOrigin = new URL(document.referrer).origin;
+      if (!requestedParentOrigin) return referrerOrigin;
+      return new URL(requestedParentOrigin).origin === referrerOrigin
+        ? referrerOrigin
+        : "";
+    } catch {
+      return "";
+    }
+  }, [requestedParentOrigin]);
+
+  const kgEntityId = useMemo(() => {
+    if (!selected) return null;
+    return matchKgEntityId(selected, kgIds, kgByShort, doc?.id_redirects);
+  }, [selected, kgIds, kgByShort, doc?.id_redirects]);
+
+  const selectMindmapNode = (node: MindmapTreeNode | null) => {
+    setSelected(node);
+    if (!node) {
+      writeSharedEntitySelection(null);
+      return;
+    }
+    const eid = matchKgEntityId(node, kgIds, kgByShort, doc?.id_redirects);
+    writeSharedEntitySelection({
+      id: eid || node.id,
+      label: node.zh || shortEntityKey(eid || node.id),
+    });
+    setDetailCollapsed(false);
+    setDetailPanelOpen(true);
+  };
+
+  /** 章 / 课次：用关联章做大纲；整课与骨架不展示输入框 */
+  const chapterForOutline = useMemo(() => {
+    if (!navId || isAnyCourseNavId(navId)) return "";
+    const chNav = parseChapterNavId(navId);
+    if (chNav) return chNav;
+    const sess = parseSessionRouteId(navId);
+    const lids = sess?.lectureIds || [navId];
+    for (const lid of lids) {
+      const item = items.find((i) => String(i.lecture_id) === String(lid));
+      const ch = String(item?.chapter || "").trim();
+      if (ch) return ch;
+    }
+    return String(doc?.meta?.chapter || "").trim();
+  }, [navId, items, doc?.meta?.chapter]);
 
   const rebuildChapterFromOutline = async (
     outlineText: string,
     meta?: { source?: string | null }
   ) => {
+    if (!canEditMindmap) {
+      throw new Error("当前角色无导图编辑权限");
+    }
     if (!chapterForOutline || !index) {
-      throw new Error("请先在左侧选中具体「章」（不是整课总览）再更新大纲");
+      throw new Error("请先在左侧选中具体「章」或「课次」再更新大纲");
     }
     const item = index.items.find(
       (i) =>
@@ -332,7 +721,7 @@ export function MindmapPage() {
     const extraLeaves: MindmapTreeNode[] = [];
     for (const lid of lids) {
       try {
-        const d = await loadReviewLectureMindmap(courseId, lid, {
+        const d = await loadReviewLectureMindmap(courseId, String(lid), {
           chapter: chapterForOutline,
           preferChapterSlice: false,
         });
@@ -365,11 +754,18 @@ export function MindmapPage() {
       source: "summary+kg",
       extraLeaves,
     });
-    setDoc(next);
-    setMapKey((k) => k + 1);
-    setSelected(null);
 
-    // 落盘章导图（与 summaries 一并持久化，不依赖浏览器缓存）
+    // 若当前在课次视图，重建章后重新裁剪课次图
+    const sess = parseSessionRouteId(navId);
+    if (sess) {
+      skipNextDocLoadRef.current = true;
+      // 先落盘章导图，再按课次重载
+    } else {
+      setDoc(next);
+      setMapKey((k) => k + 1);
+      setSelected(null);
+    }
+
     try {
       const r = await fetch(withBase("/api/mindmap-outline"), {
         method: "POST",
@@ -384,11 +780,11 @@ export function MindmapPage() {
       });
       if (!r.ok) {
         const err = await r.json().catch(() => ({}));
-        console.warn("persist chapter mindmap failed", err);
         throw new Error(
           String((err as { error?: string })?.error || "章导图写入磁盘失败")
         );
-      } else if (index) {
+      }
+      if (index) {
         skipNextDocLoadRef.current = true;
         setIndex({
           ...index,
@@ -407,100 +803,478 @@ export function MindmapPage() {
           ),
         });
       }
+      if (sess) {
+        const sliced = await loadMindmapDoc(
+          courseId,
+          navId,
+          index?.items || items,
+          catalog,
+          lectureVariant
+        );
+        setDoc(sliced);
+        setMapKey((k) => k + 1);
+        setSelected(null);
+      }
     } catch (e) {
       console.warn("persist chapter mindmap failed", e);
       throw e;
     }
   };
 
-  const isLeafish =
-    selected &&
-    !selected.id.startsWith("__") &&
-    (selected.children?.length || 0) <= 2;
+  const kgDetailStage = useMemo((): PipelineStage | null => {
+    if (!selected || !kgEntityId) return null;
+    const short = shortEntityKey(kgEntityId);
+    const node: PipelineNode = {
+      id: kgEntityId,
+      label: selected.zh || short,
+      kind: "entity",
+      importance:
+        kgClassroom?.[kgEntityId] ??
+        kgClassroom?.[short] ??
+        selected.importance ??
+        null,
+    };
+    return {
+      id: "mindmap-kg-lookup",
+      title: "选中详情",
+      nodes: [node],
+      edges: [],
+    };
+  }, [selected, kgEntityId, kgClassroom]);
+
+  useEffect(() => {
+    fetch(`${courseDataUrl(courseId, "assets_library.json")}?t=${Date.now()}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setLibrary(d && Array.isArray(d.cards) ? d : null))
+      .catch(() => setLibrary(null));
+  }, [courseId]);
+
+  useEffect(() => {
+    fetch(`${courseDataUrl(courseId, "entity_definitions.json")}?t=${Date.now()}`, {
+      cache: "no-store",
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: Record<string, string> | null) => {
+        setEntityDefinitions(j && typeof j === "object" ? j : {});
+      })
+      .catch(() => setEntityDefinitions({}));
+  }, [courseId]);
+
+  useEffect(() => {
+    fetch(`${courseDataUrl(courseId, "entity_importance_lookup.json")}?t=${Date.now()}`, {
+      cache: "no-store",
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then(
+        (j: {
+          scores?: Record<string, number>;
+          classroom?: Record<string, number>;
+        } | null) => {
+          const scores = j?.scores && typeof j.scores === "object" ? j.scores : {};
+          const ids = new Set(Object.keys(scores));
+          const byShort = new Map<string, string>();
+          for (const id of ids) {
+            const short = shortEntityKey(id);
+            if (short && !byShort.has(short)) byShort.set(short, id);
+          }
+          setKgIds(ids);
+          setKgByShort(byShort);
+          setKgClassroom(
+            j?.classroom && typeof j.classroom === "object" ? j.classroom : scores
+          );
+        }
+      )
+      .catch(() => {
+        setKgIds(new Set());
+        setKgByShort(new Map());
+        setKgClassroom(null);
+      });
+  }, [courseId]);
+
+  const openLinkedResource = (resource: LinkedKnowledgeResource) => {
+    if (embedMode === "ai-teaching" && parentOrigin) {
+      emitKnowledgeResourceOpen(resource, parentOrigin);
+      return;
+    }
+    if (resource.url) {
+      window.open(resource.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    window.alert("该资源需要从交学伴嵌入页面打开");
+  };
+
+  useEffect(() => {
+    if (!kgEntityId) {
+      setSideLinkedResources(null);
+      return;
+    }
+    const nodeId = kgEntityId;
+    if (!isAiTeachingEmbed) {
+      setSideLinkedResources({
+        nodeId,
+        loading: false,
+        resources: [],
+        error: "",
+      });
+      return;
+    }
+    if (!resourceCourseId || !kgLaunchToken) {
+      setSideLinkedResources({
+        nodeId,
+        loading: false,
+        resources: [],
+        error: resourceCourseId ? "缺少知识图谱访问凭据" : "嵌入地址缺少 course_id",
+      });
+      return;
+    }
+    const seq = ++sideResourceSeq.current;
+    setSideLinkedResources({
+      nodeId,
+      loading: true,
+      resources: [],
+      error: "",
+    });
+    void fetchLinkedKnowledgeResources({
+      courseId: resourceCourseId,
+      knowledgePointId: nodeId,
+      kgToken: kgLaunchToken,
+      nodeName: selected?.zh || shortEntityKey(nodeId),
+      nodeAliases: selected?.zh ? [selected.zh] : [],
+    })
+      .then((result) => {
+        if (seq !== sideResourceSeq.current) return;
+        setSideLinkedResources({
+          nodeId,
+          loading: false,
+          resources: result.resources,
+          error: "",
+        });
+      })
+      .catch((reason) => {
+        if (seq !== sideResourceSeq.current) return;
+        setSideLinkedResources({
+          nodeId,
+          loading: false,
+          resources: [],
+          error: reason instanceof Error ? reason.message : String(reason),
+        });
+      });
+  }, [
+    kgEntityId,
+    isAiTeachingEmbed,
+    resourceCourseId,
+    kgLaunchToken,
+    selected?.zh,
+  ]);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([
+      fetch(courseDataUrl(courseId, "mindmaps/index.json")).then((r) => {
+        if (!r.ok) throw new Error("缺少 mindmaps/index.json，请先运行导图流水线");
+        return r.json();
+      }),
+      loadChapterCatalog(courseId),
+    ])
+      .then(([d, cat]: [MindmapIndexDoc, AssetsChapterCatalog | null]) => {
+        if (cancelled) return;
+        setCatalog(cat);
+        const merged: MindmapIndexDoc = {
+          ...d,
+          items: mergeMindmapIndexWithChapters(d.items || [], {
+            chapterOrder: cat?.chapter_order,
+          }),
+        };
+        setIndex(merged);
+        const preferred =
+          navId ||
+          merged.items.find((i) => i.lecture_id === "course")?.lecture_id ||
+          merged.items.find((i) => i.scope === "chapter")?.lecture_id ||
+          merged.items[0]?.lecture_id;
+        if (preferred && !navId) {
+          setSp(lectureQuery(preferred), { replace: true });
+        }
+      })
+      .catch((e) => {
+        if (!cancelled) setError(String(e.message || e));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId]);
+
+  useEffect(() => {
+    if (!navId || !index) return;
+    if (skipNextDocLoadRef.current) {
+      skipNextDocLoadRef.current = false;
+      return;
+    }
+    setError(null);
+    setMapKey((k) => k + 1);
+    setSelected(null);
+    focusAppliedRef.current = "";
+    let cancelled = false;
+    loadMindmapDoc(courseId, navId, index.items, catalog, lectureVariant)
+      .then((d) => {
+        if (cancelled) return;
+        if (lectureVariant === "deep") {
+          setDoc(applyMindmapEditPatch(d, null));
+          return;
+        }
+        const patch = loadMindmapEditPatch(courseId, navId);
+        // 整课结构以服务器为准：有分册层时清掉易把课图压成「两章」的旧本地补丁
+        if (
+          isAnyCourseNavId(navId) ||
+          isStaleMindmapEditPatch(d, patch)
+        ) {
+          const root = d.roots?.[0] || d.root;
+          const hasParts = (root?.children || []).some((c) =>
+            String(c.id || "").startsWith("__part__/")
+          );
+          if (isAnyCourseNavId(navId) && (hasParts || isCourseSkeletonNavId(navId))) {
+            clearMindmapEditPatch(courseId, navId);
+            setDoc(applyMindmapEditPatch(d, null));
+            return;
+          }
+          if (isStaleMindmapEditPatch(d, patch)) {
+            clearMindmapEditPatch(courseId, navId);
+            setDoc(applyMindmapEditPatch(d, null));
+            return;
+          }
+        }
+        setDoc(applyMindmapEditPatch(d, patch));
+      })
+      .catch((e) => {
+        if (cancelled) return;
+        setDoc(null);
+        setError(String(e.message || e));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId, navId, index, catalog, lectureVariant]);
+
+  // URL ?focus= / 图谱共享选中 → 选中同名导图节点并展开右栏
+  useEffect(() => {
+    if (!doc) return;
+    const shared = readSharedEntitySelection();
+    const raw = String(focusParam || shared?.id || shared?.label || "").trim();
+    if (!raw) return;
+    const applyKey = `${navId}|${mapKey}|${raw}`;
+    if (focusAppliedRef.current === applyKey) return;
+    const hit = findMindmapNodeByFocus(doc, raw);
+    if (!hit) return;
+    focusAppliedRef.current = applyKey;
+    selectMindmapNode(hit);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only restore on doc/focus
+  }, [doc, mapKey, navId, focusParam, kgIds, kgByShort]);
+
+  // 匹配到图谱实体 id 后回写共享选中，便于再跳回图谱定位
+  useEffect(() => {
+    if (!selected || !kgEntityId) return;
+    writeSharedEntitySelection({
+      id: kgEntityId,
+      label: selected.zh || shortEntityKey(kgEntityId),
+    });
+  }, [selected, kgEntityId]);
+
+  const titleText = (() => {
+    if (isCourseSkeletonNavId(navId)) return "整课骨架展示";
+    if (isCourseNavId(navId)) return "整课思维导图";
+    const ch = parseChapterNavId(navId);
+    if (ch) return displayChapterName(ch);
+    const sess = sessionNavItems.find((s) => s.id === navId);
+    if (sess) return `第 ${sess.index} 次课`;
+    const parsed = parseSessionRouteId(navId);
+    if (parsed) {
+      return `第 ${sessionIndexFromLectureIds(parsed.lectureIds)} 次课`;
+    }
+    if (navId) return `第 ${navId} 次课`;
+    return "思维导图";
+  })();
 
   return (
     <ResizableShell
       storagePrefix="shell-mindmap"
+      detailFixedRightPx={detailCollapsed ? 32 : undefined}
+      detailMinRightPx={220}
+      detailInitialRightPx={340}
       nav={
         <aside className={shell.sidebar}>
           <div className={shell.sideHead}>
-            <Link className={shell.back} to={coursePath(courseId)}>
+            <Link
+              className={shell.back}
+              to={
+                isAiTeachingEmbed
+                  ? (() => {
+                      const q = new URLSearchParams(sp);
+                      const fid = kgEntityId || selected?.id || "";
+                      if (fid) q.set("focus", String(fid));
+                      const search = q.toString();
+                      return {
+                        pathname: coursePath(courseId, "/kg/course"),
+                        search: search ? `?${search}` : "",
+                      };
+                    })()
+                  : coursePath(courseId)
+              }
+              onClick={() => {
+                if (!isAiTeachingEmbed) return;
+                const fid = kgEntityId || selected?.id || "";
+                if (!fid) return;
+                writeSharedEntitySelection({
+                  id: String(fid),
+                  label: selected?.zh || shortEntityKey(String(fid)),
+                });
+              }}
+              title={isAiTeachingEmbed ? "返回知识图谱" : "返回课程"}
+            >
               <span className={shell.backIcon} aria-hidden>
                 ←
               </span>
               <span className={shell.backBrand}>
-                Edu<em>KG</em>
+                {isAiTeachingEmbed ? (
+                  "返回知识图谱"
+                ) : (
+                  <>
+                    Edu<em>KG</em>
+                  </>
+                )}
               </span>
             </Link>
             <p className={shell.eyebrow}>Mindmap</p>
             <h1 className={shell.sideTitle}>知识导图</h1>
           </div>
 
-          {courseItems.length > 0 && (
-            <div className={shell.navBlock}>
+          <div className={shell.navBlock}>
               <p className={shell.navLabel}>课程</p>
-              {courseItems.map((it) => (
-                <button
-                  key={it.lecture_id}
-                  type="button"
-                  className={
-                    it.lecture_id === navId ? shell.navItemActive : shell.navItem
-                  }
-                  onClick={() => setSp({ lecture: it.lecture_id })}
-                >
-                  <span>整课总览</span>
-                </button>
-              ))}
+              <button
+                type="button"
+                className={
+                  isCourseNavId(navId) ? shell.navItemActive : shell.navItem
+                }
+                onClick={() => setSp(lectureQuery("course"))}
+              >
+                <span>整课总览</span>
+              </button>
+              <button
+                type="button"
+                className={
+                  isCourseSkeletonNavId(navId)
+                    ? shell.navItemActive
+                    : shell.navItem
+                }
+                onClick={() => setSp(lectureQuery("course:skeleton"))}
+                title="最外层为章节，仅大纲层级"
+              >
+                <span>骨架展示</span>
+              </button>
+            </div>
+
+          {sessionNavItems.length > 0 && (
+            <div
+              className={`${shell.navBlock} ${shell.navBlockCollapsible} ${
+                lectureNavOpen ? "" : shell.navBlockCollapsed
+              }`}
+            >
+              <button
+                type="button"
+                className={shell.navLabelToggle}
+                aria-expanded={lectureNavOpen}
+                onClick={() => setLectureNavOpen((v) => !v)}
+              >
+                <span>课次</span>
+                <em>{lectureNavOpen ? "收起" : "展开"}</em>
+              </button>
+              {lectureNavOpen ? (
+                <div className={shell.navScroll} style={{ maxHeight: 280 }}>
+                  {sessionNavItems.map((it) => {
+                    const active = it.id === navId;
+                    return (
+                      <button
+                        key={it.id}
+                        type="button"
+                        className={active ? shell.navItemActive : shell.navItem}
+                        onClick={() => setSp(lectureQuery(it.id))}
+                        title={it.title}
+                      >
+                        <span>{it.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           )}
 
-          {chapterItems.length > 0 && (
-            <div className={shell.navBlock}>
-              <p className={shell.navLabel}>章</p>
-              <div className={shell.navScroll} style={{ maxHeight: 220 }}>
-                {chapterItems.map((it) => (
-                  <button
-                    key={it.lecture_id}
-                    type="button"
-                    className={
-                      it.lecture_id === navId || it.chapter === activeChapter
-                        ? shell.navItemActive
-                        : shell.navItem
-                    }
-                    onClick={() =>
-                      setSp({
-                        lecture: it.lecture_id.startsWith("chapter:")
-                          ? it.lecture_id
-                          : chapterNavId(it.chapter || it.root_zh || ""),
-                      })
-                    }
-                  >
-                    <span>{it.root_zh || it.chapter || it.lecture_id}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {lecturesForNav.length > 0 && (
-            <div className={`${shell.navBlock} ${shell.navBlockGrow}`}>
-              <p className={shell.navLabel}>
-                讲次{activeChapter ? ` · ${activeChapter.replace(/^第\s*\d+\s*章\s*/, "")}` : ""}
-              </p>
-              <div className={shell.navScroll}>
-                {lecturesForNav.map((it) => (
-                  <button
-                    key={it.lecture_id}
-                    type="button"
-                    className={
-                      it.lecture_id === navId ? shell.navItemActive : shell.navItem
-                    }
-                    onClick={() => setSp({ lecture: it.lecture_id })}
-                  >
-                    <span>第 {it.lecture_id} 讲</span>
-                  </button>
-                ))}
-              </div>
+          {chapterGroups.length > 0 && (
+            <div
+              className={`${shell.navBlock} ${shell.navBlockGrow} ${
+                chapterNavOpen ? "" : shell.navBlockCollapsed
+              }`}
+            >
+              <button
+                type="button"
+                className={shell.navLabelToggle}
+                aria-expanded={chapterNavOpen}
+                onClick={() => setChapterNavOpen((v) => !v)}
+              >
+                <span>章节</span>
+                <em>{chapterNavOpen ? "收起" : "展开"}</em>
+              </button>
+              {chapterNavOpen ? (
+                <div className={shell.navScroll}>
+                  {chapterGroups.map((part) => {
+                    const open = partOpen[part.id] !== false;
+                    return (
+                      <div key={part.id} className={assetsNav.partGroup}>
+                        <button
+                          type="button"
+                          className={assetsNav.partToggle}
+                          aria-expanded={open}
+                          onClick={() =>
+                            setPartOpen((prev) => ({
+                              ...prev,
+                              [part.id]: !open,
+                            }))
+                          }
+                        >
+                          <span>分册 · {part.title}</span>
+                          <em>{open ? "收起" : "展开"}</em>
+                        </button>
+                        {open ? (
+                          <div className={assetsNav.partChapterList}>
+                            {part.chapters.map((chName) => {
+                              const it = chapterItems.find(
+                                (c) => c.chapter === chName
+                              );
+                              const active = selectedChapterNav === chName;
+                              const n = it?.n_nodes || 0;
+                              return (
+                                <button
+                                  key={chName}
+                                  type="button"
+                                  className={
+                                    active ? shell.navItemActive : shell.navItem
+                                  }
+                                  onClick={() =>
+                                    setSp(lectureQuery(chapterNavId(chName)))
+                                  }
+                                  title={`${part.title} · ${displayChapterName(chName)}${
+                                    n ? ` · ${n} 节点` : " · 骨架"
+                                  }`}
+                                >
+                                  <span>{displayChapterName(chName)}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           )}
         </aside>
@@ -510,16 +1284,6 @@ export function MindmapPage() {
           <header className={shell.topbar}>
             <div className={shell.topbarText}>
               <h2>{titleText}</h2>
-              <p>
-                {current?.chapter && !parseChapterNavId(navId)
-                  ? current.chapter
-                  : null}
-                {doc?.meta?.source || doc?.meta?.composed_from ? (
-                  <span style={{ marginLeft: current?.chapter ? 8 : 0, opacity: 0.75 }}>
-                    {sourceLabel(doc.meta?.source, doc.meta?.composed_from)}
-                  </span>
-                ) : null}
-              </p>
             </div>
 
             {doc && (
@@ -535,15 +1299,6 @@ export function MindmapPage() {
               </div>
             )}
 
-            <div className={shell.tools}>
-              <button
-                type="button"
-                className={shell.toolBtn}
-                onClick={() => setExpandAll((v) => !v)}
-              >
-                {expandAll ? "收起导图" : "展开导图"}
-              </button>
-            </div>
           </header>
 
           {error && <p className="empty-hint">{error}</p>}
@@ -554,10 +1309,11 @@ export function MindmapPage() {
               <MindmapTree
                 doc={doc}
                 resetKey={mapKey}
-                expandAll={expandAll}
                 selectedId={selected?.id || null}
-                onSelect={setSelected}
-                editEnabled
+                onSelect={(node) => selectMindmapNode(node)}
+                onClearSelect={() => selectMindmapNode(null)}
+                editEnabled={canEditMindmap}
+                expandAll={lectureVariant === "deep"}
                 courseId={courseId}
                 lectureId={navId}
                 onDocChange={setDoc}
@@ -566,7 +1322,7 @@ export function MindmapPage() {
                 onResetEdits={() => {
                   setMapKey((k) => k + 1);
                   if (!index) return;
-                  loadMindmapDoc(courseId, navId, index.items)
+                  loadMindmapDoc(courseId, navId, index.items, catalog, lectureVariant)
                     .then((d) => setDoc(d))
                     .catch(() => null);
                 }}
@@ -576,62 +1332,66 @@ export function MindmapPage() {
         </main>
       }
       detail={
-        <aside className={pipe.side}>
-          <CollapsiblePanel title="选中节点" storageKey="mindmap-panel-node" defaultOpen>
-            {selected ? (
+        detailCollapsed ? (
+          <aside className={kg.kgSideRail} aria-label="详情栏（已收起）">
+            <button
+              type="button"
+              className={kg.kgSideRailBtn}
+              title="展开详情"
+              aria-label="展开详情"
+              onClick={() => setDetailCollapsed(false)}
+            >
+              <span aria-hidden>‹</span>
+            </button>
+          </aside>
+        ) : (
+        <aside className={`${pipe.side} ${kg.kgSidePanel}`}>
+          <button
+            type="button"
+            className={kg.kgSideEdgeBtn}
+            title="收起详情"
+            aria-label="收起详情"
+            onClick={() => setDetailCollapsed(true)}
+          >
+            <span aria-hidden>›</span>
+          </button>
+          <div className={kg.kgSideScroll}>
+          <CollapsiblePanel
+            title="选中详情"
+            storageKey={SHARED_PANEL_KEYS.detail}
+            defaultOpen={false}
+            open={detailPanelOpen}
+            onOpenChange={setDetailPanelOpen}
+            bodyClassName={kg.sideCardBody}
+          >
+            {selected && kgDetailStage && kgEntityId ? (
+              <SelectionDetail
+                stage={kgDetailStage}
+                selectedNodeId={kgEntityId}
+                selectedEdgeId={null}
+                hideFiltered={false}
+                mode="lecture"
+                importanceMode="classroom"
+                entityDefinitions={entityDefinitions}
+              />
+            ) : selected ? (
               <div className={pipe.detailCard}>
-                <div className={pipe.detailBadge}>实体</div>
-                <p style={{ margin: "8px 0 4px" }}>
+                <div className={pipe.detailBadge}>导图节点</div>
+                <p style={{ margin: "8px 0 0" }}>
                   <strong>{selected.zh}</strong>
                 </p>
-                <p className={pipe.sideEmpty} style={{ padding: 0 }}>
-                  {selected.id}
-                  {selected.relation ? ` · ${selected.relation}` : ""}
-                </p>
-                {lectureIdForLinks ? (
-                  <div className={pipe.cueList} style={{ marginTop: 10 }}>
-                    <Link
-                      className={pipe.cueBtn}
-                      to={reviewWatchPath(courseId, lectureIdForLinks, {
-                        kp: selected.id,
-                        t: nodeWatch?.startSec,
-                      })}
-                    >
-                      在单课复习中查看
-                    </Link>
-                    <Link
-                      className={pipe.cueBtn}
-                      to={coursePath(
-                        courseId,
-                        `/kg/lecture/${lectureIdForLinks}?focus=${encodeURIComponent(selected.id)}`
-                      )}
-                    >
-                      在课堂图谱中打开
-                    </Link>
-                  </div>
-                ) : null}
               </div>
             ) : (
               <div className={pipe.sideEmpty}>点击导图节点查看详情与资源</div>
             )}
           </CollapsiblePanel>
 
-          <CollapsiblePanel
-            title="操作历史"
-            storageKey="mindmap-panel-history"
-            defaultOpen
-          >
-            <MindmapHistoryPanel
-              items={historyItems}
-              onUndo={() => mindUndoRef.current?.()}
-            />
-          </CollapsiblePanel>
-
-          {chapterForOutline ? (
+          {canEditMindmap && chapterForOutline ? (
             <CollapsiblePanel
               title="大纲 / 总结输入"
-              storageKey="mindmap-panel-outline"
+              storageKey="mindmap-panel-outline-v2"
               defaultOpen
+              bodyClassName={kg.sideCardBody}
             >
               <ChapterOutlinePanel
                 courseId={courseId}
@@ -643,57 +1403,157 @@ export function MindmapPage() {
             </CollapsiblePanel>
           ) : null}
 
-          <CollapsiblePanel
-            title="局部关联"
-            storageKey="mindmap-panel-local"
-            defaultOpen={Boolean(isLeafish)}
-          >
-            {selected && !selected.id.startsWith("__") ? (
-              <div className={pipe.detailCard}>
-                {selected.deps?.length ? (
-                  <div style={{ marginBottom: 10 }}>
-                    <div className={pipe.detailBadge}>依赖</div>
-                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
-                      {selected.deps.join("、")}
-                    </p>
-                  </div>
-                ) : null}
-                {selected.related?.length ? (
-                  <div style={{ marginBottom: 10 }}>
-                    <div className={pipe.detailBadge}>相关</div>
-                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
-                      {selected.related.join("、")}
-                    </p>
-                  </div>
-                ) : null}
-                {selected.children?.length ? (
-                  <div>
-                    <div className={pipe.detailBadge}>树下附属</div>
-                    <p className={pipe.sideEmpty} style={{ padding: "6px 0 0" }}>
-                      {selected.children.map((c) => c.zh).join("、")}
-                    </p>
-                  </div>
-                ) : null}
-                {!selected.deps?.length &&
-                !selected.related?.length &&
-                !selected.children?.length ? (
-                  <div className={pipe.sideEmpty}>无局部关联；见下方资产卡</div>
-                ) : null}
-              </div>
-            ) : (
-              <div className={pipe.sideEmpty}>选中概念叶查看依赖 / 相关 / 附属</div>
-            )}
-          </CollapsiblePanel>
+          {canEditMindmap && !isAnyCourseNavId(navId) ? (
+            <CollapsiblePanel
+              title="操作历史"
+              storageKey="mindmap-panel-history-v3"
+              defaultOpen={false}
+              bodyClassName={kg.sideCardBody}
+            >
+              <MindmapHistoryPanel
+                items={historyItems}
+                onUndo={() => mindUndoRef.current?.()}
+              />
+            </CollapsiblePanel>
+          ) : null}
 
-          <CollapsiblePanel title="相关公式 · 例子 · 定理" storageKey="mindmap-panel-assets" defaultOpen>
-            <RelatedAssetsPanel
-              entityId={selected?.id || null}
-              library={library}
-              lectureId={lectureIdForLinks || null}
-              lectureOnly={Boolean(lectureIdForLinks)}
-            />
-          </CollapsiblePanel>
+          {selected ? (
+            <CollapsiblePanel
+              title={`相关资源-${
+                countRelatedAssets(kgEntityId || selected.id, library, {
+                  entityAliases: [selected.zh].filter(Boolean),
+                  lectureId: lectureIdForLinks || null,
+                  lectureOnly:
+                    Boolean(lectureIdForLinks) && !isAnyCourseNavId(navId),
+                  kinds: ["formula", "example", "theorem"],
+                })
+              }`}
+              storageKey={SHARED_PANEL_KEYS.assets}
+              defaultOpen={false}
+              open={assetsPanelOpen}
+              onOpenChange={setAssetsPanelOpen}
+              bodyClassName={kg.sideCardBody}
+            >
+              <RelatedAssetsPanel
+                entityId={kgEntityId || selected.id}
+                entityAliases={[selected.zh].filter(Boolean)}
+                library={library}
+                lectureId={lectureIdForLinks || null}
+                lectureOnly={
+                  Boolean(lectureIdForLinks) && !isAnyCourseNavId(navId)
+                }
+                kinds={["formula", "example", "theorem"]}
+                maxItems={8}
+              />
+            </CollapsiblePanel>
+          ) : null}
+
+          {selected && kgEntityId ? (
+            <>
+              <CollapsiblePanel
+                title={`视频跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "video").length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.video}
+                defaultOpen={false}
+                open={videoPanelOpen}
+                onOpenChange={setVideoPanelOpen}
+                bodyClassName={kg.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={kg.resourceMenuState}>正在查询视频…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "video"
+                    );
+                    if (!rows.length) {
+                      return <div className={pipe.sideEmpty}>暂无关联视频</div>;
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="video"
+                        nodeLabel={selected.zh || ""}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+              <CollapsiblePanel
+                title={`练习跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "exercise").length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.exercise}
+                defaultOpen={false}
+                open={exercisePanelOpen}
+                onOpenChange={setExercisePanelOpen}
+                bodyClassName={kg.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={kg.resourceMenuState}>正在查询练习…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "exercise"
+                    );
+                    if (!rows.length) {
+                      return <div className={pipe.sideEmpty}>暂无关联练习</div>;
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="exercise"
+                        nodeLabel={selected.zh || ""}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+              <CollapsiblePanel
+                title={`动画跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "animation").length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.animation}
+                defaultOpen={false}
+                open={animationPanelOpen}
+                onOpenChange={setAnimationPanelOpen}
+                bodyClassName={kg.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={kg.resourceMenuState}>正在查询动画…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "animation"
+                    );
+                    if (!rows.length) {
+                      return <div className={pipe.sideEmpty}>暂无关联动画</div>;
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="animation"
+                        nodeLabel={selected.zh || ""}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+            </>
+          ) : null}
+          </div>
         </aside>
+        )
       }
     />
   );

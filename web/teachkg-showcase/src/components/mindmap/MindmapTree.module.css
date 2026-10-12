@@ -40,6 +40,10 @@
   will-change: transform;
 }
 
+.panLayerAnim {
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .zoomBar {
   position: absolute;
   right: 12px;
@@ -68,7 +72,7 @@
 }
 
 .zoomBtn:hover {
-  background: rgba(62, 207, 142, 0.12);
+  background: var(--accent-dim);
 }
 
 .zoomBtnActive {
@@ -77,7 +81,7 @@
   padding: 0 8px;
   border: none;
   border-radius: 7px;
-  background: rgba(62, 207, 142, 0.18);
+  background: var(--accent-dim);
   color: inherit;
   font-size: 12px;
   cursor: pointer;
@@ -112,7 +116,7 @@
 }
 
 .remotePath {
-  stroke: rgba(232, 184, 109, 0.75);
+  stroke: color-mix(in srgb, var(--shared) 75%, var(--line));
   stroke-width: 1.6;
   stroke-dasharray: 6 5;
 }
@@ -152,6 +156,38 @@
   gap: 8px;
   margin-left: auto;
   flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.layerMode {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  background: color-mix(in srgb, var(--bg, #0b1220) 55%, transparent);
+  gap: 2px;
+}
+
+.layerModeBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.layerModeBtn:hover {
+  color: inherit;
+}
+
+.layerModeOn {
+  background: var(--accent-dim);
+  color: inherit;
 }
 
 .entitySearch {
@@ -175,7 +211,7 @@
 
 .entitySearchInput:focus {
   outline: none;
-  border-color: rgba(62, 207, 142, 0.45);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
 }
 
 .entitySearchMenu {
@@ -208,7 +244,7 @@
 }
 
 .entitySearchItem:hover {
-  background: rgba(62, 207, 142, 0.12);
+  background: var(--accent-dim);
 }
 
 .entitySearchItem em {
@@ -259,7 +295,7 @@
 }
 
 .editBtn:hover:not(:disabled) {
-  border-color: rgba(62, 207, 142, 0.4);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
 }
 
 .editBtn:disabled {
@@ -268,8 +304,8 @@
 }
 
 .editBtnOn {
-  background: rgba(62, 207, 142, 0.16);
-  border-color: rgba(62, 207, 142, 0.45);
+  background: var(--accent-dim);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
 }
 
 .editHint {
@@ -288,9 +324,9 @@
 
 .linkChip {
   appearance: none;
-  border: 1px dashed rgba(232, 184, 109, 0.45);
-  background: rgba(232, 184, 109, 0.08);
-  color: #e8b86d;
+  border: 1px dashed color-mix(in srgb, var(--shared) 45%, var(--line));
+  background: color-mix(in srgb, var(--shared) 12%, var(--bg-elev));
+  color: var(--shared);
   font-size: 11px;
   padding: 2px 7px;
   border-radius: 999px;
@@ -299,8 +335,8 @@
 
 .bubble[data-move-src="1"],
 .bubble[data-link-src="1"] {
-  border-color: rgba(232, 184, 109, 0.7);
-  box-shadow: 0 0 0 2px rgba(232, 184, 109, 0.2);
+  border-color: color-mix(in srgb, var(--shared) 70%, var(--line));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--shared) 22%, transparent);
 }
 
 .mindCanvasWrap[data-edit="1"] {
@@ -418,9 +454,9 @@
 }
 
 .bubble[data-selected="1"] {
-  border-color: rgba(62, 207, 142, 0.85);
-  box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.28);
-  background: color-mix(in srgb, rgba(62, 207, 142, 0.22) 85%, var(--bg-elev));
+  border-color: color-mix(in srgb, var(--accent) 85%, var(--line));
+  box-shadow: 0 0 0 3px var(--accent-dim);
+  background: color-mix(in srgb, var(--accent-dim) 85%, var(--bg-elev));
   z-index: 1;
 }
 
@@ -428,9 +464,9 @@
   max-width: 280px;
   padding: 14px 18px;
   border-radius: 16px;
-  border-color: rgba(62, 207, 142, 0.45);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
   background:
-    linear-gradient(135deg, rgba(62, 207, 142, 0.16), transparent 60%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
     var(--bg-elev);
 }
 
@@ -443,8 +479,8 @@
 
 .bubble[data-kind="chapter"] {
   border-radius: 12px;
-  border-color: rgba(91, 141, 239, 0.35);
-  background: color-mix(in srgb, rgba(91, 141, 239, 0.12) 70%, var(--bg-elev));
+  border-color: color-mix(in srgb, var(--delta) 35%, var(--line));
+  background: color-mix(in srgb, var(--delta) 12%, var(--bg-elev));
 }
 
 .bubble[data-kind="chapter"] .bubbleText {
@@ -650,3 +686,133 @@
     align-items: flex-start;
   }
 }
+
+.ctxMenu {
+  position: fixed;
+  z-index: 40;
+  min-width: 168px;
+  max-width: min(240px, 70vw);
+  max-height: min(70vh, 420px);
+  overflow: auto;
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  background: color-mix(in srgb, var(--bg-elev, #161b22) 94%, transparent);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.ctxMenuTitle {
+  padding: 4px 8px 6px;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  margin-bottom: 4px;
+}
+
+.ctxMenuItem {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font-size: 12px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.ctxMenuItem:hover:not(:disabled),
+.ctxMenuItem:focus-visible:not(:disabled) {
+  background: var(--accent-dim);
+  outline: none;
+}
+
+.ctxMenuItem:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ctxMenuDanger {
+  color: #f07178;
+}
+
+.ctxMenuDanger:hover:not(:disabled),
+.ctxMenuDanger:focus-visible:not(:disabled) {
+  background: rgba(240, 113, 120, 0.14);
+}
+
+.ctxMenuSep {
+  height: 1px;
+  margin: 4px 2px;
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+}
+
+/* 交学伴纸面：导图画布与节点统一浅色 */
+:global(html[data-embed="ai-teaching"]) .mindCanvasWrap,
+:global(html[data-embed="ai-teaching"]) .panViewport,
+:global(html[data-embed="ai-teaching"]) .panLayer {
+  background: var(--bg, #f7f4ef);
+  color: var(--text, #111);
+}
+
+:global(html[data-embed="ai-teaching"]) .zoomBar,
+:global(html[data-embed="ai-teaching"]) .zoomBar button {
+  background: var(--bg-elev, #fff);
+  border-color: var(--line, #e8e1d7);
+  color: var(--text, #111);
+}
+
+:global(html[data-embed="ai-teaching"]) .bubble[data-kind="root"] {
+  border-color: #34d399;
+  background: linear-gradient(135deg, #ecfdf5, #fff 62%);
+}
+
+:global(html[data-embed="ai-teaching"]) .bubble[data-kind="chapter"] {
+  border-color: #60a5fa;
+  background: #eff6ff;
+}
+
+:global(html[data-embed="ai-teaching"]) .bubble[data-kind="topic"] {
+  background: color-mix(in srgb, #ecfdf5 calc(var(--imp) * 55%), #fff);
+  border-color: #a7f3d0;
+}
+
+:global(html[data-embed="ai-teaching"]) .bubble[data-kind="leaf"] {
+  background: #fff;
+  border-color: #e8e1d7;
+}
+
+:global(html[data-embed="ai-teaching"]) .bubble[data-selected="1"] {
+  border-color: #97242d;
+  box-shadow: 0 0 0 3px #fbeae7;
+  background: #fff;
+}
+
+:global(html[data-embed="ai-teaching"]) .elbow,
+:global(html[data-embed="ai-teaching"]) .rail {
+  background: #d4c4b0;
+}
+
+:global(html[data-embed="ai-teaching"]) .childRow::before {
+  background: #d4c4b0;
+}
+
+:global(html[data-embed="ai-teaching"]) .childRow[data-weak="1"] > .rail {
+  background-image: linear-gradient(to right, #d4c4b0 40%, transparent 0%);
+}
+
+:global(html[data-embed="ai-teaching"]) .ctxMenu {
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(43, 39, 36, 0.12);
+}
+
+:global(html[data-embed="ai-teaching"]) .ctxMenuDanger {
+  color: #97242d;
+}
+

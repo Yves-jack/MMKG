@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { captionAt, type AsrCaption } from "@/lib/apps/asrCaptions";
+import { captionAt, type AsrCaption } from "@/lib/review/asrCaptions";
 import styles from "./VideoChapterPlayer.module.css";
 
 export type VideoSegment = {
@@ -171,10 +171,11 @@ export function VideoChapterPlayer({
   }, [src, durationHint, updateDuration]);
 
   useEffect(() => {
+    if (!src) return;
     if (seekToSec == null || !Number.isFinite(seekToSec)) return;
     seek(Number(seekToSec));
     void videoRef.current?.play()?.catch(() => undefined);
-  }, [seekToSec, seekNonce, seek]);
+  }, [src, seekToSec, seekNonce, seek]);
 
   const currentRef = useRef(0);
   currentRef.current = current;

@@ -1,14 +1,13 @@
 /**
- * 章导图骨架（课堂优先）：
- * 1. 人工大纲/总结（manual）
+ * 章导图骨架提取优先级（本学期讲过的章；禁止教材补章）：
+ * 1. 人工大纲/总结（manual / summaries）
  * 2. PPT OCR 页标题（classroom_ppt）
- * 3. 复习浓缩知识点 + 片段标题（classroom_review，作 PPT 缺省代理）
- * 教材 TOC 仅作可选后备，默认不用。
+ * 3. 复习浓缩知识点（classroom_review）
  *
- * 骨架定 2–3 级父子后，再挂 KG 叶；关联走 related/deps/assets。
+ * 学期没讲的章不占位。骨架定 2–3 级后挂 KG 叶。
  */
 import type { MindmapDoc, MindmapTreeNode } from "@/components/mindmap/MindmapTree";
-import { cloneNode, docForest } from "@/lib/apps/mindmapEdits";
+import { cloneNode, docForest } from "@/lib/review/mindmapEdits";
 import { chapterNavId, type MindmapSource } from "@/lib/kg/mindmapTypes";
 
 export type TocSection = {

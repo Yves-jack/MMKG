@@ -1,14 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { GraphCanvas, type GraphCanvasHandle } from "@/components/pipeline/GraphCanvas";
-import { HighlightLegend } from "@/components/pipeline/HighlightLegend";
-import { LatexText } from "@/components/pipeline/LatexText";
-import { ResizableShell } from "@/components/pipeline/ResizableShell";
-import { ResizableSplit } from "@/components/pipeline/ResizableSplit";
-import { CollapsiblePanel } from "@/components/pipeline/CollapsiblePanel";
-import { RelatedEdges, RelatedAssetsPanel, SelectionDetail, DeletedItemsPanel, relatedEdgesOf } from "@/components/pipeline/SelectionPanels";
-import { SliceTextAnnotator } from "@/components/pipeline/SliceTextAnnotator";
-import { PptCarousel } from "@/components/pipeline/PptCarousel";
+import { GraphCanvas, type GraphCanvasHandle } from "@/components/graph/GraphCanvas";
+import { HighlightLegend } from "@/components/graph/HighlightLegend";
+import { LatexText } from "@/components/graph/LatexText";
+import { ResizableShell } from "@/components/graph/ResizableShell";
+import { ResizableSplit } from "@/components/graph/ResizableSplit";
+import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
+import { RelatedEdges, RelatedAssetsPanel, SelectionDetail, DeletedItemsPanel, relatedEdgesOf, countRelatedAssets } from "@/components/graph/SelectionPanels";
+import {
+  LinkedResourceCardList,
+  RESOURCE_LABELS,
+  videoSegmentKey,
+} from "@/components/graph/LinkedResourceCards";
+import { SliceTextAnnotator } from "@/components/graph/SliceTextAnnotator";
+import { PptCarousel } from "@/components/graph/PptCarousel";
 import {
   fmtSec,
 } from "@/lib/kg/adaptToPipeline";
@@ -17,9 +22,20 @@ import {
   applyRelatedWithVisibility,
   type ImportanceFilterMode,
 } from "@/lib/kg/importanceFilter";
-import { firstAssetWatch, type AssetsLibrary } from "@/lib/kg/assetsLibrary";
-import { reviewWatchPath } from "@/lib/apps/reviewSeek";
-import { processLectureKg, type MultiRelCollapseDecision } from "@/lib/kg/lectureKgProcess";
+import { dedupeEntityMatchesByZh } from "@/lib/entitySearchDedupe";
+import { isPaperEmbedTheme } from "@/styles/embedTheme";
+import type { AssetsLibrary } from "@/lib/kg/assetsLibrary";
+import {
+  readSharedEntitySelection,
+  SHARED_PANEL_KEYS,
+  writeSharedEntitySelection,
+} from "@/lib/kg/sharedEntitySelection";
+import { canEditKnowledgeGraph } from "@/lib/integration/editPermission";
+import {
+  isProcessEdgeSource,
+  processLectureKg,
+  type MultiRelCollapseDecision,
+} from "@/lib/kg/lectureKgProcess";
 import {
   applyMmkgEnrichmentToNodes,
   buildKgViewFromPipeline,
@@ -30,9 +46,19 @@ import {
   loadMmkgEntityEnrichment,
   loadMmkgEntityEnrichmentForLectures,
   mergeMmkgEnrichmentMaps,
+  parseLectureFilterIds,
   type MmkgEntityEnrichment,
   type PipelineCueBundle,
 } from "@/lib/kg/pipelineMergeSource";
+import { tryLoadKgProcessed } from "@/lib/kg/loadKgProcessed";
+import type { KgProcessedArtifact } from "@/lib/kg/kgProcessedArtifact";
+import {
+  applyPropertyMergeDecisions,
+  tryLoadPropertyMerge,
+  type PropertyMergeDecision,
+} from "@/lib/kg/propertyMerge";
+import { scoreFragmentClassroomImportance } from "@/lib/pipeline/classroomFactors";
+import { pairLecturesIntoSessions } from "@/lib/review/reviewSession";
 import {
   applyKgEdits,
   emptyKgEditPatch,
@@ -60,30 +86,122 @@ import {
   stageEdgesForDisplay,
   stageHighlightFilters,
   stageNodesForDisplay,
+  type VisEdge,
   type VisNode,
-} from "@/lib/pipeline/graphLogic";
-import type { PipelineEdge, PipelineNode, PipelinePayload, PipelineStage } from "@/lib/pipeline/types";
+} from "@/lib/graph/graphLogic";
+import type { PipelineEdge, PipelineNode, PipelinePayload, PipelineStage } from "@/lib/graph/types";
 import {
   deleteMmkgEdge,
   deleteMmkgNode,
   emitKnowledgeResourceOpen,
   fetchLinkedKnowledgeResources,
   fetchMmkgGraph,
+  mmkgCachedRole,
+  mmkgLogin,
   updateMmkgEdge,
   updateMmkgNode,
   type LinkedKnowledgeResource,
 } from "@/lib/integration/knowledgeResources";
 import shell from "@/styles/shell.module.css";
-import pipe from "./PipelinePage.module.css";
-import tb from "./TextbookPage.module.css";
+import pipe from "@/styles/panels.module.css";
+import tb from "@/styles/kgChrome.module.css";
 import styles from "./KgPage.module.css";
 
-const ALL_LECTURES = Array.from({ length: 26 }, (_, i) => String(i + 1));
+const ALL_LECTURES = Array.from({ length: 44 }, (_, i) => String(i + 1));
+
+/** live 融合图按讲次过滤：依据节点 video_anchors / lecture_id */
+function filterLiveGraphByLectures(
+  nodes: PipelineNode[],
+  edges: PipelineEdge[],
+  lectureIds: string[],
+): { nodes: PipelineNode[]; edges: PipelineEdge[] } {
+  const want = new Set(lectureIds.map(String).filter(Boolean));
+  if (!want.size) return { nodes, edges };
+  const keep = new Set<string>();
+  for (const n of nodes) {
+    const id = String(n.id || "");
+    if (!id) continue;
+    const raw = n as PipelineNode & {
+      lecture_id?: unknown;
+      video_anchors?: Array<{ lecture_id?: unknown; video_id?: unknown }>;
+    };
+    if (want.has(String(raw.lecture_id || ""))) {
+      keep.add(id);
+      continue;
+    }
+    for (const a of raw.video_anchors || []) {
+      if (want.has(String(a.lecture_id || ""))) {
+        keep.add(id);
+        break;
+      }
+      const vid = Number(a.video_id);
+      if (Number.isFinite(vid) && want.has(String(vid + 1))) {
+        keep.add(id);
+        break;
+      }
+    }
+  }
+  if (!keep.size) return { nodes, edges };
+  const nextEdges = edges.filter(
+    (e) => keep.has(String(e.from)) && keep.has(String(e.to)),
+  );
+  const deg = new Set<string>();
+  for (const e of nextEdges) {
+    if (e.from) deg.add(String(e.from));
+    if (e.to) deg.add(String(e.to));
+  }
+  return {
+    nodes: nodes.filter((n) => deg.has(String(n.id))),
+    edges: nextEdges,
+  };
+}
 
 function parseSessionId(raw?: string): [string, string] | null {
   const m = String(raw || "").match(/^(\d+)_(\d+)$/);
   if (!m) return null;
   return [m[1], m[2]];
+}
+
+function clampMenuPos(point: { clientX: number; clientY: number }, w = 280, h = 280) {
+  const gutter = 12;
+  const width = Math.min(w, Math.max(0, window.innerWidth - gutter * 2));
+  const height = Math.min(h, Math.max(0, window.innerHeight - gutter * 2));
+  return {
+    x: Math.min(
+      Math.max(gutter, point.clientX),
+      Math.max(gutter, window.innerWidth - width - gutter),
+    ),
+    y: Math.min(
+      Math.max(gutter, point.clientY),
+      Math.max(gutter, window.innerHeight - height - gutter),
+    ),
+  };
+}
+
+function applyGraphHides(
+  stage: PipelineStage,
+  hiddenNodes: Record<string, string>,
+  hiddenEdges: Record<string, string>,
+): PipelineStage {
+  const hideN = Object.keys(hiddenNodes);
+  const hideE = Object.keys(hiddenEdges);
+  if (!hideN.length && !hideE.length) return stage;
+  const nodeSet = new Set(hideN);
+  const edgeSet = new Set(hideE);
+  const edges = (stage.edges || []).filter((e) => {
+    if (edgeSet.has(String(e.id))) return false;
+    if (nodeSet.has(String(e.from)) || nodeSet.has(String(e.to))) return false;
+    return true;
+  });
+  const nodes = (stage.nodes || []).filter((n) => !nodeSet.has(String(n.id)));
+  return { ...stage, nodes, edges };
+}
+
+function edgeMenuLabel(edge: { from?: string; to?: string; relation?: string; label?: string }) {
+  const pred = String(edge.relation || edge.label || "related_with").trim();
+  const from = String(edge.from || "").split("/")[0] || "?";
+  const to = String(edge.to || "").split("/")[0] || "?";
+  return `${from} —[${pred}]→ ${to}`;
 }
 
 function formatEvidenceText(raw: string): string {
@@ -95,86 +213,157 @@ function formatEvidenceText(raw: string): string {
     .trim();
 }
 
-/** 重要性阈值默认：去掉显式零分（τ=0.01）；无课堂分实体仍保留 */
-const DEFAULT_IMPORTANCE_FILTER = 0.01;
-const AI_TEACHING_DEFAULT_IMPORTANCE_FILTER = 0.25;
-const IMPORTANCE_MAX = 1;
-const RESOURCE_LABELS: Record<LinkedKnowledgeResource["resource_type"], string> = {
-  video: "视频",
-  exercise: "练习",
-  animation: "动画",
-  formula: "公式",
-};
+/** 重要性：保留前百分之几的高分节点 */
+const DEFAULT_COURSE_IMPORTANCE_KEEP = 5;
+const DEFAULT_LECTURE_IMPORTANCE_KEEP = 20;
+const IMPORTANCE_PERCENT_MIN = 1;
+const IMPORTANCE_PERCENT_MAX = 100;
+const IMPORTANCE_KEEP_STORAGE_PREFIX = "teachkg-imp-keep-v1";
 
+function defaultImportanceKeepForScope(scope: "course" | "lecture" | "session"): number {
+  return scope === "course"
+    ? DEFAULT_COURSE_IMPORTANCE_KEEP
+    : DEFAULT_LECTURE_IMPORTANCE_KEEP;
+}
 
-function linkedResourceNodeContext(node?: VisNode | null) {
+function importanceKeepStorageKey(courseId: string, contextKey: string): string {
+  return `${IMPORTANCE_KEEP_STORAGE_PREFIX}:${courseId}:${contextKey}`;
+}
+
+function readStoredImportanceKeep(
+  courseId: string,
+  contextKey: string,
+  scope: "course" | "lecture" | "session",
+): number {
+  try {
+    const raw = window.sessionStorage.getItem(
+      importanceKeepStorageKey(courseId, contextKey),
+    );
+    if (raw != null && raw !== "") {
+      const n = Number(raw);
+      if (Number.isFinite(n)) {
+        return Math.min(
+          IMPORTANCE_PERCENT_MAX,
+          Math.max(IMPORTANCE_PERCENT_MIN, Math.round(n)),
+        );
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return defaultImportanceKeepForScope(scope);
+}
+
+function writeStoredImportanceKeep(
+  courseId: string,
+  contextKey: string,
+  value: number,
+) {
+  try {
+    window.sessionStorage.setItem(
+      importanceKeepStorageKey(courseId, contextKey),
+      String(value),
+    );
+  } catch {
+    /* ignore */
+  }
+}
+function linkedResourceNodeContext(
+  node?: { aliases?: unknown; [key: string]: unknown } | null,
+) {
   const aliases = Array.isArray(node?.aliases)
     ? node.aliases.map((value) => String(value || "").trim()).filter(Boolean)
     : [];
   return {
-    nodeName: String(node?.label || node?.name || node?.zh_name || "").trim(),
+    nodeName: String(
+      node?.label || node?.name || node?.zh_name || "",
+    ).trim(),
     nodeAliases: aliases,
-    nodeContent: String(node?.description || node?.info || "").trim(),
+    nodeContent: String(
+      node?.description || node?.info || "",
+    ).trim(),
   };
 }
 
-function resourceTime(value: number | undefined): string {
-  if (value == null || !Number.isFinite(value)) return "--:--";
-  const total = Math.max(0, Math.floor(value));
-  const minutes = Math.floor(total / 60);
-  const seconds = total % 60;
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
-}
-
-function resourceMeta(resource: LinkedKnowledgeResource): string {
-  if (resource.resource_type === "video") {
-    return `${resourceTime(resource.start_sec)}–${resourceTime(resource.end_sec)}`;
-  }
-  if (resource.resource_type === "exercise") {
-    const questionType = String(resource.metadata?.question_type || "").toLowerCase();
-    return questionType === "judge" ? "判断题" : questionType === "choice" ? "选择题" : "练习题";
-  }
-  return RESOURCE_LABELS[resource.resource_type];
-}
-
-function resourceDetail(resource: LinkedKnowledgeResource, nodeLabel: string): string {
-  if (resource.resource_type === "exercise") {
-    return `知识点 · ${nodeLabel}`;
-  }
-  return String(resource.content || "").trim();
-}
-
-function clampImportance(v: number): number {
-  if (!Number.isFinite(v)) return 0;
-  return Math.min(IMPORTANCE_MAX, Math.max(0, v));
-}
-
-/** 量化到两位小数，避免 0.1+0.2 浮点噪声 */
-function roundImportance(v: number): number {
-  return Math.round(clampImportance(v) * 100) / 100;
-}
-
-/** x.xx → [个位 0–1, 十分位 0–9, 百分位 0–9] */
-function importanceDigits(v: number): [number, number, number] {
-  const c = Math.round(roundImportance(v) * 100);
-  return [Math.floor(c / 100), Math.floor((c % 100) / 10), c % 10];
-}
-
-function digitsToImportance(ones: number, tenths: number, hundredths: number): number {
-  return roundImportance(
-    Math.min(1, Math.max(0, ones)) +
-      Math.min(9, Math.max(0, tenths)) / 10 +
-      Math.min(9, Math.max(0, hundredths)) / 100
+function intersectVideoResources(
+  left: LinkedKnowledgeResource[],
+  right: LinkedKnowledgeResource[],
+): LinkedKnowledgeResource[] {
+  const rightKeys = new Set(
+    right
+      .filter((r) => r.resource_type === "video")
+      .map(videoSegmentKey)
+      .filter(Boolean),
   );
+  const seen = new Set<string>();
+  const out: LinkedKnowledgeResource[] = [];
+  for (const resource of left) {
+    if (resource.resource_type !== "video") continue;
+    const key = videoSegmentKey(resource);
+    if (!key || !rightKeys.has(key) || seen.has(key)) continue;
+    seen.add(key);
+    out.push(resource);
+  }
+  return out;
 }
 
-function parseDigitChar(raw: string, max: number): number | null {
-  const t = String(raw || "").trim();
-  if (t === "") return null;
-  if (!/^\d$/.test(t)) return null;
-  const n = Number(t);
-  if (!Number.isFinite(n) || n < 0) return null;
-  return Math.min(max, n);
+/** 关系侧动画：合并两端实体上的动画资源（去重） */
+function unionAnimationResources(
+  left: LinkedKnowledgeResource[],
+  right: LinkedKnowledgeResource[],
+): LinkedKnowledgeResource[] {
+  const seen = new Set<string>();
+  const out: LinkedKnowledgeResource[] = [];
+  for (const resource of [...left, ...right]) {
+    if (resource.resource_type !== "animation") continue;
+    const key = String(resource.resource_id || "").trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(resource);
+  }
+  return out;
+}
+
+/** 关系侧练习：合并两端实体上的练习资源（去重） */
+function unionExerciseResources(
+  left: LinkedKnowledgeResource[],
+  right: LinkedKnowledgeResource[],
+): LinkedKnowledgeResource[] {
+  const seen = new Set<string>();
+  const out: LinkedKnowledgeResource[] = [];
+  for (const resource of [...left, ...right]) {
+    if (resource.resource_type !== "exercise") continue;
+    const key = String(resource.resource_id || "").trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(resource);
+  }
+  return out;
+}
+
+function clampKeepPercent(v: number, fallback = DEFAULT_COURSE_IMPORTANCE_KEEP): number {
+  if (!Number.isFinite(v)) return fallback;
+  return Math.min(IMPORTANCE_PERCENT_MAX, Math.max(IMPORTANCE_PERCENT_MIN, Math.round(v)));
+}
+
+/** 根据鼠标在滑条上的水平位置，估算对应百分比（与松手提交共用） */
+function importancePercentAtPointer(
+  el: HTMLElement,
+  clientX: number
+): { percent: number; ratio: number } {
+  const rect = el.getBoundingClientRect();
+  const thumb = 14;
+  const usable = Math.max(1, rect.width - thumb);
+  const x = Math.min(
+    rect.width - thumb / 2,
+    Math.max(thumb / 2, clientX - rect.left)
+  );
+  const ratio = Math.min(1, Math.max(0, (x - thumb / 2) / usable));
+  const percent = clampKeepPercent(
+    IMPORTANCE_PERCENT_MIN +
+      ratio * (IMPORTANCE_PERCENT_MAX - IMPORTANCE_PERCENT_MIN)
+  );
+  return { percent, ratio };
 }
 
 export function KgPage() {
@@ -188,13 +377,23 @@ export function KgPage() {
   ).trim();
   const kgLaunchToken = String(searchParams.get("kg_token") || "").trim();
   const embedMode = String(searchParams.get("embed") || "").trim();
+  const roleParam = String(searchParams.get("role") || "").trim();
   const isAiTeachingEmbed = embedMode === "ai-teaching";
-  const isEmbeddedGraph =
-    isAiTeachingEmbed || embedMode === "video-search";
-  const defaultImportanceFilter = isEmbeddedGraph
-    ? AI_TEACHING_DEFAULT_IMPORTANCE_FILTER
-    : DEFAULT_IMPORTANCE_FILTER;
+  const isVideoSearchEmbed = embedMode === "video-search";
+  const isEmbeddedGraph = isAiTeachingEmbed || isVideoSearchEmbed;
+  /** 视频旁动态图谱：只保留画布 + 搜索，不展示工具条/侧栏详情 */
+  const isGraphOnlyEmbed = isVideoSearchEmbed;
   const requestedParentOrigin = String(searchParams.get("parent_origin") || "").trim();
+  const [verifiedRole, setVerifiedRole] = useState("");
+  const canEditGraph = useMemo(
+    () =>
+      canEditKnowledgeGraph({
+        embedMode,
+        role: roleParam || verifiedRole || mmkgCachedRole(kgLaunchToken),
+        kgToken: kgLaunchToken,
+      }),
+    [embedMode, roleParam, verifiedRole, kgLaunchToken],
+  );
   const course = useCourseId();
   const sessionPair = useMemo(() => parseSessionId(rawSessionId), [rawSessionId]);
   const scope = sessionPair ? "session" : lectureId ? "lecture" : "course";
@@ -211,6 +410,10 @@ export function KgPage() {
   const [multiRelDecisions, setMultiRelDecisions] = useState<
     Record<string, MultiRelCollapseDecision>
   >({});
+  const [propertyMergeDecisions, setPropertyMergeDecisions] = useState<
+    Record<string, PropertyMergeDecision>
+  >({});
+  const [precomputedKg, setPrecomputedKg] = useState<KgProcessedArtifact | null>(null);
   const [mmkgEnrichment, setMmkgEnrichment] = useState<Map<string, MmkgEntityEnrichment>>(
     () => new Map()
   );
@@ -225,9 +428,12 @@ export function KgPage() {
     string,
     number
   > | null>(null);
-  const [importanceSource, setImportanceSourceState] = useState<ImportanceSource>(() =>
-    typeof window !== "undefined" ? getImportanceSource() : "classroom"
-  );
+  const [importanceSource, setImportanceSourceState] = useState<ImportanceSource>(() => {
+    if (typeof window === "undefined") return "classroom";
+    const embed = new URLSearchParams(window.location.search).get("embed");
+    if (embed === "ai-teaching") return "classroom";
+    return getImportanceSource();
+  });
   const [importanceContributions, setImportanceContributions] = useState<Record<
     string,
     Record<string, number>
@@ -250,64 +456,42 @@ export function KgPage() {
     }
   > | null>(null);
   const [assetsLibrary, setAssetsLibrary] = useState<AssetsLibrary | null>(null);
+  const [entityDefinitions, setEntityDefinitions] = useState<Record<string, string>>({});
   const [importanceBase, setImportanceBase] = useState<Record<string, number> | null>(null);
-  const [importanceMin, setImportanceMin] = useState(defaultImportanceFilter);
-  /** 三位数字草稿（编辑中可暂时为空）；提交后与 importanceMin 同步 */
-  const [importanceDigitDraft, setImportanceDigitDraft] = useState<
-    [string, string, string]
-  >(() => {
-    const [a, b, c] = importanceDigits(defaultImportanceFilter);
-    return [String(a), String(b), String(c)];
-  });
-  /** reveal=临时显示被重要性阈值筛掉的实体（灰色弱化）；hide=删除 */
+  const [importanceKeepPercent, setImportanceKeepPercent] = useState(
+    DEFAULT_COURSE_IMPORTANCE_KEEP,
+  );
+  const [importancePercentDraft, setImportancePercentDraft] = useState(
+    String(DEFAULT_COURSE_IMPORTANCE_KEEP),
+  );
+  const [importanceSliderActive, setImportanceSliderActive] = useState(false);
+  const [importanceSliderHover, setImportanceSliderHover] = useState<{
+    percent: number;
+    ratio: number;
+  } | null>(null);
+  /** reveal=临时显示被重要性筛选掉的实体（灰色弱化）；hide=删除 */
   const [revealFilteredEntities, setRevealFilteredEntities] = useState(false);
-
-  const syncImportanceDigits = (v: number) => {
-    const [a, b, c] = importanceDigits(v);
-    setImportanceDigitDraft([String(a), String(b), String(c)]);
-  };
-
-  const commitImportanceMin = (next: number) => {
-    const v = roundImportance(next);
-    setImportanceMin(v);
-    syncImportanceDigits(v);
-    if (v <= 0) setRevealFilteredEntities(false);
-  };
-
-  const setImportanceDigit = (pos: 0 | 1 | 2, digit: number) => {
-    let [a, b, c] = importanceDigits(importanceMin);
-    if (pos === 0) {
-      a = digit <= 0 ? 0 : 1;
-      if (a === 1) {
-        b = 0;
-        c = 0;
-      }
-    } else if (pos === 1) {
-      b = Math.min(9, Math.max(0, digit));
-      if (a === 1) a = 0;
-    } else {
-      c = Math.min(9, Math.max(0, digit));
-      if (a === 1) a = 0;
-    }
-    commitImportanceMin(digitsToImportance(a, b, c));
-  };
-
-  /** 按位 ±1，低位满 9 进位、为 0 退位（在 0.00～1.00 内） */
-  const nudgeImportanceDigit = (pos: 0 | 1 | 2, delta: number) => {
-    const step = pos === 0 ? 100 : pos === 1 ? 10 : 1;
-    const cents = Math.round(roundImportance(importanceMin) * 100);
-    const next = Math.min(100, Math.max(0, cents + delta * step));
-    commitImportanceMin(next / 100);
-  };
 
   const [lecFilter, setLecFilter] = useState("");
   const [cueFilter, setCueFilter] = useState<string | null>(null);
   const [highlightKey, setHighlightKey] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<VisNode | null>(null);
   const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
-  const [detailCollapsed, setDetailCollapsed] = useState(false);
-  const [detailPanelOpen, setDetailPanelOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [detailCollapsed, setDetailCollapsed] = useState(
+    () => String(searchParams.get("embed") || "").trim() === "ai-teaching",
+  );
+  const [detailPanelOpen, setDetailPanelOpen] = useState(true);
+  /** 选中实体/关系时仅展开「选中详情」，其余侧栏卡片默认收起 */
+  const [edgesPanelOpen, setEdgesPanelOpen] = useState(false);
+  const [assetsPanelOpen, setAssetsPanelOpen] = useState(false);
+  const [videoPanelOpen, setVideoPanelOpen] = useState(false);
+  const [exercisePanelOpen, setExercisePanelOpen] = useState(false);
+  const [animationPanelOpen, setAnimationPanelOpen] = useState(false);
+  const [mediaPanelOpen, setMediaPanelOpen] = useState(false);
+  const [hiddenPanelOpen, setHiddenPanelOpen] = useState(false);
+  const [panelEditMode, setPanelEditMode] = useState(false);
+  const [hiddenNodeIds, setHiddenNodeIds] = useState<Record<string, string>>({});
+  const [hiddenEdgeIds, setHiddenEdgeIds] = useState<Record<string, string>>({});
   const [kgPatch, setKgPatch] = useState<KgEditPatch>(() => emptyKgEditPatch());
   const [editBusy, setEditBusy] = useState(false);
   const [liveGraphVersion, setLiveGraphVersion] = useState(0);
@@ -316,6 +500,8 @@ export function KgPage() {
   const [hideRelatedWith, setHideRelatedWith] = useState(true);
   const [entityQuery, setEntityQuery] = useState("");
   const [entitySearchOpen, setEntitySearchOpen] = useState(false);
+  /** 搜索选中但当前重要性过滤未保留的节点，强制钉回画布 */
+  const [pinnedEntityIds, setPinnedEntityIds] = useState<string[]>([]);
   const [focusNodeRequest, setFocusNodeRequest] = useState<{
     id: string;
     seq: number;
@@ -323,20 +509,49 @@ export function KgPage() {
   const [exportingPng, setExportingPng] = useState(false);
   const entitySearchRef = useRef<HTMLDivElement>(null);
   const posCacheRef = useRef<Record<string, { x: number; y: number }>>({});
+  /** 整课过滤累计 |Δ%|；≥5 触发重画并清零（仅 ≤500 节点软布局时） */
+  const importanceDeltaAccumRef = useRef(0);
+  const visibleNodeCountRef = useRef(0);
+  const [forceRelayoutToken, setForceRelayoutToken] = useState(0);
+  /** 整课动态布局节点上限：以内用单课式软增减+力导向，以上整图重画 */
+  const COURSE_SOFT_LAYOUT_MAX = 500;
+  /** 避免改重要性筛网时反复用共享选中 focusEntity，造成「未点击却高亮」 */
+  const focusRestoreKeyRef = useRef("");
   const graphRef = useRef<GraphCanvasHandle>(null);
   const resourceMenuRef = useRef<HTMLDivElement>(null);
   const resourceRequestSeq = useRef(0);
-  const [resourceMenu, setResourceMenu] = useState<{
-    nodeId: string;
-    nodeLabel: string;
-    nodeAliases: string[];
-    x: number;
-    y: number;
+  const sideResourceSeq = useRef(0);
+  const [sideLinkedResources, setSideLinkedResources] = useState<{
+    targetKey: string;
+    mode: "node" | "edge";
     loading: boolean;
     resources: LinkedKnowledgeResource[];
     warnings: string[];
     error: string;
   } | null>(null);
+  const [graphCtxMenu, setGraphCtxMenu] = useState<
+    | {
+        kind: "node";
+        nodeId: string;
+        nodeLabel: string;
+        nodeAliases: string[];
+        meta: VisNode;
+        x: number;
+        y: number;
+        loading: boolean;
+        resources: LinkedKnowledgeResource[];
+        warnings: string[];
+        error: string;
+      }
+    | {
+        kind: "edge";
+        edgeId: string;
+        label: string;
+        x: number;
+        y: number;
+      }
+    | null
+  >(null);
 
   const parentOrigin = useMemo(() => {
     if (typeof document === "undefined" || !document.referrer) return "";
@@ -387,7 +602,7 @@ export function KgPage() {
     );
   };
 
-  const openResourceMenu = async (
+  const openNodeContextMenu = async (
     nodeId: string,
     meta: VisNode,
     point: { clientX: number; clientY: number },
@@ -396,37 +611,24 @@ export function KgPage() {
     setSelectedEdgeId(null);
     setFocusEdgeIds(null);
     const seq = ++resourceRequestSeq.current;
-    const menuGutter = 12;
-    const menuWidth = Math.min(390, Math.max(0, window.innerWidth - menuGutter * 2));
-    const menuHeight = Math.min(560, Math.max(0, window.innerHeight - menuGutter * 2));
-    const x = Math.min(
-      Math.max(menuGutter, point.clientX),
-      Math.max(menuGutter, window.innerWidth - menuWidth - menuGutter),
-    );
-    const y = Math.min(
-      Math.max(menuGutter, point.clientY),
-      Math.max(menuGutter, window.innerHeight - menuHeight - menuGutter),
-    );
+    const pos = clampMenuPos(point, 320, 420);
     const nodeAliases = Array.isArray(meta.aliases)
       ? meta.aliases.map((value) => String(value || "").trim()).filter(Boolean)
       : [];
-    setResourceMenu({
+    setGraphCtxMenu({
+      kind: "node",
       nodeId,
       nodeLabel: meta.label || nodeId.split("/")[0] || nodeId,
       nodeAliases,
-      x,
-      y,
-      loading: true,
+      meta,
+      x: pos.x,
+      y: pos.y,
+      loading: Boolean(resourceCourseId),
       resources: [],
       warnings: [],
       error: "",
     });
-    if (!resourceCourseId) {
-      setResourceMenu((current) => current && current.nodeId === nodeId
-        ? { ...current, loading: false, error: "嵌入地址缺少 course_id" }
-        : current);
-      return;
-    }
+    if (!resourceCourseId) return;
     try {
       const result = await fetchLinkedKnowledgeResources({
         courseId: resourceCourseId,
@@ -435,35 +637,179 @@ export function KgPage() {
         ...linkedResourceNodeContext(meta),
       });
       if (seq !== resourceRequestSeq.current) return;
-      setResourceMenu((current) => current && current.nodeId === nodeId
-        ? {
-            ...current,
-            loading: false,
-            resources: result.resources,
-            warnings: result.warnings,
-          }
-        : current);
+      setGraphCtxMenu((current) =>
+        current && current.kind === "node" && current.nodeId === nodeId
+          ? {
+              ...current,
+              loading: false,
+              resources: result.resources,
+              warnings: result.warnings,
+            }
+          : current,
+      );
     } catch (reason) {
       if (seq !== resourceRequestSeq.current) return;
-      setResourceMenu((current) => current && current.nodeId === nodeId
-        ? {
-            ...current,
-            loading: false,
-            error: reason instanceof Error ? reason.message : String(reason),
-          }
-        : current);
+      setGraphCtxMenu((current) =>
+        current && current.kind === "node" && current.nodeId === nodeId
+          ? {
+              ...current,
+              loading: false,
+              error: reason instanceof Error ? reason.message : String(reason),
+            }
+          : current,
+      );
     }
   };
 
+  const openEdgeContextMenu = (
+    edgeId: string,
+    meta: VisEdge,
+    point: { clientX: number; clientY: number },
+  ) => {
+    const pos = clampMenuPos(point, 260, 200);
+    setGraphCtxMenu({
+      kind: "edge",
+      edgeId,
+      label: edgeMenuLabel({
+        from: String(meta.from || ""),
+        to: String(meta.to || ""),
+        relation: String(meta._relation || ""),
+      }),
+      x: pos.x,
+      y: pos.y,
+    });
+  };
+
+  const hideEntity = (nodeId: string, label: string) => {
+    setHiddenNodeIds((prev) => ({ ...prev, [nodeId]: label || nodeId.split("/")[0] || nodeId }));
+    if (selectedNode?.id != null && String(selectedNode.id) === nodeId) {
+      setSelectedNode(null);
+    }
+    setSelectedEdgeId(null);
+    setFocusEdgeIds(null);
+    setPanelEditMode(false);
+    setGraphCtxMenu(null);
+  };
+
+  const hideEdge = (edgeId: string, label: string) => {
+    setHiddenEdgeIds((prev) => ({ ...prev, [edgeId]: label || edgeId }));
+    if (selectedEdgeId === edgeId) {
+      setSelectedEdgeId(null);
+      setFocusEdgeIds(null);
+    }
+    setPanelEditMode(false);
+    setGraphCtxMenu(null);
+  };
+
+  const unhideEntity = (nodeId: string) => {
+    setHiddenNodeIds((prev) => {
+      const next = { ...prev };
+      delete next[nodeId];
+      return next;
+    });
+  };
+
+  const unhideEdge = (edgeId: string) => {
+    setHiddenEdgeIds((prev) => {
+      const next = { ...prev };
+      delete next[edgeId];
+      return next;
+    });
+  };
+
+  const beginEditEntity = (meta: VisNode) => {
+    if (!canEditGraph) return;
+    setSelectedNode(meta);
+    setSelectedEdgeId(null);
+    setFocusEdgeIds(null);
+    setPanelEditMode(true);
+    setDetailCollapsed(false);
+    setDetailPanelOpen(true);
+    setGraphCtxMenu(null);
+  };
+
+  const beginEditEdge = (edgeId: string) => {
+    if (!canEditGraph) return;
+    setFocusNodeRequest(null);
+    setSelectedNode(null);
+    setSelectedEdgeId(edgeId);
+    setFocusEdgeIds([edgeId]);
+    setPanelEditMode(true);
+    setDetailCollapsed(false);
+    setDetailPanelOpen(true);
+    setGraphCtxMenu(null);
+  };
+
   const openLinkedResource = (resource: LinkedKnowledgeResource) => {
+    const selectedKp = String(selectedNode?.id || "").trim();
+    const edgeEndpointKp =
+      selectedEdgeId && displayStage
+        ? String(
+            (displayStage.edges || []).find(
+              (e) => String(e.id) === String(selectedEdgeId),
+            )?.from || "",
+          ).trim()
+        : "";
+    const seedKp = selectedKp || edgeEndpointKp;
+    const baseMeta: Record<string, unknown> = {
+      ...(resource.metadata || {}),
+      course_id:
+        (resource.metadata as Record<string, unknown> | undefined)?.course_id ||
+        resourceCourseId ||
+        course,
+    };
+    const withCourse: LinkedKnowledgeResource = {
+      ...resource,
+      course_id: resource.course_id || resourceCourseId || course,
+      metadata: baseMeta,
+    };
+    const enriched: LinkedKnowledgeResource =
+      seedKp &&
+      (withCourse.resource_type === "video" ||
+        withCourse.resource_type === "exercise")
+        ? {
+            ...withCourse,
+            metadata: {
+              ...baseMeta,
+              knowledge_point_id: baseMeta.knowledge_point_id || seedKp,
+              seed_knowledge_point_id:
+                baseMeta.seed_knowledge_point_id || seedKp,
+              kp: baseMeta.kp || seedKp,
+            },
+          }
+        : withCourse;
     if (embedMode === "ai-teaching" && parentOrigin) {
-      emitKnowledgeResourceOpen(resource, parentOrigin);
-      setResourceMenu(null);
+      emitKnowledgeResourceOpen(enriched, parentOrigin);
+      setGraphCtxMenu(null);
       return;
     }
-    if (resource.url) {
-      window.open(resource.url, "_blank", "noopener,noreferrer");
-      setResourceMenu(null);
+    if (enriched.resource_type === "video") {
+      const videoId = String(
+        enriched.metadata?.video_id || enriched.resource_id || "",
+      ).trim();
+      const startSec = Number(enriched.start_sec);
+      const lectureGuess = Number.isFinite(Number(videoId))
+        ? String(Math.floor(Number(videoId)) + 1)
+        : videoId || "1";
+      const next = new URLSearchParams();
+      if (selectedKp) next.set("kp", selectedKp);
+      if (Number.isFinite(startSec)) next.set("t", String(Math.floor(startSec)));
+      if (videoId) {
+        next.set("video_id", videoId);
+        next.set("lec", lectureGuess);
+      }
+      if (parentOrigin) next.set("parent_origin", parentOrigin);
+      if (kgLaunchToken) next.set("kg_token", kgLaunchToken);
+      const qs = next.toString();
+      navigate(
+        `${coursePath(course, `/apps/review/${lectureGuess}`)}${qs ? `?${qs}` : ""}`,
+      );
+      setGraphCtxMenu(null);
+      return;
+    }
+    if (enriched.url) {
+      window.open(enriched.url, "_blank", "noopener,noreferrer");
+      setGraphCtxMenu(null);
       return;
     }
     window.alert("该资源需要从 AI-Teaching 嵌入页面打开");
@@ -471,10 +817,10 @@ export function KgPage() {
 
   useEffect(() => {
     const close = (event: MouseEvent) => {
-      if (!resourceMenuRef.current?.contains(event.target as Node)) setResourceMenu(null);
+      if (!resourceMenuRef.current?.contains(event.target as Node)) setGraphCtxMenu(null);
     };
     const key = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setResourceMenu(null);
+      if (event.key === "Escape") setGraphCtxMenu(null);
     };
     document.addEventListener("mousedown", close);
     document.addEventListener("keydown", key);
@@ -557,6 +903,46 @@ export function KgPage() {
       .catch(() => setAssetsLibrary(null));
   }, [course]);
 
+  useEffect(() => {
+    fetch(`${courseDataUrl(course, "entity_definitions.json")}?t=${Date.now()}`, {
+      cache: "no-store",
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: Record<string, string> | null) => {
+        setEntityDefinitions(j && typeof j === "object" ? j : {});
+      })
+      .catch(() => setEntityDefinitions({}));
+  }, [course]);
+
+  useEffect(() => {
+    if (!isAiTeachingEmbed && !isVideoSearchEmbed) return;
+    if (importanceSource !== "classroom") {
+      setImportanceSourceState("classroom");
+      setImportanceSource("classroom");
+    }
+  }, [isAiTeachingEmbed, isVideoSearchEmbed, importanceSource]);
+
+  useEffect(() => {
+    if (!embedMode || !kgLaunchToken) {
+      setVerifiedRole("");
+      return;
+    }
+    let cancelled = false;
+    mmkgLogin(kgLaunchToken)
+      .then((claims) => {
+        if (!cancelled) setVerifiedRole(claims.role || "");
+      })
+      .catch(() => {
+        if (!cancelled) setVerifiedRole("");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [embedMode, kgLaunchToken]);
+
+  useEffect(() => {
+    if (!canEditGraph && panelEditMode) setPanelEditMode(false);
+  }, [canEditGraph, panelEditMode]);
 
   const readyLectures = useMemo(() => {
     const s = new Set<string>();
@@ -649,6 +1035,11 @@ export function KgPage() {
     [catalog, readyLectures]
   );
 
+  // 切范围才清空课堂筛选；勿在加载 effect 里清，否则选单课会立刻跳回整课
+  useEffect(() => {
+    setLecFilter("");
+  }, [scope, lectureId, rawSessionId, course]);
+
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
@@ -657,11 +1048,12 @@ export function KgPage() {
     setSelectedEdgeId(null);
     setFocusEdgeIds(null);
     setHighlightKey(null);
-    setLecFilter("");
     setCueFilter(null);
     setPipelineCues([]);
     setPptGallery([]);
     setMultiRelDecisions({});
+    setPropertyMergeDecisions({});
+    setPrecomputedKg(null);
     setMmkgEnrichment(new Map());
     setEntityQuery("");
     setEntitySearchOpen(false);
@@ -676,49 +1068,193 @@ export function KgPage() {
           ? `${sessionPair[0]}_${sessionPair[1]}`
           : "course";
 
+    const finishLoaded = (entry: {
+      precomputedKg: KgProcessedArtifact | null;
+      pipelineCues: PipelineCueBundle[];
+      pptGallery: string[];
+      multiRelDecisions: Record<string, MultiRelCollapseDecision>;
+      propertyMergeDecisions: Record<string, PropertyMergeDecision>;
+      mmkgEnrichment: Map<string, MmkgEntityEnrichment>;
+      kgPatch: KgEditPatch;
+    }) => {
+      if (cancelled) return;
+      setPrecomputedKg(entry.precomputedKg);
+      setPipelineCues(entry.pipelineCues);
+      setPptGallery(entry.pptGallery);
+      setMultiRelDecisions(entry.multiRelDecisions);
+      setPropertyMergeDecisions(entry.propertyMergeDecisions);
+      setMmkgEnrichment(entry.mmkgEnrichment);
+      setKgPatch(entry.kgPatch);
+      setLoading(false);
+    };
+
     const run = async () => {
-      if (embedMode && integrationCourseId && kgLaunchToken) {
-        const live = await fetchMmkgGraph(integrationCourseId, kgLaunchToken, "fused");
+      if (isGraphOnlyEmbed && integrationCourseId && !kgLaunchToken) {
         if (cancelled) return;
-        const nodes = (Array.isArray(live.nodes) ? live.nodes : []).map((node) => ({
-          ...node,
-          id: String(node.id || ""),
-          label: String(node.zh_name || node.name || node.en_name || node.id || ""),
-          title: String(node.info || node.description || ""),
-        })).filter((node) => node.id);
-        const edges = (Array.isArray(live.edges) ? live.edges : []).map((edge, index) => ({
-          ...edge,
-          id: String(edge.id || `mmkg-edge:${index}`),
-          from: String(edge.source || edge.from || ""),
-          to: String(edge.target || edge.to || ""),
-          label: String(edge.relation || edge.label || ""),
-          relation: String(edge.relation || edge.label || ""),
-        })).filter((edge) => edge.from && edge.to);
-        if (parentOrigin && window.parent !== window) {
-          window.parent.postMessage(
-            {
-              type: "kg:graph-ready",
-              payload: {
-                course_id: integrationCourseId,
-                nodes,
-              },
-            },
-            parentOrigin,
-          );
-        }
-        setPipelineCues([{
-          cueId: "mmkg-live",
-          lectureId: "all",
-          text: "",
-          nodes,
-          edges,
-          edgeCount: edges.length,
-        }]);
-        setPptGallery([]);
-        setMultiRelDecisions({});
-        setMmkgEnrichment(new Map());
-        setKgPatch(emptyKgEditPatch(course, "course"));
+        setError("缺少 kg_token，无法加载动态知识图谱");
         setLoading(false);
+        return;
+      }
+      if (embedMode && integrationCourseId && kgLaunchToken) {
+        try {
+          // 单课/课堂：优先本地 kg_processed（含边）；整课才拉 live fused
+          const patchPromiseEmbed = fetchKgEdits(course, patchScopeId).catch(() =>
+            emptyKgEditPatch(course, patchScopeId),
+          );
+          if (scope === "lecture" && lectureId) {
+            const pre = await tryLoadKgProcessed(course, "lecture", {
+              lectureId: String(lectureId),
+            });
+            if (pre) {
+              const [enrich, patch, propMerge] = await Promise.all([
+                loadMmkgEntityEnrichment(course, String(lectureId)),
+                patchPromiseEmbed,
+                tryLoadPropertyMerge(course, {
+                  scope: "lecture",
+                  lectureId: String(lectureId),
+                }),
+              ]);
+              if (cancelled) return;
+              finishLoaded({
+                precomputedKg: pre,
+                pipelineCues: [],
+                pptGallery: [],
+                multiRelDecisions: {},
+                propertyMergeDecisions: propMerge,
+                mmkgEnrichment: enrich,
+                kgPatch: patch,
+              });
+              return;
+            }
+          }
+          if (scope === "session" && sessionPair) {
+            const pre = await tryLoadKgProcessed(course, "session", {
+              sessionPair,
+            });
+            if (pre) {
+              const [a, b] = sessionPair;
+              const [enrichA, enrichB, patch, propA, propB] = await Promise.all([
+                loadMmkgEntityEnrichment(course, a),
+                loadMmkgEntityEnrichment(course, b),
+                patchPromiseEmbed,
+                tryLoadPropertyMerge(course, { scope: "lecture", lectureId: a }),
+                tryLoadPropertyMerge(course, { scope: "lecture", lectureId: b }),
+              ]);
+              if (cancelled) return;
+              finishLoaded({
+                precomputedKg: pre,
+                pipelineCues: [],
+                pptGallery: [],
+                multiRelDecisions: {},
+                propertyMergeDecisions: { ...propA, ...propB },
+                mmkgEnrichment: mergeMmkgEnrichmentMaps(enrichA, enrichB),
+                kgPatch: patch,
+              });
+              return;
+            }
+          }
+          if (scope === "course" && lecFilter) {
+            const ids = parseLectureFilterIds(lecFilter);
+            if (ids.length === 2) {
+              const pre = await tryLoadKgProcessed(course, "session", {
+                sessionPair: [ids[0], ids[1]],
+              });
+              if (pre) {
+                const [enrichA, enrichB, patch] = await Promise.all([
+                  loadMmkgEntityEnrichment(course, ids[0]),
+                  loadMmkgEntityEnrichment(course, ids[1]),
+                  patchPromiseEmbed,
+                ]);
+                if (cancelled) return;
+                finishLoaded({
+                  precomputedKg: pre,
+                  pipelineCues: [],
+                  pptGallery: [],
+                  multiRelDecisions: {},
+                  propertyMergeDecisions: {},
+                  mmkgEnrichment: mergeMmkgEnrichmentMaps(enrichA, enrichB),
+                  kgPatch: patch,
+                });
+                return;
+              }
+            } else if (ids.length === 1) {
+              const pre = await tryLoadKgProcessed(course, "lecture", {
+                lectureId: ids[0],
+              });
+              if (pre) {
+                const [enrich, patch] = await Promise.all([
+                  loadMmkgEntityEnrichment(course, ids[0]),
+                  patchPromiseEmbed,
+                ]);
+                if (cancelled) return;
+                finishLoaded({
+                  precomputedKg: pre,
+                  pipelineCues: [],
+                  pptGallery: [],
+                  multiRelDecisions: {},
+                  propertyMergeDecisions: {},
+                  mmkgEnrichment: enrich,
+                  kgPatch: patch,
+                });
+                return;
+              }
+            }
+          }
+
+          const live = await fetchMmkgGraph(integrationCourseId, kgLaunchToken, "fused");
+          if (cancelled) return;
+          const nodes = (Array.isArray(live.nodes) ? live.nodes : []).map((node) => {
+            const impRaw = node.importance;
+            const impNum = impRaw != null ? Number(impRaw) : NaN;
+            return {
+              ...node,
+              id: String(node.id || ""),
+              label: String(node.zh_name || node.name || node.en_name || node.id || ""),
+              title: String(node.info || node.description || ""),
+              ...(Number.isFinite(impNum) ? { importance: impNum } : {}),
+            };
+          }).filter((node) => node.id);
+          const edges = (Array.isArray(live.edges) ? live.edges : []).map((edge, index) => ({
+            ...edge,
+            id: String(edge.id || `mmkg-edge:${index}`),
+            from: String(edge.source || edge.from || ""),
+            to: String(edge.target || edge.to || ""),
+            label: String(edge.relation || edge.label || ""),
+            relation: String(edge.relation || edge.label || ""),
+          })).filter((edge) => edge.from && edge.to);
+          if (parentOrigin && window.parent !== window) {
+            window.parent.postMessage(
+              {
+                type: "kg:graph-ready",
+                payload: {
+                  course_id: integrationCourseId,
+                  nodes,
+                },
+              },
+              parentOrigin,
+            );
+          }
+          finishLoaded({
+            precomputedKg: null,
+            pipelineCues: [{
+              cueId: "mmkg-live",
+              lectureId: "all",
+              text: "",
+              nodes,
+              edges,
+              edgeCount: edges.length,
+            }],
+            pptGallery: [],
+            multiRelDecisions: {},
+            propertyMergeDecisions: {},
+            mmkgEnrichment: new Map(),
+            kgPatch: emptyKgEditPatch(course, "course"),
+          });
+        } catch (err) {
+          if (cancelled) return;
+          setError(err instanceof Error ? err.message : "动态知识图谱加载失败");
+          setLoading(false);
+        }
         return;
       }
       const patchPromise = fetchKgEdits(course, patchScopeId).catch(() =>
@@ -744,35 +1280,92 @@ export function KgPage() {
         const lecIds = readyLectures.size
           ? [...readyLectures]
           : ALL_LECTURES;
-        const [loaded, enrich, patch, ...collapseMaps] = await Promise.all([
+        const pre = await tryLoadKgProcessed(course, "course");
+        if (pre) {
+          const [enrich, patch, propMerge] = await Promise.all([
+            loadMmkgEntityEnrichmentForLectures(course, lecIds.map(String)),
+            patchPromise,
+            tryLoadPropertyMerge(course, { scope: "course" }),
+          ]);
+          if (cancelled) return;
+          finishLoaded({
+            precomputedKg: pre,
+            pipelineCues: [],
+            pptGallery: [],
+            multiRelDecisions: {},
+            propertyMergeDecisions: propMerge,
+            mmkgEnrichment: enrich,
+            kgPatch: patch,
+          });
+          return;
+        }
+        const [loaded, enrich, patch, propMerge, ...collapseMaps] = await Promise.all([
           loadCoursePipelineData(lecIds, course),
           loadMmkgEntityEnrichmentForLectures(course, lecIds.map(String)),
           patchPromise,
+          tryLoadPropertyMerge(course, { scope: "course" }),
           ...lecIds.map((id) => loadCollapse(String(id))),
         ]);
         const merged: Record<string, MultiRelCollapseDecision> = {};
         for (const m of collapseMaps) Object.assign(merged, m);
         if (cancelled) return;
-        setPipelineCues(loaded.cues);
-        setPptGallery(loaded.pptGallery);
-        setMultiRelDecisions(merged);
-        setMmkgEnrichment(enrich);
-        setKgPatch(patch);
-        setLoading(false);
+        finishLoaded({
+          precomputedKg: null,
+          pipelineCues: loaded.cues,
+          pptGallery: loaded.pptGallery,
+          multiRelDecisions: merged,
+          propertyMergeDecisions: propMerge,
+          mmkgEnrichment: enrich,
+          kgPatch: patch,
+        });
         return;
       }
 
       if (scope === "session" && sessionPair) {
         const [a, b] = sessionPair;
-        const [loadedA, loadedB, enrichA, enrichB, decA, decB, patch] = await Promise.all([
-          loadLecturePipelineData(a, course),
-          loadLecturePipelineData(b, course),
-          loadMmkgEntityEnrichment(course, a),
-          loadMmkgEntityEnrichment(course, b),
-          loadCollapse(a),
-          loadCollapse(b),
-          patchPromise,
-        ]);
+        const pre = await tryLoadKgProcessed(course, "session", { sessionPair });
+        if (pre) {
+          const [enrichA, enrichB, patch, loadedA, loadedB, propA, propB] =
+            await Promise.all([
+              loadMmkgEntityEnrichment(course, a),
+              loadMmkgEntityEnrichment(course, b),
+              patchPromise,
+              loadLecturePipelineData(a, course).catch(() => null),
+              loadLecturePipelineData(b, course).catch(() => null),
+              tryLoadPropertyMerge(course, { scope: "lecture", lectureId: a }),
+              tryLoadPropertyMerge(course, { scope: "lecture", lectureId: b }),
+            ]);
+          if (cancelled) return;
+          finishLoaded({
+            precomputedKg: pre,
+            pipelineCues: [],
+            pptGallery: [
+              ...new Set(
+                [
+                  ...(loadedA?.pptGallery || []),
+                  ...(loadedB?.pptGallery || []),
+                ].filter(Boolean),
+              ),
+            ],
+            multiRelDecisions: {},
+            propertyMergeDecisions: { ...propA, ...propB },
+            mmkgEnrichment: mergeMmkgEnrichmentMaps(enrichA, enrichB),
+            kgPatch: patch,
+          });
+          return;
+        }
+        const [loadedA, loadedB, enrichA, enrichB, decA, decB, patch, propA, propB] =
+          await Promise.all([
+            loadLecturePipelineData(a, course),
+            loadLecturePipelineData(b, course),
+            loadMmkgEntityEnrichment(course, a),
+            loadMmkgEntityEnrichment(course, b),
+            loadCollapse(a),
+            loadCollapse(b),
+            patchPromise,
+            tryLoadPropertyMerge(course, { scope: "lecture", lectureId: a }),
+            tryLoadPropertyMerge(course, { scope: "lecture", lectureId: b }),
+          ]);
         if (cancelled) return;
         const cues = [...loadedA.cues, ...loadedB.cues].map((c, i) => ({
           ...c,
@@ -784,32 +1377,66 @@ export function KgPage() {
           })),
           edgeCount: c.edges.length,
         }));
-        const enrich = mergeMmkgEnrichmentMaps(enrichA, enrichB);
-        setPipelineCues(cues);
-        setPptGallery(
-          [...new Set([...loadedA.pptGallery, ...loadedB.pptGallery].filter(Boolean))]
-        );
-        setMultiRelDecisions({ ...decA, ...decB });
-        setMmkgEnrichment(enrich);
-        setKgPatch(patch);
-        setLoading(false);
+        finishLoaded({
+          precomputedKg: null,
+          pipelineCues: cues,
+          pptGallery: [
+            ...new Set([...loadedA.pptGallery, ...loadedB.pptGallery].filter(Boolean)),
+          ],
+          multiRelDecisions: { ...decA, ...decB },
+          propertyMergeDecisions: { ...propA, ...propB },
+          mmkgEnrichment: mergeMmkgEnrichmentMaps(enrichA, enrichB),
+          kgPatch: patch,
+        });
         return;
       }
 
       if (scope === "lecture" && lectureId) {
-        const [loaded, enrich, decisions, patch] = await Promise.all([
+        const pre = await tryLoadKgProcessed(course, "lecture", {
+          lectureId: String(lectureId),
+        });
+        if (pre) {
+          const [enrich, patch, loaded, propMerge] = await Promise.all([
+            loadMmkgEntityEnrichment(course, String(lectureId)),
+            patchPromise,
+            loadLecturePipelineData(String(lectureId), course).catch(() => null),
+            tryLoadPropertyMerge(course, {
+              scope: "lecture",
+              lectureId: String(lectureId),
+            }),
+          ]);
+          if (cancelled) return;
+          finishLoaded({
+            precomputedKg: pre,
+            pipelineCues: [],
+            pptGallery: loaded?.pptGallery || [],
+            multiRelDecisions: {},
+            propertyMergeDecisions: propMerge,
+            mmkgEnrichment: enrich,
+            kgPatch: patch,
+          });
+          return;
+        }
+        const [loaded, enrich, decisions, patch, propMerge] = await Promise.all([
           loadLecturePipelineData(String(lectureId), course),
           loadMmkgEntityEnrichment(course, String(lectureId)),
           loadCollapse(String(lectureId)),
           patchPromise,
+          tryLoadPropertyMerge(course, {
+            scope: "lecture",
+            lectureId: String(lectureId),
+          }),
         ]);
         if (cancelled) return;
-        setPipelineCues(loaded.cues);
-        setPptGallery(loaded.pptGallery);
-        setMultiRelDecisions(decisions);
-        setMmkgEnrichment(enrich);
-        setKgPatch(patch);
-        setLoading(false);
+        finishLoaded({
+          precomputedKg: null,
+          pipelineCues: loaded.cues,
+          pptGallery: loaded.pptGallery,
+          multiRelDecisions: decisions,
+          propertyMergeDecisions: propMerge,
+          mmkgEnrichment: enrich,
+          kgPatch: patch,
+        });
         return;
       }
 
@@ -832,12 +1459,15 @@ export function KgPage() {
     sessionPair,
     course,
     embedMode,
+    isGraphOnlyEmbed,
     integrationCourseId,
     kgLaunchToken,
     parentOrigin,
     liveGraphVersion,
     // 仅整课依赖讲次清单；避免 catalog 晚到时重载单讲
     scope === "course" ? [...readyLectures].sort().join(",") : "",
+    // 整课下拉课堂筛选：切到对应 session/lecture 预计算
+    scope === "course" ? lecFilter : "",
   ]);
 
   const contextKey = useMemo(() => {
@@ -847,6 +1477,35 @@ export function KgPage() {
     return "course";
   }, [scope, lectureId, sessionPair]);
 
+  // 整课默认 5%、单课/课堂默认 20%；各 context 独立记住当前过滤值
+  useEffect(() => {
+    const v = readStoredImportanceKeep(course, contextKey, scope);
+    setImportanceKeepPercent(v);
+    setImportancePercentDraft(String(v));
+    setImportanceSliderActive(false);
+    setImportanceSliderHover(null);
+    importanceDeltaAccumRef.current = 0;
+    if (v >= 100) setRevealFilteredEntities(false);
+  }, [course, contextKey, scope]);
+
+  const commitImportanceKeepPercent = (next: number) => {
+    const v = clampKeepPercent(next, defaultImportanceKeepForScope(scope));
+    // 累计 |Δ%|≥5 整图重画：仅整课且可见节点 >500 时生效；≤500 只做软增减
+    if (scope === "course" && visibleNodeCountRef.current > COURSE_SOFT_LAYOUT_MAX) {
+      const delta = Math.abs(v - importanceKeepPercent);
+      importanceDeltaAccumRef.current += delta;
+      if (importanceDeltaAccumRef.current >= 5) {
+        importanceDeltaAccumRef.current = 0;
+        posCacheRef.current = {};
+        setForceRelayoutToken((t) => t + 1);
+      }
+    }
+    setImportanceKeepPercent(v);
+    setImportancePercentDraft(String(v));
+    writeStoredImportanceKeep(course, contextKey, v);
+    if (v >= 100) setRevealFilteredEntities(false);
+  };
+
   const editScopeId = useMemo(() => {
     if (scope === "lecture" && lectureId) return String(lectureId);
     if (scope === "session" && sessionPair)
@@ -855,6 +1514,7 @@ export function KgPage() {
   }, [scope, lectureId, sessionPair]);
 
   const handleRenameEntity = async (currentId: string, newId: string) => {
+    if (!canEditGraph) return;
     const nextName = String(newId || "").trim();
     if (!nextName || nextName === currentId) return;
     setEditBusy(true);
@@ -895,6 +1555,7 @@ export function KgPage() {
   };
 
   const handleSaveEdgeEdit = async (edgeId: string, edit: EdgeEdit) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       if (embedMode && integrationCourseId && kgLaunchToken) {
@@ -923,6 +1584,7 @@ export function KgPage() {
   };
 
   const handleClearEdgeEdit = async (edgeId: string) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       const saved = await saveKgEdits(course, editScopeId, {
@@ -937,6 +1599,7 @@ export function KgPage() {
   };
 
   const handleDeleteEntity = async (currentId: string) => {
+    if (!canEditGraph) return;
     const original = findOriginalEntityId(currentId, kgPatch.entityRenames || {});
     setEditBusy(true);
     try {
@@ -961,6 +1624,7 @@ export function KgPage() {
   };
 
   const handleDeleteEdge = async (edgeId: string) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       if (embedMode && integrationCourseId && kgLaunchToken) {
@@ -984,6 +1648,7 @@ export function KgPage() {
   };
 
   const handleRestoreEntity = async (originalId: string) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       const saved = await saveKgEdits(course, editScopeId, {
@@ -998,6 +1663,7 @@ export function KgPage() {
   };
 
   const handleRestoreEdge = async (edgeId: string) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       const saved = await saveKgEdits(course, editScopeId, {
@@ -1012,6 +1678,7 @@ export function KgPage() {
   };
 
   const handleDeletePpt = async (url: string) => {
+    if (!canEditGraph) return;
     const key = String(url || "").trim();
     if (!key) return;
     setEditBusy(true);
@@ -1028,6 +1695,7 @@ export function KgPage() {
   };
 
   const handleRestorePpt = async (url: string) => {
+    if (!canEditGraph) return;
     setEditBusy(true);
     try {
       const saved = await saveKgEdits(course, editScopeId, {
@@ -1142,9 +1810,84 @@ export function KgPage() {
     return scopedImportance.classroom;
   }, [scopedImportance]);
 
-  // 管线：merge 并集 → 去重/规则/节点/孤立处理 → 重要性 → related_with
-  const pipelineView = useMemo(() => {
+  // 管线：优先预计算 kg_processed；否则 merge → process（与百分比筛选拆开）
+  const preparedKg = useMemo(() => {
     if (loading || error) return null;
+
+    // 有预计算（含 embed 单课/课堂 kg_processed）优先；整课 live 时 precomputed 为空才走下方
+    if (precomputedKg) {
+      const patchNeedsRescore =
+        Object.keys(kgPatch.entityRenames || {}).length > 0 ||
+        Object.keys(kgPatch.edgeEdits || {}).length > 0 ||
+        Object.keys(kgPatch.deletedEntities || {}).length > 0 ||
+        Object.keys(kgPatch.deletedEdges || {}).length > 0;
+      let nodes = applyPropertyMergeDecisions(
+        precomputedKg.nodes,
+        propertyMergeDecisions
+      );
+      const baseEdges = [
+        ...precomputedKg.kept_edges,
+        ...(isAiTeachingEmbed ? [] : precomputedKg.process_edges),
+      ];
+      const edited = applyKgEdits(nodes, baseEdges, kgPatch);
+      const keptOnly = edited.edges.filter((e) => !isProcessEdgeSource(e.source));
+      const processOnly = isAiTeachingEmbed
+        ? []
+        : edited.edges.filter((e) => isProcessEdgeSource(e.source));
+      nodes = applyMmkgEnrichmentToNodes(edited.nodes, mmkgEnrichment);
+      let propStats = {
+        layers: precomputedKg.propagate_stats.layers,
+        boosted_nodes: precomputedKg.propagate_stats.boosted_nodes,
+      };
+      if (patchNeedsRescore) {
+        nodes = scoreFragmentClassroomImportance(
+          nodes,
+          keptOnly,
+          precomputedKg.extract_texts || []
+        );
+        const propagated = propagateImportanceToParents(nodes, keptOnly);
+        nodes = propagated.nodes;
+        propStats = {
+          layers: propagated.stats.layers,
+          boosted_nodes: propagated.stats.boosted_nodes,
+        };
+      }
+      const stage: PipelineStage = {
+        id: `kg_processed_${precomputedKg.scope}`,
+        title: precomputedKg.title || `kg_processed_${precomputedKg.scope}`,
+        focus: "graph",
+        nodes,
+        edges: [...keptOnly, ...processOnly],
+        stats: { total: keptOnly.length },
+      };
+      const payload: PipelinePayload = {
+        brand: "MMKG",
+        product: "TeachKG",
+        mode: precomputedKg.scope === "session" ? "session" : "lecture",
+        course_id: course,
+        title: precomputedKg.title,
+        items: [],
+        ppt_gallery: [],
+      };
+      return {
+        live: false as const,
+        payload,
+        built: {
+          stage,
+          payload,
+          cues: [] as PipelineCueBundle[],
+          activeCue: null,
+        },
+        nodes,
+        keptOnly,
+        processOnly,
+        propStats,
+        processStats: precomputedKg.process_stats,
+        cues: [] as PipelineCueBundle[],
+        activeCue: null,
+      };
+    }
+
     if (!pipelineCues.length) return null;
     const built = buildKgViewFromPipeline({
       scope:
@@ -1158,21 +1901,43 @@ export function KgPage() {
       courseId: course,
     });
     if (embedMode && integrationCourseId) {
-      const stage: PipelineStage = {
-        ...built.stage,
-        id: "mmkg-live",
-        focus: "graph",
-        nodes: built.stage.nodes || [],
-        edges: built.stage.edges || [],
-        stats: {
-          ...(built.stage.stats || {}),
-          total: (built.stage.edges || []).length,
-        },
-      };
+      // 动态图谱 live 数据同样挂课堂重要性，供默认保留 5% 筛选
+      let nodes = enrichPipelineNodesWithImportance(built.stage.nodes || [], {
+        scores: scopedImportance.scores,
+        base: importanceBase,
+        classroom: displayClassroom,
+        contributions:
+          importanceSource === "pagerank" ? null : scopedImportance.contributions,
+        displayMode: "classroom",
+      });
+      nodes = applyMmkgEnrichmentToNodes(nodes, mmkgEnrichment);
+      let keptOnly = (built.stage.edges || []).filter(
+        (e) => !isProcessEdgeSource(e.source),
+      );
+      if (scope === "course" && lecFilter) {
+        const filtered = filterLiveGraphByLectures(
+          nodes,
+          keptOnly,
+          parseLectureFilterIds(lecFilter),
+        );
+        nodes = filtered.nodes;
+        keptOnly = filtered.edges;
+      }
+      let propStats = { layers: 0, boosted_nodes: 0 };
+      if (importanceSource !== "pagerank") {
+        const propagated = propagateImportanceToParents(nodes, keptOnly);
+        nodes = propagated.nodes;
+        propStats = propagated.stats;
+      }
       return {
+        live: true as const,
         payload: built.payload,
-        stage,
-        fullStage: stage,
+        built,
+        nodes,
+        keptOnly,
+        processOnly: [] as PipelineEdge[],
+        propStats,
+        processStats: { rule_removed: 0, node_removed: 0, isolated_removed: 0, kept_edges: keptOnly.length },
         cues: built.cues,
         activeCue: built.activeCue,
       };
@@ -1182,7 +1947,11 @@ export function KgPage() {
       built.stage.edges || [],
       { multiRelDecisions }
     );
-    const edited = applyKgEdits(processed.nodes, processed.edges, kgPatch);
+    let mergedNodes = applyPropertyMergeDecisions(
+      processed.nodes,
+      propertyMergeDecisions
+    );
+    const edited = applyKgEdits(mergedNodes, processed.edges, kgPatch);
     let nodes = enrichPipelineNodesWithImportance(edited.nodes, {
       scores: scopedImportance.scores,
       base: importanceBase,
@@ -1192,31 +1961,121 @@ export function KgPage() {
       displayMode: "classroom",
     });
     nodes = applyMmkgEnrichmentToNodes(nodes, mmkgEnrichment);
-    // 重要性只作用于保留边；处理删除边原样挂回供图例
-    const keptOnly = edited.edges.filter(
-      (e) =>
-        (e.source || "") !== "process_rule" &&
-        (e.source || "") !== "process_node" &&
-        (e.source || "") !== "process_isolated"
-    );
-    const processOnly = isAiTeachingEmbed ? [] : edited.edges.filter(
-      (e) =>
-        (e.source || "") === "process_rule" ||
-        (e.source || "") === "process_node" ||
-        (e.source || "") === "process_isolated"
-    );
-    // 阈值筛选始终基于课堂分（enrich 结果）；PR 仅在筛后叠加展示
+    const keptOnly = edited.edges.filter((e) => !isProcessEdgeSource(e.source));
+    const processOnly = isAiTeachingEmbed
+      ? []
+      : edited.edges.filter((e) => isProcessEdgeSource(e.source));
     let propStats = { layers: 0, boosted_nodes: 0 };
     if (importanceSource !== "pagerank") {
       const propagated = propagateImportanceToParents(nodes, keptOnly);
       nodes = propagated.nodes;
       propStats = propagated.stats;
     }
+    return {
+      live: false as const,
+      payload: built.payload,
+      built,
+      nodes,
+      keptOnly,
+      processOnly,
+      propStats,
+      processStats: processed.stats,
+      cues: built.cues,
+      activeCue: built.activeCue,
+    };
+  }, [
+    loading,
+    error,
+    precomputedKg,
+    propertyMergeDecisions,
+    pipelineCues,
+    scope,
+    lectureId,
+    sessionPair,
+    cueFilter,
+    lecFilter,
+    scopedImportance,
+    displayClassroom,
+    importanceSource,
+    importanceBase,
+    mmkgEnrichment,
+    multiRelDecisions,
+    embedMode,
+    integrationCourseId,
+    kgPatch,
+    isAiTeachingEmbed,
+    course,
+  ]);
+
+  const pipelineView = useMemo(() => {
+    if (!preparedKg) return null;
+    if (preparedKg.live) {
+      const mode: ImportanceFilterMode = revealFilteredEntities ? "reveal" : "hide";
+      let imp = applyImportanceFilter(preparedKg.nodes, preparedKg.keptOnly, {
+        keepPercent: importanceKeepPercent,
+        mode,
+        forceKeepIds: pinnedEntityIds,
+      });
+      // 筛选结果无边但原图有边时回退，避免把动态图谱剪成空白
+      if (
+        importanceKeepPercent < 100 &&
+        !imp.edges.length &&
+        preparedKg.keptOnly.length > 0
+      ) {
+        imp = applyImportanceFilter(preparedKg.nodes, preparedKg.keptOnly, {
+          keepPercent: 100,
+          mode,
+          forceKeepIds: pinnedEntityIds,
+        });
+      }
+      const fullStage: PipelineStage = {
+        ...preparedKg.built.stage,
+        id: "mmkg-live",
+        focus: "graph",
+        nodes: preparedKg.nodes,
+        edges: preparedKg.keptOnly,
+        stats: {
+          ...(preparedKg.built.stage.stats || {}),
+          total: preparedKg.keptOnly.length,
+        },
+      };
+      const stage: PipelineStage = {
+        ...fullStage,
+        nodes: imp.nodes,
+        edges: imp.edges,
+        stats: {
+          ...(fullStage.stats || {}),
+          total: imp.edges.length,
+          importance_filtered_nodes: imp.filteredCount,
+          importance_keep_percent: importanceKeepPercent,
+        },
+      };
+      return {
+        payload: preparedKg.payload,
+        stage,
+        fullStage,
+        cues: preparedKg.cues,
+        activeCue: preparedKg.activeCue,
+      };
+    }
     const mode: ImportanceFilterMode = revealFilteredEntities ? "reveal" : "hide";
-    const imp = applyImportanceFilter(nodes, keptOnly, {
-      tau: importanceMin > 0 ? importanceMin : null,
+    let imp = applyImportanceFilter(preparedKg.nodes, preparedKg.keptOnly, {
+      keepPercent: importanceKeepPercent,
       mode,
+      forceKeepIds: pinnedEntityIds,
     });
+    // 单课/课堂节点少时 5% 易剪成无边；与 live 一致回退全量，避免空白画布
+    if (
+      importanceKeepPercent < 100 &&
+      !imp.edges.length &&
+      preparedKg.keptOnly.length > 0
+    ) {
+      imp = applyImportanceFilter(preparedKg.nodes, preparedKg.keptOnly, {
+        keepPercent: 100,
+        mode,
+        forceKeepIds: pinnedEntityIds,
+      });
+    }
     let displayNodes = imp.nodes;
     let displayEdges = imp.edges;
     if (importanceSource === "pagerank") {
@@ -1235,12 +2094,11 @@ export function KgPage() {
         contributions: scopedImportance.contributions,
       });
     }
-    // 处理删除边的端点：高亮处理类时需要节点占位
     const nodeMap = new Map(displayNodes.map((n) => [n.id, n]));
     const builtNodeById = new Map(
-      (built.stage.nodes || []).map((n) => [n.id, n])
+      (preparedKg.built.stage.nodes || []).map((n) => [n.id, n])
     );
-    for (const e of processOnly) {
+    for (const e of preparedKg.processOnly) {
       for (const id of [e.from, e.to]) {
         if (!id || nodeMap.has(id)) continue;
         const prev = builtNodeById.get(id);
@@ -1252,69 +2110,253 @@ export function KgPage() {
         });
       }
     }
-    /** 重要性 / related_with 筛选前的全量，供顶部「总数」稳定展示 */
     const fullStage: PipelineStage = {
-      ...built.stage,
-      nodes,
-      edges: keptOnly,
+      ...preparedKg.built.stage,
+      nodes: preparedKg.nodes,
+      edges: preparedKg.keptOnly,
     };
     const stage: PipelineStage = {
-      ...built.stage,
+      ...preparedKg.built.stage,
       blurb:
-        (built.stage.blurb || "") +
+        (preparedKg.built.stage.blurb || "") +
         " · 后处理：去重合并→层次规则删边→不合适节点→孤立/短路径子图" +
         (importanceSource === "pagerank"
           ? " · 筛选=课堂重要性；展示：PR + 课堂轻量修正"
           : " · 重要性：课堂初值→沿图谱层次边（属于/组成/依赖）向上传递"),
       nodes: [...nodeMap.values()],
-      edges: [...displayEdges, ...processOnly],
+      edges: [...displayEdges, ...preparedKg.processOnly],
       stats: {
-        ...(built.stage.stats || {}),
+        ...(preparedKg.built.stage.stats || {}),
         total: displayEdges.length,
-        process_rule_removed: processed.stats.rule_removed,
-        process_node_removed: processed.stats.node_removed,
-        process_isolated_removed: processed.stats.isolated_removed,
-        process_kept: processed.stats.kept_edges,
+        process_rule_removed: preparedKg.processStats.rule_removed,
+        process_node_removed: preparedKg.processStats.node_removed,
+        process_isolated_removed: preparedKg.processStats.isolated_removed,
+        process_kept: preparedKg.processStats.kept_edges,
         importance_filtered_nodes: imp.filteredCount,
-        importance_min: importanceMin > 0 ? importanceMin : 0,
-        importance_prop_layers: propStats.layers,
-        importance_prop_boosted: propStats.boosted_nodes,
+        importance_keep_percent: importanceKeepPercent,
+        importance_prop_layers: preparedKg.propStats.layers,
+        importance_prop_boosted: preparedKg.propStats.boosted_nodes,
       },
     };
     return {
-      payload: built.payload,
+      payload: preparedKg.payload,
       stage,
       fullStage,
-      cues: built.cues,
-      activeCue: built.activeCue,
+      cues: preparedKg.cues,
+      activeCue: preparedKg.activeCue,
     };
   }, [
-    loading,
-    error,
-    pipelineCues,
-    scope,
-    lectureId,
-    sessionPair,
-    cueFilter,
-    lecFilter,
-    scopedImportance,
-    displayClassroom,
-    importanceSource,
-    importanceMin,
-    importanceBase,
-    mmkgEnrichment,
+    preparedKg,
     revealFilteredEntities,
-    multiRelDecisions,
-    embedMode,
-    integrationCourseId,
+    importanceKeepPercent,
+    importanceSource,
     hideRelatedWith,
-    kgPatch,
+    scopedImportance,
+    pinnedEntityIds,
   ]);
 
   const payload: PipelinePayload | null = pipelineView?.payload || null;
-  const displayStage: PipelineStage | null = pipelineView?.stage
-    ? applyRelatedWithVisibility(pipelineView.stage, hideRelatedWith)
-    : null;
+  const selectedAssetCount = useMemo(() => {
+    if (isGraphOnlyEmbed || !selectedNode?.id || selectedEdgeId) return 0;
+    return countRelatedAssets(String(selectedNode.id), assetsLibrary, {
+      entityAliases: [
+        String(selectedNode.label || ""),
+        ...(Array.isArray(selectedNode.aliases)
+          ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
+          : []),
+      ],
+      lectureId: scope === "lecture" ? lectureId : null,
+      lectureOnly: scope === "lecture",
+      kinds: isAiTeachingEmbed ? ["formula", "example", "theorem"] : undefined,
+    });
+  }, [
+    isGraphOnlyEmbed,
+    selectedNode?.id,
+    selectedNode?.label,
+    selectedNode?.aliases,
+    selectedEdgeId,
+    assetsLibrary,
+    scope,
+    lectureId,
+    isAiTeachingEmbed,
+  ]);
+  // 必须 memo：hideRelatedWith 默认 true 时 applyRelatedWithVisibility 每次 render 都会新建 stage，
+  // 若直接传给 GraphCanvas 会在点选时触发 syncInPlace/全图 update，主线程卡死。
+  const displayStage: PipelineStage | null = useMemo(() => {
+    if (!pipelineView?.stage) return null;
+    return applyGraphHides(
+      applyRelatedWithVisibility(pipelineView.stage, hideRelatedWith),
+      hiddenNodeIds,
+      hiddenEdgeIds,
+    );
+  }, [pipelineView?.stage, hideRelatedWith, hiddenNodeIds, hiddenEdgeIds]);
+
+  // AI-Teaching 嵌入：选中实体 → 视频/练习/动画；选中关系 → 两端共现视频片段
+  useEffect(() => {
+    if (!isAiTeachingEmbed) {
+      setSideLinkedResources(null);
+      return;
+    }
+
+    const credError = !resourceCourseId
+      ? "嵌入地址缺少 course_id"
+      : !kgLaunchToken
+        ? "缺少知识图谱访问凭据"
+        : "";
+
+    if (selectedEdgeId) {
+      const edge =
+        (displayStage?.edges || []).find(
+          (e) => String(e.id) === String(selectedEdgeId),
+        ) || null;
+      if (!edge) {
+        setSideLinkedResources(null);
+        return;
+      }
+      const fromId = String(edge.from || "");
+      const toId = String(edge.to || "");
+      const targetKey = `edge:${selectedEdgeId}`;
+      if (!fromId || !toId) {
+        setSideLinkedResources({
+          targetKey,
+          mode: "edge",
+          loading: false,
+          resources: [],
+          warnings: [],
+          error: "关系缺少端点",
+        });
+        return;
+      }
+      if (credError) {
+        setSideLinkedResources({
+          targetKey,
+          mode: "edge",
+          loading: false,
+          resources: [],
+          warnings: [],
+          error: credError,
+        });
+        return;
+      }
+      const fromNode =
+        (displayStage?.nodes || []).find((n) => String(n.id) === fromId) || null;
+      const toNode =
+        (displayStage?.nodes || []).find((n) => String(n.id) === toId) || null;
+      const seq = ++sideResourceSeq.current;
+      setSideLinkedResources({
+        targetKey,
+        mode: "edge",
+        loading: true,
+        resources: [],
+        warnings: [],
+        error: "",
+      });
+      void Promise.all([
+        fetchLinkedKnowledgeResources({
+          courseId: resourceCourseId,
+          knowledgePointId: fromId,
+          kgToken: kgLaunchToken,
+          ...linkedResourceNodeContext(fromNode),
+        }),
+        fetchLinkedKnowledgeResources({
+          courseId: resourceCourseId,
+          knowledgePointId: toId,
+          kgToken: kgLaunchToken,
+          ...linkedResourceNodeContext(toNode),
+        }),
+      ])
+        .then(([left, right]) => {
+          if (seq !== sideResourceSeq.current) return;
+          setSideLinkedResources({
+            targetKey,
+            mode: "edge",
+            loading: false,
+            resources: [
+              ...intersectVideoResources(left.resources, right.resources),
+              ...unionExerciseResources(left.resources, right.resources),
+              ...unionAnimationResources(left.resources, right.resources),
+            ],
+            warnings: [...(left.warnings || []), ...(right.warnings || [])],
+            error: "",
+          });
+        })
+        .catch((reason) => {
+          if (seq !== sideResourceSeq.current) return;
+          setSideLinkedResources({
+            targetKey,
+            mode: "edge",
+            loading: false,
+            resources: [],
+            warnings: [],
+            error: reason instanceof Error ? reason.message : String(reason),
+          });
+        });
+      return;
+    }
+
+    if (!selectedNode?.id) {
+      setSideLinkedResources(null);
+      return;
+    }
+    const nodeId = String(selectedNode.id);
+    const targetKey = `node:${nodeId}`;
+    if (credError) {
+      setSideLinkedResources({
+        targetKey,
+        mode: "node",
+        loading: false,
+        resources: [],
+        warnings: [],
+        error: credError,
+      });
+      return;
+    }
+    const seq = ++sideResourceSeq.current;
+    setSideLinkedResources({
+      targetKey,
+      mode: "node",
+      loading: true,
+      resources: [],
+      warnings: [],
+      error: "",
+    });
+    void fetchLinkedKnowledgeResources({
+      courseId: resourceCourseId,
+      knowledgePointId: nodeId,
+      kgToken: kgLaunchToken,
+      ...linkedResourceNodeContext(selectedNode),
+    })
+      .then((result) => {
+        if (seq !== sideResourceSeq.current) return;
+        setSideLinkedResources({
+          targetKey,
+          mode: "node",
+          loading: false,
+          resources: result.resources,
+          warnings: result.warnings,
+          error: "",
+        });
+      })
+      .catch((reason) => {
+        if (seq !== sideResourceSeq.current) return;
+        setSideLinkedResources({
+          targetKey,
+          mode: "node",
+          loading: false,
+          resources: [],
+          warnings: [],
+          error: reason instanceof Error ? reason.message : String(reason),
+        });
+      });
+  }, [
+    isAiTeachingEmbed,
+    selectedEdgeId,
+    selectedNode,
+    displayStage,
+    resourceCourseId,
+    kgLaunchToken,
+  ]);
+
 
   /** 与 GraphCanvas 一致：默认隐藏 process_* / filtered 边时的可见节点·边 */
   const showProcessEdges = Boolean(
@@ -1325,13 +2367,8 @@ export function KgPage() {
     if (!displayStage || !payload) {
       return { nodes: [] as PipelineNode[], edges: [] as PipelineEdge[] };
     }
-    if (embedMode && integrationCourseId) {
-      return {
-        nodes: displayStage.nodes || [],
-        edges: displayStage.edges || [],
-      };
-    }
     const mode = payload.mode || "lecture";
+    // 嵌入与独立页一致：默认隐藏 process_isolated 等后处理删边
     const edges = stageEdgesForDisplay(mode, displayStage, graphHideFiltered);
     const nodes = stageNodesForDisplay(mode, displayStage, edges, graphHideFiltered);
     return { nodes, edges };
@@ -1339,44 +2376,43 @@ export function KgPage() {
     displayStage,
     payload,
     graphHideFiltered,
-    embedMode,
-    integrationCourseId,
   ]);
+  visibleNodeCountRef.current = visibleGraph.nodes.length;
+  /** 整课始终软增减；≤500 另开持续力导向。>500 靠计数器触发重画 */
+  const courseSoftLayout = scope === "course";
+  const courseLivePhysics =
+    scope === "course" && visibleGraph.nodes.length <= COURSE_SOFT_LAYOUT_MAX;
 
-  /** 未做重要性 / related_with 筛选的全量规模（调课堂分时总数保持稳定） */
+  /**
+   * 未做重要性筛选的全量规模；与当前图同一套 related_with / 隐藏 / process 边规则，
+   * 这样拉到 100% 时「当前」应等于「总数」。
+   */
   const totalGraph = useMemo(() => {
     if (!pipelineView?.fullStage || !payload) {
       return { nodes: 0, edges: 0 };
     }
     const mode = payload.mode || "lecture";
-    const edges = stageEdgesForDisplay(mode, pipelineView.fullStage, true);
-    const nodes = stageNodesForDisplay(
-      mode,
-      pipelineView.fullStage,
-      edges,
-      true
+    const stage = applyGraphHides(
+      applyRelatedWithVisibility(pipelineView.fullStage, hideRelatedWith),
+      hiddenNodeIds,
+      hiddenEdgeIds
     );
+    const edges = stageEdgesForDisplay(mode, stage, graphHideFiltered);
+    const nodes = stageNodesForDisplay(mode, stage, edges, graphHideFiltered);
     return { nodes: nodes.length, edges: edges.length };
-  }, [pipelineView, payload]);
-
-  const cueList: {
-    cueId: string;
-    startSec?: number;
-    edgeCount: number;
-  }[] = pipelineCues.map((c) => ({
-    cueId: c.cueId,
-    startSec: c.startSec,
-    edgeCount: c.edgeCount,
-  }));
+  }, [
+    pipelineView,
+    payload,
+    hideRelatedWith,
+    hiddenNodeIds,
+    hiddenEdgeIds,
+    graphHideFiltered,
+  ]);
 
   const relatedWithCount = useMemo(() => {
     return (pipelineView?.stage.edges || []).filter(
       (e) => (e.relation || e.label || "") === "related_with"
     ).length;
-  }, [pipelineView]);
-
-  const importanceFilteredCount = useMemo(() => {
-    return Number(pipelineView?.stage.stats?.importance_filtered_nodes || 0);
   }, [pipelineView]);
 
   const joinedEvidence = useMemo(() => {
@@ -1390,7 +2426,9 @@ export function KgPage() {
     }
     const cues =
       scope === "course" && lecFilter
-        ? pipelineCues.filter((c) => String(c.lectureId) === String(lecFilter))
+        ? pipelineCues.filter((c) =>
+            parseLectureFilterIds(lecFilter).includes(String(c.lectureId))
+          )
         : pipelineCues;
     return {
       text: formatEvidenceText(
@@ -1439,7 +2477,21 @@ export function KgPage() {
     setHighlightKey(null);
     setEntityQuery("");
     setEntitySearchOpen(false);
-  }, [cueFilter, lecFilter, hideRelatedWith, importanceMin]);
+    // 不把 importanceKeepPercent 放进依赖：改滑条不应清选中，否则会触发共享选中回写高亮
+  }, [cueFilter, lecFilter, hideRelatedWith]);
+
+  // 重要性筛掉当前选中节点时再清选中（不清共享态，也不重新 focus）
+  useEffect(() => {
+    if (!selectedNode?.id || loading || !displayStage?.nodes?.length) return;
+    const still = displayStage.nodes.some(
+      (n) => String(n.id) === String(selectedNode.id),
+    );
+    if (!still) {
+      setSelectedNode(null);
+      setFocusNodeRequest(null);
+      setFocusEdgeIds(null);
+    }
+  }, [displayStage, selectedNode?.id, loading]);
 
   useEffect(() => {
     const onDoc = (ev: MouseEvent) => {
@@ -1481,7 +2533,9 @@ export function KgPage() {
     }
     const scopedCues =
       scope === "course" && lecFilter
-        ? pipelineCues.filter((c) => String(c.lectureId) === String(lecFilter))
+        ? pipelineCues.filter((c) =>
+            parseLectureFilterIds(lecFilter).includes(String(c.lectureId))
+          )
         : pipelineCues;
     if (pptGallery.length) {
       if (scope === "course" && lecFilter) {
@@ -1526,17 +2580,60 @@ export function KgPage() {
       : "全部 PPT";
 
   const edgeLectures = useMemo(() => {
-    if (scope !== "course") return [] as string[];
     const s = new Set<string>();
-    for (const e of pipelineCues.flatMap((c) => c.edges)) {
-      String(e.lecture_id || "")
-        .split(/[+]/)
+    const addLecture = (raw: unknown) => {
+      String(raw || "")
+        .split(/[+_,]/)
         .map((x) => x.trim())
-        .filter(Boolean)
+        .filter((x) => /^\d+$/.test(x))
         .forEach((x) => s.add(x));
+    };
+    for (const cue of pipelineCues) {
+      addLecture(cue.lectureId);
+      for (const e of cue.edges || []) {
+        addLecture((e as { lecture_id?: unknown }).lecture_id);
+      }
+      for (const n of cue.nodes || []) {
+        const node = n as {
+          lecture_id?: unknown;
+          video_anchors?: Array<{ lecture_id?: unknown; video_id?: unknown }>;
+        };
+        addLecture(node.lecture_id);
+        for (const a of node.video_anchors || []) {
+          addLecture(a.lecture_id);
+          // video_id 0–43 → 讲次 1–44
+          const vid = Number(a.video_id);
+          if (Number.isFinite(vid) && vid >= 0 && vid < 80) s.add(String(vid + 1));
+        }
+      }
+    }
+    // live 融合图常无 lecture_id：用目录/清单补课堂列表
+    if (!s.size) {
+      for (const it of catalog) {
+        if (it.lectureId) addLecture(it.lectureId);
+      }
+    }
+    if (!s.size) {
+      for (const id of readyLectures) s.add(String(id));
+    }
+    if (!s.size) {
+      for (const id of ALL_LECTURES) s.add(id);
     }
     return Array.from(s).sort((a, b) => Number(a) - Number(b));
-  }, [scope, pipelineCues]);
+  }, [pipelineCues, catalog, readyLectures]);
+
+  const courseSessionOptions = useMemo(
+    () => pairLecturesIntoSessions(edgeLectures),
+    [edgeLectures]
+  );
+
+  const sessionSelectValue = useMemo(() => {
+    if (scope === "session" && sessionPair) {
+      return `${sessionPair[0]}_${sessionPair[1]}`;
+    }
+    if (scope === "lecture" && lectureId) return String(lectureId);
+    return lecFilter;
+  }, [scope, sessionPair, lectureId, lecFilter]);
 
   const navigateWithinKg = (pathname: string) => {
     const query = searchParams.toString();
@@ -1582,7 +2679,7 @@ export function KgPage() {
       const ok = await graphRef.current.exportPng({
         scale: 3,
         filename: name,
-        background: "#0b1220",
+        background: isPaperEmbedTheme() ? "#fcfaf6" : "#0b1220",
       });
       if (!ok) {
         window.alert("导出失败：当前图谱尚未就绪，请稍后重试");
@@ -1594,8 +2691,14 @@ export function KgPage() {
 
   const entityMatches = useMemo(() => {
     const q = entityQuery.trim().toLowerCase();
-    if (!q || !displayStage?.nodes?.length) return [];
-    const scored = displayStage.nodes
+    const pool = pipelineView?.fullStage?.nodes?.length
+      ? pipelineView.fullStage.nodes
+      : displayStage?.nodes || [];
+    if (!q || !pool.length) return [];
+    const visibleIds = new Set(
+      (displayStage?.nodes || []).map((n) => String(n.id)),
+    );
+    const scored = pool
       .map((n) => {
         const id = String(n.id || "");
         const label = String(n.label || "");
@@ -1621,44 +2724,91 @@ export function KgPage() {
           score = 100;
         }
         score += Math.min(40, Number(n.importance) || 0) * 10;
-        return { id, label: label || zh || id, kind: n.kind || "", score };
+        const visible = visibleIds.has(id);
+        if (!visible) score -= 15;
+        return {
+          id,
+          label: label || zh || id,
+          kind: n.kind || "",
+          score,
+          visible,
+        };
       })
-      .filter(Boolean) as { id: string; label: string; kind: string; score: number }[];
-    scored.sort((a, b) => b.score - a.score || a.label.localeCompare(b.label, "zh"));
-    return scored.slice(0, 12);
-  }, [entityQuery, displayStage]);
+      .filter(Boolean) as {
+      id: string;
+      label: string;
+      kind: string;
+      score: number;
+      visible: boolean;
+    }[];
+    const deduped = dedupeEntityMatchesByZh(scored);
+    deduped.sort((a, b) => b.score - a.score || a.label.localeCompare(b.label, "zh"));
+    return deduped.slice(0, 12);
+  }, [entityQuery, displayStage, pipelineView?.fullStage]);
 
   const focusEntity = (nodeId: string) => {
-    const n = displayStage?.nodes?.find((x) => String(x.id) === nodeId);
+    const n =
+      pipelineView?.fullStage?.nodes?.find((x) => String(x.id) === nodeId) ||
+      displayStage?.nodes?.find((x) => String(x.id) === nodeId);
     if (!n) return;
+    const visible = (displayStage?.nodes || []).some(
+      (x) => String(x.id) === nodeId,
+    );
+    if (!visible) {
+      setPinnedEntityIds((prev) =>
+        prev.includes(nodeId) ? prev : [...prev, nodeId],
+      );
+    }
     setSelectedEdgeId(null);
     setFocusEdgeIds(null);
     setHighlightKey(null);
-    setSelectedNode({
+    const next = {
       id: String(n.id),
       label: n.label || String(n.id).split("/")[0] || String(n.id),
       title: n.title || n.label || String(n.id),
       _kind: n.kind || "",
-    });
+    };
+    setSelectedNode(next);
+    writeSharedEntitySelection({ id: next.id, label: next.label });
     setFocusNodeRequest((prev) => ({
       id: String(n.id),
       seq: (prev?.seq || 0) + 1,
     }));
     setEntityQuery(n.label || String(n.id).split("/")[0] || String(n.id));
     setEntitySearchOpen(false);
+    setDetailCollapsed(false);
+    setDetailPanelOpen(true);
   };
 
-  // URL ?focus= 实体 → 选中并居中（支持全名或中文主名）
+  // 切课堂/单课后允许再次用 URL/共享选中恢复一次；清空搜索钉住
   useEffect(() => {
-    if (!focusParam || !displayStage?.nodes?.length || loading) return;
-    const raw = decodeURIComponent(focusParam).trim();
+    focusRestoreKeyRef.current = "";
+    setPinnedEntityIds([]);
+  }, [contextKey]);
+
+  // URL ?focus= / 导图共享选中 → 选中并居中（仅每个来源恢复一次，避免改重要性时反复高亮）
+  useEffect(() => {
+    const pool = pipelineView?.fullStage?.nodes?.length
+      ? pipelineView.fullStage.nodes
+      : displayStage?.nodes;
+    if (!pool?.length || loading) return;
+    const shared = readSharedEntitySelection();
+    const raw = String(focusParam || shared?.id || shared?.label || "").trim();
     if (!raw) return;
-    const zh = raw.split("/")[0].trim().toLowerCase();
-    const nodes = displayStage.nodes;
+    const sourceKey = `${String(focusParam || "").trim()}||${shared?.id || ""}||${shared?.updatedAt || 0}`;
+    if (focusRestoreKeyRef.current === sourceKey) return;
+    const decoded = (() => {
+      try {
+        return decodeURIComponent(raw).trim();
+      } catch {
+        return raw;
+      }
+    })();
+    const zh = decoded.split("/")[0].trim().toLowerCase();
     const hit =
-      nodes.find((n) => String(n.id) === raw) ||
-      nodes.find((n) => String(n.id).split("/")[0].trim().toLowerCase() === zh) ||
-      nodes.find(
+      pool.find((n) => String(n.id) === decoded) ||
+      pool.find((n) => String(n.id).split("/")[0].trim().toLowerCase() === zh) ||
+      pool.find(
         (n) =>
           String(n.label || "")
             .split("/")[0]
@@ -1666,18 +2816,175 @@ export function KgPage() {
             .toLowerCase() === zh
       );
     if (!hit) return;
+    focusRestoreKeyRef.current = sourceKey;
+    const hitId = String(hit.id);
+    const visible = (displayStage?.nodes || []).some((n) => String(n.id) === hitId);
+    if (!visible) {
+      setPinnedEntityIds((prev) =>
+        prev.includes(hitId) ? prev : [...prev, hitId],
+      );
+    }
     if (selectedNode?.id === String(hit.id)) return;
     focusEntity(String(hit.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only react to URL/graph load
   }, [focusParam, displayStage, loading]);
 
-  // 选中实体/关系时展开右栏并打开「选中详情」
+  // 选中实体/关系时展开「选中详情」；关系优先展开动画跳转
   useEffect(() => {
     if (selectedNode?.id != null || selectedEdgeId) {
-      setDetailCollapsed(false);
+      if (!isAiTeachingEmbed) setDetailCollapsed(false);
       setDetailPanelOpen(true);
+      setEdgesPanelOpen(false);
+      setAssetsPanelOpen(false);
+      setVideoPanelOpen(false);
+      setExercisePanelOpen(false);
+      setAnimationPanelOpen(Boolean(selectedEdgeId));
+      setMediaPanelOpen(false);
+      setHiddenPanelOpen(false);
     }
-  }, [selectedNode?.id, selectedEdgeId]);
+  }, [selectedNode?.id, selectedEdgeId, isAiTeachingEmbed]);
+
+  const importanceKeepControl = (inputId: string) => (
+    <div
+      className={styles.importanceFilter}
+      title="按课堂重要性保留排名前 x% 的节点；筛选后去掉无边孤立点"
+    >
+      <label className={styles.importancePercentLabel} htmlFor={inputId}>
+        保留
+      </label>
+      <div
+        className={styles.importancePercentSliderWrap}
+        data-tip={`${
+          importanceSliderActive
+            ? Number(importancePercentDraft) || importanceKeepPercent
+            : importanceSliderHover?.percent ?? importanceKeepPercent
+        }%`}
+        data-active={importanceSliderActive ? "1" : "0"}
+        data-hover={importanceSliderHover ? "1" : "0"}
+        style={
+          {
+            ["--imp-ratio"]: String(
+              importanceSliderActive
+                ? ((Number(importancePercentDraft) || importanceKeepPercent) -
+                    IMPORTANCE_PERCENT_MIN) /
+                    (IMPORTANCE_PERCENT_MAX - IMPORTANCE_PERCENT_MIN)
+                : (importanceSliderHover?.ratio ??
+                    (importanceKeepPercent - IMPORTANCE_PERCENT_MIN) /
+                      (IMPORTANCE_PERCENT_MAX - IMPORTANCE_PERCENT_MIN))
+            ),
+          } as CSSProperties
+        }
+      >
+        <input
+          type="range"
+          className={styles.importancePercentSlider}
+          min={IMPORTANCE_PERCENT_MIN}
+          max={IMPORTANCE_PERCENT_MAX}
+          step={1}
+          value={
+            importanceSliderActive
+              ? Number(importancePercentDraft) || importanceKeepPercent
+              : importanceKeepPercent
+          }
+          aria-label="重要性保留百分比滑条"
+          title={`${
+            importanceSliderHover?.percent ??
+            (importanceSliderActive
+              ? Number(importancePercentDraft) || importanceKeepPercent
+              : importanceKeepPercent)
+          }%`}
+          onPointerDown={(e) => {
+            e.currentTarget.setPointerCapture(e.pointerId);
+            setImportanceSliderActive(true);
+            const next = importancePercentAtPointer(e.currentTarget, e.clientX);
+            setImportanceSliderHover(next);
+            setImportancePercentDraft(String(next.percent));
+          }}
+          onPointerMove={(e) => {
+            const next = importancePercentAtPointer(e.currentTarget, e.clientX);
+            setImportanceSliderHover(next);
+            if (importanceSliderActive || e.buttons === 1) {
+              setImportancePercentDraft(String(next.percent));
+            }
+          }}
+          onPointerUp={(e) => {
+            const next = importancePercentAtPointer(e.currentTarget, e.clientX);
+            commitImportanceKeepPercent(next.percent);
+            setImportanceSliderActive(false);
+            setImportanceSliderHover(null);
+            try {
+              e.currentTarget.releasePointerCapture(e.pointerId);
+            } catch {
+              /* ignore */
+            }
+          }}
+          onPointerCancel={(e) => {
+            commitImportanceKeepPercent(
+              Number(importancePercentDraft) || importanceKeepPercent,
+            );
+            setImportanceSliderActive(false);
+            setImportanceSliderHover(null);
+            try {
+              e.currentTarget.releasePointerCapture(e.pointerId);
+            } catch {
+              /* ignore */
+            }
+          }}
+          onBlur={() => {
+            if (importanceSliderActive) {
+              commitImportanceKeepPercent(
+                Number(importancePercentDraft) || importanceKeepPercent,
+              );
+            }
+            setImportanceSliderActive(false);
+            setImportanceSliderHover(null);
+          }}
+          onPointerLeave={() => {
+            if (!importanceSliderActive) setImportanceSliderHover(null);
+          }}
+          onChange={(e) => {
+            if (importanceSliderActive) return;
+            const n = Number(e.target.value);
+            if (Number.isFinite(n)) commitImportanceKeepPercent(n);
+          }}
+        />
+      </div>
+      <input
+        id={inputId}
+        type="number"
+        min={IMPORTANCE_PERCENT_MIN}
+        max={IMPORTANCE_PERCENT_MAX}
+        step={1}
+        inputMode="numeric"
+        className={styles.importancePercentInput}
+        value={importancePercentDraft}
+        aria-label="重要性保留百分比"
+        onChange={(e) => {
+          const raw = e.target.value.replace(/[^\d]/g, "");
+          setImportancePercentDraft(raw);
+          if (raw === "") return;
+          const n = Number(raw);
+          if (Number.isFinite(n)) commitImportanceKeepPercent(n);
+        }}
+        onBlur={() => {
+          const n = Number(importancePercentDraft);
+          if (Number.isFinite(n)) commitImportanceKeepPercent(n);
+          else setImportancePercentDraft(String(importanceKeepPercent));
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") e.currentTarget.blur();
+          else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            commitImportanceKeepPercent(importanceKeepPercent + 1);
+          } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            commitImportanceKeepPercent(importanceKeepPercent - 1);
+          }
+        }}
+      />
+      <span className={styles.importancePercentSuffix}>%</span>
+    </div>
+  );
 
   return (
     <>
@@ -1725,11 +3032,12 @@ export function KgPage() {
                         type="button"
                         className={active ? shell.navItemActive : shell.navItem}
                         onClick={() => goSession(entry.sessionId)}
-                        title={entry.title || `第 ${entry.a}–${entry.b} 讲`}
+                        title={
+                          entry.title ||
+                          `第 ${Math.ceil(Number(entry.a) / 2)} 次课（第 ${entry.a}–${entry.b} 讲）`
+                        }
                       >
-                        <span>
-                          第 {entry.a}–{entry.b} 次课
-                        </span>
+                        <span>{Math.ceil(Number(entry.a) / 2)}</span>
                       </button>
                     );
                   }
@@ -1740,9 +3048,9 @@ export function KgPage() {
                       type="button"
                       className={active ? shell.navItemActive : shell.navItem}
                       onClick={() => goLecture(entry.lectureId)}
-                      title={`第 ${entry.lectureId} 讲（相邻讲次无图谱，单独展示）`}
+                      title={`第 ${Math.ceil(Number(entry.lectureId) / 2)} 次课（第 ${entry.lectureId} 讲，落单）`}
                     >
-                      <span>第 {entry.lectureId} 次课</span>
+                      <span>{Math.ceil(Number(entry.lectureId) / 2)}</span>
                     </button>
                   );
                 })}
@@ -1753,26 +3061,196 @@ export function KgPage() {
       )}
       main={
         <main className={`${pipe.mainCol} ${isEmbeddedGraph ? styles.embeddedMain : ""}`}>
+          {!isGraphOnlyEmbed ? (
           <header className={styles.kgTopbar}>
             <div className={styles.kgToolbar}>
-              {scope === "course" && edgeLectures.length > 0 ? (
+              {isAiTeachingEmbed ? (
+                <>
+                  <button
+                    type="button"
+                    className={`${styles.kgChip} ${styles.kgChipAccent}`}
+                    title="打开本课程知识导图"
+                    onClick={() => {
+                      const id =
+                        selectedNode?.id != null ? String(selectedNode.id) : "";
+                      if (id) {
+                        writeSharedEntitySelection({
+                          id,
+                          label: String(selectedNode?.label || ""),
+                        });
+                      }
+                      const q = new URLSearchParams(searchParams.toString());
+                      if (id) q.set("focus", id);
+                      navigate({
+                        pathname: coursePath(course, "/mindmap"),
+                        search: q.toString() ? `?${q}` : "",
+                      });
+                    }}
+                  >
+                    查看知识导图
+                  </button>
+                  {(selectedNode?.id != null || selectedEdgeId) ? (
+                    <>
+                      <button
+                        type="button"
+                        className={styles.kgChip}
+                        disabled={
+                          !!sideLinkedResources?.loading ||
+                          (
+                            !sideLinkedResources?.resources.some(
+                              (r) => r.resource_type === "exercise",
+                            )
+                            && !selectedNode?.id
+                          )
+                        }
+                        title={
+                          sideLinkedResources?.loading
+                            ? "正在匹配练习…"
+                            : selectedEdgeId
+                              ? "跳转关系相关练习"
+                              : "跳转相关练习"
+                        }
+                        onClick={() => {
+                          const row = sideLinkedResources?.resources.find(
+                            (r) => r.resource_type === "exercise",
+                          );
+                          if (row) openLinkedResource(row);
+                          else if (selectedNode?.id) {
+                            // 无匹配资源时，仍可按当前实体进入练习
+                            openLinkedResource({
+                              resource_type: "exercise",
+                              resource_id: String(selectedNode.id),
+                              course_id: resourceCourseId || course,
+                              title: "相关练习",
+                              metadata: {
+                                knowledge_point_id: String(selectedNode.id),
+                                seed_knowledge_point_id: String(selectedNode.id),
+                                course_id: resourceCourseId || course,
+                              },
+                            });
+                          }
+                        }}
+                      >
+                        {sideLinkedResources?.loading
+                          ? "匹配练习…"
+                          : "跳转相关练习"}
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.kgChip}
+                        disabled={
+                          !!sideLinkedResources?.loading ||
+                          (
+                            !sideLinkedResources?.resources.some(
+                              (r) => r.resource_type === "video",
+                            )
+                            && !selectedNode?.id
+                          )
+                        }
+                        title={
+                          sideLinkedResources?.loading
+                            ? "正在匹配视频…"
+                            : selectedEdgeId
+                              ? "跳转关系共现视频"
+                              : "跳转相关视频"
+                        }
+                        onClick={() => {
+                          const row = sideLinkedResources?.resources.find(
+                            (r) => r.resource_type === "video",
+                          );
+                          if (row) openLinkedResource(row);
+                          else if (selectedNode?.id) {
+                            // 无匹配资源时，仍可按当前实体进入视频页实体列表
+                            openLinkedResource({
+                              resource_type: "video",
+                              resource_id: "kp-fallback",
+                              course_id: resourceCourseId || course,
+                              title: "相关视频",
+                              metadata: {
+                                knowledge_point_id: String(selectedNode.id),
+                                seed_knowledge_point_id: String(selectedNode.id),
+                                kp: String(selectedNode.id),
+                                course_id: resourceCourseId || course,
+                              },
+                            });
+                          }
+                        }}
+                      >
+                        {sideLinkedResources?.loading
+                          ? "匹配视频…"
+                          : "跳转相关视频"}
+                      </button>
+                      {selectedEdgeId ? (
+                        <button
+                          type="button"
+                          className={styles.kgChip}
+                          disabled={
+                            !!sideLinkedResources?.loading ||
+                            !sideLinkedResources?.resources.some(
+                              (r) => r.resource_type === "animation",
+                            )
+                          }
+                          title="跳转关系相关动画"
+                          onClick={() => {
+                            const row = sideLinkedResources?.resources.find(
+                              (r) => r.resource_type === "animation",
+                            );
+                            if (row) openLinkedResource(row);
+                          }}
+                        >
+                          {sideLinkedResources?.loading
+                            ? "匹配动画…"
+                            : "跳转相关动画"}
+                        </button>
+                      ) : null}
+                    </>
+                  ) : null}
+                </>
+              ) : null}
+
+              {courseSessionOptions.length > 0 ? (
                 <div className={styles.kgToolGroup} data-group="scope">
                   <select
                     className={styles.kgSelect}
-                    value={lecFilter}
-                    onChange={(e) => setLecFilter(e.target.value)}
-                    aria-label="讲次筛选"
+                    value={sessionSelectValue}
+                    onChange={(e) => {
+                      const v = String(e.target.value || "").trim();
+                      if (!v) {
+                        setLecFilter("");
+                        goCourse();
+                        return;
+                      }
+                      const ids = parseLectureFilterIds(v);
+                      // 真正切到 session/lecture 路由，避免仍加载整课预计算导致「内容不变」
+                      if (ids.length === 2) {
+                        setLecFilter(v);
+                        goSession(`${ids[0]}_${ids[1]}`);
+                        return;
+                      }
+                      if (ids.length === 1) {
+                        setLecFilter(v);
+                        goLecture(ids[0]);
+                        return;
+                      }
+                      setLecFilter(v);
+                    }}
+                    aria-label="课堂筛选"
                   >
-                    <option value="">全部讲次</option>
-                    {edgeLectures.map((l) => (
-                      <option key={l} value={l}>
-                        第 {l} 次课
-                      </option>
-                    ))}
+                    <option value="">全部课堂</option>
+                    {courseSessionOptions.map((s, i) => {
+                      const value = s.lectureIds.join("_");
+                      const label = `第 ${i + 1} 次课`;
+                      return (
+                        <option key={value} value={value} title={s.label || label}>
+                          {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               ) : null}
 
+              {!isAiTeachingEmbed ? (
               <button
                 type="button"
                 className={`${styles.kgChip} ${
@@ -1786,138 +3264,10 @@ export function KgPage() {
                   setImportanceSourceState(next);
                 }}
               >
-                {importanceSource === "pagerank" ? "PR+" : "课堂分阈值"}
+                {importanceSource === "pagerank" ? "PR+" : "课堂分"}
               </button>
-              <div
-                className={styles.importanceFilter}
-                title="重要性阈值：保留课堂分≥该值的节点；低阈值(≤0.15)时未标注实体保留，避免整图被筛空"
-              >
-                <span className={styles.importanceDigits} aria-label="重要性阈值 x.xx">
-                  {([0, 1, 2] as const).map((pos) => {
-                    const max = pos === 0 ? 1 : 9;
-                    // 进退位后：仅在端点禁用上下（低位 9 仍可上、0 仍可下）
-                    const atMax = importanceMin >= IMPORTANCE_MAX;
-                    const atMin = importanceMin <= 0;
-                    return (
-                      <span key={pos} className={styles.importanceDigitWrap}>
-                        {pos === 1 ? (
-                          <span className={styles.importanceDot} aria-hidden>
-                            .
-                          </span>
-                        ) : null}
-                        <span className={styles.importanceDigit}>
-                          <button
-                            type="button"
-                            className={styles.importanceDigitBtn}
-                            disabled={atMax}
-                            onClick={() => nudgeImportanceDigit(pos, 1)}
-                            title={pos === 0 ? "个位 +1" : pos === 1 ? "十分位 +1" : "百分位 +1"}
-                            aria-label={
-                              pos === 0
-                                ? "个位加一"
-                                : pos === 1
-                                  ? "十分位加一"
-                                  : "百分位加一"
-                            }
-                          >
-                            ▲
-                          </button>
-                          <input
-                            type="text"
-                            inputMode="numeric"
-                            maxLength={1}
-                            className={styles.importanceDigitInput}
-                            value={importanceDigitDraft[pos]}
-                            onChange={(e) => {
-                              const raw = e.target.value.replace(/\D/g, "").slice(-1);
-                              setImportanceDigitDraft((prev) => {
-                                const next: [string, string, string] = [
-                                  prev[0],
-                                  prev[1],
-                                  prev[2],
-                                ];
-                                next[pos] = raw;
-                                return next;
-                              });
-                              const parsed = parseDigitChar(raw, max);
-                              if (parsed != null) setImportanceDigit(pos, parsed);
-                            }}
-                            onBlur={() => {
-                              const parsed = parseDigitChar(
-                                importanceDigitDraft[pos],
-                                max
-                              );
-                              if (parsed != null) setImportanceDigit(pos, parsed);
-                              else syncImportanceDigits(importanceMin);
-                            }}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.currentTarget.blur();
-                              } else if (e.key === "ArrowUp") {
-                                e.preventDefault();
-                                nudgeImportanceDigit(pos, 1);
-                              } else if (e.key === "ArrowDown") {
-                                e.preventDefault();
-                                nudgeImportanceDigit(pos, -1);
-                              }
-                            }}
-                            aria-label={
-                              pos === 0
-                                ? "个位，0 或 1"
-                                : pos === 1
-                                  ? "十分位，0～9"
-                                  : "百分位，0～9"
-                            }
-                          />
-                          <button
-                            type="button"
-                            className={styles.importanceDigitBtn}
-                            disabled={atMin}
-                            onClick={() => nudgeImportanceDigit(pos, -1)}
-                            title={pos === 0 ? "个位 −1" : pos === 1 ? "十分位 −1" : "百分位 −1"}
-                            aria-label={
-                              pos === 0
-                                ? "个位减一"
-                                : pos === 1
-                                  ? "十分位减一"
-                                  : "百分位减一"
-                            }
-                          >
-                            ▼
-                          </button>
-                        </span>
-                      </span>
-                    );
-                  })}
-                </span>
-              </div>
-              <button
-                type="button"
-                className={`${styles.kgChip} ${
-                  revealFilteredEntities ? styles.kgChipAccent : ""
-                }`}
-                disabled={!hasGraph}
-                onClick={() => {
-                  setRevealFilteredEntities((on) => {
-                    const next = !on;
-                    if (next && importanceMin <= 0) {
-                      commitImportanceMin(defaultImportanceFilter);
-                    }
-                    return next;
-                  });
-                }}
-                title={
-                  !hasGraph
-                    ? "暂无图谱"
-                    : revealFilteredEntities
-                      ? `正在显示 ${importanceFilteredCount} 个被筛实体（灰色弱化）`
-                      : importanceMin <= 0
-                        ? "点击后将阈值设为 0.01 并灰色显示被筛实体"
-                        : `当前隐藏约 ${importanceFilteredCount} 个低重要性实体`
-                }
-              >
-                {revealFilteredEntities ? "隐藏被筛实体" : "显示被筛实体"}
-              </button>
+              ) : null}
+              {importanceKeepControl("kg-importance-percent")}
               {!isEmbeddedGraph ? (<button
                 type="button"
                 className={`${styles.kgChip} ${evidenceVisible ? styles.kgChipActive : ""}`}
@@ -1959,24 +3309,27 @@ export function KgPage() {
               </div>
             </div>
           </header>
+          ) : null}
 
           <div className={pipe.stageBody}>
             <ResizableSplit
-              className={`${tb.split} ${styles.graphSplit}`}
+              className={`${tb.split} ${styles.graphSplit} ${isEmbeddedGraph ? styles.embeddedGraphSplit : ""} ${isGraphOnlyEmbed ? styles.graphOnlyEmbed : ""}`}
               storageKey="split-kg-text-graph-v2"
               initialLeftRatio={0.5}
               minLeftPx={260}
               minRightPx={300}
               enabled={!isEmbeddedGraph && evidenceVisible}
+              hideWhenDisabled="left"
               leftClassName={tb.slicePane}
               rightClassName={`${pipe.viewport} ${styles.graphViewport}`}
               left={
+                isGraphOnlyEmbed ? null : (
                 <>
                   <div className={tb.sliceHead}>
                     <strong>处理文本</strong>
                   </div>
                   <div className={tb.sliceScroll}>
-                    {hasEvidenceText ? (
+                    {hasEvidenceText && !isEmbeddedGraph ? (
                       <SliceTextAnnotator
                         text={joinedEvidence.text}
                         edges={joinedEvidence.annEdges}
@@ -1990,6 +3343,7 @@ export function KgPage() {
                     )}
                   </div>
                 </>
+                )
               }
               right={
                 <>
@@ -2034,10 +3388,14 @@ export function KgPage() {
                                 onContextMenu={(event) => {
                                   event.preventDefault();
                                   setEntitySearchOpen(false);
-                                  const fullNode = displayStage?.nodes?.find(
-                                    (node) => String(node.id) === m.id,
-                                  );
-                                  void openResourceMenu(
+                                  const fullNode =
+                                    displayStage?.nodes?.find(
+                                      (node) => String(node.id) === m.id,
+                                    ) ||
+                                    pipelineView?.fullStage?.nodes?.find(
+                                      (node) => String(node.id) === m.id,
+                                    );
+                                  void openNodeContextMenu(
                                     m.id,
                                     {
                                       ...fullNode,
@@ -2048,13 +3406,17 @@ export function KgPage() {
                                     { clientX: event.clientX, clientY: event.clientY },
                                   );
                                 }}
-                                title={m.id}
+                                title={m.visible ? m.id : `${m.id}（当前过滤未显示，点击将临时钉回）`}
                               >
-                                <span>{m.label}</span>
+                                <span>
+                                  {m.label}
+                                  {!m.visible ? (
+                                    <em style={{ marginLeft: 6, opacity: 0.7 }}>未显示</em>
+                                  ) : null}
+                                </span>
                                 <em>
                                   {m.id.includes("/")
-                                    ? m.id.split("/").slice(1).join("/")
-                                    : m.kind}
+                                    ? m.id.split("/").slice(1).join("/")                                    : m.kind}
                                 </em>
                               </button>
                             ))
@@ -2062,20 +3424,14 @@ export function KgPage() {
                         </div>
                       )}
                     </div>
-                    {isEmbeddedGraph ? (
-                      <span
-                        className={styles.videoIndexHint}
-                        title="视频资源按当前课程内的 video_id 定位，并按片段起始时间播放"
-                      >
-                        视频跳转：video_id
-                      </span>
-                    ) : null}
-                    {!isEmbeddedGraph ? (<div className={styles.graphChromeEnd}>
+                    {isGraphOnlyEmbed ? importanceKeepControl("kg-importance-percent-embed") : null}
+                    <div className={styles.graphChromeEnd}>
+                      {!isEmbeddedGraph ? (
                       <button
                         type="button"
                         className={styles.kgExportBtn}
                         disabled={!selectedNode?.id || !resourceCourseId}
-                        onClick={() => void openResourceMenu(
+                        onClick={() => void openNodeContextMenu(
                           String(selectedNode?.id || ""),
                           selectedNode || ({ id: "", label: "" } as VisNode),
                           { clientX: window.innerWidth / 2, clientY: 160 },
@@ -2083,17 +3439,8 @@ export function KgPage() {
                       >
                         关联资源
                       </button>
-                      <label
-                        className={`${styles.editModeToggle} ${editMode ? styles.editModeOn : ""}`}
-                        title="开启后可修改实体名、关系，并删除 PPT / 板书截图"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={editMode}
-                          onChange={(e) => setEditMode(e.target.checked)}
-                        />
-                        <span>编辑</span>
-                      </label>
+                      ) : null}
+                      {!isGraphOnlyEmbed ? (
                       <button
                         type="button"
                         className={styles.kgExportBtn}
@@ -2103,7 +3450,8 @@ export function KgPage() {
                       >
                         {exportingPng ? "导出中…" : "导出图片"}
                       </button>
-                    </div>) : null}
+                      ) : null}
+                    </div>
                   </div>
                   <div className={styles.graphBody}>
                     {loading && <div className={pipe.emptyPane}>加载图谱…</div>}
@@ -2127,33 +3475,45 @@ export function KgPage() {
                           selectedNode?.id != null ? String(selectedNode.id) : null
                         }
                         posCacheRef={posCacheRef}
-                        keepLayout={scope === "session"}
+                        keepLayout={scope === "session" || courseSoftLayout}
+                        softFilterHide={courseSoftLayout}
+                        preferFullRelayout={false}
+                        forceRelayoutToken={forceRelayoutToken}
+                        livePhysics={
+                          scope === "lecture" ||
+                          scope === "session" ||
+                          courseLivePhysics
+                        }
                         focusNodeRequest={focusNodeRequest}
                         onFocusNodeConsumed={() => setFocusNodeRequest(null)}
-                        onSelectNode={(_id, meta, point) => {
+                        onSelectNode={(_id, meta) => {
                           setFocusNodeRequest(null);
+                          setPanelEditMode(false);
                           if (_id) {
                             setSelectedEdgeId(null);
                             setFocusEdgeIds(null);
                             void notifyNodeSelected(String(_id), meta);
-                            if (embedMode === "ai-teaching" && meta) {
-                              void openResourceMenu(
-                                String(_id),
-                                meta,
-                                point || { clientX: window.innerWidth / 2, clientY: 160 },
-                              );
-                            } else {
-                              setSelectedNode(meta || null);
-                            }
+                            setSelectedNode(meta || null);
+                            writeSharedEntitySelection({
+                              id: String(_id),
+                              label: String(meta?.label || ""),
+                            });
+                            if (!isAiTeachingEmbed) setDetailCollapsed(false);
+                            setDetailPanelOpen(true);
                           } else {
                             setSelectedNode(null);
+                            writeSharedEntitySelection(null);
                           }
                         }}
                         onContextNode={(id, meta, point) => {
-                          void openResourceMenu(id, meta, point);
+                          void openNodeContextMenu(id, meta, point);
+                        }}
+                        onContextEdge={(id, meta, point) => {
+                          openEdgeContextMenu(id, meta, point);
                         }}
                         onSelectEdge={(id, groupIds) => {
                           setFocusNodeRequest(null);
+                          setPanelEditMode(false);
                           selectEdgesFromText(id, groupIds);
                         }}
                         legend={
@@ -2198,7 +3558,7 @@ export function KgPage() {
           </div>
         </main>
       }
-      detail={isEmbeddedGraph ? undefined : (
+      detail={isGraphOnlyEmbed ? undefined : (
         detailCollapsed ? (
           <aside className={styles.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -2222,48 +3582,14 @@ export function KgPage() {
           >
             <span aria-hidden>›</span>
           </button>
-          <CollapsiblePanel
-            title={scope === "session" ? "本堂片段" : "本讲片段"}
-            storageKey="kg-panel-cues-v2"
-            defaultOpen={false}
-          >
-            <div className={pipe.cueList}>
-              {!cueList.length ? (
-                <div className={pipe.sideEmpty}>暂无片段</div>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    className={`${pipe.cueBtn} ${!cueFilter ? pipe.cueOn : ""}`}
-                    onClick={() => setCueFilter(null)}
-                  >
-                    全部片段
-                  </button>
-                  {cueList.map((c, i) => (
-                    <button
-                      key={c.cueId}
-                      type="button"
-                      className={`${pipe.cueBtn} ${
-                        cueFilter === c.cueId ? pipe.cueOn : ""
-                      }`}
-                      onClick={() =>
-                        setCueFilter((v) => (v === c.cueId ? null : c.cueId))
-                      }
-                    >
-                      片段 {i + 1}
-                    </button>
-                  ))}
-                </>
-              )}
-            </div>
-          </CollapsiblePanel>
-
+          <div className={styles.kgSideScroll}>
           <CollapsiblePanel
             title="选中详情"
-            storageKey="kg-panel-detail-v2"
-            defaultOpen={false}
+            storageKey={SHARED_PANEL_KEYS.detail}
+            defaultOpen
             open={detailPanelOpen}
             onOpenChange={setDetailPanelOpen}
+            bodyClassName={styles.sideCardBody}
           >
             {displayStage ? (
               <>
@@ -2276,7 +3602,7 @@ export function KgPage() {
                   hideFiltered={false}
                   mode={mode}
                   importanceMode="classroom"
-                  editMode={editMode}
+                  editMode={canEditGraph && panelEditMode}
                   kgPatch={kgPatch}
                   editBusy={editBusy}
                   onRenameEntity={handleRenameEntity}
@@ -2287,8 +3613,9 @@ export function KgPage() {
                   onRestoreEntity={handleRestoreEntity}
                   onRestoreEdge={handleRestoreEdge}
                   permanentDelete={Boolean(embedMode)}
+                  entityDefinitions={entityDefinitions}
                 />
-                {editMode && !embedMode ? (
+                {!embedMode && canEditGraph ? (
                   <DeletedItemsPanel
                     kgPatch={kgPatch}
                     busy={editBusy}
@@ -2297,65 +3624,53 @@ export function KgPage() {
                     onRestorePpt={handleRestorePpt}
                   />
                 ) : null}
-                {((scope === "lecture" && lectureId) ||
-                  (scope === "session" && sessionPair)) &&
-                selectedNode?.id != null &&
-                !selectedEdgeId ? (
-                  <div className={styles.reviewJump}>
-                    <Link
-                      to={reviewWatchPath(
-                        course,
-                        scope === "session" && sessionPair
-                          ? `${sessionPair[0]}_${sessionPair[1]}`
-                          : String(lectureId),
-                        {
-                          kp: String(selectedNode.id),
-                          lec:
-                            scope === "lecture"
-                              ? lectureId
-                              : sessionPair?.[0],
-                          t: firstAssetWatch(
-                            assetsLibrary,
-                          String(selectedNode.id),
-                            {
-                              lectureId:
-                                scope === "lecture"
-                                  ? lectureId
-                                  : sessionPair?.[0],
-                              lectureOnly: scope === "lecture",
-                            }
-                          )?.startSec,
-                        }
-                      )}
-                    >
-                      在单课复习中查看
-                    </Link>
-                  </div>
-                ) : null}
               </>
             ) : (
               <div className={pipe.sideEmpty}>点击图中实体或关系查看详情</div>
             )}
           </CollapsiblePanel>
 
-          {selectedNode?.id != null && !selectedEdgeId && embedMode !== "ai-teaching" ? (
+          {Object.keys(hiddenNodeIds).length || Object.keys(hiddenEdgeIds).length ? (
             <CollapsiblePanel
-              title="相关资产"
-              storageKey="kg-panel-assets-v2"
+              title={`已隐藏 · ${Object.keys(hiddenNodeIds).length + Object.keys(hiddenEdgeIds).length}`}
+              storageKey="kg-panel-hidden-v1"
               defaultOpen={false}
+              open={hiddenPanelOpen}
+              onOpenChange={setHiddenPanelOpen}
+              bodyClassName={styles.sideCardBody}
             >
-              <RelatedAssetsPanel
-                entityId={String(selectedNode.id)}
-                library={assetsLibrary}
-                lectureId={scope === "lecture" ? lectureId : null}
-                lectureOnly={scope === "lecture"}
-              />
+              <div className={pipe.kgEditBox}>
+                {Object.entries(hiddenNodeIds).map(([id, label]) => (
+                  <div key={`hn-${id}`} className={pipe.kgDeletedRow}>
+                    <code title={id}>{label}</code>
+                    <button
+                      type="button"
+                      className={pipe.kgEditBtnGhost}
+                      onClick={() => unhideEntity(id)}
+                    >
+                      显示实体
+                    </button>
+                  </div>
+                ))}
+                {Object.entries(hiddenEdgeIds).map(([id, label]) => (
+                  <div key={`he-${id}`} className={pipe.kgDeletedRow}>
+                    <code title={id}>{label}</code>
+                    <button
+                      type="button"
+                      className={pipe.kgEditBtnGhost}
+                      onClick={() => unhideEdge(id)}
+                    >
+                      显示关系
+                    </button>
+                  </div>
+                ))}
+              </div>
             </CollapsiblePanel>
           ) : null}
 
-          {selectedNode?.id != null ? (
+          {selectedNode?.id != null && !selectedEdgeId ? (
             <CollapsiblePanel
-              title={`相关关系-${
+              title={`相关关系 · ${
                 displayStage
                   ? relatedEdgesOf(displayStage, String(selectedNode.id), {
                       hideFiltered: false,
@@ -2363,8 +3678,11 @@ export function KgPage() {
                     }).length
                   : 0
               }`}
-              storageKey="kg-panel-edges-v2"
+              storageKey={SHARED_PANEL_KEYS.edges}
               defaultOpen={false}
+              open={edgesPanelOpen}
+              onOpenChange={setEdgesPanelOpen}
+              bodyClassName={styles.sideCardBody}
             >
               {displayStage ? (
                 <RelatedEdges
@@ -2379,8 +3697,21 @@ export function KgPage() {
                       setFocusEdgeIds(null);
                       return;
                     }
+                    setPanelEditMode(false);
                     setFocusEdgeIds([id]);
                     setSelectedEdgeId(id);
+                  }}
+                  onContextEdge={(id, edge, point) => {
+                    openEdgeContextMenu(
+                      id,
+                      {
+                        id,
+                        from: String(edge.from || ""),
+                        to: String(edge.to || ""),
+                        _relation: String(edge.relation || edge.label || ""),
+                      },
+                      point,
+                    );
                   }}
                 />
               ) : (
@@ -2389,8 +3720,154 @@ export function KgPage() {
             </CollapsiblePanel>
           ) : null}
 
+          {selectedNode?.id != null && !selectedEdgeId ? (
+            <CollapsiblePanel
+              title={`相关资源 · ${selectedAssetCount}`}
+              storageKey={SHARED_PANEL_KEYS.assets}
+              defaultOpen={false}
+              open={assetsPanelOpen}
+              onOpenChange={setAssetsPanelOpen}
+              bodyClassName={styles.sideCardBody}
+            >
+              <RelatedAssetsPanel
+                entityId={String(selectedNode.id)}
+                entityAliases={[
+                  String(selectedNode.label || ""),
+                  ...(Array.isArray(selectedNode.aliases)
+                    ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
+                    : []),
+                ]}
+                library={assetsLibrary}
+                lectureId={scope === "lecture" ? lectureId : null}
+                lectureOnly={scope === "lecture"}
+                kinds={isAiTeachingEmbed ? ["formula", "example", "theorem"] : undefined}
+              />
+            </CollapsiblePanel>
+          ) : null}
+
+          {isAiTeachingEmbed && (selectedNode?.id != null || selectedEdgeId) ? (
+            <>
+              <CollapsiblePanel
+                title={`视频跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "video")
+                    .length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.video}
+                defaultOpen={false}
+                open={videoPanelOpen}
+                onOpenChange={setVideoPanelOpen}
+                bodyClassName={styles.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={styles.resourceMenuState}>正在查询视频…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "video",
+                    );
+                    if (!rows.length) {
+                      return <div className={pipe.sideEmpty}>暂无关联视频</div>;
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="video"
+                        nodeLabel={String(selectedNode?.label || "")}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+              <CollapsiblePanel
+                title={`练习跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "exercise")
+                    .length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.exercise}
+                defaultOpen={false}
+                open={exercisePanelOpen}
+                onOpenChange={setExercisePanelOpen}
+                bodyClassName={styles.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={styles.resourceMenuState}>正在查询练习…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "exercise",
+                    );
+                    if (!rows.length) {
+                      return <div className={pipe.sideEmpty}>暂无关联练习</div>;
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="exercise"
+                        nodeLabel={String(selectedNode?.label || "")}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+              {/* 动画跳转面向关系；选中实体时也展示匹配到的动画（若有） */}
+              <CollapsiblePanel
+                title={`动画跳转 · ${
+                  sideLinkedResources?.resources.filter((r) => r.resource_type === "animation")
+                    .length || 0
+                }`}
+                storageKey={SHARED_PANEL_KEYS.animation}
+                defaultOpen={Boolean(selectedEdgeId)}
+                open={animationPanelOpen}
+                onOpenChange={setAnimationPanelOpen}
+                bodyClassName={styles.sideCardBody}
+              >
+                {sideLinkedResources?.loading ? (
+                  <div className={styles.resourceMenuState}>正在查询动画…</div>
+                ) : sideLinkedResources?.error ? (
+                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
+                ) : (
+                  (() => {
+                    const rows = (sideLinkedResources?.resources || []).filter(
+                      (r) => r.resource_type === "animation",
+                    );
+                    if (!rows.length) {
+                      return (
+                        <div className={pipe.sideEmpty}>
+                          {selectedEdgeId
+                            ? "该关系暂无关联动画"
+                            : "动画跳转请选中关系；当前实体暂无动画"}
+                        </div>
+                      );
+                    }
+                    return (
+                      <LinkedResourceCardList
+                        resources={rows}
+                        kind="animation"
+                        nodeLabel={String(selectedNode?.label || "")}
+                        onOpen={openLinkedResource}
+                      />
+                    );
+                  })()
+                )}
+              </CollapsiblePanel>
+            </>
+          ) : null}
+
           {embedMode !== "ai-teaching" ? (
-            <CollapsiblePanel title="多模态证据" storageKey="kg-panel-media-v2" defaultOpen={false}>
+            <CollapsiblePanel
+              title="多模态证据"
+              storageKey="kg-panel-media-v2"
+              defaultOpen={false}
+              open={mediaPanelOpen}
+              onOpenChange={setMediaPanelOpen}
+              bodyClassName={styles.sideCardBody}
+            >
             <div className={pipe.mm}>
               <div>
                 <div className={pipe.mmLabel}>课堂切片</div>
@@ -2407,7 +3884,7 @@ export function KgPage() {
                     images={visiblePptUrls}
                     alt="板书 / PPT"
                     label={pptCarouselLabel}
-                    canDelete={editMode}
+                    canDelete={false}
                     deleteBusy={editBusy}
                     onDelete={handleDeletePpt}
                   />
@@ -2418,85 +3895,144 @@ export function KgPage() {
             </div>
             </CollapsiblePanel>
           ) : null}
+          </div>
         </aside>
         )
       )}
     />
-    {resourceMenu ? (
+    {graphCtxMenu ? (
       <div
         ref={resourceMenuRef}
         className={styles.resourceMenu}
-        style={{ left: resourceMenu.x, top: resourceMenu.y }}
-        role="dialog"
-        aria-label={`${resourceMenu.nodeLabel} 关联资源`}
+        style={{ left: graphCtxMenu.x, top: graphCtxMenu.y }}
+        role="menu"
+        aria-label={graphCtxMenu.kind === "node" ? `${graphCtxMenu.nodeLabel} 操作` : "关系操作"}
       >
         <div className={styles.resourceMenuHead}>
           <div>
-            <strong>{resourceMenu.nodeLabel}</strong>
-            <span>关联资源</span>
+            <strong>
+              {graphCtxMenu.kind === "node" ? graphCtxMenu.nodeLabel : graphCtxMenu.label}
+            </strong>
+            <span>{graphCtxMenu.kind === "node" ? "实体操作" : "关系操作"}</span>
           </div>
-          <button type="button" onClick={() => setResourceMenu(null)} aria-label="关闭">
+          <button type="button" onClick={() => setGraphCtxMenu(null)} aria-label="关闭">
             ×
           </button>
         </div>
-        <div className={styles.resourceMenuGroups}>
-          <section>
-            <h3>公式 · MMKG 内部关联</h3>
-            <RelatedAssetsPanel
-              entityId={resourceMenu.nodeId}
-              entityAliases={[resourceMenu.nodeLabel, ...resourceMenu.nodeAliases]}
-              library={assetsLibrary}
-              kinds={["formula"]}
-              maxItems={6}
-            />
-          </section>
-          {resourceMenu.loading ? (
-            <div className={styles.resourceMenuState}>正在查询视频、练习与动画…</div>
-          ) : resourceMenu.error ? (
-            <div className={styles.resourceMenuError}>{resourceMenu.error}</div>
-          ) : (
-            <>
-              {(["video", "exercise", "animation"] as const).map((kind) => {
-                const rows = resourceMenu.resources.filter((item) => item.resource_type === kind);
-                if (!rows.length) return null;
-                return (
-                  <section key={kind}>
-                    <h3>{RESOURCE_LABELS[kind]} · {rows.length}</h3>
-                    {rows.map((resource) => (
-                      <button
-                        type="button"
-                        key={`${kind}:${resource.resource_id}`}
-                        className={styles.resourceCard}
-                        onClick={() => openLinkedResource(resource)}
-                      >
-                        <span className={styles.resourceCardHead}>
-                          <strong>{resource.title}</strong>
-                          <em>{resourceMeta(resource)}</em>
-                        </span>
-                        {resourceDetail(resource, resourceMenu.nodeLabel) ? (
-                          <span className={styles.resourceCardDetail}>
-                            {resourceDetail(resource, resourceMenu.nodeLabel)}
-                          </span>
-                        ) : null}
-                        <span className={styles.resourceCardAction}>
-                          {kind === "video" ? "打开视频" : kind === "exercise" ? "进入做题" : "查看动画"}
-                        </span>
-                      </button>
-                    ))}
-                  </section>
-                );
-              })}
-            </>
-          )}
-        </div>
-        {resourceMenu.warnings.length ? (
-          <details className={styles.resourceMenuWarnings}>
-            <summary>部分服务暂不可用</summary>
-            {resourceMenu.warnings.map((warning, index) => (
-              <p key={`${index}:${warning}`}>{warning}</p>
-            ))}
-          </details>
-        ) : null}
+        {graphCtxMenu.kind === "node" ? (
+          <>
+            <div className={styles.graphCtxActions}>
+              {canEditGraph ? (
+                <button type="button" onClick={() => beginEditEntity(graphCtxMenu.meta)}>
+                  修改实体
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => hideEntity(graphCtxMenu.nodeId, graphCtxMenu.nodeLabel)}
+              >
+                隐藏实体
+              </button>
+              {canEditGraph ? (
+                <button
+                  type="button"
+                  className={styles.graphCtxDanger}
+                  disabled={editBusy}
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `删除实体「${graphCtxMenu.nodeLabel}」？其关联关系也会一并移除${embedMode ? "，且此操作不可撤销" : "（可撤销）"}。`,
+                      )
+                    ) {
+                      setGraphCtxMenu(null);
+                      void handleDeleteEntity(graphCtxMenu.nodeId);
+                    }
+                  }}
+                >
+                  删除实体
+                </button>
+              ) : null}
+            </div>
+            {!isEmbeddedGraph ? (
+              <div className={styles.resourceMenuGroups}>
+                <section>
+                  <h3>公式 · MMKG 内部关联</h3>
+                  <RelatedAssetsPanel
+                    entityId={graphCtxMenu.nodeId}
+                    entityAliases={[graphCtxMenu.nodeLabel, ...graphCtxMenu.nodeAliases]}
+                    library={assetsLibrary}
+                    kinds={["formula"]}
+                  />
+                </section>
+                {graphCtxMenu.loading ? (
+                  <div className={styles.resourceMenuState}>正在查询视频、练习与动画…</div>
+                ) : graphCtxMenu.error ? (
+                  <div className={styles.resourceMenuError}>{graphCtxMenu.error}</div>
+                ) : (
+                  <>
+                    {(["video", "exercise"] as const).map((kind) => {
+                      const rows = graphCtxMenu.resources.filter((item) => item.resource_type === kind);
+                      if (!rows.length) return null;
+                      return (
+                        <section key={kind}>
+                          <h3>{RESOURCE_LABELS[kind]} · {rows.length}</h3>
+                          <LinkedResourceCardList
+                            resources={rows}
+                            kind={kind}
+                            nodeLabel={graphCtxMenu.nodeLabel}
+                            onOpen={openLinkedResource}
+                          />
+                        </section>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            ) : null}
+            {graphCtxMenu.warnings.length ? (
+              <details className={styles.resourceMenuWarnings}>
+                <summary>部分服务暂不可用</summary>
+                {graphCtxMenu.warnings.map((warning, index) => (
+                  <p key={`${index}:${warning}`}>{warning}</p>
+                ))}
+              </details>
+            ) : null}
+          </>
+        ) : (
+          <div className={styles.graphCtxActions}>
+            {canEditGraph ? (
+              <button type="button" onClick={() => beginEditEdge(graphCtxMenu.edgeId)}>
+                修改边
+              </button>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => hideEdge(graphCtxMenu.edgeId, graphCtxMenu.label)}
+            >
+              隐藏边
+            </button>
+            {canEditGraph ? (
+              <button
+                type="button"
+                className={styles.graphCtxDanger}
+                disabled={editBusy}
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      `删除关系「${graphCtxMenu.label}」？${embedMode ? "此操作不可撤销。" : "（可撤销）"}`,
+                    )
+                  ) {
+                    const id = graphCtxMenu.edgeId;
+                    setGraphCtxMenu(null);
+                    void handleDeleteEdge(id);
+                  }
+                }}
+              >
+                删除边
+              </button>
+            ) : null}
+          </div>
+        )}
       </div>
     ) : null}
     </>

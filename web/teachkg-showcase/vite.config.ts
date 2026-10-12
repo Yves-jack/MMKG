@@ -3,10 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { recommendSearchMiddleware } from "./server/recommendSearch.mjs";
-import { qaChatMiddleware } from "./server/qaLlm.mjs";
 import { reviewNotesMiddleware } from "./server/reviewNotes.mjs";
-import { practiceQuizMiddleware } from "./server/practiceQuiz.mjs";
 import { kgEditsMiddleware } from "./server/kgEdits.mjs";
 import { mindmapOutlineMiddleware } from "./server/mindmapOutline.mjs";
 import { knowledgeResourcesMiddleware } from "./server/knowledgeResources.mjs";
@@ -43,7 +40,12 @@ function serveFileFromRoot(
     if (rel.includes("图论 ") && rel.includes("离散数学") && !rel.includes("图论+")) {
       rel = rel.replace(/图论 /g, "图论+");
     }
-    const file = path.normalize(path.join(root, rel));
+    // 旧导出短课名 → 实际 raw 目录
+    const legacy = rel.match(/^raw\/(数理逻辑|图论|集合论)\/(video\/.+)$/);
+    if (legacy) {
+      rel = `raw/离散数学(图论+数理逻辑与集合论)/${legacy[2]}`;
+    }
+    let file = path.normalize(path.join(root, rel));
     if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
       res.statusCode = 404;
       res.end("Not found");
@@ -154,30 +156,23 @@ function stripBaseForApiPlugin(basePath: string) {
   };
 }
 
-function recommendSearchPlugin(env: Record<string, string>) {
-  const searchMw = recommendSearchMiddleware({ ...process.env, ...env });
-  const qaMw = qaChatMiddleware({ ...process.env, ...env });
-  const notesMw = reviewNotesMiddleware({ ...process.env, ...env });
-  const practiceMw = practiceQuizMiddleware({ ...process.env, ...env });
-  const kgEditsMw = kgEditsMiddleware({ ...process.env, ...env });
-  const outlineMw = mindmapOutlineMiddleware({ ...process.env, ...env });
-  const resourcesMw = knowledgeResourcesMiddleware({ ...process.env, ...env });
+function showcaseApiPlugin(env: Record<string, string>) {
+  // 容器运行时 process.env（compose 注入）优先于 loadEnv 文件，避免被空默认值盖掉
+  const runtimeEnv = () => ({ ...env, ...process.env });
+  const notesMw = reviewNotesMiddleware(runtimeEnv);
+  const kgEditsMw = kgEditsMiddleware(runtimeEnv());
+  const outlineMw = mindmapOutlineMiddleware(runtimeEnv());
+  const resourcesMw = knowledgeResourcesMiddleware(runtimeEnv());
   return {
-    name: "recommend-search-api",
+    name: "showcase-api",
     configureServer(server: any) {
-      server.middlewares.use(searchMw);
-      server.middlewares.use(qaMw);
       server.middlewares.use(notesMw);
-      server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
     },
     configurePreviewServer(server: any) {
-      server.middlewares.use(searchMw);
-      server.middlewares.use(qaMw);
       server.middlewares.use(notesMw);
-      server.middlewares.use(practiceMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
@@ -196,7 +191,7 @@ export default defineConfig(({ mode }) => {
       react(),
       stripBaseForApiPlugin(base),
       serveRepoData(),
-      recommendSearchPlugin(env),
+      showcaseApiPlugin(env),
     ],
     resolve: {
       alias: {
@@ -205,7 +200,13 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       fs: { allow: [repoRoot] },
-      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase", "dlc.sjtu.edu.cn"],
+      allowedHosts: [
+        "localhost",
+        "mmkg-frontend",
+        "debug-mmkg-showcase",
+        "host.docker.internal",
+        "dlc.sjtu.edu.cn",
+      ],
       port: 5173,
       proxy: {
         "/mmkg-api": {
@@ -218,7 +219,13 @@ export default defineConfig(({ mode }) => {
     preview: {
       host: true,
       port: 5173,
-      allowedHosts: ["localhost", "mmkg-frontend", "debug-mmkg-showcase", "dlc.sjtu.edu.cn"],
+      allowedHosts: [
+        "localhost",
+        "mmkg-frontend",
+        "debug-mmkg-showcase",
+        "host.docker.internal",
+        "dlc.sjtu.edu.cn",
+      ],
       proxy: {
         "/mmkg-api": {
           target: mmkgOrigin,

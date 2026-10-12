@@ -1,5 +1,5 @@
-import type { MindmapHistoryItem } from "@/lib/apps/mindmapEdits";
-import pipe from "@/pages/PipelinePage.module.css";
+import type { MindmapHistoryItem } from "@/lib/review/mindmapEdits";
+import pipe from "@/styles/panels.module.css";
 
 /** 右栏操作历史：仅最新一步可撤销（逐步回退，不可跳撤销中间步） */
 export function MindmapHistoryPanel({

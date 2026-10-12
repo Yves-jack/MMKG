@@ -1,0 +1,39 @@
+# Staging host ports + aliases expected by AI-Teaching nginx on this server.
+# Intentionally avoids alias "mmkg-backend" so debug-mmkg-backend can keep it.
+services:
+  mmkg-backend:
+    container_name: staging-mmkg-backend
+    ports:
+      - "8002:8000"
+    networks:
+      runtime:
+        aliases:
+          - kg-backend
+          - staging-mmkg-backend
+
+  mmkg-frontend:
+    container_name: staging-mmkg-frontend
+    networks:
+      runtime:
+        aliases:
+          - staging-mmkg-frontend
+
+  kg-frontend:
+    image: nginx:alpine
+    container_name: staging-kg-frontend
+    restart: unless-stopped
+    volumes:
+      - ./deploy/kg-frontend-nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "5900:80"
+    networks:
+      runtime:
+        aliases:
+          - kg-frontend
+    depends_on:
+      - mmkg-frontend
+
+networks:
+  runtime:
+    name: staging-runtime
+    external: true

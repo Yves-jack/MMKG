@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { withBase } from "@/lib/withBase";
-import pipe from "@/pages/PipelinePage.module.css";
+import pipe from "@/styles/panels.module.css";
 
 type OutlineDoc = {
   courseId?: string;
@@ -12,18 +12,24 @@ type OutlineDoc = {
   llm_notes?: string;
   raw_draft?: string;
   incremental?: boolean;
+  chapters?: Array<{ title?: string; sections?: unknown }>;
+  course_skeleton?: boolean;
 };
 
 export function ChapterOutlinePanel({
   courseId,
   chapter,
   onApplied,
+  mode = "chapter",
 }: {
   courseId: string;
   chapter: string;
   /** 保存后回调：用新大纲重建导图 */
   onApplied?: (outlineText: string, meta: OutlineDoc) => void | Promise<void>;
+  /** course_skeleton：整课章→节层级，不含细概念 */
+  mode?: "chapter" | "course_skeleton";
 }) {
+  const isCourseSkeleton = mode === "course_skeleton";
   /** 磁盘已存大纲（仅作增量合并底稿，不展示） */
   const [baseline, setBaseline] = useState("");
   const [text, setText] = useState("");
@@ -86,6 +92,7 @@ export function ChapterOutlinePanel({
           normalize: opts.normalize,
           incremental: useIncremental,
           existing_outline: useIncremental ? baseline : undefined,
+          course_skeleton: isCourseSkeleton,
         }),
       });
       const d = await r.json();
@@ -127,12 +134,8 @@ export function ChapterOutlinePanel({
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        rows={12}
-        placeholder={
-          hasBaseline
-            ? "增量：只写本次补充内容\n覆盖整理：写完整草稿（AI 整理后替换已有）\n\n例：\n还讲了邻接矩阵…\n或：\n图的表示\n  邻接矩阵\n  关联矩阵"
-            : "例：今天讲了命题、联结词，还有合式公式和真值表…\n\n或：\n命题\n  原子命题\n联结词\n合式公式"
-        }
+        rows={5}
+        placeholder=""
         style={{
           width: "100%",
           boxSizing: "border-box",

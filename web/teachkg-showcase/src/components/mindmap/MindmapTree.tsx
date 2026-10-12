@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import {
   addChildNode,
   addRemoteLink,
@@ -18,8 +18,10 @@ import {
   loadMindmapUndoStack,
   makeLeafNode,
   moveSubtree,
+  parentIdAtPath,
   pathEquals,
   removeRemoteLink,
+  renameNode,
   reorderSibling,
   saveMindmapClipboard,
   saveMindmapEditPatch,
@@ -27,8 +29,11 @@ import {
   withForest,
   type MindmapHistoryItem,
   type MindmapUndoEntry,
-} from "@/lib/apps/mindmapEdits";
+} from "@/lib/review/mindmapEdits";
+import { dedupeEntityMatchesByZh } from "@/lib/entitySearchDedupe";
 import { exportMindmapPng } from "@/lib/kg/exportMindmapPng";
+import { remapSetTheoryChapterLabelsInDoc } from "@/lib/kg/mindmapTypes";
+import { collectSubtreeIds, retargetIdentity, type ConceptLink } from "@/lib/review/conceptIdentity";
 import { withBase } from "@/lib/withBase";
 import styles from "./MindmapTree.module.css";
 
@@ -70,6 +75,10 @@ export type MindmapDoc = {
   orphan_count: number;
   /** 横向远程连接（非父子树边） */
   remoteLinks?: MindmapRemoteLink[];
+  /** 被合并/删除的旧节点 id → 仍存在的概念 id */
+  id_redirects?: Record<string, string>;
+  /** 概念 id → 其他板块（复习/练习/视频等），不跟显示名走 */
+  concept_links?: ConceptLink[];
   meta?: {
     chapter?: string;
     root_zh?: string;
@@ -79,6 +88,8 @@ export type MindmapDoc = {
     n_edges_raw?: number;
     attached_orphans?: number;
     n_chapters?: number;
+    n_parts?: number;
+    stitch?: string;
     /** course | chapter | lecture */
     scope?: "course" | "chapter" | "lecture";
     lecture_ids?: string[];
@@ -88,11 +99,16 @@ export type MindmapDoc = {
     /** textbook_toc | summary | manual */
     skeleton_source?: string;
     n_sections?: number;
+    id_redirects?: Record<string, string>;
+    /** 整课骨架视图（仅章→节） */
+    skeleton_view?: boolean;
+    outline_key?: string;
   };
 };
 
 function nodeKind(id: string, depth: number): "root" | "chapter" | "topic" | "leaf" {
   if (id.startsWith("__course__/") || depth === 0) return "root";
+  if (id.startsWith("__part__/")) return "chapter";
   if (id.startsWith("__chapter__/")) return "chapter";
   if (id.startsWith("__section__/") || id.startsWith("__topic__/")) return "topic";
   if (depth <= 2) return "topic";
@@ -113,11 +129,32 @@ function docTrees(doc: MindmapDoc): MindmapTreeNode[] {
   return doc.roots?.length ? doc.roots : doc.root ? [doc.root] : [];
 }
 
+function withRetargetedIdentity(
+  doc: MindmapDoc,
+  trees: MindmapTreeNode[],
+  gone: Iterable<string>,
+  canonical: string | null,
+  remoteLinks: MindmapRemoteLink[]
+): MindmapDoc {
+  const next = retargetIdentity({
+    gone,
+    canonical,
+    idRedirects: doc.id_redirects,
+    remoteLinks,
+    conceptLinks: doc.concept_links,
+  });
+  return withForest(doc, trees, next.remoteLinks, {
+    idRedirects: next.id_redirects,
+    conceptLinks: next.concept_links,
+  });
+}
+
 export type MindmapLayout = "lr";
 
 function isVirtualNode(id: string): boolean {
   return (
     id.startsWith("__course__/") ||
+    id.startsWith("__part__/") ||
     id.startsWith("__chapter__/") ||
     id.startsWith("__lecture__/") ||
     id.startsWith("__section__/") ||
@@ -134,17 +171,61 @@ function clampZoom(v: number) {
   return Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, v));
 }
 
+/** 树中节点最大 depth（根=0） */
+function forestMaxDepth(nodes: MindmapTreeNode[], depth = 0): number {
+  let m = depth;
+  for (const n of nodes) {
+    const kids = n.children || [];
+    if (kids.length) m = Math.max(m, forestMaxDepth(kids, depth + 1));
+    else m = Math.max(m, depth);
+  }
+  return m;
+}
+
+/**
+ * expandDepth 语义：depth < expandDepth 的节点为展开。
+ * 叶子在 maxD 时，有用上限为 maxD（打开 0..maxD-1，露出最外层）。
+ */
+function usefulExpandDepthCap(maxD: number) {
+  return Math.max(0, maxD);
+}
+
+/** 展开/收起后仍可见的焦点路径（收起时若原节点消失则回退到最近祖先） */
+function resolveChromeFocusPath(
+  selectedPath: number[] | null,
+  nextExpandDepth: number,
+  mode: "expand" | "collapse"
+): string | null {
+  if (!selectedPath?.length) return null;
+  const depth = selectedPath.length - 1;
+  // 可见：祖先均展开 → 节点 depth 不超过 nextExpandDepth
+  if (mode === "expand" || depth <= nextExpandDepth) {
+    return selectedPath.join(".");
+  }
+  const keepLen = Math.max(1, nextExpandDepth + 1);
+  return selectedPath.slice(0, keepLen).join(".");
+}
+
+type ViewportFocusRequest = {
+  seq: number;
+  pathKey: string | null;
+  mode: "expand" | "collapse";
+};
+
 /** 画布平移 + 滚轮缩放；移动超过阈值时吞掉随后的 click，避免误触展开 */
 function PanViewport({
   children,
   resetKey,
+  focusRequest,
 }: {
   children: ReactNode;
   resetKey: string | number;
+  focusRequest?: ViewportFocusRequest | null;
 }) {
   const [view, setView] = useState({ x: 0, y: 0, scale: 1 });
   const [dragging, setDragging] = useState(false);
   const [moved, setMoved] = useState(false);
+  const [animating, setAnimating] = useState(false);
   const viewRef = useRef(view);
   viewRef.current = view;
   const hostRef = useRef<HTMLDivElement | null>(null);
@@ -157,6 +238,7 @@ function PanViewport({
     moved: boolean;
   } | null>(null);
   const suppressClickRef = useRef(false);
+  const animTimerRef = useRef<number | null>(null);
 
   const zoomAt = (nextScale: number, clientX: number, clientY: number) => {
     const host = hostRef.current;
@@ -185,18 +267,101 @@ function PanViewport({
 
   const resetView = () => setView({ x: 0, y: 0, scale: 1 });
 
+  const findFocusEl = (pathKey: string | null): HTMLElement | null => {
+    const host = hostRef.current;
+    if (!host) return null;
+    if (pathKey) {
+      let parts = pathKey.split(".").filter(Boolean);
+      while (parts.length) {
+        const el = host.querySelector(
+          `[data-node-path="${CSS.escape(parts.join("."))}"]`
+        ) as HTMLElement | null;
+        if (el) return el;
+        parts = parts.slice(0, -1);
+      }
+    }
+    return host.querySelector("[data-mind-bubble]") as HTMLElement | null;
+  };
+
   useEffect(() => {
     setView({ x: 0, y: 0, scale: 1 });
     dragRef.current = null;
     setDragging(false);
     setMoved(false);
+    setAnimating(false);
     suppressClickRef.current = false;
   }, [resetKey]);
+
+  useEffect(() => {
+    if (!focusRequest) return;
+    const host = hostRef.current;
+    if (!host) return;
+
+    const run = () => {
+      const el = findFocusEl(focusRequest.pathKey);
+      if (!el) return;
+      const hostRect = host.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const elCx = elRect.left + elRect.width / 2;
+      const elCy = elRect.top + elRect.height / 2;
+      const hostCx = hostRect.left + hostRect.width / 2;
+      const hostCy = hostRect.top + hostRect.height / 2;
+      const dx = hostCx - elCx;
+      const dy = hostCy - elCy;
+      const cur = viewRef.current;
+      const scaleFactor = focusRequest.mode === "expand" ? 1.1 : 0.9;
+      const nextScale = clampZoom(cur.scale * scaleFactor);
+      const cx = hostRect.width / 2;
+      const cy = hostRect.height / 2;
+
+      if (animTimerRef.current != null) window.clearTimeout(animTimerRef.current);
+      setAnimating(true);
+      setView((v) => {
+        const x1 = v.x + dx;
+        const y1 = v.y + dy;
+        const wx = (cx - x1) / v.scale;
+        const wy = (cy - y1) / v.scale;
+        return {
+          x: cx - wx * nextScale,
+          y: cy - wy * nextScale,
+          scale: nextScale,
+        };
+      });
+      animTimerRef.current = window.setTimeout(() => {
+        setAnimating(false);
+        animTimerRef.current = null;
+      }, 400);
+    };
+
+    // 等 DOM 按新 expandDepth 完成布局后再量位置
+    let cancelled = false;
+    const t = window.setTimeout(() => {
+      requestAnimationFrame(() => {
+        if (!cancelled) run();
+      });
+    }, 50);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(t);
+    };
+  }, [focusRequest?.seq]);
 
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
     const onWheel = (e: WheelEvent) => {
+      const top =
+        (typeof document !== "undefined"
+          ? document.elementFromPoint(e.clientX, e.clientY)
+          : null) || (e.target as Element | null);
+      // 右键菜单 / 顶栏 / 编辑条上的滚轮：留给原生滚动，不缩放导图
+      if (
+        top?.closest?.(
+          "[data-mind-ctx], [data-mind-chrome], [data-mind-edit], [data-mind-zoom]"
+        )
+      ) {
+        return;
+      }
       e.preventDefault();
       const factor = e.deltaY > 0 ? 1 / ZOOM_STEP : ZOOM_STEP;
       zoomAt(viewRef.current.scale * factor, e.clientX, e.clientY);
@@ -228,10 +393,15 @@ function PanViewport({
         // 不排除 data-mind-tree：编辑态下整树拖动会禁用，事件需落到此处才能平移画布
         if (
           t?.closest?.(
-            "[data-mind-bubble], [data-mind-toggle], [data-mind-zoom], [data-mind-resize], [data-mind-edit], [data-mind-chrome]"
+            "[data-mind-bubble], [data-mind-toggle], [data-mind-zoom], [data-mind-resize], [data-mind-edit], [data-mind-chrome], [data-mind-ctx]"
           )
         )
           return;
+        if (animTimerRef.current != null) {
+          window.clearTimeout(animTimerRef.current);
+          animTimerRef.current = null;
+        }
+        setAnimating(false);
         dragRef.current = {
           pointerId: e.pointerId,
           startX: e.clientX,
@@ -282,7 +452,9 @@ function PanViewport({
       title="空白处拖动画布 · 拖动一棵树可单独挪开 · 滚轮缩放 · 双击空白复位"
     >
       <div
-        className={styles.panLayer}
+        className={[styles.panLayer, animating ? styles.panLayerAnim : ""]
+          .filter(Boolean)
+          .join(" ")}
         style={{
           transform: `translate(${view.x}px, ${view.y}px) scale(${view.scale})`,
         }}
@@ -305,6 +477,20 @@ function PanViewport({
   );
 }
 
+type LayerMode = "all" | "frontier";
+
+type TreeOpenCmd = {
+  seq: number;
+  path: number[];
+  open: boolean;
+  /** true=全部层；false=仅当前节点一层 */
+  deep: boolean;
+};
+
+function pathIsPrefix(prefix: number[], full: number[]) {
+  return prefix.length <= full.length && prefix.every((v, i) => full[i] === v);
+}
+
 function MapBranch({
   node,
   path,
@@ -316,12 +502,17 @@ function MapBranch({
   onSelect,
   editMode,
   editTool,
+  editActions,
   selectedPath,
   moveFromPath,
   linkFromId,
   remoteLinkedIds,
   onEditPick,
   onPick,
+  onNodeContextMenu,
+  layerMode,
+  openCmd,
+  onOpenCmd,
   onLayout,
   nodeSizes,
   onNodeResize,
@@ -337,6 +528,8 @@ function MapBranch({
   onSelect?: (node: MindmapTreeNode) => void;
   editMode?: boolean;
   editTool?: "select" | "move" | "link";
+  /** 允许右键菜单展示编辑项（通常等于 editEnabled） */
+  editActions?: boolean;
   selectedPath?: number[] | null;
   moveFromPath?: number[] | null;
   linkFromId?: string | null;
@@ -344,6 +537,15 @@ function MapBranch({
   onEditPick?: (node: MindmapTreeNode, path: number[]) => void;
   /** 浏览/选择态：始终点选高亮 */
   onPick?: (node: MindmapTreeNode, path: number[]) => void;
+  onNodeContextMenu?: (
+    e: ReactMouseEvent,
+    node: MindmapTreeNode,
+    path: number[],
+    handlers: { hasKids: boolean; open: boolean }
+  ) => void;
+  layerMode?: LayerMode;
+  openCmd?: TreeOpenCmd | null;
+  onOpenCmd?: (path: number[], open: boolean, deep: boolean) => void;
   onLayout?: () => void;
   nodeSizes?: Record<string, { w: number; h: number }>;
   onNodeResize?: (nodeId: string, size: { w: number; h: number } | null) => void;
@@ -354,7 +556,12 @@ function MapBranch({
     !!forceOpenPath &&
     forceOpenPath.length > path.length &&
     path.every((v, i) => v === forceOpenPath[i]);
-  const initialOpen = Boolean(shouldForceOpen || defaultOpen || depth < expandDepth);
+  const underDeepOpen = Boolean(
+    openCmd?.open && openCmd.deep && pathIsPrefix(openCmd.path, path)
+  );
+  const initialOpen = Boolean(
+    shouldForceOpen || defaultOpen || underDeepOpen || depth < expandDepth
+  );
   const [open, setOpen] = useState(initialOpen);
   /** 展开过一次就保留子树挂载，避免收起再点 + 时按 expandDepth 把深层一并打开 */
   const [revealed, setRevealed] = useState(initialOpen);
@@ -380,7 +587,7 @@ function MapBranch({
   }, [open]);
 
   useEffect(() => {
-    // 响应「全部展开 / 收起导图 / 初始深度」：浅层保持展开，深层强制收起并卸挂载
+    // 响应顶栏「展开/收起」的 expandDepth；节点级 +/- 仍走 openCmd，互不抢状态
     const want = Boolean(shouldForceOpen || defaultOpen || depth < expandDepth);
     setOpen(want);
     if (want) setRevealed(true);
@@ -395,6 +602,16 @@ function MapBranch({
   }, [shouldForceOpen, forceOpenPath?.join(".")]);
 
   useEffect(() => {
+    if (!openCmd) return;
+    if (!pathIsPrefix(openCmd.path, path)) return;
+    const isSelf = path.length === openCmd.path.length;
+    if (!openCmd.deep && !isSelf) return;
+    setOpen(openCmd.open);
+    if (openCmd.open) setRevealed(true);
+    else if (openCmd.deep) setRevealed(false);
+  }, [openCmd?.seq]);
+
+  useEffect(() => {
     onLayout?.();
   }, [open, nodeSize?.w, nodeSize?.h, onLayout]);
 
@@ -407,13 +624,20 @@ function MapBranch({
     onSelect?.(node);
   };
 
+  const applyOpen = (next: boolean, deep: boolean) => {
+    if (!hasKids) return;
+    if (deep && onOpenCmd) {
+      onOpenCmd(path, next, true);
+      return;
+    }
+    setOpen(next);
+    if (next) setRevealed(true);
+  };
+
   const toggleOpen = () => {
     if (!hasKids) return;
-    setOpen((v) => {
-      const next = !v;
-      if (next) setRevealed(true);
-      return next;
-    });
+    const deep = layerMode === "all";
+    applyOpen(!open, deep);
   };
 
   const onResizePointerDown = (e: ReactPointerEvent) => {
@@ -482,6 +706,18 @@ function MapBranch({
           role="button"
           tabIndex={0}
           onClick={select}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onPick?.(node, path);
+            onSelect?.(node);
+            // 只读：不弹出右键菜单（含展开项）；编辑态才开菜单
+            if (!editActions) return;
+            onNodeContextMenu?.(e, node, path, {
+              hasKids,
+              open,
+            });
+          }}
           onDoubleClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -503,9 +739,8 @@ function MapBranch({
             ) {
               e.preventDefault();
               if (e.key === "+" || e.key === "ArrowRight" || e.key === "ArrowDown") {
-                setRevealed(true);
-                setOpen(true);
-              } else setOpen(false);
+                applyOpen(true, layerMode === "all");
+              } else applyOpen(false, layerMode === "all");
             }
           }}
           title={
@@ -523,8 +758,18 @@ function MapBranch({
                 : isVirtualNode(node.id)
                   ? node.zh
                   : `查看「${node.zh}」详情`,
-              hasKids ? "双击展开/收起" : "",
-              "右下角拖拽调大小；双击手柄复位",
+              hasKids
+                ? layerMode === "all"
+                  ? editActions
+                    ? "双击展开/收起全部下层 · 右键菜单"
+                    : "双击展开/收起全部下层"
+                  : editActions
+                    ? "双击展开/收起一层 · 右键菜单"
+                    : "双击展开/收起一层"
+                : editActions
+                  ? "右键编辑菜单"
+                  : "",
+              editActions ? "右下角拖拽调大小；双击手柄复位" : "",
             ]
               .filter(Boolean)
               .join(" · ")
@@ -549,7 +794,15 @@ function MapBranch({
               className={styles.bubbleToggle}
               data-mind-toggle="1"
               aria-expanded={open}
-              title={open ? "折叠子节点" : "展开子节点"}
+              title={
+                open
+                  ? layerMode === "all"
+                    ? "收起全部下层"
+                    : "收起一层"
+                  : layerMode === "all"
+                    ? "展开全部下层"
+                    : "展开一层"
+              }
               onClick={(e) => {
                 e.stopPropagation();
                 toggleOpen();
@@ -562,18 +815,20 @@ function MapBranch({
               {open ? "−" : "+"}
             </button>
           ) : null}
-          <span
-            className={styles.resizeHandle}
-            data-mind-resize="1"
-            title="拖拽调整大小（双击复位）"
-            onPointerDown={onResizePointerDown}
-            onClick={(e) => e.stopPropagation()}
-            onDoubleClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onNodeResize?.(node.id, null);
-            }}
-          />
+          {editActions && onNodeResize ? (
+            <span
+              className={styles.resizeHandle}
+              data-mind-resize="1"
+              title="拖拽调整大小（双击复位）"
+              onPointerDown={onResizePointerDown}
+              onClick={(e) => e.stopPropagation()}
+              onDoubleClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onNodeResize(node.id, null);
+              }}
+            />
+          ) : null}
         </div>
         {hasKids && open ? <span className={styles.elbow} aria-hidden /> : null}
       </div>
@@ -605,12 +860,17 @@ function MapBranch({
                 onSelect={onSelect}
                 editMode={editMode}
                 editTool={editTool}
+                editActions={editActions}
                 selectedPath={selectedPath}
                 moveFromPath={moveFromPath}
                 linkFromId={linkFromId}
                 remoteLinkedIds={remoteLinkedIds}
                 onEditPick={onEditPick}
                 onPick={onPick}
+                onNodeContextMenu={onNodeContextMenu}
+                layerMode={layerMode}
+                openCmd={openCmd}
+                onOpenCmd={onOpenCmd}
                 onLayout={onLayout}
                 nodeSizes={nodeSizes}
                 onNodeResize={onNodeResize}
@@ -721,6 +981,8 @@ type MindmapTreeProps = {
   expandAll?: boolean;
   selectedId?: string | null;
   onSelect?: (node: MindmapTreeNode) => void;
+  /** 点击空白取消选中 */
+  onClearSelect?: () => void;
   className?: string;
   /** 开启后显示编辑工具条（删节点 / 移子树 / 横向连接） */
   editEnabled?: boolean;
@@ -756,11 +1018,12 @@ type Seg = {
 };
 
 export function MindmapTree({
-  doc,
+  doc: docProp,
   resetKey = 0,
   expandAll = false,
   selectedId = null,
   onSelect,
+  onClearSelect,
   className,
   editEnabled = false,
   courseId,
@@ -770,12 +1033,33 @@ export function MindmapTree({
   onHistoryChange,
   undoRef,
 }: MindmapTreeProps) {
+  // 集合论分册：树内「第9–12章」展示为「第1–4章」
+  const doc = useMemo(
+    () => remapSetTheoryChapterLabelsInDoc(docProp),
+    [docProp],
+  );
   const [editMode, setEditMode] = useState(false);
   const [editTool, setEditTool] = useState<EditTool>("select");
   const [selectedPath, setSelectedPath] = useState<number[] | null>(null);
   const [moveFromPath, setMoveFromPath] = useState<number[] | null>(null);
   const [linkFromId, setLinkFromId] = useState<string | null>(null);
   const [hint, setHint] = useState("");
+  const [ctxMenu, setCtxMenu] = useState<{
+    x: number;
+    y: number;
+    node: MindmapTreeNode;
+    path: number[];
+    hasKids: boolean;
+    open: boolean;
+  } | null>(null);
+  const [layerMode, setLayerMode] = useState<LayerMode>("all");
+  const [expandDepth, setExpandDepth] = useState(() => (expandAll ? 8 : 2));
+  const [openCmd, setOpenCmd] = useState<TreeOpenCmd | null>(null);
+  const openCmdSeqRef = useRef(0);
+  const focusSeqRef = useRef(0);
+  const [focusRequest, setFocusRequest] = useState<ViewportFocusRequest | null>(
+    null
+  );
   const [layoutTick, setLayoutTick] = useState(0);
   const [segs, setSegs] = useState<Seg[]>([]);
   const [nodeSizes, setNodeSizes] = useState<Record<string, { w: number; h: number }>>(
@@ -816,16 +1100,59 @@ export function MindmapTree({
   const searchMatches = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return [];
-    return flatNodes
-      .filter(({ node }) => {
-        const zh = String(node.zh || "").toLowerCase();
-        const id = String(node.id || "").toLowerCase();
-        return zh.includes(q) || id.includes(q);
-      })
-      .slice(0, 24);
+    const hits = flatNodes.filter(({ node }) => {
+      const zh = String(node.zh || "").toLowerCase();
+      const id = String(node.id || "").toLowerCase();
+      return zh.includes(q) || id.includes(q);
+    });
+    const scored = hits.map((hit, i) => {
+      const zh = String(hit.node.zh || "").toLowerCase();
+      const id = String(hit.node.id || "").toLowerCase();
+      let score = 100 - i;
+      if (zh === q || id === q) score = 400;
+      else if (zh.startsWith(q) || id.startsWith(q)) score = 200;
+      return {
+        ...hit,
+        label: String(hit.node.zh || hit.node.id || ""),
+        id: String(hit.node.id || ""),
+        score,
+      };
+    });
+    return dedupeEntityMatchesByZh(scored).slice(0, 12);
   }, [flatNodes, searchQuery]);
 
   const hasClipboard = useMemo(() => Boolean(loadMindmapClipboard()), [clipTick, key]);
+
+  const ctxSiblingOrder = useMemo(
+    () => canReorderSibling(trees, ctxMenu?.path ?? null),
+    [trees, ctxMenu?.path]
+  );
+
+  useEffect(() => {
+    if (!ctxMenu) return;
+    const onDown = (ev: MouseEvent) => {
+      const t = ev.target as HTMLElement | null;
+      if (t?.closest?.("[data-mind-ctx]")) return;
+      setCtxMenu(null);
+    };
+    const onKey = (ev: KeyboardEvent) => {
+      if (ev.key === "Escape") setCtxMenu(null);
+    };
+    const onScroll = (ev: Event) => {
+      const t = ev.target as HTMLElement | null;
+      // 菜单自身滚动不关闭；页面/画布滚动再关
+      if (t?.closest?.("[data-mind-ctx]")) return;
+      setCtxMenu(null);
+    };
+    window.addEventListener("mousedown", onDown, true);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", onScroll, true);
+    return () => {
+      window.removeEventListener("mousedown", onDown, true);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", onScroll, true);
+    };
+  }, [ctxMenu]);
 
   const sizeStorageKey =
     courseId && lectureId
@@ -859,13 +1186,20 @@ export function MindmapTree({
       return next;
     });
   };
-  // 默认/收起：展开 depth 0–1，可见节点到 depth 2（即 0–2 层）；不再默认打开第 3 层
-  const expandDepth = expandAll ? 8 : 2;
+  // 默认/收起：展开 depth 0–1，可见节点到 depth 2；expandAll 时拉到深层
+  useEffect(() => {
+    setExpandDepth(expandAll ? 8 : 2);
+  }, [expandAll]);
 
   const persistDisk = (next: MindmapDoc) => {
     if (!courseId) return;
-    const chapter =
-      doc.meta?.scope === "chapter"
+    const isSkeleton =
+      String(lectureId || "") === "course:skeleton" ||
+      Boolean(doc.meta?.skeleton_view) ||
+      String(doc.meta?.outline_key || "") === "__course_skeleton__";
+    const chapter = isSkeleton
+      ? "__course_skeleton__"
+      : doc.meta?.scope === "chapter"
         ? doc.meta.chapter || String(lectureId || "").replace(/^chapter:/, "")
         : String(lectureId || "").startsWith("chapter:")
           ? String(lectureId).slice("chapter:".length)
@@ -880,6 +1214,7 @@ export function MindmapTree({
         mindmap: next,
         persist_mindmap: true,
         mindmap_only: true,
+        course_skeleton: isSkeleton,
       }),
     }).catch(() => null);
   };
@@ -891,6 +1226,93 @@ export function MindmapTree({
       t = window.setTimeout(() => setLayoutTick((n) => n + 1), 40);
     };
   }, []);
+
+  const emitOpenCmd = (path: number[], open: boolean, deep: boolean) => {
+    openCmdSeqRef.current += 1;
+    setOpenCmd({
+      seq: openCmdSeqRef.current,
+      path,
+      open,
+      deep,
+    });
+    bumpLayout();
+  };
+
+  const requestViewportFocus = (
+    mode: "expand" | "collapse",
+    nextExpandDepth: number
+  ) => {
+    focusSeqRef.current += 1;
+    setFocusRequest({
+      seq: focusSeqRef.current,
+      pathKey: resolveChromeFocusPath(selectedPath, nextExpandDepth, mode),
+      mode,
+    });
+    bumpLayout();
+  };
+
+  const doChromeExpand = () => {
+    const maxD = usefulExpandDepthCap(forestMaxDepth(trees));
+    if (layerMode === "all") {
+      // 清掉旧的 deep-close 命令，避免挡住 expandDepth
+      openCmdSeqRef.current += 1;
+      setOpenCmd({
+        seq: openCmdSeqRef.current,
+        path: [],
+        open: true,
+        deep: true,
+      });
+      setExpandDepth(maxD);
+      setHint("已展开全部层");
+      requestViewportFocus("expand", maxD);
+      return;
+    }
+    const capped = Math.min(expandDepth, maxD);
+    if (capped >= maxD) {
+      setHint("已展开到最深层");
+      if (expandDepth !== maxD) {
+        setExpandDepth(maxD);
+        requestViewportFocus("expand", maxD);
+      }
+      return;
+    }
+    const next = capped + 1;
+    setExpandDepth(next);
+    setHint(`已多展开一层（深度 ${next}）`);
+    requestViewportFocus("expand", next);
+  };
+
+  const doChromeCollapse = () => {
+    const maxD = usefulExpandDepthCap(forestMaxDepth(trees));
+    if (layerMode === "all") {
+      // depth 0：整课/多根也只留顶层节点气泡（+/- 为 +）
+      openCmdSeqRef.current += 1;
+      setOpenCmd({
+        seq: openCmdSeqRef.current,
+        path: [],
+        open: false,
+        deep: true,
+      });
+      setExpandDepth(0);
+      setHint("已收起全部层");
+      requestViewportFocus("collapse", 0);
+      return;
+    }
+    // 先钳到真实树深，避免 99→98 这种「看起来没反应」
+    const capped = Math.min(expandDepth, maxD);
+    if (capped <= 0) {
+      setHint("已是最外层");
+      if (expandDepth !== 0) {
+        setExpandDepth(0);
+        requestViewportFocus("collapse", 0);
+      }
+      return;
+    }
+    const next = capped - 1;
+    setExpandDepth(next);
+    setHint(`已收起一层（深度 ${next}）`);
+    requestViewportFocus("collapse", next);
+  };
 
   const pushHistory = (snapshot: MindmapDoc, label: string) => {
     const entry: MindmapUndoEntry = {
@@ -915,7 +1337,11 @@ export function MindmapTree({
         withForest(
           cur,
           cloneForest(docForest(cur)),
-          (cur.remoteLinks || []).map((l) => ({ ...l }))
+          (cur.remoteLinks || []).map((l) => ({ ...l })),
+          {
+            idRedirects: { ...(cur.id_redirects || {}) },
+            conceptLinks: (cur.concept_links || []).map((l) => ({ ...l })),
+          }
         ),
         opts?.label || "编辑"
       );
@@ -925,6 +1351,8 @@ export function MindmapTree({
       saveMindmapEditPatch(courseId, lectureId, {
         trees: docTrees(next),
         remoteLinks: next.remoteLinks || [],
+        id_redirects: next.id_redirects,
+        concept_links: next.concept_links,
       });
     }
     persistDisk(next);
@@ -947,6 +1375,8 @@ export function MindmapTree({
       saveMindmapEditPatch(courseId, lectureId, {
         trees: docTrees(last.doc),
         remoteLinks: last.doc.remoteLinks || [],
+        id_redirects: last.doc.id_redirects,
+        concept_links: last.doc.concept_links,
       });
     }
     persistDisk(last.doc);
@@ -1057,7 +1487,8 @@ export function MindmapTree({
 
   const onPick = (node: MindmapTreeNode, path: number[]) => {
     setSelectedPath(path);
-    setHint(`已选「${node.zh}」`);
+    if (editMode) setHint(`已选「${node.zh}」`);
+    else setHint("");
   };
 
   const onEditPick = (node: MindmapTreeNode, path: number[]) => {
@@ -1116,14 +1547,18 @@ export function MindmapTree({
     }
   };
 
-  const doAddChild = () => {
-    if (!selectedPath) {
+  const resolveEditPath = (pathOverride?: number[] | null) =>
+    pathOverride && pathOverride.length ? pathOverride : selectedPath;
+
+  const doAddChild = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中父节点");
       return;
     }
     const name = window.prompt("子节点名称");
     if (!name?.trim()) return;
-    const nextTrees = addChildNode(trees, selectedPath, makeLeafNode(name.trim()));
+    const nextTrees = addChildNode(trees, path, makeLeafNode(name.trim()));
     if (!nextTrees) {
       setHint("添加失败");
       return;
@@ -1135,14 +1570,15 @@ export function MindmapTree({
     setHint(`已添加子节点「${name.trim()}」`);
   };
 
-  const doAddSibling = () => {
-    if (!selectedPath) {
+  const doAddSibling = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中节点");
       return;
     }
     const name = window.prompt("同级节点名称");
     if (!name?.trim()) return;
-    const nextTrees = addSiblingNode(trees, selectedPath, makeLeafNode(name.trim()));
+    const nextTrees = addSiblingNode(trees, path, makeLeafNode(name.trim()));
     if (!nextTrees) {
       setHint("添加失败");
       return;
@@ -1154,31 +1590,59 @@ export function MindmapTree({
     setHint(`已添加同级「${name.trim()}」`);
   };
 
-  const doDeleteSubtree = () => {
-    if (!selectedPath) {
+  const doRename = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
+      setHint("请先选中节点");
+      return;
+    }
+    const target = getAt(trees, path);
+    if (!target) return;
+    const name = window.prompt("修改节点名称", target.zh || "");
+    if (name == null) return;
+    const trimmed = name.trim();
+    if (!trimmed) {
+      setHint("名称不能为空");
+      return;
+    }
+    if (trimmed === (target.zh || "").trim()) {
+      setHint("名称未改变");
+      return;
+    }
+    const nextTrees = renameNode(trees, path, trimmed);
+    if (!nextTrees) {
+      setHint("重命名失败");
+      return;
+    }
+    persist(withForest(doc, nextTrees, remoteLinks), {
+      label: `重命名「${shortOpName(target.zh)}」→「${shortOpName(trimmed)}」`,
+    });
+    bumpLayout();
+    setHint(`已重命名为「${trimmed}」`);
+  };
+
+  const doDeleteSubtree = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中要删除的子树");
       return;
     }
-    const target = getAt(trees, selectedPath);
+    const target = getAt(trees, path);
     if (!target) return;
-    if (isVirtualNode(target.id) && selectedPath.length === 1 && trees.length === 1) {
+    if (isVirtualNode(target.id) && path.length === 1 && trees.length === 1) {
       setHint("不能删除唯一虚根");
       return;
     }
     if (!window.confirm(`删除子树「${target.zh}」及其全部子孙？`)) return;
-    const nextTrees = deleteSubtree(trees, selectedPath);
+    const nextTrees = deleteSubtree(trees, path);
     if (!nextTrees) {
       setHint("删除失败");
       return;
     }
-    const gone = new Set<string>();
-    const mark = (n: MindmapTreeNode) => {
-      gone.add(n.id);
-      (n.children || []).forEach(mark);
-    };
-    mark(target);
-    const links = remoteLinks.filter((l) => !gone.has(l.from) && !gone.has(l.to));
-    persist(withForest(doc, nextTrees, links), {
+    const gone = collectSubtreeIds(target);
+    const canonical =
+      parentIdAtPath(trees, path) || nextTrees[0]?.id || null;
+    persist(withRetargetedIdentity(doc, nextTrees, gone, canonical, remoteLinks), {
       label: `删子树「${shortOpName(target.zh)}」`,
     });
     bumpLayout();
@@ -1186,37 +1650,43 @@ export function MindmapTree({
     setHint(`已删除子树「${target.zh}」`);
   };
 
-  const doDetachNode = () => {
-    if (!selectedPath) {
+  const doDetachNode = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中节点");
       return;
     }
-    const target = getAt(trees, selectedPath);
+    const target = getAt(trees, path);
     if (!target) return;
-    if (isVirtualNode(target.id) && selectedPath.length === 1 && trees.length === 1) {
+    if (isVirtualNode(target.id) && path.length === 1 && trees.length === 1) {
       setHint("不能删除唯一虚根");
       return;
     }
-    const nextTrees = deleteNodePromoteChildren(trees, selectedPath);
+    const nextTrees = deleteNodePromoteChildren(trees, path);
     if (!nextTrees) {
       setHint("拆节点失败");
       return;
     }
-    const links = remoteLinks.filter((l) => l.from !== target.id && l.to !== target.id);
-    persist(withForest(doc, nextTrees, links), {
-      label: `拆节点「${shortOpName(target.zh)}」`,
-    });
+    const canonical =
+      parentIdAtPath(trees, path) || nextTrees[0]?.id || null;
+    persist(
+      withRetargetedIdentity(doc, nextTrees, [target.id], canonical, remoteLinks),
+      {
+        label: `拆节点「${shortOpName(target.zh)}」`,
+      }
+    );
     bumpLayout();
     setSelectedPath(null);
     setHint(`已拆掉「${target.zh}」，其子节点已挂到父节点`);
   };
 
-  const doCopy = (cut: boolean) => {
-    if (!selectedPath) {
+  const doCopy = (cut: boolean, pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中子树");
       return;
     }
-    const target = getAt(trees, selectedPath);
+    const target = getAt(trees, path);
     if (!target) return;
     saveMindmapClipboard({
       subtree: target,
@@ -1225,25 +1695,21 @@ export function MindmapTree({
     });
     setClipTick((n) => n + 1);
     if (cut) {
-      if (isVirtualNode(target.id) && selectedPath.length === 1 && trees.length === 1) {
+      if (isVirtualNode(target.id) && path.length === 1 && trees.length === 1) {
         setHint("不能剪切唯一虚根");
         clearMindmapClipboard();
         setClipTick((n) => n + 1);
         return;
       }
-      const nextTrees = deleteSubtree(trees, selectedPath);
+      const nextTrees = deleteSubtree(trees, path);
       if (!nextTrees) {
         setHint("剪切失败");
         return;
       }
-      const gone = new Set<string>();
-      const mark = (n: MindmapTreeNode) => {
-        gone.add(n.id);
-        (n.children || []).forEach(mark);
-      };
-      mark(target);
-      const links = remoteLinks.filter((l) => !gone.has(l.from) && !gone.has(l.to));
-      persist(withForest(doc, nextTrees, links), {
+      const gone = collectSubtreeIds(target);
+      const canonical =
+        parentIdAtPath(trees, path) || nextTrees[0]?.id || null;
+      persist(withRetargetedIdentity(doc, nextTrees, gone, canonical, remoteLinks), {
         label: `剪切「${shortOpName(target.zh)}」`,
       });
       setSelectedPath(null);
@@ -1254,8 +1720,9 @@ export function MindmapTree({
     }
   };
 
-  const doPaste = () => {
-    if (!selectedPath) {
+  const doPaste = (pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中粘贴目标父节点");
       return;
     }
@@ -1265,7 +1732,7 @@ export function MindmapTree({
       return;
     }
     const pasted = cloneSubtreeWithNewIds(clip.subtree);
-    const nextTrees = addChildNode(trees, selectedPath, pasted);
+    const nextTrees = addChildNode(trees, path, pasted);
     if (!nextTrees) {
       setHint("粘贴失败");
       return;
@@ -1306,19 +1773,21 @@ export function MindmapTree({
     setSelectedPath(null);
     setMoveFromPath(null);
     setLinkFromId(null);
+    setCtxMenu(null);
     historyRef.current = [];
     setHistory([]);
     onHistoryChange?.([]);
     onResetEdits?.();
   };
 
-  const doReorder = (delta: -1 | 1) => {
-    if (!selectedPath) {
+  const doReorder = (delta: -1 | 1, pathOverride?: number[] | null) => {
+    const path = resolveEditPath(pathOverride);
+    if (!path) {
       setHint("请先选中要调整顺序的节点");
       return;
     }
-    const target = getAt(trees, selectedPath);
-    const result = reorderSibling(trees, selectedPath, delta);
+    const target = getAt(trees, path);
+    const result = reorderSibling(trees, path, delta);
     if (!result) {
       setHint(delta < 0 ? "已经是同级第一个" : "已经是同级最后一个");
       return;
@@ -1329,6 +1798,23 @@ export function MindmapTree({
     bumpLayout();
     setSelectedPath(result.path);
     setHint(delta < 0 ? "已上移" : "已下移");
+  };
+
+  const openNodeContextMenu = (
+    e: ReactMouseEvent,
+    node: MindmapTreeNode,
+    path: number[],
+    handlers: { hasKids: boolean; open: boolean }
+  ) => {
+    setSelectedPath(path);
+    setCtxMenu({
+      x: e.clientX,
+      y: e.clientY,
+      node,
+      path,
+      hasKids: handlers.hasKids,
+      open: handlers.open,
+    });
   };
 
   const removeLink = (id: string) => {
@@ -1396,23 +1882,53 @@ export function MindmapTree({
           ) : null}
         </div>
         <div className={styles.chromeEnd}>
-          {editEnabled ? (
-            <label className={styles.editToggle}>
-              <input
-                type="checkbox"
-                checked={editMode}
-                onChange={(e) => {
-                  const on = e.target.checked;
-                  setEditMode(on);
-                  setEditTool("select");
-                  setMoveFromPath(null);
-                  setLinkFromId(null);
-                  setHint(on ? "编辑已开：选节点后可增删移 / 复制粘贴" : "");
-                }}
-              />
-              <span>编辑</span>
-            </label>
-          ) : null}
+          <div
+            className={styles.layerMode}
+            role="group"
+            aria-label="展开收起范围"
+            title="展开/收起作用范围：全部层或当前最外层（一层）"
+          >
+            <button
+              type="button"
+              className={`${styles.layerModeBtn} ${layerMode === "all" ? styles.layerModeOn : ""}`}
+              aria-pressed={layerMode === "all"}
+              onClick={() => setLayerMode("all")}
+            >
+              全部层
+            </button>
+            <button
+              type="button"
+              className={`${styles.layerModeBtn} ${layerMode === "frontier" ? styles.layerModeOn : ""}`}
+              aria-pressed={layerMode === "frontier"}
+              onClick={() => setLayerMode("frontier")}
+            >
+              当前最外层
+            </button>
+          </div>
+          <button
+            type="button"
+            className={styles.editBtn}
+            title={
+              layerMode === "all"
+                ? "展开全部层"
+                : "多展开一层（当前最外层）"
+            }
+            onClick={doChromeExpand}
+          >
+            展开
+          </button>
+          <button
+            type="button"
+            className={styles.editBtn}
+            title={
+              layerMode === "all"
+                ? "收起全部层"
+                : "收起一层（当前最外层）"
+            }
+            onClick={doChromeCollapse}
+          >
+            收起
+          </button>
           <button
             type="button"
             className={styles.editBtn}
@@ -1438,11 +1954,20 @@ export function MindmapTree({
           >
             选择
           </button>
-          <button type="button" className={styles.editBtn} disabled={!selectedPath} onClick={doAddChild}>
+          <button type="button" className={styles.editBtn} disabled={!selectedPath} onClick={() => doAddChild()}>
             添加子节点
           </button>
-          <button type="button" className={styles.editBtn} disabled={!selectedPath} onClick={doAddSibling}>
+          <button type="button" className={styles.editBtn} disabled={!selectedPath} onClick={() => doAddSibling()}>
             添加同级
+          </button>
+          <button
+            type="button"
+            className={styles.editBtn}
+            disabled={!selectedPath}
+            title="修改选中节点名称"
+            onClick={() => doRename()}
+          >
+            重命名
           </button>
           <button
             type="button"
@@ -1466,7 +1991,7 @@ export function MindmapTree({
             type="button"
             className={styles.editBtn}
             disabled={!selectedPath}
-            onClick={doDeleteSubtree}
+            onClick={() => doDeleteSubtree()}
             title="删除整棵子树"
           >
             删子树
@@ -1475,7 +2000,7 @@ export function MindmapTree({
             type="button"
             className={styles.editBtn}
             disabled={!selectedPath}
-            onClick={doDetachNode}
+            onClick={() => doDetachNode()}
             title="删除节点，其子节点挂到原父节点"
           >
             拆节点
@@ -1502,7 +2027,7 @@ export function MindmapTree({
           <button type="button" className={styles.editBtn} disabled={!selectedPath} onClick={() => doCopy(true)}>
             剪切
           </button>
-          <button type="button" className={styles.editBtn} disabled={!selectedPath || !hasClipboard} onClick={doPaste}>
+          <button type="button" className={styles.editBtn} disabled={!selectedPath || !hasClipboard} onClick={() => doPaste()}>
             粘贴
           </button>
           <button
@@ -1546,23 +2071,26 @@ export function MindmapTree({
             </div>
           ) : null}
         </div>
-      ) : hint && !editMode ? (
-        <div className={styles.editBar}>
-          <span className={styles.editHint}>{hint}</span>
-        </div>
       ) : null}
 
-      <PanViewport resetKey={key}>
+      <PanViewport resetKey={key} focusRequest={focusRequest}>
         <div
           className={styles.canvas}
           key={key}
           data-forest={trees.length > 1 ? "1" : "0"}
           ref={canvasRef}
           onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setSelectedPath(null);
-              setHint("");
+            const t = e.target as HTMLElement | null;
+            if (
+              t?.closest?.(
+                "[data-mind-bubble], [data-mind-toggle], [data-mind-resize], [data-mind-chrome], [data-mind-ctx], [data-mind-zoom], [data-mind-edit]"
+              )
+            ) {
+              return;
             }
+            setSelectedPath(null);
+            setHint("");
+            onClearSelect?.();
           }}
         >
           {segs.length ? (
@@ -1600,21 +2128,258 @@ export function MindmapTree({
                 onSelect={onSelect}
                 editMode={editMode}
                 editTool={editTool}
+                editActions={editEnabled}
                 selectedPath={selectedPath}
                 moveFromPath={moveFromPath}
                 linkFromId={linkFromId}
                 remoteLinkedIds={remoteLinkedIds}
-                onEditPick={onEditPick}
+                onEditPick={editEnabled ? onEditPick : undefined}
                 onPick={onPick}
+                onNodeContextMenu={editEnabled ? openNodeContextMenu : undefined}
+                layerMode={layerMode}
+                openCmd={openCmd}
+                onOpenCmd={emitOpenCmd}
                 onLayout={bumpLayout}
                 nodeSizes={nodeSizes}
-                onNodeResize={onNodeResize}
+                onNodeResize={editEnabled ? onNodeResize : undefined}
                 forceOpenPath={forceOpenPath}
               />
             </DraggableTree>
           ))}
         </div>
       </PanViewport>
+
+      {ctxMenu ? (
+        <div
+          className={styles.ctxMenu}
+          data-mind-ctx="1"
+          role="menu"
+          style={{
+            left: Math.min(ctxMenu.x, typeof window !== "undefined" ? window.innerWidth - 220 : ctxMenu.x),
+            top: Math.min(ctxMenu.y, typeof window !== "undefined" ? window.innerHeight - 360 : ctxMenu.y),
+          }}
+          onWheel={(e) => {
+            // 阻断冒泡，避免画布把滚轮当成缩放
+            e.stopPropagation();
+          }}
+        >
+          <div className={styles.ctxMenuTitle} title={ctxMenu.node.id}>
+            {ctxMenu.node.zh}
+          </div>
+          {ctxMenu.hasKids ? (
+            <>
+              {ctxMenu.open ? (
+                <button
+                  type="button"
+                  className={styles.ctxMenuItem}
+                  role="menuitem"
+                  onClick={() => {
+                    const deep = layerMode === "all";
+                    emitOpenCmd(ctxMenu.path, false, deep);
+                    setCtxMenu(null);
+                    setHint(
+                      deep
+                        ? `已收起「${ctxMenu.node.zh}」全部下层`
+                        : `已收起「${ctxMenu.node.zh}」一层`
+                    );
+                  }}
+                >
+                  {layerMode === "all" ? "收起全部下层" : "收起一层"}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={styles.ctxMenuItem}
+                  role="menuitem"
+                  onClick={() => {
+                    const deep = layerMode === "all";
+                    emitOpenCmd(ctxMenu.path, true, deep);
+                    setCtxMenu(null);
+                    setHint(
+                      deep
+                        ? `已展开「${ctxMenu.node.zh}」全部下层`
+                        : `已展开「${ctxMenu.node.zh}」一层`
+                    );
+                  }}
+                >
+                  {layerMode === "all" ? "展开全部下层" : "展开一层"}
+                </button>
+              )}
+            </>
+          ) : null}
+          {editEnabled ? (
+            <>
+              {ctxMenu.hasKids ? <div className={styles.ctxMenuSep} /> : null}
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doAddChild(path);
+                }}
+              >
+                添加子节点
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doAddSibling(path);
+                }}
+              >
+                添加同级
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doRename(path);
+                }}
+              >
+                重命名
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                disabled={!ctxSiblingOrder.up}
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doReorder(-1, path);
+                }}
+              >
+                上移
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                disabled={!ctxSiblingOrder.down}
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doReorder(1, path);
+                }}
+              >
+                下移
+              </button>
+              <div className={styles.ctxMenuSep} />
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  setEditTool("move");
+                  setLinkFromId(null);
+                  setMoveFromPath(path);
+                  setHint("已带上当前选中为移动源，再点目标父节点");
+                }}
+              >
+                移子树
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doCopy(false, path);
+                }}
+              >
+                复制
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doCopy(true, path);
+                }}
+              >
+                剪切
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                disabled={!hasClipboard}
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doPaste(path);
+                }}
+              >
+                粘贴
+              </button>
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  setEditTool("link");
+                  setMoveFromPath(null);
+                  setLinkFromId(ctxMenu.node.id);
+                  setHint("已选起点，再点终点建立横向连接");
+                }}
+              >
+                横向连接
+              </button>
+              <div className={styles.ctxMenuSep} />
+              <button
+                type="button"
+                className={styles.ctxMenuItem}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doDetachNode(path);
+                }}
+              >
+                拆节点
+              </button>
+              <button
+                type="button"
+                className={`${styles.ctxMenuItem} ${styles.ctxMenuDanger}`}
+                role="menuitem"
+                onClick={() => {
+                  const path = ctxMenu.path;
+                  setCtxMenu(null);
+                  setEditMode(true);
+                  doDeleteSubtree(path);
+                }}
+              >
+                删子树
+              </button>
+            </>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -6,7 +6,7 @@
  * 上抬：需 mention/board 门控，且 I ≤ P + boostCap
  * 下调：结构 hub 课上弱 → 略压（无需门控）
  */
-import type { PipelineNode } from "@/lib/pipeline/types";
+import type { PipelineNode } from "@/lib/graph/types";
 import { lookupImportance, lookupContributions } from "@/lib/kg/adaptToPipeline";
 
 export type PrClassroomBlendOpts = {

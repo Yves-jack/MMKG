@@ -3,7 +3,7 @@
  * 另：课总图 = 各章拼接（保留节→主题）；堂次图 = 从章树按讲枝 / 实体相关性裁剪。
  */
 import type { MindmapDoc, MindmapTreeNode } from "@/components/mindmap/MindmapTree";
-import { cloneForest, cloneNode, docForest } from "@/lib/apps/mindmapEdits";
+import { cloneForest, cloneNode, docForest } from "@/lib/review/mindmapEdits";
 import {
   chapterFileSlug,
   chapterNavId,
@@ -78,10 +78,116 @@ export function buildChapterMindmapDoc(
   lectures: { lectureId: string; doc: MindmapDoc }[],
   opts: { source?: MindmapSource } = {}
 ): MindmapDoc {
+  /** 默认：无讲次层，按实体 id 深合并各讲内容 */
+  return buildChapterMindmapMerged(chapter, lectures, opts);
+}
+
+/**
+ * 章导图：各讲内容直接挂到章根下（不出现「第 N 讲」层），同 id 后者深合并。
+ */
+export function buildChapterMindmapMerged(
+  chapter: string,
+  lectures: { lectureId: string; doc: MindmapDoc }[],
+  opts: { source?: MindmapSource } = {}
+): MindmapDoc {
+  const chapterTitle = String(chapter || "").trim() || "未分章";
+  const bare = chapterTitle.replace(/^第\s*\d+\s*章\s*/, "").trim() || chapterTitle;
+  const lectureIds = lectures.map((l) => String(l.lectureId));
+  const byId = new Map<string, MindmapTreeNode>();
+
+  const mergeInto = (existing: MindmapTreeNode, incoming: MindmapTreeNode) => {
+    existing.importance = Math.max(
+      existing.importance || 0,
+      incoming.importance || 0
+    );
+    if (incoming.zh) existing.zh = incoming.zh;
+    const childMap = new Map(
+      (existing.children || []).map((c) => [c.id, c] as const)
+    );
+    for (const ic of incoming.children || []) {
+      const prev = childMap.get(ic.id);
+      if (prev) mergeInto(prev, ic);
+      else childMap.set(ic.id, cloneNode(ic));
+    }
+    existing.children = [...childMap.values()].sort(
+      (a, b) => (b.importance || 0) - (a.importance || 0)
+    );
+  };
+
+  for (const { doc } of lectures) {
+    for (const t of unwrapChapterTopics(docForest(doc))) {
+      if (!t?.id || String(t.id).startsWith("__")) continue;
+      const prev = byId.get(t.id);
+      if (prev) mergeInto(prev, t);
+      else byId.set(t.id, cloneNode(t));
+    }
+  }
+
+  const children = [...byId.values()].sort(
+    (a, b) => (b.importance || 0) - (a.importance || 0)
+  );
+  const root: MindmapTreeNode = {
+    id: `__chapter__/${bare}`,
+    zh: chapterTitle,
+    importance: 0.7,
+    relation: null,
+    related: [],
+    children,
+  };
+  return finalizeDoc(
+    chapterNavId(chapterTitle),
+    root,
+    {
+      chapter: chapterTitle,
+      root_zh: bare,
+      virtual_root: true,
+      scope: "chapter",
+      lecture_ids: lectureIds,
+      source: opts.source || "kg",
+      stitch: "entity_merge",
+      n_trees: 1,
+    },
+    lectures.reduce((s, l) => s + (l.doc.orphan_count || 0), 0)
+  );
+}
+
+/** 剥掉讲/章虚根，取出主题子树 */
+function unwrapChapterTopics(trees: MindmapTreeNode[]): MindmapTreeNode[] {
+  const out: MindmapTreeNode[] = [];
+  for (const t of trees) {
+    const id = String(t.id || "");
+    if (id.startsWith("__lecture__/")) {
+      for (const ch of t.children || []) {
+        const cid = String(ch.id || "");
+        if (cid.startsWith("__chapter__/")) {
+          out.push(...(ch.children || []).map(cloneNode));
+        } else if (!cid.startsWith("__")) {
+          out.push(cloneNode(ch));
+        }
+      }
+      continue;
+    }
+    if (id.startsWith("__chapter__/")) {
+      out.push(...(t.children || []).map(cloneNode));
+      continue;
+    }
+    if (!id.startsWith("__")) out.push(cloneNode(t));
+  }
+  return out;
+}
+
+/**
+ * @deprecated 旧版按讲次枝拼接；保留供特殊调试，正式章图请用 buildChapterMindmapMerged
+ */
+export function buildChapterMindmapByLectureBranches(
+  chapter: string,
+  lectures: { lectureId: string; doc: MindmapDoc }[],
+  opts: { source?: MindmapSource } = {}
+): MindmapDoc {
   const chapterTitle = String(chapter || "").trim() || "未分章";
   const lectureIds = lectures.map((l) => l.lectureId);
   const branches: MindmapTreeNode[] = lectures.map(({ lectureId, doc }) => {
-    const trees = cloneForest(docForest(doc));
+    const trees = cloneForest(unwrapChapterTopics(docForest(doc)));
     const lid = String(lectureId);
     return {
       id: `__lecture__/${lid}`,
@@ -204,7 +310,99 @@ export function chapterShallowTopics(
     .slice(0, maxTopics);
 }
 
-/** 课总图：各章拼接，保留章内节→主题结构（可限深/限节点） */
+/**
+ * 骨架展示：只保留章下的节/主题虚节点，丢掉实体细节叶。
+ */
+export function chapterHierarchyOnly(
+  chapterRoot: MindmapTreeNode,
+  maxSections = 24
+): MindmapTreeNode[] {
+  const out: MindmapTreeNode[] = [];
+  const seen = new Set<string>();
+  const pushSection = (n: MindmapTreeNode) => {
+    const id = String(n.id || "");
+    if (!id || seen.has(id)) return;
+    seen.add(id);
+    const sub = (n.children || [])
+      .filter(
+        (c) =>
+          String(c.id || "").startsWith("__section__/") ||
+          String(c.id || "").startsWith("__topic__/")
+      )
+      .slice(0, 12)
+      .map((c) => ({
+        ...cloneNode(c),
+        children: [],
+        copy: false,
+        weak: false,
+      }));
+    out.push({
+      ...cloneNode(n),
+      children: sub,
+      copy: false,
+      weak: false,
+    });
+  };
+  const walk = (nodes: MindmapTreeNode[]) => {
+    for (const child of nodes || []) {
+      const id = String(child.id || "");
+      if (id.startsWith("__lecture__/")) {
+        walk(child.children || []);
+        continue;
+      }
+      if (id.startsWith("__section__/") || id.startsWith("__topic__/")) {
+        pushSection(child);
+        continue;
+      }
+      // 非虚节点：骨架视图忽略细节
+    }
+  };
+  walk(chapterRoot.children || []);
+  return out.slice(0, maxSections);
+}
+
+export type CoursePartInfo = {
+  id: string;
+  title: string;
+  chapters: string[];
+};
+
+function makeChapterCourseNode(
+  chapter: string,
+  doc: MindmapDoc,
+  opts: {
+    maxTopicsPerChapter?: number;
+    maxNodesPerChapter?: number;
+    maxDepthPerChapter?: number;
+    shallow?: boolean;
+    /** 仅章→节层级，不含实体细节 */
+    hierarchyOnly?: boolean;
+  }
+): MindmapTreeNode {
+  const trees = docForest(doc);
+  const chRoot =
+    trees.find((t) => t.id.startsWith("__chapter__/")) || trees[0];
+  const topics = !chRoot
+    ? []
+    : opts.hierarchyOnly
+      ? chapterHierarchyOnly(chRoot, opts.maxTopicsPerChapter ?? 24)
+      : opts.shallow
+        ? chapterShallowTopics(chRoot, opts.maxTopicsPerChapter ?? 8)
+        : chapterBodyForCourse(chRoot, {
+            maxNodes: opts.maxNodesPerChapter ?? 96,
+            maxDepth: opts.maxDepthPerChapter ?? 4,
+          });
+  return {
+    id: `__chapter__/${chapter}`,
+    zh: chapter,
+    importance: 0.65,
+    relation: "toc_chapter",
+    related: [],
+    children: topics,
+  };
+}
+
+/** 课总图：各章拼接；多册时在课名与章之间插入分册层 */
 export function buildCourseMindmapFromChapters(
   courseTitle: string,
   chapters: { chapter: string; doc: MindmapDoc }[],
@@ -213,31 +411,64 @@ export function buildCourseMindmapFromChapters(
     maxNodesPerChapter?: number;
     maxDepthPerChapter?: number;
     shallow?: boolean;
+    hierarchyOnly?: boolean;
     source?: MindmapSource;
+    /** 分册目录：有 ≥2 册时插入 __part__ 层 */
+    parts?: CoursePartInfo[] | null;
+    lectureId?: string;
   } = {}
 ): MindmapDoc {
   const title = String(courseTitle || "").trim() || "课程";
-  const chapterNodes: MindmapTreeNode[] = chapters.map(({ chapter, doc }) => {
-    const trees = docForest(doc);
-    const chRoot =
-      trees.find((t) => t.id.startsWith("__chapter__/")) || trees[0];
-    const topics = !chRoot
-      ? []
-      : opts.shallow
-        ? chapterShallowTopics(chRoot, opts.maxTopicsPerChapter ?? 8)
-        : chapterBodyForCourse(chRoot, {
-            maxNodes: opts.maxNodesPerChapter ?? 96,
-            maxDepth: opts.maxDepthPerChapter ?? 4,
-          });
-    return {
-      id: `__chapter__/${chapter}`,
-      zh: chapter,
-      importance: 0.65,
-      relation: "toc_chapter",
-      related: [],
-      children: topics,
-    } satisfies MindmapTreeNode;
-  });
+  const byName = new Map(
+    chapters.map((c) => [String(c.chapter || "").trim(), c] as const)
+  );
+
+  const parts = (opts.parts || []).filter((p) => (p.chapters || []).length);
+  const useParts = parts.length >= 2;
+
+  let children: MindmapTreeNode[];
+  if (useParts) {
+    const used = new Set<string>();
+    children = [];
+    for (const part of parts) {
+      const partKids: MindmapTreeNode[] = [];
+      for (const chName of part.chapters || []) {
+        const hit = byName.get(String(chName).trim());
+        if (!hit) continue;
+        used.add(hit.chapter);
+        partKids.push(makeChapterCourseNode(hit.chapter, hit.doc, opts));
+      }
+      if (!partKids.length) continue;
+      const rawTitle = part.title || part.id || "分册";
+      children.push({
+        id: `__part__/${part.id || part.title}`,
+        zh: String(rawTitle).startsWith("分册")
+          ? String(rawTitle)
+          : `分册 · ${rawTitle}`,
+        importance: 0.75,
+        relation: "toc_part",
+        related: [],
+        children: partKids,
+      });
+    }
+    const rest = chapters.filter((c) => !used.has(c.chapter));
+    if (rest.length) {
+      children.push({
+        id: "__part__/other",
+        zh: "分册 · 其他",
+        importance: 0.55,
+        relation: "toc_part",
+        related: [],
+        children: rest.map((c) =>
+          makeChapterCourseNode(c.chapter, c.doc, opts)
+        ),
+      });
+    }
+  } else {
+    children = chapters.map(({ chapter, doc }) =>
+      makeChapterCourseNode(chapter, doc, opts)
+    );
+  }
 
   const root: MindmapTreeNode = {
     id: `__course__/${title}`,
@@ -245,10 +476,10 @@ export function buildCourseMindmapFromChapters(
     importance: 0.9,
     relation: null,
     related: [],
-    children: chapterNodes,
+    children,
   };
   const lectureIds = chapters.flatMap((c) => c.doc.meta?.lecture_ids || []);
-  return finalizeDoc("course", root, {
+  return finalizeDoc(opts.lectureId || "course", root, {
     chapter: title,
     root_zh: title,
     virtual_root: true,
@@ -256,8 +487,10 @@ export function buildCourseMindmapFromChapters(
     lecture_ids: lectureIds,
     source: opts.source || "kg",
     n_chapters: chapters.length,
+    n_parts: useParts ? children.length : 0,
     n_trees: 1,
     composed_from: "chapters",
+    skeleton_view: Boolean(opts.hierarchyOnly) || undefined,
   });
 }
 
@@ -362,8 +595,8 @@ export function sliceChaptersForLectures(
   const sessionId =
     opts.sessionId ||
     (lids.length === 2 ? `${lids[0]}_${lids[1]}` : lids[0] || "session");
-  const label =
-    lids.length === 2 ? `第 ${lids[0]}–${lids[1]} 讲` : `第 ${lids[0]} 讲`;
+  const sessIdx = Math.ceil(Math.min(...lids.map(Number).filter((n) => n > 0)) / 2) || 1;
+  const label = `第 ${sessIdx} 次课`;
 
   let root: MindmapTreeNode;
   if (pieces.length === 1 && pieces[0].id.startsWith("__chapter__/")) {
@@ -450,7 +683,10 @@ export function aggregateChapterIndexItems(
 }
 
 export function mergeMindmapIndexWithChapters(
-  items: MindmapIndexItem[]
+  items: MindmapIndexItem[],
+  opts: {
+    chapterOrder?: string[];
+  } = {}
 ): MindmapIndexItem[] {
   const course = items.filter((i) => i.scope === "course" || i.lecture_id === "course");
   const lectures = items.filter(
@@ -475,14 +711,38 @@ export function mergeMindmapIndexWithChapters(
     chapter_id: it.chapter_id || it.chapter,
   });
 
+  const orderIdx = new Map(
+    (opts.chapterOrder || []).map((n, i) => [String(n), i])
+  );
+  const chapterNum = (s?: string) => {
+    const m = String(s || "").match(/第\s*(\d+)\s*章/);
+    return m ? Number(m[1]) : 999;
+  };
+  const sortedChapters = [...chapters].sort((a, b) => {
+    const ca = String(a.chapter || a.root_zh || "");
+    const cb = String(b.chapter || b.root_zh || "");
+    const ia = orderIdx.has(ca) ? orderIdx.get(ca)! : 10_000;
+    const ib = orderIdx.has(cb) ? orderIdx.get(cb)! : 10_000;
+    if (ia !== ib) return ia - ib;
+    return chapterNum(ca) - chapterNum(cb) || ca.localeCompare(cb, "zh");
+  });
+
+  const sortedLectures = [...lectures]
+    .map(normalizeLecture)
+    .sort(
+      (a, b) =>
+        Number(a.lecture_id) - Number(b.lecture_id) ||
+        String(a.lecture_id).localeCompare(String(b.lecture_id), "zh")
+    );
+
   return [
     ...course.map((c) => ({
       ...c,
       scope: "course" as const,
       source: c.source || ("kg" as const),
     })),
-    ...chapters,
-    ...lectures.map(normalizeLecture),
+    ...sortedChapters,
+    ...sortedLectures,
   ];
 }
 

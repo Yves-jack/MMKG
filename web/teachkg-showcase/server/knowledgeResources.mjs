@@ -87,41 +87,83 @@ export async function loadKnowledgeResources(
         && Number.isFinite(Number(ref.start_sec))
       ));
       if (refs.length && !videoSearchBase) {
-        warnings.push("VideoSearch API is not configured; linked videos were omitted");
-      } else if (refs.length) {
-        const metadataResponse = await fetchImpl(`${videoSearchBase}/api/v1/segments/by-video-refs`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        warnings.push("VideoSearch API is not configured; using MMKG video_refs directly");
+        for (const ref of refs) {
+          const videoId = String(ref.video_id).trim();
+          const seekSec = Number(ref.start_sec);
+          if (!videoId || !Number.isFinite(seekSec)) continue;
+          resources.push({
+            resource_type: "video",
+            resource_id: videoId,
             course_id: courseId,
-            refs: refs.map((ref) => ({
-              video_id: String(ref.video_id).trim(),
-              start_sec: Number(ref.start_sec),
-            })),
-          }),
-        });
-        const segments = await responseJson(metadataResponse, "VideoSearch segment metadata");
-        for (const segment of Array.isArray(segments) ? segments : []) {
-          const segmentId = String(segment?.id || "").trim();
-          const videoId = String(segment?.video_id || "").trim();
-          const lessonId = String(segment.lesson_id || "").trim();
-          const startSec = Number(segment.start_sec);
-          const endSec = Number(segment.end_sec);
-          if (!segmentId || !videoId || !lessonId || !Number.isFinite(startSec) || !Number.isFinite(endSec)) continue;
+            title: `视频 ${videoId}`,
+            content: meaningfulText(ref.text) || meaningfulText(ref.summary) || "",
+            start_sec: seekSec,
+            end_sec: seekSec,
+            metadata: {
+              video_id: videoId,
+              lesson_id: String(ref.lesson_id || ref.lecture_id || "").trim() || undefined,
+              knowledge_point_id: knowledgePointId,
+              kp: knowledgePointId,
+            },
+            path: `/video?course_id=${encodedCourse}&video_id=${encodeURIComponent(videoId)}&start_sec=${encodeURIComponent(seekSec)}`,
+          });
+        }
+      } else if (refs.length) {
+        let segmentList = [];
+        try {
+          const metadataResponse = await fetchImpl(`${videoSearchBase}/api/v1/segments/by-video-refs`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              course_id: courseId,
+              refs: refs.map((ref) => ({
+                video_id: String(ref.video_id).trim(),
+                start_sec: Number(ref.start_sec),
+              })),
+            }),
+          });
+          const segments = await responseJson(metadataResponse, "VideoSearch segment metadata");
+          segmentList = Array.isArray(segments) ? segments : [];
+        } catch (vsError) {
+          warnings.push(vsError instanceof Error ? vsError.message : String(vsError));
+        }
+        for (let i = 0; i < refs.length; i += 1) {
+          const ref = refs[i];
+          const requestedVideoId = String(ref.video_id).trim();
+          const seekSec = Number(ref.start_sec);
+          if (!requestedVideoId || !Number.isFinite(seekSec)) continue;
+          const segment = segmentList[i]
+            || segmentList.find((item) => String(item?.video_id || "").trim() === requestedVideoId);
+          // VS 无匹配时仍用 MMKG refs，避免「跳转相关视频」永远灰掉
+          const segmentId = String(segment?.id || requestedVideoId).trim();
+          const videoId = String(segment?.video_id || requestedVideoId).trim();
+          const lessonId = String(
+            segment?.lesson_id || ref.lesson_id || ref.lecture_id || "",
+          ).trim();
+          const windowStart = Number(segment?.start_sec);
+          const endSec = Number(segment?.end_sec);
           resources.push({
             resource_type: "video",
             resource_id: segmentId,
             course_id: courseId,
-            title: `第 ${lessonId} 讲`,
-            content: meaningfulText(segment.summary) || meaningfulText(segment.text) || meaningfulText(segment.asr_text),
-            start_sec: startSec,
-            end_sec: endSec,
+            title: lessonId ? `第 ${lessonId} 讲` : `视频 ${videoId}`,
+            content: meaningfulText(segment?.summary)
+              || meaningfulText(segment?.text)
+              || meaningfulText(segment?.asr_text)
+              || meaningfulText(ref.text)
+              || "",
+            start_sec: seekSec,
+            end_sec: Number.isFinite(endSec) ? endSec : seekSec,
             metadata: {
               video_id: videoId,
-              lesson_id: lessonId,
+              lesson_id: lessonId || undefined,
               segment_id: segmentId,
+              window_start_sec: Number.isFinite(windowStart) ? windowStart : null,
+              knowledge_point_id: knowledgePointId,
+              kp: knowledgePointId,
             },
-            path: `/video?course_id=${encodedCourse}&video_id=${encodeURIComponent(videoId)}&start_sec=${encodeURIComponent(startSec)}`,
+            path: `/video?course_id=${encodedCourse}&video_id=${encodeURIComponent(videoId)}&start_sec=${encodeURIComponent(seekSec)}`,
           });
         }
       }
@@ -134,7 +176,8 @@ export async function loadKnowledgeResources(
 
   const seen = new Set();
   const unique = resources.filter((item) => {
-    const key = `${item?.resource_type || ""}:${item?.resource_id || ""}`;
+    const seek = item?.start_sec == null ? "" : String(item.start_sec);
+    const key = `${item?.resource_type || ""}:${item?.resource_id || ""}:${seek}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return Boolean(item?.resource_type && item?.resource_id);

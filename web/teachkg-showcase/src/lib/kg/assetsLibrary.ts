@@ -57,6 +57,8 @@ export type AssetCard = {
   edges?: AssetEdgeLink[];
   grounding?: AssetGrounding;
   source?: string;
+  /** 嵌入分章结果（可多章，带权重） */
+  chapters?: Array<string | { name?: string; weight?: number; role?: string }>;
   links?: {
     demos?: string[];
     anims?: string[];
@@ -64,12 +66,117 @@ export type AssetCard = {
   };
 };
 
+export type AssetsChapterRef = {
+  name: string;
+  number?: number | null;
+  sections?: string[];
+  part_id?: string;
+  part_title?: string;
+};
+
+export type AssetsChapterPart = {
+  id: string;
+  title: string;
+  source?: string;
+  chapters?: AssetsChapterRef[];
+};
+
+export type AssetsChapterCatalog = {
+  course_id?: string;
+  n_parts?: number;
+  n_chapters?: number;
+  parts?: AssetsChapterPart[];
+  chapter_order?: string[];
+  chapter_to_part?: Record<string, string>;
+};
+
 export type AssetsLibrary = {
   course_id?: string;
   card_count?: number;
   cards?: AssetCard[];
   index_by_entity?: Record<string, string[]>;
+  index_by_chapter?: Record<string, string[]>;
+  /** 教材 toc 提取的分主题章节目录（含重复章号区分） */
+  chapter_catalog?: AssetsChapterCatalog;
 };
+
+/** 卡片所属章节名（去重保序） */
+export function assetChapterNames(card: Pick<AssetCard, "chapters">): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const ch of card.chapters || []) {
+    const name = (typeof ch === "string" ? ch : ch?.name || "").trim();
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    out.push(name);
+  }
+  return out;
+}
+
+/** 按目录分册顺序排列章节名；无目录时退回章号排序 */
+export function sortChaptersForDisplay(
+  names: string[],
+  catalog?: AssetsChapterCatalog | null
+): string[] {
+  const order = catalog?.chapter_order || [];
+  const idx = new Map(order.map((n, i) => [n, i]));
+  const num = (s: string) => {
+    const m = String(s).match(/第\s*(\d+)\s*章/);
+    return m ? Number(m[1]) : Number.POSITIVE_INFINITY;
+  };
+  return [...names].sort((a, b) => {
+    const ia = idx.has(a) ? idx.get(a)! : 10_000;
+    const ib = idx.has(b) ? idx.get(b)! : 10_000;
+    if (ia !== ib) return ia - ib;
+    return num(a) - num(b) || a.localeCompare(b, "zh");
+  });
+}
+
+/** 将章节按主题分册分组（用于侧栏） */
+export function groupChaptersByPart(
+  names: string[],
+  catalog?: AssetsChapterCatalog | null
+): Array<{ id: string; title: string; chapters: string[] }> {
+  const sorted = sortChaptersForDisplay(names, catalog);
+  const parts = catalog?.parts || [];
+  if (!parts.length) {
+    return [{ id: "all", title: "全部章节", chapters: sorted }];
+  }
+  const nameSet = new Set(sorted);
+  const groups: Array<{ id: string; title: string; chapters: string[] }> = [];
+  const used = new Set<string>();
+  for (const part of parts) {
+    const list: string[] = [];
+    for (const ch of part.chapters || []) {
+      const n = String(ch.name || "").trim();
+      if (n && nameSet.has(n) && !used.has(n)) {
+        list.push(n);
+        used.add(n);
+      }
+    }
+    // 也收录 index 里属于该 part 但 toc 未列的
+    const pid = String(part.id || "");
+    for (const n of sorted) {
+      if (used.has(n)) continue;
+      if ((catalog?.chapter_to_part || {})[n] === pid) {
+        list.push(n);
+        used.add(n);
+      }
+    }
+    if (list.length) {
+      groups.push({
+        id: pid || part.title || "part",
+        title: part.title || pid || "分册",
+        chapters: list,
+      });
+    }
+  }
+  const rest = sorted.filter((n) => !used.has(n));
+  if (rest.length) {
+    groups.push({ id: "other", title: "其他", chapters: rest });
+  }
+  return groups;
+}
 
 const KIND_LABEL: Record<string, string> = {
   theorem: "定理",
@@ -204,6 +311,39 @@ export function compareAssetsByAppearance(a: AssetCard, b: AssetCard): number {
   );
 }
 
+const cardMapCache = new WeakMap<object, Map<string, AssetCard>>();
+
+function cardsById(library: AssetsLibrary): Map<string, AssetCard> {
+  const hit = cardMapCache.get(library as object);
+  if (hit) return hit;
+  const map = new Map<string, AssetCard>();
+  for (const card of library.cards || []) {
+    const id = String(card.asset_id || "").trim();
+    if (id) map.set(id, card);
+  }
+  cardMapCache.set(library as object, map);
+  return map;
+}
+
+function collectIndexedAssetIds(
+  index: Record<string, string[]>,
+  entityId: string,
+): Set<string> {
+  const id = String(entityId || "").trim();
+  if (!id) return new Set();
+  const idZh = zhPart(id);
+  const keys = [id, idZh, id.toLowerCase(), idZh.toLowerCase()];
+  const out = new Set<string>();
+  for (const key of keys) {
+    if (!key) continue;
+    for (const assetId of index[key] || []) {
+      const a = String(assetId || "").trim();
+      if (a) out.add(a);
+    }
+  }
+  return out;
+}
+
 export function findAssetsForEntity(
   library: AssetsLibrary | null | undefined,
   entityId: string,
@@ -211,12 +351,8 @@ export function findAssetsForEntity(
 ): AssetCard[] {
   if (!library?.cards?.length || !entityId) return [];
   const id = String(entityId).trim();
-  const idZh = zhPart(id);
   const index = library.index_by_entity || {};
-  const ids = new Set<string>([
-    ...(index[id] || []),
-    ...(index[idZh] || []),
-  ]);
+  const ids = collectIndexedAssetIds(index, id);
   const lectureId =
     options?.lectureId != null && String(options.lectureId) !== ""
       ? String(options.lectureId)
@@ -229,23 +365,30 @@ export function findAssetsForEntity(
 
   const out: AssetCard[] = [];
   const seen = new Set<string>();
-  for (const card of library.cards) {
-    if (kindAllow && !kindAllow.has(String(card.kind))) continue;
-    const hit =
-      ids.has(card.asset_id) || entityMatchesAsset(id, card);
-    if (!hit || seen.has(card.asset_id)) continue;
+  const accept = (card: AssetCard) => {
+    if (kindAllow && !kindAllow.has(String(card.kind))) return;
+    if (seen.has(card.asset_id)) return;
     if (llmPrinciplesOnly && card.kind === "principle" && card.source !== "llm") {
-      continue;
+      return;
     }
     const gLec = card.grounding?.lecture_id;
     if (lectureOnly) {
-      if (card.source !== "llm") continue;
-      if (String(gLec || "") !== lectureId) continue;
+      if (card.source !== "llm") return;
+      if (String(gLec || "") !== lectureId) return;
     } else if (lectureId && gLec != null && String(gLec) !== "" && String(gLec) !== lectureId) {
-      continue;
+      return;
     }
     seen.add(card.asset_id);
     out.push(card);
+  };
+
+  // 只走实体索引。全表扫描 1500+ 卡会在选中节点时卡死主线程；无索引即视为无关联资产。
+  if (ids.size > 0) {
+    const byId = cardsById(library);
+    for (const assetId of ids) {
+      const card = byId.get(assetId);
+      if (card) accept(card);
+    }
   }
   out.sort(
     (a, b) =>

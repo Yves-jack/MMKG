@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../../..");
 const notesRoot = path.join(repoRoot, "data", "review_notes");
 /** 与前端 LECTURE_NOTES_VERSION 对齐；升级结构时递增以失效旧缓存 */
-const NOTES_VERSION = 5;
+const NOTES_VERSION = 6;
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -76,6 +76,16 @@ function readDiskNotes(courseId, lectureId) {
     };
   } catch {
     return null;
+  }
+}
+
+function deleteDiskNotes(courseId, lectureId) {
+  const file = notesPath(courseId, lectureId);
+  if (!file || !fs.existsSync(file)) return;
+  try {
+    fs.unlinkSync(file);
+  } catch {
+    /* ignore */
   }
 }
 
@@ -178,8 +188,9 @@ const SYSTEM = `你是认真听完离散数学课后、正在重写笔记的学�
 6. summary 可与 oneLiner 相同或留空，不要另写一段意思差不多的话（避免开头重复）。
 7. body 一律空字符串；不要再写收尾总结段。
 8. related = 本主题概念中文名（供图谱对齐，界面可不展示）；keyPoints 与之呼应。
-9. 主题后可附 tips / checklist 各至多 1 节。
-10. 数学用 $...$；必须输出纯 JSON（不要 Markdown 围栏）：
+9. 不要输出 tips / checklist / 技巧类尾部小节；只输出主题 sections。
+10. example 的 label 一律写「例子」，不要写「课堂」。
+11. 数学用 $...$；必须输出纯 JSON（不要 Markdown 围栏）：
 {
   "title": "…",
   "subtitle": "这一堂课在解决什么问题（一句）",
@@ -203,7 +214,7 @@ const SYSTEM = `你是认真听完离散数学课后、正在重写笔记的学�
         { "type": "hook", "label": "脉络", "text": "…" },
         { "type": "def", "label": "定义", "text": "集合 — …" },
         { "type": "fact", "label": "性质", "text": "…" },
-        { "type": "example", "label": "例", "text": "…" },
+        { "type": "example", "label": "例子", "text": "…" },
         { "type": "pitfall", "label": "易错", "text": "…" },
         {
           "type": "cue",
@@ -242,7 +253,10 @@ function normalizeBlocks(raw) {
       if (!BLOCK_TYPES.has(type)) return null;
       const text = String(b?.text || "").trim();
       if (!text) return null;
-      const label = String(b?.label || "").trim();
+      let label = String(b?.label || "").trim();
+      if (label === "课堂" || (type === "example" && (!label || label === "例"))) {
+        label = "例子";
+      }
       const answer = String(b?.answer || "").trim();
       const out = label ? { type, label, text } : { type, text };
       if (type === "cue" && answer) out.answer = answer;
@@ -340,7 +354,9 @@ function normalizeNotes(parsed, payload, model) {
         tips: Array.isArray(s?.tips) ? s.tips.map(String).filter(Boolean).slice(0, 8) : [],
       };
     })
-    .filter((s) => s.title && (s.summary || s.body || s.bullets.length || s.blocks.length));
+    .filter((s) => s.title && (s.summary || s.body || s.bullets.length || s.blocks.length))
+    // 只要主题小节，丢掉技巧 / checklist
+    .filter((s) => s.kind === "theme" || s.kind === "concept" || s.kind === "structure");
 
   if (!themes.length) {
     themes = sections
@@ -461,7 +477,14 @@ export async function runReviewNotes(payload, env = process.env) {
   return notes;
 }
 
-export function reviewNotesMiddleware(env = process.env) {
+export function reviewNotesMiddleware(envOrFactory = process.env) {
+  const resolveEnv = () => {
+    const base =
+      typeof envOrFactory === "function" ? envOrFactory() : envOrFactory || {};
+    // 每次请求合并最新 process.env（compose 热更新 / 代理恢复后无需重建镜像）
+    return { ...base, ...process.env };
+  };
+
   return async (req, res, next) => {
     try {
       const rawUrl = String(req.url || "");
@@ -509,6 +532,12 @@ export function reviewNotesMiddleware(env = process.env) {
         }
       }
 
+      // 强制重生成：先清磁盘缓存，避免仍读到旧稿
+      if (force && courseId && lectureId) {
+        deleteDiskNotes(courseId, lectureId);
+      }
+
+      const env = resolveEnv();
       try {
         const result = await runReviewNotes({ ...payload, courseId, lectureId }, env);
         if (result.error) {
@@ -533,7 +562,14 @@ export function reviewNotesMiddleware(env = process.env) {
           });
           return;
         }
-        json(res, 502, { error: String(e?.message || e) });
+        const msg = String(e?.message || e);
+        json(res, 502, {
+          error: msg,
+          message:
+            /fetch failed|ECONNREFUSED|ECONNRESET|UND_ERR/i.test(msg)
+              ? "大模型代理连接失败：请确认宿主机 sjtu_llm_host_proxy（:18765）在运行后重试"
+              : msg,
+        });
       }
     } catch (e) {
       json(res, 500, { error: String(e?.message || e) });

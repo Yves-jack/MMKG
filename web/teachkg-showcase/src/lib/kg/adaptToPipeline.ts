@@ -4,7 +4,7 @@ import type {
   PipelineNode,
   PipelinePayload,
   PipelineStage,
-} from "@/lib/pipeline/types";
+} from "@/lib/graph/types";
 import { applyImportanceFilter } from "@/lib/kg/importanceFilter";
 import {
   lookupTextbookEntity,
@@ -70,6 +70,21 @@ export type KgCue = {
   edgeCount: number;
 };
 
+/** 旧导出误用短课程名目录；课堂视频实际在完整课名下 */
+const LEGACY_RAW_COURSE_ALIASES: Record<string, string> = {
+  "数理逻辑": "离散数学(图论+数理逻辑与集合论)",
+  "图论": "离散数学(图论+数理逻辑与集合论)",
+  "集合论": "离散数学(图论+数理逻辑与集合论)",
+};
+
+function rewriteLegacyRawCoursePath(p: string): string {
+  const m = p.match(/^raw\/([^/]+)\/(video\/.+)$/);
+  if (!m) return p;
+  const mapped = LEGACY_RAW_COURSE_ALIASES[m[1]];
+  if (!mapped || mapped === m[1]) return p;
+  return `raw/${mapped}/${m[2]}`;
+}
+
 /** data\\segments\\... → /repo-data/segments/...（路径分段编码，兼容中文课程名） */
 export function toMediaUrl(raw?: string | null): string | null {
   if (!raw) return null;
@@ -84,6 +99,7 @@ export function toMediaUrl(raw?: string | null): string | null {
   }
   p = p.replace(/^\/+/, "");
   if (!p) return null;
+  p = rewriteLegacyRawCoursePath(p);
   const encoded = p
     .split("/")
     .map((seg) => encodeURIComponent(decodeURIComponent(seg)))
@@ -274,8 +290,10 @@ export type AdaptKgOptions = {
   importanceBase?: Record<string, number> | null;
   /** 实体贡献拆解（prior / mention_time / ...） */
   importanceContributions?: Record<string, Record<string, number>> | null;
-  /** 重要性过滤阈值：score < τ 的节点视为被筛 */
+  /** 重要性过滤阈值：score < τ 的节点视为被筛（兼容旧模式） */
   importanceMin?: number | null;
+  /** 保留重要性最高的前百分之几（优先于 importanceMin） */
+  importanceKeepPercent?: number | null;
   /** hide=删除被筛节点；reveal=保留并标记 filtered_by_importance */
   importanceFilterMode?: "hide" | "reveal";
 };
@@ -468,14 +486,17 @@ export function adaptKgToPipeline(
       importance_base,
       importance_delta,
       importance_contributions,
+      description: String(ent.description || "").trim() || undefined,
       ...(aliasList.length ? { aliases: aliasList } : {}),
     });
   }
 
   const tau = opts.importanceMin;
   const imp = applyImportanceFilter(pipeNodes, pipeEdges, {
+    keepPercent: opts.importanceKeepPercent,
     tau,
     mode: opts.importanceFilterMode || "hide",
+    dropIsolates: true,
   });
   pipeNodes.length = 0;
   pipeNodes.push(...imp.nodes);

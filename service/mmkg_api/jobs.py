@@ -111,79 +111,185 @@ class JobStore:
     def create_video_extraction(
         self, course_id: str, segment_ids: list[str]
     ) -> dict[str, Any]:
-        pending = self.graphs.video_chunks_needing_extraction(course_id, segment_ids)
-        job = self._new(
+        """Backward-compatible entry: enqueue lecture-level teachkg pipelines."""
+        return self.create_lecture_pipelines_for_segments(course_id, segment_ids)
+
+    def create_lecture_pipelines_for_segments(
+        self, course_id: str, segment_ids: list[str]
+    ) -> dict[str, Any]:
+        from .chunk_pipeline import lecture_ids_from_chunks, lecture_input_hash
+        from .video_extraction import chunk_fingerprint
+
+        wanted = set(segment_ids)
+        chunks = [
+            row
+            for row in self.graphs.read_video_chunks(course_id)
+            if str(row.get("segment_id")) in wanted
+        ]
+        lecture_ids = lecture_ids_from_chunks(chunks)
+        auto = os.environ.get("MMKG_AUTO_LECTURE_PIPELINE", "1").strip().lower() not in {
+            "0", "false", "no", "off"
+        }
+        if not auto:
+            return self._new(
+                course_id,
+                "video_extract",
+                segment_ids=list(dict.fromkeys(segment_ids)),
+                lecture_ids=lecture_ids,
+                child_job_ids=[],
+                status="completed",
+                stage="stored_only",
+                progress=100,
+                message="chunks stored; auto lecture pipeline disabled",
+                result={"lecture_ids": lecture_ids, "jobs": []},
+            )
+        child_jobs: list[dict[str, Any]] = []
+        for lecture_id in lecture_ids:
+            lecture_chunks = [
+                c
+                for c in self.graphs.read_video_chunks(course_id)
+                if str(c.get("lesson_id") or "") == str(lecture_id)
+            ]
+            input_hash = lecture_input_hash(lecture_chunks, lecture_id)
+            # Skip if a completed pipeline job already covers this hash
+            prior = [
+                j
+                for j in self.list(course_id, 100)
+                if j.get("kind") == "lecture_pipeline"
+                and str(j.get("lecture_id")) == str(lecture_id)
+                and j.get("input_hash") == input_hash
+                and j.get("status") == "completed"
+            ]
+            if prior:
+                child_jobs.append(prior[0])
+                continue
+            child_jobs.append(
+                self.create_lecture_pipeline(
+                    course_id, lecture_id, input_hash=input_hash, segment_ids=segment_ids
+                )
+            )
+
+        # Mark accepted chunks deferred so old "needing extraction" checks settle
+        for chunk in chunks:
+            self.graphs.write_video_extraction(
+                course_id,
+                {
+                    "segment_id": str(chunk.get("segment_id")),
+                    "lesson_id": str(chunk.get("lesson_id")),
+                    "input_hash": chunk_fingerprint(chunk),
+                    "status": "deferred_to_lecture_pipeline",
+                    "triplets": [],
+                },
+            )
+
+        parent = self._new(
             course_id,
             "video_extract",
-            segment_ids=[str(row["segment_id"]) for row in pending],
-            requested_segment_ids=list(dict.fromkeys(segment_ids)),
+            segment_ids=list(dict.fromkeys(segment_ids)),
+            lecture_ids=lecture_ids,
+            child_job_ids=[j["job_id"] for j in child_jobs],
+            status="completed" if child_jobs else "completed",
+            stage="delegated",
+            progress=100,
+            message="delegated to lecture pipeline jobs",
+            result={
+                "lecture_ids": lecture_ids,
+                "jobs": [
+                    {
+                        "job_id": j["job_id"],
+                        "lecture_id": j.get("lecture_id"),
+                        "status": j.get("status"),
+                    }
+                    for j in child_jobs
+                ],
+            },
         )
-        if not pending:
-            return self.update(
-                job["job_id"],
-                status="completed",
-                stage="done",
-                progress=100,
-                message="all chunks already extracted",
-                result={"processed": 0, "failed": 0, "skipped": len(segment_ids)},
-            )
-        _executor.submit(self._run_video_extraction, job["job_id"])
+        return parent
+
+    def create_lecture_pipeline(
+        self,
+        course_id: str,
+        lecture_id: str,
+        *,
+        input_hash: str | None = None,
+        segment_ids: list[str] | None = None,
+    ) -> dict[str, Any]:
+        job = self._new(
+            course_id,
+            "lecture_pipeline",
+            lecture_id=str(lecture_id),
+            input_hash=input_hash,
+            segment_ids=list(segment_ids or []),
+        )
+        _executor.submit(self._run_lecture_pipeline, job["job_id"])
         return job
 
-    def _run_video_extraction(self, job_id: str) -> None:
-        from .video_extraction import chunk_fingerprint, extract_video_chunk
+    def _run_lecture_pipeline(self, job_id: str) -> None:
+        from .chunk_pipeline import run_lecture_pipeline
+        from .video_extraction import chunk_fingerprint
 
         try:
             job = self.update(
                 job_id,
                 status="running",
-                stage="extracting_video_chunks",
+                stage="starting",
                 progress=1,
+                message="starting lecture pipeline",
             )
-            chunks = self.graphs.video_chunks_needing_extraction(
-                job["courseid"], list(job.get("segment_ids") or [])
-            )
-            failures: list[dict[str, str]] = []
-            processed = 0
-            total = max(1, len(chunks))
-            for index, chunk in enumerate(chunks, start=1):
-                try:
-                    extraction = extract_video_chunk(job["courseid"], chunk)
-                    self.graphs.write_video_extraction(job["courseid"], extraction)
-                    processed += 1
-                except Exception as error:
-                    failures.append(
-                        {"segment_id": str(chunk.get("segment_id")), "error": str(error)}
-                    )
-                    self.graphs.write_video_extraction(
-                        job["courseid"],
-                        {
-                            "segment_id": str(chunk.get("segment_id")),
-                            "lesson_id": str(chunk.get("lesson_id")),
-                            "input_hash": chunk_fingerprint(chunk),
-                            "status": "failed",
-                            "error": str(error),
-                            "triplets": [],
-                        },
-                    )
+            course_id = str(job["courseid"])
+            lecture_id = str(job.get("lecture_id"))
+
+            def on_progress(stage: str, pct: int, message: str) -> None:
                 self.update(
                     job_id,
-                    progress=min(95, int(index / total * 90) + 5),
-                    message=f"processed {index}/{len(chunks)}",
+                    stage=stage,
+                    progress=max(1, min(99, int(pct))),
+                    message=message,
                 )
-            graph = self.graphs.rebuild_video(job["courseid"])
-            result = {"processed": processed, "failed": len(failures), "failures": failures, **graph}
+
+            result = run_lecture_pipeline(
+                canvas_course_id=course_id,
+                lecture_id=lecture_id,
+                progress_cb=on_progress,
+            )
+
+            # Mark lecture chunks completed for fingerprint bookkeeping
+            for chunk in self.graphs.read_video_chunks(course_id):
+                if str(chunk.get("lesson_id") or "") != lecture_id:
+                    continue
+                self.graphs.write_video_extraction(
+                    course_id,
+                    {
+                        "segment_id": str(chunk.get("segment_id")),
+                        "lesson_id": lecture_id,
+                        "input_hash": chunk_fingerprint(chunk),
+                        "status": "lecture_pipeline_completed",
+                        "triplets": [],
+                        "pipeline_job_id": job_id,
+                    },
+                )
+            try:
+                self.graphs.rebuild_video(course_id)
+            except Exception:
+                pass
+
             self.update(
                 job_id,
-                status="failed" if failures else "completed",
-                stage="failed" if failures else "done",
+                status="completed",
+                stage="done",
                 progress=100,
-                message="video extraction failed" if failures else "completed",
-                error=json.dumps(failures, ensure_ascii=False) if failures else None,
+                message="completed",
+                input_hash=result.get("input_hash") or job.get("input_hash"),
                 result=result,
             )
         except Exception as error:
-            self.update(job_id, status="failed", stage="failed", message="failed", error=str(error))
+            self.update(
+                job_id,
+                status="failed",
+                stage="failed",
+                message="failed",
+                error=str(error),
+            )
 
     def create_extraction(self, course_id: str, filename: str, source: BinaryIO) -> dict[str, Any]:
         job = self._new(course_id, "extract", filename=filename)
@@ -225,7 +331,18 @@ class JobStore:
         video_extracts = [
             job for job in self.list(course_id, 100) if job.get("kind") == "video_extract"
         ]
+        lecture_pipelines = [
+            job for job in self.list(course_id, 100) if job.get("kind") == "lecture_pipeline"
+        ]
         rebuild = rebuilds[0] if rebuilds else {"state": "idle"}
         if rebuilds:
             rebuild = {**rebuild, "state": {"completed": "idle", "failed": "error"}.get(rebuild.get("status"), rebuild.get("status"))}
-        return {"courseid": str(course_id), "stale": False, "rebuild": rebuild, "video_extract": video_extracts[0] if video_extracts else {"state": "idle"}, "diff": {"added": [], "changed": [], "removed": []}}
+        return {
+            "courseid": str(course_id),
+            "stale": False,
+            "rebuild": rebuild,
+            "video_extract": video_extracts[0] if video_extracts else {"state": "idle"},
+            "lecture_pipeline": lecture_pipelines[0] if lecture_pipelines else {"state": "idle"},
+            "lecture_pipelines": lecture_pipelines[:20],
+            "diff": {"added": [], "changed": [], "removed": []},
+        }

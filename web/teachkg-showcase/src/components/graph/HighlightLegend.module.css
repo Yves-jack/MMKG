@@ -1,0 +1,169 @@
+.root {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 8;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.root > * {
+  pointer-events: auto;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(52, 211, 153, 0.55);
+  background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.18);
+  cursor: pointer;
+}
+
+:global(html[data-embed="ai-teaching"]) .trigger {
+  border-color: var(--line, #e4ddd4);
+  background: var(--bg-elev, #fff);
+  color: var(--text, #111);
+  box-shadow: 0 4px 14px rgba(45, 41, 40, 0.08);
+}
+
+:global(html[data-embed="ai-teaching"]) .trigger:hover,
+:global(html[data-embed="ai-teaching"]) .trigger[data-open="true"] {
+  border-color: var(--accent, #97242d);
+  background: #fff;
+  color: var(--text, #111);
+}
+
+.trigger:hover,
+.trigger[data-open="true"] {
+  border-color: #34d399;
+  background: #ffffff;
+}
+
+.chevron {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+  opacity: 0.7;
+}
+
+.trigger[data-open="true"] .chevron {
+  transform: rotate(90deg);
+}
+
+.badge {
+  max-width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  color: #0f766e;
+  background: rgba(45, 212, 191, 0.18);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+.menu {
+  min-width: 128px;
+  max-height: min(52vh, 360px);
+  overflow: auto;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(165, 243, 252, 0.45);
+  background: rgba(15, 23, 42, 0.94);
+  box-shadow: 0 16px 40px rgba(8, 15, 28, 0.35);
+  color: #e2e8f0;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover,
+.item[data-open="true"] {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.itemOn {
+  background: color-mix(in srgb, var(--hl-color, #34d399) 22%, transparent);
+  font-weight: 650;
+}
+
+.itemMuted {
+  opacity: 0.55;
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--hl-color, #34d399) 28%, transparent);
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+}
+
+.count {
+  font-size: 10px;
+  opacity: 0.72;
+  font-variant-numeric: tabular-nums;
+}
+
+.fly {
+  margin-left: auto;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  opacity: 0.45;
+}
+
+html[data-embed="ai-teaching"] .trigger {
+  border-color: #047857;
+  background: #ffffff;
+  color: #064e3b;
+  box-shadow: 0 8px 22px rgba(4, 120, 87, 0.12);
+}
+
+html[data-embed="ai-teaching"] .menu {
+  background: #fffdf8;
+  border-color: #c4b8a8;
+  color: #2b2724;
+  box-shadow: 0 14px 36px rgba(47, 42, 36, 0.12);
+}
+
+html[data-embed="ai-teaching"] .item:hover,
+html[data-embed="ai-teaching"] .item[data-open="true"] {
+  background: #ecfdf5;
+}
+
+html[data-embed="ai-teaching"] .itemOn {
+  background: color-mix(in srgb, var(--hl-color, #047857) 18%, #fff);
+}

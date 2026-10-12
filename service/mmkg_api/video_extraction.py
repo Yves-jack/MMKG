@@ -1,17 +1,15 @@
-"""Adapt VideoSearch chunks to the original MMKG triplet pipeline."""
+"""Video-chunk helpers for Canvas video graph + fingerprinting.
+
+Per-chunk LLM extraction is replaced by lecture-level teachkg orchestration
+(see chunk_pipeline / JobStore.create_lecture_pipeline).
+"""
 
 from __future__ import annotations
 
 import hashlib
 import json
-import os
 from typing import Any
 
-from teachkg.schemas import BoundaryType, VideoSegment
-from teachkg.stage1_alignment.triplet_extract import (
-    TripletExtractor,
-    build_flat_triplet_records,
-)
 from teachkg.stage2_kg_build.entity_merge import merge_triplets_to_kg
 
 Graph = dict[str, Any]
@@ -36,43 +34,15 @@ def chunk_fingerprint(chunk: Graph) -> str:
 
 
 def extract_video_chunk(course_id: str, chunk: Graph) -> Graph:
-    asr_text = str(chunk.get("asr_text") or "").strip()
-    text = str(chunk.get("text") or "").strip()
-    if not asr_text or not text:
-        raise ValueError("video chunk requires non-empty asr_text and text")
-
-    cue = VideoSegment(
-        segment_id=str(chunk["segment_id"]),
-        course_id=str(course_id),
-        lecture_id=str(chunk["lesson_id"]),
-        source_video=str(chunk["link"]),
-        start_sec=float(chunk["start_sec"]),
-        end_sec=float(chunk["end_sec"]),
-        boundary_type=BoundaryType.MERGED,
-        asr_text=asr_text,
-        clip_path=str(chunk["link"]),
-        extra={"normalized_text": text, "source": "video-search"},
-    )
-    mock = os.environ.get("MMKG_VIDEO_EXTRACT_MOCK", "0").strip() == "1"
-    extractor = TripletExtractor(mock=mock, validate_enabled=not mock)
-    result = extractor.extract(text, course_context=str(course_id))
-    if result.error:
-        raise RuntimeError(result.error)
-    triplets = build_flat_triplet_records(
-        cue,
-        result.triplets,
-        course_id=str(course_id),
-        extract_source="video_chunk",
-        extract_mode="video_search_chunk",
-        source_text=text,
-    )
+    """Legacy hook: mark chunk deferred; lecture pipeline owns teachkg work."""
     return {
-        "segment_id": str(chunk["segment_id"]),
-        "lesson_id": str(chunk["lesson_id"]),
+        "segment_id": str(chunk.get("segment_id")),
+        "lesson_id": str(chunk.get("lesson_id")),
         "input_hash": chunk_fingerprint(chunk),
-        "status": "completed",
-        "triplet_count": len(triplets),
-        "triplets": triplets,
+        "status": "deferred_to_lecture_pipeline",
+        "course_id": str(course_id),
+        "triplets": [],
+        "message": "use lecture pipeline job instead of per-chunk extraction",
     }
 
 

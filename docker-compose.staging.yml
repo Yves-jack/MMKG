@@ -1,6 +1,17 @@
 services:
   mmkg-backend:
     container_name: staging-mmkg-backend
+    # Persist teachkg artifacts (cues/kg/textbook). Chunk path skips Stage0 ASR;
+    # textbook hybrid still needs data/textbook mounted here.
+    environment:
+      HF_ENDPOINT: ${HF_ENDPOINT:-https://hf-mirror.com}
+      HUGGINGFACE_HUB_CACHE: /hf-cache
+      TRANSFORMERS_CACHE: /hf-cache
+      SENTENCE_TRANSFORMERS_HOME: /hf-cache
+      HF_HUB_OFFLINE: ${HF_HUB_OFFLINE:-0}
+    volumes:
+      - ./data:/app/data
+      - ${HF_CACHE_HOST:-/home/caolin/.cache/huggingface}:/hf-cache
     networks:
       runtime:
         aliases:

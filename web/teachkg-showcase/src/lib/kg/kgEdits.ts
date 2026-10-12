@@ -1,6 +1,6 @@
 /** 课堂图谱编辑补丁：API 客户端 + 叠到 nodes/edges。 */
 
-import type { PipelineEdge, PipelineNode } from "@/lib/pipeline/types";
+import type { PipelineEdge, PipelineNode } from "@/lib/graph/types";
 import { withBase } from "@/lib/withBase";
 
 export const ABSTRACT_RELATIONS = [

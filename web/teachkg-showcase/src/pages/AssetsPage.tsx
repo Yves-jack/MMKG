@@ -1,25 +1,25 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { MultiEvidenceHighlight } from "@/components/pipeline/MultiEvidenceHighlight";
-import { ResizableShell } from "@/components/pipeline/ResizableShell";
-import { LatexText } from "@/components/pipeline/LatexText";
+import { MultiEvidenceHighlight } from "@/components/graph/MultiEvidenceHighlight";
+import { ResizableShell } from "@/components/graph/ResizableShell";
+import { LatexText } from "@/components/graph/LatexText";
 import {
+  assetChapterNames,
   assetKindLabel,
   assetRoleLabel,
   assetReviewSeek,
   compareAssetsByAppearance,
   findPeerAssets,
+  groupChaptersByPart,
   type AssetCard,
   type AssetsLibrary,
 } from "@/lib/kg/assetsLibrary";
-import { WatchClassroom } from "@/components/apps/WatchClassroom";
+import { WatchClassroom } from "@/components/review/WatchClassroom";
 import { loadManifest } from "@/lib/catalog";
 import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
-import type { PipelinePayload } from "@/lib/pipeline/types";
+import type { PipelinePayload } from "@/lib/graph/types";
 import shell from "@/styles/shell.module.css";
 import styles from "./AssetsPage.module.css";
-
-const ALL_LECTURES = Array.from({ length: 26 }, (_, i) => String(i + 1));
 
 type CueChunk = {
   cueId: string;
@@ -53,8 +53,38 @@ function cardsForLecture(library: AssetsLibrary | null, lectureId: string): Asse
     .sort(compareAssetsByAppearance);
 }
 
+function cardsForChapter(library: AssetsLibrary | null, chapter: string): AssetCard[] {
+  if (!library?.cards?.length || !chapter) return [];
+  const indexed = new Set(library.index_by_chapter?.[chapter] || []);
+  return library.cards
+    .filter((c) => {
+      if (c.source !== "llm") return false;
+      if (indexed.size && indexed.has(c.asset_id)) return true;
+      return assetChapterNames(c).includes(chapter);
+    })
+    .slice()
+    .sort(compareAssetsByAppearance);
+}
+
+function EvidenceBlock({ text }: { text: string }) {
+  return (
+    <details
+      className={styles.cardEvidence}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <summary className={styles.evidenceToggle}>
+        原文依据
+        <span>展开 / 收起</span>
+      </summary>
+      <div className={styles.evidenceBody}>
+        <LatexText text={text} />
+      </div>
+    </details>
+  );
+}
+
 export function AssetsPage() {
-  const courseId = useCourseId() || "数理逻辑";
+  const courseId = useCourseId();
   const { lectureId: rawId } = useParams();
   const navigate = useNavigate();
   const lectureId = useMemo(() => {
@@ -72,6 +102,12 @@ export function AssetsPage() {
     "all" | "principle" | "theorem" | "technique" | "formula" | "example"
   >("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [lectureNavOpen, setLectureNavOpen] = useState(true);
+  const [chapterNavOpen, setChapterNavOpen] = useState(true);
+  const [partOpen, setPartOpen] = useState<Record<string, boolean>>({});
+  const [view, setView] = useState<{ type: "lecture" | "chapter"; key: string }>(
+    () => ({ type: "lecture", key: "" })
+  );
   const cardListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,8 +148,18 @@ export function AssetsPage() {
 
   useEffect(() => {
     if (!lectureId) return;
+    setView({ type: "lecture", key: lectureId });
+  }, [lectureId]);
+
+  useEffect(() => {
+    if (!lectureId) return;
     if (rawId && rawId !== lectureId && /^(?:lecture[_-])?\d+$/i.test(rawId)) {
       navigate(coursePath(courseId, `/assets/${lectureId}`), { replace: true });
+      return;
+    }
+    if (view.type === "chapter") {
+      setLoading(false);
+      setChunks([]);
       return;
     }
     let cancelled = false;
@@ -158,17 +204,17 @@ export function AssetsPage() {
     return () => {
       cancelled = true;
     };
-  }, [courseId, lectureId, rawId, navigate]);
+  }, [courseId, lectureId, rawId, navigate, view.type]);
 
-  const lectureCards = useMemo(
-    () => cardsForLecture(library, lectureId),
-    [library, lectureId]
-  );
+  const scopeCards = useMemo(() => {
+    if (view.type === "chapter") return cardsForChapter(library, view.key);
+    return cardsForLecture(library, lectureId);
+  }, [library, lectureId, view]);
 
   const filteredCards = useMemo(() => {
-    if (kindFilter === "all") return lectureCards;
-    return lectureCards.filter((c) => c.kind === kindFilter);
-  }, [lectureCards, kindFilter]);
+    if (kindFilter === "all") return scopeCards;
+    return scopeCards.filter((c) => c.kind === kindFilter);
+  }, [scopeCards, kindFilter]);
 
   useEffect(() => {
     if (!filteredCards.length) {
@@ -206,20 +252,73 @@ export function AssetsPage() {
   );
 
   const selected = filteredCards.find((c) => c.asset_id === selectedId) || null;
-  const selectedWatch = selected ? assetReviewSeek(selected, lectureId) : null;
+  const selectedWatchLec = String(selected?.grounding?.lecture_id || lectureId || "");
+  const selectedWatch = selected ? assetReviewSeek(selected, selectedWatchLec) : null;
   const selectedPeers = useMemo(
     () =>
       findPeerAssets(library, selected, {
-        lectureId,
-        lectureOnly: true,
+        lectureId: view.type === "lecture" ? lectureId : undefined,
+        lectureOnly: view.type === "lecture",
         maxItems: 8,
       }),
-    [library, selected, lectureId]
+    [library, selected, lectureId, view.type]
   );
+
+  const lectureNav = useMemo(() => {
+    const set = new Set<string>([...readyLectures, ...assetLectures]);
+    if (lectureId) set.add(lectureId);
+    const list = [...set].sort((a, b) => Number(a) - Number(b));
+    if (list.length) return list;
+    return Array.from({ length: 44 }, (_, i) => String(i + 1));
+  }, [readyLectures, assetLectures, lectureId]);
+
+  const chapterNav = useMemo(() => {
+    const names = new Set<string>();
+    for (const k of Object.keys(library?.index_by_chapter || {})) {
+      if (k.trim()) names.add(k.trim());
+    }
+    for (const c of library?.cards || []) {
+      if (c.source !== "llm") continue;
+      for (const name of assetChapterNames(c)) names.add(name);
+    }
+    // 目录里有、暂无资产的章也展示，便于规划
+    for (const part of library?.chapter_catalog?.parts || []) {
+      for (const ch of part.chapters || []) {
+        const n = String(ch.name || "").trim();
+        if (n) names.add(n);
+      }
+    }
+    return groupChaptersByPart([...names], library?.chapter_catalog);
+  }, [library]);
+
+  const chapterCounts = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const part of chapterNav) {
+      for (const name of part.chapters) {
+        m.set(name, cardsForChapter(library, name).length);
+      }
+    }
+    return m;
+  }, [chapterNav, library]);
+
+  useEffect(() => {
+    if (!chapterNav.length) return;
+    setPartOpen((prev) => {
+      const next = { ...prev };
+      let changed = false;
+      for (const p of chapterNav) {
+        if (next[p.id] === undefined) {
+          next[p.id] = true;
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, [chapterNav]);
 
   const kindCounts = useMemo(() => {
     const c = { principle: 0, theorem: 0, technique: 0, formula: 0, example: 0 };
-    for (const card of lectureCards) {
+    for (const card of scopeCards) {
       if (card.kind === "principle") c.principle += 1;
       else if (card.kind === "theorem") c.theorem += 1;
       else if (card.kind === "technique") c.technique += 1;
@@ -227,13 +326,32 @@ export function AssetsPage() {
       else if (card.kind === "example") c.example += 1;
     }
     return c;
-  }, [lectureCards]);
+  }, [scopeCards]);
 
   if (!lectureId) {
-    return <Navigate to={coursePath(courseId, "/assets/1")} replace />;
+    const first = lectureNav[0] || "1";
+    return <Navigate to={coursePath(courseId, `/assets/${first}`)} replace />;
   }
 
-  const goLecture = (id: string) => navigate(coursePath(courseId, `/assets/${id}`));
+  const goLecture = (id: string) => {
+    setView({ type: "lecture", key: id });
+    setSelectedId(null);
+    setKindFilter("all");
+    navigate(coursePath(courseId, `/assets/${id}`));
+  };
+
+  const goChapter = (name: string) => {
+    setView({ type: "chapter", key: name });
+    setSelectedId(null);
+    setKindFilter("all");
+    setChunks([]);
+  };
+
+  const scopeTitle =
+    view.type === "chapter" ? view.key : `第 ${lectureId} 讲 · 合并课堂文本`;
+  const detailTitle = view.type === "chapter" ? "本章资产" : "本讲资产";
+  const emptyCardsHint =
+    view.type === "chapter" ? "本章暂无大模型抽取资产" : "本讲暂无大模型抽取资产";
 
   return (
     <ResizableShell
@@ -246,43 +364,124 @@ export function AssetsPage() {
                 ←
               </span>
               <span className={shell.backBrand}>
-                Teach<em>KG</em>
+                Edu<em>KG</em>
               </span>
             </Link>
             <p className={shell.eyebrow}>Assets</p>
-            <h1 className={shell.sideTitle}>定理 · 公式 · 例子</h1>
-            <p className={shell.sideLead}>
-              公式/例子从口播原文抽取；定理·原理·方法从预处理文本抽取
-            </p>
+            <h1 className={shell.sideTitle}>课程资产</h1>
           </div>
 
-          <div className={`${shell.navBlock} ${shell.navBlockGrow}`}>
-            <p className={shell.navLabel}>讲次</p>
-            <div className={shell.navScroll}>
-              {ALL_LECTURES.map((id) => {
-                const ready = readyLectures.has(id);
-                const hasAssets = assetLectures.has(id);
-                const active = lectureId === id;
-                return (
-                  <button
-                    key={id}
-                    type="button"
-                    className={active ? shell.navItemActive : shell.navItem}
-                    onClick={() => goLecture(id)}
-                    title={
-                      hasAssets
-                        ? `第 ${id} 讲 · 有抽取`
-                        : ready
-                          ? `第 ${id} 讲 · 暂无抽取`
-                          : `第 ${id} 讲 · 待填充`
-                    }
-                  >
-                    <span>第 {id} 讲</span>
-                    <em>{hasAssets ? "有资产" : ready ? "无资产" : "待填充"}</em>
-                  </button>
-                );
-              })}
-            </div>
+          <div
+            className={`${shell.navBlock} ${shell.navBlockCollapsible} ${
+              lectureNavOpen ? "" : shell.navBlockCollapsed
+            }`}
+          >
+            <button
+              type="button"
+              className={shell.navLabelToggle}
+              aria-expanded={lectureNavOpen}
+              onClick={() => setLectureNavOpen((v) => !v)}
+            >
+              <span>讲次</span>
+              <em>{lectureNavOpen ? "收起" : "展开"}</em>
+            </button>
+            {lectureNavOpen ? (
+              <div className={shell.navScroll}>
+                {lectureNav.map((id) => {
+                  const ready = readyLectures.has(id);
+                  const hasAssets = assetLectures.has(id);
+                  const active = view.type === "lecture" && lectureId === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      className={active ? shell.navItemActive : shell.navItem}
+                      onClick={() => goLecture(id)}
+                      title={
+                        hasAssets
+                          ? `第 ${id} 讲 · 有抽取`
+                          : ready
+                            ? `第 ${id} 讲 · 暂无抽取`
+                            : `第 ${id} 讲 · 待填充`
+                      }
+                    >
+                      <span>第 {id} 讲</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
+
+          <div
+            className={`${shell.navBlock} ${shell.navBlockGrow} ${
+              chapterNavOpen ? "" : shell.navBlockCollapsed
+            }`}
+          >
+            <button
+              type="button"
+              className={shell.navLabelToggle}
+              aria-expanded={chapterNavOpen}
+              onClick={() => setChapterNavOpen((v) => !v)}
+            >
+              <span>章节</span>
+              <em>
+                {chapterNavOpen
+                  ? "收起"
+                  : "展开"}
+              </em>
+            </button>
+            {chapterNavOpen ? (
+              <div className={shell.navScroll}>
+                {!chapterNav.length ? (
+                  <p className={styles.navEmpty}>暂无章节索引</p>
+                ) : (
+                  chapterNav.map((part) => {
+                    const open = partOpen[part.id] !== false;
+                    return (
+                      <div key={part.id} className={styles.partGroup}>
+                        <button
+                          type="button"
+                          className={styles.partToggle}
+                          aria-expanded={open}
+                          onClick={() =>
+                            setPartOpen((prev) => ({
+                              ...prev,
+                              [part.id]: !open,
+                            }))
+                          }
+                        >
+                          <span>分册 · {part.title}</span>
+                          <em>
+                            {open ? "收起" : "展开"}
+                          </em>
+                        </button>
+                        {open
+                          ? part.chapters.map((name) => {
+                              const n = chapterCounts.get(name) || 0;
+                              const active =
+                                view.type === "chapter" && view.key === name;
+                              return (
+                                <button
+                                  key={name}
+                                  type="button"
+                                  className={
+                                    active ? shell.navItemActive : shell.navItem
+                                  }
+                                  onClick={() => goChapter(name)}
+                                  title={`${part.title} · ${name}${n ? ` · ${n} 条` : ""}`}
+                                >
+                                  <span>{name}</span>
+                                </button>
+                              );
+                            })
+                          : null}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            ) : null}
           </div>
         </aside>
       }
@@ -290,16 +489,17 @@ export function AssetsPage() {
         <main className={styles.mainCol}>
           <header className={shell.topbar}>
             <div className={shell.topbarText}>
-              <h2>第 {lectureId} 讲 · 合并课堂文本</h2>
-              <p>各片段口播原文按序拼接；高亮为资产原文依据（例子在预处理中已被剔除）</p>
+              <h2>{scopeTitle}</h2>
             </div>
             <div className={shell.stats}>
               <div>
-                <strong>{chunks.length || "—"}</strong>
+                <strong>
+                  {view.type === "chapter" ? "—" : chunks.length || "—"}
+                </strong>
                 <span>片段</span>
               </div>
               <div>
-                <strong>{lectureCards.length}</strong>
+                <strong>{scopeCards.length}</strong>
                 <span>资产</span>
               </div>
               <div>
@@ -326,7 +526,11 @@ export function AssetsPage() {
           </header>
 
           <div className={styles.textPane}>
-            {loading ? (
+            {view.type === "chapter" ? (
+              <div className={styles.empty}>
+                章节视图：右侧浏览「{view.key}」下的资产卡片；点讲次可回到课堂合并文本。
+              </div>
+            ) : loading ? (
               <div className={styles.empty}>加载合并文本…</div>
             ) : !mergedText ? (
               <div className={styles.empty}>本讲暂无流水线片段文本</div>
@@ -344,7 +548,7 @@ export function AssetsPage() {
       detail={
         <aside className={styles.detailCol}>
           <div className={styles.detailHead}>
-            <h3>本讲资产</h3>
+            <h3>{detailTitle}</h3>
             <div className={styles.kindTabs}>
               {(
                 [
@@ -370,17 +574,24 @@ export function AssetsPage() {
 
           <div className={styles.cardList} ref={cardListRef}>
             {!filteredCards.length ? (
-              <div className={styles.empty}>本讲暂无大模型抽取资产</div>
+              <div className={styles.empty}>{emptyCardsHint}</div>
             ) : (
               filteredCards.map((card) => {
                 const active = card.asset_id === selectedId;
                 return (
-                  <button
+                  <div
                     key={card.asset_id}
-                    type="button"
+                    role="button"
+                    tabIndex={0}
                     data-asset-id={card.asset_id}
                     className={active ? styles.cardActive : styles.card}
                     onClick={() => setSelectedId(card.asset_id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedId(card.asset_id);
+                      }
+                    }}
                   >
                     <div className={styles.cardHead}>
                       <span className={styles.kindBadge}>{assetKindLabel(card.kind)}</span>
@@ -391,12 +602,12 @@ export function AssetsPage() {
                         <LatexText text={card.summary} />
                       </div>
                     ) : null}
-                    {card.evidence ? (
-                      <div className={styles.cardEvidence}>
-                        <span>原文依据</span>
-                        <LatexText text={card.evidence} />
+                    {card.kind === "formula" && (card.latex || "").trim() ? (
+                      <div className={styles.cardLatex}>
+                        <LatexText text={`$${card.latex}$`} />
                       </div>
                     ) : null}
+                    {card.evidence ? <EvidenceBlock text={card.evidence} /> : null}
                     {(card.concepts || []).length ? (
                       <div className={styles.cardConcepts}>
                         {(card.concepts || []).map((c, i) => {
@@ -417,7 +628,7 @@ export function AssetsPage() {
                         })}
                       </div>
                     ) : null}
-                  </button>
+                  </div>
                 );
               })
             )}

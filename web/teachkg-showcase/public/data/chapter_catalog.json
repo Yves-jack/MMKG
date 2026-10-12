@@ -1,0 +1,131 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "source": "classroom_ppt",
+  "n_parts": 3,
+  "n_chapters": 14,
+  "parts": [
+    {
+      "id": "graph",
+      "title": "图论",
+      "source": "classroom_ppt",
+      "chapters": [
+        {
+          "name": "第1章 图的基本概念与表示",
+          "part_id": "graph",
+          "part_title": "图论"
+        },
+        {
+          "name": "第2章 道路与回路",
+          "part_id": "graph",
+          "part_title": "图论"
+        },
+        {
+          "name": "第3章 树",
+          "part_id": "graph",
+          "part_title": "图论"
+        },
+        {
+          "name": "第4章 平面图与图的着色",
+          "part_id": "graph",
+          "part_title": "图论"
+        }
+      ]
+    },
+    {
+      "id": "logic",
+      "title": "数理逻辑",
+      "source": "classroom_ppt",
+      "chapters": [
+        {
+          "name": "第1章 命题逻辑的基本概念",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        },
+        {
+          "name": "第2章 命题逻辑的等值和推理演算",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        },
+        {
+          "name": "第3章 命题逻辑的公理化系统",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        },
+        {
+          "name": "第4章 谓词逻辑的基本概念",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        },
+        {
+          "name": "第5章 谓词逻辑的等值和推理演算",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        },
+        {
+          "name": "第6章 谓词逻辑的公理化系统",
+          "part_id": "logic",
+          "part_title": "数理逻辑"
+        }
+      ]
+    },
+    {
+      "id": "set",
+      "title": "集合论",
+      "source": "classroom_ppt",
+      "chapters": [
+        {
+          "name": "第9章 集合",
+          "part_id": "set",
+          "part_title": "集合论"
+        },
+        {
+          "name": "第10章 关系",
+          "part_id": "set",
+          "part_title": "集合论"
+        },
+        {
+          "name": "第11章 函数",
+          "part_id": "set",
+          "part_title": "集合论"
+        },
+        {
+          "name": "第12章 实数集合与集合的基数",
+          "part_id": "set",
+          "part_title": "集合论"
+        }
+      ]
+    }
+  ],
+  "chapter_order": [
+    "第1章 图的基本概念与表示",
+    "第2章 道路与回路",
+    "第3章 树",
+    "第4章 平面图与图的着色",
+    "第1章 命题逻辑的基本概念",
+    "第2章 命题逻辑的等值和推理演算",
+    "第3章 命题逻辑的公理化系统",
+    "第4章 谓词逻辑的基本概念",
+    "第5章 谓词逻辑的等值和推理演算",
+    "第6章 谓词逻辑的公理化系统",
+    "第9章 集合",
+    "第10章 关系",
+    "第11章 函数",
+    "第12章 实数集合与集合的基数"
+  ],
+  "chapter_to_part": {
+    "第1章 图的基本概念与表示": "graph",
+    "第2章 道路与回路": "graph",
+    "第3章 树": "graph",
+    "第4章 平面图与图的着色": "graph",
+    "第1章 命题逻辑的基本概念": "logic",
+    "第2章 命题逻辑的等值和推理演算": "logic",
+    "第3章 命题逻辑的公理化系统": "logic",
+    "第4章 谓词逻辑的基本概念": "logic",
+    "第5章 谓词逻辑的等值和推理演算": "logic",
+    "第6章 谓词逻辑的公理化系统": "logic",
+    "第9章 集合": "set",
+    "第10章 关系": "set",
+    "第11章 函数": "set",
+    "第12章 实数集合与集合的基数": "set"
+  }
+}

@@ -129,6 +129,55 @@ test("drops video relations without the complete course/video/start contract", a
   assert.deepEqual(result.resources, []);
 });
 
+test("keeps MMKG cue start_sec when VideoSearch returns a coarser window", async () => {
+  const result = await loadKnowledgeResources(
+    {
+      courseId: "92311",
+      knowledgePointId: "kp-1",
+      kgToken: "launch-token",
+      accessToken: "mmkg-access",
+    },
+    {
+      AI_TEACHING_API_URL: "http://ai:5001",
+      MMKG_API_URL: "http://mmkg:8000/api",
+      VIDEO_SEARCH_API_URL: "http://video:8000",
+    },
+    async (url) => {
+      if (String(url).includes("video-segments")) {
+        return response({
+          video_refs: [{
+            segment_id: "cue-104",
+            video_id: "0",
+            start_sec: 104,
+            end_sec: 114,
+          }],
+        });
+      }
+      if (String(url).includes("segments/by-video-refs")) {
+        return response([{
+          id: "vs-seg-0",
+          course_id: "92311",
+          lesson_id: "0",
+          video_id: "0",
+          summary: "开场",
+          start_sec: 0,
+          end_sec: 300,
+          link: "/media/0.mp4",
+        }]);
+      }
+      return response({ resources: [] });
+    },
+  );
+
+  assert.equal(result.resources.length, 1);
+  assert.equal(result.resources[0].start_sec, 104);
+  assert.equal(
+    result.resources[0].path,
+    "/video?course_id=92311&video_id=0&start_sec=104",
+  );
+  assert.equal(result.resources[0].metadata.window_start_sec, 0);
+});
+
 test("omits linked videos instead of inventing display content when VideoSearch is unavailable", async () => {
   const result = await loadKnowledgeResources(
     {

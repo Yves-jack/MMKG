@@ -1,0 +1,4 @@
+scripts/_ssh_*.py
+**/__pycache__
+**/*.pyc
+web/teachkg-showcase/node_modules

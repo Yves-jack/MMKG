@@ -5,12 +5,12 @@
  * 1. pipeline_build 各 cue merge 并集（主图原始数据）
  * 2. 讲次 / 片段边筛（buildKgViewFromPipeline）
  * 3. processLectureKg（含孤立/短路径剪枝）
- * 4. 重要性 hide | reveal（本文件）
+ * 4. 重要性 hide | reveal（本文件：按保留百分比取头部节点）
  * 5. related_with 边隐藏（本文件）；隐藏后会再跑一轮短路径剪枝
  * mmkg 仅作实体描述 enrichment，不改边集。
  */
 
-import type { PipelineEdge, PipelineNode, PipelineStage } from "@/lib/pipeline/types";
+import type { PipelineEdge, PipelineNode, PipelineStage } from "@/lib/graph/types";
 import { pruneShortPathComponents } from "@/lib/kg/lectureKgProcess";
 
 export type ImportanceFilterMode = "hide" | "reveal";
@@ -33,13 +33,12 @@ export function nodeImportanceOrNull(
   return null;
 }
 
-/** score≥τ 保留；无分数节点在低阈值时保留（避免稀疏课堂分讲次被筛空） */
+/** @deprecated 阈值模式：score≥τ 保留；请改用 selectImportanceKeepSetByPercent */
 export function selectImportanceKeepSet(
   nodes: PipelineNode[],
   tau: number
 ): Set<string> {
   const keep = new Set<string>();
-  // ≤0.15 视为「轻度筛选」：只挡显式低分/零分，不误杀未标注实体
   const keepUnknown = tau > 0 && tau <= 0.15;
   for (const n of nodes) {
     const s = nodeImportanceOrNull(n);
@@ -49,13 +48,55 @@ export function selectImportanceKeepSet(
     }
     if (s >= tau) keep.add(n.id);
   }
-  // 安全网：若几乎筛光但仍有未标注节点，强制保留未标注，避免整图空白
   if (keep.size === 0) {
     for (const n of nodes) {
       if (nodeImportanceOrNull(n) == null) keep.add(n.id);
     }
   }
   return keep;
+}
+
+/**
+ * 按重要性保留前 keepPercent% 的节点（个数向上取整，至少 1）。
+ * keepPercent≥100：全保留；≤0：不保留。
+ * 无分数节点排在末尾（优先被裁掉）。
+ */
+export function selectImportanceKeepSetByPercent(
+  nodes: PipelineNode[],
+  keepPercent: number
+): Set<string> {
+  const p = Number(keepPercent);
+  if (!Number.isFinite(p) || p >= 100) {
+    return new Set(nodes.map((n) => n.id));
+  }
+  if (p <= 0 || !nodes.length) return new Set();
+  const ranked = [...nodes].sort((a, b) => {
+    const sa = nodeImportanceOrNull(a);
+    const sb = nodeImportanceOrNull(b);
+    const va = sa == null ? Number.NEGATIVE_INFINITY : sa;
+    const vb = sb == null ? Number.NEGATIVE_INFINITY : sb;
+    return vb - va || String(a.id).localeCompare(String(b.id));
+  });
+  const k = Math.max(1, Math.ceil((ranked.length * Math.min(100, p)) / 100));
+  return new Set(ranked.slice(0, k).map((n) => n.id));
+}
+
+/** 去掉度数为 0 的孤立节点（无任何边） */
+export function dropIsolatedNodes(
+  nodes: PipelineNode[],
+  edges: PipelineEdge[]
+): { nodes: PipelineNode[]; edges: PipelineEdge[]; dropped: number } {
+  const deg = new Set<string>();
+  for (const e of edges) {
+    if (e.from) deg.add(e.from);
+    if (e.to) deg.add(e.to);
+  }
+  const nextNodes = nodes.filter((n) => deg.has(n.id));
+  return {
+    nodes: nextNodes,
+    edges,
+    dropped: nodes.length - nextNodes.length,
+  };
 }
 
 export type ImportanceFilterResult = {
@@ -65,30 +106,62 @@ export type ImportanceFilterResult = {
 };
 
 /**
- * @param mode hide — 删除被筛节点及两端不在 keep 的边（默认）
+ * @param keepPercent 保留重要性最高的前百分之几（1–100）；null/≥100 不过滤
+ * @param mode hide — 删除被筛节点及两端不在 keep 的边（默认），并去掉孤立点
  * @param mode reveal — 保留全图，对被筛节点打 filtered_by_importance（灰色弱化）
+ * @param tau 兼容旧阈值模式；若提供 keepPercent 则优先百分比
  */
 export function applyImportanceFilter(
   nodes: PipelineNode[],
   edges: PipelineEdge[],
-  opts: { tau: number | null | undefined; mode?: ImportanceFilterMode }
+  opts: {
+    keepPercent?: number | null | undefined;
+    tau?: number | null | undefined;
+    mode?: ImportanceFilterMode;
+    dropIsolates?: boolean;
+    /** 搜索定位等场景强制保留的节点（即使低于当前保留百分比） */
+    forceKeepIds?: Iterable<string> | null;
+  }
 ): ImportanceFilterResult {
-  const tau = opts.tau;
   const mode: ImportanceFilterMode = opts.mode || "hide";
-  if (tau == null || !Number.isFinite(tau) || tau <= 0) {
-    return {
-      nodes: nodes.map((n) => ({ ...n, filtered_by_importance: false })),
-      edges: [...edges],
-      filteredCount: 0,
-    };
+  const dropIsolates = opts.dropIsolates !== false;
+
+  let keep: Set<string> | null = null;
+  if (opts.keepPercent != null && Number.isFinite(Number(opts.keepPercent))) {
+    const p = Number(opts.keepPercent);
+    if (p < 100) keep = selectImportanceKeepSetByPercent(nodes, p);
+  } else {
+    const tau = opts.tau;
+    if (tau != null && Number.isFinite(tau) && tau > 0) {
+      keep = selectImportanceKeepSet(nodes, tau);
+    }
+  }
+  const forceKeep = new Set<string>();
+  if (opts.forceKeepIds) {
+    for (const id of opts.forceKeepIds) {
+      const s = String(id || "").trim();
+      if (s) forceKeep.add(s);
+    }
+  }
+  if (keep && forceKeep.size) {
+    for (const id of forceKeep) keep.add(id);
+    // 一并保留一跳邻居，避免搜到的点因孤立被再剪掉
+    for (const e of edges) {
+      if (forceKeep.has(e.from) && e.to) keep.add(e.to);
+      if (forceKeep.has(e.to) && e.from) keep.add(e.from);
+    }
   }
 
-  const keep = selectImportanceKeepSet(nodes, tau);
+  if (!keep) {
+    // keepPercent≥100 / 未设阈值：保留全图，不再丢孤立点（否则「当前」永远对不上「总数」）
+    const cleared = nodes.map((n) => ({ ...n, filtered_by_importance: false }));
+    return { nodes: cleared, edges: [...edges], filteredCount: 0 };
+  }
 
   if (mode === "reveal") {
     let filteredCount = 0;
     const nextNodes = nodes.map((n) => {
-      const filtered = !keep.has(n.id);
+      const filtered = !keep!.has(n.id);
       if (filtered) filteredCount += 1;
       return { ...n, filtered_by_importance: filtered };
     });
@@ -96,18 +169,34 @@ export function applyImportanceFilter(
   }
 
   const nextNodes = nodes
-    .filter((n) => keep.has(n.id))
+    .filter((n) => keep!.has(n.id))
     .map((n) => ({ ...n, filtered_by_importance: false }));
-  const nextEdges = edges.filter((e) => keep.has(e.from) && keep.has(e.to));
+  const nextEdges = edges.filter((e) => keep!.has(e.from) && keep!.has(e.to));
   // 去掉低分节点后，可能再产生短路径子图 → 一并剪掉
   const iso = pruneShortPathComponents(nextEdges);
+  const isoKeptIds = new Set(iso.kept.map((e) => e.id));
+  // 强制保留点相关的边：即使短路径剪枝也不丢掉
+  const forcedEdges =
+    forceKeep.size > 0
+      ? nextEdges.filter(
+          (e) =>
+            !isoKeptIds.has(e.id) &&
+            (forceKeep.has(e.from) || forceKeep.has(e.to))
+        )
+      : [];
+  const forcedEdgeIds = new Set(forcedEdges.map((e) => e.id));
+  const isoRemoved = iso.removed.filter((e) => !forcedEdgeIds.has(e.id));
+  const isoKept = [...iso.kept, ...forcedEdges];
   const nodeMap = new Map(nextNodes.map((n) => [n.id, n]));
   const keptIds = new Set<string>();
-  for (const e of iso.kept) {
+  for (const e of isoKept) {
     keptIds.add(e.from);
     keptIds.add(e.to);
   }
-  for (const e of iso.removed) {
+  for (const id of forceKeep) {
+    if (nodeMap.has(id)) keptIds.add(id);
+  }
+  for (const e of isoRemoved) {
     for (const id of [e.from, e.to]) {
       if (!id || nodeMap.has(id)) continue;
       const prev = nodes.find((n) => n.id === id);
@@ -121,11 +210,58 @@ export function applyImportanceFilter(
       });
     }
   }
+  // hide 模式：主图只保留仍连着 kept 边的节点；处理边端点仍挂上供图例
+  let outNodes: PipelineNode[] = [...nodeMap.values()].filter(
+    (n) =>
+      keptIds.has(n.id) ||
+      forceKeep.has(n.id) ||
+      isoRemoved.some((e) => e.from === n.id || e.to === n.id)
+  );
+  let outEdges = [...isoKept, ...isoRemoved];
+  if (dropIsolates) {
+    // 仅按「保留边」判定孤立，避免短路径删除边把孤立点又挂回来显示
+    const d = dropIsolatedNodes(
+      outNodes.filter((n) => keptIds.has(n.id) || forceKeep.has(n.id)),
+      isoKept
+    );
+    const processEnds = new Set<string>();
+    for (const e of isoRemoved) {
+      if (e.from) processEnds.add(e.from);
+      if (e.to) processEnds.add(e.to);
+    }
+    const byId = new Map(outNodes.map((n) => [n.id, n]));
+    const merged = new Map(d.nodes.map((n) => [n.id, n]));
+    for (const id of forceKeep) {
+      if (!merged.has(id)) {
+        const n = byId.get(id) || nodeMap.get(id);
+        if (n) merged.set(id, n);
+      }
+    }
+    outNodes = [
+      ...merged.values(),
+      ...[...processEnds]
+        .filter((id) => !merged.has(id))
+        .map((id) => byId.get(id))
+        .filter(Boolean) as PipelineNode[],
+    ];
+    outEdges = [...d.edges, ...isoRemoved];
+    // 强制点相关边若被 dropIsolates 丢掉，补回
+    if (forceKeep.size) {
+      const haveE = new Set(outEdges.map((e) => e.id));
+      for (const e of isoKept) {
+        if (haveE.has(e.id)) continue;
+        if (forceKeep.has(e.from) || forceKeep.has(e.to)) {
+          if (merged.has(e.from) && merged.has(e.to)) {
+            outEdges.push(e);
+            haveE.add(e.id);
+          }
+        }
+      }
+    }
+  }
   return {
-    nodes: [...nodeMap.values()].filter(
-      (n) => keptIds.has(n.id) || iso.removed.some((e) => e.from === n.id || e.to === n.id)
-    ),
-    edges: [...iso.kept, ...iso.removed],
+    nodes: outNodes,
+    edges: outEdges,
     filteredCount: nodes.length - nextNodes.length,
   };
 }

@@ -7,6 +7,12 @@ import type {
 import { lookupImportance, lookupContributions } from "@/lib/kg/adaptToPipeline";
 import { courseDataUrl } from "@/lib/course";
 import { withBase } from "@/lib/withBase";
+import {
+  isProcessEdgeSource,
+  processLectureKg,
+  type LectureKgProcessStats,
+  type MultiRelCollapseDecision,
+} from "@/lib/kg/lectureKgProcess";
 
 export type PipelineCueBundle = {
   cueId: string;
@@ -384,7 +390,13 @@ export function enrichPipelineNodesWithImportance(
     let importance_base: number | null;
     let importance_delta: number | null;
     if (displayMode === "classroom") {
-      importance = classroom != null ? classroom : null;
+      // 查找表未命中时保留节点自带分（如 MMKG fused.importance），避免被刷成 null 后 5% 筛选剪空
+      importance =
+        classroom != null
+          ? classroom
+          : n.importance != null && Number.isFinite(Number(n.importance))
+            ? Number(n.importance)
+            : null;
       importance_base = null;
       importance_delta = null;
     } else if (displayMode === "textbook") {
@@ -431,6 +443,67 @@ export function enrichPipelineNodesWithImportance(
   });
 }
 
+const mmkgEnrichmentCache = new Map<string, Promise<Map<string, MmkgEntityEnrichment>>>();
+
+function entitiesToEnrichmentMap(
+  entities:
+    | {
+        id?: string;
+        name?: string;
+        zh?: string;
+        en?: string;
+        description?: string;
+        aliases?: string[];
+      }[]
+    | undefined
+): Map<string, MmkgEntityEnrichment> {
+  const map = new Map<string, MmkgEntityEnrichment>();
+  const put = (key: string, row: MmkgEntityEnrichment) => {
+    const k = String(key || "").trim();
+    if (!k) return;
+    const prev = map.get(k);
+    if (!prev) {
+      map.set(k, row);
+      return;
+    }
+    const aliases = [
+      ...new Set([...(prev.aliases || []), ...(row.aliases || [])]),
+    ];
+    map.set(k, {
+      zh: row.zh || prev.zh,
+      en: row.en || prev.en,
+      description: row.description || prev.description,
+      aliases: aliases.length ? aliases : undefined,
+    });
+  };
+  for (const ent of entities || []) {
+    const id = String(ent.id || ent.name || "").trim();
+    if (!id) continue;
+    const description = String(ent.description || "").trim();
+    const aliases = (ent.aliases || [])
+      .map((a) => String(a || "").trim())
+      .filter(Boolean);
+    const zh = String(ent.zh || "").trim() || id.split("/")[0]?.trim() || "";
+    const en = String(ent.en || "").trim();
+    if (!description && !aliases.length && !zh && !en) continue;
+    const row: MmkgEntityEnrichment = {
+      description: description || undefined,
+      aliases: aliases.length ? aliases : undefined,
+      zh: zh || undefined,
+      en: en || undefined,
+    };
+    put(id, row);
+    put(id.toLowerCase(), row);
+    if (zh) put(zh, row);
+    if (en) put(en, row);
+    for (const a of aliases) {
+      put(a, row);
+      put(a.toLowerCase(), row);
+    }
+  }
+  return map;
+}
+
 /** mmkg 实体描述 enrichment（不增删边） */
 async function fetchMmkgEnrichmentMap(
   courseId: string,
@@ -438,68 +511,31 @@ async function fetchMmkgEnrichmentMap(
 ): Promise<Map<string, MmkgEntityEnrichment>> {
   const path = lectureId
     ? encodeRepoDataUrl(`kg/${courseId}/lecture_${lectureId}/mmkg.json`)
-    : encodeRepoDataUrl(`kg/${courseId}/mmkg.json`);
-  try {
-    const res = await fetch(path, { cache: "no-store" });
-    if (!res.ok) return new Map();
-    const data = (await res.json()) as {
-      entities?: {
-        id?: string;
-        name?: string;
-        zh?: string;
-        en?: string;
-        description?: string;
-        aliases?: string[];
-      }[];
-    };
-    const map = new Map<string, MmkgEntityEnrichment>();
-    const put = (key: string, row: MmkgEntityEnrichment) => {
-      const k = String(key || "").trim();
-      if (!k) return;
-      const prev = map.get(k);
-      if (!prev) {
-        map.set(k, row);
-        return;
-      }
-      const aliases = [
-        ...new Set([...(prev.aliases || []), ...(row.aliases || [])]),
-      ];
-      map.set(k, {
-        zh: row.zh || prev.zh,
-        en: row.en || prev.en,
-        description: row.description || prev.description,
-        aliases: aliases.length ? aliases : undefined,
-      });
-    };
-    for (const ent of data.entities || []) {
-      const id = String(ent.id || ent.name || "").trim();
-      if (!id) continue;
-      const description = String(ent.description || "").trim();
-      const aliases = (ent.aliases || [])
-        .map((a) => String(a || "").trim())
-        .filter(Boolean);
-      const zh = String(ent.zh || "").trim() || id.split("/")[0]?.trim() || "";
-      const en = String(ent.en || "").trim();
-      if (!description && !aliases.length && !zh && !en) continue;
-      const row: MmkgEntityEnrichment = {
-        description: description || undefined,
-        aliases: aliases.length ? aliases : undefined,
-        zh: zh || undefined,
-        en: en || undefined,
+    : encodeRepoDataUrl(`kg/${courseId}/mmkg_enrichment.json`);
+  const cached = mmkgEnrichmentCache.get(path);
+  if (cached) return cached;
+
+  const task = (async () => {
+    try {
+      const res = await fetch(path, { cache: "force-cache" });
+      if (!res.ok) return new Map();
+      const data = (await res.json()) as {
+        entities?: {
+          id?: string;
+          name?: string;
+          zh?: string;
+          en?: string;
+          description?: string;
+          aliases?: string[];
+        }[];
       };
-      put(id, row);
-      put(id.toLowerCase(), row);
-      if (zh) put(zh, row);
-      if (en) put(en, row);
-      for (const a of aliases) {
-        put(a, row);
-        put(a.toLowerCase(), row);
-      }
+      return entitiesToEnrichmentMap(data.entities);
+    } catch {
+      return new Map();
     }
-    return map;
-  } catch {
-    return new Map();
-  }
+  })();
+  mmkgEnrichmentCache.set(path, task);
+  return task;
 }
 
 function mergeEnrichmentMaps(
@@ -526,7 +562,7 @@ function mergeEnrichmentMaps(
   return out;
 }
 
-/** 讲次 mmkg 优先；课程级补别名/描述（单讲 merge 往往 aliases 为空） */
+/** 讲次 mmkg 优先；课程级用轻量 mmkg_enrichment.json 补别名/描述 */
 export async function loadMmkgEntityEnrichment(
   courseId: string,
   lectureId?: string | null
@@ -539,18 +575,21 @@ export async function loadMmkgEntityEnrichment(
   return mergeEnrichmentMaps(courseMap, lecMap);
 }
 
-/** 整课：聚合各讲 mmkg（课程级 mmkg.json 常缺失） */
+/** 整课：优先一次加载轻量 enrichment，避免并行拉齐全部讲次 mmkg.json（易卡死） */
 export async function loadMmkgEntityEnrichmentForLectures(
   courseId: string,
   lectureIds: string[]
 ): Promise<Map<string, MmkgEntityEnrichment>> {
-  const ids = [...new Set(lectureIds.map(String).filter(Boolean))];
-  const [courseMap, ...lecMaps] = await Promise.all([
-    fetchMmkgEnrichmentMap(courseId, null),
-    ...ids.map((id) => fetchMmkgEnrichmentMap(courseId, id)),
-  ]);
-  let out = courseMap;
-  for (const m of lecMaps) out = mergeEnrichmentMaps(out, m);
+  const compact = await fetchMmkgEnrichmentMap(courseId, null);
+  if (compact.size > 0) return compact;
+  // 回退：限流加载少量讲次，避免 40+ 大文件并发
+  const ids = [...new Set(lectureIds.map(String).filter(Boolean))].slice(0, 8);
+  let out = new Map<string, MmkgEntityEnrichment>();
+  for (let i = 0; i < ids.length; i += 2) {
+    const batch = ids.slice(i, i + 2);
+    const maps = await Promise.all(batch.map((id) => fetchMmkgEnrichmentMap(courseId, id)));
+    for (const m of maps) out = mergeEnrichmentMaps(out, m);
+  }
   return out;
 }
 
@@ -679,6 +718,19 @@ export async function loadCoursePipelineData(
   };
 }
 
+/** 解析讲次筛选值：支持 "1"、"1+2"、"1|2"、逗号分隔 */
+export function parseLectureFilterIds(
+  raw: string | null | undefined
+): string[] {
+  const s = String(raw || "").trim();
+  if (!s || s === "all") return [];
+  return s
+    // 下拉 value 为 "1_2"；也兼容 1+2 / 1,2
+    .split(/[+|_|,，、]/)
+    .map((x) => x.trim())
+    .filter((x) => /^\d+$/.test(x));
+}
+
 /** 按讲次筛边（整课下拉）；lecture_id 可为 "1" 或 "1+2" */
 export function filterPipelineGraphByLecture(
   nodes: PipelineNode[],
@@ -733,20 +785,9 @@ export function collectPptFromCues(cues: PipelineCueBundle[]): string[] {
   return uniqueUrls(urls);
 }
 
-export async function loadLecturePipelineData(
-  lectureId: string,
-  courseId?: string
-): Promise<LecturePipelineLoad> {
-  const url = courseId
-    ? courseDataUrl(courseId, `pipeline/pipeline_build_lecture_${lectureId}.json`)
-    : withBase(`/data/pipeline/pipeline_build_lecture_${lectureId}.json`);
-  const res = await fetch(url, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    throw new Error(`缺少流水线数据 pipeline_build_lecture_${lectureId}.json`);
-  }
-  const data = (await res.json()) as {
+/** 从已解析的 pipeline_build JSON 抽出片段图（浏览器 / Node 导出共用） */
+export function parseLecturePipelinePayload(
+  data: {
     ppt_gallery?: string[];
     items?: {
       cue_id?: string;
@@ -763,8 +804,9 @@ export async function loadLecturePipelineData(
         edges?: PipelineEdge[];
       }[];
     }[];
-  };
-
+  },
+  lectureId: string
+): LecturePipelineLoad {
   const out: PipelineCueBundle[] = [];
   (data.items || []).forEach((it, idx) => {
     const cueId = String(it.cue_id || "").trim();
@@ -785,7 +827,7 @@ export async function loadLecturePipelineData(
         lecture_id: String(it.lecture_id || lectureId),
         cue_label: cueLabel,
       }));
-    const crossCueEdges = ((it as { cross_cue_edges?: PipelineEdge[] }).cross_cue_edges || [])
+    const crossCueEdges = (it.cross_cue_edges || [])
       .filter((e) => e?.from && e?.to)
       .map((e, i) => ({
         ...e,
@@ -825,6 +867,23 @@ export async function loadLecturePipelineData(
     cues: out,
     pptGallery: gallery.length ? gallery : collectPptFromCues(out),
   };
+}
+
+export async function loadLecturePipelineData(
+  lectureId: string,
+  courseId?: string
+): Promise<LecturePipelineLoad> {
+  const url = courseId
+    ? courseDataUrl(courseId, `pipeline/pipeline_build_lecture_${lectureId}.json`)
+    : withBase(`/data/pipeline/pipeline_build_lecture_${lectureId}.json`);
+  const res = await fetch(url, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error(`缺少流水线数据 pipeline_build_lecture_${lectureId}.json`);
+  }
+  const data = await res.json();
+  return parseLecturePipelinePayload(data, lectureId);
 }
 
 export async function loadLecturePipelineCues(
@@ -1049,4 +1108,231 @@ export function buildKgViewFromPipeline(opts: {
   };
 
   return { payload, stage, cues, activeCue };
+}
+
+/** 单课单元：一堂课（两讲）或落单讲次 */
+export type ClassUnitSpec =
+  | { kind: "session"; pair: [string, string] }
+  | { kind: "lecture"; lectureId: string };
+
+/** 按 1–2、3–4… 配对讲次；落单讲次单独成单元（与左侧课次导航一致） */
+export function classUnitsFromLectureIds(lectureIds: string[]): ClassUnitSpec[] {
+  const sorted = [...new Set(lectureIds.map(String).filter(Boolean))].sort(
+    (a, b) => Number(a) - Number(b)
+  );
+  const used = new Set<string>();
+  const units: ClassUnitSpec[] = [];
+  for (const lid of sorted) {
+    if (used.has(lid)) continue;
+    const n = Number(lid);
+    if (!Number.isFinite(n) || n <= 0) {
+      units.push({ kind: "lecture", lectureId: lid });
+      used.add(lid);
+      continue;
+    }
+    const mate = n % 2 === 1 ? String(n + 1) : String(n - 1);
+    if (sorted.includes(mate) && !used.has(mate)) {
+      const a = n % 2 === 1 ? lid : mate;
+      const b = n % 2 === 1 ? mate : lid;
+      units.push({ kind: "session", pair: [a, b] });
+      used.add(a);
+      used.add(b);
+    } else {
+      units.push({ kind: "lecture", lectureId: lid });
+      used.add(lid);
+    }
+  }
+  return units;
+}
+
+function cuesForClassUnit(
+  allCues: PipelineCueBundle[],
+  unit: ClassUnitSpec
+): PipelineCueBundle[] {
+  if (unit.kind === "session") {
+    const [a, b] = unit.pair;
+    return allCues.filter(
+      (c) => String(c.lectureId) === a || String(c.lectureId) === b
+    );
+  }
+  return allCues.filter((c) => String(c.lectureId) === unit.lectureId);
+}
+
+function extractTextOfCues(cues: PipelineCueBundle[]): string {
+  return cues
+    .map((c) => String(c.text || "").trim())
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+/** 合并已处理单课图（节点按 id，边按 SPO+source） */
+export function unionProcessedClassGraphs(
+  parts: Array<{ nodes: PipelineNode[]; edges: PipelineEdge[] }>
+): { nodes: PipelineNode[]; edges: PipelineEdge[] } {
+  const nodeMap = new Map<string, PipelineNode>();
+  const edgeMap = new Map<string, PipelineEdge>();
+  for (const part of parts) {
+    for (const n of part.nodes || []) {
+      if (!n?.id) continue;
+      const prev = nodeMap.get(n.id);
+      if (!prev) {
+        nodeMap.set(n.id, { ...n });
+        continue;
+      }
+      const aliases = [
+        ...new Set([...(prev.aliases || []), ...(n.aliases || [])]),
+      ].filter(Boolean);
+      const properties = [
+        ...new Set([...(prev.properties || []), ...(n.properties || [])]),
+      ].filter(Boolean);
+      nodeMap.set(n.id, {
+        ...prev,
+        aliases: aliases.length ? aliases : prev.aliases,
+        properties: properties.length ? properties : prev.properties,
+        description: prev.description || n.description,
+        label: prev.label || n.label,
+        kind:
+          prev.kind === "new" || n.kind === "new" ? "new" : prev.kind || n.kind,
+      });
+    }
+    for (const e of part.edges || []) {
+      if (!e?.from || !e?.to || isProcessEdgeSource(e.source)) continue;
+      const key = spoKey(e);
+      if (!edgeMap.has(key)) {
+        edgeMap.set(key, { ...e });
+        continue;
+      }
+      const prev = edgeMap.get(key)!;
+      edgeMap.set(key, {
+        ...prev,
+        context: prev.context || e.context,
+        description: prev.description || e.description,
+        cue_label:
+          prev.cue_label && e.cue_label && prev.cue_label !== e.cue_label
+            ? `${prev.cue_label}；${e.cue_label}`
+            : prev.cue_label || e.cue_label,
+      });
+    }
+  }
+  return { nodes: [...nodeMap.values()], edges: [...edgeMap.values()] };
+}
+
+export type ProcessedClassKg = {
+  nodes: PipelineNode[];
+  keptEdges: PipelineEdge[];
+  processEdges: PipelineEdge[];
+  stats: LectureKgProcessStats;
+  extractText: string;
+};
+
+/** 单课：片段 merge 并集 → process（与课次视图同源） */
+export function processClassUnitFromCues(
+  unit: ClassUnitSpec,
+  allCues: PipelineCueBundle[],
+  multiRelDecisions?: Record<string, MultiRelCollapseDecision>
+): ProcessedClassKg | null {
+  const cues = cuesForClassUnit(allCues, unit);
+  if (!cues.length) return null;
+  // 整课路径：直接并集/堂次融合，不走 buildKgViewFromPipeline（免重复构 stage/payload）
+  const merged =
+    unit.kind === "session"
+      ? fuseSessionFromPipelineCues(cues, unit.pair)
+      : unionMergeGraphs(cues);
+  const processed = processLectureKg(merged.nodes || [], merged.edges || [], {
+    multiRelDecisions,
+  });
+  const keptEdges = (processed.edges || []).filter(
+    (e) => !isProcessEdgeSource(e.source)
+  );
+  // 单课 process_* 边在整课并集后不再需要，省掉拷贝与后续挂边
+  return {
+    nodes: processed.nodes,
+    keptEdges,
+    processEdges: [],
+    stats: processed.stats,
+    extractText: extractTextOfCues(cues),
+  };
+}
+
+/**
+ * 整课：先对各单课 process，再并集，再 process 一次（在单课基础上进一步处理）。
+ */
+export function processCourseFromClassUnits(
+  allCues: PipelineCueBundle[],
+  opts?: {
+    units?: ClassUnitSpec[];
+    multiRelDecisions?: Record<string, MultiRelCollapseDecision>;
+  }
+): {
+  nodes: PipelineNode[];
+  keptEdges: PipelineEdge[];
+  processEdges: PipelineEdge[];
+  unitStats: LectureKgProcessStats[];
+  courseStats: LectureKgProcessStats;
+  /** 各片段原文（分块供 mention 匹配，避免拼成超长串） */
+  extractTexts: string[];
+  classUnitCount: number;
+} {
+  const lectureIds = [
+    ...new Set(allCues.map((c) => String(c.lectureId || "")).filter(Boolean)),
+  ];
+  const units = opts?.units?.length
+    ? opts.units
+    : classUnitsFromLectureIds(lectureIds);
+  const parts: ProcessedClassKg[] = [];
+  for (const unit of units) {
+    const part = processClassUnitFromCues(
+      unit,
+      allCues,
+      opts?.multiRelDecisions
+    );
+    if (part) parts.push(part);
+  }
+  if (!parts.length) {
+    const emptyStats: LectureKgProcessStats = {
+      input_edges: 0,
+      after_dedupe: 0,
+      after_synonym: 0,
+      property_folded: 0,
+      multi_rel_collapsed: 0,
+      rule_removed: 0,
+      node_removed: 0,
+      isolated_removed: 0,
+      kept_edges: 0,
+    };
+    return {
+      nodes: [],
+      keptEdges: [],
+      processEdges: [],
+      unitStats: [],
+      courseStats: emptyStats,
+      extractTexts: [],
+      classUnitCount: 0,
+    };
+  }
+  const union = unionProcessedClassGraphs(
+    parts.map((p) => ({ nodes: p.nodes, edges: p.keptEdges }))
+  );
+  const courseProcessed = processLectureKg(union.nodes, union.edges, {
+    multiRelDecisions: opts?.multiRelDecisions,
+  });
+  const keptEdges = (courseProcessed.edges || []).filter(
+    (e) => !isProcessEdgeSource(e.source)
+  );
+  const processEdges = (courseProcessed.edges || []).filter((e) =>
+    isProcessEdgeSource(e.source)
+  );
+  // 整课图例只保留「进一步处理」删边；不把各单课 process_* 全挂上（边量过大、拖慢构图）
+  const extractTexts = allCues
+    .map((c) => String(c.text || "").trim())
+    .filter(Boolean);
+  return {
+    nodes: courseProcessed.nodes,
+    keptEdges,
+    processEdges,
+    unitStats: parts.map((p) => p.stats),
+    courseStats: courseProcessed.stats,
+    extractTexts,
+    classUnitCount: parts.length,
+  };
 }
