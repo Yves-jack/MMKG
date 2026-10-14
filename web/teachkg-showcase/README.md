@@ -63,7 +63,7 @@ AI-Teaching 现有 iframe 路径 `/course/:courseId/kg/course?embed=ai-teaching`
 
 掌握分数通过前端同源 `GET /api/student-mastery?course_id=<Canvas 课程 ID>` 读取。Vite 服务端把请求及 `X-KG-Token` 转发到 `AI_TEACHING_API_URL/api/knowledge-links/courses/<课程 ID>/mastery`；AI-Teaching 端须先部署对应的只读接口。若接口不可用，页面明确提示且以「暂无记录」显示，不伪造分数。staging 的 `AI_TEACHING_API_URL` 必须指向 staging AI-Teaching，不能继承生产地址。
 
-学生可按 0–100% 调整节点显示数量。筛选保留层级、根节点及已选节点路径，优先显示学习中的薄弱节点，在三个主分支间按原始节点数量分配显示名额；`__lecture__` 节点不计入展示和比例。
+学生可按 0–100% 调整节点显示数量。筛选保留层级、根节点及已选节点路径，在主分支间按原始节点数量分配显示名额，并在各分支内优先保留学习中的薄弱节点；`__lecture__` 节点不计入展示和比例。导图沿用上传 ZIP 的原始 `zh`，以便与既有掌握分数对齐；其中少量结构性 `id` 与 `zh` 名称不一致，需在上游数据中另行校正，不能只改显示名称。
 
 ## 与旧 HTML 的关系
 

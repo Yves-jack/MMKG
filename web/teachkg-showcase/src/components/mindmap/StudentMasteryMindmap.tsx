@@ -341,7 +341,7 @@ export function StudentMasteryMindmap({
       </div>
       <div className={styles.legend}>
         <span className={styles.legendItem}>圆环：掌握分数 0–5</span>
-        <span className={styles.legendItem}>优先显示学习中，再隐藏已掌握与未学节点</span>
+        <span className={styles.legendItem}>各主分支按比例显示；分支内优先保留学习中的薄弱节点</span>
         {message ? <span className={styles.caption}>{message}</span> : null}
       </div>
     </div>

@@ -54,7 +54,9 @@ function comparePriority(left, right) {
 }
 
 /**
- * Retain the weakest/in-progress nodes before mastered and untouched nodes.
+ * Retain the weakest/in-progress nodes before mastered and untouched nodes
+ * within each domain. Optional domain balancing takes precedence across domains
+ * to keep the bilateral tree readable as the percentage changes.
  * Ancestors are included in the same node budget. The requested percentage is
  * a target, except that required roots/selected-node paths may exceed it.
  *

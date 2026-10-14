@@ -78,6 +78,8 @@ import assetsNav from "@/pages/AssetsPage.module.css";
 import kg from "@/pages/KgPage.module.css";
 import shell from "@/styles/shell.module.css";
 
+const EMPTY_MASTERY: Readonly<Record<string, number>> = Object.freeze({});
+
 async function loadStaticLectureMindmap(
   courseId: string,
   lectureId: string,
@@ -509,7 +511,10 @@ export function MindmapPage() {
   const [chapterNavOpen, setChapterNavOpen] = useState(true);
   const [partOpen, setPartOpen] = useState<Record<string, boolean>>({});
   const [detailCollapsed, setDetailCollapsed] = useState(false);
-  const [studentMastery, setStudentMastery] = useState<Record<string, number>>({});
+  const [studentMastery, setStudentMastery] = useState<{
+    identity: string;
+    scores: Record<string, number>;
+  }>({ identity: "", scores: Object.create(null) });
   const [masteryMessage, setMasteryMessage] = useState("");
   const mindUndoRef = useRef<(() => void) | null>(null);
   /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
@@ -530,6 +535,7 @@ export function MindmapPage() {
   const integrationCourseId = String(sp.get("course_id") || "").trim();
   const resourceCourseId = String(sp.get("resource_course_id") || integrationCourseId).trim();
   const kgLaunchToken = String(sp.get("kg_token") || "").trim();
+  const masteryIdentity = `${resourceCourseId}\u0000${kgLaunchToken}`;
   const roleParam = String(sp.get("role") || "").trim();
   const requestedParentOrigin = String(sp.get("parent_origin") || "").trim();
   const [verifiedRole, setVerifiedRole] = useState("");
@@ -625,6 +631,7 @@ export function MindmapPage() {
 
   useEffect(() => {
     if (!isStudentMasteryEmbed) return;
+    setStudentMastery({ identity: "", scores: Object.create(null) });
     if (!resourceCourseId || !kgLaunchToken) {
       setMasteryMessage("缺少课程或访问凭据，无法读取掌握分数");
       return;
@@ -646,16 +653,16 @@ export function MindmapPage() {
           const score = Number(raw);
           if (id && Number.isFinite(score)) next[id] = Math.min(5, Math.max(0, score));
         }
-        setStudentMastery(next);
+        setStudentMastery({ identity: masteryIdentity, scores: next });
         setMasteryMessage("");
       })
       .catch((reason) => {
         if (cancelled) return;
-        setStudentMastery({});
+        setStudentMastery({ identity: "", scores: Object.create(null) });
         setMasteryMessage(`掌握分数暂不可用：${reason instanceof Error ? reason.message : String(reason)}`);
       });
     return () => { cancelled = true; };
-  }, [isStudentMasteryEmbed, resourceCourseId, kgLaunchToken]);
+  }, [isStudentMasteryEmbed, resourceCourseId, kgLaunchToken, masteryIdentity]);
 
   /** 仅在选中「章」导图时高亮对应章；选讲次不高亮章 */
   const selectedChapterNav = parseChapterNavId(navId) || "";
@@ -1366,7 +1373,7 @@ export function MindmapPage() {
             <div className={isStudentMasteryEmbed ? shell.canvasPlain : shell.canvasWrap}>
               {isStudentMasteryEmbed ? <StudentMasteryMindmap
                 doc={doc}
-                mastery={studentMastery}
+                mastery={studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY}
                 selectedId={selected?.id || null}
                 selectedPath={(selected as (MindmapTreeNode & { __sourcePath?: number[] }) | null)?.__sourcePath}
                 onSelect={selectMindmapNode}
