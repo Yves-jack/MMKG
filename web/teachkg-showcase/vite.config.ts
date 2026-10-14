@@ -7,6 +7,7 @@ import { reviewNotesMiddleware } from "./server/reviewNotes.mjs";
 import { kgEditsMiddleware } from "./server/kgEdits.mjs";
 import { mindmapOutlineMiddleware } from "./server/mindmapOutline.mjs";
 import { knowledgeResourcesMiddleware } from "./server/knowledgeResources.mjs";
+import { studentMasteryMiddleware } from "./server/studentMastery.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../..");
@@ -163,6 +164,7 @@ function showcaseApiPlugin(env: Record<string, string>) {
   const kgEditsMw = kgEditsMiddleware(runtimeEnv());
   const outlineMw = mindmapOutlineMiddleware(runtimeEnv());
   const resourcesMw = knowledgeResourcesMiddleware(runtimeEnv());
+  const masteryMw = studentMasteryMiddleware(runtimeEnv);
   return {
     name: "showcase-api",
     configureServer(server: any) {
@@ -170,12 +172,14 @@ function showcaseApiPlugin(env: Record<string, string>) {
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
+      server.middlewares.use(masteryMw);
     },
     configurePreviewServer(server: any) {
       server.middlewares.use(notesMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
+      server.middlewares.use(masteryMw);
     },
   };
 }

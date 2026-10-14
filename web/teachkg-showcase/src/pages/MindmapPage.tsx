@@ -8,6 +8,7 @@ import {
   type MindmapDoc,
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
+import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
 import {
   groupChaptersByPart,
   type AssetsChapterCatalog,
@@ -508,11 +509,13 @@ export function MindmapPage() {
   const [chapterNavOpen, setChapterNavOpen] = useState(true);
   const [partOpen, setPartOpen] = useState<Record<string, boolean>>({});
   const [detailCollapsed, setDetailCollapsed] = useState(false);
+  const [studentMastery, setStudentMastery] = useState<Record<string, number>>({});
+  const [masteryMessage, setMasteryMessage] = useState("");
   const mindUndoRef = useRef<(() => void) | null>(null);
   /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
   const skipNextDocLoadRef = useRef(false);
 
-  const navId = sp.get("lecture") || "";
+  const requestedNavId = sp.get("lecture") || "";
   const focusParam = String(sp.get("focus") || "").trim();
   const lectureVariant = sp.get("deep") === "1" ? "deep" : null;
   const lectureQuery = (lecture: string) => {
@@ -530,14 +533,17 @@ export function MindmapPage() {
   const roleParam = String(sp.get("role") || "").trim();
   const requestedParentOrigin = String(sp.get("parent_origin") || "").trim();
   const [verifiedRole, setVerifiedRole] = useState("");
+  const isStudentMasteryEmbed = isAiTeachingEmbed &&
+    ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim());
+  const navId = isStudentMasteryEmbed ? "course" : requestedNavId;
   const canEditMindmap = useMemo(
     () =>
-      canEditKnowledgeGraph({
+      !isStudentMasteryEmbed && canEditKnowledgeGraph({
         embedMode,
-        role: roleParam || verifiedRole || mmkgCachedRole(kgLaunchToken),
+        role: embedMode ? verifiedRole || mmkgCachedRole(kgLaunchToken) : roleParam,
         kgToken: kgLaunchToken,
       }),
-    [embedMode, roleParam, verifiedRole, kgLaunchToken],
+    [isStudentMasteryEmbed, embedMode, roleParam, verifiedRole, kgLaunchToken],
   );
   const items = index?.items || [];
 
@@ -612,6 +618,44 @@ export function MindmapPage() {
       cancelled = true;
     };
   }, [embedMode, kgLaunchToken]);
+
+  useEffect(() => {
+    if (isStudentMasteryEmbed) setDetailCollapsed(true);
+  }, [isStudentMasteryEmbed]);
+
+  useEffect(() => {
+    if (!isStudentMasteryEmbed) return;
+    if (!resourceCourseId || !kgLaunchToken) {
+      setMasteryMessage("缺少课程或访问凭据，无法读取掌握分数");
+      return;
+    }
+    let cancelled = false;
+    setMasteryMessage("正在读取掌握分数…");
+    fetch(withBase(`/api/student-mastery?course_id=${encodeURIComponent(resourceCourseId)}`), {
+      headers: { "X-KG-Token": kgLaunchToken },
+      cache: "no-store",
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error(`掌握分数接口返回 ${response.status}`);
+        return response.json() as Promise<{ mastery?: Record<string, number> }>;
+      })
+      .then((payload) => {
+        if (cancelled) return;
+        const next: Record<string, number> = Object.create(null);
+        for (const [id, raw] of Object.entries(payload.mastery || {})) {
+          const score = Number(raw);
+          if (id && Number.isFinite(score)) next[id] = Math.min(5, Math.max(0, score));
+        }
+        setStudentMastery(next);
+        setMasteryMessage("");
+      })
+      .catch((reason) => {
+        if (cancelled) return;
+        setStudentMastery({});
+        setMasteryMessage(`掌握分数暂不可用：${reason instanceof Error ? reason.message : String(reason)}`);
+      });
+    return () => { cancelled = true; };
+  }, [isStudentMasteryEmbed, resourceCourseId, kgLaunchToken]);
 
   /** 仅在选中「章」导图时高亮对应章；选讲次不高亮章 */
   const selectedChapterNav = parseChapterNavId(navId) || "";
@@ -1014,9 +1058,22 @@ export function MindmapPage() {
     setSelected(null);
     focusAppliedRef.current = "";
     let cancelled = false;
-    loadMindmapDoc(courseId, navId, index.items, catalog, lectureVariant)
+    (async () => {
+      if (isStudentMasteryEmbed && isCourseNavId(navId)) {
+        const response = await fetch(courseDataUrl(courseId, "mindmaps/student_mastery_course.json"), { cache: "no-store" });
+        if (response.ok) {
+          const uploaded = await response.json() as MindmapDoc;
+          if (uploaded?.root && uploaded.meta?.scope === "course") return uploaded;
+        }
+      }
+      return loadMindmapDoc(courseId, navId, index.items, catalog, lectureVariant);
+    })()
       .then((d) => {
         if (cancelled) return;
+        if (isStudentMasteryEmbed) {
+          setDoc(d);
+          return;
+        }
         if (lectureVariant === "deep") {
           setDoc(applyMindmapEditPatch(d, null));
           return;
@@ -1052,7 +1109,7 @@ export function MindmapPage() {
     return () => {
       cancelled = true;
     };
-  }, [courseId, navId, index, catalog, lectureVariant]);
+  }, [courseId, navId, index, catalog, lectureVariant, isStudentMasteryEmbed]);
 
   // URL ?focus= / 图谱共享选中 → 选中同名导图节点并展开右栏
   useEffect(() => {
@@ -1079,6 +1136,7 @@ export function MindmapPage() {
   }, [selected, kgEntityId]);
 
   const titleText = (() => {
+    if (isStudentMasteryEmbed) return "知识点掌握思维导图";
     if (isCourseSkeletonNavId(navId)) return "整课骨架展示";
     if (isCourseNavId(navId)) return "整课思维导图";
     const ch = parseChapterNavId(navId);
@@ -1099,7 +1157,7 @@ export function MindmapPage() {
       detailFixedRightPx={detailCollapsed ? 32 : undefined}
       detailMinRightPx={220}
       detailInitialRightPx={340}
-      nav={
+      nav={!isStudentMasteryEmbed ? (
         <aside className={shell.sidebar}>
           <div className={shell.sideHead}>
             <Link
@@ -1278,7 +1336,7 @@ export function MindmapPage() {
             </div>
           )}
         </aside>
-      }
+      ) : undefined}
       main={
         <main className={shell.main}>
           <header className={shell.topbar}>
@@ -1305,8 +1363,16 @@ export function MindmapPage() {
           {!doc && !error && <p className="empty-hint">加载导图…</p>}
 
           {doc && (
-            <div className={shell.canvasWrap}>
-              <MindmapTree
+            <div className={isStudentMasteryEmbed ? shell.canvasPlain : shell.canvasWrap}>
+              {isStudentMasteryEmbed ? <StudentMasteryMindmap
+                doc={doc}
+                mastery={studentMastery}
+                selectedId={selected?.id || null}
+                selectedPath={(selected as (MindmapTreeNode & { __sourcePath?: number[] }) | null)?.__sourcePath}
+                onSelect={selectMindmapNode}
+                onClearSelect={() => selectMindmapNode(null)}
+                message={masteryMessage}
+              /> : <MindmapTree
                 doc={doc}
                 resetKey={mapKey}
                 selectedId={selected?.id || null}
@@ -1326,7 +1392,7 @@ export function MindmapPage() {
                     .then((d) => setDoc(d))
                     .catch(() => null);
                 }}
-              />
+              />}
             </div>
           )}
         </main>

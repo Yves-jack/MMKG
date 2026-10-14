@@ -57,6 +57,14 @@ TEACHKG_COURSE=数理逻辑 npm run sync-data
 
 媒体与 KG 原文件经 Vite 中间件挂载为 `/repo-data/...`（指向仓库 `data/`）。
 
+## 学生掌握思维导图
+
+AI-Teaching 现有 iframe 路径 `/course/:courseId/kg/course?embed=ai-teaching` 保持不变。仅当 MMKG 登录确认 `kg_token` 属于学生时展示整课掌握思维导图；教师和助教仍使用原课程图谱。学生导图数据为 `public/data/courses/离散数学(图论+数理逻辑与集合论)/mindmaps/student_mastery_course.json`，保留原始整课导图文件不变。
+
+掌握分数通过前端同源 `GET /api/student-mastery?course_id=<Canvas 课程 ID>` 读取。Vite 服务端把请求及 `X-KG-Token` 转发到 `AI_TEACHING_API_URL/api/knowledge-links/courses/<课程 ID>/mastery`；AI-Teaching 端须先部署对应的只读接口。若接口不可用，页面明确提示且以「暂无记录」显示，不伪造分数。staging 的 `AI_TEACHING_API_URL` 必须指向 staging AI-Teaching，不能继承生产地址。
+
+学生可按 0–100% 调整节点显示数量。筛选保留层级、根节点及已选节点路径，优先显示学习中的薄弱节点，在三个主分支间按原始节点数量分配显示名额；`__lecture__` 节点不计入展示和比例。
+
 ## 与旧 HTML 的关系
 
 `web/pipeline-showcase/index.template.html` 与 `data/viz/*.html` 仍可作离线备份；本应用以 JSON + React 为准。
