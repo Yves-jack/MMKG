@@ -1,0 +1,559 @@
+{
+  "lecture_id": "chapter:第2章 命题逻辑的等值和推理演算",
+  "root": {
+    "id": "__chapter__/命题逻辑的等值和推理演算",
+    "zh": "第2章 命题逻辑的等值和推理演算",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/等值演算和推理演算",
+        "zh": "等值演算和推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/等值定理",
+        "zh": "等值定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "等值定理/Equivalence Theorem",
+            "zh": "等值定理",
+            "importance": 0.318669,
+            "relation": "belong_to",
+            "related": [
+              "等值式",
+              "等值演算",
+              "重言式"
+            ],
+            "children": []
+          },
+          {
+            "id": "等值/equivalence",
+            "zh": "等值",
+            "importance": 0.698883,
+            "relation": "belong_to",
+            "related": [
+              "公理",
+              "分配律",
+              "否定",
+              "命题公式",
+              "命题变项",
+              "真值"
+            ],
+            "children": []
+          },
+          {
+            "id": "定理/theorem",
+            "zh": "定理",
+            "importance": 0.493423,
+            "relation": "belong_to",
+            "related": [
+              "公理",
+              "公理系统",
+              "定理规则",
+              "推理规则",
+              "演绎定理",
+              "证明"
+            ],
+            "children": []
+          },
+          {
+            "id": "等值定理法",
+            "zh": "等值定理法",
+            "importance": 0.473066,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/联结词的完备集",
+        "zh": "联结词的完备集",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "联结词的完备集/complete set of logical connectives",
+            "zh": "联结词的完备集",
+            "importance": 0.69725,
+            "relation": "belong_to",
+            "related": [
+              "任一命题公式"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/对偶式",
+        "zh": "对偶式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "对偶/dual",
+            "zh": "对偶",
+            "importance": 0.580372,
+            "relation": "belong_to",
+            "related": [
+              "运算符"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/主范式",
+        "zh": "主范式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "主范式/principal normal form",
+            "zh": "主范式",
+            "importance": 0.983804,
+            "relation": "part_of",
+            "related": [
+              "主析取范式",
+              "极大项",
+              "极小项",
+              "真值表",
+              "部分指派法"
+            ],
+            "children": []
+          },
+          {
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.893149,
+            "relation": null,
+            "related": [
+              "公式等值",
+              "对偶式",
+              "逻辑表达式"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/主范式的求法2",
+        "zh": "主范式的求法2",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/主范式的求法3",
+        "zh": "主范式的求法3",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/主范式的编码",
+        "zh": "主范式的编码",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/推理演算",
+        "zh": "推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.785623,
+            "relation": null,
+            "related": [
+              "前提引入规则",
+              "推理规则"
+            ],
+            "children": []
+          },
+          {
+            "id": "推理/inference",
+            "zh": "推理",
+            "importance": 0.432386,
+            "relation": null,
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/例:推理演算",
+        "zh": "例:推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/归结推理法",
+        "zh": "归结推理法",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/回忆命题演算：推理演算",
+        "zh": "回忆命题演算：推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑推理演算",
+        "zh": "谓词逻辑推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.428892,
+            "relation": null,
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/例1:推理演算",
+        "zh": "例1:推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例2:推理演算",
+        "zh": "例2:推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例3:推理演算",
+        "zh": "例3:推理演算",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/命题逻辑的等值和推理演算",
+      "zh": "第2章 命题逻辑的等值和推理演算",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/等值演算和推理演算",
+          "zh": "等值演算和推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/等值定理",
+          "zh": "等值定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "等值定理/Equivalence Theorem",
+              "zh": "等值定理",
+              "importance": 0.318669,
+              "relation": "belong_to",
+              "related": [
+                "等值式",
+                "等值演算",
+                "重言式"
+              ],
+              "children": []
+            },
+            {
+              "id": "等值/equivalence",
+              "zh": "等值",
+              "importance": 0.698883,
+              "relation": "belong_to",
+              "related": [
+                "公理",
+                "分配律",
+                "否定",
+                "命题公式",
+                "命题变项",
+                "真值"
+              ],
+              "children": []
+            },
+            {
+              "id": "定理/theorem",
+              "zh": "定理",
+              "importance": 0.493423,
+              "relation": "belong_to",
+              "related": [
+                "公理",
+                "公理系统",
+                "定理规则",
+                "推理规则",
+                "演绎定理",
+                "证明"
+              ],
+              "children": []
+            },
+            {
+              "id": "等值定理法",
+              "zh": "等值定理法",
+              "importance": 0.473066,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/联结词的完备集",
+          "zh": "联结词的完备集",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "联结词的完备集/complete set of logical connectives",
+              "zh": "联结词的完备集",
+              "importance": 0.69725,
+              "relation": "belong_to",
+              "related": [
+                "任一命题公式"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/对偶式",
+          "zh": "对偶式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "对偶/dual",
+              "zh": "对偶",
+              "importance": 0.580372,
+              "relation": "belong_to",
+              "related": [
+                "运算符"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/主范式",
+          "zh": "主范式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "主范式/principal normal form",
+              "zh": "主范式",
+              "importance": 0.983804,
+              "relation": "part_of",
+              "related": [
+                "主析取范式",
+                "极大项",
+                "极小项",
+                "真值表",
+                "部分指派法"
+              ],
+              "children": []
+            },
+            {
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.893149,
+              "relation": null,
+              "related": [
+                "公式等值",
+                "对偶式",
+                "逻辑表达式"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/主范式的求法2",
+          "zh": "主范式的求法2",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/主范式的求法3",
+          "zh": "主范式的求法3",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/主范式的编码",
+          "zh": "主范式的编码",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/推理演算",
+          "zh": "推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.785623,
+              "relation": null,
+              "related": [
+                "前提引入规则",
+                "推理规则"
+              ],
+              "children": []
+            },
+            {
+              "id": "推理/inference",
+              "zh": "推理",
+              "importance": 0.432386,
+              "relation": null,
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/例:推理演算",
+          "zh": "例:推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/归结推理法",
+          "zh": "归结推理法",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/回忆命题演算：推理演算",
+          "zh": "回忆命题演算：推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑推理演算",
+          "zh": "谓词逻辑推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.428892,
+              "relation": null,
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/例1:推理演算",
+          "zh": "例1:推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例2:推理演算",
+          "zh": "例2:推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例3:推理演算",
+          "zh": "例3:推理演算",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 28,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第2章 命题逻辑的等值和推理演算",
+    "root_zh": "命题逻辑的等值和推理演算",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "32"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

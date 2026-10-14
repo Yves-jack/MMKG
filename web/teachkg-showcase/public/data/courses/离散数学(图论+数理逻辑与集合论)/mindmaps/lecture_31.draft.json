@@ -1,0 +1,1108 @@
+{
+  "lecture_id": "31",
+  "root": {
+    "id": "一阶语言/First-order Language",
+    "zh": "一阶语言",
+    "importance": 0.860251,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "量词/quantifier",
+        "zh": "量词",
+        "importance": 0.97775,
+        "relation": "part_of",
+        "related": [
+          "分配律",
+          "前束范式",
+          "变元易名",
+          "否定词",
+          "否定词量词内移规律",
+          "推理演算过程"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "公式/formula",
+        "zh": "公式",
+        "importance": 0.802544,
+        "relation": "part_of",
+        "related": [
+          "复合命题",
+          "子句集",
+          "真值表",
+          "联结词",
+          "解释",
+          "论域"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "函数符号/function symbol",
+        "zh": "函数符号",
+        "importance": 0.617394,
+        "relation": "part_of",
+        "related": [
+          "谓词"
+        ],
+        "children": []
+      },
+      {
+        "id": "个体常项/individual constant",
+        "zh": "个体常项",
+        "importance": 0.425516,
+        "relation": "part_of",
+        "related": [
+          "全称量词"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "变元/variable symbol",
+        "zh": "变元",
+        "importance": 0.257446,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "一阶语言/First-order Language",
+      "zh": "一阶语言",
+      "importance": 0.860251,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.97775,
+          "relation": "part_of",
+          "related": [
+            "分配律",
+            "前束范式",
+            "变元易名",
+            "否定词",
+            "否定词量词内移规律",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.802544,
+          "relation": "part_of",
+          "related": [
+            "复合命题",
+            "子句集",
+            "真值表",
+            "联结词",
+            "解释",
+            "论域"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "函数符号/function symbol",
+          "zh": "函数符号",
+          "importance": 0.617394,
+          "relation": "part_of",
+          "related": [
+            "谓词"
+          ],
+          "children": []
+        },
+        {
+          "id": "个体常项/individual constant",
+          "zh": "个体常项",
+          "importance": 0.425516,
+          "relation": "part_of",
+          "related": [
+            "全称量词"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "变元/variable symbol",
+          "zh": "变元",
+          "importance": 0.257446,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "等值演算/equivalence calculus",
+      "zh": "等值演算",
+      "importance": 0.839826,
+      "relation": null,
+      "related": [
+        "代入规则",
+        "分配律",
+        "否定形式",
+        "否定词",
+        "摩根律",
+        "等值"
+      ],
+      "children": [
+        {
+          "id": "量词等值演算/quantifier equivalence calculus",
+          "zh": "量词等值演算",
+          "importance": 0.833484,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "分配律",
+            "前件",
+            "后件",
+            "否定词",
+            "摩根律"
+          ],
+          "children": [
+            {
+              "id": "量词/quantifier",
+              "zh": "量词",
+              "importance": 0.97775,
+              "relation": "part_of",
+              "related": [
+                "分配律",
+                "前束范式",
+                "变元易名",
+                "否定词",
+                "否定词量词内移规律",
+                "推理演算过程"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "量词的摩根律/quantifier De Morgan's law",
+              "zh": "量词的摩根律",
+              "importance": 0.117385,
+              "relation": "part_of",
+              "related": [
+                "量词等值演算"
+              ],
+              "children": [
+                {
+                  "id": "量词等值演算/quantifier equivalence calculus",
+                  "zh": "量词等值演算",
+                  "importance": 0.833484,
+                  "relation": "part_of",
+                  "related": [
+                    "全称量词",
+                    "分配律",
+                    "前件",
+                    "后件",
+                    "否定词",
+                    "摩根律"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "量词分配律",
+          "zh": "量词分配律",
+          "importance": 0.738404,
+          "relation": "part_of",
+          "related": [
+            "量词"
+          ],
+          "children": []
+        },
+        {
+          "id": "命题等值演算/propositional equivalence calculus",
+          "zh": "命题等值演算",
+          "importance": 0.124369,
+          "relation": "belong_to",
+          "related": [
+            "推理演算"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.730615,
+      "relation": null,
+      "related": [
+        "命题公式",
+        "矛盾式",
+        "重言式"
+      ],
+      "children": [
+        {
+          "id": "前束范式/Prenex Normal Form",
+          "zh": "前束范式",
+          "importance": 1.0,
+          "relation": "belong_to",
+          "related": [
+            "Skolem范式",
+            "原公式",
+            "变元易名",
+            "量词"
+          ],
+          "children": [
+            {
+              "id": "量词/quantifier",
+              "zh": "量词",
+              "importance": 0.97775,
+              "relation": "part_of",
+              "related": [
+                "分配律",
+                "前束范式",
+                "变元易名",
+                "否定词",
+                "否定词量词内移规律",
+                "推理演算过程"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "公式/formula",
+              "zh": "公式",
+              "importance": 0.802544,
+              "relation": "belong_to",
+              "related": [
+                "复合命题",
+                "子句集",
+                "真值表",
+                "联结词",
+                "解释",
+                "论域"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "母式/Matrix",
+              "zh": "母式",
+              "importance": 0.613955,
+              "relation": "part_of",
+              "related": [],
+              "children": [
+                {
+                  "id": "前束范式/Prenex Normal Form",
+                  "zh": "前束范式",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "Skolem范式",
+                    "原公式",
+                    "变元易名",
+                    "量词"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "原公式/Original Formula",
+              "zh": "原公式",
+              "importance": 0.598982,
+              "relation": "part_of",
+              "related": [
+                "全称量词",
+                "前束范式",
+                "变元易名",
+                "可满足性",
+                "同可满足",
+                "子句集"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "前束合取范式",
+              "zh": "前束合取范式",
+              "importance": 0.370374,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "原公式/Original Formula",
+          "zh": "原公式",
+          "importance": 0.598982,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "前束范式",
+            "变元易名",
+            "可满足性",
+            "同可满足",
+            "子句集"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "证明/proof",
+      "zh": "证明",
+      "importance": 0.674797,
+      "relation": null,
+      "related": [
+        "普遍有效性"
+      ],
+      "children": [
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.802544,
+          "relation": "part_of",
+          "related": [
+            "复合命题",
+            "子句集",
+            "真值表",
+            "联结词",
+            "解释",
+            "论域"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "分配律/distributive law",
+      "zh": "分配律",
+      "importance": 0.566851,
+      "relation": null,
+      "related": [
+        "变元易名",
+        "求范式的步骤",
+        "等值演算",
+        "量词",
+        "量词等值演算"
+      ],
+      "children": [
+        {
+          "id": "量词等值演算/quantifier equivalence calculus",
+          "zh": "量词等值演算",
+          "importance": 0.833484,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "分配律",
+            "前件",
+            "后件",
+            "否定词",
+            "摩根律"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "等值式/equivalence formula",
+      "zh": "等值式",
+      "importance": 0.529929,
+      "relation": null,
+      "related": [
+        "解释证明法"
+      ],
+      "children": [
+        {
+          "id": "量词等值式/quantifier equivalence formula",
+          "zh": "量词等值式",
+          "importance": 0.903247,
+          "relation": "belong_to",
+          "related": [
+            "真值表",
+            "解释证明法",
+            "量词",
+            "量词等值演算"
+          ],
+          "children": []
+        },
+        {
+          "id": "量词等值演算/quantifier equivalence calculus",
+          "zh": "量词等值演算",
+          "importance": 0.833484,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "分配律",
+            "前件",
+            "后件",
+            "否定词",
+            "摩根律"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.484822,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "谓词/predicate",
+          "zh": "谓词",
+          "importance": 0.805862,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "函数符号",
+            "可满足性",
+            "命题逻辑公式",
+            "普遍有效性",
+            "有限域"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "映射/mapping",
+          "zh": "映射",
+          "importance": 0.3984,
+          "relation": "belong_to",
+          "related": [
+            "代入规则",
+            "解释",
+            "谓词逻辑",
+            "集合"
+          ],
+          "children": [
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.805862,
+              "relation": "belong_to",
+              "related": [
+                "公式",
+                "函数符号",
+                "可满足性",
+                "命题逻辑公式",
+                "普遍有效性",
+                "有限域"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.805862,
+              "relation": "part_of",
+              "related": [
+                "公式",
+                "函数符号",
+                "可满足性",
+                "命题逻辑公式",
+                "普遍有效性",
+                "有限域"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "特征函数/characteristic function",
+              "zh": "特征函数",
+              "importance": 0.124369,
+              "relation": "belong_to",
+              "related": [
+                "谓词"
+              ],
+              "children": []
+            },
+            {
+              "id": "双射/bijective function",
+              "zh": "双射",
+              "importance": 0.120772,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "数理逻辑/Mathematical Logic",
+      "zh": "数理逻辑",
+      "importance": 0.398197,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "二值逻辑/two-valued logic",
+          "zh": "二值逻辑",
+          "importance": 0.566707,
+          "relation": "belong_to",
+          "related": [
+            "归结推理法",
+            "联结词"
+          ],
+          "children": [
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.775269,
+              "relation": "belong_to",
+              "related": [
+                "映射"
+              ],
+              "children": [
+                {
+                  "id": "量词/quantifier",
+                  "zh": "量词",
+                  "importance": 0.97775,
+                  "relation": "part_of",
+                  "related": [
+                    "分配律",
+                    "前束范式",
+                    "变元易名",
+                    "否定词",
+                    "否定词量词内移规律",
+                    "推理演算过程"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.805862,
+                  "relation": "belong_to",
+                  "related": [
+                    "公式",
+                    "函数符号",
+                    "可满足性",
+                    "命题逻辑公式",
+                    "普遍有效性",
+                    "有限域"
+                  ],
+                  "children": [
+                    {
+                      "id": "量词/quantifier",
+                      "zh": "量词",
+                      "importance": 0.97775,
+                      "relation": "part_of",
+                      "related": [
+                        "分配律",
+                        "前束范式",
+                        "变元易名",
+                        "否定词",
+                        "否定词量词内移规律",
+                        "推理演算过程"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "量词等值演算/quantifier equivalence calculus",
+                      "zh": "量词等值演算",
+                      "importance": 0.833484,
+                      "relation": "part_of",
+                      "related": [
+                        "全称量词",
+                        "分配律",
+                        "前件",
+                        "后件",
+                        "否定词",
+                        "摩根律"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "公式/formula",
+                      "zh": "公式",
+                      "importance": 0.802544,
+                      "relation": "belong_to",
+                      "related": [
+                        "复合命题",
+                        "子句集",
+                        "真值表",
+                        "联结词",
+                        "解释",
+                        "论域"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "论域/domain of discourse",
+                      "zh": "论域",
+                      "importance": 0.58435,
+                      "relation": "part_of",
+                      "related": [
+                        "公式",
+                        "真值",
+                        "解释",
+                        "谓词",
+                        "量化"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "量词的推理演算/inference calculus of quantifiers",
+                      "zh": "量词的推理演算",
+                      "importance": 0.41046,
+                      "relation": "part_of",
+                      "related": [
+                        "量词等值演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "映射/mapping",
+                      "zh": "映射",
+                      "importance": 0.3984,
+                      "relation": "part_of",
+                      "related": [
+                        "代入规则",
+                        "解释",
+                        "谓词逻辑",
+                        "集合"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "自由变元/free variable",
+                      "zh": "自由变元",
+                      "importance": 0.133239,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "谓词变项/predicate variable",
+                      "zh": "谓词变项",
+                      "importance": 0.120772,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "谓词变项/predicate variable",
+                      "zh": "谓词变项",
+                      "importance": 0.120772,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "命题变项/propositional variable",
+                      "zh": "命题变项",
+                      "importance": 0.105808,
+                      "relation": "part_of",
+                      "related": [
+                        "命题"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.805862,
+                  "relation": "part_of",
+                  "related": [
+                    "公式",
+                    "函数符号",
+                    "可满足性",
+                    "命题逻辑公式",
+                    "普遍有效性",
+                    "有限域"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "公式/formula",
+                  "zh": "公式",
+                  "importance": 0.802544,
+                  "relation": "belong_to",
+                  "related": [
+                    "复合命题",
+                    "子句集",
+                    "真值表",
+                    "联结词",
+                    "解释",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "归结法/resolution method",
+                  "zh": "归结法",
+                  "importance": 0.66625,
+                  "relation": "belong_to",
+                  "related": [
+                    "原公式",
+                    "反证法",
+                    "同可满足",
+                    "子句"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "推理演算/inference calculus",
+                  "zh": "推理演算",
+                  "importance": 0.563378,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题等值演算",
+                    "推理规则",
+                    "等值"
+                  ],
+                  "children": [
+                    {
+                      "id": "归结推理法/resolution inference method",
+                      "zh": "归结推理法",
+                      "importance": 0.816752,
+                      "relation": "belong_to",
+                      "related": [
+                        "Skolem范式",
+                        "二值逻辑",
+                        "子句"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "推理演算过程/inference calculus process",
+                      "zh": "推理演算过程",
+                      "importance": 0.109051,
+                      "relation": "part_of",
+                      "related": [
+                        "量词"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "推理演算/inference calculus",
+                  "zh": "推理演算",
+                  "importance": 0.563378,
+                  "relation": "part_of",
+                  "related": [
+                    "命题等值演算",
+                    "推理规则",
+                    "等值"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.563378,
+              "relation": "belong_to",
+              "related": [
+                "命题等值演算",
+                "推理规则",
+                "等值"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "命题公式/propositional formula",
+              "zh": "命题公式",
+              "importance": 0.398092,
+              "relation": "part_of",
+              "related": [
+                "范式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.393027,
+              "relation": "belong_to",
+              "related": [
+                "命题变项",
+                "命题形式",
+                "复合命题",
+                "联结词",
+                "集合"
+              ],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.805862,
+                  "relation": "part_of",
+                  "related": [
+                    "公式",
+                    "函数符号",
+                    "可满足性",
+                    "命题逻辑公式",
+                    "普遍有效性",
+                    "有限域"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "复合命题/compound proposition",
+                  "zh": "复合命题",
+                  "importance": 0.112138,
+                  "relation": "belong_to",
+                  "related": [
+                    "公式",
+                    "命题"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.330785,
+              "relation": "part_of",
+              "related": [
+                "二值逻辑",
+                "公式",
+                "命题"
+              ],
+              "children": []
+            },
+            {
+              "id": "推理规则/inference rule",
+              "zh": "推理规则",
+              "importance": 0.196602,
+              "relation": "part_of",
+              "related": [
+                "推理演算"
+              ],
+              "children": []
+            },
+            {
+              "id": "复合命题/compound proposition",
+              "zh": "复合命题",
+              "importance": 0.112138,
+              "relation": "part_of",
+              "related": [
+                "公式",
+                "命题"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "重言式/tautology",
+              "zh": "重言式",
+              "importance": 0.100947,
+              "relation": "belong_to",
+              "related": [
+                "范式"
+              ],
+              "children": [
+                {
+                  "id": "公式/formula",
+                  "zh": "公式",
+                  "importance": 0.802544,
+                  "relation": "belong_to",
+                  "related": [
+                    "复合命题",
+                    "子句集",
+                    "真值表",
+                    "联结词",
+                    "解释",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "简单命题/simple proposition",
+              "zh": "简单命题",
+              "importance": 0.090346,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "推理演算/inference calculus",
+          "zh": "推理演算",
+          "importance": 0.563378,
+          "relation": "belong_to",
+          "related": [
+            "命题等值演算",
+            "推理规则",
+            "等值"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "合取范式/conjunctive normal form",
+      "zh": "合取范式",
+      "importance": 0.322247,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "析取/disjunction",
+          "zh": "析取",
+          "importance": 0.403917,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "蕴含",
+            "量词等值演算"
+          ],
+          "children": []
+        },
+        {
+          "id": "命题公式/propositional formula",
+          "zh": "命题公式",
+          "importance": 0.398092,
+          "relation": "belong_to",
+          "related": [
+            "范式"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "命题形式/propositional form",
+      "zh": "命题形式",
+      "importance": 0.317963,
+      "relation": null,
+      "related": [
+        "命题"
+      ],
+      "children": [
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.97775,
+          "relation": "part_of",
+          "related": [
+            "分配律",
+            "前束范式",
+            "变元易名",
+            "否定词",
+            "否定词量词内移规律",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "谓词/predicate",
+          "zh": "谓词",
+          "importance": 0.805862,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "函数符号",
+            "可满足性",
+            "命题逻辑公式",
+            "普遍有效性",
+            "有限域"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "蕴涵式/implication form",
+      "zh": "蕴涵式",
+      "importance": 0.290817,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "前件/antecedent",
+          "zh": "前件",
+          "importance": 0.278114,
+          "relation": "part_of",
+          "related": [
+            "量词等值演算"
+          ],
+          "children": []
+        },
+        {
+          "id": "后件/succedent",
+          "zh": "后件",
+          "importance": 0.231104,
+          "relation": "part_of",
+          "related": [
+            "量词等值演算"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "初始符号/initial symbols",
+      "zh": "初始符号",
+      "importance": 0.262704,
+      "relation": null,
+      "related": [],
+      "children": []
+    }
+  ],
+  "n_nodes": 51,
+  "max_depth": 5,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_id": "一阶语言/First-order Language",
+    "root_zh": "一阶语言",
+    "virtual_root": false,
+    "n_trees": 17,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 92,
+    "n_edges_raw": 190,
+    "n_hierarchy_candidates": 102,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

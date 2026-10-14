@@ -1,0 +1,68 @@
+{
+  "lecture_id": "24",
+  "candidates": [
+    "第3章 命题逻辑的公理化系统"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "初始符号/initial symbols",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "初始符号（命题符号、联结词）是公理化系统的语言基础"
+    },
+    {
+      "subtree_root_id": "形成规则/formation rules",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "形成规则定义合式公式，是公理化系统的语法基础"
+    },
+    {
+      "subtree_root_id": "公理系统的构成/components of an axiomatic system",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.98,
+      "reason": "直接描述公理化系统的组成要素"
+    },
+    {
+      "subtree_root_id": "变形规则/transformation rule",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.98,
+      "reason": "变形规则是公理化系统推理的核心机制"
+    },
+    {
+      "subtree_root_id": "证明/proof",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.97,
+      "reason": "证明、推理规则、形式系统、定理等均属公理化系统的核心内容"
+    },
+    {
+      "subtree_root_id": "永真推理系统/valid inference system",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.96,
+      "reason": "公理系统A和B是命题逻辑公理化系统的具体实例"
+    },
+    {
+      "subtree_root_id": "古典逻辑/classical logic",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.85,
+      "reason": "古典逻辑与直觉主义系统对比，属于公理化系统的扩展讨论"
+    },
+    {
+      "subtree_root_id": "极小演绎系统/minimal deductive system",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.88,
+      "reason": "极小演绎系统是公理化系统的变体或特例"
+    },
+    {
+      "subtree_root_id": "命题逻辑/propositional logic",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.9,
+      "reason": "本讲主题即命题逻辑的公理化系统"
+    },
+    {
+      "subtree_root_id": "谓词逻辑/Predicate Logic",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.6,
+      "reason": "谓词逻辑作为对比提及，但主要讨论仍围绕命题逻辑公理化系统"
+    }
+  ]
+}

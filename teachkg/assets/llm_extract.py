@@ -214,6 +214,101 @@ def load_lecture_kg(kg_path: Path) -> tuple[list[dict], list[dict]]:
     return entities, edges
 
 
+_PADDED_TECH_STEPS = {
+    "明确输入与目标",
+    "按方法步骤执行并检查结果",
+}
+
+_THEOREM_CONTENT = re.compile(
+    r"(当且仅当|若.{0,30}则|对(任意|一切|所有).{0,24}(成立|为真|为假|均)|"
+    r"充要条件|等价于|成立|为真|为假|证明|引理|推论|"
+    r"度数|回路|奇(数)?个|偶(数)?个|不存在|存在|"
+    r"之和|两倍|同度|边数|一笔画|欧拉(回?路|路径)|握手)"
+)
+_THEOREM_NAME_DROP = re.compile(
+    r"(标志着|诞生|成为一门|追溯|最新论文|Baseline|学科史|引发第.+危机)"
+)
+_FORMULA_CONTENT = re.compile(
+    r"([=≡≈≠≤≥<>⊆⊂⊇∈∉∀∃∑∏→⇒⇔∧∨¬×·/]|\\sum|\\forall|\\exists|"
+    r"\\subseteq|\\times|\\to|\\rightarrow|"
+    r"n\s*[\(（]|deg|公式|等于|等于于|包含于|属于|"
+    r"[A-Za-z]\s*[×\*]\s*[A-Za-z]|"
+    r"[A-Za-z]\s*\(\s*[A-Za-z]|R\s*⊆|A\s*[×xX]\s*B)"
+)
+_PROC_IN_TEXT = re.compile(
+    r"(首先|然后|接着|再|其次|最后|第一步|第二步|第三步|"
+    r"步骤|依次|分别|先.{0,8}再|检查点|合并|取出|标记)"
+)
+
+
+def _sentence_breaks(text: str) -> int:
+    return len(re.findall(r"[。！？!?；;\n]", text or ""))
+
+
+def _compact_len(text: str) -> int:
+    return len(re.sub(r"\s+", "", text or ""))
+
+
+def _substantive_steps(steps: list[str]) -> list[str]:
+    out: list[str] = []
+    for s in steps or []:
+        t = str(s or "").strip()
+        if len(t) < 4:
+            continue
+        if t in _PADDED_TECH_STEPS:
+            continue
+        out.append(t)
+    return out
+
+
+def _step_grounded_in_source(step: str, compact_src: str) -> bool:
+    """步骤是否能在原文找到支撑（连续片段或关键词命中）。"""
+    if not compact_src:
+        return False
+    t = re.sub(r"^[\d\.、）\)\s]+", "", str(step or "").strip())
+    t = re.sub(r"\s+", "", t)
+    if len(t) < 4:
+        return False
+    # 连续子串：取 6–14 字滑动窗
+    win = min(14, max(6, len(t) // 2))
+    for i in range(0, max(1, len(t) - win + 1)):
+        frag = t[i : i + win]
+        if len(frag) >= 6 and frag in compact_src:
+            return True
+    # 关键词：去掉停用词后 ≥2 个命中
+    toks = re.findall(r"[\u4e00-\u9fff]{2,}|[A-Za-z]{3,}", t)
+    stop = {
+        "设置",
+        "进行",
+        "使用",
+        "通过",
+        "可以",
+        "需要",
+        "一个",
+        "每个",
+        "所有",
+        "或者",
+        "以及",
+        "然后",
+        "首先",
+        "最后",
+        "重复",
+        "直到",
+        "得到",
+        "如果",
+        "那么",
+    }
+    hits = 0
+    for tok in toks:
+        if tok in stop:
+            continue
+        if tok in compact_src:
+            hits += 1
+        if hits >= 2:
+            return True
+    return False
+
+
 def _quality_drop_reason(
     kind: str,
     name: str,
@@ -223,14 +318,49 @@ def _quality_drop_reason(
     *,
     latex: str = "",
     summary: str = "",
+    statement: str = "",
 ) -> str | None:
     """返回丢弃原因；None 表示通过。"""
     zh = primary_zh(name)
     compact_src = re.sub(r"\s+", "", source_text or "")
     compact_ev = re.sub(r"\s+", "", evidence or "")
 
-    if kind == "technique" and len(steps) < 2:
-        return "technique needs >=2 steps"
+    # 原文依据硬门槛：必须有、足够长，且能对齐回 source（可高亮）
+    if not compact_ev:
+        return "missing evidence"
+    if len(compact_ev) < 12:
+        return "evidence too short"
+    if compact_src and compact_ev not in compact_src:
+        # 允许空白差异：再试一次去掉标点外的宽松包含由 _ground_evidence 处理；
+        # 此处若 source 有内容却完全对不上，交给上层 grounded；质检阶段 source 常=evidence。
+        if source_text and evidence and _ground_evidence(evidence, source_text) is None:
+            return "evidence not in source text"
+
+    if kind == "technique":
+        # 方法必须是可执行的多步流程，禁止垫默认两步凑数
+        substantive = _substantive_steps(steps)
+        if len(substantive) < 2:
+            return "technique needs >=2 substantive steps"
+        # 原文须出现过程线索；禁止只点名算法
+        if not _PROC_IN_TEXT.search(evidence or "") and not _PROC_IN_TEXT.search(
+            source_text or ""
+        ):
+            return "technique source has no step cues"
+        # ≥2 步须能在原文找到支撑，禁止补教科书常识步骤
+        grounded_n = sum(
+            1 for s in substantive if _step_grounded_in_source(s, compact_src)
+        )
+        if grounded_n < 2:
+            return "technique steps not grounded in source"
+        procedural = bool(
+            re.search(
+                r"(步骤|首先|然后|接着|再|最后|算法|方法|过程|流程|依次|分别)",
+                evidence or "",
+            )
+            or re.search(r"(算法|方法|判定|构造|展开|翻译|证明)", zh)
+        )
+        if not procedural and sum(len(s) for s in substantive) < 16:
+            return "technique not procedural"
 
     # 禁止自造「××原理」空壳：名称以原理/原则结尾，但原文无该措辞且主体未出现
     if kind == "principle":
@@ -245,15 +375,27 @@ def _quality_drop_reason(
             return "shell principle name"
         if looks_coined and not has_principle_word and not stem_hit:
             return "coined principle name not grounded in text"
+        # 原理卡要有实质陈述，避免一句话空壳
+        if _compact_len(evidence) < 24 and _compact_len(summary) < 12:
+            return "principle evidence too thin"
 
     if kind == "theorem":
         # 「××定义」不当 theorem；真值条件需有判定措辞
         if re.search(r"定义$", zh):
             return "definition labeled as theorem"
+        # 结论内容必须出现在 evidence，不能靠模型自填 statement
+        if _THEOREM_NAME_DROP.search(evidence or "") and not _THEOREM_CONTENT.search(
+            evidence or ""
+        ):
+            return "theorem name-drop without content"
+        if not _THEOREM_CONTENT.search(evidence or ""):
+            return "theorem missing conclusion content"
         if re.search(r"真值条件$", zh) and not re.search(
             r"(当且仅当|真假|为真|为假)", evidence or ""
         ):
             return "weak theorem without formal cue"
+        if _compact_len(evidence) < 24:
+            return "theorem evidence too thin"
 
     if kind == "formula":
         spec = formula_drop_reason(
@@ -266,8 +408,39 @@ def _quality_drop_reason(
             return spec
         if not (evidence or "").strip() and not str(name).strip():
             return "formula empty"
-    if kind == "example" and len(zh) <= 1:
-        return "example name too short"
+        # 具体式子必须在 evidence/原文；latex  alone 不算（可被模型编造）
+        latex_compact = re.sub(r"\s+", "", latex or "")
+        latex_in_src = bool(
+            latex_compact
+            and len(latex_compact) >= 3
+            and (
+                latex_compact[: min(8, len(latex_compact))] in compact_src
+                or latex_compact[: min(8, len(latex_compact))] in compact_ev
+            )
+        )
+        has_concrete = bool(
+            _FORMULA_CONTENT.search(evidence or "")
+            or (compact_src and _FORMULA_CONTENT.search(source_text or ""))
+            or latex_in_src
+        )
+        if not has_concrete:
+            return "formula missing concrete expression"
+        if (
+            _compact_len(evidence) < 12
+            and _compact_len(str(latex or "")) < 2
+            and _compact_len(str(summary or "")) < 8
+        ):
+            return "formula too thin"
+    if kind == "example":
+        if len(zh) <= 1:
+            return "example name too short"
+        # 仅一两句随口提起的例子丢掉；保留较完整的演算/故事例
+        ev_len = _compact_len(evidence)
+        breaks = _sentence_breaks(evidence)
+        if ev_len < 80:
+            return "example evidence too short"
+        if breaks < 2 and ev_len < 140:
+            return "example merely mentioned"
     # 公式/例子允许短记号名（a,b,c...）；其余过短则丢
     if kind not in {"formula", "example"} and len(zh) <= 2:
         return "name too short"
@@ -316,6 +489,7 @@ def parse_llm_assets(
             source_text,
             latex=latex,
             summary=summary,
+            statement=statement,
         )
         if reason:
             logger.info("drop asset (%s): %s", reason, name)

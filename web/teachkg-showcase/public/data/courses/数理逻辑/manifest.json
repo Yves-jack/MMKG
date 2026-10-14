@@ -1,6 +1,6 @@
 {
   "courseId": "数理逻辑",
-  "generatedAt": "2026-09-26T12:14:58.194Z",
+  "generatedAt": "2026-10-14T11:32:44.175Z",
   "items": [
     {
       "id": "importance_course",
@@ -15,7 +15,7 @@
       "id": "mindmap_lectures",
       "type": "mindmap",
       "group": "思维导图",
-      "title": "讲次 · 图谱投影思维导图",
+      "title": "课 · 章 · 讲 知识导图",
       "href": "/course/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/mindmap",
       "dataUrl": "/data/courses/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/mindmap_showcase.json",
       "scope": "lecture"

@@ -1,259 +1,524 @@
 {
   "lecture_id": "10",
   "root": {
-    "id": "谓词逻辑/Predicate Logic",
-    "zh": "谓词逻辑",
-    "importance": 0.349584,
+    "id": "__lecture__/10",
+    "zh": "第 10 讲",
+    "importance": 0.9,
     "relation": null,
     "related": [],
     "children": [
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.50043,
-        "relation": "chapter_topic",
-        "related": [
-          "关系",
-          "函数",
-          "双射",
-          "命题",
-          "幂集"
-        ],
-        "children": [
-          {
-            "id": "无限集合/infinite set",
-            "zh": "无限集合",
-            "importance": 0.044082,
-            "relation": "belong_to",
-            "related": [
-              "幂集"
-            ],
-            "children": []
-          },
-          {
-            "id": "实数集合/set of real numbers",
-            "zh": "实数集合",
-            "importance": 0.043945,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "幂集/power set",
-            "zh": "幂集",
-            "importance": 0.040267,
-            "relation": "belong_to",
-            "related": [
-              "无限集合",
-              "集合"
-            ],
-            "children": []
-          },
-          {
-            "id": "空集/empty set",
-            "zh": "空集",
-            "importance": 0.03422,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "区间/interval",
-            "zh": "区间",
-            "importance": 0.023921,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "有理数集/set of rational numbers",
-            "zh": "有理数集",
-            "importance": 0.017888,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "元素/Element",
-            "zh": "元素",
-            "importance": 0.01369,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "集合论的研究对象/subject of set theory",
-            "zh": "集合论的研究对象",
-            "importance": 0.005817,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "数理逻辑/Mathematical Logic",
-        "zh": "数理逻辑",
-        "importance": 0.492268,
-        "relation": "chapter_topic",
+        "id": "__chapter__/平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.663702,
+        "relation": "toc_chapter",
         "related": [],
-        "children": []
-      },
-      {
-        "id": "公理系统/axiomatic system",
-        "zh": "公理系统",
-        "importance": 0.311575,
-        "relation": "chapter_topic",
-        "related": [
-          "定理",
-          "连续统假设"
-        ],
         "children": [
           {
-            "id": "证明过程/proof process",
-            "zh": "证明过程",
-            "importance": 0.022967,
-            "relation": "part_of",
-            "related": [
-              "定理"
-            ],
+            "id": "平面图判定定理",
+            "zh": "平面图判定定理",
+            "importance": 0.663702,
+            "relation": null,
+            "related": [],
             "children": []
           },
           {
-            "id": "定理/定理",
-            "zh": "定理",
-            "importance": 0.012414,
-            "relation": "part_of",
-            "related": [
-              "公理系统",
-              "证明",
-              "证明过程"
-            ],
-            "children": [
-              {
-                "id": "证明/proof",
-                "zh": "证明",
-                "importance": 0.00293,
-                "relation": "part_of",
-                "related": [
-                  "前提",
-                  "定理"
-                ],
-                "children": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "命题/proposition",
-        "zh": "命题",
-        "importance": 0.310353,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "简单命题/simple proposition",
-            "zh": "简单命题",
-            "importance": 0.072955,
-            "relation": "belong_to",
+            "id": "图/Graph",
+            "zh": "图",
+            "importance": 0.307949,
+            "relation": null,
             "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "关系/relation",
-        "zh": "关系",
-        "importance": 0.298108,
-        "relation": "chapter_topic",
-        "related": [
-          "选择公理",
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "函数/function",
-            "zh": "函数",
-            "importance": 0.170649,
-            "relation": "belong_to",
-            "related": [
-              "象",
-              "选择公理",
-              "集合"
-            ],
             "children": [
               {
-                "id": "双射/bijective function",
-                "zh": "双射",
-                "importance": 0.070891,
+                "id": "平面图/planar graph",
+                "zh": "平面图",
+                "importance": 0.97437,
                 "relation": "belong_to",
                 "related": [
-                  "集合",
-                  "集合的基数"
+                  "K型子图",
+                  "Wagner定理",
+                  "子图",
+                  "对偶图",
+                  "平面嵌入",
+                  "非平面图"
+                ],
+                "children": [
+                  {
+                    "id": "对偶图/dual graph",
+                    "zh": "对偶图",
+                    "importance": 0.696066,
+                    "relation": "belong_to",
+                    "related": [
+                      "同构",
+                      "平面图",
+                      "平面嵌入"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "简单平面图/simple planar graph",
+                    "zh": "简单平面图",
+                    "importance": 0.638145,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "极大平面图/maximal planar graph",
+                    "zh": "极大平面图",
+                    "importance": 0.449206,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "面/face",
+                    "zh": "面",
+                    "importance": 0.150401,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "顶点/vertex",
+                    "zh": "顶点",
+                    "importance": 0.497035,
+                    "relation": "part_of",
+                    "related": [
+                      "自环"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "结点数小于5的图/graphs with fewer than5vertices",
+                    "zh": "结点数小于5的图",
+                    "importance": 0.0,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "边数小于9的图/graph with fewer than9edges",
+                    "zh": "边数小于9的图",
+                    "importance": 0.0,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "非平面图/non-planar graph",
+                "zh": "非平面图",
+                "importance": 1.0,
+                "relation": "belong_to",
+                "related": [
+                  "平面图"
+                ],
+                "children": [
+                  {
+                    "id": "K5",
+                    "zh": "K5",
+                    "importance": 0.965032,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "K3,3",
+                    "zh": "K3,3",
+                    "importance": 0.912922,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "K型图/K-type graph",
+                    "zh": "K型图",
+                    "importance": 0.740769,
+                    "relation": "belong_to",
+                    "related": [
+                      "K型子图",
+                      "增加度为2的结点"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "完全图K5/complete graph K5",
+                    "zh": "完全图K5",
+                    "importance": 0.444781,
+                    "relation": "belong_to",
+                    "related": [
+                      "Kuratowski定理",
+                      "Wagner定理"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "完全二分图K3,3/complete bipartite graph K3,3",
+                    "zh": "完全二分图K3,3",
+                    "importance": 0.062869,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "平面性判定算法/planarity testing algorithm",
+            "zh": "平面性判定算法",
+            "importance": 0.0,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "简单图/simple graph",
+            "zh": "简单图",
+            "importance": 0.617945,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "多重图/multigraph",
+            "zh": "多重图",
+            "importance": 0.341893,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "重边/multiple edges",
+                "zh": "重边",
+                "importance": 0.280321,
+                "relation": "part_of",
+                "related": [
+                  "可平面性"
                 ],
                 "children": []
               }
             ]
           },
           {
-            "id": "域/field",
-            "zh": "域",
-            "importance": 0.018127,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "集合论/Set Theory",
-        "zh": "集合论",
-        "importance": 0.251499,
-        "relation": "chapter_topic",
-        "related": [
-          "数学"
-        ],
-        "children": [
-          {
-            "id": "连续统假设/continuum hypothesis",
-            "zh": "连续统假设",
-            "importance": 0.021339,
-            "relation": "part_of",
+            "id": "非连通图/disconnected graph",
+            "zh": "非连通图",
+            "importance": 0.588391,
+            "relation": null,
             "related": [
-              "公理系统"
+              "连通图"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "极大连通子图/maximal connected subgraph",
+                "zh": "极大连通子图",
+                "importance": 0.243884,
+                "relation": "part_of",
+                "related": [
+                  "割点"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "割边/cut edge",
+            "zh": "割边",
+            "importance": 0.371652,
+            "relation": null,
+            "related": [
+              "连通分支"
+            ],
+            "children": [
+              {
+                "id": "悬边/pendant edge",
+                "zh": "悬边",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "全称量词/universal quantifier",
-        "zh": "全称量词",
-        "importance": 0.053902,
-        "relation": "part_of",
-        "related": [],
-        "children": []
       }
     ]
   },
-  "n_nodes": 24,
+  "roots": [
+    {
+      "id": "__lecture__/10",
+      "zh": "第 10 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.663702,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "平面图判定定理",
+              "zh": "平面图判定定理",
+              "importance": 0.663702,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "图/Graph",
+              "zh": "图",
+              "importance": 0.307949,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "平面图/planar graph",
+                  "zh": "平面图",
+                  "importance": 0.97437,
+                  "relation": "belong_to",
+                  "related": [
+                    "K型子图",
+                    "Wagner定理",
+                    "子图",
+                    "对偶图",
+                    "平面嵌入",
+                    "非平面图"
+                  ],
+                  "children": [
+                    {
+                      "id": "对偶图/dual graph",
+                      "zh": "对偶图",
+                      "importance": 0.696066,
+                      "relation": "belong_to",
+                      "related": [
+                        "同构",
+                        "平面图",
+                        "平面嵌入"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "简单平面图/simple planar graph",
+                      "zh": "简单平面图",
+                      "importance": 0.638145,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "极大平面图/maximal planar graph",
+                      "zh": "极大平面图",
+                      "importance": 0.449206,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "面/face",
+                      "zh": "面",
+                      "importance": 0.150401,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "顶点/vertex",
+                      "zh": "顶点",
+                      "importance": 0.497035,
+                      "relation": "part_of",
+                      "related": [
+                        "自环"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "结点数小于5的图/graphs with fewer than5vertices",
+                      "zh": "结点数小于5的图",
+                      "importance": 0.0,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "边数小于9的图/graph with fewer than9edges",
+                      "zh": "边数小于9的图",
+                      "importance": 0.0,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "非平面图/non-planar graph",
+                  "zh": "非平面图",
+                  "importance": 1.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "平面图"
+                  ],
+                  "children": [
+                    {
+                      "id": "K5",
+                      "zh": "K5",
+                      "importance": 0.965032,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "K3,3",
+                      "zh": "K3,3",
+                      "importance": 0.912922,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "K型图/K-type graph",
+                      "zh": "K型图",
+                      "importance": 0.740769,
+                      "relation": "belong_to",
+                      "related": [
+                        "K型子图",
+                        "增加度为2的结点"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "完全图K5/complete graph K5",
+                      "zh": "完全图K5",
+                      "importance": 0.444781,
+                      "relation": "belong_to",
+                      "related": [
+                        "Kuratowski定理",
+                        "Wagner定理"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "完全二分图K3,3/complete bipartite graph K3,3",
+                      "zh": "完全二分图K3,3",
+                      "importance": 0.062869,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "平面性判定算法/planarity testing algorithm",
+              "zh": "平面性判定算法",
+              "importance": 0.0,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "简单图/simple graph",
+              "zh": "简单图",
+              "importance": 0.617945,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "多重图/multigraph",
+              "zh": "多重图",
+              "importance": 0.341893,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "重边/multiple edges",
+                  "zh": "重边",
+                  "importance": 0.280321,
+                  "relation": "part_of",
+                  "related": [
+                    "可平面性"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "非连通图/disconnected graph",
+              "zh": "非连通图",
+              "importance": 0.588391,
+              "relation": null,
+              "related": [
+                "连通图"
+              ],
+              "children": [
+                {
+                  "id": "极大连通子图/maximal connected subgraph",
+                  "zh": "极大连通子图",
+                  "importance": 0.243884,
+                  "relation": "part_of",
+                  "related": [
+                    "割点"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "割边/cut edge",
+              "zh": "割边",
+              "importance": 0.371652,
+              "relation": null,
+              "related": [
+                "连通分支"
+              ],
+              "children": [
+                {
+                  "id": "悬边/pendant edge",
+                  "zh": "悬边",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 26,
   "max_depth": 4,
-  "orphan_count": 13,
+  "orphan_count": 3,
   "meta": {
-    "chapter": "第5章 谓词逻辑的等值和推理演算",
-    "root_id": "谓词逻辑/Predicate Logic",
-    "root_zh": "谓词逻辑",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 37,
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "平面图判定定理",
+    "root_zh": "第 10 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 54,
     "n_edges_raw": 50,
-    "n_hierarchy_candidates": 39,
-    "attached_orphans": 0,
-    "alias_merged": 0
+    "n_hierarchy_candidates": 30,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将平面图相关主题（判定定理、图、算法）前移，基础概念后置；删除重复的K5和K3,3叶节点；未改动任何id和跨章结构。",
+    "chapters": [
+      "第4章 平面图与图的着色"
+    ],
+    "llm_tune_notes": "将平面图相关主题（判定定理、图、算法）前移，基础概念后置；删除重复的K5和K3,3叶节点；未改动任何id和跨章结构。",
+    "chapter_candidates": [
+      "第4章 平面图与图的着色"
+    ]
   }
 }

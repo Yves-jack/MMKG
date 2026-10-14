@@ -4,7 +4,7 @@ import type {
   PipelineNode,
   PipelinePayload,
   PipelineStage,
-} from "@/lib/graph/types";
+} from "@/lib/pipeline/types";
 import { applyImportanceFilter } from "@/lib/kg/importanceFilter";
 import {
   lookupTextbookEntity,
@@ -70,21 +70,6 @@ export type KgCue = {
   edgeCount: number;
 };
 
-/** 旧导出误用短课程名目录；课堂视频实际在完整课名下 */
-const LEGACY_RAW_COURSE_ALIASES: Record<string, string> = {
-  "数理逻辑": "离散数学(图论+数理逻辑与集合论)",
-  "图论": "离散数学(图论+数理逻辑与集合论)",
-  "集合论": "离散数学(图论+数理逻辑与集合论)",
-};
-
-function rewriteLegacyRawCoursePath(p: string): string {
-  const m = p.match(/^raw\/([^/]+)\/(video\/.+)$/);
-  if (!m) return p;
-  const mapped = LEGACY_RAW_COURSE_ALIASES[m[1]];
-  if (!mapped || mapped === m[1]) return p;
-  return `raw/${mapped}/${m[2]}`;
-}
-
 /** data\\segments\\... → /repo-data/segments/...（路径分段编码，兼容中文课程名） */
 export function toMediaUrl(raw?: string | null): string | null {
   if (!raw) return null;
@@ -99,7 +84,6 @@ export function toMediaUrl(raw?: string | null): string | null {
   }
   p = p.replace(/^\/+/, "");
   if (!p) return null;
-  p = rewriteLegacyRawCoursePath(p);
   const encoded = p
     .split("/")
     .map((seg) => encodeURIComponent(decodeURIComponent(seg)))
@@ -486,7 +470,6 @@ export function adaptKgToPipeline(
       importance_base,
       importance_delta,
       importance_contributions,
-      description: String(ent.description || "").trim() || undefined,
       ...(aliasList.length ? { aliases: aliasList } : {}),
     });
   }

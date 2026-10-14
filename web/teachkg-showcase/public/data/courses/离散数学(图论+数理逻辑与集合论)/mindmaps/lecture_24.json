@@ -1,0 +1,710 @@
+{
+  "lecture_id": "24",
+  "root": {
+    "id": "__lecture__/24",
+    "zh": "第 24 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/命题逻辑的公理化系统",
+        "zh": "第3章 命题逻辑的公理化系统",
+        "importance": 0.704977,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "初始符号/initial symbols",
+            "zh": "初始符号",
+            "importance": 0.704977,
+            "relation": null,
+            "related": [
+              "形式系统",
+              "形成规则",
+              "联结词",
+              "蕴含"
+            ],
+            "children": [
+              {
+                "id": "命题符号/propositional symbol",
+                "zh": "命题符号",
+                "importance": 0.143318,
+                "relation": "part_of",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.236251,
+                "relation": "part_of",
+                "related": [
+                  "初始符号"
+                ],
+                "children": [
+                  {
+                    "id": "蕴含/implication",
+                    "zh": "蕴含",
+                    "importance": 0.324349,
+                    "relation": "belong_to",
+                    "related": [
+                      "分离规则",
+                      "初始符号"
+                    ],
+                    "children": []
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "合式公式/Well-formed formula(Wff)",
+                "zh": "合式公式",
+                "importance": 0.176049,
+                "relation": "part_of",
+                "related": [
+                  "形成规则"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "形成规则/formation rules",
+            "zh": "形成规则",
+            "importance": 0.564016,
+            "relation": null,
+            "related": [
+              "公理系统",
+              "初始符号",
+              "合式公式"
+            ],
+            "children": []
+          },
+          {
+            "id": "公理系统的构成/components of an axiomatic system",
+            "zh": "公理系统的构成",
+            "importance": 0.20411,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "永真推理系统/valid inference system",
+            "zh": "永真推理系统",
+            "importance": 0.515541,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "公理系统A/axiomatic system A",
+                "zh": "公理系统A",
+                "importance": 0.884255,
+                "relation": "belong_to",
+                "related": [
+                  "公理系统B"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "公理系统B/axiomatic system B",
+                "zh": "公理系统B",
+                "importance": 1.0,
+                "relation": "part_of",
+                "related": [
+                  "公理系统A",
+                  "分离规则",
+                  "定理",
+                  "推理规则",
+                  "极小演绎系统",
+                  "语义"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "极小演绎系统/minimal deductive system",
+            "zh": "极小演绎系统",
+            "importance": 0.184659,
+            "relation": null,
+            "related": [
+              "公理系统B"
+            ],
+            "children": []
+          },
+          {
+            "id": "变形规则/transformation rule",
+            "zh": "变形规则",
+            "importance": 0.170607,
+            "relation": null,
+            "related": [
+              "定理"
+            ],
+            "children": []
+          },
+          {
+            "id": "证明/proof",
+            "zh": "证明",
+            "importance": 0.666917,
+            "relation": null,
+            "related": [
+              "分离规则",
+              "前提序列",
+              "定理",
+              "形式推理",
+              "推理规则"
+            ],
+            "children": [
+              {
+                "id": "推理规则/inference rule",
+                "zh": "推理规则",
+                "importance": 0.794731,
+                "relation": "part_of",
+                "related": [
+                  "公理系统",
+                  "公理系统B",
+                  "定理",
+                  "定理的证明",
+                  "证明"
+                ],
+                "children": [
+                  {
+                    "id": "分离规则/分离规则",
+                    "zh": "分离规则",
+                    "importance": 0.414365,
+                    "relation": "belong_to",
+                    "related": [
+                      "公理系统B",
+                      "前件",
+                      "后件",
+                      "蕴含",
+                      "证明"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "置换规则/置换规则",
+                    "zh": "置换规则",
+                    "importance": 0.033396,
+                    "relation": "belong_to",
+                    "related": [
+                      "等值",
+                      "等值式"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "代入规则/代入规则",
+                    "zh": "代入规则",
+                    "importance": 0.03014,
+                    "relation": "belong_to",
+                    "related": [
+                      "定理"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "三段论/syllogism",
+                    "zh": "三段论",
+                    "importance": 0.020401,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "形式系统/formal system",
+                "zh": "形式系统",
+                "importance": 0.735479,
+                "relation": "part_of",
+                "related": [
+                  "初始符号"
+                ],
+                "children": [
+                  {
+                    "id": "定理/定理",
+                    "zh": "定理",
+                    "importance": 0.696934,
+                    "relation": "part_of",
+                    "related": [
+                      "代入规则",
+                      "公理系统",
+                      "公理系统B",
+                      "变形规则",
+                      "定理的证明",
+                      "形式推理"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "定理的证明/Proof of Theorems",
+                    "zh": "定理的证明",
+                    "importance": 0.675963,
+                    "relation": "part_of",
+                    "related": [
+                      "前提序列",
+                      "定理",
+                      "推理规则",
+                      "结论"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "形式推理/formal deduction",
+                    "zh": "形式推理",
+                    "importance": 0.620761,
+                    "relation": "part_of",
+                    "related": [
+                      "定理",
+                      "证明"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "结论/conclusion",
+                "zh": "结论",
+                "importance": 0.379747,
+                "relation": "part_of",
+                "related": [
+                  "定理的证明"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "古典逻辑/classical logic",
+            "zh": "古典逻辑",
+            "importance": 0.323729,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "排中律/law of excluded middle",
+                "zh": "排中律",
+                "importance": 0.261187,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "直觉主义系统/intuitionistic system",
+                "zh": "直觉主义系统",
+                "importance": 0.169631,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "命题逻辑/propositional logic",
+            "zh": "命题逻辑",
+            "importance": 0.126118,
+            "relation": null,
+            "related": [
+              "公理系统"
+            ],
+            "children": []
+          },
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.096559,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "一阶谓词逻辑/first-order predicate logic",
+                "zh": "一阶谓词逻辑",
+                "importance": 0.243624,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/24",
+      "zh": "第 24 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/命题逻辑的公理化系统",
+          "zh": "第3章 命题逻辑的公理化系统",
+          "importance": 0.704977,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "初始符号/initial symbols",
+              "zh": "初始符号",
+              "importance": 0.704977,
+              "relation": null,
+              "related": [
+                "形式系统",
+                "形成规则",
+                "联结词",
+                "蕴含"
+              ],
+              "children": [
+                {
+                  "id": "命题符号/propositional symbol",
+                  "zh": "命题符号",
+                  "importance": 0.143318,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "联结词/connective",
+                  "zh": "联结词",
+                  "importance": 0.236251,
+                  "relation": "part_of",
+                  "related": [
+                    "初始符号"
+                  ],
+                  "children": [
+                    {
+                      "id": "蕴含/implication",
+                      "zh": "蕴含",
+                      "importance": 0.324349,
+                      "relation": "belong_to",
+                      "related": [
+                        "分离规则",
+                        "初始符号"
+                      ],
+                      "children": []
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "合式公式/Well-formed formula(Wff)",
+                  "zh": "合式公式",
+                  "importance": 0.176049,
+                  "relation": "part_of",
+                  "related": [
+                    "形成规则"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "形成规则/formation rules",
+              "zh": "形成规则",
+              "importance": 0.564016,
+              "relation": null,
+              "related": [
+                "公理系统",
+                "初始符号",
+                "合式公式"
+              ],
+              "children": []
+            },
+            {
+              "id": "公理系统的构成/components of an axiomatic system",
+              "zh": "公理系统的构成",
+              "importance": 0.20411,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "永真推理系统/valid inference system",
+              "zh": "永真推理系统",
+              "importance": 0.515541,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "公理系统A/axiomatic system A",
+                  "zh": "公理系统A",
+                  "importance": 0.884255,
+                  "relation": "belong_to",
+                  "related": [
+                    "公理系统B"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "公理系统B/axiomatic system B",
+                  "zh": "公理系统B",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "公理系统A",
+                    "分离规则",
+                    "定理",
+                    "推理规则",
+                    "极小演绎系统",
+                    "语义"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "极小演绎系统/minimal deductive system",
+              "zh": "极小演绎系统",
+              "importance": 0.184659,
+              "relation": null,
+              "related": [
+                "公理系统B"
+              ],
+              "children": []
+            },
+            {
+              "id": "变形规则/transformation rule",
+              "zh": "变形规则",
+              "importance": 0.170607,
+              "relation": null,
+              "related": [
+                "定理"
+              ],
+              "children": []
+            },
+            {
+              "id": "证明/proof",
+              "zh": "证明",
+              "importance": 0.666917,
+              "relation": null,
+              "related": [
+                "分离规则",
+                "前提序列",
+                "定理",
+                "形式推理",
+                "推理规则"
+              ],
+              "children": [
+                {
+                  "id": "推理规则/inference rule",
+                  "zh": "推理规则",
+                  "importance": 0.794731,
+                  "relation": "part_of",
+                  "related": [
+                    "公理系统",
+                    "公理系统B",
+                    "定理",
+                    "定理的证明",
+                    "证明"
+                  ],
+                  "children": [
+                    {
+                      "id": "分离规则/分离规则",
+                      "zh": "分离规则",
+                      "importance": 0.414365,
+                      "relation": "belong_to",
+                      "related": [
+                        "公理系统B",
+                        "前件",
+                        "后件",
+                        "蕴含",
+                        "证明"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "置换规则/置换规则",
+                      "zh": "置换规则",
+                      "importance": 0.033396,
+                      "relation": "belong_to",
+                      "related": [
+                        "等值",
+                        "等值式"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "代入规则/代入规则",
+                      "zh": "代入规则",
+                      "importance": 0.03014,
+                      "relation": "belong_to",
+                      "related": [
+                        "定理"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "三段论/syllogism",
+                      "zh": "三段论",
+                      "importance": 0.020401,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "形式系统/formal system",
+                  "zh": "形式系统",
+                  "importance": 0.735479,
+                  "relation": "part_of",
+                  "related": [
+                    "初始符号"
+                  ],
+                  "children": [
+                    {
+                      "id": "定理/定理",
+                      "zh": "定理",
+                      "importance": 0.696934,
+                      "relation": "part_of",
+                      "related": [
+                        "代入规则",
+                        "公理系统",
+                        "公理系统B",
+                        "变形规则",
+                        "定理的证明",
+                        "形式推理"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "定理的证明/Proof of Theorems",
+                      "zh": "定理的证明",
+                      "importance": 0.675963,
+                      "relation": "part_of",
+                      "related": [
+                        "前提序列",
+                        "定理",
+                        "推理规则",
+                        "结论"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "形式推理/formal deduction",
+                      "zh": "形式推理",
+                      "importance": 0.620761,
+                      "relation": "part_of",
+                      "related": [
+                        "定理",
+                        "证明"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "结论/conclusion",
+                  "zh": "结论",
+                  "importance": 0.379747,
+                  "relation": "part_of",
+                  "related": [
+                    "定理的证明"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "古典逻辑/classical logic",
+              "zh": "古典逻辑",
+              "importance": 0.323729,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "排中律/law of excluded middle",
+                  "zh": "排中律",
+                  "importance": 0.261187,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "直觉主义系统/intuitionistic system",
+                  "zh": "直觉主义系统",
+                  "importance": 0.169631,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "命题逻辑/propositional logic",
+              "zh": "命题逻辑",
+              "importance": 0.126118,
+              "relation": null,
+              "related": [
+                "公理系统"
+              ],
+              "children": []
+            },
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.096559,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "一阶谓词逻辑/first-order predicate logic",
+                  "zh": "一阶谓词逻辑",
+                  "importance": 0.243624,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 31,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化系统",
+    "root_id": "初始符号/initial symbols",
+    "root_zh": "第 24 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 42,
+    "n_edges_raw": 95,
+    "n_hierarchy_candidates": 56,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将形成规则、公理系统的构成等基础概念前移，证明相关主题后移，使顺序更符合逻辑递进；未删除或新增节点。",
+    "chapters": [
+      "第3章 命题逻辑的公理化系统"
+    ],
+    "llm_tune_notes": "将形成规则、公理系统的构成等基础概念前移，证明相关主题后移，使顺序更符合逻辑递进；未删除或新增节点。",
+    "chapter_candidates": [
+      "第3章 命题逻辑的公理化系统"
+    ]
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "lecture_id": "11",
+  "root": {
+    "id": "__lecture__/11",
+    "zh": "第 11 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.970883,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "图的着色/graph coloring",
+            "zh": "图的着色",
+            "importance": 0.970883,
+            "relation": null,
+            "related": [
+              "对偶图",
+              "平面图"
+            ],
+            "children": [
+              {
+                "id": "点着色/vertex coloring",
+                "zh": "点着色",
+                "importance": 0.905103,
+                "relation": "belong_to",
+                "related": [
+                  "面着色"
+                ],
+                "children": []
+              },
+              {
+                "id": "面着色/face coloring",
+                "zh": "面着色",
+                "importance": 0.840099,
+                "relation": "belong_to",
+                "related": [
+                  "点着色"
+                ],
+                "children": []
+              },
+              {
+                "id": "边染色/edge coloring",
+                "zh": "边染色",
+                "importance": 0.291271,
+                "relation": "belong_to",
+                "related": [
+                  "点染色"
+                ],
+                "children": []
+              },
+              {
+                "id": "地图着色/map coloring",
+                "zh": "地图着色",
+                "importance": 0.290328,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "可平面图/planar embeddable graph",
+            "zh": "可平面图",
+            "importance": 0.775744,
+            "relation": null,
+            "related": [
+              "平面嵌入"
+            ],
+            "children": [
+              {
+                "id": "平面图/planar graph",
+                "zh": "平面图",
+                "importance": 0.984791,
+                "relation": "belong_to",
+                "related": [
+                  "图的着色",
+                  "域着色",
+                  "对偶图",
+                  "点染色"
+                ],
+                "children": [
+                  {
+                    "id": "对偶图/dual graph",
+                    "zh": "对偶图",
+                    "importance": 1.0,
+                    "relation": "belong_to",
+                    "related": [
+                      "图的着色",
+                      "平面图",
+                      "简单图",
+                      "自环",
+                      "重边"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "边/edge",
+            "zh": "边",
+            "importance": 0.074868,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "割边/cut edge",
+                "zh": "割边",
+                "importance": 0.046564,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/11",
+      "zh": "第 11 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.970883,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "图的着色/graph coloring",
+              "zh": "图的着色",
+              "importance": 0.970883,
+              "relation": null,
+              "related": [
+                "对偶图",
+                "平面图"
+              ],
+              "children": [
+                {
+                  "id": "点着色/vertex coloring",
+                  "zh": "点着色",
+                  "importance": 0.905103,
+                  "relation": "belong_to",
+                  "related": [
+                    "面着色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "面着色/face coloring",
+                  "zh": "面着色",
+                  "importance": 0.840099,
+                  "relation": "belong_to",
+                  "related": [
+                    "点着色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "边染色/edge coloring",
+                  "zh": "边染色",
+                  "importance": 0.291271,
+                  "relation": "belong_to",
+                  "related": [
+                    "点染色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "地图着色/map coloring",
+                  "zh": "地图着色",
+                  "importance": 0.290328,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "可平面图/planar embeddable graph",
+              "zh": "可平面图",
+              "importance": 0.775744,
+              "relation": null,
+              "related": [
+                "平面嵌入"
+              ],
+              "children": [
+                {
+                  "id": "平面图/planar graph",
+                  "zh": "平面图",
+                  "importance": 0.984791,
+                  "relation": "belong_to",
+                  "related": [
+                    "图的着色",
+                    "域着色",
+                    "对偶图",
+                    "点染色"
+                  ],
+                  "children": [
+                    {
+                      "id": "对偶图/dual graph",
+                      "zh": "对偶图",
+                      "importance": 1.0,
+                      "relation": "belong_to",
+                      "related": [
+                        "图的着色",
+                        "平面图",
+                        "简单图",
+                        "自环",
+                        "重边"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "边/edge",
+              "zh": "边",
+              "importance": 0.074868,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "割边/cut edge",
+                  "zh": "割边",
+                  "importance": 0.046564,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 12,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "图的着色/graph coloring",
+    "root_zh": "第 11 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 24,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 14,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "保持原有结构，仅将'边染色'改为'边着色'以统一术语，其余未做改动。",
+    "chapters": [
+      "第4章 平面图与图的着色"
+    ],
+    "llm_tune_notes": "保持原有结构，仅将'边染色'改为'边着色'以统一术语，其余未做改动。",
+    "chapter_candidates": [
+      "第4章 平面图与图的着色"
+    ]
+  }
+}

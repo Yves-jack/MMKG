@@ -1,0 +1,45 @@
+{
+  "lecture_id": "22",
+  "candidates": [
+    "第1章 命题逻辑的基本概念",
+    "第2章 命题逻辑的等值和推理演算"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "命题逻辑/propositional logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "该子树包含命题变项、命题公式、合式公式、重言式、等值式等命题逻辑基本概念，属于第1章范畴。"
+    },
+    {
+      "subtree_root_id": "推理演算/inference calculus",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.95,
+      "reason": "该子树涵盖前提、结论、推理规则、推理公式等推理演算核心内容，属于第2章范畴。"
+    },
+    {
+      "subtree_root_id": "推理方法/inference method",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.8,
+      "reason": "推理方法（公理系统推理）属于推理演算的方法论部分，归入第2章。"
+    },
+    {
+      "subtree_root_id": "子句集/clause set",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.85,
+      "reason": "子句集、子句、归结式是归结推理方法的基础，属于第2章推理演算内容。"
+    },
+    {
+      "subtree_root_id": "合取范式/conjunctive normal form",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.85,
+      "reason": "合取范式是命题逻辑等值演算和推理的重要工具，归入第2章。"
+    },
+    {
+      "subtree_root_id": "归结证明过程/Resolution proof process",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.9,
+      "reason": "归结证明过程是归结推理方法的具体应用，属于第2章推理演算内容。"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 from functools import lru_cache
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -863,28 +864,41 @@ def resolve_filtered_textbook_edges(
     return out
 
 
+def _lookup_named(
+    maps: dict[str, Any] | None, name: str
+) -> Any | None:
+    if not maps:
+        return None
+    if name in maps:
+        return maps[name]
+    z = zh(name)
+    if z in maps:
+        return maps[z]
+    for k, v in maps.items():
+        if zh(str(k)) == z:
+            return v
+    return None
+
+
 def nodes_from_names(
     names: set[str],
     *,
     kind: str = "entity",
     importance: dict[str, float] | None = None,
     importance_base: dict[str, float] | None = None,
+    contributions: dict[str, dict[str, float]] | None = None,
+    factor_counts: dict[str, dict[str, int]] | None = None,
 ) -> list[dict]:
     from teachkg.textbook_kg.importance_feedback import importance_to_node_size
 
     def lookup(maps: dict[str, float] | None, name: str) -> float | None:
-        if not maps:
+        hit = _lookup_named(maps, name)
+        if hit is None:
             return None
-        score = maps.get(name)
-        if score is not None:
-            return float(score)
-        score = maps.get(zh(name))
-        if score is not None:
-            return float(score)
-        for k, v in maps.items():
-            if zh(k) == zh(name):
-                return float(v)
-        return None
+        try:
+            return float(hit)
+        except (TypeError, ValueError):
+            return None
 
     out = []
     for name in sorted(names):
@@ -912,8 +926,69 @@ def nodes_from_names(
         elif base is not None:
             node["importance_base"] = round(float(base), 4)
             node["title"] = f"{name}\n教材先验: {float(base):.3f}"
+        contrib = _lookup_named(contributions, name)
+        if isinstance(contrib, dict) and contrib:
+            node["importance_contributions"] = {
+                str(k): round(float(v), 6)
+                for k, v in contrib.items()
+                if v is not None and float(v) == float(v)
+            }
+        counts = _lookup_named(factor_counts, name)
+        if isinstance(counts, dict) and counts:
+            node["importance_factor_counts"] = {
+                str(k): (int(v) if float(v) == int(float(v)) else round(float(v), 1))
+                for k, v in counts.items()
+                if v is not None
+            }
         out.append(node)
     return out
+
+
+def decorate_payload_classroom_factors(
+    payload: dict,
+    *,
+    contributions: dict[str, dict[str, float]] | None = None,
+    factor_counts: dict[str, dict[str, int]] | None = None,
+) -> dict:
+    """给已有 pipeline payload 各 stage 节点补课堂因素贡献与原始计数。"""
+    if not contributions and not factor_counts:
+        return payload
+    items = payload.get("items") or []
+    for item in items:
+        for stage in item.get("stages") or []:
+            nodes = stage.get("nodes") or []
+            if not nodes:
+                continue
+            decorated: list[dict] = []
+            for n in nodes:
+                node = dict(n)
+                name = str(node.get("id") or "")
+                if not name:
+                    decorated.append(node)
+                    continue
+                if contributions and not node.get("importance_contributions"):
+                    contrib = _lookup_named(contributions, name)
+                    if isinstance(contrib, dict) and contrib:
+                        node["importance_contributions"] = {
+                            str(k): round(float(v), 6)
+                            for k, v in contrib.items()
+                            if v is not None and float(v) == float(v)
+                        }
+                if factor_counts and not node.get("importance_factor_counts"):
+                    counts = _lookup_named(factor_counts, name)
+                    if isinstance(counts, dict) and counts:
+                        node["importance_factor_counts"] = {
+                            str(k): (
+                                int(v)
+                                if float(v) == int(float(v))
+                                else round(float(v), 1)
+                            )
+                            for k, v in counts.items()
+                            if v is not None
+                        }
+                decorated.append(node)
+            stage["nodes"] = decorated
+    return payload
 
 
 def as_name_set(value) -> set[str]:
@@ -1132,6 +1207,50 @@ def build_cross_cue_window_items(
     return out
 
 
+def _collapse_same_zh_names(
+    names: set[str],
+    *,
+    textbook_names: set[str] | None = None,
+) -> tuple[set[str], dict[str, str]]:
+    """同中文主名合并；返回 (collapsed_set, alias→canonical)。"""
+    clean = {str(n).strip() for n in names if str(n).strip()}
+    if len(clean) < 2:
+        return clean, {}
+    from teachkg.stage2_kg_build.entity_merge import build_entity_merge_map
+
+    tb = {str(n).strip() for n in (textbook_names or set()) if str(n).strip()}
+    mmap = build_entity_merge_map(sorted(clean), textbook_entity_names=tb)
+    if not mmap:
+        return clean, {}
+    return {mmap.get(n, n) for n in clean}, mmap
+
+
+def _remap_edge_endpoints(edges: list[dict], mmap: dict[str, str]) -> list[dict]:
+    if not edges or not mmap:
+        return edges
+    out: list[dict] = []
+    seen: set[tuple[str, str, str, str]] = set()
+    for e in edges:
+        row = dict(e)
+        frm = mmap.get(str(row.get("from") or ""), row.get("from") or "")
+        to = mmap.get(str(row.get("to") or ""), row.get("to") or "")
+        row["from"] = frm
+        row["to"] = to
+        if not frm or not to or frm == to:
+            continue
+        key = (
+            frm,
+            str(row.get("relation") or row.get("label") or ""),
+            to,
+            str(row.get("source") or ""),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(row)
+    return out
+
+
 def seed_nodes_for_display(
     sg: dict, tb: list[dict]
 ) -> tuple[list[dict], set[str], set[str], set[str], set[str]]:
@@ -1157,6 +1276,24 @@ def seed_nodes_for_display(
     else:
         alias = set(seeds)
         emb = set()
+
+    # 教材母图同中文名去重（种子匹配阶段消掉重复实体）
+    tb_names = set()
+    for t in tb:
+        for k in ("subject", "object", "head", "tail"):
+            v = t.get(k)
+            if v:
+                tb_names.add(str(v).strip())
+    pool = seeds | alias | emb | cand_alias | cand_emb | tb_names
+    _, mmap = _collapse_same_zh_names(pool, textbook_names=tb_names)
+    if mmap:
+        seeds = {mmap.get(n, n) for n in seeds}
+        alias = {mmap.get(n, n) for n in alias}
+        emb = {mmap.get(n, n) for n in emb} - alias
+        cand_alias = {mmap.get(n, n) for n in cand_alias}
+        cand_emb = {mmap.get(n, n) for n in cand_emb} - cand_alias
+        alias &= seeds
+        emb = (emb & seeds) - alias
 
     # 候选 − 保留 = 被筛掉（灰）
     if not cand_alias and not cand_emb:
@@ -1492,6 +1629,15 @@ def build_cue_payload(
         + sum(1 for n in seed_nodes_list if n.get("kind") == "seed_filtered_embedding")
     )
 
+    # 种子/教材同中文名映射：后续教材子图及修正/增量边端点一并改写
+    name_pool = set(seed_nodes) | set(filtered_seeds)
+    for t in list(tb) + list(delta) + list(kgc) + list(fb) + list(cross):
+        for k in ("subject", "object", "head", "tail"):
+            v = t.get(k)
+            if v:
+                name_pool.add(str(v).strip())
+    _, zh_mmap = _collapse_same_zh_names(name_pool, textbook_names=set(seed_nodes))
+
     tb_edges = [edge_from_trip(t, stage="textbook", idx=i) for i, t in enumerate(tb)]
     delta_edges = [edge_from_trip(t, stage="delta", idx=i) for i, t in enumerate(delta)]
     kgc_edges = [
@@ -1501,8 +1647,16 @@ def build_cue_payload(
     cross_edges = [
         edge_from_trip(t, stage="cross_cue", idx=i) for i, t in enumerate(cross)
     ]
+    if zh_mmap:
+        tb_edges = _remap_edge_endpoints(tb_edges, zh_mmap)
+        delta_edges = _remap_edge_endpoints(delta_edges, zh_mmap)
+        kgc_edges = _remap_edge_endpoints(kgc_edges, zh_mmap)
+        fb_edges = _remap_edge_endpoints(fb_edges, zh_mmap)
+        cross_edges = _remap_edge_endpoints(cross_edges, zh_mmap)
     delta_all_edges = delta_edges + kgc_edges
     filtered_edges = resolve_filtered_textbook_edges(cue, tb_edges, retriever)
+    if zh_mmap:
+        filtered_edges = _remap_edge_endpoints(filtered_edges, zh_mmap)
     textbook_stage_edges = tb_edges + filtered_edges
     textbook_nodes = {e["from"] for e in textbook_stage_edges} | {
         e["to"] for e in textbook_stage_edges
@@ -1535,6 +1689,8 @@ def build_cue_payload(
         )
         for i, t in enumerate(corr_trips)
     ]
+    if zh_mmap:
+        corr_edges = _remap_edge_endpoints(corr_edges, zh_mmap)
     action_by_orig = _index_corr_actions(corr_actions)
     input_by_spo: dict[tuple[str, str, str], dict] = {}
     for row in corr_meta.get("input_triples") or []:
@@ -1824,7 +1980,7 @@ def build_cue_payload(
         },
         {
             "id": "preprocess",
-            "title": "文本预处理",
+            "title": "文本清洗",
             "subtitle": "校对文本 ↔ extract_text",
             "blurb": "左为 PPT 校对后的口述文本，右为清洗后的可抽取文本（去寒暄、例子与介绍引入）。",
             "nodes": [],
@@ -2372,7 +2528,12 @@ def load_or_compute_importance(
     tb = cfg.get("stage1", "textbook_kg", default={}) or {}
     fb_cfg = tb.get("importance_feedback", {}) or {}
     if not fb_cfg.get("enabled", True):
-        return {"scores": {}, "base_norm": {}, "classroom_norm": {}}
+        return {
+            "scores": {},
+            "base_norm": {},
+            "classroom_norm": {},
+            "contributions": {},
+        }
     configure_entity_weights(fb_cfg)
 
     out = (
@@ -2393,6 +2554,18 @@ def load_or_compute_importance(
             or existing.get("by_context")
             or (existing.get("meta") or {}).get("source") == "merged_lectures"
         ):
+            contributions: dict[str, dict[str, float]] = {}
+            ctx_key = f"lecture:{lecture_id}" if lecture_id else ""
+            ctx = (existing.get("by_context") or {}).get(ctx_key) or {}
+            ents = ctx.get("entities") or existing.get("entities") or {}
+            for name, rec in ents.items():
+                if isinstance(rec, dict) and isinstance(rec.get("contributions"), dict):
+                    contributions[str(name)] = {
+                        str(k): float(v)
+                        for k, v in rec["contributions"].items()
+                        if v is not None
+                    }
+            classroom = ctx.get("classroom") or existing.get("classroom_norm") or {}
             return {
                 "scores": {str(k): float(v) for k, v in scores.items()},
                 "base_norm": {
@@ -2400,9 +2573,9 @@ def load_or_compute_importance(
                     for k, v in (existing.get("base_norm") or {}).items()
                 },
                 "classroom_norm": {
-                    str(k): float(v)
-                    for k, v in (existing.get("classroom_norm") or {}).items()
+                    str(k): float(v) for k, v in classroom.items()
                 },
+                "contributions": contributions,
             }
 
     base_path = ROOT / tb.get("path", "data/textbook")
@@ -2479,6 +2652,8 @@ def load_or_compute_importance(
         n_lectures=n_lectures,
         idf_power=float(fb_cfg.get("lecture_idf_power", 1.0)),
         meta=meta,
+        channel_weights=fb_cfg.get("channel_weights") or None,
+        mode=str(fb_cfg.get("mode") or "full"),
     )
     if write:
         save_feedback(out, result)
@@ -2490,6 +2665,7 @@ def load_or_compute_importance(
         "scores": result.scores,
         "base_norm": result.base_norm,
         "classroom_norm": result.classroom_norm,
+        "contributions": dict(result.contributions or {}),
     }
 
 
@@ -2522,10 +2698,17 @@ def build_session_payload(
     trips_b: list[dict],
 ) -> dict:
     """一堂课（两讲，约 110 分钟）图谱融合展示。"""
+    from teachkg.textbook_kg.importance_signals import compute_classroom_factor_counts
+
     imp = load_or_compute_importance(
         course, trips_a + trips_b, write=False, lecture_id=lec_a
     )
-    scores, base = imp["scores"], imp["base_norm"]
+    scores = imp.get("classroom_norm") or imp["scores"]
+    if not scores:
+        scores = imp["scores"]
+    base = imp["base_norm"]
+    contributions = imp.get("contributions") or {}
+    factor_counts = compute_classroom_factor_counts(trips_a + trips_b)
 
     cues_path = ROOT / "data/processed" / course / "filtered_cues.jsonl"
     all_cues = load_jsonl(cues_path) if cues_path.is_file() else []
@@ -2636,7 +2819,7 @@ def build_session_payload(
 
     gallery_a = list_lecture_ppt_gallery(course, lec_a, ROOT / "data" / "viz" / course)
     gallery_b = list_lecture_ppt_gallery(course, lec_b, ROOT / "data" / "viz" / course)
-    return {
+    payload = {
         "brand": "VAT-KG",
         "product": "TeachKG Pipeline",
         "mode": "session",
@@ -2663,6 +2846,11 @@ def build_session_payload(
             }
         ],
     }
+    return decorate_payload_classroom_factors(
+        payload,
+        contributions=contributions,
+        factor_counts=factor_counts,
+    )
 
 
 def write_showcase_html(payload: dict, html_dir: Path, stem: str) -> tuple[Path, Path]:
@@ -2707,7 +2895,15 @@ def main() -> None:
     )
     parser.add_argument(
         "--until-stage",
-        choices=["asr", "preprocess", "seeds", "textbook", "correct", "delta", "merge"],
+        choices=[
+            "asr",
+            "preprocess",
+            "seeds",
+            "textbook",
+            "correct",
+            "delta",
+            "merge",
+        ],
         default=None,
         help="只导出到指定步骤（如 seeds），后续教材/增量等跳过",
     )
@@ -2718,7 +2914,15 @@ def main() -> None:
     html_dir.mkdir(parents=True, exist_ok=True)
 
     until = args.until_stage
-    stage_order = ["asr", "preprocess", "seeds", "textbook", "correct", "delta", "merge"]
+    stage_order = [
+        "asr",
+        "preprocess",
+        "seeds",
+        "textbook",
+        "correct",
+        "delta",
+        "merge",
+    ]
 
     def clip_stages(item: dict) -> dict:
         if not until:
@@ -2784,8 +2988,10 @@ def main() -> None:
         for r in load_jsonl(ROOT / "data/kg" / course / "triplets.jsonl")
         if str(r.get("lecture_id")) == lec
     ]
+    from teachkg.textbook_kg.importance_signals import compute_fragment_light_importance
+
+    # 教材先验仍可按讲次；片段课堂分在各自 cue 三元组上现算（提及+结构）
     imp = load_or_compute_importance(course, trips_all, write=False, lecture_id=lec)
-    importance = imp["scores"]
     importance_base = imp["base_norm"]
     by_cue: dict[str, list] = defaultdict(list)
     for t in trips_all:
@@ -2806,15 +3012,25 @@ def main() -> None:
             continue
         if only_seeds and not extract and not asr:
             continue
+        frag_scores, frag_contrib, frag_counts = (
+            ({}, {}, {})
+            if only_seeds
+            else compute_fragment_light_importance(trips, extract_text=extract)
+        )
         item = build_cue_payload(
             cue,
             [] if only_seeds else trips,
             html_dir,
             retriever=None if only_seeds else retriever,
-            importance=importance,
+            importance=frag_scores,
             importance_base=importance_base,
             course_id=course,
         )
+        item = decorate_payload_classroom_factors(
+            {"items": [item]},
+            contributions=frag_contrib,
+            factor_counts=frag_counts,
+        )["items"][0]
         items.append(clip_stages(item))
 
     # 片段列表末尾：跨段窗口（仅拼接文本 + 跨段图谱）
@@ -2831,15 +3047,55 @@ def main() -> None:
             [c for c in cues if _resolve_extract_text(c)],
             key=lambda c: (float(c.get("start_sec") or 0), str(c.get("cue_id") or "")),
         )
+        # 跨段窗口：用窗口内三元组现算片段课堂分（build 内再挂到节点）
         cross_items = build_cross_cue_window_items(
             ordered_cues,
             trips_all,
             lecture_id=lec,
-            importance=importance,
+            importance={},
             importance_base=importance_base,
         )
+        for item in cross_items:
+            win_trips = [
+                t
+                for t in trips_all
+                if str(t.get("cue_id") or "")
+                in {
+                    str(x)
+                    for x in (
+                        (item.get("cue_ids") or [])
+                        + ([item.get("cue_id")] if item.get("cue_id") else [])
+                    )
+                }
+            ]
+            # 回退：用该窗口 merge 边端点无法还原全文三元组时，仍用讲次分空映射
+            if not win_trips:
+                # 从窗口 stages 边无法重建 trips；保持空分，前端会按边重算
+                continue
+            win_text = str(item.get("extract_text") or "").strip()
+            frag_scores, frag_contrib, frag_counts = compute_fragment_light_importance(
+                win_trips, extract_text=win_text or None
+            )
+            decorate_payload_classroom_factors(
+                {"items": [item]},
+                contributions=frag_contrib,
+                factor_counts=frag_counts,
+            )
+            # 覆写节点 importance 为窗口分
+            for stage in item.get("stages") or []:
+                for n in stage.get("nodes") or []:
+                    name = str(n.get("id") or "")
+                    hit = frag_scores.get(name)
+                    if hit is None:
+                        z = zh(name)
+                        for k, v in frag_scores.items():
+                            if zh(k) == z:
+                                hit = v
+                                break
+                    if hit is not None:
+                        n["importance"] = round(float(hit), 4)
 
-    subtitle = "从课堂口述到教材对齐子图；节点大小=教材先验+课堂反馈"
+    subtitle = "从课堂口述到教材对齐子图；片段重要性=本段提及+结构"
     if until == "seeds":
         subtitle = "文本到种子筛选（别名+向量统一严筛；向量上限随文本长度动态变化）"
 

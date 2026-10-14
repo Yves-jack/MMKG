@@ -311,39 +311,6 @@ export function compareAssetsByAppearance(a: AssetCard, b: AssetCard): number {
   );
 }
 
-const cardMapCache = new WeakMap<object, Map<string, AssetCard>>();
-
-function cardsById(library: AssetsLibrary): Map<string, AssetCard> {
-  const hit = cardMapCache.get(library as object);
-  if (hit) return hit;
-  const map = new Map<string, AssetCard>();
-  for (const card of library.cards || []) {
-    const id = String(card.asset_id || "").trim();
-    if (id) map.set(id, card);
-  }
-  cardMapCache.set(library as object, map);
-  return map;
-}
-
-function collectIndexedAssetIds(
-  index: Record<string, string[]>,
-  entityId: string,
-): Set<string> {
-  const id = String(entityId || "").trim();
-  if (!id) return new Set();
-  const idZh = zhPart(id);
-  const keys = [id, idZh, id.toLowerCase(), idZh.toLowerCase()];
-  const out = new Set<string>();
-  for (const key of keys) {
-    if (!key) continue;
-    for (const assetId of index[key] || []) {
-      const a = String(assetId || "").trim();
-      if (a) out.add(a);
-    }
-  }
-  return out;
-}
-
 export function findAssetsForEntity(
   library: AssetsLibrary | null | undefined,
   entityId: string,
@@ -351,8 +318,12 @@ export function findAssetsForEntity(
 ): AssetCard[] {
   if (!library?.cards?.length || !entityId) return [];
   const id = String(entityId).trim();
+  const idZh = zhPart(id);
   const index = library.index_by_entity || {};
-  const ids = collectIndexedAssetIds(index, id);
+  const ids = new Set<string>([
+    ...(index[id] || []),
+    ...(index[idZh] || []),
+  ]);
   const lectureId =
     options?.lectureId != null && String(options.lectureId) !== ""
       ? String(options.lectureId)
@@ -365,30 +336,23 @@ export function findAssetsForEntity(
 
   const out: AssetCard[] = [];
   const seen = new Set<string>();
-  const accept = (card: AssetCard) => {
-    if (kindAllow && !kindAllow.has(String(card.kind))) return;
-    if (seen.has(card.asset_id)) return;
+  for (const card of library.cards) {
+    if (kindAllow && !kindAllow.has(String(card.kind))) continue;
+    const hit =
+      ids.has(card.asset_id) || entityMatchesAsset(id, card);
+    if (!hit || seen.has(card.asset_id)) continue;
     if (llmPrinciplesOnly && card.kind === "principle" && card.source !== "llm") {
-      return;
+      continue;
     }
     const gLec = card.grounding?.lecture_id;
     if (lectureOnly) {
-      if (card.source !== "llm") return;
-      if (String(gLec || "") !== lectureId) return;
+      if (card.source !== "llm") continue;
+      if (String(gLec || "") !== lectureId) continue;
     } else if (lectureId && gLec != null && String(gLec) !== "" && String(gLec) !== lectureId) {
-      return;
+      continue;
     }
     seen.add(card.asset_id);
     out.push(card);
-  };
-
-  // 只走实体索引。全表扫描 1500+ 卡会在选中节点时卡死主线程；无索引即视为无关联资产。
-  if (ids.size > 0) {
-    const byId = cardsById(library);
-    for (const assetId of ids) {
-      const card = byId.get(assetId);
-      if (card) accept(card);
-    }
   }
   out.sort(
     (a, b) =>

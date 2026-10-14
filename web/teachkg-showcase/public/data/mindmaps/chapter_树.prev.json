@@ -1,0 +1,361 @@
+{
+  "lecture_id": "chapter:第3章 树",
+  "root": {
+    "id": "__chapter__/树",
+    "zh": "第3章 树",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/连通图，连通支/联通分量，生成树，分割度",
+        "zh": "连通图，连通支/联通分量，生成树，分割度",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/图论第3章 树",
+        "zh": "图论第3章 树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/树的定义",
+        "zh": "树的定义",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/树的等价定义",
+        "zh": "树的等价定义",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/树的其他性质",
+        "zh": "树的其他性质",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/支撑树/生成树",
+        "zh": "支撑树/生成树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/二叉树",
+        "zh": "二叉树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "二叉树/binary tree",
+            "zh": "二叉树",
+            "importance": 0.81403,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "最优二叉树/optimal binary tree",
+            "zh": "最优二叉树",
+            "importance": 0.867942,
+            "relation": "belong_to",
+            "related": [
+              "Huffman算法",
+              "哈夫曼算法",
+              "哈夫曼编码",
+              "最优编码",
+              "最小编码方式"
+            ],
+            "children": []
+          },
+          {
+            "id": "完全二叉树/complete binary tree",
+            "zh": "完全二叉树",
+            "importance": 0.71288,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/二叉树的性质",
+        "zh": "二叉树的性质",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Huffman树：最优二叉树",
+        "zh": "Huffman树：最优二叉树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Huffman编码",
+        "zh": "Huffman编码",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Huffman算法：贪心算法",
+        "zh": "Huffman算法：贪心算法",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Huffman算法伪代码",
+        "zh": "Huffman算法伪代码",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理1: 由Huffman算法得到的二叉树是最优二叉树",
+        "zh": "定理1: 由Huffman算法得到的二叉树是最优二叉树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例：Huffman算法",
+        "zh": "例：Huffman算法",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/最优二叉树-Huffman树",
+        "zh": "最优二叉树-Huffman树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/用Kruskal算法求下图中的最短树",
+        "zh": "用Kruskal算法求下图中的最短树",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/树",
+      "zh": "第3章 树",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/连通图，连通支/联通分量，生成树，分割度",
+          "zh": "连通图，连通支/联通分量，生成树，分割度",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/图论第3章 树",
+          "zh": "图论第3章 树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/树的定义",
+          "zh": "树的定义",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/树的等价定义",
+          "zh": "树的等价定义",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/树的其他性质",
+          "zh": "树的其他性质",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/支撑树/生成树",
+          "zh": "支撑树/生成树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/二叉树",
+          "zh": "二叉树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "二叉树/binary tree",
+              "zh": "二叉树",
+              "importance": 0.81403,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "最优二叉树/optimal binary tree",
+              "zh": "最优二叉树",
+              "importance": 0.867942,
+              "relation": "belong_to",
+              "related": [
+                "Huffman算法",
+                "哈夫曼算法",
+                "哈夫曼编码",
+                "最优编码",
+                "最小编码方式"
+              ],
+              "children": []
+            },
+            {
+              "id": "完全二叉树/complete binary tree",
+              "zh": "完全二叉树",
+              "importance": 0.71288,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/二叉树的性质",
+          "zh": "二叉树的性质",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Huffman树：最优二叉树",
+          "zh": "Huffman树：最优二叉树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Huffman编码",
+          "zh": "Huffman编码",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Huffman算法：贪心算法",
+          "zh": "Huffman算法：贪心算法",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Huffman算法伪代码",
+          "zh": "Huffman算法伪代码",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理1: 由Huffman算法得到的二叉树是最优二叉树",
+          "zh": "定理1: 由Huffman算法得到的二叉树是最优二叉树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例：Huffman算法",
+          "zh": "例：Huffman算法",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/最优二叉树-Huffman树",
+          "zh": "最优二叉树-Huffman树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/用Kruskal算法求下图中的最短树",
+          "zh": "用Kruskal算法求下图中的最短树",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 20,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第3章 树",
+    "root_zh": "树",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "7",
+      "8",
+      "12",
+      "16"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

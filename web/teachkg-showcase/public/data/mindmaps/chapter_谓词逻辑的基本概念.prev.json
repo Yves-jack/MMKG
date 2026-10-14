@@ -1,0 +1,165 @@
+{
+  "lecture_id": "chapter:第4章 谓词逻辑的基本概念",
+  "root": {
+    "id": "__chapter__/谓词逻辑的基本概念",
+    "zh": "第4章 谓词逻辑的基本概念",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/有限论域下的量词",
+        "zh": "有限论域下的量词",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词公式的解释",
+        "zh": "谓词公式的解释",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词公式/predicate formula",
+            "zh": "谓词公式",
+            "importance": 0.955769,
+            "relation": "part_of",
+            "related": [
+              "个体变项",
+              "全集",
+              "映射",
+              "谓词公式的解释"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/例:谓词公式的解释",
+        "zh": "例:谓词公式的解释",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词公式的真假性",
+        "zh": "谓词公式的真假性",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例：谓词公式的真假性",
+        "zh": "例：谓词公式的真假性",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/即在有限域上,公式的普遍有效性和可满足性仅依赖于个体域的大小.",
+        "zh": "即在有限域上,公式的普遍有效性和可满足性仅依赖于个体域的大小.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/谓词逻辑的基本概念",
+      "zh": "第4章 谓词逻辑的基本概念",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/有限论域下的量词",
+          "zh": "有限论域下的量词",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词公式的解释",
+          "zh": "谓词公式的解释",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词公式/predicate formula",
+              "zh": "谓词公式",
+              "importance": 0.955769,
+              "relation": "part_of",
+              "related": [
+                "个体变项",
+                "全集",
+                "映射",
+                "谓词公式的解释"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/例:谓词公式的解释",
+          "zh": "例:谓词公式的解释",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词公式的真假性",
+          "zh": "谓词公式的真假性",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例：谓词公式的真假性",
+          "zh": "例：谓词公式的真假性",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/即在有限域上,公式的普遍有效性和可满足性仅依赖于个体域的大小.",
+          "zh": "即在有限域上,公式的普遍有效性和可满足性仅依赖于个体域的大小.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 8,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 谓词逻辑的基本概念",
+    "root_zh": "谓词逻辑的基本概念",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "29",
+      "30"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

@@ -267,8 +267,12 @@ stage1:
       '44': 第12章 实数集合与集合的基数
     importance_feedback:
       enabled: true
-      alpha: 0.45
-      adaptive_alpha: true
+      # light：权威分 = classroom_norm = norm(IDF(0.75·提及 + 0.25·结构))
+      #        板书通道关闭（PPT 证据覆盖率过高、与提及高度共线）；用跨讲 IDF 压通讲 hub
+      # full：旧多通道 + 叠层修补（IDF/章外/hub/自适应α）
+      mode: light
+      alpha: 0.45                 # full 模式用；light 忽略
+      adaptive_alpha: false       # light 关闭
       adaptive_alpha_min: 0.28
       adaptive_alpha_scope_classroom: true
       chapter_mix: 0.7
@@ -276,10 +280,11 @@ stage1:
       multi_chapter_top_k: 3
       multi_chapter_min_ratio: 0.45
       secondary_chapter_cap: 0.25
-      off_chapter_penalty: 0.45
-      lecture_idf_power: 1.0
-      use_log_duration: false  # 已废弃：mention 通道只用次数+最长匹配
-      classroom_hub_penalty: 0.15
+      off_chapter_penalty: 1.0     # light 跳过；写 1.0 表示无罚（兼容 full）
+      lecture_idf_power: 1.0      # light：跨讲 IDF 指数；idf = log1p(N/df)^power
+      use_log_duration: false     # mention 通道只用次数+最长匹配
+      classroom_hub_penalty: 0.0  # light 跳过 hub 罚
+      # 以下 generic/meta 仅 full 模式通道内实体降权仍可能用到；light 已改走 IDF
       generic_weight: 0.25
       meta_weight: 0.35
       replace_generic_entities: false
@@ -294,12 +299,12 @@ stage1:
       short_name_max_len: 0
       short_name_weight: 0.55
       channel_weights:
-        mention_time: 0.45
-        board_ppt: 0.25
-        discourse_role: 0.2
-        structure_graph: 0.1
+        mention_time: 0.75        # light：提及 + 结构（板书关闭）
+        structure_graph: 0.25
+        board_ppt: 0.0
+        discourse_role: 0.0
         app_feedback: 0.0
-      new_entity_scale: 0.88
+      new_entity_scale: 0.88      # full 模式用；light 不截断课堂新实体
       new_entity_max: 0.75
       assets_library: assets/library.json
       app_feedback_events: app_feedback_events.jsonl
@@ -396,9 +401,10 @@ stage1:
     # 中间接入 A：跑通畅；已有 extract_text 当作 B，不重跑 B / 不重抽
     reuse_existing_extract_as_b: true
     rules:
-      # 与 LLM two_pass 配套：轻规则只清版式/寒暄/例题标签
+      # 与 LLM-A 配套：只做格式/仪式层（类别级）；语义删减交给 A/B
       remove_markdown_noise: true
       remove_classroom_admin: true
+      remove_legacy_transition_templates: false  # 课名硬编码默认关
       remove_intro_framing: false
       remove_non_knowledge: false
       knowledge_min_score: 1.0

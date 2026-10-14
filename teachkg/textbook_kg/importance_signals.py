@@ -25,6 +25,9 @@ _CHANNEL_ORDER = (
     "app_feedback",
 )
 
+# related_with 为双向弱关联：计入结构度，但权重减半；层次向上传递不使用该关系
+RELATED_WITH_STRUCTURE_WEIGHT = 0.5
+
 
 def default_channel_weights() -> dict[str, float]:
     return {
@@ -34,6 +37,46 @@ def default_channel_weights() -> dict[str, float]:
         "structure_graph": 0.10,
         "app_feedback": 0.0,
     }
+
+
+def default_channel_weights_light() -> dict[str, float]:
+    """轻量课堂分：提及 + 结构支撑（板书因几乎全覆盖、区分度弱已关掉）。"""
+    return {
+        "mention_time": 0.75,
+        "structure_graph": 0.25,
+        "board_ppt": 0.0,
+        "discourse_role": 0.0,
+        "app_feedback": 0.0,
+    }
+
+
+def compose_fragment_light_score(
+    mention: float,
+    structure: float,
+    *,
+    mention_beta: float | None = None,
+    structure_beta: float | None = None,
+) -> tuple[float, float, float]:
+    """轻量课堂分合成：β·log1p(计数)（未做 minmax；便于对照前端）。
+
+    score = 0.75·log1p(m) + 0.25·log1p(s)
+    返回 (score, m_part, s_part)。
+    """
+    cw = default_channel_weights_light()
+    m_beta = float(
+        mention_beta if mention_beta is not None else (cw.get("mention_time") or 0.75)
+    )
+    s_beta = float(
+        structure_beta
+        if structure_beta is not None
+        else (cw.get("structure_graph") or 0.25)
+    )
+    wsum = m_beta + s_beta
+    if wsum > 1e-12:
+        m_beta, s_beta = m_beta / wsum, s_beta / wsum
+    m_part = m_beta * math.log1p(max(0.0, float(mention)))
+    s_part = s_beta * math.log1p(max(0.0, float(structure)))
+    return m_part + s_part, m_part, s_part
 
 
 def _normalize(scores: dict[str, float]) -> dict[str, float]:
@@ -59,6 +102,13 @@ def _entity_helpers():
     return is_invalid_entity, entity_weight_multiplier
 
 
+def _entity_weight(name: str, *, enabled: bool = True) -> float:
+    if not enabled:
+        return 1.0
+    _, entity_weight_multiplier = _entity_helpers()
+    return entity_weight_multiplier(name)
+
+
 def _endpoints(t: dict[str, Any]) -> list[str]:
     is_invalid_entity, _ = _entity_helpers()
     out: list[str] = []
@@ -80,6 +130,19 @@ def _ctx_of(t: dict[str, Any]) -> str:
         or t.get("raw_asr_text")
         or ""
     )
+
+
+def _abstract_rel(t: dict[str, Any]) -> str:
+    return str(
+        t.get("abstract_relation") or t.get("relation") or t.get("label") or ""
+    ).split("|")[0].strip().lower()
+
+
+def _structure_endpoint_weight(t: dict[str, Any]) -> float:
+    """结构度边权：related_with=0.5，其余层次/属性边=1。"""
+    if _abstract_rel(t) == "related_with":
+        return float(RELATED_WITH_STRUCTURE_WEIGHT)
+    return 1.0
 
 
 def cue_position_multiplier(ctx: str) -> float:
@@ -143,11 +206,123 @@ def longest_match_mentions(text: str, vocab: list[tuple[str, str]]) -> list[str]
     return hits
 
 
+def count_entity_mentions(
+    triplets: Iterable[dict[str, Any]],
+    *,
+    extract_text: str | None = None,
+) -> dict[str, int]:
+    """提及次数：优先对片段最终清洗文本做最长匹配；否则按唯一语境回退端点次数。"""
+    trips = list(triplets)
+    endpoint_ids: list[str] = []
+    for t in trips:
+        endpoint_ids.extend(_endpoints(t))
+    vocab = _build_mention_vocab(endpoint_ids)
+
+    counts: dict[str, int] = defaultdict(int)
+    text = (extract_text or "").strip()
+    if text and vocab:
+        for eid in longest_match_mentions(text, vocab):
+            counts[eid] += 1
+        return {k: int(v) for k, v in counts.items() if v > 0}
+
+    text_keys: dict[str, str] = {}
+    for t in trips:
+        ctx = _ctx_of(t).strip()
+        if not ctx:
+            continue
+        key = str(t.get("cue_id") or "") + "\n" + ctx
+        text_keys[key] = ctx
+
+    if text_keys and vocab:
+        for ctx in text_keys.values():
+            for eid in longest_match_mentions(ctx, vocab):
+                counts[eid] += 1
+    else:
+        for t in trips:
+            for n in _endpoints(t):
+                counts[n] += 1
+    return {k: int(v) for k, v in counts.items() if v > 0}
+
+
+def count_entity_structure_degree(
+    triplets: Iterable[dict[str, Any]],
+) -> dict[str, float]:
+    """结构支撑有效度：端点加权度数（related_with 计 0.5）。"""
+    deg: dict[str, float] = defaultdict(float)
+    for t in triplets:
+        w = _structure_endpoint_weight(t)
+        if w <= 0:
+            continue
+        for n in _endpoints(t):
+            deg[n] += w
+    return {k: float(v) for k, v in deg.items() if v > 1e-12}
+
+
+def compute_classroom_factor_counts(
+    triplets: Iterable[dict[str, Any]],
+    *,
+    extract_text: str | None = None,
+) -> dict[str, dict[str, float]]:
+    """流水线展示用：实体 → {mention_time, structure_graph}（结构为加权有效度）。
+
+    提及优先用片段最终清洗文本；结构度仍按给定三元组/融合图边。
+    """
+    mentions = count_entity_mentions(triplets, extract_text=extract_text)
+    degrees = count_entity_structure_degree(triplets)
+    names = set(mentions) | set(degrees)
+    out: dict[str, dict[str, float]] = {}
+    for n in names:
+        d = float(degrees.get(n, 0.0))
+        out[n] = {
+            "mention_time": float(int(mentions.get(n, 0))),
+            # 保留一位小数，便于侧栏展示 related_with 半权
+            "structure_graph": round(d, 1) if abs(d - round(d)) > 1e-9 else float(int(round(d))),
+        }
+    return out
+
+
+def compute_fragment_light_importance(
+    triplets: Iterable[dict[str, Any]],
+    *,
+    extract_text: str | None = None,
+) -> tuple[
+    dict[str, float],
+    dict[str, dict[str, float]],
+    dict[str, dict[str, float]],
+]:
+    """片段级轻量课堂分：最终清洗文本提及 + 本段/融合图结构。
+
+    score = 0.75·log1p(提及) + 0.25·log1p(结构)（未做 minmax）
+    返回 (scores, contributions, factor_counts)。
+    """
+    trips = list(triplets)
+    if not trips:
+        return {}, {}, {}
+    counts = compute_classroom_factor_counts(trips, extract_text=extract_text)
+    scores: dict[str, float] = {}
+    contributions: dict[str, dict[str, float]] = {}
+    for n, fc in counts.items():
+        m = float(fc.get("mention_time") or 0.0)
+        s = float(fc.get("structure_graph") or 0.0)
+        if m <= 0 and s <= 0:
+            continue
+        score, m_part, s_part = compose_fragment_light_score(m, s)
+        if score <= 1e-12:
+            continue
+        scores[n] = score
+        contributions[n] = {
+            "mention_time": m_part,
+            "structure_graph": s_part,
+        }
+    return scores, contributions, counts
+
+
 def signal_mention_time(
     triplets: Iterable[dict[str, Any]],
     *,
     use_log_duration: bool = True,  # 保留参数兼容旧调用；已忽略
     count_bonus: float = 0.25,
+    use_entity_weights: bool = True,
 ) -> dict[str, float]:
     """提及次数通道（不再使用 cue 时长）。
 
@@ -155,7 +330,6 @@ def signal_mention_time(
     分数：平均语境权重 × (1+count_bonus) × log1p(次数)。
     """
     del use_log_duration  # 时长口径不可靠，显式丢弃
-    _, entity_weight_multiplier = _entity_helpers()
     trips = list(triplets)
 
     endpoint_ids: list[str] = []
@@ -195,13 +369,21 @@ def signal_mention_time(
         if c <= 0:
             continue
         avg_w = weight_sum[n] / c if c else 1.0
-        out[n] = avg_w * (1.0 + count_bonus) * math.log1p(c) * entity_weight_multiplier(n)
+        out[n] = (
+            avg_w
+            * (1.0 + count_bonus)
+            * math.log1p(c)
+            * _entity_weight(n, enabled=use_entity_weights)
+        )
     return out
 
 
-def signal_board_ppt(triplets: Iterable[dict[str, Any]]) -> dict[str, float]:
+def signal_board_ppt(
+    triplets: Iterable[dict[str, Any]],
+    *,
+    use_entity_weights: bool = True,
+) -> dict[str, float]:
     """板书/PPT 证据：有 ppt 帧的三元组端点按次计分（不含时长）。"""
-    _, entity_weight_multiplier = _entity_helpers()
     scores: dict[str, float] = defaultdict(float)
     for t in triplets:
         has_ppt = bool(
@@ -215,7 +397,7 @@ def signal_board_ppt(triplets: Iterable[dict[str, Any]]) -> dict[str, float]:
         if t.get("evidence_ppt_page_index") is not None:
             base += 0.25
         for n in _endpoints(t):
-            scores[n] += base * entity_weight_multiplier(n)
+            scores[n] += base * _entity_weight(n, enabled=use_entity_weights)
     return dict(scores)
 
 
@@ -225,7 +407,13 @@ def load_asset_concept_boost(assets_path: Path | None) -> dict[str, float]:
         return {}
     raw = json.loads(Path(assets_path).read_text(encoding="utf-8"))
     cards = raw.get("cards") or []
-    kind_w = {"theorem": 1.15, "principle": 1.25, "technique": 1.2}
+    # 原理 / 定理 / 公式优先抬升；方法次之；例子不抬升
+    kind_w = {
+        "principle": 1.30,
+        "theorem": 1.25,
+        "formula": 1.22,
+        "technique": 1.15,
+    }
     out: dict[str, float] = {}
     for card in cards:
         kind = str(card.get("kind") or "")
@@ -254,9 +442,9 @@ def signal_discourse_role(
     triplets: Iterable[dict[str, Any]],
     *,
     asset_boost: dict[str, float] | None = None,
+    use_entity_weights: bool = True,
 ) -> dict[str, float]:
     """话语角色：例子/论域实例降权，定义语境与资产概念抬升（按次，不含时长）。"""
-    _, entity_weight_multiplier = _entity_helpers()
     asset_boost = asset_boost or {}
     scores: dict[str, float] = defaultdict(float)
     as_prop_attr: Counter[str] = Counter()
@@ -298,7 +486,7 @@ def signal_discourse_role(
                 mult *= 0.5
             ab = asset_boost.get(n) or asset_boost.get(zh) or 1.0
             mult *= float(ab)
-            scores[n] += mult * entity_weight_multiplier(n)
+            scores[n] += mult * _entity_weight(n, enabled=use_entity_weights)
     return dict(scores)
 
 
@@ -306,15 +494,22 @@ def signal_structure_graph(
     triplets: Iterable[dict[str, Any]],
     *,
     textbook_names: set[str] | None = None,
+    use_entity_weights: bool = True,
 ) -> dict[str, float]:
-    """结构支撑：度数 + 是否教材实体。"""
-    _, entity_weight_multiplier = _entity_helpers()
+    """结构支撑：加权度数 + 是否教材实体。
+
+    related_with 为双向弱关联，端点度贡献为 RELATED_WITH_STRUCTURE_WEIGHT（默认 0.5）；
+    belong_to / part_of / depend_on / 其他关系仍计 1。层次向上传递不使用 related_with。
+    """
     textbook_names = textbook_names or set()
     tb_zh = {_zh(x) for x in textbook_names}
-    deg: Counter[str] = Counter()
+    deg: dict[str, float] = defaultdict(float)
     for t in triplets:
+        w = _structure_endpoint_weight(t)
+        if w <= 0:
+            continue
         for n in _endpoints(t):
-            deg[n] += 1
+            deg[n] += w
     out: dict[str, float] = {}
     for n, d in deg.items():
         score = math.log1p(d)
@@ -325,7 +520,7 @@ def signal_structure_graph(
                 score *= 0.55
             elif d <= 2:
                 score *= 0.75
-        out[n] = score * entity_weight_multiplier(n)
+        out[n] = score * _entity_weight(n, enabled=use_entity_weights)
     return out
 
 
@@ -362,17 +557,26 @@ def compute_channel_signals(
     textbook_names: set[str] | None = None,
     asset_boost: dict[str, float] | None = None,
     app_feedback_path: Path | None = None,
+    use_entity_weights: bool = True,
 ) -> dict[str, dict[str, float]]:
     return {
         "mention_time": signal_mention_time(
-            triplets, use_log_duration=use_log_duration
+            triplets,
+            use_log_duration=use_log_duration,
+            use_entity_weights=use_entity_weights,
         ),
-        "board_ppt": signal_board_ppt(triplets),
+        "board_ppt": signal_board_ppt(
+            triplets, use_entity_weights=use_entity_weights
+        ),
         "discourse_role": signal_discourse_role(
-            triplets, asset_boost=asset_boost
+            triplets,
+            asset_boost=asset_boost,
+            use_entity_weights=use_entity_weights,
         ),
         "structure_graph": signal_structure_graph(
-            triplets, textbook_names=textbook_names
+            triplets,
+            textbook_names=textbook_names,
+            use_entity_weights=use_entity_weights,
         ),
         "app_feedback": load_app_feedback_events(app_feedback_path),
     }

@@ -1,12 +1,12 @@
 {
   "courseId": "离散数学(图论+数理逻辑与集合论)",
-  "generatedAt": "2026-09-28T16:21:52.149Z",
+  "generatedAt": "2026-10-14T11:32:41.746Z",
   "items": [
     {
       "id": "mindmap_lectures",
       "type": "mindmap",
       "group": "思维导图",
-      "title": "讲次 · 图谱投影思维导图",
+      "title": "课 · 章 · 讲 知识导图",
       "href": "/course/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/mindmap",
       "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/mindmap_showcase.json",
       "scope": "lecture"
@@ -1278,6 +1278,15 @@
       "scope": "course"
     },
     {
+      "id": "kg_processed_lecture_1",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 1 讲 · 预计算",
+      "stem": "kg_processed_lecture_1",
+      "lectureId": "1",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_1.json"
+    },
+    {
       "id": "review_lecture_1",
       "type": "review",
       "group": "应用",
@@ -1288,6 +1297,15 @@
       "lectureId": "1"
     },
     {
+      "id": "kg_processed_lecture_2",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 2 讲 · 预计算",
+      "stem": "kg_processed_lecture_2",
+      "lectureId": "2",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_2.json"
+    },
+    {
       "id": "review_lecture_2",
       "type": "review",
       "group": "应用",
@@ -1296,6 +1314,551 @@
       "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/review/lecture_2.json",
       "scope": "lecture",
       "lectureId": "2"
+    },
+    {
+      "id": "kg_processed_lecture_3",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 3 讲 · 预计算",
+      "stem": "kg_processed_lecture_3",
+      "lectureId": "3",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_3.json"
+    },
+    {
+      "id": "kg_processed_lecture_4",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 4 讲 · 预计算",
+      "stem": "kg_processed_lecture_4",
+      "lectureId": "4",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_4.json"
+    },
+    {
+      "id": "kg_processed_lecture_5",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 5 讲 · 预计算",
+      "stem": "kg_processed_lecture_5",
+      "lectureId": "5",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_5.json"
+    },
+    {
+      "id": "kg_processed_lecture_6",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 6 讲 · 预计算",
+      "stem": "kg_processed_lecture_6",
+      "lectureId": "6",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_6.json"
+    },
+    {
+      "id": "kg_processed_lecture_7",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 7 讲 · 预计算",
+      "stem": "kg_processed_lecture_7",
+      "lectureId": "7",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_7.json"
+    },
+    {
+      "id": "kg_processed_lecture_8",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 8 讲 · 预计算",
+      "stem": "kg_processed_lecture_8",
+      "lectureId": "8",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_8.json"
+    },
+    {
+      "id": "kg_processed_lecture_9",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 9 讲 · 预计算",
+      "stem": "kg_processed_lecture_9",
+      "lectureId": "9",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_9.json"
+    },
+    {
+      "id": "kg_processed_lecture_10",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 10 讲 · 预计算",
+      "stem": "kg_processed_lecture_10",
+      "lectureId": "10",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_10.json"
+    },
+    {
+      "id": "kg_processed_lecture_11",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 11 讲 · 预计算",
+      "stem": "kg_processed_lecture_11",
+      "lectureId": "11",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_11.json"
+    },
+    {
+      "id": "kg_processed_lecture_12",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 12 讲 · 预计算",
+      "stem": "kg_processed_lecture_12",
+      "lectureId": "12",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_12.json"
+    },
+    {
+      "id": "kg_processed_lecture_13",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 13 讲 · 预计算",
+      "stem": "kg_processed_lecture_13",
+      "lectureId": "13",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_13.json"
+    },
+    {
+      "id": "kg_processed_lecture_14",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 14 讲 · 预计算",
+      "stem": "kg_processed_lecture_14",
+      "lectureId": "14",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_14.json"
+    },
+    {
+      "id": "kg_processed_lecture_15",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 15 讲 · 预计算",
+      "stem": "kg_processed_lecture_15",
+      "lectureId": "15",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_15.json"
+    },
+    {
+      "id": "kg_processed_lecture_16",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 16 讲 · 预计算",
+      "stem": "kg_processed_lecture_16",
+      "lectureId": "16",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_16.json"
+    },
+    {
+      "id": "kg_processed_lecture_18",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 18 讲 · 预计算",
+      "stem": "kg_processed_lecture_18",
+      "lectureId": "18",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_18.json"
+    },
+    {
+      "id": "kg_processed_lecture_19",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 19 讲 · 预计算",
+      "stem": "kg_processed_lecture_19",
+      "lectureId": "19",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_19.json"
+    },
+    {
+      "id": "kg_processed_lecture_20",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 20 讲 · 预计算",
+      "stem": "kg_processed_lecture_20",
+      "lectureId": "20",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_20.json"
+    },
+    {
+      "id": "kg_processed_lecture_21",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 21 讲 · 预计算",
+      "stem": "kg_processed_lecture_21",
+      "lectureId": "21",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_21.json"
+    },
+    {
+      "id": "kg_processed_lecture_22",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 22 讲 · 预计算",
+      "stem": "kg_processed_lecture_22",
+      "lectureId": "22",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_22.json"
+    },
+    {
+      "id": "kg_processed_lecture_23",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 23 讲 · 预计算",
+      "stem": "kg_processed_lecture_23",
+      "lectureId": "23",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_23.json"
+    },
+    {
+      "id": "kg_processed_lecture_24",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 24 讲 · 预计算",
+      "stem": "kg_processed_lecture_24",
+      "lectureId": "24",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_24.json"
+    },
+    {
+      "id": "kg_processed_lecture_25",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 25 讲 · 预计算",
+      "stem": "kg_processed_lecture_25",
+      "lectureId": "25",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_25.json"
+    },
+    {
+      "id": "kg_processed_lecture_26",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 26 讲 · 预计算",
+      "stem": "kg_processed_lecture_26",
+      "lectureId": "26",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_26.json"
+    },
+    {
+      "id": "kg_processed_lecture_27",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 27 讲 · 预计算",
+      "stem": "kg_processed_lecture_27",
+      "lectureId": "27",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_27.json"
+    },
+    {
+      "id": "kg_processed_lecture_28",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 28 讲 · 预计算",
+      "stem": "kg_processed_lecture_28",
+      "lectureId": "28",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_28.json"
+    },
+    {
+      "id": "kg_processed_lecture_29",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 29 讲 · 预计算",
+      "stem": "kg_processed_lecture_29",
+      "lectureId": "29",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_29.json"
+    },
+    {
+      "id": "kg_processed_lecture_30",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 30 讲 · 预计算",
+      "stem": "kg_processed_lecture_30",
+      "lectureId": "30",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_30.json"
+    },
+    {
+      "id": "kg_processed_lecture_31",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 31 讲 · 预计算",
+      "stem": "kg_processed_lecture_31",
+      "lectureId": "31",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_31.json"
+    },
+    {
+      "id": "kg_processed_lecture_32",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 32 讲 · 预计算",
+      "stem": "kg_processed_lecture_32",
+      "lectureId": "32",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_32.json"
+    },
+    {
+      "id": "kg_processed_lecture_33",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 33 讲 · 预计算",
+      "stem": "kg_processed_lecture_33",
+      "lectureId": "33",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_33.json"
+    },
+    {
+      "id": "kg_processed_lecture_34",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 34 讲 · 预计算",
+      "stem": "kg_processed_lecture_34",
+      "lectureId": "34",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_34.json"
+    },
+    {
+      "id": "kg_processed_lecture_35",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 35 讲 · 预计算",
+      "stem": "kg_processed_lecture_35",
+      "lectureId": "35",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_35.json"
+    },
+    {
+      "id": "kg_processed_lecture_36",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 36 讲 · 预计算",
+      "stem": "kg_processed_lecture_36",
+      "lectureId": "36",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_36.json"
+    },
+    {
+      "id": "kg_processed_lecture_37",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 37 讲 · 预计算",
+      "stem": "kg_processed_lecture_37",
+      "lectureId": "37",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_37.json"
+    },
+    {
+      "id": "kg_processed_lecture_38",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 38 讲 · 预计算",
+      "stem": "kg_processed_lecture_38",
+      "lectureId": "38",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_38.json"
+    },
+    {
+      "id": "kg_processed_lecture_39",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 39 讲 · 预计算",
+      "stem": "kg_processed_lecture_39",
+      "lectureId": "39",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_39.json"
+    },
+    {
+      "id": "kg_processed_lecture_40",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 40 讲 · 预计算",
+      "stem": "kg_processed_lecture_40",
+      "lectureId": "40",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_40.json"
+    },
+    {
+      "id": "kg_processed_lecture_41",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 41 讲 · 预计算",
+      "stem": "kg_processed_lecture_41",
+      "lectureId": "41",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_41.json"
+    },
+    {
+      "id": "kg_processed_lecture_42",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 42 讲 · 预计算",
+      "stem": "kg_processed_lecture_42",
+      "lectureId": "42",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_42.json"
+    },
+    {
+      "id": "kg_processed_lecture_43",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 43 讲 · 预计算",
+      "stem": "kg_processed_lecture_43",
+      "lectureId": "43",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_43.json"
+    },
+    {
+      "id": "kg_processed_lecture_44",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "第 44 讲 · 预计算",
+      "stem": "kg_processed_lecture_44",
+      "lectureId": "44",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_lecture_44.json"
+    },
+    {
+      "id": "kg_processed_session_1_2",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 1+2 · 预计算",
+      "stem": "kg_processed_session_1_2",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_1_2.json"
+    },
+    {
+      "id": "kg_processed_session_11_12",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 11+12 · 预计算",
+      "stem": "kg_processed_session_11_12",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_11_12.json"
+    },
+    {
+      "id": "kg_processed_session_13_14",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 13+14 · 预计算",
+      "stem": "kg_processed_session_13_14",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_13_14.json"
+    },
+    {
+      "id": "kg_processed_session_15_16",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 15+16 · 预计算",
+      "stem": "kg_processed_session_15_16",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_15_16.json"
+    },
+    {
+      "id": "kg_processed_session_19_20",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 19+20 · 预计算",
+      "stem": "kg_processed_session_19_20",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_19_20.json"
+    },
+    {
+      "id": "kg_processed_session_21_22",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 21+22 · 预计算",
+      "stem": "kg_processed_session_21_22",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_21_22.json"
+    },
+    {
+      "id": "kg_processed_session_23_24",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 23+24 · 预计算",
+      "stem": "kg_processed_session_23_24",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_23_24.json"
+    },
+    {
+      "id": "kg_processed_session_25_26",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 25+26 · 预计算",
+      "stem": "kg_processed_session_25_26",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_25_26.json"
+    },
+    {
+      "id": "kg_processed_session_27_28",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 27+28 · 预计算",
+      "stem": "kg_processed_session_27_28",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_27_28.json"
+    },
+    {
+      "id": "kg_processed_session_29_30",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 29+30 · 预计算",
+      "stem": "kg_processed_session_29_30",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_29_30.json"
+    },
+    {
+      "id": "kg_processed_session_3_4",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 3+4 · 预计算",
+      "stem": "kg_processed_session_3_4",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_3_4.json"
+    },
+    {
+      "id": "kg_processed_session_31_32",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 31+32 · 预计算",
+      "stem": "kg_processed_session_31_32",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_31_32.json"
+    },
+    {
+      "id": "kg_processed_session_33_34",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 33+34 · 预计算",
+      "stem": "kg_processed_session_33_34",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_33_34.json"
+    },
+    {
+      "id": "kg_processed_session_35_36",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 35+36 · 预计算",
+      "stem": "kg_processed_session_35_36",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_35_36.json"
+    },
+    {
+      "id": "kg_processed_session_37_38",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 37+38 · 预计算",
+      "stem": "kg_processed_session_37_38",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_37_38.json"
+    },
+    {
+      "id": "kg_processed_session_39_40",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 39+40 · 预计算",
+      "stem": "kg_processed_session_39_40",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_39_40.json"
+    },
+    {
+      "id": "kg_processed_session_41_42",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 41+42 · 预计算",
+      "stem": "kg_processed_session_41_42",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_41_42.json"
+    },
+    {
+      "id": "kg_processed_session_43_44",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 43+44 · 预计算",
+      "stem": "kg_processed_session_43_44",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_43_44.json"
+    },
+    {
+      "id": "kg_processed_session_5_6",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 5+6 · 预计算",
+      "stem": "kg_processed_session_5_6",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_5_6.json"
+    },
+    {
+      "id": "kg_processed_session_7_8",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 7+8 · 预计算",
+      "stem": "kg_processed_session_7_8",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_7_8.json"
+    },
+    {
+      "id": "kg_processed_session_9_10",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "课次 9+10 · 预计算",
+      "stem": "kg_processed_session_9_10",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_session_9_10.json"
+    },
+    {
+      "id": "kg_processed_course",
+      "type": "kg_processed",
+      "group": "预计算图谱",
+      "title": "整课 · 预计算",
+      "stem": "kg_processed_course",
+      "dataUrl": "/data/courses/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6(%E5%9B%BE%E8%AE%BA+%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E8%AE%BA)/pipeline/kg_processed_course.json"
     }
   ]
 }

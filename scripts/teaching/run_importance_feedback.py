@@ -197,6 +197,7 @@ def main() -> None:
             app_feedback_path=app_path if app_path.is_file() else None,
             new_entity_scale=float(fb.get("new_entity_scale", 0.88)),
             new_entity_max=float(fb.get("new_entity_max", 0.75)),
+            mode=str(fb.get("mode") or "full"),
         )
         dur = _lecture_duration(cues_by.get(lid, []), lec_trips)
         return result, chapter_weights, dur
@@ -275,7 +276,14 @@ def main() -> None:
                     ra, rb, weight_a=wa, weight_b=wb
                 )
 
-            merged = merge_lecture_feedbacks(parts, alpha=alpha_default)
+            merged = merge_lecture_feedbacks(
+                parts,
+                alpha=(
+                    1.0
+                    if str(fb.get("mode") or "full").strip().lower() == "light"
+                    else alpha_default
+                ),
+            )
             by_ctx["course"] = merged
             doc = pack_feedback_document(course_scores=merged, by_context=by_ctx)
             save_feedback_document(out, doc)

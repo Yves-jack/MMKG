@@ -1,0 +1,20 @@
+{
+  "lecture_id": "35",
+  "candidates": [
+    "第6章 谓词逻辑的公理化系统"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "推理规则/inference rule",
+      "chapter": "第6章 谓词逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "推理规则是公理化系统的核心组成部分，且包含三段论等典型规则。"
+    },
+    {
+      "subtree_root_id": "蕴含/implication",
+      "chapter": "第6章 谓词逻辑的公理化系统",
+      "confidence": 0.85,
+      "reason": "蕴含及前件后件是谓词逻辑推理规则的基础概念，与公理化系统紧密相关。"
+    }
+  ]
+}

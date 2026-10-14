@@ -12,11 +12,23 @@ from teachkg.utils.prompts import format_prompt
 
 logger = logging.getLogger(__name__)
 
-# 课堂管理 / 过渡寒暄（句子级，仅删纯过渡句）
-_TRANSITION_SENTENCE_PATTERNS = (
-    re.compile(r"^上课[。.]?$"),
+# 课堂仪式/后勤（类别级；短句且无知识标记才删，避免课名/话术硬编码）
+_CLASSROOM_RITUAL = re.compile(
+    r"("
+    r"^上课[。.!！？?]*$|"
+    r"^下课[。.!！？?]*$|"
+    r"^同学们?好[啊呀]?[。.!！？?]*$|"
+    r"^老师好[。.!！？?]*$|"
+    r"^大家[好啊]?[。.!！？?]*$|"
+    r"^(我们)?(先)?(休息|课间)(一下)?|"
+    r"(换到|换了|搬到).{0,16}教室|"
+    r"(签到|点名|出勤|交作业|收作业|关(一下)?手机|把手机)"
+    r")"
+)
+
+# 兼容旧课名模板（默认关闭；仅 options.remove_legacy_transition_templates=true 时启用）
+_LEGACY_TRANSITION_SENTENCE_PATTERNS = (
     re.compile(r"^由于两个班级合并上课[，,].*$"),
-    re.compile(r"^我们换到了更大的教室[。.]?$"),
     re.compile(r"^本学期.*将在这里进行[。.]?$"),
     re.compile(r"^目前两个班级.*进度一致[，,].*$"),
     re.compile(r"^今天我们要介绍的就是[^。]*[。.]?$"),
@@ -113,11 +125,34 @@ def _split_sentences(paragraph: str) -> list[str]:
     return [p for p in parts if p.strip()]
 
 
-def _is_transition_sentence(sentence: str) -> bool:
+def _is_classroom_admin_sentence(
+    sentence: str,
+    *,
+    legacy_templates: bool = False,
+) -> bool:
+    """课堂管理/寒暄句：类别级仪式+后勤；有知识标记则保留。"""
     s = sentence.strip()
     if not s:
         return True
-    return any(pat.match(s) for pat in _TRANSITION_SENTENCE_PATTERNS)
+    if _FILLER_ONLY.match(s):
+        return True
+    if legacy_templates and any(pat.match(s) for pat in _LEGACY_TRANSITION_SENTENCE_PATTERNS):
+        return True
+    # 含定义/形式化等则不当作后勤句删除
+    if _STRONG_KNOWLEDGE.search(s) or _FORMAL_NOTATION.search(s) or _EXPOSITORY_MARKERS.search(s):
+        return False
+    if not _CLASSROOM_RITUAL.search(s):
+        return False
+    compact = re.sub(r"\s+", "", s)
+    # 短后勤句直接删；稍长则要求内容词很少，降低误伤
+    if len(compact) <= 40:
+        return True
+    return _content_token_count(s) <= 3
+
+
+def _is_transition_sentence(sentence: str) -> bool:
+    """兼容旧名；等价于默认（无 legacy）的课堂管理判定。"""
+    return _is_classroom_admin_sentence(sentence, legacy_templates=False)
 
 
 # 句中已有可抽取知识实质时，不把「介绍」套话整句删掉（留给 LLM 剔壳留核）
@@ -185,15 +220,26 @@ def _is_low_knowledge_sentence(sentence: str, *, min_score: float = 1.0) -> bool
     return sentence_knowledge_score(sentence) < min_score
 
 
-def remove_classroom_admin(text: str) -> str:
-    """删除课堂管理、寒暄句子（保留同段中的知识句）。"""
+def remove_classroom_admin(
+    text: str,
+    *,
+    legacy_templates: bool = False,
+) -> str:
+    """删除课堂管理、寒暄句子（保留同段中的知识句）。
+
+    默认只用类别级仪式/后勤规则；课名硬编码模板需显式 legacy_templates=True。
+    """
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
     kept_paragraphs: list[str] = []
     for paragraph in paragraphs:
         sentences = _split_sentences(paragraph)
         if not sentences:
             continue
-        kept = [s for s in sentences if not _is_transition_sentence(s)]
+        kept = [
+            s
+            for s in sentences
+            if not _is_classroom_admin_sentence(s, legacy_templates=legacy_templates)
+        ]
         if kept:
             kept_paragraphs.append("".join(kept))
     return "\n\n".join(kept_paragraphs)
@@ -227,8 +273,14 @@ def remove_non_knowledge(text: str, *, min_score: float = 1.0) -> str:
 
 
 _EXAMPLE_LABEL_LINE = re.compile(
-    r"^[\s\-*•]*[PQRpqr]\s*[：:]\s*.+$",
-    re.MULTILINE,
+    # 板书式举例标签行：P：… / 例1：… / Example 2: …
+    r"^[\s\-*•]*(?:"
+    r"[A-Za-z]\s*[：:].+|"
+    r"例\s*\d*\s*[：:].+|"
+    r"例子?\s*[：:].+|"
+    r"Example\s*\d*\s*[:：].+"
+    r")$",
+    re.MULTILINE | re.IGNORECASE,
 )
 _NUMBERED_FRAGMENT = re.compile(
     r"^[\s]*\d+[.、．]\s*[\s\-*•]*$",
@@ -271,12 +323,15 @@ def dedupe_paragraphs(text: str) -> str:
 
 
 def default_light_rule_options() -> dict:
-    """与 LLM-A（通畅）配套的轻规则：不做引入/非知识语义删减。"""
+    """与 LLM-A（通畅）配套的轻规则：只做格式/仪式层，不做引入/非知识语义删减。"""
     return {
         "remove_markdown_noise": True,
         "remove_classroom_admin": True,
+        # 课名硬编码模板默认关，保证跨课通用
+        "remove_legacy_transition_templates": False,
         "remove_intro_framing": False,
         "remove_non_knowledge": False,
+        "knowledge_min_score": 1.0,
         "remove_example_labels": True,
         "dedupe_paragraphs": True,
     }
@@ -295,7 +350,10 @@ def rule_preprocess_cue_text(text: str, *, options: dict | None = None) -> str:
         out = remove_markdown_noise(out)
 
     if opts.get("remove_classroom_admin", True):
-        out = remove_classroom_admin(out)
+        out = remove_classroom_admin(
+            out,
+            legacy_templates=bool(opts.get("remove_legacy_transition_templates", False)),
+        )
 
     if opts.get("remove_intro_framing", True):
         out = remove_intro_framing(out)

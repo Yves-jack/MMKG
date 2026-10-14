@@ -1,0 +1,308 @@
+{
+  "lecture_id": "41",
+  "root": {
+    "id": "__lecture__/41",
+    "zh": "第 41 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/关系",
+        "zh": "第10章 关系",
+        "importance": 0.849739,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "特殊关系/special relation",
+            "zh": "特殊关系",
+            "importance": 0.739573,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "关系/relation",
+                "zh": "关系",
+                "importance": 0.955372,
+                "relation": "belong_to",
+                "related": [
+                  "有向边",
+                  "笛卡儿积",
+                  "逆关系"
+                ],
+                "children": [
+                  {
+                    "id": "二元关系/binary relation",
+                    "zh": "二元关系",
+                    "importance": 1.0,
+                    "relation": "belong_to",
+                    "related": [
+                      "n元关系",
+                      "笛卡儿积",
+                      "闭包"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "n元关系/n-ary relation",
+                    "zh": "n元关系",
+                    "importance": 0.661483,
+                    "relation": "belong_to",
+                    "related": [
+                      "二元关系"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "合成/composition",
+                    "zh": "合成",
+                    "importance": 0.705527,
+                    "relation": "belong_to",
+                    "related": [
+                      "逆关系"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "函数/function",
+                    "zh": "函数",
+                    "importance": 0.356691,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "关系的限制/R↑A",
+                    "zh": "关系的限制",
+                    "importance": 0.200033,
+                    "relation": "part_of",
+                    "related": [
+                      "关系的象"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "值域/range",
+                    "zh": "值域",
+                    "importance": 0.784788,
+                    "relation": "part_of",
+                    "related": [
+                      "域"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "全域关系/universal relation",
+                "zh": "全域关系",
+                "importance": 0.061793,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "关系图/relation graph",
+            "zh": "关系图",
+            "importance": 0.849739,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "有向边/directed edge",
+                "zh": "有向边",
+                "importance": 0.546054,
+                "relation": "part_of",
+                "related": [
+                  "关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "域/field",
+                "zh": "域",
+                "importance": 0.12644,
+                "relation": "part_of",
+                "related": [
+                  "值域"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/41",
+      "zh": "第 41 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/关系",
+          "zh": "第10章 关系",
+          "importance": 0.849739,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "特殊关系/special relation",
+              "zh": "特殊关系",
+              "importance": 0.739573,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "关系/relation",
+                  "zh": "关系",
+                  "importance": 0.955372,
+                  "relation": "belong_to",
+                  "related": [
+                    "有向边",
+                    "笛卡儿积",
+                    "逆关系"
+                  ],
+                  "children": [
+                    {
+                      "id": "二元关系/binary relation",
+                      "zh": "二元关系",
+                      "importance": 1.0,
+                      "relation": "belong_to",
+                      "related": [
+                        "n元关系",
+                        "笛卡儿积",
+                        "闭包"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "n元关系/n-ary relation",
+                      "zh": "n元关系",
+                      "importance": 0.661483,
+                      "relation": "belong_to",
+                      "related": [
+                        "二元关系"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "合成/composition",
+                      "zh": "合成",
+                      "importance": 0.705527,
+                      "relation": "belong_to",
+                      "related": [
+                        "逆关系"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "函数/function",
+                      "zh": "函数",
+                      "importance": 0.356691,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "关系的限制/R↑A",
+                      "zh": "关系的限制",
+                      "importance": 0.200033,
+                      "relation": "part_of",
+                      "related": [
+                        "关系的象"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "值域/range",
+                      "zh": "值域",
+                      "importance": 0.784788,
+                      "relation": "part_of",
+                      "related": [
+                        "域"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "全域关系/universal relation",
+                  "zh": "全域关系",
+                  "importance": 0.061793,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "关系图/relation graph",
+              "zh": "关系图",
+              "importance": 0.849739,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "有向边/directed edge",
+                  "zh": "有向边",
+                  "importance": 0.546054,
+                  "relation": "part_of",
+                  "related": [
+                    "关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "域/field",
+                  "zh": "域",
+                  "importance": 0.12644,
+                  "relation": "part_of",
+                  "related": [
+                    "值域"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 14,
+  "max_depth": 4,
+  "orphan_count": 5,
+  "meta": {
+    "chapter": "第10章 关系",
+    "root_id": "关系图/relation graph",
+    "root_zh": "第 41 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 35,
+    "n_edges_raw": 53,
+    "n_hierarchy_candidates": 37,
+    "attached_orphans": 5,
+    "alias_merged": 2,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将特殊关系主题前移，关系图后移；在关系子节点中按重要度调整顺序，值域后置；未删除或新增节点。",
+    "chapters": [
+      "第10章 关系"
+    ],
+    "llm_tune_notes": "将特殊关系主题前移，关系图后移；在关系子节点中按重要度调整顺序，值域后置；未删除或新增节点。",
+    "chapter_candidates": [
+      "第10章 关系"
+    ]
+  }
+}

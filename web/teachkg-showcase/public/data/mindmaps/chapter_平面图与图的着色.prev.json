@@ -1,0 +1,466 @@
+{
+  "lecture_id": "chapter:第4章 平面图与图的着色",
+  "root": {
+    "id": "__chapter__/平面图与图的着色",
+    "zh": "第4章 平面图与图的着色",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/● 平面图：ch4(4.1, 4.2, 4.3, 4.5) (6学时)",
+        "zh": "● 平面图：ch4(4.1, 4.2, 4.3, 4.5) (6学时)",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/图论第4章 平面图与图的着色",
+        "zh": "图论第4章 平面图与图的着色",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/极大平面图",
+        "zh": "极大平面图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "极大平面图/maximal planar graph",
+            "zh": "极大平面图",
+            "importance": 1.0,
+            "relation": "belong_to",
+            "related": [
+              "反证法",
+              "平面性",
+              "归纳证明",
+              "欧拉公式"
+            ],
+            "children": []
+          },
+          {
+            "id": "平面图/planar graph",
+            "zh": "平面图",
+            "importance": 0.984791,
+            "relation": "belong_to",
+            "related": [
+              "图的着色",
+              "域着色",
+              "对偶图",
+              "点染色"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图",
+        "zh": "平面图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "非平面图/non-planar graph",
+            "zh": "非平面图",
+            "importance": 1.0,
+            "relation": "belong_to",
+            "related": [
+              "平面图"
+            ],
+            "children": []
+          },
+          {
+            "id": "平面/plane",
+            "zh": "平面",
+            "importance": 0.809198,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "可平面图/planar embeddable graph",
+            "zh": "可平面图",
+            "importance": 0.775744,
+            "relation": null,
+            "related": [
+              "平面嵌入"
+            ],
+            "children": []
+          },
+          {
+            "id": "简单平面图/simple planar graph",
+            "zh": "简单平面图",
+            "importance": 0.679178,
+            "relation": "belong_to",
+            "related": [
+              "五色定理",
+              "四色定理",
+              "欧拉公式"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图例",
+        "zh": "平面图例",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/有且只有一个无界域：即平面图G外的区域.",
+        "zh": "有且只有一个无界域：即平面图G外的区域.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/欧拉公式",
+        "zh": "欧拉公式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "欧拉公式/欧拉公式",
+            "zh": "欧拉公式",
+            "importance": 0.267454,
+            "relation": "belong_to",
+            "related": [
+              "五着色问题",
+              "关键引理",
+              "四色定理",
+              "极大平面图"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图定理",
+        "zh": "平面图定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/极大（可）平面图",
+        "zh": "极大（可）平面图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/极大平面图的性质",
+        "zh": "极大平面图的性质",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/非平面图",
+        "zh": "非平面图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理(Kuratowski):G是可平面图 iff G不存在K型子图.",
+        "zh": "定理(Kuratowski):G是可平面图 iff G不存在K型子图.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Wagner定理:G是可平面图iff G不包含可收缩为K（型）图的子图",
+        "zh": "Wagner定理:G是可平面图iff G不包含可收缩为K（型）图的子图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/Kuratowski定理判定图的平面性是NP难",
+        "zh": "Kuratowski定理判定图的平面性是NP难",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/注意：简单平面图的对偶图是平面图，但不一定是简单图（可能含重边或环）",
+        "zh": "注意：简单平面图的对偶图是平面图，但不一定是简单图（可能含重边或环）",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/性质1:若G是平面图,则G必有对偶图G*,且G*是唯一的.",
+        "zh": "性质1:若G是平面图,则G必有对偶图G*,且G*是唯一的.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/平面图与图的着色",
+      "zh": "第4章 平面图与图的着色",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/● 平面图：ch4(4.1, 4.2, 4.3, 4.5) (6学时)",
+          "zh": "● 平面图：ch4(4.1, 4.2, 4.3, 4.5) (6学时)",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/图论第4章 平面图与图的着色",
+          "zh": "图论第4章 平面图与图的着色",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/极大平面图",
+          "zh": "极大平面图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "极大平面图/maximal planar graph",
+              "zh": "极大平面图",
+              "importance": 1.0,
+              "relation": "belong_to",
+              "related": [
+                "反证法",
+                "平面性",
+                "归纳证明",
+                "欧拉公式"
+              ],
+              "children": []
+            },
+            {
+              "id": "平面图/planar graph",
+              "zh": "平面图",
+              "importance": 0.984791,
+              "relation": "belong_to",
+              "related": [
+                "图的着色",
+                "域着色",
+                "对偶图",
+                "点染色"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图",
+          "zh": "平面图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "非平面图/non-planar graph",
+              "zh": "非平面图",
+              "importance": 1.0,
+              "relation": "belong_to",
+              "related": [
+                "平面图"
+              ],
+              "children": []
+            },
+            {
+              "id": "平面/plane",
+              "zh": "平面",
+              "importance": 0.809198,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "可平面图/planar embeddable graph",
+              "zh": "可平面图",
+              "importance": 0.775744,
+              "relation": null,
+              "related": [
+                "平面嵌入"
+              ],
+              "children": []
+            },
+            {
+              "id": "简单平面图/simple planar graph",
+              "zh": "简单平面图",
+              "importance": 0.679178,
+              "relation": "belong_to",
+              "related": [
+                "五色定理",
+                "四色定理",
+                "欧拉公式"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图例",
+          "zh": "平面图例",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/有且只有一个无界域：即平面图G外的区域.",
+          "zh": "有且只有一个无界域：即平面图G外的区域.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/欧拉公式",
+          "zh": "欧拉公式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "欧拉公式/欧拉公式",
+              "zh": "欧拉公式",
+              "importance": 0.267454,
+              "relation": "belong_to",
+              "related": [
+                "五着色问题",
+                "关键引理",
+                "四色定理",
+                "极大平面图"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图定理",
+          "zh": "平面图定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/极大（可）平面图",
+          "zh": "极大（可）平面图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/极大平面图的性质",
+          "zh": "极大平面图的性质",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/非平面图",
+          "zh": "非平面图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理(Kuratowski):G是可平面图 iff G不存在K型子图.",
+          "zh": "定理(Kuratowski):G是可平面图 iff G不存在K型子图.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Wagner定理:G是可平面图iff G不包含可收缩为K（型）图的子图",
+          "zh": "Wagner定理:G是可平面图iff G不包含可收缩为K（型）图的子图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/Kuratowski定理判定图的平面性是NP难",
+          "zh": "Kuratowski定理判定图的平面性是NP难",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/注意：简单平面图的对偶图是平面图，但不一定是简单图（可能含重边或环）",
+          "zh": "注意：简单平面图的对偶图是平面图，但不一定是简单图（可能含重边或环）",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/性质1:若G是平面图,则G必有对偶图G*,且G*是唯一的.",
+          "zh": "性质1:若G是平面图,则G必有对偶图G*,且G*是唯一的.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 24,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 平面图与图的着色",
+    "root_zh": "平面图与图的着色",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "1",
+      "9",
+      "10",
+      "11",
+      "12",
+      "16",
+      "17"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

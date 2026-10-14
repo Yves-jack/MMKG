@@ -22,12 +22,29 @@
 ## 构建
 
 ```bash
-# 大模型抽取第 N 讲并重建 library（可加 --no-textbook-theorems）
-python -m scripts.teaching.extract_assets_llm --course-id 数理逻辑 --lecture 1 --no-textbook-theorems
+# 定理/原理/方法（抽完后会自动 backfill「课堂提及的…」占位卡，并合并公式缓存）
+python scripts/teaching/extract_assets_lecture_batch.py \
+  --config configs/teaching_lisan.yaml \
+  --course-id 离散数学(图论+数理逻辑与集合论) \
+  --lectures 1,2
+
+# 公式/例子
+python scripts/teaching/extract_assets_formula_example.py \
+  --config configs/teaching_lisan.yaml \
+  --course-id 离散数学(图论+数理逻辑与集合论) \
+  --lectures 1,2
+
+# 仅补全占位卡 / 分章
+python scripts/teaching/backfill_asset_placeholders.py --config configs/teaching_lisan.yaml
+python scripts/teaching/assign_assets_chapters.py --config configs/teaching_lisan.yaml
+
+# 从教材 toc 提取分主题章节目录（区分两个「第1章」），写入 textbook/chapter_catalog.json 并注入 library
+python scripts/teaching/extract_chapter_catalog.py --config configs/teaching_lisan.yaml --showcase
+
 cd web/teachkg-showcase && npm run sync-data
 ```
 
-Prompt：`prompts/stage1/asset_extract.txt`
+Prompt：`prompts/stage1/asset_extract.txt`、`asset_extract_formula_example.txt`
 
 ## 卡片字段
 

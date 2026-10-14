@@ -1,0 +1,596 @@
+{
+  "lecture_id": "32",
+  "root": {
+    "id": "__lecture__/32",
+    "zh": "第 32 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/命题逻辑的等值和推理演算",
+        "zh": "第2章 命题逻辑的等值和推理演算",
+        "importance": 0.589639,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "数理逻辑/Mathematical Logic",
+            "zh": "数理逻辑",
+            "importance": 0.589639,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "命题/proposition",
+                "zh": "命题",
+                "importance": 0.591598,
+                "relation": "belong_to",
+                "related": [
+                  "假言推理",
+                  "命题形式",
+                  "联结词"
+                ],
+                "children": [
+                  {
+                    "id": "联结词/connective",
+                    "zh": "联结词",
+                    "importance": 0.283827,
+                    "relation": "part_of",
+                    "related": [
+                      "命题"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "公式/formula",
+                    "zh": "公式",
+                    "importance": 0.264129,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "谓词/predicate",
+                    "zh": "谓词",
+                    "importance": 0.262591,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "推理演算/inference calculus",
+                "zh": "推理演算",
+                "importance": 0.782167,
+                "relation": "belong_to",
+                "related": [
+                  "三段论",
+                  "个体代入规则",
+                  "推理规则",
+                  "谓词公式"
+                ],
+                "children": [
+                  {
+                    "id": "推理规则/inference rule",
+                    "zh": "推理规则",
+                    "importance": 0.57039,
+                    "relation": "belong_to",
+                    "related": [
+                      "推理演算"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "谓词演算的推理演算",
+                    "zh": "谓词演算的推理演算",
+                    "importance": 0.936408,
+                    "relation": "belong_to",
+                    "related": [
+                      "置换"
+                    ],
+                    "children": []
+                  }
+                ],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.428892,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "全称量词/universal quantifier",
+                "zh": "全称量词",
+                "importance": 0.779923,
+                "relation": "part_of",
+                "related": [
+                  "个体代入规则",
+                  "个体变项",
+                  "全称命题",
+                  "变元",
+                  "合取",
+                  "否定词"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.262591,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.366885,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "Skolem范式/Skolem normal form",
+                "zh": "Skolem范式",
+                "importance": 0.5543,
+                "relation": "belong_to",
+                "related": [
+                  "Skolem函数",
+                  "原式",
+                  "有限域",
+                  "等可满足性"
+                ],
+                "children": [
+                  {
+                    "id": "Skolem函数/Skolem function",
+                    "zh": "Skolem函数",
+                    "importance": 0.422585,
+                    "relation": "belong_to",
+                    "related": [
+                      "Skolem范式"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.560496,
+            "relation": null,
+            "related": [
+              "全称量词",
+              "存在量词",
+              "置换"
+            ],
+            "children": [
+              {
+                "id": "自由出现/free occurrence",
+                "zh": "自由出现",
+                "importance": 0.14695,
+                "relation": "belong_to",
+                "related": [
+                  "全称量词",
+                  "消去存在量词",
+                  "置换",
+                  "自由个体变项"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "常项/constant term",
+            "zh": "常项",
+            "importance": 0.085159,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "个体代入规则/individual substitution rule",
+                "zh": "个体代入规则",
+                "importance": 0.597374,
+                "relation": "belong_to",
+                "related": [
+                  "个体",
+                  "个体变项",
+                  "假言推理",
+                  "全称命题",
+                  "全称量词",
+                  "变元"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.232165,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "Skolem函数/Skolem function",
+                "zh": "Skolem函数",
+                "importance": 0.422585,
+                "relation": "belong_to",
+                "related": [
+                  "Skolem范式"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "命题形式/propositional form",
+            "zh": "命题形式",
+            "importance": 0.112611,
+            "relation": null,
+            "related": [
+              "命题"
+            ],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.262591,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "性质/property",
+            "zh": "性质",
+            "importance": 0.106872,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.262591,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/32",
+      "zh": "第 32 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/命题逻辑的等值和推理演算",
+          "zh": "第2章 命题逻辑的等值和推理演算",
+          "importance": 0.589639,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "数理逻辑/Mathematical Logic",
+              "zh": "数理逻辑",
+              "importance": 0.589639,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "命题/proposition",
+                  "zh": "命题",
+                  "importance": 0.591598,
+                  "relation": "belong_to",
+                  "related": [
+                    "假言推理",
+                    "命题形式",
+                    "联结词"
+                  ],
+                  "children": [
+                    {
+                      "id": "联结词/connective",
+                      "zh": "联结词",
+                      "importance": 0.283827,
+                      "relation": "part_of",
+                      "related": [
+                        "命题"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "公式/formula",
+                      "zh": "公式",
+                      "importance": 0.264129,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "谓词/predicate",
+                      "zh": "谓词",
+                      "importance": 0.262591,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "推理演算/inference calculus",
+                  "zh": "推理演算",
+                  "importance": 0.782167,
+                  "relation": "belong_to",
+                  "related": [
+                    "三段论",
+                    "个体代入规则",
+                    "推理规则",
+                    "谓词公式"
+                  ],
+                  "children": [
+                    {
+                      "id": "推理规则/inference rule",
+                      "zh": "推理规则",
+                      "importance": 0.57039,
+                      "relation": "belong_to",
+                      "related": [
+                        "推理演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "谓词演算的推理演算",
+                      "zh": "谓词演算的推理演算",
+                      "importance": 0.936408,
+                      "relation": "belong_to",
+                      "related": [
+                        "置换"
+                      ],
+                      "children": []
+                    }
+                  ],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.428892,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "全称量词/universal quantifier",
+                  "zh": "全称量词",
+                  "importance": 0.779923,
+                  "relation": "part_of",
+                  "related": [
+                    "个体代入规则",
+                    "个体变项",
+                    "全称命题",
+                    "变元",
+                    "合取",
+                    "否定词"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.262591,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.366885,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "Skolem范式/Skolem normal form",
+                  "zh": "Skolem范式",
+                  "importance": 0.5543,
+                  "relation": "belong_to",
+                  "related": [
+                    "Skolem函数",
+                    "原式",
+                    "有限域",
+                    "等可满足性"
+                  ],
+                  "children": [
+                    {
+                      "id": "Skolem函数/Skolem function",
+                      "zh": "Skolem函数",
+                      "importance": 0.422585,
+                      "relation": "belong_to",
+                      "related": [
+                        "Skolem范式"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.560496,
+              "relation": null,
+              "related": [
+                "全称量词",
+                "存在量词",
+                "置换"
+              ],
+              "children": [
+                {
+                  "id": "自由出现/free occurrence",
+                  "zh": "自由出现",
+                  "importance": 0.14695,
+                  "relation": "belong_to",
+                  "related": [
+                    "全称量词",
+                    "消去存在量词",
+                    "置换",
+                    "自由个体变项"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "常项/constant term",
+              "zh": "常项",
+              "importance": 0.085159,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "个体代入规则/individual substitution rule",
+                  "zh": "个体代入规则",
+                  "importance": 0.597374,
+                  "relation": "belong_to",
+                  "related": [
+                    "个体",
+                    "个体变项",
+                    "假言推理",
+                    "全称命题",
+                    "全称量词",
+                    "变元"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "函数/function",
+              "zh": "函数",
+              "importance": 0.232165,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "Skolem函数/Skolem function",
+                  "zh": "Skolem函数",
+                  "importance": 0.422585,
+                  "relation": "belong_to",
+                  "related": [
+                    "Skolem范式"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "命题形式/propositional form",
+              "zh": "命题形式",
+              "importance": 0.112611,
+              "relation": null,
+              "related": [
+                "命题"
+              ],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.262591,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "性质/property",
+              "zh": "性质",
+              "importance": 0.106872,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.262591,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 26,
+  "max_depth": 4,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第2章 命题逻辑的等值和推理演算",
+    "root_id": "数理逻辑/Mathematical Logic",
+    "root_zh": "第 32 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 61,
+    "n_edges_raw": 100,
+    "n_hierarchy_candidates": 59,
+    "attached_orphans": 1,
+    "alias_merged": 2,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将谓词逻辑主题前移，删除重复的谓词叶节点，并调整变元、常项等顺序，使重要主题靠前。",
+    "chapters": [
+      "第2章 命题逻辑的等值和推理演算"
+    ],
+    "llm_tune_notes": "将谓词逻辑主题前移，删除重复的谓词叶节点，并调整变元、常项等顺序，使重要主题靠前。",
+    "chapter_candidates": [
+      "第2章 命题逻辑的等值和推理演算"
+    ]
+  }
+}

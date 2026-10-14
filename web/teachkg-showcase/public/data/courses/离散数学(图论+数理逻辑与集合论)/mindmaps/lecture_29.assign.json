@@ -1,0 +1,80 @@
+{
+  "lecture_id": "29",
+  "candidates": [
+    "第4章 谓词逻辑的基本概念"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "谓词逻辑/Predicate Logic",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.95,
+      "reason": "该子树涵盖一阶逻辑、量词、个体、谓词、变项、公式等核心概念，是谓词逻辑基本概念的主体内容。"
+    },
+    {
+      "subtree_root_id": "解释/interpretation(logic)",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "解释是谓词逻辑中赋予符号意义的核心概念，属于基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "联结词/connective",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.8,
+      "reason": "联结词是逻辑公式的组成部分，在谓词逻辑基本概念中涉及，但也可关联命题逻辑，此处归入谓词逻辑基本概念。"
+    },
+    {
+      "subtree_root_id": "命题形式/propositional form",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "命题形式涉及谓词和量词，是谓词逻辑公式的基础，属于基本概念。"
+    },
+    {
+      "subtree_root_id": "字符表/character set",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "字符表是一阶语言的组成部分，属于谓词逻辑基本概念。"
+    },
+    {
+      "subtree_root_id": "一阶语言/First-order Language",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.95,
+      "reason": "一阶语言是谓词逻辑的形式语言基础，属于基本概念。"
+    },
+    {
+      "subtree_root_id": "初始符号/initial symbols",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "初始符号是一阶语言的组成部分，属于谓词逻辑基本概念。"
+    },
+    {
+      "subtree_root_id": "可满足式/satisfiable formula",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "可满足式是谓词逻辑公式的分类，属于基本概念。"
+    },
+    {
+      "subtree_root_id": "矛盾式/contradiction",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "矛盾式是谓词逻辑公式的分类，属于基本概念。"
+    },
+    {
+      "subtree_root_id": "合取式/conjunctive form",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.7,
+      "reason": "合取式涉及公式形式，但主合取范式更偏向等值演算，此处归入基本概念。"
+    },
+    {
+      "subtree_root_id": "关系/relation",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.6,
+      "reason": "关系与谓词相关，但更偏向集合论，此处归入谓词逻辑基本概念。"
+    },
+    {
+      "subtree_root_id": "形式语言/Formal Language",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "形式语言是一阶语言的基础，属于谓词逻辑基本概念。"
+    }
+  ]
+}

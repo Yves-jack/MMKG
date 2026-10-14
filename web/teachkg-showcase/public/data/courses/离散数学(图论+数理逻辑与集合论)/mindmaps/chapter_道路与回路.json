@@ -1,646 +1,1146 @@
 {
   "lecture_id": "chapter:第2章 道路与回路",
   "root": {
-    "id": "__chapter__/第2章 道路与回路",
+    "id": "__chapter__/道路与回路",
     "zh": "第2章 道路与回路",
-    "importance": 0.75,
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "道路与回路"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/图的连通性",
-        "zh": "图的连通性",
-        "importance": 0.4,
-        "relation": "toc_section",
+        "id": "有向道路/directed path",
+        "zh": "有向道路",
+        "importance": 0.858744,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/图的连通性/连通分量",
-            "zh": "连通分量",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "id": "有向回路/directed circuit",
+            "zh": "有向回路",
+            "importance": 0.756991,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/图的连通性/生成树",
-            "zh": "生成树",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "id": "简单有向道路/simple directed path",
+            "zh": "简单有向道路",
+            "importance": 0.852626,
+            "relation": "belong_to",
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "简单有向回路/simple directed circuit",
+                "zh": "简单有向回路",
+                "importance": 0.639237,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "__topic__/图的连通性/分割度",
-            "zh": "分割度",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "id": "边序列/edge sequence",
+            "zh": "边序列",
+            "importance": 0.422801,
+            "relation": "part_of",
             "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/图的连通性/连通判定定理",
-            "zh": "连通判定定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/图的连通性/Warshall算法",
-            "zh": "Warshall算法",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/图的连通性/邻接矩阵法",
-            "zh": "邻接矩阵法",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/图的连通性/搜索法",
-            "zh": "搜索法",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/图的连通性/六度空间",
-            "zh": "六度空间",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__manual__/连通图/mumg2uy3-uv73",
-            "zh": "连通图",
-            "importance": 0.35,
-            "relation": "manual",
-            "related": [],
-            "deps": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/道路与回路的判定",
-        "zh": "道路与回路的判定",
-        "importance": 0.4,
-        "relation": "toc_section",
-        "related": [],
+        "id": "道路/Path",
+        "zh": "道路",
+        "importance": 0.831505,
+        "relation": null,
+        "related": [
+          "连通图"
+        ],
         "children": [
           {
-            "id": "__topic__/道路与回路的判定/回路",
+            "id": "回路/Circuit",
             "zh": "回路",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "importance": 0.743957,
+            "relation": "belong_to",
+            "related": [],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "初级道路/elementary path",
+            "zh": "初级道路",
+            "importance": 0.661561,
+            "relation": null,
+            "related": [
+              "初级回路"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "简单道路/simple path",
+            "zh": "简单道路",
+            "importance": 0.53179,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/道路与回路的判定/简单道路/回路",
-            "zh": "简单道路/回路",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
+            "id": "H 道路/H path",
+            "zh": "H 道路",
+            "importance": 0.087506,
+            "relation": "belong_to",
+            "related": [
+              "H 回路",
+              "欧拉道路"
+            ],
             "children": []
           },
           {
-            "id": "__topic__/道路与回路的判定/初级道路/回路",
-            "zh": "初级道路/回路",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/道路与回路的判定/初级道路长度",
-            "zh": "初级道路长度",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/欧拉道路与回路",
-        "zh": "欧拉道路与回路",
-        "importance": 0.4,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/欧拉道路与回路/欧拉道路",
+            "id": "欧拉道路/Eulerian Path",
             "zh": "欧拉道路",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "importance": 0.054232,
+            "relation": "belong_to",
+            "related": [
+              "H 道路"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "图论/graph theory",
+        "zh": "图论",
+        "importance": 0.850714,
+        "relation": null,
+        "related": [
+          "小世界理论"
+        ],
+        "children": [
+          {
+            "id": "图/Graph",
+            "zh": "图",
+            "importance": 0.281117,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "简单图/simple graph",
+                "zh": "简单图",
+                "importance": 0.589801,
+                "relation": null,
+                "related": [
+                  "补图",
+                  "连通性判定定理"
+                ],
+                "children": []
+              },
+              {
+                "id": "连通图/connected graph",
+                "zh": "连通图",
+                "importance": 0.53018,
+                "relation": "belong_to",
+                "related": [
+                  "欧拉回路",
+                  "欧拉道路",
+                  "简单道路"
+                ],
+                "children": [
+                  {
+                    "id": "欧拉图/Eulerian graph",
+                    "zh": "欧拉图",
+                    "importance": 0.537225,
+                    "relation": "belong_to",
+                    "related": [
+                      "多重图",
+                      "平面连通图",
+                      "欧拉回路"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "有向图/directed graph",
+            "zh": "有向图",
+            "importance": 0.799077,
+            "relation": null,
+            "related": [
+              "de Bruijn 循环",
+              "欧拉回路"
+            ],
+            "children": [
+              {
+                "id": "结点/node",
+                "zh": "结点",
+                "importance": 0.678984,
+                "relation": "part_of",
+                "related": [
+                  "三元组状态",
+                  "有向边"
+                ],
+                "children": []
+              },
+              {
+                "id": "有向边/directed edge",
+                "zh": "有向边",
+                "importance": 0.473547,
+                "relation": "part_of",
+                "related": [
+                  "四位二进制数",
+                  "结点"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "路径的长度/path length",
+            "zh": "路径的长度",
+            "importance": 0.422402,
+            "relation": "belong_to",
+            "related": [
+              "小世界理论"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "平面图/planar graph",
+        "zh": "平面图",
+        "importance": 0.789864,
+        "relation": null,
+        "related": [
+          "图的着色",
+          "对偶图"
+        ],
+        "children": [
+          {
+            "id": "极大平面图/maximal planar graph",
+            "zh": "极大平面图",
+            "importance": 1.0,
+            "relation": "belong_to",
+            "related": [
+              "反证法",
+              "平面性",
+              "归纳证明",
+              "欧拉公式"
+            ],
+            "children": []
+          },
+          {
+            "id": "简单平面图/simple planar graph",
+            "zh": "简单平面图",
+            "importance": 0.524177,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/欧拉道路与回路/欧拉回路",
-            "zh": "欧拉回路",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
+            "id": "对偶图/dual graph",
+            "zh": "对偶图",
+            "importance": 0.668619,
+            "relation": null,
+            "related": [
+              "图的着色",
+              "平面图",
+              "平面连通图",
+              "自环",
+              "重边"
+            ],
+            "children": [
+              {
+                "id": "欧拉公式/欧拉公式",
+                "zh": "欧拉公式",
+                "importance": 0.267454,
+                "relation": "belong_to",
+                "related": [
+                  "五着色问题",
+                  "关键引理",
+                  "四色定理",
+                  "极大平面图"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "合作距离/collaborative distance",
+        "zh": "合作距离",
+        "importance": 0.78886,
+        "relation": null,
+        "related": [
+          "学术合作网络"
+        ],
+        "children": [
           {
-            "id": "__topic__/欧拉道路与回路/欧拉判定定理",
-            "zh": "欧拉判定定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/欧拉道路与回路/奇数度点对路径",
-            "zh": "奇数度点对路径",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/欧拉道路与回路/De Bruijn循环",
-            "zh": "De Bruijn循环",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "id": "Erdős数/Erdős number",
+            "zh": "Erdős数",
+            "importance": 0.166637,
+            "relation": "belong_to",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/哈密顿道路与回路",
-        "zh": "哈密顿道路与回路",
-        "importance": 0.4,
-        "relation": "toc_section",
+        "id": "道路与回路问题/path and circuit problem",
+        "zh": "道路与回路问题",
+        "importance": 0.718325,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/哈密顿道路与回路/哈密顿道路",
-            "zh": "哈密顿道路",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
+            "id": "最短路径问题/shortest path problem",
+            "zh": "最短路径问题",
+            "importance": 0.440966,
+            "relation": "belong_to",
+            "related": [
+              "道路"
+            ],
             "children": []
           },
           {
-            "id": "__topic__/哈密顿道路与回路/哈密顿回路",
-            "zh": "哈密顿回路",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
+            "id": "旅行商问题/Traveling Salesman Problem",
+            "zh": "旅行商问题",
+            "importance": 0.579986,
+            "relation": "belong_to",
+            "related": [
+              "Hamilton回路问题",
+              "哈密顿回路",
+              "完全图",
+              "最短路径",
+              "遍历所有顶点"
+            ],
             "children": []
           },
           {
-            "id": "__topic__/哈密顿道路与回路/NPC问题",
-            "zh": "NPC问题",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
+            "id": "中国邮路/Chinese Postman Problem",
+            "zh": "中国邮路",
+            "importance": 0.630826,
+            "relation": "belong_to",
+            "related": [
+              "回路",
+              "握手定理",
+              "最短路径",
+              "欧拉回路"
+            ],
+            "children": [
+              {
+                "id": "重复边/Repeated edge",
+                "zh": "重复边",
+                "importance": 0.586303,
+                "relation": "part_of",
+                "related": [
+                  "最短路径"
+                ],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "__topic__/哈密顿道路与回路/H道路判定定理",
-            "zh": "H道路判定定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
+            "id": "周游世界问题/round-the-world problem",
+            "zh": "周游世界问题",
+            "importance": 0.166186,
+            "relation": "belong_to",
+            "related": [
+              "十二面体游戏",
+              "哈密顿回路"
+            ],
             "children": []
-          },
+          }
+        ]
+      },
+      {
+        "id": "四位二进制数/four-bit binary number",
+        "zh": "四位二进制数",
+        "importance": 0.685426,
+        "relation": null,
+        "related": [
+          "有向边"
+        ],
+        "children": [
           {
-            "id": "__topic__/哈密顿道路与回路/Ore定理",
-            "zh": "Ore定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/Dirac定理",
-            "zh": "Dirac定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/不相邻结点定理",
-            "zh": "不相邻结点定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/Bondy闭合图定理",
-            "zh": "Bondy闭合图定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/范定理",
-            "zh": "范定理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/有H道路无H回路引理",
-            "zh": "有H道路无H回路引理",
-            "importance": 0.35,
-            "relation": "toc_topic",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/哈密顿道路与回路/H回路的必要条件",
-            "zh": "H回路的必要条件",
-            "importance": 0.35,
-            "relation": "toc_topic",
+            "id": "二进制位/bit",
+            "zh": "二进制位",
+            "importance": 0.532187,
+            "relation": "part_of",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/旅行商问题",
-        "zh": "旅行商问题",
-        "importance": 0.4,
-        "relation": "toc_section",
-        "related": [],
-        "children": []
+        "id": "充分条件/sufficient condition",
+        "zh": "充分条件",
+        "importance": 0.661321,
+        "relation": null,
+        "related": [
+          "H 回路",
+          "哈密顿回路的判定"
+        ],
+        "children": [
+          {
+            "id": "Ore定理/Ore theorem",
+            "zh": "Ore定理",
+            "importance": 0.362374,
+            "relation": "belong_to",
+            "related": [
+              "Dirac 定理",
+              "H 回路存在",
+              "Hamilton 道路存在",
+              "简单图"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "范定理条件/Fan's theorem condition",
+            "zh": "范定理条件",
+            "importance": 0.083662,
+            "relation": "belong_to",
+            "related": [
+              "不相邻条件"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
       },
       {
-        "id": "__section__/最短路径",
-        "zh": "最短路径",
-        "importance": 0.4,
-        "relation": "toc_section",
+        "id": "求最小权值 H 回路的方法/methods for minimum-weight H circuit",
+        "zh": "求最小权值 H 回路的方法",
+        "importance": 0.632291,
+        "relation": null,
         "related": [],
-        "children": []
+        "children": [
+          {
+            "id": "贪心算法/greedy algorithm",
+            "zh": "贪心算法",
+            "importance": 0.841154,
+            "relation": "belong_to",
+            "related": [],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "最小生成树方法/minimum spanning tree method",
+            "zh": "最小生成树方法",
+            "importance": 0.561872,
+            "relation": "belong_to",
+            "related": [
+              "H 回路",
+              "最小生成树"
+            ],
+            "children": []
+          },
+          {
+            "id": "分支定界/branch and bound",
+            "zh": "分支定界",
+            "importance": 0.0,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "穷举搜索/exhaustive search",
+            "zh": "穷举搜索",
+            "importance": 0.0,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
       },
       {
-        "id": "__section__/关键路径",
-        "zh": "关键路径",
-        "importance": 0.4,
-        "relation": "toc_section",
-        "related": [],
-        "children": []
+        "id": "人际网络/social network",
+        "zh": "人际网络",
+        "importance": 0.582111,
+        "relation": null,
+        "related": [
+          "小世界理论"
+        ],
+        "children": [
+          {
+            "id": "学术合作网络",
+            "zh": "学术合作网络",
+            "importance": 0.534695,
+            "relation": "belong_to",
+            "related": [
+              "合作距离"
+            ],
+            "children": []
+          }
+        ]
       },
       {
-        "id": "__section__/中国邮路",
-        "zh": "中国邮路",
-        "importance": 0.4,
-        "relation": "toc_section",
-        "related": [],
-        "children": []
+        "id": "图的连通性/Connectivity of Graph",
+        "zh": "图的连通性",
+        "importance": 0.579345,
+        "relation": null,
+        "related": [
+          "Warshall 算法",
+          "欧拉回路",
+          "欧拉道路",
+          "证明连通性的方法",
+          "道路",
+          "邻接矩阵法"
+        ],
+        "children": [
+          {
+            "id": "有向图的连通性/connectivity of directed graph",
+            "zh": "有向图的连通性",
+            "importance": 0.260896,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "强连通/strong connectivity",
+                "zh": "强连通",
+                "importance": 0.166186,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "弱连通/weak connectivity",
+                "zh": "弱连通",
+                "importance": 0.166186,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "证明连通性的方法/methods for proving connectivity",
+            "zh": "证明连通性的方法",
+            "importance": 0.427003,
+            "relation": null,
+            "related": [
+              "图的连通性"
+            ],
+            "children": [
+              {
+                "id": "深度优先遍历/depth-first search",
+                "zh": "深度优先遍历",
+                "importance": 0.166186,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "求连通分量/finding connected components",
+                "zh": "求连通分量",
+                "importance": 0.166186,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "先标号先检查方法/first-labeled first-examined method",
+                "zh": "先标号先检查方法",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   "roots": [
     {
-      "id": "__chapter__/第2章 道路与回路",
+      "id": "__chapter__/道路与回路",
       "zh": "第2章 道路与回路",
-      "importance": 0.75,
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "道路与回路"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/图的连通性",
-          "zh": "图的连通性",
-          "importance": 0.4,
-          "relation": "toc_section",
+          "id": "有向道路/directed path",
+          "zh": "有向道路",
+          "importance": 0.858744,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/图的连通性/连通分量",
-              "zh": "连通分量",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "id": "有向回路/directed circuit",
+              "zh": "有向回路",
+              "importance": 0.756991,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/图的连通性/生成树",
-              "zh": "生成树",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "id": "简单有向道路/simple directed path",
+              "zh": "简单有向道路",
+              "importance": 0.852626,
+              "relation": "belong_to",
               "related": [],
-              "children": []
+              "children": [
+                {
+                  "id": "简单有向回路/simple directed circuit",
+                  "zh": "简单有向回路",
+                  "importance": 0.639237,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
             },
             {
-              "id": "__topic__/图的连通性/分割度",
-              "zh": "分割度",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "id": "边序列/edge sequence",
+              "zh": "边序列",
+              "importance": 0.422801,
+              "relation": "part_of",
               "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/图的连通性/连通判定定理",
-              "zh": "连通判定定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/图的连通性/Warshall算法",
-              "zh": "Warshall算法",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/图的连通性/邻接矩阵法",
-              "zh": "邻接矩阵法",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/图的连通性/搜索法",
-              "zh": "搜索法",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/图的连通性/六度空间",
-              "zh": "六度空间",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__manual__/连通图/mumg2uy3-uv73",
-              "zh": "连通图",
-              "importance": 0.35,
-              "relation": "manual",
-              "related": [],
-              "deps": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/道路与回路的判定",
-          "zh": "道路与回路的判定",
-          "importance": 0.4,
-          "relation": "toc_section",
-          "related": [],
+          "id": "道路/Path",
+          "zh": "道路",
+          "importance": 0.831505,
+          "relation": null,
+          "related": [
+            "连通图"
+          ],
           "children": [
             {
-              "id": "__topic__/道路与回路的判定/回路",
+              "id": "回路/Circuit",
               "zh": "回路",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "importance": 0.743957,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "初级道路/elementary path",
+              "zh": "初级道路",
+              "importance": 0.661561,
+              "relation": null,
+              "related": [
+                "初级回路"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "简单道路/simple path",
+              "zh": "简单道路",
+              "importance": 0.53179,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/道路与回路的判定/简单道路/回路",
-              "zh": "简单道路/回路",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
+              "id": "H 道路/H path",
+              "zh": "H 道路",
+              "importance": 0.087506,
+              "relation": "belong_to",
+              "related": [
+                "H 回路",
+                "欧拉道路"
+              ],
               "children": []
             },
             {
-              "id": "__topic__/道路与回路的判定/初级道路/回路",
-              "zh": "初级道路/回路",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/道路与回路的判定/初级道路长度",
-              "zh": "初级道路长度",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/欧拉道路与回路",
-          "zh": "欧拉道路与回路",
-          "importance": 0.4,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/欧拉道路与回路/欧拉道路",
+              "id": "欧拉道路/Eulerian Path",
               "zh": "欧拉道路",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "importance": 0.054232,
+              "relation": "belong_to",
+              "related": [
+                "H 道路"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "图论/graph theory",
+          "zh": "图论",
+          "importance": 0.850714,
+          "relation": null,
+          "related": [
+            "小世界理论"
+          ],
+          "children": [
+            {
+              "id": "图/Graph",
+              "zh": "图",
+              "importance": 0.281117,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "简单图/simple graph",
+                  "zh": "简单图",
+                  "importance": 0.589801,
+                  "relation": null,
+                  "related": [
+                    "补图",
+                    "连通性判定定理"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "连通图/connected graph",
+                  "zh": "连通图",
+                  "importance": 0.53018,
+                  "relation": "belong_to",
+                  "related": [
+                    "欧拉回路",
+                    "欧拉道路",
+                    "简单道路"
+                  ],
+                  "children": [
+                    {
+                      "id": "欧拉图/Eulerian graph",
+                      "zh": "欧拉图",
+                      "importance": 0.537225,
+                      "relation": "belong_to",
+                      "related": [
+                        "多重图",
+                        "平面连通图",
+                        "欧拉回路"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "有向图/directed graph",
+              "zh": "有向图",
+              "importance": 0.799077,
+              "relation": null,
+              "related": [
+                "de Bruijn 循环",
+                "欧拉回路"
+              ],
+              "children": [
+                {
+                  "id": "结点/node",
+                  "zh": "结点",
+                  "importance": 0.678984,
+                  "relation": "part_of",
+                  "related": [
+                    "三元组状态",
+                    "有向边"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "有向边/directed edge",
+                  "zh": "有向边",
+                  "importance": 0.473547,
+                  "relation": "part_of",
+                  "related": [
+                    "四位二进制数",
+                    "结点"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "路径的长度/path length",
+              "zh": "路径的长度",
+              "importance": 0.422402,
+              "relation": "belong_to",
+              "related": [
+                "小世界理论"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "平面图/planar graph",
+          "zh": "平面图",
+          "importance": 0.789864,
+          "relation": null,
+          "related": [
+            "图的着色",
+            "对偶图"
+          ],
+          "children": [
+            {
+              "id": "极大平面图/maximal planar graph",
+              "zh": "极大平面图",
+              "importance": 1.0,
+              "relation": "belong_to",
+              "related": [
+                "反证法",
+                "平面性",
+                "归纳证明",
+                "欧拉公式"
+              ],
+              "children": []
+            },
+            {
+              "id": "简单平面图/simple planar graph",
+              "zh": "简单平面图",
+              "importance": 0.524177,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/欧拉道路与回路/欧拉回路",
-              "zh": "欧拉回路",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
+              "id": "对偶图/dual graph",
+              "zh": "对偶图",
+              "importance": 0.668619,
+              "relation": null,
+              "related": [
+                "图的着色",
+                "平面图",
+                "平面连通图",
+                "自环",
+                "重边"
+              ],
+              "children": [
+                {
+                  "id": "欧拉公式/欧拉公式",
+                  "zh": "欧拉公式",
+                  "importance": 0.267454,
+                  "relation": "belong_to",
+                  "related": [
+                    "五着色问题",
+                    "关键引理",
+                    "四色定理",
+                    "极大平面图"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "合作距离/collaborative distance",
+          "zh": "合作距离",
+          "importance": 0.78886,
+          "relation": null,
+          "related": [
+            "学术合作网络"
+          ],
+          "children": [
             {
-              "id": "__topic__/欧拉道路与回路/欧拉判定定理",
-              "zh": "欧拉判定定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/欧拉道路与回路/奇数度点对路径",
-              "zh": "奇数度点对路径",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/欧拉道路与回路/De Bruijn循环",
-              "zh": "De Bruijn循环",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "id": "Erdős数/Erdős number",
+              "zh": "Erdős数",
+              "importance": 0.166637,
+              "relation": "belong_to",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/哈密顿道路与回路",
-          "zh": "哈密顿道路与回路",
-          "importance": 0.4,
-          "relation": "toc_section",
+          "id": "道路与回路问题/path and circuit problem",
+          "zh": "道路与回路问题",
+          "importance": 0.718325,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/哈密顿道路与回路/哈密顿道路",
-              "zh": "哈密顿道路",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
+              "id": "最短路径问题/shortest path problem",
+              "zh": "最短路径问题",
+              "importance": 0.440966,
+              "relation": "belong_to",
+              "related": [
+                "道路"
+              ],
               "children": []
             },
             {
-              "id": "__topic__/哈密顿道路与回路/哈密顿回路",
-              "zh": "哈密顿回路",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
+              "id": "旅行商问题/Traveling Salesman Problem",
+              "zh": "旅行商问题",
+              "importance": 0.579986,
+              "relation": "belong_to",
+              "related": [
+                "Hamilton回路问题",
+                "哈密顿回路",
+                "完全图",
+                "最短路径",
+                "遍历所有顶点"
+              ],
               "children": []
             },
             {
-              "id": "__topic__/哈密顿道路与回路/NPC问题",
-              "zh": "NPC问题",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
+              "id": "中国邮路/Chinese Postman Problem",
+              "zh": "中国邮路",
+              "importance": 0.630826,
+              "relation": "belong_to",
+              "related": [
+                "回路",
+                "握手定理",
+                "最短路径",
+                "欧拉回路"
+              ],
+              "children": [
+                {
+                  "id": "重复边/Repeated edge",
+                  "zh": "重复边",
+                  "importance": 0.586303,
+                  "relation": "part_of",
+                  "related": [
+                    "最短路径"
+                  ],
+                  "children": []
+                }
+              ]
             },
             {
-              "id": "__topic__/哈密顿道路与回路/H道路判定定理",
-              "zh": "H道路判定定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
+              "id": "周游世界问题/round-the-world problem",
+              "zh": "周游世界问题",
+              "importance": 0.166186,
+              "relation": "belong_to",
+              "related": [
+                "十二面体游戏",
+                "哈密顿回路"
+              ],
               "children": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "四位二进制数/four-bit binary number",
+          "zh": "四位二进制数",
+          "importance": 0.685426,
+          "relation": null,
+          "related": [
+            "有向边"
+          ],
+          "children": [
             {
-              "id": "__topic__/哈密顿道路与回路/Ore定理",
-              "zh": "Ore定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/Dirac定理",
-              "zh": "Dirac定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/不相邻结点定理",
-              "zh": "不相邻结点定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/Bondy闭合图定理",
-              "zh": "Bondy闭合图定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/范定理",
-              "zh": "范定理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/有H道路无H回路引理",
-              "zh": "有H道路无H回路引理",
-              "importance": 0.35,
-              "relation": "toc_topic",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/哈密顿道路与回路/H回路的必要条件",
-              "zh": "H回路的必要条件",
-              "importance": 0.35,
-              "relation": "toc_topic",
+              "id": "二进制位/bit",
+              "zh": "二进制位",
+              "importance": 0.532187,
+              "relation": "part_of",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/旅行商问题",
-          "zh": "旅行商问题",
-          "importance": 0.4,
-          "relation": "toc_section",
-          "related": [],
-          "children": []
+          "id": "充分条件/sufficient condition",
+          "zh": "充分条件",
+          "importance": 0.661321,
+          "relation": null,
+          "related": [
+            "H 回路",
+            "哈密顿回路的判定"
+          ],
+          "children": [
+            {
+              "id": "Ore定理/Ore theorem",
+              "zh": "Ore定理",
+              "importance": 0.362374,
+              "relation": "belong_to",
+              "related": [
+                "Dirac 定理",
+                "H 回路存在",
+                "Hamilton 道路存在",
+                "简单图"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "范定理条件/Fan's theorem condition",
+              "zh": "范定理条件",
+              "importance": 0.083662,
+              "relation": "belong_to",
+              "related": [
+                "不相邻条件"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
         },
         {
-          "id": "__section__/最短路径",
-          "zh": "最短路径",
-          "importance": 0.4,
-          "relation": "toc_section",
+          "id": "求最小权值 H 回路的方法/methods for minimum-weight H circuit",
+          "zh": "求最小权值 H 回路的方法",
+          "importance": 0.632291,
+          "relation": null,
           "related": [],
-          "children": []
+          "children": [
+            {
+              "id": "贪心算法/greedy algorithm",
+              "zh": "贪心算法",
+              "importance": 0.841154,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "最小生成树方法/minimum spanning tree method",
+              "zh": "最小生成树方法",
+              "importance": 0.561872,
+              "relation": "belong_to",
+              "related": [
+                "H 回路",
+                "最小生成树"
+              ],
+              "children": []
+            },
+            {
+              "id": "分支定界/branch and bound",
+              "zh": "分支定界",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "穷举搜索/exhaustive search",
+              "zh": "穷举搜索",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
         },
         {
-          "id": "__section__/关键路径",
-          "zh": "关键路径",
-          "importance": 0.4,
-          "relation": "toc_section",
-          "related": [],
-          "children": []
+          "id": "人际网络/social network",
+          "zh": "人际网络",
+          "importance": 0.582111,
+          "relation": null,
+          "related": [
+            "小世界理论"
+          ],
+          "children": [
+            {
+              "id": "学术合作网络",
+              "zh": "学术合作网络",
+              "importance": 0.534695,
+              "relation": "belong_to",
+              "related": [
+                "合作距离"
+              ],
+              "children": []
+            }
+          ]
         },
         {
-          "id": "__section__/中国邮路",
-          "zh": "中国邮路",
-          "importance": 0.4,
-          "relation": "toc_section",
-          "related": [],
-          "children": []
+          "id": "图的连通性/Connectivity of Graph",
+          "zh": "图的连通性",
+          "importance": 0.579345,
+          "relation": null,
+          "related": [
+            "Warshall 算法",
+            "欧拉回路",
+            "欧拉道路",
+            "证明连通性的方法",
+            "道路",
+            "邻接矩阵法"
+          ],
+          "children": [
+            {
+              "id": "有向图的连通性/connectivity of directed graph",
+              "zh": "有向图的连通性",
+              "importance": 0.260896,
+              "relation": "belong_to",
+              "related": [],
+              "children": [
+                {
+                  "id": "强连通/strong connectivity",
+                  "zh": "强连通",
+                  "importance": 0.166186,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "弱连通/weak connectivity",
+                  "zh": "弱连通",
+                  "importance": 0.166186,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "证明连通性的方法/methods for proving connectivity",
+              "zh": "证明连通性的方法",
+              "importance": 0.427003,
+              "relation": null,
+              "related": [
+                "图的连通性"
+              ],
+              "children": [
+                {
+                  "id": "深度优先遍历/depth-first search",
+                  "zh": "深度优先遍历",
+                  "importance": 0.166186,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "求连通分量/finding connected components",
+                  "zh": "求连通分量",
+                  "importance": 0.166186,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "先标号先检查方法/first-labeled first-examined method",
+                  "zh": "先标号先检查方法",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
         }
       ]
     }
   ],
-  "n_nodes": 38,
-  "max_depth": 2,
+  "n_nodes": 54,
+  "max_depth": 4,
   "orphan_count": 0,
   "meta": {
     "chapter": "第2章 道路与回路",
-    "root_zh": "第2章 道路与回路",
+    "root_zh": "道路与回路",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
-      "0"
+      "2",
+      "4",
+      "5",
+      "6",
+      "7",
+      "12",
+      "16"
     ],
-    "source": "summary+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 8
-  },
-  "remoteLinks": []
+    "llm_tidy_notes": "将分散的'道路'、'回路'等概念统一挂靠到'有向道路'和'道路'下，将'对偶图'并入'平面图'，删除重复的'初级道路'节点，并移除讲次层级。",
+    "llm_merge": true,
+    "llm_merge_notes": "将分散的'道路'、'回路'等概念统一挂靠到'有向道路'和'道路'下，将'对偶图'并入'平面图'，删除重复的'初级道路'节点，并移除讲次层级。"
+  }
 }

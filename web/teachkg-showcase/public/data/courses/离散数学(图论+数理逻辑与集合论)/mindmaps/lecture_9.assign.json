@@ -1,0 +1,26 @@
+{
+  "lecture_id": "9",
+  "candidates": [
+    "第4章 平面图与图的着色"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "平面/plane",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.95,
+      "reason": "平面图的基本概念，属于第4章核心主题"
+    },
+    {
+      "subtree_root_id": "割边/cut edge",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.7,
+      "reason": "割边是图论基础概念，与平面图相关，但也可归入第1章；因候选优先，归入第4章"
+    },
+    {
+      "subtree_root_id": "简单图/simple graph",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.9,
+      "reason": "简单图及其子节点均围绕平面图展开，属于第4章"
+    }
+  ]
+}

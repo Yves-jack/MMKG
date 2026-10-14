@@ -1,16 +1,13 @@
 /**
- * 章导图构建（课堂优先）：
- * 1. 已有 summaries（尤其 manual）→ 骨架
+ * 章导图构建（仅课堂；禁止教材 toc 补章）：
+ * 1. 已有 summaries（manual / classroom_ppt）→ 骨架
  * 2. segments/.../ocr/ppt_ocr.json → PPT 页标题骨架
  * 3. review/lecture_*.json 知识点+片段标题 → 课堂代理骨架
- * 4. 再无则退回讲次枝融合
+ * 4. 再无则退回讲次枝融合（学期未讲的章不占位）
  * 5. 课总图 = 章浅拼接
- *
- * 不再默认使用教材 toc.md（导图须对齐真实课堂）。
  *
  *   node scripts/build-chapter-mindmaps.mjs
  *   node scripts/build-chapter-mindmaps.mjs --course 数理逻辑
- *   node scripts/build-chapter-mindmaps.mjs --allow-textbook-toc  # 可选后备
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -641,12 +638,13 @@ function writeSummary(courseDir, chapter, skeleton) {
   return out;
 }
 
-function resolveSkeleton(courseId, courseDir, chapter, lectureIds, allowTextbook) {
+function resolveSkeleton(courseId, courseDir, chapter, lectureIds) {
   const slug = chapterFileSlug(chapter);
   const sumPath = path.join(courseDir, "summaries", `chapter_${slug}.json`);
   if (fs.existsSync(sumPath)) {
     try {
       const data = JSON.parse(fs.readFileSync(sumPath, "utf8"));
+      // 允许 textbook_toc 总结：无课堂章的正规来源
       const sk = skeletonFromSummaryFile(chapter, data);
       if (sk?.sections?.length) return sk;
     } catch {
@@ -668,37 +666,11 @@ function resolveSkeleton(courseId, courseDir, chapter, lectureIds, allowTextbook
   const fromReview = skeletonFromReviewDocs(chapter, reviews);
   if (fromReview?.sections?.length) return fromReview;
 
-  if (allowTextbook) {
-    const rel = COURSE_TEXTBOOK[courseId];
-    if (rel) {
-      const tocPath = path.join(repoRoot, rel, "toc.md");
-      if (fs.existsSync(tocPath)) {
-        const md = fs.readFileSync(tocPath, "utf8");
-        const block = md
-          .split(/^## /m)
-          .map((b) => b.trim())
-          .find((b) => b.startsWith(chapter.replace(/^第/, "第")) || b.startsWith(chapter));
-        // simple: find ## chapter then ### lines
-        const lines = [];
-        let inCh = false;
-        for (const raw of md.split(/\r?\n/)) {
-          if (raw.startsWith("## ")) {
-            inCh = raw.slice(3).trim() === chapter;
-            continue;
-          }
-          if (inCh && raw.startsWith("### ")) lines.push(raw.slice(4).trim());
-          if (inCh && raw.startsWith("## ")) break;
-        }
-        if (lines.length) {
-          return parseOutlineText(chapter, lines.join("\n"), "textbook_toc");
-        }
-      }
-    }
-  }
+  // 禁止教材 TOC 补章：无 PPT/复习则返回 null（学期未讲的章不占位）
   return null;
 }
 
-function processCourse(course, allowTextbook) {
+function processCourse(course) {
   const { viz, pub } = resolveCourseDirs(course);
   const targets = [viz, pub].filter((d) => fs.existsSync(d));
   if (!targets.length) {
@@ -766,8 +738,7 @@ function processCourse(course, allowTextbook) {
         course,
         courseDir,
         ch,
-        lids.map(String),
-        allowTextbook
+        lids.map(String)
       );
       let doc;
       let source;
@@ -930,15 +901,16 @@ function processCourse(course, allowTextbook) {
 function main() {
   const args = process.argv.slice(2);
   let courses = [];
-  let allowTextbook = false;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--course" && args[i + 1]) courses.push(args[++i]);
-    if (args[i] === "--allow-textbook-toc") allowTextbook = true;
+    if (args[i] === "--allow-textbook-toc") {
+      console.warn("ignored deprecated --allow-textbook-toc (教材补章已禁用)");
+    }
   }
   if (!courses.length) {
     courses = ["数理逻辑", "离散数学(图论+数理逻辑与集合论)"];
   }
-  for (const c of courses) processCourse(c, allowTextbook);
+  for (const c of courses) processCourse(c);
 }
 
 main();

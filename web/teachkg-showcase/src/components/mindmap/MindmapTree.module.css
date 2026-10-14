@@ -753,21 +753,7 @@
   background: color-mix(in srgb, var(--line) 70%, transparent);
 }
 
-/* 交学伴纸面：导图画布与节点统一浅色 */
-:global(html[data-embed="ai-teaching"]) .mindCanvasWrap,
-:global(html[data-embed="ai-teaching"]) .panViewport,
-:global(html[data-embed="ai-teaching"]) .panLayer {
-  background: var(--bg, #f7f4ef);
-  color: var(--text, #111);
-}
-
-:global(html[data-embed="ai-teaching"]) .zoomBar,
-:global(html[data-embed="ai-teaching"]) .zoomBar button {
-  background: var(--bg-elev, #fff);
-  border-color: var(--line, #e8e1d7);
-  color: var(--text, #111);
-}
-
+/* 交学伴纸面：节点层级用图谱同款 pastel，选中环用校色 */
 :global(html[data-embed="ai-teaching"]) .bubble[data-kind="root"] {
   border-color: #34d399;
   background: linear-gradient(135deg, #ecfdf5, #fff 62%);

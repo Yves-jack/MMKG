@@ -1,0 +1,273 @@
+{
+  "lecture_id": "chapter:第3章 命题逻辑的公理化系统",
+  "root": {
+    "id": "__chapter__/命题逻辑的公理化系统",
+    "zh": "第3章 命题逻辑的公理化系统",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/一个命题逻辑公理系统包括以下几个部分:",
+        "zh": "一个命题逻辑公理系统包括以下几个部分:",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统A",
+        "zh": "命题逻辑公理系统A",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "公理系统A/axiomatic system A",
+            "zh": "公理系统A",
+            "importance": 0.884255,
+            "relation": "belong_to",
+            "related": [
+              "公理系统B"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题逻辑公理系统A(续)",
+        "zh": "命题逻辑公理系统A(续)",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理1: |-(Q→R) → ((P→Q)→(P→R)) 加头定理",
+        "zh": "定理1: |-(Q→R) → ((P→Q)→(P→R)) 加头定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B-(数理逻辑_南大莫绍揆 1.4节 P41)",
+        "zh": "命题逻辑公理系统B-(数理逻辑_南大莫绍揆 1.4节 P41)",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "公理系统B/axiomatic system B",
+            "zh": "公理系统B",
+            "importance": 1.0,
+            "relation": "part_of",
+            "related": [
+              "公理系统A",
+              "分离规则",
+              "定理",
+              "推理规则",
+              "极小演绎系统",
+              "语义"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B(续)-公理",
+        "zh": "命题逻辑公理系统B(续)-公理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B(续) - 推理规则",
+        "zh": "命题逻辑公理系统B(续) - 推理规则",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B—加头定理",
+        "zh": "命题逻辑公理系统B—加头定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B—加头导出规则",
+        "zh": "命题逻辑公理系统B—加头导出规则",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统 - 王浩算法",
+        "zh": "命题逻辑公理系统 - 王浩算法",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统 - 王浩算法（1959）",
+        "zh": "命题逻辑公理系统 - 王浩算法（1959）",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/命题逻辑的公理化系统",
+      "zh": "第3章 命题逻辑的公理化系统",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/一个命题逻辑公理系统包括以下几个部分:",
+          "zh": "一个命题逻辑公理系统包括以下几个部分:",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统A",
+          "zh": "命题逻辑公理系统A",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "公理系统A/axiomatic system A",
+              "zh": "公理系统A",
+              "importance": 0.884255,
+              "relation": "belong_to",
+              "related": [
+                "公理系统B"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题逻辑公理系统A(续)",
+          "zh": "命题逻辑公理系统A(续)",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理1: |-(Q→R) → ((P→Q)→(P→R)) 加头定理",
+          "zh": "定理1: |-(Q→R) → ((P→Q)→(P→R)) 加头定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B-(数理逻辑_南大莫绍揆 1.4节 P41)",
+          "zh": "命题逻辑公理系统B-(数理逻辑_南大莫绍揆 1.4节 P41)",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "公理系统B/axiomatic system B",
+              "zh": "公理系统B",
+              "importance": 1.0,
+              "relation": "part_of",
+              "related": [
+                "公理系统A",
+                "分离规则",
+                "定理",
+                "推理规则",
+                "极小演绎系统",
+                "语义"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B(续)-公理",
+          "zh": "命题逻辑公理系统B(续)-公理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B(续) - 推理规则",
+          "zh": "命题逻辑公理系统B(续) - 推理规则",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B—加头定理",
+          "zh": "命题逻辑公理系统B—加头定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B—加头导出规则",
+          "zh": "命题逻辑公理系统B—加头导出规则",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统 - 王浩算法",
+          "zh": "命题逻辑公理系统 - 王浩算法",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统 - 王浩算法（1959）",
+          "zh": "命题逻辑公理系统 - 王浩算法（1959）",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 14,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化系统",
+    "root_zh": "命题逻辑的公理化系统",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "23",
+      "24",
+      "25",
+      "26"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

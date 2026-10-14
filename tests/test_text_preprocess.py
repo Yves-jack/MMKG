@@ -21,15 +21,28 @@ SAMPLE_CUE = """上课。由于两个班级合并上课，我们换到了更大�
 
 def test_remove_classroom_admin():
     out = remove_classroom_admin(SAMPLE_CUE)
+    assert "上课" not in out
     assert "换到了更大的教室" not in out
     assert "命题逻辑是谓词逻辑的基础" in out
+    # 课名句不再靠硬编码删；留给 A/B 或显式 legacy
+    assert "本学期" in out or "命题逻辑" in out
 
 
-def test_remove_classroom_admin_keeps_knowledge_in_same_paragraph():
+def test_remove_classroom_admin_keeps_intro_for_llm():
+    """引入套话不属于后勤仪式，轻清洗保留给 A/B。"""
     text = "谓词逻辑能够表达更丰富的语义。今天我们要介绍的就是谓词逻辑。谓词逻辑将简单命题进一步细分为主语和谓语两部分。"
     out = remove_classroom_admin(text)
-    assert "今天我们要介绍" not in out
+    assert "今天我们要介绍" in out
     assert "细分为主语和谓语" in out
+
+
+def test_remove_classroom_admin_legacy_templates():
+    text = "今天我们要介绍的就是谓词逻辑。谓词逻辑将简单命题进一步细分。"
+    kept = remove_classroom_admin(text, legacy_templates=False)
+    assert "今天我们要介绍" in kept
+    dropped = remove_classroom_admin(text, legacy_templates=True)
+    assert "今天我们要介绍" not in dropped
+    assert "进一步细分" in dropped
 
 
 def test_remove_intro_framing_drops_pure_intro():
@@ -57,6 +70,14 @@ def test_remove_example_labels():
     assert "P：今天是周二" not in out
     assert "Q：今天有离散课" not in out
     assert "命题逻辑" in out
+
+
+def test_remove_example_labels_generic():
+    text = "定义如下。\n例1：具体演算\nExample 2: foo bar\n原子命题不可再分。"
+    out = remove_example_label_lines(text)
+    assert "例1" not in out
+    assert "Example 2" not in out
+    assert "原子命题不可再分" in out
 
 
 def test_rule_preprocess_cue_text():

@@ -1,0 +1,152 @@
+{
+  "lecture_id": "9",
+  "root": {
+    "id": "平面/plane",
+    "zh": "平面",
+    "importance": 0.809198,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "面/face",
+        "zh": "面",
+        "importance": 0.0,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "平面/plane",
+      "zh": "平面",
+      "importance": 0.809198,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "面/face",
+          "zh": "面",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "割边/cut edge",
+      "zh": "割边",
+      "importance": 0.719354,
+      "relation": null,
+      "related": [
+        "无割边",
+        "连通性"
+      ],
+      "children": [
+        {
+          "id": "悬边/pendant edge",
+          "zh": "悬边",
+          "importance": 0.546111,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "简单图/simple graph",
+      "zh": "简单图",
+      "importance": 0.386964,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "平面图/planar graph",
+          "zh": "平面图",
+          "importance": 0.941561,
+          "relation": "belong_to",
+          "related": [
+            "可平面嵌入",
+            "同构",
+            "边不相交"
+          ],
+          "children": [
+            {
+              "id": "极大平面图/maximal planar graph",
+              "zh": "极大平面图",
+              "importance": 0.874133,
+              "relation": "belong_to",
+              "related": [
+                "每个域的边数为3"
+              ],
+              "children": []
+            },
+            {
+              "id": "简单平面图/simple planar graph",
+              "zh": "简单平面图",
+              "importance": 0.537262,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "平面连通图/connected planar graph",
+              "zh": "平面连通图",
+              "importance": 0.296151,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "顶点/vertex",
+              "zh": "顶点",
+              "importance": 0.20369,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "内部域/internal face",
+              "zh": "内部域",
+              "importance": 0.122105,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "极大连通子图/maximal connected subgraph",
+              "zh": "极大连通子图",
+              "importance": 0.0,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 12,
+  "max_depth": 3,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "平面/plane",
+    "root_zh": "平面",
+    "virtual_root": false,
+    "n_trees": 3,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 25,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 12,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

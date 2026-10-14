@@ -627,13 +627,22 @@ def compute_importance_feedback(
     app_feedback_path: Path | None = None,
     new_entity_scale: float = 0.88,
     new_entity_max: float = 0.75,
+    mode: str = "full",
 ) -> ImportanceFeedbackResult:
-    """融合教材先验与多通道课堂信号（IDF / 自适应 α / 章外衰减 / 贡献拆解）。"""
+    """融合教材先验与多通道课堂信号。
+
+    mode=full：IDF / 自适应 α / 章外衰减 / hub 罚 / 先验融合（旧行为）。
+    mode=light：mention+structure 合成后做跨讲 IDF，再 normalize；
+    scores≡classroom_norm；跳过板书通道 / 词表实体降权 / 自适应α / 章外 / hub / 先验融合。
+    """
     from teachkg.textbook_kg.importance_signals import (
         blend_channels,
         compute_channel_signals,
         default_channel_weights,
+        default_channel_weights_light,
     )
+
+    light = str(mode or "full").strip().lower() == "light"
 
     textbook_importance = apply_entity_weights(
         {k: v for k, v in textbook_importance.items() if not is_invalid_entity(k)}
@@ -642,17 +651,109 @@ def compute_importance_feedback(
         triplets,
         use_log_duration=use_log_duration,
         textbook_names=set(textbook_importance),
-        asset_boost=asset_boost,
-        app_feedback_path=app_feedback_path,
+        asset_boost=None if light else asset_boost,
+        app_feedback_path=None if light else app_feedback_path,
+        use_entity_weights=not light,  # light：词表降权 → 跨讲 IDF
     )
-    cw = dict(default_channel_weights())
-    if channel_weights:
-        cw.update({k: float(v) for k, v in channel_weights.items()})
+    if light:
+        light_keys = ("mention_time", "structure_graph")
+        cw = dict(default_channel_weights_light())
+        if channel_weights:
+            for k in light_keys:
+                if k in channel_weights:
+                    cw[k] = float(channel_weights[k])
+            # 其余通道强制为 0（含 board_ppt）
+            for k in list(cw):
+                if k not in light_keys:
+                    cw[k] = 0.0
+    else:
+        cw = dict(default_channel_weights())
+        if channel_weights:
+            cw.update({k: float(v) for k, v in channel_weights.items()})
     classroom_raw, channel_norms = blend_channels(channels, cw)
 
     chapter_list = [c for c in (chapters or []) if c]
     order = list(chapter_order or [])
     protect_top = set(primary_chapter_top or ())
+    base_alpha = min(1.0, max(0.0, float(alpha)))
+    jaccard = 1.0
+    alpha_used = base_alpha
+
+    if light:
+        # 轻量：通道合成 → 跨讲 IDF → minmax；不用词表实体降权 / 章外 / hub / 自适应 α
+        # 不 protect 章主题：纯 DF，跨讲常见实体统一压低（含课名 hub）
+        light_idf_power = float(idf_power) if float(idf_power) > 0 else 1.0
+        classroom_raw = apply_lecture_idf(
+            classroom_raw,
+            lecture_df,
+            n_lectures,
+            idf_power=light_idf_power,
+            protect=None,
+        )
+        class_norm = _normalize(classroom_raw) if classroom_raw else {}
+        active_w = {k: float(v) for k, v in cw.items() if float(v) > 1e-9}
+        wsum = sum(active_w.values()) or 1.0
+        active_w = {k: v / wsum for k, v in active_w.items()}
+
+        scores: dict[str, float] = {}
+        contributions: dict[str, dict[str, float]] = {}
+        for n, raw in classroom_raw.items():
+            if is_invalid_entity(n):
+                continue
+            c = float(class_norm.get(n, 0.0))
+            if c <= 1e-12 or float(raw) <= 1e-12:
+                continue
+            score = c  # 权威分 = 归一化课堂分（IDF 已在 raw 上）
+            if score <= 1e-6:
+                continue
+            scores[n] = score
+            ch_parts = channel_norms.get(n) or {}
+            contrib: dict[str, float] = {"prior": 0.0}
+            for k, beta in active_w.items():
+                raw_k = float(ch_parts.get(k, 0.0))
+                contrib[k] = score * beta * raw_k
+            ch_sum = sum(v for k, v in contrib.items() if k != "prior")
+            if ch_sum <= 1e-12:
+                for k, beta in active_w.items():
+                    contrib[k] = score * beta
+            contributions[n] = contrib
+
+        # classroom_norm 与 scores 对齐
+        class_norm_out = {k: float(v) for k, v in scores.items()}
+        base_norm = {
+            n: float(textbook_importance.get(n, 0.0))
+            for n in scores
+            if n in textbook_importance
+        }
+        if base_norm:
+            base_norm = _normalize(base_norm)
+
+        meta_out = dict(meta or {})
+        meta_out["mode"] = "light"
+        meta_out["alpha_base"] = base_alpha
+        meta_out["alpha_used"] = 1.0  # 轻量：全部权重在课堂通道
+        meta_out["prior_classroom_jaccard"] = 0.0
+        meta_out["adaptive_alpha_scope_classroom"] = False
+        meta_out["chapters"] = chapter_list
+        meta_out["idf_power"] = light_idf_power
+        meta_out["n_lectures_idf"] = n_lectures
+        meta_out["entity_weight"] = "lecture_idf"
+        meta_out["version"] = 2
+        meta_out["channels"] = {
+            k: len(v) for k, v in channels.items() if isinstance(v, dict) and k in active_w
+        }
+
+        return ImportanceFeedbackResult(
+            scores=scores,
+            base_norm=base_norm,
+            classroom_norm=class_norm_out,
+            classroom_raw=dict(classroom_raw),
+            alpha=1.0,
+            meta=meta_out,
+            contributions=contributions,
+            channel_weights=cw,
+        )
+
     if not protect_top:
         protect_top = {
             n for n, _ in sorted(textbook_importance.items(), key=lambda x: -x[1])[:60]
@@ -689,10 +790,8 @@ def compute_importance_feedback(
             penalty=off_chapter_penalty,
         )
 
-    base_alpha = min(1.0, max(0.0, float(alpha)))
-    jaccard = 1.0
     if adaptive_alpha_enabled:
-        alpha, jaccard = adaptive_alpha(
+        alpha_used, jaccard = adaptive_alpha(
             base_alpha,
             textbook_importance,
             classroom_raw,
@@ -701,7 +800,7 @@ def compute_importance_feedback(
             scope_to_classroom=adaptive_alpha_scope_classroom,
         )
     else:
-        alpha = base_alpha
+        alpha_used = base_alpha
 
     names = set(textbook_importance) | set(classroom_raw)
     if not include_classroom_only:
@@ -729,8 +828,8 @@ def compute_importance_feedback(
     wsum = sum(active_w.values()) or 1.0
     active_w = {k: v / wsum for k, v in active_w.items()}
 
-    scores: dict[str, float] = {}
-    contributions: dict[str, dict[str, float]] = {}
+    scores = {}
+    contributions = {}
     for n in names:
         b = base_norm.get(n, 0.0)
         c = class_norm.get(n, 0.0)
@@ -740,13 +839,13 @@ def compute_importance_feedback(
             prior_share = 0.0
             sig_share = score
         else:
-            score = (1.0 - alpha) * b + alpha * c
-            prior_share = (1.0 - alpha) * b
-            sig_share = alpha * c
+            score = (1.0 - alpha_used) * b + alpha_used * c
+            prior_share = (1.0 - alpha_used) * b
+            sig_share = alpha_used * c
         score *= entity_weight_multiplier(n)
         scores[n] = score
 
-        contrib: dict[str, float] = {"prior": prior_share * entity_weight_multiplier(n)}
+        contrib = {"prior": prior_share * entity_weight_multiplier(n)}
         # 把 sig_share 按通道加权份额拆开
         for k, beta in active_w.items():
             raw_k = float(ch_parts.get(k, 0.0))
@@ -770,8 +869,9 @@ def compute_importance_feedback(
     contributions = {k: contributions[k] for k in scores}
 
     meta_out = dict(meta or {})
+    meta_out["mode"] = "full"
     meta_out["alpha_base"] = base_alpha
-    meta_out["alpha_used"] = alpha
+    meta_out["alpha_used"] = alpha_used
     meta_out["prior_classroom_jaccard"] = round(jaccard, 4)
     meta_out["adaptive_alpha_scope_classroom"] = bool(adaptive_alpha_scope_classroom)
     meta_out["chapters"] = chapter_list
@@ -787,7 +887,7 @@ def compute_importance_feedback(
         base_norm=base_norm,
         classroom_norm=class_norm,
         classroom_raw=classroom_raw,
-        alpha=alpha,
+        alpha=alpha_used,
         meta=meta_out,
         contributions=contributions,
         channel_weights=cw,
@@ -838,22 +938,51 @@ def merge_lecture_feedbacks(
             for ck, cv in (result.contributions.get(n) or {}).items():
                 contrib_acc[n][ck] += ww * float(cv)
 
-    scores = apply_entity_weights(dict(acc))
+    scores_acc = {k: float(v) for k, v in acc.items() if not is_invalid_entity(k)}
+    modes = {
+        str((result.meta or {}).get("mode") or "full")
+        for result, _ in lecture_results
+    }
+    merge_mode = "light" if modes == {"light"} else ("mixed" if len(modes) > 1 else "full")
+    if merge_mode == "light":
+        # light：跨讲 IDF 已在各讲算完；合并时不再套词表实体降权，保持 scores≡classroom
+        scores = {k: v for k, v in scores_acc.items() if v > 1e-6}
+        class_out = {k: float(class_acc.get(k, v)) for k, v in scores.items()}
+    else:
+        scores = apply_entity_weights(scores_acc)
+        scores = {k: v for k, v in scores.items() if v > 1e-6}
+        class_out = dict(class_acc)
     use_alpha = float(alpha if alpha is not None else (sum(alphas) / len(alphas)))
     contributions = {n: dict(parts) for n, parts in contrib_acc.items() if n in scores}
+    idf_powers = [
+        float((result.meta or {}).get("idf_power") or 0)
+        for result, _ in lecture_results
+    ]
+    n_idf = [
+        int((result.meta or {}).get("n_lectures_idf") or 0)
+        for result, _ in lecture_results
+    ]
+    meta_out: dict[str, Any] = {
+        "source": "merged_lectures",
+        "n_lectures": len(lecture_results),
+        "chapters": sorted(set(chapters)),
+        "merge": "duration_weighted",
+        "mode": merge_mode,
+        "version": 2,
+    }
+    if merge_mode == "light":
+        meta_out["entity_weight"] = "lecture_idf"
+        meta_out["idf_power"] = (
+            sum(idf_powers) / len(idf_powers) if idf_powers else 1.0
+        )
+        meta_out["n_lectures_idf"] = max(n_idf) if n_idf else 0
     return ImportanceFeedbackResult(
         scores=scores,
         base_norm=dict(base_acc),
-        classroom_norm=dict(class_acc),
+        classroom_norm=class_out if merge_mode == "light" else dict(class_acc),
         classroom_raw=dict(raw_acc),
         alpha=use_alpha,
-        meta={
-            "source": "merged_lectures",
-            "n_lectures": len(lecture_results),
-            "chapters": sorted(set(chapters)),
-            "merge": "duration_weighted",
-            "version": 2,
-        },
+        meta=meta_out,
         contributions=contributions,
         channel_weights=channel_weights,
     )

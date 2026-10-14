@@ -1,0 +1,10 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "course",
+  "lecture_id": "course",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 103,
+  "decided": 0,
+  "failed": 103,
+  "decisions": {}
+}

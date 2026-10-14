@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
@@ -216,11 +216,44 @@ class TextbookSubgraphRetriever:
     def _imp(self, name: str) -> float:
         return float(self._importance_view.get(name, 0.0))
 
+    def _same_zh_merge_map(self, names: set[str]) -> dict[str, str]:
+        """教材母图同中文主名合并：alias → canonical（教材实体优先）。"""
+        if not names:
+            return {}
+        from teachkg.stage2_kg_build.entity_merge import build_entity_merge_map
+
+        tb = {
+            str(n).strip()
+            for n in (getattr(self.kg, "entities", {}) or {})
+            if str(n).strip()
+        }
+        # 只在当前名字集合内合并；教材名仅用于选 canonical
+        full = build_entity_merge_map(
+            sorted(n for n in names if n), textbook_entity_names=tb
+        )
+        return {
+            n: full[n]
+            for n in names
+            if n in full and full[n] and full[n] != n
+        }
+
+    def _collapse_same_zh(self, names: set[str]) -> set[str]:
+        mmap = self._same_zh_merge_map(names)
+        if not mmap:
+            return set(names)
+        return {mmap.get(n, n) for n in names if n}
+
     def resolve_seed_sets(
         self, cue_text: str
     ) -> tuple[set[str], set[str], set[str]]:
         """返回 (扩展用种子, 别名种子, 向量种子)。"""
         alias_seeds, embedding_seeds = self.find_seed_entities_by_source(cue_text)
+        # 教材母图同中文名去重（如 基数/cardinality 与 基数/cardinal number）
+        pool = alias_seeds | embedding_seeds
+        mmap = self._same_zh_merge_map(pool)
+        if mmap:
+            alias_seeds = {mmap.get(n, n) for n in alias_seeds}
+            embedding_seeds = {mmap.get(n, n) for n in embedding_seeds} - alias_seeds
         seeds = alias_seeds | embedding_seeds
         filt = self.seed_llm_filter
         if filt is not None and getattr(filt, "enabled", False):
@@ -229,6 +262,9 @@ class TextbookSubgraphRetriever:
                 alias_seeds=alias_seeds,
                 embedding_seeds=embedding_seeds,
             )
+            seeds = self._collapse_same_zh(seeds)
+            alias_seeds = {n for n in alias_seeds if n in seeds}
+            embedding_seeds = {n for n in embedding_seeds if n in seeds} - alias_seeds
         return seeds, alias_seeds, embedding_seeds
 
     def retrieve(self, cue_text: str, *, max_edges: int | None = None) -> SubgraphResult:
@@ -280,13 +316,18 @@ class TextbookSubgraphRetriever:
                 knowledge_points=list(knowledge_points or []),
             )
 
+        # 调用方传入的种子也可能含同中文名重复
+        seeds = self._collapse_same_zh(seeds)
         seeds = self._cap_seeds(seeds, rank_text)
         pool = candidate_seed_pool if candidate_seed_pool is not None else set(seeds)
+        pool = self._collapse_same_zh(pool)
         if alias_seeds is None and embedding_seeds is None:
             # 未传入来源时不做拆分标注
             alias_kept: set[str] = set()
             emb_kept: set[str] = set()
         else:
+            alias_src = self._collapse_same_zh(alias_src)
+            emb_src = self._collapse_same_zh(emb_src) - alias_src
             alias_kept = seeds & alias_src
             emb_kept = seeds - alias_kept
             # 若调用方只传了 embedding 池，剩余仍归 embedding
@@ -338,6 +379,9 @@ class TextbookSubgraphRetriever:
                 knowledge_points=kps,
             )
 
+        selected = self._remap_relations_same_zh(selected)
+        candidate_relations = self._remap_relations_same_zh(candidate_relations)
+
         entities = set(seeds)
         for rel in selected:
             entities.add(rel.subject)
@@ -354,6 +398,33 @@ class TextbookSubgraphRetriever:
             candidate_relations=candidate_relations,
             knowledge_points=kps,
         )
+
+    def _remap_relations_same_zh(
+        self, relations: list[TextbookRelation]
+    ) -> list[TextbookRelation]:
+        """子图边端点按同中文主名收成 canonical，并去掉自环/重复 SPO。"""
+        if not relations:
+            return relations
+        names = {rel.subject for rel in relations} | {rel.object for rel in relations}
+        mmap = self._same_zh_merge_map(names)
+        if not mmap:
+            return relations
+        out: list[TextbookRelation] = []
+        seen: set[tuple[str, str, str]] = set()
+        for rel in relations:
+            sub = mmap.get(rel.subject, rel.subject)
+            obj = mmap.get(rel.object, rel.object)
+            if not sub or not obj or sub == obj:
+                continue
+            key = (sub, str(rel.predicate or ""), obj)
+            if key in seen:
+                continue
+            seen.add(key)
+            if sub == rel.subject and obj == rel.object:
+                out.append(rel)
+            else:
+                out.append(replace(rel, subject=sub, object=obj))
+        return out
 
     def _cap_seeds(self, seeds: set[str], rank_text: str) -> set[str]:
         if len(seeds) <= self.max_seed_entities:

@@ -1,0 +1,104 @@
+{
+  "lecture_id": "chapter:第12章 实数集合与集合的基数",
+  "root": {
+    "id": "__chapter__/实数集合与集合的基数",
+    "zh": "第12章 实数集合与集合的基数",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+        "zh": "等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/无穷集合的等势",
+        "zh": "无穷集合的等势",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/集合的等势（12.2）",
+        "zh": "集合的等势（12.2）",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/有限集合与可数集合",
+        "zh": "有限集合与可数集合",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/实数集合与集合的基数",
+      "zh": "第12章 实数集合与集合的基数",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+          "zh": "等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/无穷集合的等势",
+          "zh": "无穷集合的等势",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/集合的等势（12.2）",
+          "zh": "集合的等势（12.2）",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/有限集合与可数集合",
+          "zh": "有限集合与可数集合",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 5,
+  "max_depth": 1,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第12章 实数集合与集合的基数",
+    "root_zh": "实数集合与集合的基数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "44"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

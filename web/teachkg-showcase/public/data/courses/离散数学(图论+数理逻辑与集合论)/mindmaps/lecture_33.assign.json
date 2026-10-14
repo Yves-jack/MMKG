@@ -1,0 +1,30 @@
+{
+  "lecture_id": "33",
+  "candidates": [],
+  "assignments": [
+    {
+      "subtree_root_id": "证明/proof",
+      "chapter": "第6章 谓词逻辑的公理化系统",
+      "confidence": 0.85,
+      "reason": "证明、归结、合一、反证法属于谓词逻辑的推理演算与证明方法，与公理化系统密切相关"
+    },
+    {
+      "subtree_root_id": "归结过程/resolution process",
+      "chapter": "第6章 谓词逻辑的公理化系统",
+      "confidence": 0.8,
+      "reason": "归结过程是谓词逻辑推理演算的核心内容，属于公理化系统的推理规则"
+    },
+    {
+      "subtree_root_id": "范式/normal form",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "confidence": 0.9,
+      "reason": "前束范式、Skolem范式、合取范式是谓词逻辑等值变换和推理演算的基础内容"
+    },
+    {
+      "subtree_root_id": "子句集/clause set",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "confidence": 0.85,
+      "reason": "子句集是谓词逻辑推理演算中的关键概念，与归结方法紧密相关"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "lecture_id": "35",
+  "root": {
+    "id": "推理规则/inference rule",
+    "zh": "推理规则",
+    "importance": 0.763469,
+    "relation": null,
+    "related": [
+      "证明"
+    ],
+    "children": [
+      {
+        "id": "三段论/syllogism",
+        "zh": "三段论",
+        "importance": 0.777599,
+        "relation": "belong_to",
+        "related": [
+          "证明"
+        ],
+        "children": []
+      },
+      {
+        "id": "前件存在规则/existential introduction of the antecedent rule",
+        "zh": "前件存在规则",
+        "importance": 0.776718,
+        "relation": "belong_to",
+        "related": [],
+        "children": [
+          {
+            "id": "公理系统/axiomatic system",
+            "zh": "公理系统",
+            "importance": 0.616575,
+            "relation": "part_of",
+            "related": [],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "后件全称规则/universal generalization of the consequent rule",
+        "zh": "后件全称规则",
+        "importance": 0.627869,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.763469,
+      "relation": null,
+      "related": [
+        "证明"
+      ],
+      "children": [
+        {
+          "id": "三段论/syllogism",
+          "zh": "三段论",
+          "importance": 0.777599,
+          "relation": "belong_to",
+          "related": [
+            "证明"
+          ],
+          "children": []
+        },
+        {
+          "id": "前件存在规则/existential introduction of the antecedent rule",
+          "zh": "前件存在规则",
+          "importance": 0.776718,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "公理系统/axiomatic system",
+              "zh": "公理系统",
+              "importance": 0.616575,
+              "relation": "part_of",
+              "related": [],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "后件全称规则/universal generalization of the consequent rule",
+          "zh": "后件全称规则",
+          "importance": 0.627869,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.714682,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "后件/succedent",
+          "zh": "后件",
+          "importance": 0.728086,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "前件/antecedent",
+          "zh": "前件",
+          "importance": 0.570137,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 8,
+  "max_depth": 3,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化系统",
+    "root_id": "推理规则/inference rule",
+    "root_zh": "推理规则",
+    "virtual_root": false,
+    "n_trees": 2,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 23,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 14,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

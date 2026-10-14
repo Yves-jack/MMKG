@@ -1,0 +1,51 @@
+{
+  "lecture_id": "44",
+  "candidates": [
+    "第11章 函数",
+    "第12章 实数集合与集合的基数"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "集合/set",
+      "chapter": "第12章 实数集合与集合的基数",
+      "confidence": 0.8,
+      "reason": "包含函数集合、基数等概念，与基数主题相关"
+    },
+    {
+      "subtree_root_id": "关系/relation",
+      "chapter": "第11章 函数",
+      "confidence": 0.7,
+      "reason": "关系中的映射概念与函数紧密相关"
+    },
+    {
+      "subtree_root_id": "良序集/well-ordered set",
+      "chapter": "第12章 实数集合与集合的基数",
+      "confidence": 0.9,
+      "reason": "良序集、序数、自然数集等属于基数与序数理论"
+    },
+    {
+      "subtree_root_id": "关系运算/operation on relations",
+      "chapter": "第11章 函数",
+      "confidence": 0.6,
+      "reason": "关系运算与函数构造相关，但也可归入关系章节，此处选函数"
+    },
+    {
+      "subtree_root_id": "等价类/Equivalence Class",
+      "chapter": "第12章 实数集合与集合的基数",
+      "confidence": 0.8,
+      "reason": "商集、有理数集与基数构造相关"
+    },
+    {
+      "subtree_root_id": "可数集/countable set",
+      "chapter": "第12章 实数集合与集合的基数",
+      "confidence": 0.95,
+      "reason": "可数集、实数集是基数理论的核心内容"
+    },
+    {
+      "subtree_root_id": "特殊关系/special relation",
+      "chapter": "第11章 函数",
+      "confidence": 0.7,
+      "reason": "特殊关系中的映射概念与函数直接相关"
+    }
+  ]
+}

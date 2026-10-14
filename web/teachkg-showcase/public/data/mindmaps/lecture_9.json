@@ -1,149 +1,270 @@
 {
   "lecture_id": "9",
   "root": {
-    "id": "命题/proposition",
-    "zh": "命题",
-    "importance": 0.309623,
+    "id": "__lecture__/9",
+    "zh": "第 9 讲",
+    "importance": 0.9,
     "relation": null,
     "related": [],
     "children": [
       {
-        "id": "推理规则/inference rule",
-        "zh": "推理规则",
-        "importance": 0.177784,
-        "relation": "chapter_topic",
-        "related": [
-          "谓词逻辑的公理系统"
-        ],
+        "id": "__chapter__/平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.809198,
+        "relation": "toc_chapter",
+        "related": [],
         "children": [
           {
-            "id": "分离规则/分离规则",
-            "zh": "分离规则",
-            "importance": 0.020469,
+            "id": "平面图/planar graph",
+            "zh": "平面图",
+            "importance": 0.941561,
             "relation": "belong_to",
             "related": [
-              "前提"
+              "可平面嵌入",
+              "同构",
+              "边不相交"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "极大平面图/maximal planar graph",
+                "zh": "极大平面图",
+                "importance": 0.874133,
+                "relation": "belong_to",
+                "related": [
+                  "每个域的边数为3"
+                ],
+                "children": []
+              },
+              {
+                "id": "简单平面图/simple planar graph",
+                "zh": "简单平面图",
+                "importance": 0.537262,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "平面连通图/connected planar graph",
+                "zh": "平面连通图",
+                "importance": 0.296151,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "顶点/vertex",
+                "zh": "顶点",
+                "importance": 0.20369,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "内部域/internal face",
+                "zh": "内部域",
+                "importance": 0.122105,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "极大连通子图/maximal connected subgraph",
+                "zh": "极大连通子图",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "三段论/syllogism",
-            "zh": "三段论",
-            "importance": 0.013621,
-            "relation": "belong_to",
+            "id": "平面/plane",
+            "zh": "平面",
+            "importance": 0.809198,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "面/face",
+                "zh": "面",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "前件存在规则/existential introduction of the antecedent rule",
-            "zh": "前件存在规则",
-            "importance": 0.013099,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "后件概括规则/generalization of the consequent rule",
-            "zh": "后件概括规则",
-            "importance": 0.013015,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "加头规则/Δ rule",
-            "zh": "加头规则",
-            "importance": 0.005583,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
+            "id": "割边/cut edge",
+            "zh": "割边",
+            "importance": 0.719354,
+            "relation": null,
+            "related": [
+              "无割边",
+              "连通性"
+            ],
+            "children": [
+              {
+                "id": "悬边/pendant edge",
+                "zh": "悬边",
+                "importance": 0.546111,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "谓词逻辑的公理系统/axiomatic system for predicate logic",
-        "zh": "谓词逻辑的公理系统",
-        "importance": 0.162414,
-        "relation": "chapter_topic",
-        "related": [
-          "推理规则"
-        ],
-        "children": []
-      },
-      {
-        "id": "析取/disjunction",
-        "zh": "析取",
-        "importance": 0.162052,
-        "relation": "chapter_topic",
-        "related": [
-          "全称量词",
-          "存在量词",
-          "蕴含"
-        ],
-        "children": []
-      },
-      {
-        "id": "合取/conjunction",
-        "zh": "合取",
-        "importance": 0.103909,
-        "relation": "chapter_topic",
-        "related": [
-          "全称量词",
-          "存在量词",
-          "蕴含"
-        ],
-        "children": []
-      },
-      {
-        "id": "基本的推理公式/basic inference formula",
-        "zh": "基本的推理公式",
-        "importance": 0.098383,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": [
-          {
-            "id": "(1)/1",
-            "zh": "(1)",
-            "importance": 0.010744,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "(2)/2",
-            "zh": "(2)",
-            "importance": 0.010351,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "变形规则/transformation rule",
-        "zh": "变形规则",
-        "importance": 0.084947,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": []
       }
     ]
   },
-  "n_nodes": 14,
+  "roots": [
+    {
+      "id": "__lecture__/9",
+      "zh": "第 9 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.809198,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "平面图/planar graph",
+              "zh": "平面图",
+              "importance": 0.941561,
+              "relation": "belong_to",
+              "related": [
+                "可平面嵌入",
+                "同构",
+                "边不相交"
+              ],
+              "children": [
+                {
+                  "id": "极大平面图/maximal planar graph",
+                  "zh": "极大平面图",
+                  "importance": 0.874133,
+                  "relation": "belong_to",
+                  "related": [
+                    "每个域的边数为3"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "简单平面图/simple planar graph",
+                  "zh": "简单平面图",
+                  "importance": 0.537262,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "平面连通图/connected planar graph",
+                  "zh": "平面连通图",
+                  "importance": 0.296151,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "顶点/vertex",
+                  "zh": "顶点",
+                  "importance": 0.20369,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "内部域/internal face",
+                  "zh": "内部域",
+                  "importance": 0.122105,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "极大连通子图/maximal connected subgraph",
+                  "zh": "极大连通子图",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "平面/plane",
+              "zh": "平面",
+              "importance": 0.809198,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "面/face",
+                  "zh": "面",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "割边/cut edge",
+              "zh": "割边",
+              "importance": 0.719354,
+              "relation": null,
+              "related": [
+                "无割边",
+                "连通性"
+              ],
+              "children": [
+                {
+                  "id": "悬边/pendant edge",
+                  "zh": "悬边",
+                  "importance": 0.546111,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 13,
   "max_depth": 3,
-  "orphan_count": 9,
+  "orphan_count": 0,
   "meta": {
-    "chapter": "第3章 命题逻辑的公理化",
-    "root_id": "命题/proposition",
-    "root_zh": "命题",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 24,
-    "n_edges_raw": 18,
-    "n_hierarchy_candidates": 19,
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "平面/plane",
+    "root_zh": "第 9 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 25,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 12,
     "attached_orphans": 0,
-    "alias_merged": 1
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将平面图及其子概念提升为章下首要主题，并调整顺序使核心概念靠前；删除冗余的'简单图'中间节点，保持三层骨架。",
+    "chapters": [
+      "第4章 平面图与图的着色"
+    ],
+    "llm_tune_notes": "将平面图及其子概念提升为章下首要主题，并调整顺序使核心概念靠前；删除冗余的'简单图'中间节点，保持三层骨架。",
+    "chapter_candidates": [
+      "第4章 平面图与图的着色"
+    ]
   }
 }

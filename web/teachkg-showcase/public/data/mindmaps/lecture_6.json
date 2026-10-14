@@ -1,248 +1,554 @@
 {
   "lecture_id": "6",
   "root": {
-    "id": "命题逻辑/propositional logic",
-    "zh": "命题逻辑",
-    "importance": 0.369156,
+    "id": "__lecture__/6",
+    "zh": "第 6 讲",
+    "importance": 0.9,
     "relation": null,
     "related": [],
     "children": [
       {
-        "id": "命题公式/propositional formula",
-        "zh": "命题公式",
-        "importance": 0.246293,
-        "relation": "part_of",
+        "id": "__chapter__/图的基本概念与表示",
+        "zh": "第1章 图的基本概念与表示",
+        "importance": 0.750955,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "合取/conjunction",
-            "zh": "合取",
-            "importance": 0.103909,
-            "relation": "part_of",
-            "related": [],
-            "children": []
+            "id": "简单图/simple graph",
+            "zh": "简单图",
+            "importance": 0.750955,
+            "relation": null,
+            "related": [
+              "Dirac 定理",
+              "Ore定理",
+              "闭合图"
+            ],
+            "children": [
+              {
+                "id": "完全图/complete graph",
+                "zh": "完全图",
+                "importance": 0.309577,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "闭合图/closure of graph",
+                "zh": "闭合图",
+                "importance": 0.851454,
+                "relation": "belong_to",
+                "related": [
+                  "Bondy–Chvátal定理",
+                  "加边等价引理",
+                  "哈密顿回路的判定",
+                  "简单图"
+                ],
+                "children": []
+              },
+              {
+                "id": "节点/node",
+                "zh": "节点",
+                "importance": 0.264099,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
       },
       {
-        "id": "推理规则/inference rule",
-        "zh": "推理规则",
-        "importance": 0.176199,
-        "relation": "part_of",
+        "id": "__chapter__/道路与回路",
+        "zh": "第2章 道路与回路",
+        "importance": 0.743957,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "分离规则/分离规则",
-            "zh": "分离规则",
-            "importance": 0.020469,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "代入规则/代入规则",
-            "zh": "代入规则",
-            "importance": 0.013976,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "三段论/syllogism",
-            "zh": "三段论",
-            "importance": 0.013621,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "个体变量的代入规则/Rule of Individual Variable Substitution",
-            "zh": "个体变量的代入规则",
-            "importance": 0.008363,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "前提引入规则/Premise Introduction Rule",
-            "zh": "前提引入规则",
-            "importance": 0.006649,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "前提引入/premise introduction",
-            "zh": "前提引入",
-            "importance": 0.006649,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "推理演算/inference calculus",
-        "zh": "推理演算",
-        "importance": 0.127315,
-        "relation": "belong_to",
-        "related": [
-          "前提"
-        ],
-        "children": [
-          {
-            "id": "全称消去规则/universal instantiation rule",
-            "zh": "全称消去规则",
-            "importance": 0.006602,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "规则/rule",
-        "zh": "规则",
-        "importance": 0.030726,
-        "relation": "part_of",
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "命题演算/Propositional Calculus",
-        "zh": "命题演算",
-        "importance": 0.024571,
-        "relation": "part_of",
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "公式/formula",
-        "zh": "公式",
-        "importance": 0.016334,
-        "relation": "part_of",
-        "related": [
-          "论域"
-        ],
-        "children": [
-          {
-            "id": "量词/quantifier",
-            "zh": "量词",
-            "importance": 0.153665,
-            "relation": "part_of",
+            "id": "回路/Circuit",
+            "zh": "回路",
+            "importance": 0.743957,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "全称量词/universal quantifier",
-                "zh": "全称量词",
-                "importance": 0.053902,
+                "id": "欧拉回路/Eulerian circuit",
+                "zh": "欧拉回路",
+                "importance": 0.684053,
                 "relation": "belong_to",
                 "related": [
-                  "与运算"
+                  "De Bruijn 图",
+                  "德布鲁因循环",
+                  "欧拉图",
+                  "欧拉问题",
+                  "节点度数"
+                ],
+                "children": []
+              },
+              {
+                "id": "H 回路/H circuit",
+                "zh": "H 回路",
+                "importance": 0.87898,
+                "relation": "belong_to",
+                "related": [
+                  "Ore 定理条件",
+                  "充分条件",
+                  "哈密顿图",
+                  "哈密顿道路和回路问题",
+                  "标号法"
+                ],
+                "children": [
+                  {
+                    "id": "顶点/vertex",
+                    "zh": "顶点",
+                    "importance": 0.473152,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "初级道路/elementary path",
+            "zh": "初级道路",
+            "importance": 0.661561,
+            "relation": null,
+            "related": [
+              "初级回路"
+            ],
+            "children": [
+              {
+                "id": "H 道路/H path",
+                "zh": "H 道路",
+                "importance": 0.635289,
+                "relation": "belong_to",
+                "related": [
+                  "哈密顿道路和回路问题"
+                ],
+                "children": []
+              },
+              {
+                "id": "极长初级道路",
+                "zh": "极长初级道路",
+                "importance": 0.607677,
+                "relation": "belong_to",
+                "related": [
+                  "初级回路"
                 ],
                 "children": []
               }
             ]
           },
           {
-            "id": "蕴含/implication",
-            "zh": "蕴含",
-            "importance": 0.092419,
-            "relation": "belong_to",
-            "related": [],
+            "id": "充分条件/sufficient condition",
+            "zh": "充分条件",
+            "importance": 0.661321,
+            "relation": null,
+            "related": [
+              "H 回路",
+              "哈密顿回路的判定"
+            ],
             "children": [
               {
-                "id": "前件/antecedent",
-                "zh": "前件",
-                "importance": 0.01425,
-                "relation": "part_of",
+                "id": "Ore定理/Ore theorem",
+                "zh": "Ore定理",
+                "importance": 0.362374,
+                "relation": "belong_to",
+                "related": [
+                  "Dirac 定理",
+                  "H 回路存在",
+                  "Hamilton 道路存在",
+                  "简单图"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "范定理条件/Fan's theorem condition",
+                "zh": "范定理条件",
+                "importance": 0.083662,
+                "relation": "belong_to",
+                "related": [
+                  "不相邻条件"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "必要条件/necessary condition",
+            "zh": "必要条件",
+            "importance": 0.312776,
+            "relation": null,
+            "related": [
+              "哈密顿回路的判定"
+            ],
+            "children": [
+              {
+                "id": "标号法判定条件/labeling method condition",
+                "zh": "标号法判定条件",
+                "importance": 0.0,
+                "relation": "belong_to",
                 "related": [],
                 "children": []
               }
             ]
           },
           {
-            "id": "前束范式/Prenex Normal Form",
-            "zh": "前束范式",
-            "importance": 0.039741,
-            "relation": "belong_to",
-            "related": [
-              "Skolem范式"
-            ],
+            "id": "连通图/connected graph",
+            "zh": "连通图",
+            "importance": 0.279168,
+            "relation": null,
+            "related": [],
             "children": [
               {
-                "id": "Skolem范式/Skolem Normal Form",
-                "zh": "Skolem范式",
-                "importance": 0.01388,
+                "id": "欧拉图/Eulerian graph",
+                "zh": "欧拉图",
+                "importance": 0.537225,
                 "relation": "belong_to",
                 "related": [
-                  "原公式"
+                  "多重图",
+                  "欧拉回路"
                 ],
                 "children": []
               }
             ]
           },
           {
-            "id": "谓词公式/predicate formula",
-            "zh": "谓词公式",
-            "importance": 0.039467,
-            "relation": "belong_to",
+            "id": "可计算问题/Computable problem",
+            "zh": "可计算问题",
+            "importance": 0.069011,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "汉诺塔问题/Tower of Hanoi problem",
+                "zh": "汉诺塔问题",
+                "importance": 0.146267,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "自由变元/free variable",
-            "zh": "自由变元",
-            "importance": 0.025285,
-            "relation": "part_of",
+            "id": "不可计算问题/Uncomputable problem",
+            "zh": "不可计算问题",
+            "importance": 0.329865,
+            "relation": null,
             "related": [],
-            "children": []
-          },
-          {
-            "id": "母式/Matrix",
-            "zh": "母式",
-            "importance": 0.019762,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "自由变量/free variable",
-            "zh": "自由变量",
-            "importance": 0.00518,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "前提/premise",
-            "zh": "前提",
-            "importance": 0.004799,
-            "relation": "belong_to",
-            "related": [
-              "推理演算"
-            ],
-            "children": []
+            "children": [
+              {
+                "id": "哈密顿道路和回路问题/Hamiltonian Path and Circuit Problem",
+                "zh": "哈密顿道路和回路问题",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [
+                  "H 回路",
+                  "H 道路"
+                ],
+                "children": []
+              }
+            ]
           }
         ]
       }
     ]
   },
-  "n_nodes": 26,
+  "roots": [
+    {
+      "id": "__lecture__/6",
+      "zh": "第 6 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/图的基本概念与表示",
+          "zh": "第1章 图的基本概念与表示",
+          "importance": 0.750955,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "简单图/simple graph",
+              "zh": "简单图",
+              "importance": 0.750955,
+              "relation": null,
+              "related": [
+                "Dirac 定理",
+                "Ore定理",
+                "闭合图"
+              ],
+              "children": [
+                {
+                  "id": "完全图/complete graph",
+                  "zh": "完全图",
+                  "importance": 0.309577,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "闭合图/closure of graph",
+                  "zh": "闭合图",
+                  "importance": 0.851454,
+                  "relation": "belong_to",
+                  "related": [
+                    "Bondy–Chvátal定理",
+                    "加边等价引理",
+                    "哈密顿回路的判定",
+                    "简单图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "节点/node",
+                  "zh": "节点",
+                  "importance": 0.264099,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/道路与回路",
+          "zh": "第2章 道路与回路",
+          "importance": 0.743957,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "回路/Circuit",
+              "zh": "回路",
+              "importance": 0.743957,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "欧拉回路/Eulerian circuit",
+                  "zh": "欧拉回路",
+                  "importance": 0.684053,
+                  "relation": "belong_to",
+                  "related": [
+                    "De Bruijn 图",
+                    "德布鲁因循环",
+                    "欧拉图",
+                    "欧拉问题",
+                    "节点度数"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "H 回路/H circuit",
+                  "zh": "H 回路",
+                  "importance": 0.87898,
+                  "relation": "belong_to",
+                  "related": [
+                    "Ore 定理条件",
+                    "充分条件",
+                    "哈密顿图",
+                    "哈密顿道路和回路问题",
+                    "标号法"
+                  ],
+                  "children": [
+                    {
+                      "id": "顶点/vertex",
+                      "zh": "顶点",
+                      "importance": 0.473152,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "初级道路/elementary path",
+              "zh": "初级道路",
+              "importance": 0.661561,
+              "relation": null,
+              "related": [
+                "初级回路"
+              ],
+              "children": [
+                {
+                  "id": "H 道路/H path",
+                  "zh": "H 道路",
+                  "importance": 0.635289,
+                  "relation": "belong_to",
+                  "related": [
+                    "哈密顿道路和回路问题"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "极长初级道路",
+                  "zh": "极长初级道路",
+                  "importance": 0.607677,
+                  "relation": "belong_to",
+                  "related": [
+                    "初级回路"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "充分条件/sufficient condition",
+              "zh": "充分条件",
+              "importance": 0.661321,
+              "relation": null,
+              "related": [
+                "H 回路",
+                "哈密顿回路的判定"
+              ],
+              "children": [
+                {
+                  "id": "Ore定理/Ore theorem",
+                  "zh": "Ore定理",
+                  "importance": 0.362374,
+                  "relation": "belong_to",
+                  "related": [
+                    "Dirac 定理",
+                    "H 回路存在",
+                    "Hamilton 道路存在",
+                    "简单图"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "范定理条件/Fan's theorem condition",
+                  "zh": "范定理条件",
+                  "importance": 0.083662,
+                  "relation": "belong_to",
+                  "related": [
+                    "不相邻条件"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "必要条件/necessary condition",
+              "zh": "必要条件",
+              "importance": 0.312776,
+              "relation": null,
+              "related": [
+                "哈密顿回路的判定"
+              ],
+              "children": [
+                {
+                  "id": "标号法判定条件/labeling method condition",
+                  "zh": "标号法判定条件",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "连通图/connected graph",
+              "zh": "连通图",
+              "importance": 0.279168,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "欧拉图/Eulerian graph",
+                  "zh": "欧拉图",
+                  "importance": 0.537225,
+                  "relation": "belong_to",
+                  "related": [
+                    "多重图",
+                    "欧拉回路"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "可计算问题/Computable problem",
+              "zh": "可计算问题",
+              "importance": 0.069011,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "汉诺塔问题/Tower of Hanoi problem",
+                  "zh": "汉诺塔问题",
+                  "importance": 0.146267,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "不可计算问题/Uncomputable problem",
+              "zh": "不可计算问题",
+              "importance": 0.329865,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "哈密顿道路和回路问题/Hamiltonian Path and Circuit Problem",
+                  "zh": "哈密顿道路和回路问题",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "H 回路",
+                    "H 道路"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 25,
   "max_depth": 4,
-  "orphan_count": 46,
+  "orphan_count": 7,
   "meta": {
-    "chapter": "第2章 命题逻辑的等值和推理演算",
-    "root_id": "命题逻辑/propositional logic",
-    "root_zh": "命题逻辑",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 72,
-    "n_edges_raw": 81,
-    "n_hierarchy_candidates": 75,
-    "attached_orphans": 0,
-    "alias_merged": 0
+    "chapter": "第1章 图的基本概念与表示",
+    "root_id": "简单图/simple graph",
+    "root_zh": "第 6 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 56,
+    "n_edges_raw": 50,
+    "n_hierarchy_candidates": 28,
+    "attached_orphans": 7,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "仅将第2章中“不可计算问题”移至“可计算问题”之后，使可计算/不可计算主题相邻；其余结构未动。",
+    "chapters": [
+      "第1章 图的基本概念与表示",
+      "第2章 道路与回路"
+    ],
+    "llm_tune_notes": "仅将第2章中“不可计算问题”移至“可计算问题”之后，使可计算/不可计算主题相邻；其余结构未动。",
+    "chapter_candidates": [
+      "第1章 图的基本概念与表示",
+      "第2章 道路与回路"
+    ]
   }
 }

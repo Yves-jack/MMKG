@@ -1,0 +1,299 @@
+{
+  "lecture_id": "chapter:第1章 图的基本概念与表示",
+  "root": {
+    "id": "__chapter__/图的基本概念与表示",
+    "zh": "第1章 图的基本概念与表示",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/图的定义",
+        "zh": "图的定义",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/无向图vs有向图",
+        "zh": "无向图vs有向图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/简单图 vs 多重图",
+        "zh": "简单图 vs 多重图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/对有向图:d(v) = d+(v) + d−(v)",
+        "zh": "对有向图:d(v) = d+(v) + d−(v)",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/有向图中: 正度之和=负度之和=边数.",
+        "zh": "有向图中: 正度之和=负度之和=边数.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/n个结点的简单图G的补图G: Kn−G",
+        "zh": "n个结点的简单图G的补图G: Kn−G",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/无向图 G 中, 顶点 v 的邻点集定义为",
+        "zh": "无向图 G 中, 顶点 v 的邻点集定义为",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/图的表示法:邻接矩阵",
+        "zh": "图的表示法:邻接矩阵",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/即将前面邻接矩阵的1改成权$w_{ij}$",
+        "zh": "即将前面邻接矩阵的1改成权$w_{ij}$",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/图的表示法:关联矩阵",
+        "zh": "图的表示法:关联矩阵",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/对关联矩阵的列进行压缩.",
+        "zh": "对关联矩阵的列进行压缩.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/对邻接矩阵的行进行压缩.",
+        "zh": "对邻接矩阵的行进行压缩.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/对邻接矩阵的列进行压缩",
+        "zh": "对邻接矩阵的列进行压缩",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定义:无向图G中,若点边交替序列",
+        "zh": "定义:无向图G中,若点边交替序列",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/只需考虑简单图,因为重边和自环不起作用",
+        "zh": "只需考虑简单图,因为重边和自环不起作用",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理1：若简单图G的任意两结点u与v之间恒有",
+        "zh": "定理1：若简单图G的任意两结点u与v之间恒有",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/图的基本概念与表示",
+      "zh": "第1章 图的基本概念与表示",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/图的定义",
+          "zh": "图的定义",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/无向图vs有向图",
+          "zh": "无向图vs有向图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/简单图 vs 多重图",
+          "zh": "简单图 vs 多重图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/对有向图:d(v) = d+(v) + d−(v)",
+          "zh": "对有向图:d(v) = d+(v) + d−(v)",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/有向图中: 正度之和=负度之和=边数.",
+          "zh": "有向图中: 正度之和=负度之和=边数.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/n个结点的简单图G的补图G: Kn−G",
+          "zh": "n个结点的简单图G的补图G: Kn−G",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/无向图 G 中, 顶点 v 的邻点集定义为",
+          "zh": "无向图 G 中, 顶点 v 的邻点集定义为",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/图的表示法:邻接矩阵",
+          "zh": "图的表示法:邻接矩阵",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/即将前面邻接矩阵的1改成权$w_{ij}$",
+          "zh": "即将前面邻接矩阵的1改成权$w_{ij}$",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/图的表示法:关联矩阵",
+          "zh": "图的表示法:关联矩阵",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/对关联矩阵的列进行压缩.",
+          "zh": "对关联矩阵的列进行压缩.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/对邻接矩阵的行进行压缩.",
+          "zh": "对邻接矩阵的行进行压缩.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/对邻接矩阵的列进行压缩",
+          "zh": "对邻接矩阵的列进行压缩",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定义:无向图G中,若点边交替序列",
+          "zh": "定义:无向图G中,若点边交替序列",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/只需考虑简单图,因为重边和自环不起作用",
+          "zh": "只需考虑简单图,因为重边和自环不起作用",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理1：若简单图G的任意两结点u与v之间恒有",
+          "zh": "定理1：若简单图G的任意两结点u与v之间恒有",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 17,
+  "max_depth": 1,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第1章 图的基本概念与表示",
+    "root_zh": "图的基本概念与表示",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

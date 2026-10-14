@@ -1,0 +1,965 @@
+{
+  "lecture_id": "29",
+  "root": {
+    "id": "谓词逻辑/Predicate Logic",
+    "zh": "谓词逻辑",
+    "importance": 0.788526,
+    "relation": null,
+    "related": [
+      "映射"
+    ],
+    "children": [
+      {
+        "id": "一阶逻辑/first-order logic",
+        "zh": "一阶逻辑",
+        "importance": 0.73948,
+        "relation": "belong_to",
+        "related": [
+          "命题逻辑",
+          "矛盾式"
+        ],
+        "children": [
+          {
+            "id": "量词/quantifier",
+            "zh": "量词",
+            "importance": 0.731236,
+            "relation": "belong_to",
+            "related": [
+              "个体变项",
+              "分配律",
+              "否定词",
+              "谓词变项",
+              "量化"
+            ],
+            "children": []
+          },
+          {
+            "id": "个体/Individual",
+            "zh": "个体",
+            "importance": 0.39209,
+            "relation": "part_of",
+            "related": [],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.708381,
+            "relation": "belong_to",
+            "related": [
+              "个体变项",
+              "全集",
+              "函数符号",
+              "特征函数",
+              "谓词符号",
+              "量词转换律"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.554802,
+            "relation": "part_of",
+            "related": [
+              "代入"
+            ],
+            "children": [
+              {
+                "id": "个体变项/individual variable",
+                "zh": "个体变项",
+                "importance": 0.705166,
+                "relation": "belong_to",
+                "related": [
+                  "个体对象",
+                  "全称量词",
+                  "全集",
+                  "存在量词",
+                  "谓词",
+                  "谓词公式"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "谓词变项/predicate variable",
+                "zh": "谓词变项",
+                "importance": 0.240618,
+                "relation": "belong_to",
+                "related": [
+                  "解释",
+                  "谓词公式的解释",
+                  "量词"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.446282,
+            "relation": "belong_to",
+            "related": [
+              "全集",
+              "函数复合",
+              "取值表",
+              "等价关系",
+              "解释",
+              "谓词公式"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "公式/formula",
+        "zh": "公式",
+        "importance": 0.902392,
+        "relation": "part_of",
+        "related": [
+          "主合取范式",
+          "全集",
+          "变项",
+          "析取",
+          "联结词",
+          "解释"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "变项/variable",
+        "zh": "变项",
+        "importance": 0.865135,
+        "relation": "part_of",
+        "related": [
+          "公式",
+          "否定",
+          "极大项",
+          "解释"
+        ],
+        "children": [
+          {
+            "id": "个体变项/individual variable",
+            "zh": "个体变项",
+            "importance": 0.705166,
+            "relation": "belong_to",
+            "related": [
+              "个体对象",
+              "全称量词",
+              "全集",
+              "存在量词",
+              "谓词",
+              "谓词公式"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "命题变项/propositional variable",
+            "zh": "命题变项",
+            "importance": 0.285286,
+            "relation": "belong_to",
+            "related": [
+              "命题",
+              "真值表",
+              "解释"
+            ],
+            "children": []
+          },
+          {
+            "id": "谓词变项/predicate variable",
+            "zh": "谓词变项",
+            "importance": 0.240618,
+            "relation": "belong_to",
+            "related": [
+              "解释",
+              "谓词公式的解释",
+              "量词"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "自由变元/free variable",
+            "zh": "自由变元",
+            "importance": 0.104357,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "约束变元/bound variable",
+            "zh": "约束变元",
+            "importance": 0.085412,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "谓词/predicate",
+        "zh": "谓词",
+        "importance": 0.708381,
+        "relation": "belong_to",
+        "related": [
+          "个体变项",
+          "全集",
+          "函数符号",
+          "特征函数",
+          "谓词符号",
+          "量词转换律"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "量词/quantifier",
+        "zh": "量词",
+        "importance": 0.731236,
+        "relation": "belong_to",
+        "related": [
+          "个体变项",
+          "分配律",
+          "否定词",
+          "谓词变项",
+          "量化"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "全集/universal set",
+        "zh": "全集",
+        "importance": 0.755513,
+        "relation": "part_of",
+        "related": [
+          "个体变项",
+          "公式",
+          "多元谓词",
+          "映射",
+          "真值",
+          "解释"
+        ],
+        "children": [],
+        "copy": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.788526,
+      "relation": null,
+      "related": [
+        "映射"
+      ],
+      "children": [
+        {
+          "id": "一阶逻辑/first-order logic",
+          "zh": "一阶逻辑",
+          "importance": 0.73948,
+          "relation": "belong_to",
+          "related": [
+            "命题逻辑",
+            "矛盾式"
+          ],
+          "children": [
+            {
+              "id": "量词/quantifier",
+              "zh": "量词",
+              "importance": 0.731236,
+              "relation": "belong_to",
+              "related": [
+                "个体变项",
+                "分配律",
+                "否定词",
+                "谓词变项",
+                "量化"
+              ],
+              "children": []
+            },
+            {
+              "id": "个体/Individual",
+              "zh": "个体",
+              "importance": 0.39209,
+              "relation": "part_of",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.708381,
+              "relation": "belong_to",
+              "related": [
+                "个体变项",
+                "全集",
+                "函数符号",
+                "特征函数",
+                "谓词符号",
+                "量词转换律"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.554802,
+              "relation": "part_of",
+              "related": [
+                "代入"
+              ],
+              "children": [
+                {
+                  "id": "个体变项/individual variable",
+                  "zh": "个体变项",
+                  "importance": 0.705166,
+                  "relation": "belong_to",
+                  "related": [
+                    "个体对象",
+                    "全称量词",
+                    "全集",
+                    "存在量词",
+                    "谓词",
+                    "谓词公式"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "谓词变项/predicate variable",
+                  "zh": "谓词变项",
+                  "importance": 0.240618,
+                  "relation": "belong_to",
+                  "related": [
+                    "解释",
+                    "谓词公式的解释",
+                    "量词"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.446282,
+              "relation": "belong_to",
+              "related": [
+                "全集",
+                "函数复合",
+                "取值表",
+                "等价关系",
+                "解释",
+                "谓词公式"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.902392,
+          "relation": "part_of",
+          "related": [
+            "主合取范式",
+            "全集",
+            "变项",
+            "析取",
+            "联结词",
+            "解释"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "变项/variable",
+          "zh": "变项",
+          "importance": 0.865135,
+          "relation": "part_of",
+          "related": [
+            "公式",
+            "否定",
+            "极大项",
+            "解释"
+          ],
+          "children": [
+            {
+              "id": "个体变项/individual variable",
+              "zh": "个体变项",
+              "importance": 0.705166,
+              "relation": "belong_to",
+              "related": [
+                "个体对象",
+                "全称量词",
+                "全集",
+                "存在量词",
+                "谓词",
+                "谓词公式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "命题变项/propositional variable",
+              "zh": "命题变项",
+              "importance": 0.285286,
+              "relation": "belong_to",
+              "related": [
+                "命题",
+                "真值表",
+                "解释"
+              ],
+              "children": []
+            },
+            {
+              "id": "谓词变项/predicate variable",
+              "zh": "谓词变项",
+              "importance": 0.240618,
+              "relation": "belong_to",
+              "related": [
+                "解释",
+                "谓词公式的解释",
+                "量词"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "自由变元/free variable",
+              "zh": "自由变元",
+              "importance": 0.104357,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "约束变元/bound variable",
+              "zh": "约束变元",
+              "importance": 0.085412,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "谓词/predicate",
+          "zh": "谓词",
+          "importance": 0.708381,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "全集",
+            "函数符号",
+            "特征函数",
+            "谓词符号",
+            "量词转换律"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.731236,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "分配律",
+            "否定词",
+            "谓词变项",
+            "量化"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "全集/universal set",
+          "zh": "全集",
+          "importance": 0.755513,
+          "relation": "part_of",
+          "related": [
+            "个体变项",
+            "公式",
+            "多元谓词",
+            "映射",
+            "真值",
+            "解释"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "解释/interpretation(logic)",
+      "zh": "解释",
+      "importance": 0.523286,
+      "relation": null,
+      "related": [
+        "全集",
+        "公式",
+        "变项",
+        "命题变项",
+        "映射",
+        "真值"
+      ],
+      "children": [
+        {
+          "id": "全集/universal set",
+          "zh": "全集",
+          "importance": 0.755513,
+          "relation": "part_of",
+          "related": [
+            "个体变项",
+            "公式",
+            "多元谓词",
+            "映射",
+            "真值",
+            "解释"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.50738,
+      "relation": null,
+      "related": [
+        "公式",
+        "命题",
+        "真值表"
+      ],
+      "children": [
+        {
+          "id": "蕴含/implication",
+          "zh": "蕴含",
+          "importance": 0.274891,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "双条件式",
+            "广义交",
+            "析取"
+          ],
+          "children": [
+            {
+              "id": "等值公式/equivalent formula",
+              "zh": "等值公式",
+              "importance": 0.120202,
+              "relation": "belong_to",
+              "related": [
+                "合取"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "合取/conjunction",
+          "zh": "合取",
+          "importance": 0.248319,
+          "relation": "belong_to",
+          "related": [
+            "全称量词",
+            "双条件式",
+            "存在量词",
+            "等值公式"
+          ],
+          "children": [
+            {
+              "id": "命题公式/propositional formula",
+              "zh": "命题公式",
+              "importance": 0.252896,
+              "relation": "part_of",
+              "related": [
+                "一阶谓词公式"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "命题形式/propositional form",
+      "zh": "命题形式",
+      "importance": 0.481488,
+      "relation": null,
+      "related": [
+        "个体常项",
+        "命题"
+      ],
+      "children": [
+        {
+          "id": "谓词/predicate",
+          "zh": "谓词",
+          "importance": 0.708381,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "全集",
+            "函数符号",
+            "特征函数",
+            "谓词符号",
+            "量词转换律"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.731236,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "分配律",
+            "否定词",
+            "谓词变项",
+            "量化"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "字符表/character set",
+      "zh": "字符表",
+      "importance": 0.407755,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.731236,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "分配律",
+            "否定词",
+            "谓词变项",
+            "量化"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "个体变项/individual variable",
+          "zh": "个体变项",
+          "importance": 0.705166,
+          "relation": "belong_to",
+          "related": [
+            "个体对象",
+            "全称量词",
+            "全集",
+            "存在量词",
+            "谓词",
+            "谓词公式"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "常项/constant term",
+          "zh": "常项",
+          "importance": 0.164594,
+          "relation": "part_of",
+          "related": [],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "括号/parenthesis",
+          "zh": "括号",
+          "importance": 0.05786,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "一阶语言/First-order Language",
+      "zh": "一阶语言",
+      "importance": 0.397126,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.902392,
+          "relation": "part_of",
+          "related": [
+            "主合取范式",
+            "全集",
+            "变项",
+            "析取",
+            "联结词",
+            "解释"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "个体变项/individual variable",
+          "zh": "个体变项",
+          "importance": 0.705166,
+          "relation": "belong_to",
+          "related": [
+            "个体对象",
+            "全称量词",
+            "全集",
+            "存在量词",
+            "谓词",
+            "谓词公式"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "个体常项/individual constant",
+          "zh": "个体常项",
+          "importance": 0.290815,
+          "relation": "part_of",
+          "related": [
+            "个体对象",
+            "命题形式"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "初始符号/initial symbols",
+      "zh": "初始符号",
+      "importance": 0.36958,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "量词/quantifier",
+          "zh": "量词",
+          "importance": 0.731236,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "分配律",
+            "否定词",
+            "谓词变项",
+            "量化"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "个体变项/individual variable",
+          "zh": "个体变项",
+          "importance": 0.705166,
+          "relation": "belong_to",
+          "related": [
+            "个体对象",
+            "全称量词",
+            "全集",
+            "存在量词",
+            "谓词",
+            "谓词公式"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "命题/proposition",
+          "zh": "命题",
+          "importance": 0.594099,
+          "relation": "part_of",
+          "related": [
+            "双条件词",
+            "合取命题",
+            "命题变项",
+            "命题形式",
+            "命题逻辑",
+            "复合命题"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "可满足式/satisfiable formula",
+      "zh": "可满足式",
+      "importance": 0.778029,
+      "relation": null,
+      "related": [
+        "真值表",
+        "矛盾式"
+      ],
+      "children": [
+        {
+          "id": "重言式/tautology",
+          "zh": "重言式",
+          "importance": 0.501132,
+          "relation": "belong_to",
+          "related": [
+            "一般逻辑规律",
+            "单调性",
+            "真值表",
+            "矛盾式"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "矛盾式/contradiction",
+      "zh": "矛盾式",
+      "importance": 0.467929,
+      "relation": null,
+      "related": [
+        "一阶逻辑",
+        "可满足式",
+        "真值表",
+        "重言式"
+      ],
+      "children": []
+    },
+    {
+      "id": "合取式/conjunctive form",
+      "zh": "合取式",
+      "importance": 0.40653,
+      "relation": null,
+      "related": [
+        "全称量词"
+      ],
+      "children": [
+        {
+          "id": "主合取范式/principal conjunctive normal form",
+          "zh": "主合取范式",
+          "importance": 0.094593,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "真值表"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.404188,
+      "relation": null,
+      "related": [
+        "集合"
+      ],
+      "children": [
+        {
+          "id": "谓词/predicate",
+          "zh": "谓词",
+          "importance": 0.708381,
+          "relation": "belong_to",
+          "related": [
+            "个体变项",
+            "全集",
+            "函数符号",
+            "特征函数",
+            "谓词符号",
+            "量词转换律"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "映射/mapping",
+          "zh": "映射",
+          "importance": 0.446282,
+          "relation": "belong_to",
+          "related": [
+            "全集",
+            "函数复合",
+            "取值表",
+            "等价关系",
+            "解释",
+            "谓词公式"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "有序对/ordered pair",
+          "zh": "有序对",
+          "importance": 0.278834,
+          "relation": "part_of",
+          "related": [
+            "笛卡儿积",
+            "集合"
+          ],
+          "children": []
+        },
+        {
+          "id": "定义域/domain",
+          "zh": "定义域",
+          "importance": 0.047605,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "形式语言/Formal Language",
+      "zh": "形式语言",
+      "importance": 0.344424,
+      "relation": null,
+      "related": [],
+      "children": []
+    }
+  ],
+  "n_nodes": 53,
+  "max_depth": 3,
+  "orphan_count": 2,
+  "meta": {
+    "chapter": "第4章 谓词逻辑的基本概念",
+    "root_id": "谓词逻辑/Predicate Logic",
+    "root_zh": "谓词逻辑",
+    "virtual_root": false,
+    "n_trees": 27,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 103,
+    "n_edges_raw": 205,
+    "n_hierarchy_candidates": 144,
+    "attached_orphans": 2,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "将一阶逻辑及其子概念并入谓词逻辑根下，删除重复的公式/谓词公式/映射等碎片节点，合并重复的谓词变项，移除量词下的分配律噪声节点，调整主题顺序使核心概念靠前。"
+  }
+}

@@ -26,14 +26,14 @@ I_c(e) &= (1-\alpha_c)\,\mathrm{norm}(\mathrm{prior}_c) + \alpha_c\,\mathrm{sig}
 | `mention_time` | **提及次数**（语境文本最长匹配；不再用 cue 时长） | 0.45 |
 | `board_ppt` | 有 `evidence_ppt_frame_path` / 页码的端点（按次） | 0.25 |
 | `discourse_role` | 例子/论域实例↓；定义句↑；资产库 theorem/principle/technique↑ | 0.20 |
-| `structure_graph` | 度数 + 是否教材实体 | 0.10 |
+| `structure_graph` | 加权度数 + 是否教材实体（`related_with` 度贡献 0.5，其余 1） | 0.10 |
 | `app_feedback` | `data/kg/<course>/app_feedback_events.jsonl`（预留） | 0.0 |
 
 最长匹配：文本中的「谓词逻辑」只计「谓词逻辑」，不计其子串「谓词」。
 
 ## 向上传递（图谱规则，导图只显示）
 
-沿 `belong_to` / `part_of` / `depend_on`（子→父）自底向上：
+沿 `belong_to` / `part_of` / `depend_on`（子→父）自底向上（不含双向的 `related_with`）：
 
 `boost += child × 0.22 / √(父数)`，再用渐近饱和
 

@@ -1,0 +1,220 @@
+{
+  "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
+  "root": {
+    "id": "__chapter__/谓词逻辑的等值和推理演算",
+    "zh": "第5章 谓词逻辑的等值和推理演算",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/量词否定型等值式",
+        "zh": "量词否定型等值式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例: 量词否定型等值式",
+        "zh": "例: 量词否定型等值式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/量词分配等值式 - ∧与∨",
+        "zh": "量词分配等值式 - ∧与∨",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/量词分配等值式 -→",
+        "zh": "量词分配等值式 -→",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/量词分配等值式 - 变元易名",
+        "zh": "量词分配等值式 - 变元易名",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/前束范式",
+        "zh": "前束范式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "前束范式/Prenex Normal Form",
+            "zh": "前束范式",
+            "importance": 1.0,
+            "relation": "part_of",
+            "related": [
+              "Skolem范式",
+              "原公式",
+              "变元易名",
+              "量词"
+            ],
+            "children": []
+          },
+          {
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.730615,
+            "relation": null,
+            "related": [
+              "命题公式",
+              "矛盾式",
+              "重言式"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/前束范式PNF对前束量词没有次序要求",
+        "zh": "前束范式PNF对前束量词没有次序要求",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/1.先求前束范式.本例已是.",
+        "zh": "1.先求前束范式.本例已是.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/谓词逻辑的等值和推理演算",
+      "zh": "第5章 谓词逻辑的等值和推理演算",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/量词否定型等值式",
+          "zh": "量词否定型等值式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例: 量词否定型等值式",
+          "zh": "例: 量词否定型等值式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/量词分配等值式 - ∧与∨",
+          "zh": "量词分配等值式 - ∧与∨",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/量词分配等值式 -→",
+          "zh": "量词分配等值式 -→",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/量词分配等值式 - 变元易名",
+          "zh": "量词分配等值式 - 变元易名",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/前束范式",
+          "zh": "前束范式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "前束范式/Prenex Normal Form",
+              "zh": "前束范式",
+              "importance": 1.0,
+              "relation": "part_of",
+              "related": [
+                "Skolem范式",
+                "原公式",
+                "变元易名",
+                "量词"
+              ],
+              "children": []
+            },
+            {
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.730615,
+              "relation": null,
+              "related": [
+                "命题公式",
+                "矛盾式",
+                "重言式"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/前束范式PNF对前束量词没有次序要求",
+          "zh": "前束范式PNF对前束量词没有次序要求",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/1.先求前束范式.本例已是.",
+          "zh": "1.先求前束范式.本例已是.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 11,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_zh": "谓词逻辑的等值和推理演算",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "31"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

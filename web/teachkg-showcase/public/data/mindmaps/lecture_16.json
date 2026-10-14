@@ -1,146 +1,46 @@
 {
   "lecture_id": "16",
   "root": {
-    "id": "关系/relation",
-    "zh": "关系",
-    "importance": 0.29294,
+    "id": "__lecture__/16",
+    "zh": "第 16 讲",
+    "importance": 0.9,
     "relation": null,
-    "related": [
-      "集合"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.484442,
-        "relation": "chapter_topic",
-        "related": [
-          "关系",
-          "命题"
-        ],
+        "id": "__chapter__/道路与回路",
+        "zh": "第2章 道路与回路",
+        "importance": 0.789864,
+        "relation": "toc_chapter",
+        "related": [],
         "children": [
           {
-            "id": "元素/Element",
-            "zh": "元素",
-            "importance": 0.01369,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "联结词/connective",
-        "zh": "联结词",
-        "importance": 0.41794,
-        "relation": "chapter_topic",
-        "related": [
-          "公式"
-        ],
-        "children": [
-          {
-            "id": "蕴含/implication",
-            "zh": "蕴含",
-            "importance": 0.092276,
-            "relation": "belong_to",
+            "id": "平面图/planar graph",
+            "zh": "平面图",
+            "importance": 0.789864,
+            "relation": null,
             "related": [
-              "除非句式"
+              "图的着色",
+              "对偶图"
             ],
-            "children": []
-          },
-          {
-            "id": "异或/exclusive or",
-            "zh": "异或",
-            "importance": 0.010689,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "二元连接词/binary connective",
-            "zh": "二元连接词",
-            "importance": 0.005351,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "一元连接词/unary connective",
-            "zh": "一元连接词",
-            "importance": 0.005351,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "三元以至多元的联结词/ternary and multi-ary logical connectives",
-            "zh": "三元以至多元的联结词",
-            "importance": 0.005016,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "命题/proposition",
-        "zh": "命题",
-        "importance": 0.310353,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "简单命题/simple proposition",
-            "zh": "简单命题",
-            "importance": 0.072955,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "命题公式/propositional formula",
-        "zh": "命题公式",
-        "importance": 0.293152,
-        "relation": "chapter_topic",
-        "related": [
-          "成分命题"
-        ],
-        "children": [
-          {
-            "id": "析取/disjunction",
-            "zh": "析取",
-            "importance": 0.162052,
-            "relation": "part_of",
-            "related": [
-              "合取"
-            ],
-            "children": []
-          },
-          {
-            "id": "否定/Negation",
-            "zh": "否定",
-            "importance": 0.119153,
-            "relation": "part_of",
-            "related": [
-              "合取"
-            ],
-            "children": []
-          },
-          {
-            "id": "重言式/tautology",
-            "zh": "重言式",
-            "importance": 0.107651,
-            "relation": "belong_to",
-            "related": [],
             "children": [
               {
-                "id": "等值式/equivalence formula",
-                "zh": "等值式",
-                "importance": 0.058578,
+                "id": "极大平面图/maximal planar graph",
+                "zh": "极大平面图",
+                "importance": 1.0,
+                "relation": "belong_to",
+                "related": [
+                  "反证法",
+                  "平面性",
+                  "归纳证明",
+                  "欧拉公式"
+                ],
+                "children": []
+              },
+              {
+                "id": "简单平面图/simple planar graph",
+                "zh": "简单平面图",
+                "importance": 0.524177,
                 "relation": "belong_to",
                 "related": [],
                 "children": []
@@ -148,102 +48,425 @@
             ]
           },
           {
-            "id": "合取/conjunction",
-            "zh": "合取",
-            "importance": 0.103909,
-            "relation": "part_of",
+            "id": "对偶图/dual graph",
+            "zh": "对偶图",
+            "importance": 0.668619,
+            "relation": null,
             "related": [
-              "否定",
-              "析取"
+              "图的着色",
+              "平面图",
+              "平面连通图",
+              "自环",
+              "重边"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "欧拉公式/欧拉公式",
+                "zh": "欧拉公式",
+                "importance": 0.267454,
+                "relation": "belong_to",
+                "related": [
+                  "五着色问题",
+                  "关键引理",
+                  "四色定理",
+                  "极大平面图"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
           },
           {
-            "id": "析取范式/disjunctive normal form",
-            "zh": "析取范式",
-            "importance": 0.028435,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "合取范式/conjunctive normal form",
-            "zh": "合取范式",
-            "importance": 0.027092,
-            "relation": "belong_to",
+            "id": "连通图/connected graph",
+            "zh": "连通图",
+            "importance": 0.489049,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "析取式/disjunctive form",
-                "zh": "析取式",
-                "importance": 0.038342,
-                "relation": "part_of",
-                "related": [],
-                "children": []
-              },
-              {
-                "id": "文字/literal",
-                "zh": "文字",
-                "importance": 0.029293,
-                "relation": "part_of",
-                "related": [],
+                "id": "欧拉图/Eulerian graph",
+                "zh": "欧拉图",
+                "importance": 0.459401,
+                "relation": "belong_to",
+                "related": [
+                  "平面连通图"
+                ],
                 "children": []
               }
             ]
           },
           {
-            "id": "成分命题/Component proposition",
-            "zh": "成分命题",
-            "importance": 0.025419,
-            "relation": "part_of",
+            "id": "无向图/undirected graph",
+            "zh": "无向图",
+            "importance": 0.44043,
+            "relation": null,
             "related": [
-              "命题公式"
+              "最短树"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "支撑树/Spanning Tree",
+                "zh": "支撑树",
+                "importance": 0.296548,
+                "relation": "part_of",
+                "related": [
+                  "Kruskal算法",
+                  "Prim算法",
+                  "割边"
+                ],
+                "children": [
+                  {
+                    "id": "最短树/Minimum Spanning Tree",
+                    "zh": "最短树",
+                    "importance": 0.617002,
+                    "relation": "belong_to",
+                    "related": [
+                      "Kruskal算法",
+                      "唯一性",
+                      "无向图",
+                      "证明方法",
+                      "边权"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "赋权连通图/weighted connected graph",
+            "zh": "赋权连通图",
+            "importance": 0.550632,
+            "relation": null,
+            "related": [
+              "Kruskal算法"
+            ],
+            "children": [
+              {
+                "id": "最短树/Minimum Spanning Tree",
+                "zh": "最短树",
+                "importance": 0.617002,
+                "relation": "belong_to",
+                "related": [
+                  "Kruskal算法",
+                  "唯一性",
+                  "无向图",
+                  "证明方法",
+                  "边权"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "选题方向/选题方向",
+            "zh": "选题方向",
+            "importance": 0.409244,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "优化设计问题/优化设计问题",
+                "zh": "优化设计问题",
+                "importance": 0.372164,
+                "relation": "part_of",
+                "related": [
+                  "具体诉求",
+                  "地理位置信息",
+                  "建模"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "未来城市设计问题/未来城市设计问题",
+                "zh": "未来城市设计问题",
+                "importance": 0.224589,
+                "relation": "part_of",
+                "related": [
+                  "建模"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "困难任务/difficult task",
+            "zh": "困难任务",
+            "importance": 0.095055,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "小分子抗病毒药物设计/antiviral drug design",
+                "zh": "小分子抗病毒药物设计",
+                "importance": 0.408603,
+                "relation": "belong_to",
+                "related": [
+                  "建模人员",
+                  "建模方案",
+                  "跨学科知识"
+                ],
+                "children": []
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "合式公式/Well-formed formula(Wff)",
-        "zh": "合式公式",
-        "importance": 0.225112,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "命题变项/propositional variable",
-        "zh": "命题变项",
-        "importance": 0.211055,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "域/field",
-        "zh": "域",
-        "importance": 0.018127,
-        "relation": "part_of",
-        "related": [],
-        "children": []
       }
     ]
   },
-  "n_nodes": 25,
+  "roots": [
+    {
+      "id": "__lecture__/16",
+      "zh": "第 16 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/道路与回路",
+          "zh": "第2章 道路与回路",
+          "importance": 0.789864,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "平面图/planar graph",
+              "zh": "平面图",
+              "importance": 0.789864,
+              "relation": null,
+              "related": [
+                "图的着色",
+                "对偶图"
+              ],
+              "children": [
+                {
+                  "id": "极大平面图/maximal planar graph",
+                  "zh": "极大平面图",
+                  "importance": 1.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "反证法",
+                    "平面性",
+                    "归纳证明",
+                    "欧拉公式"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "简单平面图/simple planar graph",
+                  "zh": "简单平面图",
+                  "importance": 0.524177,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "对偶图/dual graph",
+              "zh": "对偶图",
+              "importance": 0.668619,
+              "relation": null,
+              "related": [
+                "图的着色",
+                "平面图",
+                "平面连通图",
+                "自环",
+                "重边"
+              ],
+              "children": [
+                {
+                  "id": "欧拉公式/欧拉公式",
+                  "zh": "欧拉公式",
+                  "importance": 0.267454,
+                  "relation": "belong_to",
+                  "related": [
+                    "五着色问题",
+                    "关键引理",
+                    "四色定理",
+                    "极大平面图"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "连通图/connected graph",
+              "zh": "连通图",
+              "importance": 0.489049,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "欧拉图/Eulerian graph",
+                  "zh": "欧拉图",
+                  "importance": 0.459401,
+                  "relation": "belong_to",
+                  "related": [
+                    "平面连通图"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "无向图/undirected graph",
+              "zh": "无向图",
+              "importance": 0.44043,
+              "relation": null,
+              "related": [
+                "最短树"
+              ],
+              "children": [
+                {
+                  "id": "支撑树/Spanning Tree",
+                  "zh": "支撑树",
+                  "importance": 0.296548,
+                  "relation": "part_of",
+                  "related": [
+                    "Kruskal算法",
+                    "Prim算法",
+                    "割边"
+                  ],
+                  "children": [
+                    {
+                      "id": "最短树/Minimum Spanning Tree",
+                      "zh": "最短树",
+                      "importance": 0.617002,
+                      "relation": "belong_to",
+                      "related": [
+                        "Kruskal算法",
+                        "唯一性",
+                        "无向图",
+                        "证明方法",
+                        "边权"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "赋权连通图/weighted connected graph",
+              "zh": "赋权连通图",
+              "importance": 0.550632,
+              "relation": null,
+              "related": [
+                "Kruskal算法"
+              ],
+              "children": [
+                {
+                  "id": "最短树/Minimum Spanning Tree",
+                  "zh": "最短树",
+                  "importance": 0.617002,
+                  "relation": "belong_to",
+                  "related": [
+                    "Kruskal算法",
+                    "唯一性",
+                    "无向图",
+                    "证明方法",
+                    "边权"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "选题方向/选题方向",
+              "zh": "选题方向",
+              "importance": 0.409244,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "优化设计问题/优化设计问题",
+                  "zh": "优化设计问题",
+                  "importance": 0.372164,
+                  "relation": "part_of",
+                  "related": [
+                    "具体诉求",
+                    "地理位置信息",
+                    "建模"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "未来城市设计问题/未来城市设计问题",
+                  "zh": "未来城市设计问题",
+                  "importance": 0.224589,
+                  "relation": "part_of",
+                  "related": [
+                    "建模"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "困难任务/difficult task",
+              "zh": "困难任务",
+              "importance": 0.095055,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "小分子抗病毒药物设计/antiviral drug design",
+                  "zh": "小分子抗病毒药物设计",
+                  "importance": 0.408603,
+                  "relation": "belong_to",
+                  "related": [
+                    "建模人员",
+                    "建模方案",
+                    "跨学科知识"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 19,
   "max_depth": 4,
-  "orphan_count": 52,
+  "orphan_count": 2,
   "meta": {
-    "chapter": "第10章 关系",
-    "root_id": "关系/relation",
-    "root_zh": "关系",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 81,
-    "n_edges_raw": 82,
-    "n_hierarchy_candidates": 69,
-    "attached_orphans": 0,
-    "alias_merged": 3
+    "chapter": "第2章 道路与回路",
+    "root_id": "平面图/planar graph",
+    "root_zh": "第 16 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 59,
+    "n_edges_raw": 45,
+    "n_hierarchy_candidates": 18,
+    "attached_orphans": 2,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将“赋权连通图”及其“最短树”移至“无向图/支撑树”之后，使相关概念相邻；其余结构保持不变。",
+    "chapters": [
+      "第2章 道路与回路"
+    ],
+    "llm_tune_notes": "将“赋权连通图”及其“最短树”移至“无向图/支撑树”之后，使相关概念相邻；其余结构保持不变。",
+    "chapter_candidates": [
+      "第2章 道路与回路",
+      "第3章 树",
+      "第4章 平面图与图的着色"
+    ]
   }
 }

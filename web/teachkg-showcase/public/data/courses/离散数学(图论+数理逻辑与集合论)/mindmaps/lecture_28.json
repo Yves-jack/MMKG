@@ -1,0 +1,612 @@
+{
+  "lecture_id": "28",
+  "root": {
+    "id": "__lecture__/28",
+    "zh": "第 28 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/命题逻辑的基本概念",
+        "zh": "第1章 命题逻辑的基本概念",
+        "importance": 0.619082,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "数理逻辑/mathematical logic",
+            "zh": "数理逻辑",
+            "importance": 0.614098,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "命题逻辑/propositional logic",
+                "zh": "命题逻辑",
+                "importance": 0.329966,
+                "relation": "belong_to",
+                "related": [
+                  "谓词逻辑",
+                  "运算符"
+                ],
+                "children": [
+                  {
+                    "id": "命题/proposition",
+                    "zh": "命题",
+                    "importance": 0.428499,
+                    "relation": null,
+                    "related": [
+                      "命题形式",
+                      "自由变元",
+                      "论域"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "命题形式/propositional form",
+                    "zh": "命题形式",
+                    "importance": 0.188877,
+                    "relation": null,
+                    "related": [
+                      "个体",
+                      "个体变项",
+                      "命题",
+                      "量化"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "联结词/connective",
+                    "zh": "联结词",
+                    "importance": 0.287056,
+                    "relation": null,
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "蕴含/implication",
+                    "zh": "蕴含",
+                    "importance": 0.446549,
+                    "relation": null,
+                    "related": [
+                      "全称量词",
+                      "全称量词符号",
+                      "合取"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "谓词逻辑/Predicate Logic",
+                "zh": "谓词逻辑",
+                "importance": 0.940455,
+                "relation": "belong_to",
+                "related": [
+                  "命题逻辑",
+                  "形式化"
+                ],
+                "children": [
+                  {
+                    "id": "量化/Quantification",
+                    "zh": "量化",
+                    "importance": 0.947706,
+                    "relation": "part_of",
+                    "related": [
+                      "命题形式",
+                      "论域",
+                      "谓词公式",
+                      "量词"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "一阶谓词逻辑/first-order predicate logic",
+                    "zh": "一阶谓词逻辑",
+                    "importance": 0.930481,
+                    "relation": "belong_to",
+                    "related": [
+                      "自然数公理",
+                      "逻辑编程语言"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "论域/domain of discourse",
+                    "zh": "论域",
+                    "importance": 0.914646,
+                    "relation": "part_of",
+                    "related": [
+                      "合取式",
+                      "命题",
+                      "形式化",
+                      "真值",
+                      "蕴涵式",
+                      "谓词"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "变项/variable",
+                    "zh": "变项",
+                    "importance": 0.702902,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "变元/variable symbol",
+                    "zh": "变元",
+                    "importance": 0.550227,
+                    "relation": "part_of",
+                    "related": [
+                      "量词"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "个体词/individual term",
+                    "zh": "个体词",
+                    "importance": 0.039502,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "形式化翻译规则/formal translation rule",
+                    "zh": "形式化翻译规则",
+                    "importance": 0.0,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "AEIO模式",
+            "zh": "AEIO模式",
+            "importance": 0.619082,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "全称肯定命题",
+                "zh": "全称肯定命题",
+                "importance": 0.182683,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "全称否定命题",
+                "zh": "全称否定命题",
+                "importance": 0.285949,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "特称肯定命题/particular affirmative proposition",
+                "zh": "特称肯定命题",
+                "importance": 0.182683,
+                "relation": "belong_to",
+                "related": [
+                  "存在量词"
+                ],
+                "children": []
+              },
+              {
+                "id": "特称否定命题/particular negative proposition",
+                "zh": "特称否定命题",
+                "importance": 0.208761,
+                "relation": "belong_to",
+                "related": [
+                  "合取联结词",
+                  "存在量词"
+                ],
+                "children": []
+              },
+              {
+                "id": "A模式",
+                "zh": "A模式",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "逻辑/logic",
+            "zh": "逻辑",
+            "importance": 0.219532,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "存在命题/existential proposition",
+                "zh": "存在命题",
+                "importance": 0.616757,
+                "relation": "belong_to",
+                "related": [
+                  "形式化",
+                  "性质",
+                  "性质Q"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "后继谓词S/Successor Predicate S",
+            "zh": "后继谓词S",
+            "importance": 0.0,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "自然数公理/axiom of natural numbers",
+                "zh": "自然数公理",
+                "importance": 0.730231,
+                "relation": "part_of",
+                "related": [
+                  "一阶谓词逻辑"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "公理/axiom",
+            "zh": "公理",
+            "importance": 0.368509,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "实数/real number",
+            "zh": "实数",
+            "importance": 0.385327,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "有理数/rational number",
+                "zh": "有理数",
+                "importance": 0.266251,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/28",
+      "zh": "第 28 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/命题逻辑的基本概念",
+          "zh": "第1章 命题逻辑的基本概念",
+          "importance": 0.619082,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "数理逻辑/mathematical logic",
+              "zh": "数理逻辑",
+              "importance": 0.614098,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "命题逻辑/propositional logic",
+                  "zh": "命题逻辑",
+                  "importance": 0.329966,
+                  "relation": "belong_to",
+                  "related": [
+                    "谓词逻辑",
+                    "运算符"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题/proposition",
+                      "zh": "命题",
+                      "importance": 0.428499,
+                      "relation": null,
+                      "related": [
+                        "命题形式",
+                        "自由变元",
+                        "论域"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "命题形式/propositional form",
+                      "zh": "命题形式",
+                      "importance": 0.188877,
+                      "relation": null,
+                      "related": [
+                        "个体",
+                        "个体变项",
+                        "命题",
+                        "量化"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "联结词/connective",
+                      "zh": "联结词",
+                      "importance": 0.287056,
+                      "relation": null,
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "蕴含/implication",
+                      "zh": "蕴含",
+                      "importance": 0.446549,
+                      "relation": null,
+                      "related": [
+                        "全称量词",
+                        "全称量词符号",
+                        "合取"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "谓词逻辑/Predicate Logic",
+                  "zh": "谓词逻辑",
+                  "importance": 0.940455,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题逻辑",
+                    "形式化"
+                  ],
+                  "children": [
+                    {
+                      "id": "量化/Quantification",
+                      "zh": "量化",
+                      "importance": 0.947706,
+                      "relation": "part_of",
+                      "related": [
+                        "命题形式",
+                        "论域",
+                        "谓词公式",
+                        "量词"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "一阶谓词逻辑/first-order predicate logic",
+                      "zh": "一阶谓词逻辑",
+                      "importance": 0.930481,
+                      "relation": "belong_to",
+                      "related": [
+                        "自然数公理",
+                        "逻辑编程语言"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "论域/domain of discourse",
+                      "zh": "论域",
+                      "importance": 0.914646,
+                      "relation": "part_of",
+                      "related": [
+                        "合取式",
+                        "命题",
+                        "形式化",
+                        "真值",
+                        "蕴涵式",
+                        "谓词"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "变项/variable",
+                      "zh": "变项",
+                      "importance": 0.702902,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "变元/variable symbol",
+                      "zh": "变元",
+                      "importance": 0.550227,
+                      "relation": "part_of",
+                      "related": [
+                        "量词"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "个体词/individual term",
+                      "zh": "个体词",
+                      "importance": 0.039502,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "形式化翻译规则/formal translation rule",
+                      "zh": "形式化翻译规则",
+                      "importance": 0.0,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "AEIO模式",
+              "zh": "AEIO模式",
+              "importance": 0.619082,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "全称肯定命题",
+                  "zh": "全称肯定命题",
+                  "importance": 0.182683,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "全称否定命题",
+                  "zh": "全称否定命题",
+                  "importance": 0.285949,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "特称肯定命题/particular affirmative proposition",
+                  "zh": "特称肯定命题",
+                  "importance": 0.182683,
+                  "relation": "belong_to",
+                  "related": [
+                    "存在量词"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "特称否定命题/particular negative proposition",
+                  "zh": "特称否定命题",
+                  "importance": 0.208761,
+                  "relation": "belong_to",
+                  "related": [
+                    "合取联结词",
+                    "存在量词"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "A模式",
+                  "zh": "A模式",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "逻辑/logic",
+              "zh": "逻辑",
+              "importance": 0.219532,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "存在命题/existential proposition",
+                  "zh": "存在命题",
+                  "importance": 0.616757,
+                  "relation": "belong_to",
+                  "related": [
+                    "形式化",
+                    "性质",
+                    "性质Q"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "后继谓词S/Successor Predicate S",
+              "zh": "后继谓词S",
+              "importance": 0.0,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "自然数公理/axiom of natural numbers",
+                  "zh": "自然数公理",
+                  "importance": 0.730231,
+                  "relation": "part_of",
+                  "related": [
+                    "一阶谓词逻辑"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "公理/axiom",
+              "zh": "公理",
+              "importance": 0.368509,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "实数/real number",
+              "zh": "实数",
+              "importance": 0.385327,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "有理数/rational number",
+                  "zh": "有理数",
+                  "importance": 0.266251,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 29,
+  "max_depth": 4,
+  "orphan_count": 3,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "AEIO模式",
+    "root_zh": "第 28 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 74,
+    "n_edges_raw": 105,
+    "n_hierarchy_candidates": 72,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将数理逻辑及其子主题前移突出核心，AEIO模式次之；删除重复叶节点“变元”（与“变项”重复）；其余保持原结构。",
+    "chapters": [
+      "第1章 命题逻辑的基本概念"
+    ],
+    "llm_tune_notes": "将数理逻辑及其子主题前移突出核心，AEIO模式次之；删除重复叶节点“变元”（与“变项”重复）；其余保持原结构。",
+    "chapter_candidates": [
+      "第1章 命题逻辑的基本概念"
+    ]
+  }
+}

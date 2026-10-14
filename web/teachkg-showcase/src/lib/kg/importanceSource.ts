@@ -4,25 +4,19 @@ export type ImportanceSource = "classroom" | "pagerank";
 
 const STORAGE_KEY = "kg-importance-source-v2";
 
-/** 默认课堂信号；localStorage 可切到 pagerank 实验 */
+/** 展示端统一只用课堂分（忽略历史 localStorage 的 pagerank 实验值）。 */
 export function getImportanceSource(): ImportanceSource {
-  try {
-    const v = window.localStorage.getItem(STORAGE_KEY);
-    if (v === "classroom" || v === "pagerank") return v;
-  } catch {
-    /* ignore */
-  }
   return "classroom";
 }
 
-export function setImportanceSource(source: ImportanceSource) {
+export function setImportanceSource(_source: ImportanceSource) {
   try {
-    window.localStorage.setItem(STORAGE_KEY, source);
+    window.localStorage.setItem(STORAGE_KEY, "classroom");
   } catch {
     /* ignore */
   }
 }
 
-export function importanceSourceLabel(source: ImportanceSource): string {
-  return source === "pagerank" ? "PR+课堂" : "课堂信号";
+export function importanceSourceLabel(_source: ImportanceSource): string {
+  return "课堂信号";
 }

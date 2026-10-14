@@ -1,0 +1,369 @@
+{
+  "lecture_id": "36",
+  "root": {
+    "id": "数理逻辑/Mathematical Logic",
+    "zh": "数理逻辑",
+    "importance": 0.364726,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "集合论/Set Theory",
+        "zh": "集合论",
+        "importance": 0.921034,
+        "relation": "part_of",
+        "related": [
+          "Russell 悖论"
+        ],
+        "children": [
+          {
+            "id": "基数/cardinal number",
+            "zh": "基数",
+            "importance": 0.489918,
+            "relation": "part_of",
+            "related": [
+              "Russell 悖论",
+              "连续统假设"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "不可数/uncountable",
+            "zh": "不可数",
+            "importance": 0.700559,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "实数集/real numbers",
+                "zh": "实数集",
+                "importance": 1.0,
+                "relation": "belong_to",
+                "related": [
+                  "幂集",
+                  "连续统假设"
+                ],
+                "children": [
+                  {
+                    "id": "自然数集/natural number set",
+                    "zh": "自然数集",
+                    "importance": 0.666997,
+                    "relation": "part_of",
+                    "related": [
+                      "连续统假设"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "连续统假设/continuum hypothesis",
+            "zh": "连续统假设",
+            "importance": 0.519241,
+            "relation": "part_of",
+            "related": [
+              "基数",
+              "实数集",
+              "自然数集"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "选择公理/Axiom of Choice",
+            "zh": "选择公理",
+            "importance": 0.251585,
+            "relation": "belong_to",
+            "related": [],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "幂集/power set",
+            "zh": "幂集",
+            "importance": 0.613632,
+            "relation": "belong_to",
+            "related": [
+              "实数集",
+              "集合"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.60639,
+        "relation": null,
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "蕴含/implication",
+        "zh": "蕴含",
+        "importance": 0.392204,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "前件/antecedent",
+            "zh": "前件",
+            "importance": 0.201582,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "后件/succedent",
+            "zh": "后件",
+            "importance": 0.321903,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "悖论/paradox",
+        "zh": "悖论",
+        "importance": 0.282138,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "Russell 悖论/Russell's paradox",
+            "zh": "Russell 悖论",
+            "importance": 0.09784,
+            "relation": "belong_to",
+            "related": [
+              "基数",
+              "集合论"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "摩根律/De Morgan's Laws",
+        "zh": "摩根律",
+        "importance": 0.266736,
+        "relation": null,
+        "related": [
+          "双条件式"
+        ],
+        "children": [
+          {
+            "id": "谓词摩根律/De Morgan's Laws for Predicates",
+            "zh": "谓词摩根律",
+            "importance": 0.34494,
+            "relation": "belong_to",
+            "related": [
+              "后件概括",
+              "逆否"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "数理逻辑/Mathematical Logic",
+      "zh": "数理逻辑",
+      "importance": 0.364726,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "集合论/Set Theory",
+          "zh": "集合论",
+          "importance": 0.921034,
+          "relation": "part_of",
+          "related": [
+            "Russell 悖论"
+          ],
+          "children": [
+            {
+              "id": "基数/cardinal number",
+              "zh": "基数",
+              "importance": 0.489918,
+              "relation": "part_of",
+              "related": [
+                "Russell 悖论",
+                "连续统假设"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "不可数/uncountable",
+              "zh": "不可数",
+              "importance": 0.700559,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "实数集/real numbers",
+                  "zh": "实数集",
+                  "importance": 1.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "幂集",
+                    "连续统假设"
+                  ],
+                  "children": [
+                    {
+                      "id": "自然数集/natural number set",
+                      "zh": "自然数集",
+                      "importance": 0.666997,
+                      "relation": "part_of",
+                      "related": [
+                        "连续统假设"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "连续统假设/continuum hypothesis",
+              "zh": "连续统假设",
+              "importance": 0.519241,
+              "relation": "part_of",
+              "related": [
+                "基数",
+                "实数集",
+                "自然数集"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "选择公理/Axiom of Choice",
+              "zh": "选择公理",
+              "importance": 0.251585,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "幂集/power set",
+              "zh": "幂集",
+              "importance": 0.613632,
+              "relation": "belong_to",
+              "related": [
+                "实数集",
+                "集合"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "公理系统/axiomatic system",
+          "zh": "公理系统",
+          "importance": 0.60639,
+          "relation": null,
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "蕴含/implication",
+          "zh": "蕴含",
+          "importance": 0.392204,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "前件/antecedent",
+              "zh": "前件",
+              "importance": 0.201582,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "后件/succedent",
+              "zh": "后件",
+              "importance": 0.321903,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "悖论/paradox",
+          "zh": "悖论",
+          "importance": 0.282138,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "Russell 悖论/Russell's paradox",
+              "zh": "Russell 悖论",
+              "importance": 0.09784,
+              "relation": "belong_to",
+              "related": [
+                "基数",
+                "集合论"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "摩根律/De Morgan's Laws",
+          "zh": "摩根律",
+          "importance": 0.266736,
+          "relation": null,
+          "related": [
+            "双条件式"
+          ],
+          "children": [
+            {
+              "id": "谓词摩根律/De Morgan's Laws for Predicates",
+              "zh": "谓词摩根律",
+              "importance": 0.34494,
+              "relation": "belong_to",
+              "related": [
+                "后件概括",
+                "逆否"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 17,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化系统",
+    "root_id": "不可数/uncountable",
+    "root_zh": "不可数",
+    "virtual_root": false,
+    "n_trees": 6,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 25,
+    "n_edges_raw": 20,
+    "n_hierarchy_candidates": 15,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "将分散主题归入数理逻辑根下，合并重复的连续统假设和基数节点，调整顺序使集合论核心概念靠前，删除孤立空节点。"
+  }
+}

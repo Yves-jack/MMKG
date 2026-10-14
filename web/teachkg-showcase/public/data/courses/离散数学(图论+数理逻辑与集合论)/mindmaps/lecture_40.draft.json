@@ -1,0 +1,206 @@
+{
+  "lecture_id": "40",
+  "root": {
+    "id": "集合/set",
+    "zh": "集合",
+    "importance": 0.786081,
+    "relation": null,
+    "related": [
+      "交集",
+      "子集公理",
+      "正则公理"
+    ],
+    "children": [
+      {
+        "id": "内涵定义",
+        "zh": "内涵定义",
+        "importance": 0.518509,
+        "relation": "belong_to",
+        "related": [
+          "子集公理",
+          "正则公理"
+        ],
+        "children": [
+          {
+            "id": "子集公理/axiom of subsets",
+            "zh": "子集公理",
+            "importance": 0.980723,
+            "relation": "belong_to",
+            "related": [
+              "乘积",
+              "交集",
+              "内涵定义",
+              "差集",
+              "广义交",
+              "悖论"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "空集/empty set",
+        "zh": "空集",
+        "importance": 0.467759,
+        "relation": "belong_to",
+        "related": [
+          "空集的广义交",
+          "非空传递集合"
+        ],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.786081,
+      "relation": null,
+      "related": [
+        "交集",
+        "子集公理",
+        "正则公理"
+      ],
+      "children": [
+        {
+          "id": "内涵定义",
+          "zh": "内涵定义",
+          "importance": 0.518509,
+          "relation": "belong_to",
+          "related": [
+            "子集公理",
+            "正则公理"
+          ],
+          "children": [
+            {
+              "id": "子集公理/axiom of subsets",
+              "zh": "子集公理",
+              "importance": 0.980723,
+              "relation": "belong_to",
+              "related": [
+                "乘积",
+                "交集",
+                "内涵定义",
+                "差集",
+                "广义交",
+                "悖论"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "空集/empty set",
+          "zh": "空集",
+          "importance": 0.467759,
+          "relation": "belong_to",
+          "related": [
+            "空集的广义交",
+            "非空传递集合"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "集合论/set theory",
+      "zh": "集合论",
+      "importance": 0.565097,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "正则公理/Axiom of Regularity",
+          "zh": "正则公理",
+          "importance": 0.924255,
+          "relation": "belong_to",
+          "related": [
+            "内涵定义",
+            "所有集合的集合",
+            "极小元",
+            "集合",
+            "非空传递集合",
+            "非空集合"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "广义交/generalized intersection",
+      "zh": "广义交",
+      "importance": 0.392864,
+      "relation": null,
+      "related": [
+        "子集公理"
+      ],
+      "children": [
+        {
+          "id": "空集的广义交/generalized intersection of the empty set",
+          "zh": "空集的广义交",
+          "importance": 0.269364,
+          "relation": "belong_to",
+          "related": [
+            "所有集合的集合",
+            "空集"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "ZF 公理系统/ZF Axiom System",
+      "zh": "ZF 公理系统",
+      "importance": 0.229627,
+      "relation": null,
+      "related": [],
+      "children": []
+    },
+    {
+      "id": "悖论/paradox",
+      "zh": "悖论",
+      "importance": 0.132477,
+      "relation": null,
+      "related": [
+        "子集公理"
+      ],
+      "children": [
+        {
+          "id": "罗素悖论集合",
+          "zh": "罗素悖论集合",
+          "importance": 0.359031,
+          "relation": "belong_to",
+          "related": [
+            "子集公理"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 11,
+  "max_depth": 3,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第9章 集合",
+    "root_id": "集合/set",
+    "root_zh": "集合",
+    "virtual_root": false,
+    "n_trees": 5,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 18,
+    "n_edges_raw": 28,
+    "n_hierarchy_candidates": 8,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

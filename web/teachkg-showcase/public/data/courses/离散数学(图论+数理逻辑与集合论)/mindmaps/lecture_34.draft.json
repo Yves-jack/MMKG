@@ -1,0 +1,579 @@
+{
+  "lecture_id": "34",
+  "root": {
+    "id": "规则/rule",
+    "zh": "规则",
+    "importance": 0.878863,
+    "relation": null,
+    "related": [
+      "定理"
+    ],
+    "children": [
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.956319,
+        "relation": "part_of",
+        "related": [
+          "一阶谓词逻辑",
+          "公理",
+          "定理",
+          "模型"
+        ],
+        "children": [],
+        "copy": true
+      },
+      {
+        "id": "公理/axiom",
+        "zh": "公理",
+        "importance": 0.893744,
+        "relation": "belong_to",
+        "related": [
+          "公理系统",
+          "否定",
+          "定理",
+          "推理演算过程"
+        ],
+        "children": [],
+        "copy": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "规则/rule",
+      "zh": "规则",
+      "importance": 0.878863,
+      "relation": null,
+      "related": [
+        "定理"
+      ],
+      "children": [
+        {
+          "id": "公理系统/axiomatic system",
+          "zh": "公理系统",
+          "importance": 0.956319,
+          "relation": "part_of",
+          "related": [
+            "一阶谓词逻辑",
+            "公理",
+            "定理",
+            "模型"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "公理/axiom",
+          "zh": "公理",
+          "importance": 0.893744,
+          "relation": "belong_to",
+          "related": [
+            "公理系统",
+            "否定",
+            "定理",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.627117,
+      "relation": null,
+      "related": [
+        "一阶谓词逻辑"
+      ],
+      "children": [
+        {
+          "id": "一阶谓词逻辑/first-order predicate logic",
+          "zh": "一阶谓词逻辑",
+          "importance": 0.901667,
+          "relation": "belong_to",
+          "related": [
+            "公理系统",
+            "推理",
+            "模型",
+            "谓词逻辑"
+          ],
+          "children": [
+            {
+              "id": "公理系统/axiomatic system",
+              "zh": "公理系统",
+              "importance": 0.956319,
+              "relation": "part_of",
+              "related": [
+                "一阶谓词逻辑",
+                "公理",
+                "定理",
+                "模型"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "推理/inference",
+              "zh": "推理",
+              "importance": 0.944954,
+              "relation": "belong_to",
+              "related": [
+                "一阶谓词逻辑",
+                "初级有向道路"
+              ],
+              "children": [
+                {
+                  "id": "自然推理/natural deduction",
+                  "zh": "自然推理",
+                  "importance": 1.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "推理公式"
+                  ],
+                  "children": [
+                    {
+                      "id": "公理/axiom",
+                      "zh": "公理",
+                      "importance": 0.893744,
+                      "relation": "belong_to",
+                      "related": [
+                        "公理系统",
+                        "否定",
+                        "定理",
+                        "推理演算过程"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "归结/resolution",
+                      "zh": "归结",
+                      "importance": 0.624913,
+                      "relation": "belong_to",
+                      "related": [
+                        "互补对",
+                        "代入",
+                        "子句",
+                        "子句集",
+                        "归结式",
+                        "推理公式"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "定理/theorem",
+                      "zh": "定理",
+                      "importance": 0.547801,
+                      "relation": "belong_to",
+                      "related": [
+                        "公理",
+                        "公理系统",
+                        "推理规则",
+                        "规则"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "公理系统/axiomatic system",
+                  "zh": "公理系统",
+                  "importance": 0.956319,
+                  "relation": "part_of",
+                  "related": [
+                    "一阶谓词逻辑",
+                    "公理",
+                    "定理",
+                    "模型"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "公理/axiom",
+                  "zh": "公理",
+                  "importance": 0.893744,
+                  "relation": "belong_to",
+                  "related": [
+                    "公理系统",
+                    "否定",
+                    "定理",
+                    "推理演算过程"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "结论/conclusion",
+                  "zh": "结论",
+                  "importance": 0.588982,
+                  "relation": "part_of",
+                  "related": [
+                    "前提"
+                  ],
+                  "children": [
+                    {
+                      "id": "定理/theorem",
+                      "zh": "定理",
+                      "importance": 0.547801,
+                      "relation": "part_of",
+                      "related": [
+                        "公理",
+                        "公理系统",
+                        "推理规则",
+                        "规则"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "前提/premise",
+                  "zh": "前提",
+                  "importance": 0.438043,
+                  "relation": "part_of",
+                  "related": [
+                    "结论"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "公理/axiom",
+              "zh": "公理",
+              "importance": 0.893744,
+              "relation": "part_of",
+              "related": [
+                "公理系统",
+                "否定",
+                "定理",
+                "推理演算过程"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "量词/quantifier",
+              "zh": "量词",
+              "importance": 0.481436,
+              "relation": "part_of",
+              "related": [],
+              "children": [
+                {
+                  "id": "公理/axiom",
+                  "zh": "公理",
+                  "importance": 0.893744,
+                  "relation": "belong_to",
+                  "related": [
+                    "公理系统",
+                    "否定",
+                    "定理",
+                    "推理演算过程"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "公式/formula",
+              "zh": "公式",
+              "importance": 0.42145,
+              "relation": "part_of",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.359565,
+              "relation": "part_of",
+              "related": [
+                "地图",
+                "归结"
+              ],
+              "children": []
+            },
+            {
+              "id": "个体词/individual term",
+              "zh": "个体词",
+              "importance": 0.19128,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.070433,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "函数/function",
+              "zh": "函数",
+              "importance": 0.028823,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.0,
+              "relation": "part_of",
+              "related": [
+                "传感器"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "等值式/equivalence formula",
+          "zh": "等值式",
+          "importance": 0.462657,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "分配律/distributive law",
+              "zh": "分配律",
+              "importance": 0.262919,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "摩根律/De Morgan's Laws",
+              "zh": "摩根律",
+              "importance": 0.244169,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "语法推理",
+      "zh": "语法推理",
+      "importance": 0.553018,
+      "relation": null,
+      "related": [
+        "语法"
+      ],
+      "children": [
+        {
+          "id": "公理系统/axiomatic system",
+          "zh": "公理系统",
+          "importance": 0.956319,
+          "relation": "belong_to",
+          "related": [
+            "一阶谓词逻辑",
+            "公理",
+            "定理",
+            "模型"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "公理/axiom",
+          "zh": "公理",
+          "importance": 0.893744,
+          "relation": "part_of",
+          "related": [
+            "公理系统",
+            "否定",
+            "定理",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "约束个体易名规则/renaming bound variables rule",
+      "zh": "约束个体易名规则",
+      "importance": 0.534988,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "公理/axiom",
+          "zh": "公理",
+          "importance": 0.893744,
+          "relation": "belong_to",
+          "related": [
+            "公理系统",
+            "否定",
+            "定理",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "子句/clause",
+      "zh": "子句",
+      "importance": 0.506545,
+      "relation": null,
+      "related": [
+        "归结"
+      ],
+      "children": [
+        {
+          "id": "归结式/resolvent",
+          "zh": "归结式",
+          "importance": 0.359486,
+          "relation": "belong_to",
+          "related": [
+            "互补对",
+            "归结"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "模型/Model",
+      "zh": "模型",
+      "importance": 0.336432,
+      "relation": null,
+      "related": [
+        "一阶谓词逻辑",
+        "公理系统"
+      ],
+      "children": [
+        {
+          "id": "公理/axiom",
+          "zh": "公理",
+          "importance": 0.893744,
+          "relation": "part_of",
+          "related": [
+            "公理系统",
+            "否定",
+            "定理",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "迷宫问题/Maze Problem",
+          "zh": "迷宫问题",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "语义推理/semantic inference",
+      "zh": "语义推理",
+      "importance": 0.319023,
+      "relation": null,
+      "related": [
+        "语法"
+      ],
+      "children": [
+        {
+          "id": "公理系统/axiomatic system",
+          "zh": "公理系统",
+          "importance": 0.956319,
+          "relation": "part_of",
+          "related": [
+            "一阶谓词逻辑",
+            "公理",
+            "定理",
+            "模型"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.211371,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "前件/antecedent",
+          "zh": "前件",
+          "importance": 0.224587,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "后件/succedent",
+          "zh": "后件",
+          "importance": 0.123192,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "三段论/syllogism",
+      "zh": "三段论",
+      "importance": 0.210164,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "公理/axiom",
+          "zh": "公理",
+          "importance": 0.893744,
+          "relation": "belong_to",
+          "related": [
+            "公理系统",
+            "否定",
+            "定理",
+            "推理演算过程"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 32,
+  "max_depth": 5,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化系统",
+    "root_id": "规则/rule",
+    "root_zh": "规则",
+    "virtual_root": false,
+    "n_trees": 9,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 51,
+    "n_edges_raw": 86,
+    "n_hierarchy_candidates": 52,
+    "attached_orphans": 0,
+    "alias_merged": 4,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

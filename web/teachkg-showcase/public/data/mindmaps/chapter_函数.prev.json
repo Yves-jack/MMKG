@@ -1,0 +1,296 @@
+{
+  "lecture_id": "chapter:第11章 函数",
+  "root": {
+    "id": "__chapter__/函数",
+    "zh": "第11章 函数",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+        "zh": "等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数定义",
+        "zh": "函数定义",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/g = {，，，} 不是函数，不满足单值性",
+        "zh": "g = {，，，} 不是函数，不满足单值性",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/A到B的函数集合A_B",
+        "zh": "A到B的函数集合A_B",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数的象",
+        "zh": "函数的象",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/双射函数的构造",
+        "zh": "双射函数的构造",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/常用的函数",
+        "zh": "常用的函数",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/常用的函数例",
+        "zh": "常用的函数例",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数的合成",
+        "zh": "函数的合成",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数合成的性质",
+        "zh": "函数合成的性质",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数的左逆与右逆",
+        "zh": "函数的左逆与右逆",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数的逆与反函数",
+        "zh": "函数的逆与反函数",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数的左逆与右逆例",
+        "zh": "函数的左逆与右逆例",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/双射函数的应用",
+        "zh": "双射函数的应用",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/函数是特殊关系，是满足单值性和全域性的关系",
+        "zh": "函数是特殊关系，是满足单值性和全域性的关系",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/B是基本函数集合，定义等价关系≈为：",
+        "zh": "B是基本函数集合，定义等价关系≈为：",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/函数",
+      "zh": "第11章 函数",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+          "zh": "等势：对集合A和B，如果存在从A到B的双射函数，记作A≈B",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数定义",
+          "zh": "函数定义",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/g = {，，，} 不是函数，不满足单值性",
+          "zh": "g = {，，，} 不是函数，不满足单值性",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/A到B的函数集合A_B",
+          "zh": "A到B的函数集合A_B",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数的象",
+          "zh": "函数的象",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/双射函数的构造",
+          "zh": "双射函数的构造",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/常用的函数",
+          "zh": "常用的函数",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/常用的函数例",
+          "zh": "常用的函数例",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数的合成",
+          "zh": "函数的合成",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数合成的性质",
+          "zh": "函数合成的性质",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数的左逆与右逆",
+          "zh": "函数的左逆与右逆",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数的逆与反函数",
+          "zh": "函数的逆与反函数",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数的左逆与右逆例",
+          "zh": "函数的左逆与右逆例",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/双射函数的应用",
+          "zh": "双射函数的应用",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/函数是特殊关系，是满足单值性和全域性的关系",
+          "zh": "函数是特殊关系，是满足单值性和全域性的关系",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/B是基本函数集合，定义等价关系≈为：",
+          "zh": "B是基本函数集合，定义等价关系≈为：",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 17,
+  "max_depth": 1,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第11章 函数",
+    "root_zh": "函数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "44"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

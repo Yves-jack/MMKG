@@ -1,0 +1,68 @@
+{
+  "lecture_id": "3",
+  "candidates": [
+    "第1章 图的基本概念与表示"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "图/Graph",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.95,
+      "reason": "该子树涵盖图的基本概念、有向图、简单图、有限图等，属于图的基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "图的表示方法/graph representation",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.98,
+      "reason": "该子树专门讨论图的表示方法，与章节标题直接对应。"
+    },
+    {
+      "subtree_root_id": "子图/subgraph",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.9,
+      "reason": "子图是图的基本概念的一部分，属于本章内容。"
+    },
+    {
+      "subtree_root_id": "图的运算/graph operation",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.85,
+      "reason": "图的运算是图的基本概念的重要延伸，属于本章。"
+    },
+    {
+      "subtree_root_id": "等价关系/equivalence relation",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.8,
+      "reason": "图的同构是图的基本概念中的核心内容，等价关系作为其基础，归入本章。"
+    },
+    {
+      "subtree_root_id": "必要不充分条件/necessary but not sufficient condition",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.75,
+      "reason": "该子树讨论图同构的必要不充分条件，属于图的基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "内邻集/in-neighborhood",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.7,
+      "reason": "内邻集是图的基本概念中邻域概念的组成部分，归入本章。"
+    },
+    {
+      "subtree_root_id": "外邻集/out-neighborhood",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.7,
+      "reason": "外邻集是图的基本概念中邻域概念的组成部分，归入本章。"
+    },
+    {
+      "subtree_root_id": "分子结构图/molecular structure graph",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.6,
+      "reason": "分子结构图是图的应用实例，属于图的基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "双射/bijection",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.65,
+      "reason": "双射是图同构定义中的关键概念，归入本章。"
+    }
+  ]
+}

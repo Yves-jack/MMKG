@@ -51,12 +51,12 @@ BFS / DFS / 广度优先 / 深度优先、树 / 生成树相关算法结论、�
 【三类】
 - theorem：有明确结论的定理/引理/推论
 - principle：课堂强调的原则/公理思想（不要硬造「××原理」空壳）
-- technique：可操作方法，steps 至少 2 步
+- technique：可操作方法，必须给出 ≥2 步真实可执行 steps（禁止空泛「明确输入/检查结果」）
 
 【硬约束】
-1. evidence 必须是课堂全文的连续原文子串（约 15–120 字）
+1. evidence 必须是课堂全文的连续原文子串（约 15–120 字）；前端要靠它高亮，对不上就不要抽；无合格 evidence 不输出
 2. name 用「中文」或「中文/English」
-3. technique 必填 steps；theorem/principle 的 steps 为 []
+3. technique 必填真实 steps；theorem/principle 的 steps 为 []
 4. 只输出合法 JSON，不要注释
 
 输出格式：
@@ -135,8 +135,7 @@ def soften_cards(
         steps = [str(s).strip() for s in (row.get("steps") or []) if str(s).strip()]
         if kind != "technique":
             steps = []
-        if kind == "technique" and len(steps) < 2:
-            steps = ["明确输入与目标", "按方法步骤执行并检查结果"]
+        # 不再垫默认两步：方法必须 LLM 给出真实多步流程，否则质检丢弃
         reason = _quality_drop_reason(kind, name, evidence, steps, text)
         if reason:
             logger.info("drop (%s): %s", reason, name)
@@ -262,10 +261,20 @@ def cards_from_kg_hints(
 
 def merge_unique(cards: list[AssetCard]) -> list[AssetCard]:
     by: dict[str, AssetCard] = {}
+
+    def score(c: AssetCard) -> tuple:
+        summary = (c.summary or "").strip()
+        placeholder = 1 if summary.startswith("课堂提及的") else 0
+        has_stmt = 1 if (c.statement or "").strip() else 0
+        has_steps = 1 if c.steps else 0
+        ev_len = len(c.evidence or "")
+        # 优先非占位、有陈述/步骤，再比 evidence 长度
+        return (1 - placeholder, has_stmt, has_steps, ev_len)
+
     for c in cards:
         key = f"{c.kind}\t{primary_zh(c.name)}"
         prev = by.get(key)
-        if not prev or len(c.evidence or "") > len(prev.evidence or ""):
+        if not prev or score(c) > score(prev):
             by[key] = c
     return list(by.values())
 
@@ -331,7 +340,11 @@ def main() -> int:
             logger.info("LLM cards lecture %s: %d", lec, len(cards))
 
         kg_path = ROOT / "data" / "kg" / course / f"lecture_{lec}" / "kg.json"
-        entities, edges = load_lecture_kg(kg_path)
+        if kg_path.is_file():
+            entities, edges = load_lecture_kg(kg_path)
+        else:
+            logger.warning("missing lecture kg %s; skip KG hints", kg_path)
+            entities, edges = [], []
         hint_cards = cards_from_kg_hints(
             text=text, lecture_id=str(lec), entities=entities
         )
@@ -361,13 +374,47 @@ def main() -> int:
         logger.info("wrote %s (%d)", cache, len(cards))
         all_llm.extend(cards)
 
-    # reload all lecture caches
+    # 占位卡（课堂提及的…）自动补全 statement/summary
+    if lectures:
+        import subprocess
+
+        cmd = [
+            sys.executable,
+            str(ROOT / "scripts" / "teaching" / "backfill_asset_placeholders.py"),
+            "--config",
+            str(args.config),
+            "--course-id",
+            course,
+            "--lectures",
+            ",".join(lectures),
+            "--skip-assign",
+        ]
+        logger.info("backfill placeholders for lectures=%s", ",".join(lectures))
+        try:
+            subprocess.run(cmd, check=False)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("backfill failed: %s", exc)
+
+    # reload all lecture caches (+ formula caches if present)
     merged: list[AssetCard] = []
     for p in sorted(assets_dir.glob("llm_assets_lecture_*.json")):
         payload = json.loads(p.read_text(encoding="utf-8"))
         for row in payload.get("cards") or []:
             if isinstance(row, dict):
                 merged.append(AssetCard.from_dict(row))
+    try:
+        from teachkg.assets.formula_quality import keep_generic_formulas
+
+        for p in sorted(assets_dir.glob("llm_assets_formula_example_lecture_*.json")):
+            payload = json.loads(p.read_text(encoding="utf-8"))
+            rows = [
+                AssetCard.from_dict(row)
+                for row in (payload.get("assets") or [])
+                if isinstance(row, dict)
+            ]
+            merged.extend(keep_generic_formulas(rows))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("skip formula caches merge: %s", exc)
 
     cfg = TeachKGConfig.from_yaml(args.config)
     tb_path = Path(

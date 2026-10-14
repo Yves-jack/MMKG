@@ -1,10 +1,10 @@
 """课堂重要性向上传递（与前端 propagateImportance.ts 同源）。
 
-规则（v3）：
+规则（v5）：
 - 父边：belong_to / part_of / depend_on（from=子 → to=父）
 - 自底向上；子→父贡献 child×RATE/√父数（RATE=0.22）
-- 渐近饱和：parent = own + (1-own)·(1-e^(-boost/τ))，τ=0.45
-  避免线性累加把枢纽大量顶满到 1.0
+- 线性累加：parent = own + boost（不软加）
+- 结束后按最大值归一：I' = I / max(I)
 """
 
 from __future__ import annotations
@@ -15,6 +15,7 @@ from typing import Any, Iterable
 PARENT_RELS = frozenset({"belong_to", "part_of", "depend_on"})
 
 PROPAGATE_RATE = 0.22
+# 保留兼容；v5 不再使用软加
 PROPAGATE_TAU = 0.45
 
 
@@ -31,12 +32,18 @@ def _ends(e: dict[str, Any]) -> tuple[str, str]:
 
 
 def _merge_boost(own: float, boost: float, tau: float = PROPAGATE_TAU) -> float:
-    o = min(1.0, max(0.0, float(own)))
-    b = max(0.0, float(boost))
-    if b <= 1e-12:
-        return o
-    t = max(1e-6, float(tau))
-    return o + (1.0 - o) * (1.0 - math.exp(-b / t))
+    """线性累加 own + boost（tau 参数保留兼容，不参与计算）。"""
+    del tau  # unused
+    return max(0.0, float(own)) + max(0.0, float(boost))
+
+
+def _max_normalize(scores: dict[str, float]) -> dict[str, float]:
+    if not scores:
+        return {}
+    hi = max(float(v) for v in scores.values())
+    if hi <= 1e-12:
+        return {k: max(0.0, float(v)) for k, v in scores.items()}
+    return {k: max(0.0, float(v)) / hi for k, v in scores.items()}
 
 
 def propagate_importance_to_parents(
@@ -47,7 +54,7 @@ def propagate_importance_to_parents(
     rate: float = PROPAGATE_RATE,
     tau: float = PROPAGATE_TAU,
 ) -> dict[str, float]:
-    """以课堂分为初值，自底向上把子节点重要性贡献给父。"""
+    """以课堂分为初值，自底向上把子节点重要性贡献给父，再按最大值归一。"""
     ids = set(node_ids) if node_ids is not None else set(scores)
     adj: dict[str, list[str]] = {i: [] for i in ids}
     seen: set[tuple[str, str]] = set()
@@ -67,7 +74,7 @@ def propagate_importance_to_parents(
 
     initial = {i: float(scores.get(i) or 0.0) for i in ids}
     if not seen:
-        return dict(initial)
+        return _max_normalize(initial)
 
     indeg = {i: 0 for i in ids}
     outdeg = {i: len(adj[i]) for i in ids}
@@ -98,7 +105,7 @@ def propagate_importance_to_parents(
         snap = {i: out[i] for i in seeds}
         for i in seeds:
             imp = snap.get(i) or 0.0
-            parents = adj.get(i) or []
+            parents = adj.get(i) || []
             if imp > 0 and r > 0 and parents:
                 share = (imp * r) / math.sqrt(len(parents))
                 for parent in parents:
@@ -116,4 +123,4 @@ def propagate_importance_to_parents(
     for i in ids:
         out[i] = _merge_boost(initial[i], boost_acc[i], tau)
 
-    return {k: min(1.0, max(0.0, float(v))) for k, v in out.items()}
+    return _max_normalize(out)

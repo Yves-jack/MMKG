@@ -253,6 +253,37 @@ function syncOneCourse(course) {
     fs.copyFileSync(textbookSrc, path.join(courseOut, "textbook_kg_showcase.json"));
   }
 
+  // —— 预计算 KG（KgPage 优先加载，避免浏览器 process）——
+  if (fs.existsSync(vizDir)) {
+    for (const name of fs
+      .readdirSync(vizDir)
+      .filter((n) => n.startsWith("kg_processed_") && n.endsWith(".json"))) {
+      fs.copyFileSync(path.join(vizDir, name), path.join(pipelineOut, name));
+      const stem = name.replace(/\.json$/, "");
+      const isCourse = stem === "kg_processed_course";
+      const sessionM = stem.match(/^kg_processed_session_(\d+)_(\d+)$/);
+      const lectureM = stem.match(/^kg_processed_lecture_(\d+)$/);
+      add({
+        id: stem,
+        type: "kg_processed",
+        group: "预计算图谱",
+        title: isCourse
+          ? "整课 · 预计算"
+          : sessionM
+            ? `课次 ${sessionM[1]}+${sessionM[2]} · 预计算`
+            : `第 ${lectureM?.[1] || "?"} 讲 · 预计算`,
+        stem,
+        lectureId: lectureM?.[1],
+        dataUrl: `${webBase}/pipeline/${name}`,
+      });
+    }
+    for (const name of fs
+      .readdirSync(vizDir)
+      .filter((n) => n.startsWith("property_merge_") && n.endsWith(".json"))) {
+      fs.copyFileSync(path.join(vizDir, name), path.join(pipelineOut, name));
+    }
+  }
+
   // —— Pipeline JSON ——
   let pipelineCount = 0;
   if (fs.existsSync(vizDir)) {

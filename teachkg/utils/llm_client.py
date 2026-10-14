@@ -15,8 +15,9 @@ from typing import Any, Sequence
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-DEFAULT_MODEL = "deepseek-v4-flash-0731"
+# 默认交大开放平台（与 teaching_lisan.yaml 一致）；可用环境变量覆盖
+DEFAULT_BASE_URL = "https://models.sjtu.edu.cn/api"
+DEFAULT_MODEL = "deepseek-chat"
 DEFAULT_MAX_RETRY = 3
 DEFAULT_RETRY_PAUSE_SEC = 2.0
 

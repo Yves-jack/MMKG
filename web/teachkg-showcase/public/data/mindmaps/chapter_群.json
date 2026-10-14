@@ -1,0 +1,403 @@
+{
+  "lecture_id": "chapter:第8章 群",
+  "root": {
+    "id": "__chapter__/群",
+    "zh": "第8章 群",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/```html",
+        "zh": "```html",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<html><body>",
+        "zh": "<html><body>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/</body></html>",
+        "zh": "</body></html>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>命题逻辑公理系统 - 王浩算法</h2>",
+        "zh": "<h2>命题逻辑公理系统 - 王浩算法</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<p>命题逻辑公理系统 - 王浩算法（1959）</p>",
+        "zh": "<p>命题逻辑公理系统 - 王浩算法（1959）</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/搜素",
+        "zh": "搜素",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/文件",
+        "zh": "文件",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/上海交通大学",
+        "zh": "上海交通大学",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>子集公理/分离公理模式证明</h2>",
+        "zh": "<h2>子集公理/分离公理模式证明</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/子集公理模式 / 内涵公理",
+        "zh": "子集公理模式 / 内涵公理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/交集集合存在定理",
+        "zh": "交集集合存在定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>笛卡儿积集合存在定理</h2>",
+        "zh": "<h2>笛卡儿积集合存在定理</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/∩Φ不存在定理",
+        "zh": "∩Φ不存在定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/正则公理",
+        "zh": "正则公理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "正则公理/Axiom of Regularity",
+            "zh": "正则公理",
+            "importance": 0.924255,
+            "relation": "belong_to",
+            "related": [
+              "内涵定义",
+              "所有集合的集合",
+              "极小元",
+              "集合",
+              "非空传递集合",
+              "非空集合"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/<p>集合不自否定定理</p>",
+        "zh": "<p>集合不自否定定理</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/传递集合",
+        "zh": "传递集合",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "集合/set",
+            "zh": "集合",
+            "importance": 0.786081,
+            "relation": null,
+            "related": [
+              "交集",
+              "子集公理",
+              "正则公理"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/非空传递集合定理",
+        "zh": "非空传递集合定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/奇异集合",
+        "zh": "奇异集合",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>无穷/无限集合(12.3)</h2>",
+        "zh": "<h2>无穷/无限集合(12.3)</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/群",
+      "zh": "第8章 群",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/```html",
+          "zh": "```html",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<html><body>",
+          "zh": "<html><body>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/</body></html>",
+          "zh": "</body></html>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>命题逻辑公理系统 - 王浩算法</h2>",
+          "zh": "<h2>命题逻辑公理系统 - 王浩算法</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<p>命题逻辑公理系统 - 王浩算法（1959）</p>",
+          "zh": "<p>命题逻辑公理系统 - 王浩算法（1959）</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/搜素",
+          "zh": "搜素",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/文件",
+          "zh": "文件",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/上海交通大学",
+          "zh": "上海交通大学",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>子集公理/分离公理模式证明</h2>",
+          "zh": "<h2>子集公理/分离公理模式证明</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/子集公理模式 / 内涵公理",
+          "zh": "子集公理模式 / 内涵公理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/交集集合存在定理",
+          "zh": "交集集合存在定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>笛卡儿积集合存在定理</h2>",
+          "zh": "<h2>笛卡儿积集合存在定理</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/∩Φ不存在定理",
+          "zh": "∩Φ不存在定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/正则公理",
+          "zh": "正则公理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "正则公理/Axiom of Regularity",
+              "zh": "正则公理",
+              "importance": 0.924255,
+              "relation": "belong_to",
+              "related": [
+                "内涵定义",
+                "所有集合的集合",
+                "极小元",
+                "集合",
+                "非空传递集合",
+                "非空集合"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/<p>集合不自否定定理</p>",
+          "zh": "<p>集合不自否定定理</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/传递集合",
+          "zh": "传递集合",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "集合/set",
+              "zh": "集合",
+              "importance": 0.786081,
+              "relation": null,
+              "related": [
+                "交集",
+                "子集公理",
+                "正则公理"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/非空传递集合定理",
+          "zh": "非空传递集合定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/奇异集合",
+          "zh": "奇异集合",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>无穷/无限集合(12.3)</h2>",
+          "zh": "<h2>无穷/无限集合(12.3)</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 22,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第8章 群",
+    "root_zh": "群",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "26",
+      "40"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

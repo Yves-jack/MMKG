@@ -1,0 +1,57 @@
+{
+  "lecture_id": "6",
+  "candidates": [
+    "第1章 图的基本概念与表示",
+    "第2章 道路与回路"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "简单图/simple graph",
+      "chapter": "第1章 图的基本概念与表示",
+      "confidence": 0.95,
+      "reason": "简单图、完全图、闭合图、节点等属于图的基本概念与表示"
+    },
+    {
+      "subtree_root_id": "回路/Circuit",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.95,
+      "reason": "回路、欧拉回路、H回路属于道路与回路主题"
+    },
+    {
+      "subtree_root_id": "初级道路/elementary path",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.9,
+      "reason": "初级道路、H道路、极长初级道路属于道路与回路主题"
+    },
+    {
+      "subtree_root_id": "连通图/connected graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.85,
+      "reason": "连通图与欧拉图与道路回路密切相关"
+    },
+    {
+      "subtree_root_id": "充分条件/sufficient condition",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.8,
+      "reason": "Ore定理和范定理条件是H回路存在的充分条件"
+    },
+    {
+      "subtree_root_id": "必要条件/necessary condition",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.75,
+      "reason": "标号法判定条件属于H回路判定的必要条件"
+    },
+    {
+      "subtree_root_id": "可计算问题/Computable problem",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.6,
+      "reason": "汉诺塔问题作为可计算问题示例，与道路回路关联较弱，但无更合适候选"
+    },
+    {
+      "subtree_root_id": "不可计算问题/Uncomputable problem",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.7,
+      "reason": "哈密顿道路和回路问题属于道路与回路主题"
+    }
+  ]
+}

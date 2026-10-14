@@ -1,0 +1,69 @@
+{
+  "lecture_id": "23",
+  "candidates": [
+    "第1章 命题逻辑的基本概念",
+    "第3章 命题逻辑的公理化系统"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "演绎推理/deductive reasoning",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "该子树包含自然推理系统、公理系统、公理推理系统等核心概念，是公理化系统的主要内容。"
+    },
+    {
+      "subtree_root_id": "推理过程/inference process",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.85,
+      "reason": "推理过程（前提、结论）是公理化系统中推理规则的基础概念。"
+    },
+    {
+      "subtree_root_id": "形式系统/formal system",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "形式系统（公理、定理、形成规则）是公理化系统的核心组成部分。"
+    },
+    {
+      "subtree_root_id": "命题逻辑/propositional logic",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.9,
+      "reason": "该子树包含归结法、合取范式、不可满足等概念，是命题逻辑中用于证明的方法，属于公理化系统的推理演算部分。"
+    },
+    {
+      "subtree_root_id": "自然数算术系统/arithmetic system of natural numbers",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.7,
+      "reason": "自然数算术系统是公理化系统的典型实例，用于说明公理化方法。"
+    },
+    {
+      "subtree_root_id": "欧氏几何/Euclidean geometry",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.7,
+      "reason": "欧氏几何是公理化系统的经典范例，用于说明公理和定理的关系。"
+    },
+    {
+      "subtree_root_id": "重言式/tautology",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.8,
+      "reason": "重言式是命题逻辑中的定理，是公理化系统推导的目标。"
+    },
+    {
+      "subtree_root_id": "集合/set",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.5,
+      "reason": "集合概念在此处作为公理化系统的例子出现，但并非本讲核心内容，置信度较低。"
+    },
+    {
+      "subtree_root_id": "逻辑/logic",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.6,
+      "reason": "逻辑的分类（经典、非经典）是公理化系统的背景知识，与本章内容相关。"
+    },
+    {
+      "subtree_root_id": "初始符号/initial symbols",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.9,
+      "reason": "初始符号（命题符号、联结词）是形式系统的基本组成部分，属于公理化系统的定义。"
+    }
+  ]
+}

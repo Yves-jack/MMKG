@@ -1,0 +1,69 @@
+{
+  "lecture_id": "18",
+  "candidates": [
+    "第1章 命题逻辑的基本概念",
+    "第2章 命题逻辑的等值和推理演算"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "命题逻辑/propositional logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.95,
+      "reason": "该子树涵盖命题逻辑的核心概念（联结词、命题公式、永真式等），属于命题逻辑基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "命题变项/propositional variable",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "命题变项是命题逻辑的基本概念，属于第1章内容。"
+    },
+    {
+      "subtree_root_id": "蕴涵式/implication form",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "蕴涵式及其前件、后件、逆否定理属于命题逻辑基本概念范畴。"
+    },
+    {
+      "subtree_root_id": "二值逻辑/two-valued logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.8,
+      "reason": "二值逻辑是命题逻辑的基础概念，属于第1章。"
+    },
+    {
+      "subtree_root_id": "谓词逻辑/Predicate Logic",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.7,
+      "reason": "该节点明确指向谓词逻辑，不属于候选章节，从完整目录中选择最匹配的谓词逻辑基本概念章。"
+    },
+    {
+      "subtree_root_id": "公理系统/axiomatic system",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.6,
+      "reason": "公理系统在命题逻辑语境下对应公理化系统章节，从完整目录中选择。"
+    },
+    {
+      "subtree_root_id": "前提/premise",
+      "chapter": "第2章 命题逻辑的等值和推理演算",
+      "confidence": 0.75,
+      "reason": "前提是推理演算中的关键概念，属于第2章推理演算范畴。"
+    },
+    {
+      "subtree_root_id": "命题/proposition",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "命题是命题逻辑的基本概念，属于第1章。"
+    },
+    {
+      "subtree_root_id": "关系/relation",
+      "chapter": "第10章 关系",
+      "confidence": 0.85,
+      "reason": "该子树明确指向关系及等价关系，属于集合论中关系章节，从完整目录中选择。"
+    },
+    {
+      "subtree_root_id": "关系符/relation symbol",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.6,
+      "reason": "关系符（含等号）是谓词逻辑中的符号概念，从完整目录中选择谓词逻辑基本概念章。"
+    }
+  ]
+}

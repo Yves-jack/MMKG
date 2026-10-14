@@ -1,0 +1,389 @@
+{
+  "lecture_id": "chapter:第1章 命题逻辑的基本概念",
+  "root": {
+    "id": "__chapter__/命题逻辑的基本概念",
+    "zh": "第1章 命题逻辑的基本概念",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/（1）根据逻辑要求列出真值表",
+        "zh": "（1）根据逻辑要求列出真值表",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/逻辑第1章 命题逻辑的基本概念",
+        "zh": "逻辑第1章 命题逻辑的基本概念",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "命题逻辑的基本概念/basic concepts of propositional logic",
+            "zh": "命题逻辑的基本概念",
+            "importance": 0.952838,
+            "relation": "part_of",
+            "related": [
+              "公理系统",
+              "命题等值演算",
+              "推理演算"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/又叫原子命题: 不可分割.",
+        "zh": "又叫原子命题: 不可分割.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/这种真值关系常常用真值表(truth table)来表示.",
+        "zh": "这种真值关系常常用真值表(truth table)来表示.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/的真值表",
+        "zh": "的真值表",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "真值表/truth table",
+            "zh": "真值表",
+            "importance": 0.789629,
+            "relation": null,
+            "related": [
+              "主合取范式",
+              "主析取范式",
+              "主范式",
+              "公式",
+              "否定",
+              "真值表法"
+            ],
+            "children": []
+          },
+          {
+            "id": "真值/truth value",
+            "zh": "真值",
+            "importance": 0.578912,
+            "relation": "part_of",
+            "related": [
+              "双条件式",
+              "否定",
+              "否定命题",
+              "真值表"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/∧的真值表描述了P∧Q的真值如何依赖于P和Q的真值.",
+        "zh": "∧的真值表描述了P∧Q的真值如何依赖于P和Q的真值.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/根据公式的合式定义,层层归约,直到原子命题即可判断.",
+        "zh": "根据公式的合式定义,层层归约,直到原子命题即可判断.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/波兰表示法(前缀)：PθQ 表示为 θPQ",
+        "zh": "波兰表示法(前缀)：PθQ 表示为 θPQ",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题公式的真值由其成分命题的真值决定.常用真值表方法计算.",
+        "zh": "命题公式的真值由其成分命题的真值决定.常用真值表方法计算.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/重言式、可满足式、矛盾式",
+        "zh": "重言式、可满足式、矛盾式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例:利用真值表证明等值",
+        "zh": "例:利用真值表证明等值",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/A = B iff A ↔ B 是重言式",
+        "zh": "A = B iff A ↔ B 是重言式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/推论:若A是重言式,则置换后得到的B也是重言式.",
+        "zh": "推论:若A是重言式,则置换后得到的B也是重言式.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/通过真值表设计电路例子",
+        "zh": "通过真值表设计电路例子",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/利用真值表列写公式",
+        "zh": "利用真值表列写公式",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题联结词可看作是真值函数,即以真值为定义域和值域的函数.",
+        "zh": "命题联结词可看作是真值函数,即以真值为定义域和值域的函数.",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/命题逻辑的基本概念",
+      "zh": "第1章 命题逻辑的基本概念",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/（1）根据逻辑要求列出真值表",
+          "zh": "（1）根据逻辑要求列出真值表",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/逻辑第1章 命题逻辑的基本概念",
+          "zh": "逻辑第1章 命题逻辑的基本概念",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "命题逻辑的基本概念/basic concepts of propositional logic",
+              "zh": "命题逻辑的基本概念",
+              "importance": 0.952838,
+              "relation": "part_of",
+              "related": [
+                "公理系统",
+                "命题等值演算",
+                "推理演算"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/又叫原子命题: 不可分割.",
+          "zh": "又叫原子命题: 不可分割.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/这种真值关系常常用真值表(truth table)来表示.",
+          "zh": "这种真值关系常常用真值表(truth table)来表示.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/的真值表",
+          "zh": "的真值表",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "真值表/truth table",
+              "zh": "真值表",
+              "importance": 0.789629,
+              "relation": null,
+              "related": [
+                "主合取范式",
+                "主析取范式",
+                "主范式",
+                "公式",
+                "否定",
+                "真值表法"
+              ],
+              "children": []
+            },
+            {
+              "id": "真值/truth value",
+              "zh": "真值",
+              "importance": 0.578912,
+              "relation": "part_of",
+              "related": [
+                "双条件式",
+                "否定",
+                "否定命题",
+                "真值表"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/∧的真值表描述了P∧Q的真值如何依赖于P和Q的真值.",
+          "zh": "∧的真值表描述了P∧Q的真值如何依赖于P和Q的真值.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/根据公式的合式定义,层层归约,直到原子命题即可判断.",
+          "zh": "根据公式的合式定义,层层归约,直到原子命题即可判断.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/波兰表示法(前缀)：PθQ 表示为 θPQ",
+          "zh": "波兰表示法(前缀)：PθQ 表示为 θPQ",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题公式的真值由其成分命题的真值决定.常用真值表方法计算.",
+          "zh": "命题公式的真值由其成分命题的真值决定.常用真值表方法计算.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/重言式、可满足式、矛盾式",
+          "zh": "重言式、可满足式、矛盾式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例:利用真值表证明等值",
+          "zh": "例:利用真值表证明等值",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/A = B iff A ↔ B 是重言式",
+          "zh": "A = B iff A ↔ B 是重言式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/推论:若A是重言式,则置换后得到的B也是重言式.",
+          "zh": "推论:若A是重言式,则置换后得到的B也是重言式.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/通过真值表设计电路例子",
+          "zh": "通过真值表设计电路例子",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/利用真值表列写公式",
+          "zh": "利用真值表列写公式",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题联结词可看作是真值函数,即以真值为定义域和值域的函数.",
+          "zh": "命题联结词可看作是真值函数,即以真值为定义域和值域的函数.",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 20,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_zh": "命题逻辑的基本概念",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "13",
+      "14",
+      "15",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "28"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

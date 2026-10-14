@@ -1,0 +1,122 @@
+{
+  "lecture_id": "chapter:第6章 谓词逻辑的公理化系统",
+  "root": {
+    "id": "__chapter__/谓词逻辑的公理化系统",
+    "zh": "第6章 谓词逻辑的公理化系统",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/逻辑第6章 谓词逻辑的",
+        "zh": "逻辑第6章 谓词逻辑的",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑的公理系统",
+        "zh": "谓词逻辑的公理系统",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑公理系统 FOL1",
+        "zh": "谓词逻辑公理系统 FOL1",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/谓词逻辑公理系统 FOL2",
+        "zh": "谓词逻辑公理系统 FOL2",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/100% 逻辑06-谓词逻辑的公理化系统 Power Point",
+        "zh": "100% 逻辑06-谓词逻辑的公理化系统 Power Point",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/谓词逻辑的公理化系统",
+      "zh": "第6章 谓词逻辑的公理化系统",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/逻辑第6章 谓词逻辑的",
+          "zh": "逻辑第6章 谓词逻辑的",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑的公理系统",
+          "zh": "谓词逻辑的公理系统",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑公理系统 FOL1",
+          "zh": "谓词逻辑公理系统 FOL1",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/谓词逻辑公理系统 FOL2",
+          "zh": "谓词逻辑公理系统 FOL2",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/100% 逻辑06-谓词逻辑的公理化系统 Power Point",
+          "zh": "100% 逻辑06-谓词逻辑的公理化系统 Power Point",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 6,
+  "max_depth": 1,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化系统",
+    "root_zh": "谓词逻辑的公理化系统",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "34",
+      "35",
+      "36"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

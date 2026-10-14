@@ -1,289 +1,1012 @@
 {
   "lecture_id": "19",
   "root": {
-    "id": "函数/function",
-    "zh": "函数",
-    "importance": 0.169847,
+    "id": "__lecture__/19",
+    "zh": "第 19 讲",
+    "importance": 0.9,
     "relation": null,
-    "related": [
-      "集合"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.496002,
-        "relation": "chapter_topic",
-        "related": [
-          "关系",
-          "函数",
-          "命题"
-        ],
-        "children": [
-          {
-            "id": "全集/universal set",
-            "zh": "全集",
-            "importance": 0.037956,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "元素/Element",
-            "zh": "元素",
-            "importance": 0.01369,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "联结词/connective",
-        "zh": "联结词",
-        "importance": 0.421174,
-        "relation": "chapter_topic",
-        "related": [
-          "公式"
-        ],
-        "children": [
-          {
-            "id": "等值/equivalence",
-            "zh": "等值",
-            "importance": 0.160786,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "二元联结词/binary connective",
-            "zh": "二元联结词",
-            "importance": 0.13111,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "蕴含/implication",
-            "zh": "蕴含",
-            "importance": 0.092276,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "N元联结词/n-ary connective",
-            "zh": "N元联结词",
-            "importance": 0.014762,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "异或/exclusive or",
-            "zh": "异或",
-            "importance": 0.010689,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "与非/NAND",
-            "zh": "与非",
-            "importance": 0.010603,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "等价/equivalence",
-            "zh": "等价",
-            "importance": 0.008006,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "一元二元联结词/unary and binary logical connectives",
-            "zh": "一元二元联结词",
-            "importance": 0.007137,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "命题/proposition",
-        "zh": "命题",
-        "importance": 0.310285,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "复合命题/compound proposition",
-            "zh": "复合命题",
-            "importance": 0.066246,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "关系/relation",
-        "zh": "关系",
-        "importance": 0.298633,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "二元关系/binary relation",
-            "zh": "二元关系",
-            "importance": 0.048549,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "值域/range",
-            "zh": "值域",
-            "importance": 0.014921,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "定义域/Domain(dom)",
-            "zh": "定义域",
-            "importance": 0.014433,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "命题公式/propositional formula",
-        "zh": "命题公式",
-        "importance": 0.279287,
-        "relation": "chapter_topic",
+        "id": "__chapter__/命题逻辑的基本概念",
+        "zh": "第1章 命题逻辑的基本概念",
+        "importance": 0.916417,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "析取/disjunction",
-            "zh": "析取",
-            "importance": 0.162052,
-            "relation": "part_of",
-            "related": [],
-            "children": []
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.6816,
+            "relation": null,
+            "related": [
+              "真值函数"
+            ],
+            "children": [
+              {
+                "id": "否定/Negation",
+                "zh": "否定",
+                "importance": 0.645915,
+                "relation": null,
+                "related": [
+                  "对偶性",
+                  "摩根律"
+                ],
+                "children": [
+                  {
+                    "id": "否定词/negation operator",
+                    "zh": "否定词",
+                    "importance": 0.307687,
+                    "relation": "part_of",
+                    "related": [
+                      "内否"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "合取/conjunction",
+                "zh": "合取",
+                "importance": 0.3466,
+                "relation": null,
+                "related": [
+                  "成假指派法"
+                ],
+                "children": [
+                  {
+                    "id": "命题公式/propositional formula",
+                    "zh": "命题公式",
+                    "importance": 0.736438,
+                    "relation": "belong_to",
+                    "related": [
+                      "主合取范式",
+                      "真值表",
+                      "真值表法",
+                      "等值演算"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "析取/disjunction",
+                "zh": "析取",
+                "importance": 0.418026,
+                "relation": null,
+                "related": [
+                  "成真指派法"
+                ],
+                "children": [
+                  {
+                    "id": "命题公式/propositional formula",
+                    "zh": "命题公式",
+                    "importance": 0.736438,
+                    "relation": "belong_to",
+                    "related": [
+                      "主合取范式",
+                      "真值表",
+                      "真值表法",
+                      "等值演算"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "异或/exclusive or",
+                "zh": "异或",
+                "importance": 0.425875,
+                "relation": "belong_to",
+                "related": [
+                  "和输出"
+                ],
+                "children": []
+              },
+              {
+                "id": "二元联结词/binary connective",
+                "zh": "二元联结词",
+                "importance": 0.589898,
+                "relation": "belong_to",
+                "related": [],
+                "children": [
+                  {
+                    "id": "或非/NOR",
+                    "zh": "或非",
+                    "importance": 0.530917,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "与非/NAND",
+                    "zh": "与非",
+                    "importance": 0.420137,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "N元联结词/n-ary connective",
+                "zh": "N元联结词",
+                "importance": 0.265454,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "否定/Negation",
-            "zh": "否定",
-            "importance": 0.119153,
-            "relation": "part_of",
-            "related": [],
-            "children": []
+            "id": "联结词集合/set of logical connectives",
+            "zh": "联结词集合",
+            "importance": 0.916417,
+            "relation": null,
+            "related": [
+              "任一命题公式"
+            ],
+            "children": [
+              {
+                "id": "联结词的完备集/complete set of logical connectives",
+                "zh": "联结词的完备集",
+                "importance": 0.69725,
+                "relation": "belong_to",
+                "related": [
+                  "任一命题公式"
+                ],
+                "children": [
+                  {
+                    "id": "或非/NOR",
+                    "zh": "或非",
+                    "importance": 0.530917,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "与非/NAND",
+                    "zh": "与非",
+                    "importance": 0.420137,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "一组连接词",
+                "zh": "一组连接词",
+                "importance": 0.606046,
+                "relation": null,
+                "related": [
+                  "所有命题公式"
+                ],
+                "children": [
+                  {
+                    "id": "完备集/complete set",
+                    "zh": "完备集",
+                    "importance": 0.668701,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
           },
           {
-            "id": "合取/conjunction",
-            "zh": "合取",
-            "importance": 0.103909,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "析取范式/disjunctive normal form",
-            "zh": "析取范式",
-            "importance": 0.029074,
-            "relation": "belong_to",
+            "id": "与非门/NAND gate",
+            "zh": "与非门",
+            "importance": 0.56867,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "合取式/conjunctive form",
-                "zh": "合取式",
-                "importance": 0.031974,
+                "id": "半加器/half adder",
+                "zh": "半加器",
+                "importance": 0.673861,
                 "relation": "part_of",
-                "related": [],
+                "related": [
+                  "真值表"
+                ],
                 "children": []
+              }
+            ]
+          },
+          {
+            "id": "多位加法器/multi-bit adder",
+            "zh": "多位加法器",
+            "importance": 0.119733,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "全加器/full adder",
+                "zh": "全加器",
+                "importance": 0.260856,
+                "relation": "part_of",
+                "related": [
+                  "一位二进制加法",
+                  "真值表"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "变元/variable symbol",
+            "zh": "变元",
+            "importance": 0.434883,
+            "relation": null,
+            "related": [
+              "内否"
+            ],
+            "children": [
+              {
+                "id": "命题公式/propositional formula",
+                "zh": "命题公式",
+                "importance": 0.736438,
+                "relation": "belong_to",
+                "related": [
+                  "主合取范式",
+                  "真值表",
+                  "真值表法",
+                  "等值演算"
+                ],
+                "children": [],
+                "copy": true
               }
             ]
           }
         ]
       },
       {
-        "id": "真值/truth value",
-        "zh": "真值",
-        "importance": 0.176368,
-        "relation": "chapter_topic",
+        "id": "__chapter__/命题逻辑的等值和推理演算",
+        "zh": "第2章 命题逻辑的等值和推理演算",
+        "importance": 1.0,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "真/true",
-            "zh": "真",
-            "importance": 0.02368,
-            "relation": "belong_to",
+            "id": "证明方法/proof methods",
+            "zh": "证明方法",
+            "importance": 0.786696,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "真值表法/Truth Table Method",
+                "zh": "真值表法",
+                "importance": 0.356683,
+                "relation": "belong_to",
+                "related": [
+                  "命题公式"
+                ],
+                "children": []
+              },
+              {
+                "id": "等值定理法",
+                "zh": "等值定理法",
+                "importance": 0.473066,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "基本等值式演算法",
+                "zh": "基本等值式演算法",
+                "importance": 0.365225,
+                "relation": "belong_to",
+                "related": [
+                  "等值演算"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "等值定理/Equivalence Theorem",
+                "zh": "等值定理",
+                "importance": 0.318669,
+                "relation": "belong_to",
+                "related": [
+                  "等值式",
+                  "等值演算",
+                  "重言式"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
           },
           {
-            "id": "假/false",
-            "zh": "假",
-            "importance": 0.022702,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "二元命题联结词/binary propositional connective",
-        "zh": "二元命题联结词",
-        "importance": 0.024549,
-        "relation": "belong_to",
-        "related": [],
-        "children": [
+            "id": "对偶性/duality",
+            "zh": "对偶性",
+            "importance": 1.0,
+            "relation": null,
+            "related": [
+              "否定",
+              "对偶式"
+            ],
+            "children": [
+              {
+                "id": "对偶/dual",
+                "zh": "对偶",
+                "importance": 0.580372,
+                "relation": "belong_to",
+                "related": [
+                  "运算符"
+                ],
+                "children": []
+              },
+              {
+                "id": "摩根律/De Morgan's Laws",
+                "zh": "摩根律",
+                "importance": 0.229065,
+                "relation": "belong_to",
+                "related": [
+                  "内否",
+                  "否定",
+                  "对偶式"
+                ],
+                "children": []
+              },
+              {
+                "id": "对偶规律",
+                "zh": "对偶规律",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
           {
-            "id": "析取词/disjunction(logical connective)",
-            "zh": "析取词",
-            "importance": 0.019288,
-            "relation": "belong_to",
+            "id": "成真指派法",
+            "zh": "成真指派法",
+            "importance": 0.550494,
+            "relation": null,
+            "related": [
+              "析取",
+              "真值表"
+            ],
+            "children": [
+              {
+                "id": "从真值表写公式",
+                "zh": "从真值表写公式",
+                "importance": 0.522529,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "合取项/conjunct",
+                "zh": "合取项",
+                "importance": 0.371132,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "否定词/negation operator",
+                "zh": "否定词",
+                "importance": 0.307687,
+                "relation": "part_of",
+                "related": [
+                  "内否"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "成假指派法",
+            "zh": "成假指派法",
+            "importance": 0.408751,
+            "relation": null,
+            "related": [
+              "合取"
+            ],
+            "children": [
+              {
+                "id": "否定词/negation operator",
+                "zh": "否定词",
+                "importance": 0.307687,
+                "relation": "part_of",
+                "related": [
+                  "内否"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "析取项/disjunct",
+                "zh": "析取项",
+                "importance": 0.209591,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "合取式/conjunctive form",
+            "zh": "合取式",
+            "importance": 0.272151,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "主合取范式/principal conjunctive normal form",
+                "zh": "主合取范式",
+                "importance": 0.195862,
+                "relation": "belong_to",
+                "related": [
+                  "命题公式",
+                  "真值表"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.169771,
+            "relation": null,
+            "related": [
+              "等值定理"
+            ],
+            "children": [
+              {
+                "id": "命题公式/propositional formula",
+                "zh": "命题公式",
+                "importance": 0.736438,
+                "relation": "belong_to",
+                "related": [
+                  "主合取范式",
+                  "真值表",
+                  "真值表法",
+                  "等值演算"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "特征函数/characteristic function",
-        "zh": "特征函数",
-        "importance": 0.022862,
-        "relation": "belong_to",
-        "related": [],
-        "children": []
       }
     ]
   },
-  "n_nodes": 31,
+  "roots": [
+    {
+      "id": "__lecture__/19",
+      "zh": "第 19 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/命题逻辑的基本概念",
+          "zh": "第1章 命题逻辑的基本概念",
+          "importance": 0.916417,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.6816,
+              "relation": null,
+              "related": [
+                "真值函数"
+              ],
+              "children": [
+                {
+                  "id": "否定/Negation",
+                  "zh": "否定",
+                  "importance": 0.645915,
+                  "relation": null,
+                  "related": [
+                    "对偶性",
+                    "摩根律"
+                  ],
+                  "children": [
+                    {
+                      "id": "否定词/negation operator",
+                      "zh": "否定词",
+                      "importance": 0.307687,
+                      "relation": "part_of",
+                      "related": [
+                        "内否"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "合取/conjunction",
+                  "zh": "合取",
+                  "importance": 0.3466,
+                  "relation": null,
+                  "related": [
+                    "成假指派法"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题公式/propositional formula",
+                      "zh": "命题公式",
+                      "importance": 0.736438,
+                      "relation": "belong_to",
+                      "related": [
+                        "主合取范式",
+                        "真值表",
+                        "真值表法",
+                        "等值演算"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "析取/disjunction",
+                  "zh": "析取",
+                  "importance": 0.418026,
+                  "relation": null,
+                  "related": [
+                    "成真指派法"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题公式/propositional formula",
+                      "zh": "命题公式",
+                      "importance": 0.736438,
+                      "relation": "belong_to",
+                      "related": [
+                        "主合取范式",
+                        "真值表",
+                        "真值表法",
+                        "等值演算"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "异或/exclusive or",
+                  "zh": "异或",
+                  "importance": 0.425875,
+                  "relation": "belong_to",
+                  "related": [
+                    "和输出"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "二元联结词/binary connective",
+                  "zh": "二元联结词",
+                  "importance": 0.589898,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "或非/NOR",
+                      "zh": "或非",
+                      "importance": 0.530917,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "与非/NAND",
+                      "zh": "与非",
+                      "importance": 0.420137,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "N元联结词/n-ary connective",
+                  "zh": "N元联结词",
+                  "importance": 0.265454,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "联结词集合/set of logical connectives",
+              "zh": "联结词集合",
+              "importance": 0.916417,
+              "relation": null,
+              "related": [
+                "任一命题公式"
+              ],
+              "children": [
+                {
+                  "id": "联结词的完备集/complete set of logical connectives",
+                  "zh": "联结词的完备集",
+                  "importance": 0.69725,
+                  "relation": "belong_to",
+                  "related": [
+                    "任一命题公式"
+                  ],
+                  "children": [
+                    {
+                      "id": "或非/NOR",
+                      "zh": "或非",
+                      "importance": 0.530917,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "与非/NAND",
+                      "zh": "与非",
+                      "importance": 0.420137,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "一组连接词",
+                  "zh": "一组连接词",
+                  "importance": 0.606046,
+                  "relation": null,
+                  "related": [
+                    "所有命题公式"
+                  ],
+                  "children": [
+                    {
+                      "id": "完备集/complete set",
+                      "zh": "完备集",
+                      "importance": 0.668701,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "与非门/NAND gate",
+              "zh": "与非门",
+              "importance": 0.56867,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "半加器/half adder",
+                  "zh": "半加器",
+                  "importance": 0.673861,
+                  "relation": "part_of",
+                  "related": [
+                    "真值表"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "多位加法器/multi-bit adder",
+              "zh": "多位加法器",
+              "importance": 0.119733,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "全加器/full adder",
+                  "zh": "全加器",
+                  "importance": 0.260856,
+                  "relation": "part_of",
+                  "related": [
+                    "一位二进制加法",
+                    "真值表"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "变元/variable symbol",
+              "zh": "变元",
+              "importance": 0.434883,
+              "relation": null,
+              "related": [
+                "内否"
+              ],
+              "children": [
+                {
+                  "id": "命题公式/propositional formula",
+                  "zh": "命题公式",
+                  "importance": 0.736438,
+                  "relation": "belong_to",
+                  "related": [
+                    "主合取范式",
+                    "真值表",
+                    "真值表法",
+                    "等值演算"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/命题逻辑的等值和推理演算",
+          "zh": "第2章 命题逻辑的等值和推理演算",
+          "importance": 1.0,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "证明方法/proof methods",
+              "zh": "证明方法",
+              "importance": 0.786696,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "真值表法/Truth Table Method",
+                  "zh": "真值表法",
+                  "importance": 0.356683,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题公式"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "等值定理法",
+                  "zh": "等值定理法",
+                  "importance": 0.473066,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "基本等值式演算法",
+                  "zh": "基本等值式演算法",
+                  "importance": 0.365225,
+                  "relation": "belong_to",
+                  "related": [
+                    "等值演算"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "等值定理/Equivalence Theorem",
+                  "zh": "等值定理",
+                  "importance": 0.318669,
+                  "relation": "belong_to",
+                  "related": [
+                    "等值式",
+                    "等值演算",
+                    "重言式"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "对偶性/duality",
+              "zh": "对偶性",
+              "importance": 1.0,
+              "relation": null,
+              "related": [
+                "否定",
+                "对偶式"
+              ],
+              "children": [
+                {
+                  "id": "对偶/dual",
+                  "zh": "对偶",
+                  "importance": 0.580372,
+                  "relation": "belong_to",
+                  "related": [
+                    "运算符"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "摩根律/De Morgan's Laws",
+                  "zh": "摩根律",
+                  "importance": 0.229065,
+                  "relation": "belong_to",
+                  "related": [
+                    "内否",
+                    "否定",
+                    "对偶式"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "对偶规律",
+                  "zh": "对偶规律",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "成真指派法",
+              "zh": "成真指派法",
+              "importance": 0.550494,
+              "relation": null,
+              "related": [
+                "析取",
+                "真值表"
+              ],
+              "children": [
+                {
+                  "id": "从真值表写公式",
+                  "zh": "从真值表写公式",
+                  "importance": 0.522529,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "合取项/conjunct",
+                  "zh": "合取项",
+                  "importance": 0.371132,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "否定词/negation operator",
+                  "zh": "否定词",
+                  "importance": 0.307687,
+                  "relation": "part_of",
+                  "related": [
+                    "内否"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "成假指派法",
+              "zh": "成假指派法",
+              "importance": 0.408751,
+              "relation": null,
+              "related": [
+                "合取"
+              ],
+              "children": [
+                {
+                  "id": "否定词/negation operator",
+                  "zh": "否定词",
+                  "importance": 0.307687,
+                  "relation": "part_of",
+                  "related": [
+                    "内否"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "析取项/disjunct",
+                  "zh": "析取项",
+                  "importance": 0.209591,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "合取式/conjunctive form",
+              "zh": "合取式",
+              "importance": 0.272151,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "主合取范式/principal conjunctive normal form",
+                  "zh": "主合取范式",
+                  "importance": 0.195862,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题公式",
+                    "真值表"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "等值式/equivalence formula",
+              "zh": "等值式",
+              "importance": 0.169771,
+              "relation": null,
+              "related": [
+                "等值定理"
+              ],
+              "children": [
+                {
+                  "id": "命题公式/propositional formula",
+                  "zh": "命题公式",
+                  "importance": 0.736438,
+                  "relation": "belong_to",
+                  "related": [
+                    "主合取范式",
+                    "真值表",
+                    "真值表法",
+                    "等值演算"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 47,
   "max_depth": 4,
-  "orphan_count": 34,
+  "orphan_count": 7,
   "meta": {
-    "chapter": "第11章 函数",
-    "root_id": "函数/function",
-    "root_zh": "函数",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 67,
-    "n_edges_raw": 76,
-    "n_hierarchy_candidates": 75,
-    "attached_orphans": 0,
-    "alias_merged": 2
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "对偶性/duality",
+    "root_zh": "第 19 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 60,
+    "n_edges_raw": 72,
+    "n_hierarchy_candidates": 51,
+    "attached_orphans": 7,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "将第1章中'联结词'主题前移，并删除重复的'或非'、'与非'叶节点（保留在'二元联结词'下），同时将'变元'移至章末；第2章将'证明方法'前移，其余保持原顺序。",
+    "chapters": [
+      "第1章 命题逻辑的基本概念",
+      "第2章 命题逻辑的等值和推理演算"
+    ],
+    "llm_tune_notes": "将第1章中'联结词'主题前移，并删除重复的'或非'、'与非'叶节点（保留在'二元联结词'下），同时将'变元'移至章末；第2章将'证明方法'前移，其余保持原顺序。",
+    "chapter_candidates": [
+      "第1章 命题逻辑的基本概念",
+      "第2章 命题逻辑的等值和推理演算"
+    ]
   }
 }

@@ -6,12 +6,12 @@
   "scripts": {
     "sync-data": "node scripts/sync-data.mjs",
     "export-kg-processed": "node scripts/export-kg-processed.mjs",
+    "build-chapter-mindmaps": "node scripts/build-chapter-mindmaps.mjs",
     "predev": "node scripts/sync-data.mjs",
     "dev": "vite",
     "prebuild": "node scripts/sync-data.mjs",
     "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "test:integration": "node --test server/knowledgeResources.test.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "katex": "^0.18.1",

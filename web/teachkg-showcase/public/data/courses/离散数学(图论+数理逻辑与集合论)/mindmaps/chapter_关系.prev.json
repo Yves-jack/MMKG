@@ -1,0 +1,794 @@
+{
+  "lecture_id": "chapter:第10章 关系",
+  "root": {
+    "id": "__chapter__/关系",
+    "zh": "第10章 关系",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/关系",
+        "zh": "关系",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": [
+          {
+            "id": "关系/relation",
+            "zh": "关系",
+            "importance": 0.955372,
+            "relation": "belong_to",
+            "related": [
+              "有向边",
+              "笛卡儿积",
+              "逆关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "二元关系/binary relation",
+            "zh": "二元关系",
+            "importance": 1.0,
+            "relation": "belong_to",
+            "related": [
+              "n元关系",
+              "笛卡儿积",
+              "闭包"
+            ],
+            "children": []
+          },
+          {
+            "id": "等价关系/equivalence relation",
+            "zh": "等价关系",
+            "importance": 0.937639,
+            "relation": "belong_to",
+            "related": [
+              "传递",
+              "划分",
+              "商集",
+              "对称",
+              "对称性",
+              "等价类"
+            ],
+            "children": []
+          },
+          {
+            "id": "关系图/relation graph",
+            "zh": "关系图",
+            "importance": 0.849739,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "对称关系/symmetric relation",
+            "zh": "对称关系",
+            "importance": 0.743088,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "特殊关系/special relation",
+            "zh": "特殊关系",
+            "importance": 0.739573,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "n元关系/n-ary relation",
+            "zh": "n元关系",
+            "importance": 0.661483,
+            "relation": "belong_to",
+            "related": [
+              "二元关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "关系幂/power of a relation",
+            "zh": "关系幂",
+            "importance": 0.366737,
+            "relation": "belong_to",
+            "related": [
+              "二元关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系",
+            "zh": "关系",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "空关系/empty relation",
+                "zh": "空关系",
+                "importance": 0.322364,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "恒等关系/identity relation",
+                "zh": "恒等关系",
+                "importance": 0.275706,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "全域关系/universal relation",
+                "zh": "全域关系",
+                "importance": 0.061793,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/关系/关系矩阵和关系图",
+            "zh": "关系矩阵和关系图",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/二元关系R",
+            "zh": "二元关系R",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/A上的特殊关系",
+            "zh": "A上的特殊关系",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/对A到B的一个关系R，可以定义",
+            "zh": "对A到B的一个关系R，可以定义",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/定理：对A到B的关系R如果<x,y∈R，则",
+            "zh": "定理：对A到B的关系R如果<x,y∈R，则",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系矩阵M(R)",
+            "zh": "关系矩阵M(R)",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系图",
+            "zh": "关系图",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系的运算：逆与合成",
+            "zh": "关系的运算：逆与合成",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系的限制与象",
+            "zh": "关系的限制与象",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": [
+              {
+                "id": "关系的限制/R↑A",
+                "zh": "关系的限制",
+                "importance": 0.200033,
+                "relation": "part_of",
+                "related": [
+                  "关系的象"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/关系/R-1、S°R的关系矩阵",
+            "zh": "R-1、S°R的关系矩阵",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/关系逆、合成的性质",
+            "zh": "关系逆、合成的性质",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/自反的关系例：",
+            "zh": "自反的关系例：",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+            "zh": "不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/存在即是对称也是反对称的关系，如恒等关系和空关系",
+            "zh": "存在即是对称也是反对称的关系，如恒等关系和空关系",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/关系/重要关系几个结论",
+            "zh": "重要关系几个结论",
+            "importance": 0.45,
+            "relation": "ppt_topic",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/关系矩阵和关系图",
+        "zh": "关系矩阵和关系图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/二元关系R",
+        "zh": "二元关系R",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/A上的特殊关系",
+        "zh": "A上的特殊关系",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/对A到B的一个关系R，可以定义",
+        "zh": "对A到B的一个关系R，可以定义",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/定理：对A到B的关系R如果<x,y∈R，则",
+        "zh": "定理：对A到B的关系R如果<x,y∈R，则",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系矩阵M(R)",
+        "zh": "关系矩阵M(R)",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系图",
+        "zh": "关系图",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系的运算：逆与合成",
+        "zh": "关系的运算：逆与合成",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系的限制与象",
+        "zh": "关系的限制与象",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/R-1、S°R的关系矩阵",
+        "zh": "R-1、S°R的关系矩阵",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/关系逆、合成的性质",
+        "zh": "关系逆、合成的性质",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/自反的关系例：",
+        "zh": "自反的关系例：",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+        "zh": "不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/存在即是对称也是反对称的关系，如恒等关系和空关系",
+        "zh": "存在即是对称也是反对称的关系，如恒等关系和空关系",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/重要关系几个结论",
+        "zh": "重要关系几个结论",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/关系",
+      "zh": "第10章 关系",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/关系",
+          "zh": "关系",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": [
+            {
+              "id": "关系/relation",
+              "zh": "关系",
+              "importance": 0.955372,
+              "relation": "belong_to",
+              "related": [
+                "有向边",
+                "笛卡儿积",
+                "逆关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "二元关系/binary relation",
+              "zh": "二元关系",
+              "importance": 1.0,
+              "relation": "belong_to",
+              "related": [
+                "n元关系",
+                "笛卡儿积",
+                "闭包"
+              ],
+              "children": []
+            },
+            {
+              "id": "等价关系/equivalence relation",
+              "zh": "等价关系",
+              "importance": 0.937639,
+              "relation": "belong_to",
+              "related": [
+                "传递",
+                "划分",
+                "商集",
+                "对称",
+                "对称性",
+                "等价类"
+              ],
+              "children": []
+            },
+            {
+              "id": "关系图/relation graph",
+              "zh": "关系图",
+              "importance": 0.849739,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "对称关系/symmetric relation",
+              "zh": "对称关系",
+              "importance": 0.743088,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "特殊关系/special relation",
+              "zh": "特殊关系",
+              "importance": 0.739573,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "n元关系/n-ary relation",
+              "zh": "n元关系",
+              "importance": 0.661483,
+              "relation": "belong_to",
+              "related": [
+                "二元关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "关系幂/power of a relation",
+              "zh": "关系幂",
+              "importance": 0.366737,
+              "relation": "belong_to",
+              "related": [
+                "二元关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系",
+              "zh": "关系",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "空关系/empty relation",
+                  "zh": "空关系",
+                  "importance": 0.322364,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "恒等关系/identity relation",
+                  "zh": "恒等关系",
+                  "importance": 0.275706,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "全域关系/universal relation",
+                  "zh": "全域关系",
+                  "importance": 0.061793,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/关系/关系矩阵和关系图",
+              "zh": "关系矩阵和关系图",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/二元关系R",
+              "zh": "二元关系R",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/A上的特殊关系",
+              "zh": "A上的特殊关系",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/对A到B的一个关系R，可以定义",
+              "zh": "对A到B的一个关系R，可以定义",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/定理：对A到B的关系R如果<x,y∈R，则",
+              "zh": "定理：对A到B的关系R如果<x,y∈R，则",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系矩阵M(R)",
+              "zh": "关系矩阵M(R)",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系图",
+              "zh": "关系图",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系的运算：逆与合成",
+              "zh": "关系的运算：逆与合成",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系的限制与象",
+              "zh": "关系的限制与象",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": [
+                {
+                  "id": "关系的限制/R↑A",
+                  "zh": "关系的限制",
+                  "importance": 0.200033,
+                  "relation": "part_of",
+                  "related": [
+                    "关系的象"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/关系/R-1、S°R的关系矩阵",
+              "zh": "R-1、S°R的关系矩阵",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/关系逆、合成的性质",
+              "zh": "关系逆、合成的性质",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/自反的关系例：",
+              "zh": "自反的关系例：",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+              "zh": "不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/存在即是对称也是反对称的关系，如恒等关系和空关系",
+              "zh": "存在即是对称也是反对称的关系，如恒等关系和空关系",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/关系/重要关系几个结论",
+              "zh": "重要关系几个结论",
+              "importance": 0.45,
+              "relation": "ppt_topic",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/关系矩阵和关系图",
+          "zh": "关系矩阵和关系图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/二元关系R",
+          "zh": "二元关系R",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/A上的特殊关系",
+          "zh": "A上的特殊关系",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/对A到B的一个关系R，可以定义",
+          "zh": "对A到B的一个关系R，可以定义",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/定理：对A到B的关系R如果<x,y∈R，则",
+          "zh": "定理：对A到B的关系R如果<x,y∈R，则",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系矩阵M(R)",
+          "zh": "关系矩阵M(R)",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系图",
+          "zh": "关系图",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系的运算：逆与合成",
+          "zh": "关系的运算：逆与合成",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系的限制与象",
+          "zh": "关系的限制与象",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/R-1、S°R的关系矩阵",
+          "zh": "R-1、S°R的关系矩阵",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/关系逆、合成的性质",
+          "zh": "关系逆、合成的性质",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/自反的关系例：",
+          "zh": "自反的关系例：",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+          "zh": "不存在既是自反也是非自反的关系；但存在既不是自反也不是非自反的关系",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/存在即是对称也是反对称的关系，如恒等关系和空关系",
+          "zh": "存在即是对称也是反对称的关系，如恒等关系和空关系",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/重要关系几个结论",
+          "zh": "重要关系几个结论",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 45,
+  "max_depth": 3,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第10章 关系",
+    "root_zh": "关系",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "41",
+      "42",
+      "43"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

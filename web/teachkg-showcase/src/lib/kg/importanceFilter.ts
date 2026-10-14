@@ -153,8 +153,11 @@ export function applyImportanceFilter(
   }
 
   if (!keep) {
-    // keepPercent≥100 / 未设阈值：保留全图，不再丢孤立点（否则「当前」永远对不上「总数」）
     const cleared = nodes.map((n) => ({ ...n, filtered_by_importance: false }));
+    if (mode === "hide" && dropIsolates) {
+      const d = dropIsolatedNodes(cleared, edges);
+      return { nodes: d.nodes, edges: d.edges, filteredCount: d.dropped };
+    }
     return { nodes: cleared, edges: [...edges], filteredCount: 0 };
   }
 

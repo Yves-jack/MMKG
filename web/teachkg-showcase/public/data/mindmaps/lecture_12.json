@@ -1,40 +1,30 @@
 {
   "lecture_id": "12",
   "root": {
-    "id": "__chapter__/谓词逻辑的公理化",
-    "zh": "谓词逻辑的公理化",
-    "importance": 0.522381,
+    "id": "__lecture__/12",
+    "zh": "第 12 讲",
+    "importance": 0.9,
     "relation": null,
     "related": [],
     "children": [
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.497506,
-        "relation": "chapter_topic",
-        "related": [
-          "关系",
-          "内涵法",
-          "函数",
-          "双射",
-          "命题",
-          "笛卡儿积"
-        ],
+        "id": "__chapter__/图的基本概念与表示",
+        "zh": "第1章 图的基本概念与表示",
+        "importance": 0.720489,
+        "relation": "toc_chapter",
+        "related": [],
         "children": [
           {
-            "id": "笛卡儿积/Cartesian product",
-            "zh": "笛卡儿积",
-            "importance": 0.105017,
-            "relation": "belong_to",
-            "related": [
-              "矩形",
-              "集合"
-            ],
+            "id": "图/Graph",
+            "zh": "图",
+            "importance": 0.10151,
+            "relation": null,
+            "related": [],
             "children": [
               {
-                "id": "笛卡儿平方/Cartesian square",
-                "zh": "笛卡儿平方",
-                "importance": 0.003055,
+                "id": "二分图/Bipartite Graph",
+                "zh": "二分图",
+                "importance": 0.174055,
                 "relation": "belong_to",
                 "related": [],
                 "children": []
@@ -42,238 +32,518 @@
             ]
           },
           {
-            "id": "有穷集合/Finite Set",
-            "zh": "有穷集合",
-            "importance": 0.045046,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "无限集合/infinite set",
-            "zh": "无限集合",
-            "importance": 0.044487,
-            "relation": "belong_to",
+            "id": "正则图/regular graph",
+            "zh": "正则图",
+            "importance": 0.720489,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "实数/real number",
-                "zh": "实数",
-                "importance": 0.029484,
+                "id": "三正则图/3-regular graph",
+                "zh": "三正则图",
+                "importance": 0.554904,
                 "relation": "belong_to",
-                "related": [],
-                "children": []
+                "related": [
+                  "哈密顿回路",
+                  "四色定理"
+                ],
+                "children": [
+                  {
+                    "id": "由三个K4构成的三正则图/3-regular graph composed of three K4",
+                    "zh": "由三个K4构成的三正则图",
+                    "importance": 0.237091,
+                    "relation": "belong_to",
+                    "related": [
+                      "哈密顿回路",
+                      "哈密顿图",
+                      "四色定理"
+                    ],
+                    "children": []
+                  }
+                ]
               }
             ]
-          },
-          {
-            "id": "幂集/power set",
-            "zh": "幂集",
-            "importance": 0.040267,
-            "relation": "belong_to",
-            "related": [
-              "广义并"
-            ],
-            "children": []
-          },
-          {
-            "id": "空集/empty set",
-            "zh": "空集",
-            "importance": 0.03422,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "自然数/natural number",
-            "zh": "自然数",
-            "importance": 0.031014,
-            "relation": "belong_to",
-            "related": [
-              "集合"
-            ],
-            "children": [
-              {
-                "id": "有限基数/finite cardinality",
-                "zh": "有限基数",
-                "importance": 0.014077,
-                "relation": "belong_to",
-                "related": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "自然数集合/Set of Natural Numbers",
-            "zh": "自然数集合",
-            "importance": 0.026266,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "元素/Element",
-            "zh": "元素",
-            "importance": 0.01369,
-            "relation": "part_of",
-            "related": [],
-            "children": []
           }
         ]
       },
       {
-        "id": "联结词/connective",
-        "zh": "联结词",
-        "importance": 0.411897,
-        "relation": "chapter_topic",
-        "related": [
-          "集合关系符"
-        ],
-        "children": []
-      },
-      {
-        "id": "命题逻辑/propositional logic",
-        "zh": "命题逻辑",
-        "importance": 0.357234,
-        "relation": "chapter_topic",
+        "id": "__chapter__/道路与回路",
+        "zh": "第2章 道路与回路",
+        "importance": 0.45,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "推理演算/inference calculus",
-            "zh": "推理演算",
-            "importance": 0.123725,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "规则/rule",
-            "zh": "规则",
-            "importance": 0.030726,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "公式/formula",
-            "zh": "公式",
-            "importance": 0.008611,
-            "relation": "part_of",
+            "id": "道路/Path",
+            "zh": "道路",
+            "importance": 0.396967,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "蕴含/implication",
-                "zh": "蕴含",
-                "importance": 0.092276,
+                "id": "欧拉道路/Eulerian Path",
+                "zh": "欧拉道路",
+                "importance": 0.054232,
                 "relation": "belong_to",
-                "related": [],
+                "related": [
+                  "H 道路"
+                ],
                 "children": []
               },
               {
-                "id": "等式/equation",
-                "zh": "等式",
-                "importance": 0.008999,
-                "relation": "belong_to",
-                "related": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "概念/concept",
-            "zh": "概念",
-            "importance": 4e-05,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "公理系统/axiomatic system",
-        "zh": "公理系统",
-        "importance": 0.310092,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": [
-          {
-            "id": "命题演算的重言式/tautology of propositional calculus",
-            "zh": "命题演算的重言式",
-            "importance": 0.006289,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "命题/proposition",
-        "zh": "命题",
-        "importance": 0.309623,
-        "relation": "chapter_topic",
-        "related": [
-          "集合",
-          "集合关系符"
-        ],
-        "children": []
-      },
-      {
-        "id": "关系/relation",
-        "zh": "关系",
-        "importance": 0.296519,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "函数/function",
-            "zh": "函数",
-            "importance": 0.170189,
-            "relation": "belong_to",
-            "related": [
-              "集合"
-            ],
-            "children": [
-              {
-                "id": "双射/bijective function",
-                "zh": "双射",
-                "importance": 0.070573,
+                "id": "H 道路/H path",
+                "zh": "H 道路",
+                "importance": 0.087506,
                 "relation": "belong_to",
                 "related": [
-                  "集合"
+                  "H 回路",
+                  "欧拉道路"
                 ],
                 "children": []
               }
             ]
           },
           {
-            "id": "有序对/ordered pair",
-            "zh": "有序对",
-            "importance": 0.035624,
-            "relation": "part_of",
+            "id": "回路/Circuit",
+            "zh": "回路",
+            "importance": 0.386213,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "欧拉回路/Eulerian circuit",
+                "zh": "欧拉回路",
+                "importance": 0.050355,
+                "relation": "belong_to",
+                "related": [
+                  "H 回路"
+                ],
+                "children": []
+              },
+              {
+                "id": "H 回路/H circuit",
+                "zh": "H 回路",
+                "importance": 0.087506,
+                "relation": "belong_to",
+                "related": [
+                  "H 道路",
+                  "欧拉回路"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.844301,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "平面图/planar graph",
+            "zh": "平面图",
+            "importance": 0.844301,
+            "relation": null,
+            "related": [
+              "DMP算法",
+              "图的着色",
+              "域染色",
+              "对偶图",
+              "欧拉定理"
+            ],
+            "children": [
+              {
+                "id": "简单平面图/simple planar graph",
+                "zh": "简单平面图",
+                "importance": 0.679178,
+                "relation": "belong_to",
+                "related": [
+                  "五色定理",
+                  "四色定理",
+                  "欧拉公式"
+                ],
+                "children": []
+              },
+              {
+                "id": "3-正则平面图/3-regular planar graph",
+                "zh": "3-正则平面图",
+                "importance": 0.291971,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "图的着色/graph coloring",
+            "zh": "图的着色",
+            "importance": 0.674376,
+            "relation": null,
+            "related": [
+              "五色定理",
+              "哈密顿回路",
+              "对偶图",
+              "平面图",
+              "最大度"
+            ],
+            "children": [
+              {
+                "id": "点着色/vertex coloring",
+                "zh": "点着色",
+                "importance": 0.453904,
+                "relation": "belong_to",
+                "related": [
+                  "课程表编排问题",
+                  "边着色"
+                ],
+                "children": []
+              },
+              {
+                "id": "边着色/edge coloring",
+                "zh": "边着色",
+                "importance": 0.555267,
+                "relation": "belong_to",
+                "related": [
+                  "度数最大的节点",
+                  "点着色",
+                  "课程表编排问题"
+                ],
+                "children": [
+                  {
+                    "id": "二部图边着色/bipartite graph edge coloring",
+                    "zh": "二部图边着色",
+                    "importance": 0.172811,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "面着色问题/face coloring problem",
+                "zh": "面着色问题",
+                "importance": 0.314748,
+                "relation": "belong_to",
+                "related": [
+                  "对偶图",
+                  "点着色问题"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "非平面图/non-planar graph",
+            "zh": "非平面图",
+            "importance": 0.098254,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "K_5",
+                "zh": "K_5",
+                "importance": 0.052842,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
       }
     ]
   },
-  "n_nodes": 28,
+  "roots": [
+    {
+      "id": "__lecture__/12",
+      "zh": "第 12 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/图的基本概念与表示",
+          "zh": "第1章 图的基本概念与表示",
+          "importance": 0.720489,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "图/Graph",
+              "zh": "图",
+              "importance": 0.10151,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "二分图/Bipartite Graph",
+                  "zh": "二分图",
+                  "importance": 0.174055,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "正则图/regular graph",
+              "zh": "正则图",
+              "importance": 0.720489,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "三正则图/3-regular graph",
+                  "zh": "三正则图",
+                  "importance": 0.554904,
+                  "relation": "belong_to",
+                  "related": [
+                    "哈密顿回路",
+                    "四色定理"
+                  ],
+                  "children": [
+                    {
+                      "id": "由三个K4构成的三正则图/3-regular graph composed of three K4",
+                      "zh": "由三个K4构成的三正则图",
+                      "importance": 0.237091,
+                      "relation": "belong_to",
+                      "related": [
+                        "哈密顿回路",
+                        "哈密顿图",
+                        "四色定理"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/道路与回路",
+          "zh": "第2章 道路与回路",
+          "importance": 0.45,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "道路/Path",
+              "zh": "道路",
+              "importance": 0.396967,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "欧拉道路/Eulerian Path",
+                  "zh": "欧拉道路",
+                  "importance": 0.054232,
+                  "relation": "belong_to",
+                  "related": [
+                    "H 道路"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "H 道路/H path",
+                  "zh": "H 道路",
+                  "importance": 0.087506,
+                  "relation": "belong_to",
+                  "related": [
+                    "H 回路",
+                    "欧拉道路"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "回路/Circuit",
+              "zh": "回路",
+              "importance": 0.386213,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "欧拉回路/Eulerian circuit",
+                  "zh": "欧拉回路",
+                  "importance": 0.050355,
+                  "relation": "belong_to",
+                  "related": [
+                    "H 回路"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "H 回路/H circuit",
+                  "zh": "H 回路",
+                  "importance": 0.087506,
+                  "relation": "belong_to",
+                  "related": [
+                    "H 道路",
+                    "欧拉回路"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.844301,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "平面图/planar graph",
+              "zh": "平面图",
+              "importance": 0.844301,
+              "relation": null,
+              "related": [
+                "DMP算法",
+                "图的着色",
+                "域染色",
+                "对偶图",
+                "欧拉定理"
+              ],
+              "children": [
+                {
+                  "id": "简单平面图/simple planar graph",
+                  "zh": "简单平面图",
+                  "importance": 0.679178,
+                  "relation": "belong_to",
+                  "related": [
+                    "五色定理",
+                    "四色定理",
+                    "欧拉公式"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "3-正则平面图/3-regular planar graph",
+                  "zh": "3-正则平面图",
+                  "importance": 0.291971,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "图的着色/graph coloring",
+              "zh": "图的着色",
+              "importance": 0.674376,
+              "relation": null,
+              "related": [
+                "五色定理",
+                "哈密顿回路",
+                "对偶图",
+                "平面图",
+                "最大度"
+              ],
+              "children": [
+                {
+                  "id": "点着色/vertex coloring",
+                  "zh": "点着色",
+                  "importance": 0.453904,
+                  "relation": "belong_to",
+                  "related": [
+                    "课程表编排问题",
+                    "边着色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "边着色/edge coloring",
+                  "zh": "边着色",
+                  "importance": 0.555267,
+                  "relation": "belong_to",
+                  "related": [
+                    "度数最大的节点",
+                    "点着色",
+                    "课程表编排问题"
+                  ],
+                  "children": [
+                    {
+                      "id": "二部图边着色/bipartite graph edge coloring",
+                      "zh": "二部图边着色",
+                      "importance": 0.172811,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "面着色问题/face coloring problem",
+                  "zh": "面着色问题",
+                  "importance": 0.314748,
+                  "relation": "belong_to",
+                  "related": [
+                    "对偶图",
+                    "点着色问题"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "非平面图/non-planar graph",
+              "zh": "非平面图",
+              "importance": 0.098254,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "K_5",
+                  "zh": "K_5",
+                  "importance": 0.052842,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 25,
   "max_depth": 4,
-  "orphan_count": 49,
+  "orphan_count": 3,
   "meta": {
-    "chapter": "第6章 谓词逻辑的公理化",
-    "root_id": "__chapter__/谓词逻辑的公理化",
-    "root_zh": "谓词逻辑的公理化",
+    "chapter": "第3章 树",
+    "root_id": "平面图/planar graph",
+    "root_zh": "第 12 讲",
     "virtual_root": true,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 78,
-    "n_edges_raw": 67,
-    "n_hierarchy_candidates": 62,
-    "attached_orphans": 0,
-    "alias_merged": 2
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 65,
+    "n_edges_raw": 45,
+    "n_hierarchy_candidates": 23,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "仅将第1章中'图'主题前移，使基础概念在前；其余结构未改动。",
+    "chapters": [
+      "第1章 图的基本概念与表示",
+      "第2章 道路与回路",
+      "第4章 平面图与图的着色"
+    ],
+    "llm_tune_notes": "仅将第1章中'图'主题前移，使基础概念在前；其余结构未改动。",
+    "chapter_candidates": [
+      "第3章 树",
+      "第4章 平面图与图的着色"
+    ]
   }
 }

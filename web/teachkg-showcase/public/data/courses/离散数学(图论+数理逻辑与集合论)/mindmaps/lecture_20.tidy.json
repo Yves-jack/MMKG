@@ -1,0 +1,707 @@
+{
+  "lecture_id": "20",
+  "root": {
+    "id": "范式/normal form",
+    "zh": "范式",
+    "importance": 0.893149,
+    "relation": null,
+    "related": [
+      "公式等值",
+      "对偶式",
+      "逻辑表达式"
+    ],
+    "children": [
+      {
+        "id": "析取范式/disjunctive normal form",
+        "zh": "析取范式",
+        "importance": 0.925586,
+        "relation": "part_of",
+        "related": [
+          "分配律",
+          "合取范式",
+          "求范式的步骤",
+          "真值表法",
+          "矛盾式",
+          "逻辑联结词"
+        ],
+        "children": [
+          {
+            "id": "合取式/conjunctive form",
+            "zh": "合取式",
+            "importance": 0.772354,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "极小项/minterm",
+                "zh": "极小项",
+                "importance": 0.984459,
+                "relation": "part_of",
+                "related": [
+                  "主析取范式",
+                  "主范式",
+                  "公式",
+                  "公式 A",
+                  "否定词",
+                  "命题变项"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "文字/literal",
+                "zh": "文字",
+                "importance": 0.596513,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "主析取范式/principal disjunctive normal form",
+            "zh": "主析取范式",
+            "importance": 0.987204,
+            "relation": "part_of",
+            "related": [
+              "主合取范式",
+              "主范式",
+              "全集",
+              "变元",
+              "否定",
+              "极小项"
+            ],
+            "children": [
+              {
+                "id": "极小项/minterm",
+                "zh": "极小项",
+                "importance": 0.984459,
+                "relation": "part_of",
+                "related": [
+                  "主析取范式",
+                  "主范式",
+                  "公式",
+                  "公式 A",
+                  "否定词",
+                  "命题变项"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "基本积",
+                "zh": "基本积",
+                "importance": 0.581714,
+                "relation": "part_of",
+                "related": [],
+                "children": [
+                  {
+                    "id": "文字/literal",
+                    "zh": "文字",
+                    "importance": 0.596513,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              }
+            ],
+            "copy": true
+          }
+        ],
+        "copy": true
+      },
+      {
+        "id": "合取范式/conjunctive normal form",
+        "zh": "合取范式",
+        "importance": 0.805279,
+        "relation": "part_of",
+        "related": [
+          "分配律",
+          "析取范式",
+          "求范式的步骤",
+          "真值表法",
+          "逻辑联结词"
+        ],
+        "children": [
+          {
+            "id": "析取式/disjunctive form",
+            "zh": "析取式",
+            "importance": 0.759325,
+            "relation": "part_of",
+            "related": [],
+            "children": [
+              {
+                "id": "极大项/maximal term",
+                "zh": "极大项",
+                "importance": 1.0,
+                "relation": "part_of",
+                "related": [
+                  "主合取范式",
+                  "主范式",
+                  "公式 A",
+                  "否定词",
+                  "命题变项",
+                  "极小项"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "文字/literal",
+                "zh": "文字",
+                "importance": 0.596513,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "主合取范式/principal conjunctive normal form",
+            "zh": "主合取范式",
+            "importance": 0.778506,
+            "relation": "part_of",
+            "related": [
+              "主析取范式",
+              "全集",
+              "变元",
+              "否定",
+              "极大项",
+              "真值表"
+            ],
+            "children": [
+              {
+                "id": "极大项/maximal term",
+                "zh": "极大项",
+                "importance": 1.0,
+                "relation": "part_of",
+                "related": [
+                  "主合取范式",
+                  "主范式",
+                  "公式 A",
+                  "否定词",
+                  "命题变项",
+                  "极小项"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "基本和",
+                "zh": "基本和",
+                "importance": 0.606027,
+                "relation": "part_of",
+                "related": [],
+                "children": [
+                  {
+                    "id": "文字/literal",
+                    "zh": "文字",
+                    "importance": 0.596513,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              }
+            ],
+            "copy": true
+          }
+        ],
+        "copy": true
+      },
+      {
+        "id": "主范式/principal normal form",
+        "zh": "主范式",
+        "importance": 0.983804,
+        "relation": "part_of",
+        "related": [
+          "主析取范式",
+          "极大项",
+          "极小项",
+          "真值表",
+          "部分指派法"
+        ],
+        "children": [
+          {
+            "id": "主析取范式/principal disjunctive normal form",
+            "zh": "主析取范式",
+            "importance": 0.987204,
+            "relation": "part_of",
+            "related": [
+              "主合取范式",
+              "主范式",
+              "全集",
+              "变元",
+              "否定",
+              "极小项"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "主合取范式/principal conjunctive normal form",
+            "zh": "主合取范式",
+            "importance": 0.778506,
+            "relation": "part_of",
+            "related": [
+              "主析取范式",
+              "全集",
+              "变元",
+              "否定",
+              "极大项",
+              "真值表"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ],
+        "copy": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.893149,
+      "relation": null,
+      "related": [
+        "公式等值",
+        "对偶式",
+        "逻辑表达式"
+      ],
+      "children": [
+        {
+          "id": "析取范式/disjunctive normal form",
+          "zh": "析取范式",
+          "importance": 0.925586,
+          "relation": "part_of",
+          "related": [
+            "分配律",
+            "合取范式",
+            "求范式的步骤",
+            "真值表法",
+            "矛盾式",
+            "逻辑联结词"
+          ],
+          "children": [
+            {
+              "id": "合取式/conjunctive form",
+              "zh": "合取式",
+              "importance": 0.772354,
+              "relation": "part_of",
+              "related": [],
+              "children": [
+                {
+                  "id": "极小项/minterm",
+                  "zh": "极小项",
+                  "importance": 0.984459,
+                  "relation": "part_of",
+                  "related": [
+                    "主析取范式",
+                    "主范式",
+                    "公式",
+                    "公式 A",
+                    "否定词",
+                    "命题变项"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "文字/literal",
+                  "zh": "文字",
+                  "importance": 0.596513,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "主析取范式/principal disjunctive normal form",
+              "zh": "主析取范式",
+              "importance": 0.987204,
+              "relation": "part_of",
+              "related": [
+                "主合取范式",
+                "主范式",
+                "全集",
+                "变元",
+                "否定",
+                "极小项"
+              ],
+              "children": [
+                {
+                  "id": "极小项/minterm",
+                  "zh": "极小项",
+                  "importance": 0.984459,
+                  "relation": "part_of",
+                  "related": [
+                    "主析取范式",
+                    "主范式",
+                    "公式",
+                    "公式 A",
+                    "否定词",
+                    "命题变项"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "基本积",
+                  "zh": "基本积",
+                  "importance": 0.581714,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "文字/literal",
+                      "zh": "文字",
+                      "importance": 0.596513,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                }
+              ],
+              "copy": true
+            }
+          ],
+          "copy": true
+        },
+        {
+          "id": "合取范式/conjunctive normal form",
+          "zh": "合取范式",
+          "importance": 0.805279,
+          "relation": "part_of",
+          "related": [
+            "分配律",
+            "析取范式",
+            "求范式的步骤",
+            "真值表法",
+            "逻辑联结词"
+          ],
+          "children": [
+            {
+              "id": "析取式/disjunctive form",
+              "zh": "析取式",
+              "importance": 0.759325,
+              "relation": "part_of",
+              "related": [],
+              "children": [
+                {
+                  "id": "极大项/maximal term",
+                  "zh": "极大项",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "主合取范式",
+                    "主范式",
+                    "公式 A",
+                    "否定词",
+                    "命题变项",
+                    "极小项"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "文字/literal",
+                  "zh": "文字",
+                  "importance": 0.596513,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "主合取范式/principal conjunctive normal form",
+              "zh": "主合取范式",
+              "importance": 0.778506,
+              "relation": "part_of",
+              "related": [
+                "主析取范式",
+                "全集",
+                "变元",
+                "否定",
+                "极大项",
+                "真值表"
+              ],
+              "children": [
+                {
+                  "id": "极大项/maximal term",
+                  "zh": "极大项",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "主合取范式",
+                    "主范式",
+                    "公式 A",
+                    "否定词",
+                    "命题变项",
+                    "极小项"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "基本和",
+                  "zh": "基本和",
+                  "importance": 0.606027,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "文字/literal",
+                      "zh": "文字",
+                      "importance": 0.596513,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                }
+              ],
+              "copy": true
+            }
+          ],
+          "copy": true
+        },
+        {
+          "id": "主范式/principal normal form",
+          "zh": "主范式",
+          "importance": 0.983804,
+          "relation": "part_of",
+          "related": [
+            "主析取范式",
+            "极大项",
+            "极小项",
+            "真值表",
+            "部分指派法"
+          ],
+          "children": [
+            {
+              "id": "主析取范式/principal disjunctive normal form",
+              "zh": "主析取范式",
+              "importance": 0.987204,
+              "relation": "part_of",
+              "related": [
+                "主合取范式",
+                "主范式",
+                "全集",
+                "变元",
+                "否定",
+                "极小项"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "主合取范式/principal conjunctive normal form",
+              "zh": "主合取范式",
+              "importance": 0.778506,
+              "relation": "part_of",
+              "related": [
+                "主析取范式",
+                "全集",
+                "变元",
+                "否定",
+                "极大项",
+                "真值表"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "逻辑联结词/logical connective",
+      "zh": "逻辑联结词",
+      "importance": 0.820846,
+      "relation": null,
+      "related": [
+        "合取范式",
+        "析取范式",
+        "求范式的步骤"
+      ],
+      "children": [
+        {
+          "id": "否定词/negation operator",
+          "zh": "否定词",
+          "importance": 0.634473,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "原子命题",
+            "摩根律",
+            "极大项",
+            "极小项",
+            "量词"
+          ],
+          "children": []
+        },
+        {
+          "id": "析取词/disjunction(logical connective)",
+          "zh": "析取词",
+          "importance": 0.504145,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "合取词/conjunction(logical connective)",
+          "zh": "合取词",
+          "importance": 0.414795,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "蕴含/implication",
+          "zh": "蕴含",
+          "importance": 0.23008,
+          "relation": "belong_to",
+          "related": [
+            "求范式的步骤"
+          ],
+          "children": []
+        },
+        {
+          "id": "等值/equivalence",
+          "zh": "等值",
+          "importance": 0.247342,
+          "relation": "belong_to",
+          "related": [
+            "同可满足",
+            "同永真"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "求范式的步骤/steps for finding normal forms",
+      "zh": "求范式的步骤",
+      "importance": 0.556204,
+      "relation": null,
+      "related": [
+        "合取范式",
+        "摩根律",
+        "析取范式",
+        "等值演算",
+        "蕴含",
+        "逻辑联结词"
+      ],
+      "children": [
+        {
+          "id": "真值表法/Truth Table Method",
+          "zh": "真值表法",
+          "importance": 0.337171,
+          "relation": "belong_to",
+          "related": [
+            "合取范式",
+            "析取范式"
+          ],
+          "children": []
+        },
+        {
+          "id": "等值演算法/equivalence calculus method",
+          "zh": "等值演算法",
+          "importance": 0.24467,
+          "relation": "belong_to",
+          "related": [],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "重言式/tautology",
+      "zh": "重言式",
+      "importance": 0.083039,
+      "relation": null,
+      "related": [
+        "互补对"
+      ],
+      "children": [
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.858319,
+          "relation": "belong_to",
+          "related": [
+            "否定词",
+            "对偶",
+            "极小项",
+            "析取"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "矛盾式/contradiction",
+      "zh": "矛盾式",
+      "importance": 0.193899,
+      "relation": null,
+      "related": [
+        "互补对",
+        "析取范式"
+      ],
+      "children": [
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.858319,
+          "relation": "belong_to",
+          "related": [
+            "否定词",
+            "对偶",
+            "极小项",
+            "析取"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 33,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "范式/normal form",
+    "root_zh": "范式",
+    "virtual_root": false,
+    "n_trees": 9,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 58,
+    "n_edges_raw": 114,
+    "n_hierarchy_candidates": 69,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "合并重复的极小项/极大项节点，将主范式归入范式下，删除孤立或重复的联结词节点，保留核心概念。"
+  }
+}

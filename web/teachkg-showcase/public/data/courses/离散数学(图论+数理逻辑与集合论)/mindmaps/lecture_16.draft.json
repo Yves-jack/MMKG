@@ -1,0 +1,289 @@
+{
+  "lecture_id": "16",
+  "root": {
+    "id": "平面图/planar graph",
+    "zh": "平面图",
+    "importance": 0.789864,
+    "relation": null,
+    "related": [
+      "图的着色",
+      "对偶图"
+    ],
+    "children": [
+      {
+        "id": "极大平面图/maximal planar graph",
+        "zh": "极大平面图",
+        "importance": 1.0,
+        "relation": "belong_to",
+        "related": [
+          "反证法",
+          "平面性",
+          "归纳证明",
+          "欧拉公式"
+        ],
+        "children": []
+      },
+      {
+        "id": "简单平面图/simple planar graph",
+        "zh": "简单平面图",
+        "importance": 0.524177,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "平面图/planar graph",
+      "zh": "平面图",
+      "importance": 0.789864,
+      "relation": null,
+      "related": [
+        "图的着色",
+        "对偶图"
+      ],
+      "children": [
+        {
+          "id": "极大平面图/maximal planar graph",
+          "zh": "极大平面图",
+          "importance": 1.0,
+          "relation": "belong_to",
+          "related": [
+            "反证法",
+            "平面性",
+            "归纳证明",
+            "欧拉公式"
+          ],
+          "children": []
+        },
+        {
+          "id": "简单平面图/simple planar graph",
+          "zh": "简单平面图",
+          "importance": 0.524177,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "对偶图/dual graph",
+      "zh": "对偶图",
+      "importance": 0.668619,
+      "relation": null,
+      "related": [
+        "图的着色",
+        "平面图",
+        "平面连通图",
+        "自环",
+        "重边"
+      ],
+      "children": [
+        {
+          "id": "欧拉公式/欧拉公式",
+          "zh": "欧拉公式",
+          "importance": 0.267454,
+          "relation": "belong_to",
+          "related": [
+            "五着色问题",
+            "关键引理",
+            "四色定理",
+            "极大平面图"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "赋权连通图/weighted connected graph",
+      "zh": "赋权连通图",
+      "importance": 0.550632,
+      "relation": null,
+      "related": [
+        "Kruskal算法"
+      ],
+      "children": [
+        {
+          "id": "最短树/Minimum Spanning Tree",
+          "zh": "最短树",
+          "importance": 0.617002,
+          "relation": "part_of",
+          "related": [
+            "Kruskal算法",
+            "唯一性",
+            "无向图",
+            "证明方法",
+            "边权"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "连通图/connected graph",
+      "zh": "连通图",
+      "importance": 0.489049,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "欧拉图/Eulerian graph",
+          "zh": "欧拉图",
+          "importance": 0.459401,
+          "relation": "belong_to",
+          "related": [
+            "平面连通图"
+          ],
+          "children": [
+            {
+              "id": "对偶图T",
+              "zh": "对偶图T",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "无向图/undirected graph",
+      "zh": "无向图",
+      "importance": 0.44043,
+      "relation": null,
+      "related": [
+        "最短树"
+      ],
+      "children": [
+        {
+          "id": "支撑树/Spanning Tree",
+          "zh": "支撑树",
+          "importance": 0.296548,
+          "relation": "part_of",
+          "related": [
+            "Kruskal算法",
+            "Prim算法",
+            "割边"
+          ],
+          "children": [
+            {
+              "id": "最短树/Minimum Spanning Tree",
+              "zh": "最短树",
+              "importance": 0.617002,
+              "relation": "belong_to",
+              "related": [
+                "Kruskal算法",
+                "唯一性",
+                "无向图",
+                "证明方法",
+                "边权"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "选题方向/选题方向",
+      "zh": "选题方向",
+      "importance": 0.409244,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "优化设计问题/优化设计问题",
+          "zh": "优化设计问题",
+          "importance": 0.372164,
+          "relation": "belong_to",
+          "related": [
+            "具体诉求",
+            "地理位置信息",
+            "建模"
+          ],
+          "children": []
+        },
+        {
+          "id": "优化设计问题/优化设计问题",
+          "zh": "优化设计问题",
+          "importance": 0.372164,
+          "relation": "part_of",
+          "related": [
+            "具体诉求",
+            "地理位置信息",
+            "建模"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "未来城市设计问题/未来城市设计问题",
+          "zh": "未来城市设计问题",
+          "importance": 0.224589,
+          "relation": "belong_to",
+          "related": [
+            "建模"
+          ],
+          "children": []
+        },
+        {
+          "id": "未来城市设计问题/未来城市设计问题",
+          "zh": "未来城市设计问题",
+          "importance": 0.224589,
+          "relation": "part_of",
+          "related": [
+            "建模"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "困难任务/difficult task",
+      "zh": "困难任务",
+      "importance": 0.095055,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "小分子抗病毒药物设计/antiviral drug design",
+          "zh": "小分子抗病毒药物设计",
+          "importance": 0.408603,
+          "relation": "belong_to",
+          "related": [
+            "建模人员",
+            "建模方案",
+            "跨学科知识"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 17,
+  "max_depth": 3,
+  "orphan_count": 2,
+  "meta": {
+    "chapter": "第2章 道路与回路",
+    "root_id": "平面图/planar graph",
+    "root_zh": "平面图",
+    "virtual_root": false,
+    "n_trees": 7,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 59,
+    "n_edges_raw": 45,
+    "n_hierarchy_candidates": 18,
+    "attached_orphans": 2,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

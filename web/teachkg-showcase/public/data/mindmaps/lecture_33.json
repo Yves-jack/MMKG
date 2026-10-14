@@ -1,0 +1,465 @@
+{
+  "lecture_id": "33",
+  "root": {
+    "id": "__lecture__/33",
+    "zh": "第 33 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/谓词逻辑的等值和推理演算",
+        "zh": "第5章 谓词逻辑的等值和推理演算",
+        "importance": 0.680544,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.680544,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "前束范式/Prenex Normal Form",
+                "zh": "前束范式",
+                "importance": 0.274635,
+                "relation": null,
+                "related": [],
+                "children": [
+                  {
+                    "id": "全称量词/universal quantifier",
+                    "zh": "全称量词",
+                    "importance": 0.58408,
+                    "relation": "part_of",
+                    "related": [
+                      "Skolem范式",
+                      "子句"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              },
+              {
+                "id": "Skolem范式/Skolem normal form",
+                "zh": "Skolem范式",
+                "importance": 0.715314,
+                "relation": "belong_to",
+                "related": [
+                  "全称量词"
+                ],
+                "children": [
+                  {
+                    "id": "量词/quantifier",
+                    "zh": "量词",
+                    "importance": 0.766547,
+                    "relation": "part_of",
+                    "related": [
+                      "否定"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "母式/Matrix",
+                    "zh": "母式",
+                    "importance": 0.440876,
+                    "relation": "part_of",
+                    "related": [
+                      "合取范式"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "合取范式/conjunctive normal form",
+                "zh": "合取范式",
+                "importance": 0.46524,
+                "relation": "belong_to",
+                "related": [
+                  "子句集",
+                  "母式"
+                ],
+                "children": [
+                  {
+                    "id": "析取式/disjunctive form",
+                    "zh": "析取式",
+                    "importance": 0.323687,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "子句集/clause set",
+            "zh": "子句集",
+            "importance": 0.606133,
+            "relation": null,
+            "related": [
+              "合取范式",
+              "归结"
+            ],
+            "children": [
+              {
+                "id": "子句/clause",
+                "zh": "子句",
+                "importance": 1.0,
+                "relation": "part_of",
+                "related": [
+                  "全称量词",
+                  "归结",
+                  "归结式",
+                  "归结过程"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的公理化系统",
+        "zh": "第6章 谓词逻辑的公理化系统",
+        "importance": 0.758845,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "证明/proof",
+            "zh": "证明",
+            "importance": 0.758845,
+            "relation": null,
+            "related": [
+              "存在量词消去"
+            ],
+            "children": [
+              {
+                "id": "归结/resolution",
+                "zh": "归结",
+                "importance": 0.968156,
+                "relation": "belong_to",
+                "related": [
+                  "互补对",
+                  "合一",
+                  "子句",
+                  "子句集",
+                  "归结式",
+                  "计算机"
+                ],
+                "children": [
+                  {
+                    "id": "合一/unification",
+                    "zh": "合一",
+                    "importance": 0.845407,
+                    "relation": "part_of",
+                    "related": [
+                      "代入",
+                      "归结"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "假设/Hypothesis",
+                "zh": "假设",
+                "importance": 0.322931,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "反证法/proof by contradiction",
+                "zh": "反证法",
+                "importance": 0.237458,
+                "relation": "belong_to",
+                "related": [
+                  "三段论"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "归结过程/resolution process",
+            "zh": "归结过程",
+            "importance": 0.709801,
+            "relation": null,
+            "related": [
+              "子句",
+              "归结法证明",
+              "矛盾",
+              "空子句"
+            ],
+            "children": [
+              {
+                "id": "归结式/resolvent",
+                "zh": "归结式",
+                "importance": 0.386228,
+                "relation": "belong_to",
+                "related": [
+                  "互补对",
+                  "子句",
+                  "归结"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/33",
+      "zh": "第 33 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/谓词逻辑的等值和推理演算",
+          "zh": "第5章 谓词逻辑的等值和推理演算",
+          "importance": 0.680544,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.680544,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "前束范式/Prenex Normal Form",
+                  "zh": "前束范式",
+                  "importance": 0.274635,
+                  "relation": null,
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "全称量词/universal quantifier",
+                      "zh": "全称量词",
+                      "importance": 0.58408,
+                      "relation": "part_of",
+                      "related": [
+                        "Skolem范式",
+                        "子句"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "Skolem范式/Skolem normal form",
+                  "zh": "Skolem范式",
+                  "importance": 0.715314,
+                  "relation": "belong_to",
+                  "related": [
+                    "全称量词"
+                  ],
+                  "children": [
+                    {
+                      "id": "量词/quantifier",
+                      "zh": "量词",
+                      "importance": 0.766547,
+                      "relation": "part_of",
+                      "related": [
+                        "否定"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "母式/Matrix",
+                      "zh": "母式",
+                      "importance": 0.440876,
+                      "relation": "part_of",
+                      "related": [
+                        "合取范式"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "合取范式/conjunctive normal form",
+                  "zh": "合取范式",
+                  "importance": 0.46524,
+                  "relation": "belong_to",
+                  "related": [
+                    "子句集",
+                    "母式"
+                  ],
+                  "children": [
+                    {
+                      "id": "析取式/disjunctive form",
+                      "zh": "析取式",
+                      "importance": 0.323687,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "子句集/clause set",
+              "zh": "子句集",
+              "importance": 0.606133,
+              "relation": null,
+              "related": [
+                "合取范式",
+                "归结"
+              ],
+              "children": [
+                {
+                  "id": "子句/clause",
+                  "zh": "子句",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "全称量词",
+                    "归结",
+                    "归结式",
+                    "归结过程"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/谓词逻辑的公理化系统",
+          "zh": "第6章 谓词逻辑的公理化系统",
+          "importance": 0.758845,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "证明/proof",
+              "zh": "证明",
+              "importance": 0.758845,
+              "relation": null,
+              "related": [
+                "存在量词消去"
+              ],
+              "children": [
+                {
+                  "id": "归结/resolution",
+                  "zh": "归结",
+                  "importance": 0.968156,
+                  "relation": "belong_to",
+                  "related": [
+                    "互补对",
+                    "合一",
+                    "子句",
+                    "子句集",
+                    "归结式",
+                    "计算机"
+                  ],
+                  "children": [
+                    {
+                      "id": "合一/unification",
+                      "zh": "合一",
+                      "importance": 0.845407,
+                      "relation": "part_of",
+                      "related": [
+                        "代入",
+                        "归结"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "假设/Hypothesis",
+                  "zh": "假设",
+                  "importance": 0.322931,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "反证法/proof by contradiction",
+                  "zh": "反证法",
+                  "importance": 0.237458,
+                  "relation": "belong_to",
+                  "related": [
+                    "三段论"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "归结过程/resolution process",
+              "zh": "归结过程",
+              "importance": 0.709801,
+              "relation": null,
+              "related": [
+                "子句",
+                "归结法证明",
+                "矛盾",
+                "空子句"
+              ],
+              "children": [
+                {
+                  "id": "归结式/resolvent",
+                  "zh": "归结式",
+                  "importance": 0.386228,
+                  "relation": "belong_to",
+                  "related": [
+                    "互补对",
+                    "子句",
+                    "归结"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 20,
+  "max_depth": 4,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_id": "证明/proof",
+    "root_zh": "第 33 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 30,
+    "n_edges_raw": 44,
+    "n_hierarchy_candidates": 23,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "结构基本保持原样，仅将'归结过程'与'证明'同级顺序微调（证明在前），并统一了部分显示名（如'Skolem范式'），无新增或删除节点。",
+    "chapters": [
+      "第5章 谓词逻辑的等值和推理演算",
+      "第6章 谓词逻辑的公理化系统"
+    ],
+    "llm_tune_notes": "结构基本保持原样，仅将'归结过程'与'证明'同级顺序微调（证明在前），并统一了部分显示名（如'Skolem范式'），无新增或删除节点。",
+    "chapter_candidates": []
+  }
+}

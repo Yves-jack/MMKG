@@ -1,0 +1,455 @@
+{
+  "lecture_id": "42",
+  "root": {
+    "id": "关系/relation",
+    "zh": "关系",
+    "importance": 0.754227,
+    "relation": null,
+    "related": [
+      "Warshall算法",
+      "关系的幂",
+      "对称闭包",
+      "有限集合A",
+      "自反",
+      "闭包"
+    ],
+    "children": [
+      {
+        "id": "等价关系/equivalence relation",
+        "zh": "等价关系",
+        "importance": 0.937639,
+        "relation": "belong_to",
+        "related": [
+          "传递",
+          "划分",
+          "商集",
+          "对称",
+          "对称性",
+          "等价类"
+        ],
+        "children": [
+          {
+            "id": "闭包/closure",
+            "zh": "闭包",
+            "importance": 0.979925,
+            "relation": "part_of",
+            "related": [
+              "传递",
+              "关系",
+              "对称",
+              "最小关系",
+              "等价关系",
+              "自反"
+            ],
+            "children": [
+              {
+                "id": "对称闭包/symmetric closure",
+                "zh": "对称闭包",
+                "importance": 0.686621,
+                "relation": "belong_to",
+                "related": [
+                  "关系",
+                  "对称性",
+                  "自反"
+                ],
+                "children": []
+              },
+              {
+                "id": "自反/reflexive",
+                "zh": "自反",
+                "importance": 0.64867,
+                "relation": "belong_to",
+                "related": [
+                  "二元关系",
+                  "关系",
+                  "对称闭包",
+                  "相容关系",
+                  "等价关系",
+                  "闭包"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "对称性/symmetry",
+            "zh": "对称性",
+            "importance": 0.726034,
+            "relation": "part_of",
+            "related": [
+              "对称闭包",
+              "等价关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "等价类/Equivalence Class",
+            "zh": "等价类",
+            "importance": 0.172893,
+            "relation": "part_of",
+            "related": [
+              "等价关系"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "模3同余关系",
+            "zh": "模3同余关系",
+            "importance": 0.0,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "有限集合A",
+        "zh": "有限集合A",
+        "importance": 0.376545,
+        "relation": "belong_to",
+        "related": [
+          "关系",
+          "定理",
+          "集合A"
+        ],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.754227,
+      "relation": null,
+      "related": [
+        "Warshall算法",
+        "关系的幂",
+        "对称闭包",
+        "有限集合A",
+        "自反",
+        "闭包"
+      ],
+      "children": [
+        {
+          "id": "等价关系/equivalence relation",
+          "zh": "等价关系",
+          "importance": 0.937639,
+          "relation": "belong_to",
+          "related": [
+            "传递",
+            "划分",
+            "商集",
+            "对称",
+            "对称性",
+            "等价类"
+          ],
+          "children": [
+            {
+              "id": "闭包/closure",
+              "zh": "闭包",
+              "importance": 0.979925,
+              "relation": "part_of",
+              "related": [
+                "传递",
+                "关系",
+                "对称",
+                "最小关系",
+                "等价关系",
+                "自反"
+              ],
+              "children": [
+                {
+                  "id": "对称闭包/symmetric closure",
+                  "zh": "对称闭包",
+                  "importance": 0.686621,
+                  "relation": "belong_to",
+                  "related": [
+                    "关系",
+                    "对称性",
+                    "自反"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "自反/reflexive",
+                  "zh": "自反",
+                  "importance": 0.64867,
+                  "relation": "belong_to",
+                  "related": [
+                    "二元关系",
+                    "关系",
+                    "对称闭包",
+                    "相容关系",
+                    "等价关系",
+                    "闭包"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "对称性/symmetry",
+              "zh": "对称性",
+              "importance": 0.726034,
+              "relation": "part_of",
+              "related": [
+                "对称闭包",
+                "等价关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "等价类/Equivalence Class",
+              "zh": "等价类",
+              "importance": 0.172893,
+              "relation": "part_of",
+              "related": [
+                "等价关系"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "模3同余关系",
+              "zh": "模3同余关系",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "有限集合A",
+          "zh": "有限集合A",
+          "importance": 0.376545,
+          "relation": "belong_to",
+          "related": [
+            "关系",
+            "定理",
+            "集合A"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "集合A/set A",
+      "zh": "集合A",
+      "importance": 0.720152,
+      "relation": null,
+      "related": [
+        "关系",
+        "有限集合A"
+      ],
+      "children": [
+        {
+          "id": "非空子集/non-empty subset",
+          "zh": "非空子集",
+          "importance": 0.578039,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "划分/partition",
+              "zh": "划分",
+              "importance": 0.947009,
+              "relation": "part_of",
+              "related": [
+                "子集",
+                "等价关系",
+                "集合"
+              ],
+              "children": [
+                {
+                  "id": "商集/Quotient Set",
+                  "zh": "商集",
+                  "importance": 0.587654,
+                  "relation": "belong_to",
+                  "related": [
+                    "等价关系"
+                  ],
+                  "children": [
+                    {
+                      "id": "等价类/Equivalence Class",
+                      "zh": "等价类",
+                      "importance": 0.172893,
+                      "relation": "part_of",
+                      "related": [
+                        "等价关系"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "等价类/Equivalence Class",
+                      "zh": "等价类",
+                      "importance": 0.172893,
+                      "relation": "belong_to",
+                      "related": [
+                        "等价关系"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "等价类/Equivalence Class",
+                  "zh": "等价类",
+                  "importance": 0.172893,
+                  "relation": "part_of",
+                  "related": [
+                    "等价关系"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "等价类/Equivalence Class",
+          "zh": "等价类",
+          "importance": 0.172893,
+          "relation": "part_of",
+          "related": [
+            "等价关系"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "子集/subset",
+      "zh": "子集",
+      "importance": 0.611015,
+      "relation": null,
+      "related": [
+        "划分"
+      ],
+      "children": [
+        {
+          "id": "等价类/Equivalence Class",
+          "zh": "等价类",
+          "importance": 0.172893,
+          "relation": "belong_to",
+          "related": [
+            "等价关系"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "覆盖/covering",
+      "zh": "覆盖",
+      "importance": 0.532055,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "最大相容类/maximal compatibility class",
+          "zh": "最大相容类",
+          "importance": 0.420688,
+          "relation": "part_of",
+          "related": [],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "运算/operation",
+      "zh": "运算",
+      "importance": 0.384288,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "二元关系/binary relation",
+          "zh": "二元关系",
+          "importance": 0.665706,
+          "relation": "belong_to",
+          "related": [
+            "关系幂",
+            "实数域上的指数运算",
+            "自反",
+            "自然数指数运算"
+          ],
+          "children": [
+            {
+              "id": "关系幂/power of a relation",
+              "zh": "关系幂",
+              "importance": 0.366737,
+              "relation": "belong_to",
+              "related": [
+                "二元关系"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "相容类/compatibility class",
+      "zh": "相容类",
+      "importance": 0.218987,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "最大相容类/maximal compatibility class",
+          "zh": "最大相容类",
+          "importance": 0.420688,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "集合B",
+      "zh": "集合B",
+      "importance": 0.058285,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "R的幂/R^q",
+          "zh": "R的幂",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 22,
+  "max_depth": 5,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第10章 关系",
+    "root_id": "关系/relation",
+    "root_zh": "关系",
+    "virtual_root": false,
+    "n_trees": 7,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 37,
+    "n_edges_raw": 67,
+    "n_hierarchy_candidates": 29,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

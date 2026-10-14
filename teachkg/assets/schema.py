@@ -332,6 +332,8 @@ class AssetCard:
     evidence: str = ""
     # 公式卡：LaTeX 或记号原文
     latex: str = ""
+    # 章归属（可多章）：[{name, weight, role}]，role=primary|secondary
+    chapters: list[dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         data: dict[str, Any] = {
@@ -352,6 +354,16 @@ class AssetCard:
             data["evidence"] = self.evidence
         if self.latex:
             data["latex"] = self.latex
+        if self.chapters:
+            data["chapters"] = [
+                {
+                    "name": str(ch.get("name") or "").strip(),
+                    "weight": float(ch.get("weight") or 0.0),
+                    "role": str(ch.get("role") or "secondary").strip() or "secondary",
+                }
+                for ch in self.chapters
+                if str(ch.get("name") or "").strip()
+            ]
         if self.grounding:
             g = self.grounding.to_dict()
             if g:
@@ -417,6 +429,15 @@ class AssetCard:
             links=links,
             evidence=str(raw.get("evidence") or raw.get("context") or "").strip(),
             latex=str(raw.get("latex") or "").strip(),
+            chapters=[
+                {
+                    "name": str(ch.get("name") or "").strip(),
+                    "weight": float(ch.get("weight") or 0.0),
+                    "role": str(ch.get("role") or "secondary").strip() or "secondary",
+                }
+                for ch in (raw.get("chapters") or [])
+                if isinstance(ch, dict) and str(ch.get("name") or "").strip()
+            ],
         )
 
 
@@ -438,6 +459,7 @@ class AssetLibrary:
             "stats": {**by_kind, **self.stats},
             "cards": [c.to_dict() for c in self.cards],
             "index_by_entity": _index_by_entity(self.cards),
+            "index_by_chapter": _index_by_chapter(self.cards),
         }
 
 
@@ -463,6 +485,17 @@ def _index_by_entity(cards: list[AssetCard]) -> dict[str, list[str]]:
         for edge in card.edges:
             add(edge.subject, card.asset_id)
             add(edge.object, card.asset_id)
+    return {k: sorted(set(v)) for k, v in sorted(idx.items())}
+
+
+def _index_by_chapter(cards: list[AssetCard]) -> dict[str, list[str]]:
+    idx: dict[str, list[str]] = {}
+    for card in cards:
+        for ch in card.chapters or []:
+            name = str(ch.get("name") or "").strip()
+            if not name:
+                continue
+            idx.setdefault(name, []).append(card.asset_id)
     return {k: sorted(set(v)) for k, v in sorted(idx.items())}
 
 

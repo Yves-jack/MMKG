@@ -1,252 +1,63 @@
 {
   "lecture_id": "11",
   "root": {
-    "id": "谓词/predicate",
-    "zh": "谓词",
-    "importance": 0.207057,
+    "id": "__lecture__/11",
+    "zh": "第 11 讲",
+    "importance": 0.9,
     "relation": null,
     "related": [],
     "children": [
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.497468,
-        "relation": "chapter_topic",
-        "related": [
-          "交集",
-          "关系",
-          "划分",
-          "命题",
-          "幂集",
-          "并集"
-        ],
-        "children": [
-          {
-            "id": "整数集/set of integers",
-            "zh": "整数集",
-            "importance": 0.055125,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "实数集合/set of real numbers",
-            "zh": "实数集合",
-            "importance": 0.043945,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "幂集/power set",
-            "zh": "幂集",
-            "importance": 0.040267,
-            "relation": "belong_to",
-            "related": [
-              "集合"
-            ],
-            "children": []
-          },
-          {
-            "id": "全集/universal set",
-            "zh": "全集",
-            "importance": 0.037956,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "空集/empty set",
-            "zh": "空集",
-            "importance": 0.03422,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "自然数/natural number",
-            "zh": "自然数",
-            "importance": 0.030873,
-            "relation": "belong_to",
-            "related": [
-              "集合"
-            ],
-            "children": []
-          },
-          {
-            "id": "自然数集合/Set of Natural Numbers",
-            "zh": "自然数集合",
-            "importance": 0.025646,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "元素/Element",
-            "zh": "元素",
-            "importance": 0.01369,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "公理系统/axiomatic system",
-        "zh": "公理系统",
-        "importance": 0.31693,
-        "relation": "chapter_topic",
+        "id": "__chapter__/平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.970883,
+        "relation": "toc_chapter",
         "related": [],
         "children": [
           {
-            "id": "定理/定理",
-            "zh": "定理",
-            "importance": 0.012057,
-            "relation": "part_of",
-            "related": [],
-            "children": [
-              {
-                "id": "证明/proof",
-                "zh": "证明",
-                "importance": 0.001829,
-                "relation": "part_of",
-                "related": [],
-                "children": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "命题/proposition",
-        "zh": "命题",
-        "importance": 0.311694,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": []
-      },
-      {
-        "id": "关系/relation",
-        "zh": "关系",
-        "importance": 0.299163,
-        "relation": "chapter_topic",
-        "related": [
-          "集合"
-        ],
-        "children": [
-          {
-            "id": "二元关系/binary relation",
-            "zh": "二元关系",
-            "importance": 0.05108,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "等价关系/equivalence relation",
-            "zh": "等价关系",
-            "importance": 0.049531,
-            "relation": "belong_to",
-            "related": [],
-            "children": [
-              {
-                "id": "等势/equipotency",
-                "zh": "等势",
-                "importance": 0.043373,
-                "relation": "belong_to",
-                "related": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "偏序关系/partial order relation",
-            "zh": "偏序关系",
-            "importance": 0.041238,
-            "relation": "belong_to",
-            "related": [],
-            "children": [
-              {
-                "id": "子集关系/subset relation",
-                "zh": "子集关系",
-                "importance": 0.022331,
-                "relation": "belong_to",
-                "related": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "有序对/ordered pair",
-            "zh": "有序对",
-            "importance": 0.035761,
-            "relation": "part_of",
+            "id": "图的着色/graph coloring",
+            "zh": "图的着色",
+            "importance": 0.970883,
+            "relation": null,
             "related": [
-              "笛卡儿积",
-              "集合"
-            ],
-            "children": []
-          },
-          {
-            "id": "恒等关系/identity relation",
-            "zh": "恒等关系",
-            "importance": 0.027049,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "集合论/Set Theory",
-        "zh": "集合论",
-        "importance": 0.24772,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": [
-          {
-            "id": "集合运算/set operation",
-            "zh": "集合运算",
-            "importance": 0.047554,
-            "relation": "part_of",
-            "related": [
-              "集合"
+              "对偶图",
+              "平面图"
             ],
             "children": [
               {
-                "id": "交集/Intersection",
-                "zh": "交集",
-                "importance": 0.03095,
+                "id": "点着色/vertex coloring",
+                "zh": "点着色",
+                "importance": 0.905103,
                 "relation": "belong_to",
                 "related": [
-                  "集合"
+                  "面着色"
                 ],
                 "children": []
               },
               {
-                "id": "并集/union",
-                "zh": "并集",
-                "importance": 0.028931,
+                "id": "面着色/face coloring",
+                "zh": "面着色",
+                "importance": 0.840099,
                 "relation": "belong_to",
                 "related": [
-                  "集合"
+                  "点着色"
                 ],
                 "children": []
               },
               {
-                "id": "差集/Set Difference",
-                "zh": "差集",
-                "importance": 0.019586,
+                "id": "边染色/edge coloring",
+                "zh": "边染色",
+                "importance": 0.291271,
                 "relation": "belong_to",
-                "related": [],
+                "related": [
+                  "点染色"
+                ],
                 "children": []
               },
               {
-                "id": "对称差/Symmetric difference",
-                "zh": "对称差",
-                "importance": 0.015431,
+                "id": "地图着色/map coloring",
+                "zh": "地图着色",
+                "importance": 0.290328,
                 "relation": "belong_to",
                 "related": [],
                 "children": []
@@ -254,40 +65,218 @@
             ]
           },
           {
-            "id": "运算/operation",
-            "zh": "运算",
-            "importance": 0.030926,
-            "relation": "belong_to",
+            "id": "可平面图/planar embeddable graph",
+            "zh": "可平面图",
+            "importance": 0.775744,
+            "relation": null,
+            "related": [
+              "平面嵌入"
+            ],
+            "children": [
+              {
+                "id": "平面图/planar graph",
+                "zh": "平面图",
+                "importance": 0.984791,
+                "relation": "belong_to",
+                "related": [
+                  "图的着色",
+                  "域着色",
+                  "对偶图",
+                  "点染色"
+                ],
+                "children": [
+                  {
+                    "id": "对偶图/dual graph",
+                    "zh": "对偶图",
+                    "importance": 1.0,
+                    "relation": "belong_to",
+                    "related": [
+                      "图的着色",
+                      "平面图",
+                      "简单图",
+                      "自环",
+                      "重边"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "边/edge",
+            "zh": "边",
+            "importance": 0.074868,
+            "relation": null,
             "related": [],
-            "children": []
+            "children": [
+              {
+                "id": "割边/cut edge",
+                "zh": "割边",
+                "importance": 0.046564,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "初始符号/initial symbols",
-        "zh": "初始符号",
-        "importance": 0.217983,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": []
       }
     ]
   },
-  "n_nodes": 30,
+  "roots": [
+    {
+      "id": "__lecture__/11",
+      "zh": "第 11 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.970883,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "图的着色/graph coloring",
+              "zh": "图的着色",
+              "importance": 0.970883,
+              "relation": null,
+              "related": [
+                "对偶图",
+                "平面图"
+              ],
+              "children": [
+                {
+                  "id": "点着色/vertex coloring",
+                  "zh": "点着色",
+                  "importance": 0.905103,
+                  "relation": "belong_to",
+                  "related": [
+                    "面着色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "面着色/face coloring",
+                  "zh": "面着色",
+                  "importance": 0.840099,
+                  "relation": "belong_to",
+                  "related": [
+                    "点着色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "边染色/edge coloring",
+                  "zh": "边染色",
+                  "importance": 0.291271,
+                  "relation": "belong_to",
+                  "related": [
+                    "点染色"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "地图着色/map coloring",
+                  "zh": "地图着色",
+                  "importance": 0.290328,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "可平面图/planar embeddable graph",
+              "zh": "可平面图",
+              "importance": 0.775744,
+              "relation": null,
+              "related": [
+                "平面嵌入"
+              ],
+              "children": [
+                {
+                  "id": "平面图/planar graph",
+                  "zh": "平面图",
+                  "importance": 0.984791,
+                  "relation": "belong_to",
+                  "related": [
+                    "图的着色",
+                    "域着色",
+                    "对偶图",
+                    "点染色"
+                  ],
+                  "children": [
+                    {
+                      "id": "对偶图/dual graph",
+                      "zh": "对偶图",
+                      "importance": 1.0,
+                      "relation": "belong_to",
+                      "related": [
+                        "图的着色",
+                        "平面图",
+                        "简单图",
+                        "自环",
+                        "重边"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "边/edge",
+              "zh": "边",
+              "importance": 0.074868,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "割边/cut edge",
+                  "zh": "割边",
+                  "importance": 0.046564,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 12,
   "max_depth": 4,
-  "orphan_count": 26,
+  "orphan_count": 0,
   "meta": {
-    "chapter": "第5章 谓词逻辑的等值和推理演算",
-    "root_id": "谓词/predicate",
-    "root_zh": "谓词",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 57,
-    "n_edges_raw": 65,
-    "n_hierarchy_candidates": 60,
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "图的着色/graph coloring",
+    "root_zh": "第 11 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 24,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 14,
     "attached_orphans": 0,
-    "alias_merged": 1
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "保持原有结构，仅将'边染色'改为'边着色'以统一术语，其余未做改动。",
+    "chapters": [
+      "第4章 平面图与图的着色"
+    ],
+    "llm_tune_notes": "保持原有结构，仅将'边染色'改为'边着色'以统一术语，其余未做改动。",
+    "chapter_candidates": [
+      "第4章 平面图与图的着色"
+    ]
   }
 }

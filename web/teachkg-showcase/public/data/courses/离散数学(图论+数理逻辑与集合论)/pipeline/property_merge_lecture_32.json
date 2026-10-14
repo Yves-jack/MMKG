@@ -1,0 +1,30 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "lecture",
+  "lecture_id": "32",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 2,
+  "decided": 2,
+  "failed": 0,
+  "workers": 6,
+  "decisions": {
+    "命题/proposition": {
+      "properties": [
+        "命题是谓词在特定语境下实例化后形成的陈述，其真假可被明确判断，因此是从谓词逻辑过渡到命题逻辑的桥梁。",
+        "真值是命题的固有属性，每个命题必须且只能有一个真值，即要么为真（T），要么为假（F），不存在其他可能。"
+      ],
+      "reason": "两条特性分别涉及命题的来源与真值属性，语义不重复，故保留为两条；对第一条补充了主语和逻辑关系，对第二条明确了真值的唯一性和排他性，使表述更完整通顺。",
+      "before_count": 2,
+      "after_count": 2
+    },
+    "逻辑公式/logical formula": {
+      "properties": [
+        "逻辑公式的不等值关系指两个公式在至少一种解释或赋值下真值不同，即它们的真值并非在所有情况下都相同，这是逻辑公式之间的一种重要性质。",
+        "Skolem范式是逻辑公式的一种特殊形式，通过引入Skolem函数消去存在量词而得到，常用于一阶逻辑的标准化处理。"
+      ],
+      "reason": "两条特性原本互补且不重复，分别说明不等值关系和Skolem范式，故保留两条并润色表述，使其更通顺具体。",
+      "before_count": 2,
+      "after_count": 2
+    }
+  }
+}

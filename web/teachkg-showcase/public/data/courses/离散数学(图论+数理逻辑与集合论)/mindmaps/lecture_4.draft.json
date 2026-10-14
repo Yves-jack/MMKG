@@ -1,0 +1,607 @@
+{
+  "lecture_id": "4",
+  "root": {
+    "id": "图表示法/graph representation",
+    "zh": "图表示法",
+    "importance": 0.900002,
+    "relation": null,
+    "related": [
+      "图的运算",
+      "算法设计"
+    ],
+    "children": [
+      {
+        "id": "邻接表/adjacency list",
+        "zh": "邻接表",
+        "importance": 0.988562,
+        "relation": "belong_to",
+        "related": [
+          "前驱节点",
+          "后继节点",
+          "正向表",
+          "逆向表",
+          "邻接矩阵",
+          "链表"
+        ],
+        "children": [
+          {
+            "id": "邻接表节点/adjacency list node",
+            "zh": "邻接表节点",
+            "importance": 0.202485,
+            "relation": "part_of",
+            "related": [
+              "终点",
+              "起点"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "正向表/forward star",
+        "zh": "正向表",
+        "importance": 0.897045,
+        "relation": "belong_to",
+        "related": [
+          "自环",
+          "邻接矩阵",
+          "邻接表",
+          "重边"
+        ],
+        "children": []
+      },
+      {
+        "id": "邻接矩阵/adjacency matrix",
+        "zh": "邻接矩阵",
+        "importance": 0.835053,
+        "relation": "belong_to",
+        "related": [
+          "正向表",
+          "逆向表",
+          "邻接表"
+        ],
+        "children": []
+      },
+      {
+        "id": "逆向表/inverse adjacency list",
+        "zh": "逆向表",
+        "importance": 0.711255,
+        "relation": "belong_to",
+        "related": [
+          "自环",
+          "邻接矩阵",
+          "邻接表",
+          "重边"
+        ],
+        "children": []
+      },
+      {
+        "id": "关联矩阵/incidence matrix",
+        "zh": "关联矩阵",
+        "importance": 0.670292,
+        "relation": "belong_to",
+        "related": [
+          "边列表"
+        ],
+        "children": []
+      },
+      {
+        "id": "边列表/edge list",
+        "zh": "边列表",
+        "importance": 0.594997,
+        "relation": "belong_to",
+        "related": [
+          "关联矩阵"
+        ],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "图表示法/graph representation",
+      "zh": "图表示法",
+      "importance": 0.900002,
+      "relation": null,
+      "related": [
+        "图的运算",
+        "算法设计"
+      ],
+      "children": [
+        {
+          "id": "邻接表/adjacency list",
+          "zh": "邻接表",
+          "importance": 0.988562,
+          "relation": "belong_to",
+          "related": [
+            "前驱节点",
+            "后继节点",
+            "正向表",
+            "逆向表",
+            "邻接矩阵",
+            "链表"
+          ],
+          "children": [
+            {
+              "id": "邻接表节点/adjacency list node",
+              "zh": "邻接表节点",
+              "importance": 0.202485,
+              "relation": "part_of",
+              "related": [
+                "终点",
+                "起点"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "正向表/forward star",
+          "zh": "正向表",
+          "importance": 0.897045,
+          "relation": "belong_to",
+          "related": [
+            "自环",
+            "邻接矩阵",
+            "邻接表",
+            "重边"
+          ],
+          "children": []
+        },
+        {
+          "id": "邻接矩阵/adjacency matrix",
+          "zh": "邻接矩阵",
+          "importance": 0.835053,
+          "relation": "belong_to",
+          "related": [
+            "正向表",
+            "逆向表",
+            "邻接表"
+          ],
+          "children": []
+        },
+        {
+          "id": "逆向表/inverse adjacency list",
+          "zh": "逆向表",
+          "importance": 0.711255,
+          "relation": "belong_to",
+          "related": [
+            "自环",
+            "邻接矩阵",
+            "邻接表",
+            "重边"
+          ],
+          "children": []
+        },
+        {
+          "id": "关联矩阵/incidence matrix",
+          "zh": "关联矩阵",
+          "importance": 0.670292,
+          "relation": "belong_to",
+          "related": [
+            "边列表"
+          ],
+          "children": []
+        },
+        {
+          "id": "边列表/edge list",
+          "zh": "边列表",
+          "importance": 0.594997,
+          "relation": "belong_to",
+          "related": [
+            "关联矩阵"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "有向道路/directed path",
+      "zh": "有向道路",
+      "importance": 0.858744,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "简单有向道路/simple directed path",
+          "zh": "简单有向道路",
+          "importance": 0.852626,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "道路/Path",
+              "zh": "道路",
+              "importance": 0.973448,
+              "relation": "belong_to",
+              "related": [
+                "回路",
+                "图的连通性",
+                "无向图",
+                "最短路径问题"
+              ],
+              "children": [
+                {
+                  "id": "简单道路/simple path",
+                  "zh": "简单道路",
+                  "importance": 0.917405,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "初级回路/elementary circuit",
+                      "zh": "初级回路",
+                      "importance": 0.32214,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "自环/self-loop",
+                      "zh": "自环",
+                      "importance": 0.247984,
+                      "relation": "belong_to",
+                      "related": [
+                        "正向表",
+                        "逆向表"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "回路/Circuit",
+                  "zh": "回路",
+                  "importance": 0.91721,
+                  "relation": "belong_to",
+                  "related": [
+                    "中国邮路",
+                    "偶数度条件",
+                    "无向图",
+                    "道路"
+                  ],
+                  "children": [
+                    {
+                      "id": "哈密顿回路/Hamiltonian Circuit",
+                      "zh": "哈密顿回路",
+                      "importance": 0.58783,
+                      "relation": "belong_to",
+                      "related": [
+                        "充分条件",
+                        "周游世界问题",
+                        "完全图",
+                        "必要条件",
+                        "旅行商问题"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "边/edge",
+                      "zh": "边",
+                      "importance": 0.093759,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "初级道路/elementary path",
+                  "zh": "初级道路",
+                  "importance": 0.789259,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "极长初级道路/maximal elementary path",
+                      "zh": "极长初级道路",
+                      "importance": 0.257541,
+                      "relation": "belong_to",
+                      "related": [
+                        "无向图"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "欧拉回路/Eulerian circuit",
+                  "zh": "欧拉回路",
+                  "importance": 0.626929,
+                  "relation": "belong_to",
+                  "related": [
+                    "中国邮路",
+                    "充要条件",
+                    "图的连通性",
+                    "欧拉定理",
+                    "节点度数"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "欧拉道路/Eulerian Path",
+                  "zh": "欧拉道路",
+                  "importance": 0.531825,
+                  "relation": "belong_to",
+                  "related": [
+                    "图的连通性",
+                    "欧拉定理",
+                    "节点度数"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "单个节点/single vertex",
+                  "zh": "单个节点",
+                  "importance": 0.071024,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "简单有向回路/simple directed circuit",
+              "zh": "简单有向回路",
+              "importance": 0.639237,
+              "relation": "belong_to",
+              "related": [],
+              "children": [
+                {
+                  "id": "初级有向回路/elementary directed circuit",
+                  "zh": "初级有向回路",
+                  "importance": 0.209699,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "有向回路/directed circuit",
+          "zh": "有向回路",
+          "importance": 0.756991,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "边序列/edge sequence",
+          "zh": "边序列",
+          "importance": 0.422801,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "无向图/undirected graph",
+      "zh": "无向图",
+      "importance": 0.819914,
+      "relation": null,
+      "related": [
+        "回路",
+        "有向图",
+        "极长初级道路",
+        "道路"
+      ],
+      "children": [
+        {
+          "id": "二分图/Bipartite Graph",
+          "zh": "二分图",
+          "importance": 0.271175,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "道路与回路问题/path and circuit problem",
+      "zh": "道路与回路问题",
+      "importance": 0.718325,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "旅行商问题/Traveling Salesman Problem",
+          "zh": "旅行商问题",
+          "importance": 0.579986,
+          "relation": "belong_to",
+          "related": [
+            "Hamilton回路问题",
+            "哈密顿回路",
+            "完全图",
+            "最短路径",
+            "遍历所有顶点"
+          ],
+          "children": []
+        },
+        {
+          "id": "最短路径问题/shortest path problem",
+          "zh": "最短路径问题",
+          "importance": 0.440966,
+          "relation": "belong_to",
+          "related": [
+            "道路"
+          ],
+          "children": []
+        },
+        {
+          "id": "中国邮路/Chinese Postman Problem",
+          "zh": "中国邮路",
+          "importance": 0.367656,
+          "relation": "belong_to",
+          "related": [
+            "回路",
+            "欧拉回路"
+          ],
+          "children": []
+        },
+        {
+          "id": "周游世界问题/round-the-world problem",
+          "zh": "周游世界问题",
+          "importance": 0.166186,
+          "relation": "belong_to",
+          "related": [
+            "十二面体游戏",
+            "哈密顿回路"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "图的连通性/Connectivity of Graph",
+      "zh": "图的连通性",
+      "importance": 0.579345,
+      "relation": null,
+      "related": [
+        "Warshall 算法",
+        "欧拉回路",
+        "欧拉道路",
+        "证明连通性的方法",
+        "道路",
+        "邻接矩阵法"
+      ],
+      "children": [
+        {
+          "id": "有向图的连通性/connectivity of directed graph",
+          "zh": "有向图的连通性",
+          "importance": 0.260896,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "弱连通/weak connectivity",
+              "zh": "弱连通",
+              "importance": 0.166186,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "强连通/strong connectivity",
+              "zh": "强连通",
+              "importance": 0.166186,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "证明连通性的方法/methods for proving connectivity",
+      "zh": "证明连通性的方法",
+      "importance": 0.427003,
+      "relation": null,
+      "related": [
+        "图的连通性"
+      ],
+      "children": [
+        {
+          "id": "求连通分量/finding connected components",
+          "zh": "求连通分量",
+          "importance": 0.166186,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "深度优先遍历/depth-first search",
+          "zh": "深度优先遍历",
+          "importance": 0.166186,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "先标号先检查方法/first-labeled first-examined method",
+          "zh": "先标号先检查方法",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "图的运算/graph operation",
+      "zh": "图的运算",
+      "importance": 0.39487,
+      "relation": null,
+      "related": [
+        "图表示法"
+      ],
+      "children": [
+        {
+          "id": "同构图/isomorphic graph",
+          "zh": "同构图",
+          "importance": 0.076664,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "补图/complement graph",
+          "zh": "补图",
+          "importance": 0.049915,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "中间状态/intermediate state",
+      "zh": "中间状态",
+      "importance": 0.316661,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "邻接点/adjacent vertex",
+          "zh": "邻接点",
+          "importance": 0.355421,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "孤立点/isolated vertex",
+          "zh": "孤立点",
+          "importance": 0.260264,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 47,
+  "max_depth": 5,
+  "orphan_count": 3,
+  "meta": {
+    "chapter": "第1章 图的基本概念与表示",
+    "root_id": "图表示法/graph representation",
+    "root_zh": "图表示法",
+    "virtual_root": false,
+    "n_trees": 8,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 72,
+    "n_edges_raw": 82,
+    "n_hierarchy_candidates": 53,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "lecture_id": "chapter:第11章 函数",
+  "root": {
+    "id": "__chapter__/函数",
+    "zh": "第11章 函数",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.627116,
+        "relation": null,
+        "related": [
+          "合成",
+          "映射",
+          "选择公理"
+        ],
+        "children": [
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.690803,
+            "relation": "belong_to",
+            "related": [
+              "关系",
+              "单值性",
+              "合成",
+              "等价关系",
+              "选择公理",
+              "集合"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "关系运算/operation on relations",
+        "zh": "关系运算",
+        "importance": 0.579551,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "投影/Projection",
+            "zh": "投影",
+            "importance": 0.408637,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "选择/Selection",
+            "zh": "选择",
+            "importance": 0.368724,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "乘积/product",
+            "zh": "乘积",
+            "importance": 0.0,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "特殊关系/special relation",
+        "zh": "特殊关系",
+        "importance": 0.282648,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.690803,
+            "relation": "belong_to",
+            "related": [
+              "关系",
+              "单值性",
+              "合成",
+              "等价关系",
+              "选择公理",
+              "集合"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/函数",
+      "zh": "第11章 函数",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "关系/relation",
+          "zh": "关系",
+          "importance": 0.627116,
+          "relation": null,
+          "related": [
+            "合成",
+            "映射",
+            "选择公理"
+          ],
+          "children": [
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.690803,
+              "relation": "belong_to",
+              "related": [
+                "关系",
+                "单值性",
+                "合成",
+                "等价关系",
+                "选择公理",
+                "集合"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "关系运算/operation on relations",
+          "zh": "关系运算",
+          "importance": 0.579551,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "投影/Projection",
+              "zh": "投影",
+              "importance": 0.408637,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "选择/Selection",
+              "zh": "选择",
+              "importance": 0.368724,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "乘积/product",
+              "zh": "乘积",
+              "importance": 0.0,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "特殊关系/special relation",
+          "zh": "特殊关系",
+          "importance": 0.282648,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.690803,
+              "relation": "belong_to",
+              "related": [
+                "关系",
+                "单值性",
+                "合成",
+                "等价关系",
+                "选择公理",
+                "集合"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 9,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第11章 函数",
+    "root_zh": "函数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "44"
+    ],
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
+    "n_trees": 1,
+    "llm_tidy_notes": "输入中无讲次层级，且未发现重复或需合并的碎片，故仅保留原结构，未做改动。",
+    "llm_merge": true,
+    "llm_merge_notes": "输入中无讲次层级，且未发现重复或需合并的碎片，故仅保留原结构，未做改动。"
+  }
+}
