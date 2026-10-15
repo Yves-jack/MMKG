@@ -82,7 +82,7 @@ export function StudentMasteryMindmap({
   compact?: boolean;
 }) {
   const [percent, setPercent] = useState(100);
-  const expandDepth = 3;
+  const [expandDepth, setExpandDepth] = useState(3);
   const [openPaths, setOpenPaths] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -138,6 +138,25 @@ export function StudentMasteryMindmap({
   };
   const setRequestedPercent = (value: number) =>
     setPercent(Math.max(0, Math.min(100, Math.round(value))));
+  const resetViewport = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    setDragging(false);
+    pointer.current = null;
+  };
+  const expandAll = () => {
+    setPercent(100);
+    setExpandDepth(doc.max_depth + 1);
+    setOpenPaths({});
+    resetViewport();
+  };
+  const resetMap = () => {
+    setPercent(100);
+    setExpandDepth(3);
+    setOpenPaths({});
+    resetViewport();
+    onClearSelect?.();
+  };
   const handlePointerDown = (event: PointerEvent<SVGSVGElement>) => {
     if (event.button !== 0) return;
     pointer.current = {
@@ -242,6 +261,12 @@ export function StudentMasteryMindmap({
             style={{ width: 62 }}
           />
           <span className={styles.percentValue}>%</span>
+          <button type="button" className={styles.controlButton} onClick={expandAll}>
+            全部展开
+          </button>
+          <button type="button" className={styles.controlButton} onClick={resetMap}>
+            重置
+          </button>
         </div>
       </div>
       {!packed.layout ? (
