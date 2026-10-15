@@ -545,10 +545,8 @@ export function MindmapPage() {
   const roleParam = String(sp.get("role") || "").trim();
   const requestedParentOrigin = String(sp.get("parent_origin") || "").trim();
   const [verifiedRole, setVerifiedRole] = useState("");
-  const isMasteryEmbed = isAiTeachingEmbed && (
-    ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim()) ||
-    (sp.get("mastery_view") === "1" && ["ta", "taenrollment", "teacher", "teacherenrollment"].includes(verifiedRole.toLowerCase().trim()))
-  );
+  const isMasteryEmbed = isAiTeachingEmbed && sp.get("mastery_view") === "1" &&
+    ["student", "studentenrollment", "ta", "taenrollment", "teacher", "teacherenrollment"].includes(verifiedRole.toLowerCase().trim());
   const compactMastery = isMasteryEmbed && sp.get("compact") === "1";
   const navId = isMasteryEmbed ? "course" : requestedNavId;
   const canEditMindmap = useMemo(

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useParams, useSearchParams } from "react-router-dom";
 import { AssetsPage } from "@/pages/AssetsPage";
 import { CourseHub } from "@/pages/CourseHub";
@@ -8,7 +8,6 @@ import { MindmapPage } from "@/pages/MindmapPage";
 import { ReviewPage } from "@/pages/ReviewPage";
 import { encodeCourseId } from "@/lib/course";
 import { applyEmbedTheme } from "@/styles/embedTheme";
-import { mmkgLogin } from "@/lib/integration/knowledgeResources";
 
 const DEFAULT_COURSE = "离散数学(图论+数理逻辑与集合论)";
 
@@ -41,35 +40,6 @@ function LegacyHubRedirect() {
   return <Navigate to={`/course/${encodeCourseId(DEFAULT_COURSE)}`} replace />;
 }
 
-/** Keep the existing AI-Teaching iframe URL, but give verified students a mindmap. */
-function CourseKgEntry() {
-  const [params] = useSearchParams();
-  const embed = String(params.get("embed") || "").trim();
-  const kgToken = String(params.get("kg_token") || "").trim();
-  const [role, setRole] = useState<"pending" | "student" | "other" | "denied">("pending");
-  useEffect(() => {
-    if (embed !== "ai-teaching") return;
-    if (!kgToken) {
-      setRole("denied");
-      return;
-    }
-    let active = true;
-    setRole("pending");
-    mmkgLogin(kgToken)
-      .then((claims) => {
-        if (!active) return;
-        const normalized = claims.role.toLowerCase().trim();
-        setRole(normalized === "student" || normalized === "studentenrollment" ? "student" : "other");
-      })
-      .catch(() => { if (active) setRole("denied"); });
-    return () => { active = false; };
-  }, [embed, kgToken]);
-  if (embed !== "ai-teaching") return <KgPage />;
-  if (role === "pending") return <p role="status">正在验证课程身份并加载思维导图…</p>;
-  if (role === "denied") return <p role="alert">课程身份验证失败，请从学生页面重新打开。</p>;
-  return role === "student" ? <MindmapPage /> : <KgPage />;
-}
-
 const routerBasename = (import.meta.env.BASE_URL || "/").replace(/\/$/, "") || undefined;
 
 export default function App() {
@@ -90,7 +60,7 @@ export default function App() {
           path="/course/:courseId/kg"
           element={<Navigate to="course" relative="path" replace />}
         />
-        <Route path="/course/:courseId/kg/course" element={<CourseKgEntry />} />
+        <Route path="/course/:courseId/kg/course" element={<KgPage />} />
         <Route path="/course/:courseId/kg/lecture/:lectureId" element={<KgPage />} />
         <Route path="/course/:courseId/kg/session/:sessionId" element={<KgPage />} />
 
