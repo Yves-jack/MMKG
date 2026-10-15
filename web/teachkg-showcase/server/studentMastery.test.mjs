@@ -105,3 +105,13 @@ test("ignores unrelated routes and rejects writes", async () => {
   assert.equal(write.status, 405);
   assert.equal(write.headers.allow, "GET");
 });
+
+
+test("preserves validated identity and anonymous class metadata", async () => {
+  const result = await request({fetchImpl: async () => response({course_id:"92311", mastery:{uuid:0}, scope:"class_average", learner_count:8, missing_records:"zero", knowledge_points:[{id:"uuid",name:"集合",mastery:0,studentId:"must-not-leak"}]})});
+  assert.equal(result.status,200);
+  assert.equal(result.body.scope,"class_average");
+  assert.equal(result.body.learner_count,8);
+  assert.deepEqual(result.body.knowledge_points,[{id:"uuid",name:"集合",mastery:0}]);
+  assert.doesNotMatch(JSON.stringify(result.body), /must-not-leak/);
+});

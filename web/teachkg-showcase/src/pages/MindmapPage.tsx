@@ -8,6 +8,7 @@ import {
   type MindmapDoc,
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
+import { bindMasteryToMindmap, masteryScore, masteryVisual, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
 import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
 import {
   groupChaptersByPart,
@@ -514,8 +515,11 @@ export function MindmapPage() {
   const [studentMastery, setStudentMastery] = useState<{
     identity: string;
     scores: Record<string, number>;
+    scope?: "personal" | "class_average";
+    learnerCount?: number;
   }>({ identity: "", scores: Object.create(null) });
   const [masteryMessage, setMasteryMessage] = useState("");
+  const [masteryRefresh, setMasteryRefresh] = useState(0);
   const mindUndoRef = useRef<(() => void) | null>(null);
   /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
   const skipNextDocLoadRef = useRef(false);
@@ -539,17 +543,20 @@ export function MindmapPage() {
   const roleParam = String(sp.get("role") || "").trim();
   const requestedParentOrigin = String(sp.get("parent_origin") || "").trim();
   const [verifiedRole, setVerifiedRole] = useState("");
-  const isStudentMasteryEmbed = isAiTeachingEmbed &&
-    ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim());
-  const navId = isStudentMasteryEmbed ? "course" : requestedNavId;
+  const isMasteryEmbed = isAiTeachingEmbed && (
+    ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim()) ||
+    (sp.get("mastery_view") === "1" && ["ta", "taenrollment", "teacher", "teacherenrollment"].includes(verifiedRole.toLowerCase().trim()))
+  );
+  const compactMastery = isMasteryEmbed && sp.get("compact") === "1";
+  const navId = isMasteryEmbed ? "course" : requestedNavId;
   const canEditMindmap = useMemo(
     () =>
-      !isStudentMasteryEmbed && canEditKnowledgeGraph({
+      !isMasteryEmbed && canEditKnowledgeGraph({
         embedMode,
         role: embedMode ? verifiedRole || mmkgCachedRole(kgLaunchToken) : roleParam,
         kgToken: kgLaunchToken,
       }),
-    [isStudentMasteryEmbed, embedMode, roleParam, verifiedRole, kgLaunchToken],
+    [isMasteryEmbed, embedMode, roleParam, verifiedRole, kgLaunchToken],
   );
   const items = index?.items || [];
 
@@ -626,12 +633,12 @@ export function MindmapPage() {
   }, [embedMode, kgLaunchToken]);
 
   useEffect(() => {
-    if (isStudentMasteryEmbed) setDetailCollapsed(true);
-  }, [isStudentMasteryEmbed]);
+    if (isMasteryEmbed) setDetailCollapsed(true);
+  }, [isMasteryEmbed]);
 
   useEffect(() => {
-    if (!isStudentMasteryEmbed) return;
-    setStudentMastery({ identity: "", scores: Object.create(null) });
+    if (!isMasteryEmbed) return;
+    setStudentMastery((previous) => previous.identity === masteryIdentity ? previous : { identity: "", scores: Object.create(null) });
     if (!resourceCourseId || !kgLaunchToken) {
       setMasteryMessage("缺少课程或访问凭据，无法读取掌握分数");
       return;
@@ -644,17 +651,13 @@ export function MindmapPage() {
     })
       .then(async (response) => {
         if (!response.ok) throw new Error(`掌握分数接口返回 ${response.status}`);
-        return response.json() as Promise<{ mastery?: Record<string, number> }>;
+        return response.json() as Promise<MasteryPayload>;
       })
       .then((payload) => {
         if (cancelled) return;
-        const next: Record<string, number> = Object.create(null);
-        for (const [id, raw] of Object.entries(payload.mastery || {})) {
-          const score = Number(raw);
-          if (id && Number.isFinite(score)) next[id] = Math.min(5, Math.max(0, score));
-        }
-        setStudentMastery({ identity: masteryIdentity, scores: next });
-        setMasteryMessage("");
+        const next = bindMasteryToMindmap(payload);
+        setStudentMastery({ identity: masteryIdentity, scores: next, scope: payload.scope, learnerCount: payload.learner_count });
+        setMasteryMessage(Object.keys(payload.mastery || {}).length ? "" : "当前课程暂无掌握度记录，完成练习后将在这里显示");
       })
       .catch((reason) => {
         if (cancelled) return;
@@ -662,7 +665,15 @@ export function MindmapPage() {
         setMasteryMessage(`掌握分数暂不可用：${reason instanceof Error ? reason.message : String(reason)}`);
       });
     return () => { cancelled = true; };
-  }, [isStudentMasteryEmbed, resourceCourseId, kgLaunchToken, masteryIdentity]);
+  }, [isMasteryEmbed, resourceCourseId, kgLaunchToken, masteryIdentity, masteryRefresh]);
+
+  useEffect(() => {
+    if (!isMasteryEmbed) return;
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === "visible") setMasteryRefresh((value) => value + 1);
+    }, 30_000);
+    return () => window.clearInterval(timer);
+  }, [isMasteryEmbed]);
 
   /** 仅在选中「章」导图时高亮对应章；选讲次不高亮章 */
   const selectedChapterNav = parseChapterNavId(navId) || "";
@@ -1066,7 +1077,7 @@ export function MindmapPage() {
     focusAppliedRef.current = "";
     let cancelled = false;
     (async () => {
-      if (isStudentMasteryEmbed && isCourseNavId(navId)) {
+      if (isMasteryEmbed && isCourseNavId(navId)) {
         const response = await fetch(courseDataUrl(courseId, "mindmaps/student_mastery_course.json"), { cache: "no-store" });
         if (response.ok) {
           const uploaded = await response.json() as MindmapDoc;
@@ -1077,7 +1088,7 @@ export function MindmapPage() {
     })()
       .then((d) => {
         if (cancelled) return;
-        if (isStudentMasteryEmbed) {
+        if (isMasteryEmbed) {
           setDoc(d);
           return;
         }
@@ -1116,7 +1127,7 @@ export function MindmapPage() {
     return () => {
       cancelled = true;
     };
-  }, [courseId, navId, index, catalog, lectureVariant, isStudentMasteryEmbed]);
+  }, [courseId, navId, index, catalog, lectureVariant, isMasteryEmbed]);
 
   // URL ?focus= / 图谱共享选中 → 选中同名导图节点并展开右栏
   useEffect(() => {
@@ -1143,7 +1154,7 @@ export function MindmapPage() {
   }, [selected, kgEntityId]);
 
   const titleText = (() => {
-    if (isStudentMasteryEmbed) return "知识点掌握思维导图";
+    if (isMasteryEmbed) return studentMastery.scope === "class_average" ? "全班平均掌握思维导图" : "知识点掌握思维导图";
     if (isCourseSkeletonNavId(navId)) return "整课骨架展示";
     if (isCourseNavId(navId)) return "整课思维导图";
     const ch = parseChapterNavId(navId);
@@ -1164,7 +1175,7 @@ export function MindmapPage() {
       detailFixedRightPx={detailCollapsed ? 32 : undefined}
       detailMinRightPx={220}
       detailInitialRightPx={340}
-      nav={!isStudentMasteryEmbed ? (
+      nav={!isMasteryEmbed ? (
         <aside className={shell.sidebar}>
           <div className={shell.sideHead}>
             <Link
@@ -1345,8 +1356,8 @@ export function MindmapPage() {
         </aside>
       ) : undefined}
       main={
-        <main className={shell.main}>
-          <header className={shell.topbar}>
+        <main className={shell.main} style={compactMastery ? { height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" } : undefined}>
+          {!compactMastery && <header className={shell.topbar}>
             <div className={shell.topbarText}>
               <h2>{titleText}</h2>
             </div>
@@ -1364,14 +1375,15 @@ export function MindmapPage() {
               </div>
             )}
 
-          </header>
+          </header>}
 
           {error && <p className="empty-hint">{error}</p>}
           {!doc && !error && <p className="empty-hint">加载导图…</p>}
 
           {doc && (
-            <div className={isStudentMasteryEmbed ? shell.canvasPlain : shell.canvasWrap}>
-              {isStudentMasteryEmbed ? <StudentMasteryMindmap
+            <div className={isMasteryEmbed ? shell.canvasPlain : shell.canvasWrap} style={compactMastery ? { flex: 1, minHeight: 0, display: "flex" } : undefined}>
+              {isMasteryEmbed ? <StudentMasteryMindmap
+                key={masteryIdentity}
                 doc={doc}
                 mastery={studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY}
                 selectedId={selected?.id || null}
@@ -1379,6 +1391,10 @@ export function MindmapPage() {
                 onSelect={selectMindmapNode}
                 onClearSelect={() => selectMindmapNode(null)}
                 message={masteryMessage}
+                scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")}
+                learnerCount={studentMastery.learnerCount}
+                compact={compactMastery}
+                onRefresh={() => setMasteryRefresh((value) => value + 1)}
               /> : <MindmapTree
                 doc={doc}
                 resetKey={mapKey}
@@ -1404,7 +1420,7 @@ export function MindmapPage() {
           )}
         </main>
       }
-      detail={
+      detail={compactMastery && detailCollapsed ? undefined :
         detailCollapsed ? (
           <aside className={kg.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -1437,6 +1453,7 @@ export function MindmapPage() {
             onOpenChange={setDetailPanelOpen}
             bodyClassName={kg.sideCardBody}
           >
+            {isMasteryEmbed && selected ? <p role="status">{studentMastery.scope === "class_average" ? "全班平均掌握度" : "我的掌握度"}：{masteryVisual(masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)).label}</p> : null}
             {selected && kgDetailStage && kgEntityId ? (
               <SelectionDetail
                 stage={kgDetailStage}

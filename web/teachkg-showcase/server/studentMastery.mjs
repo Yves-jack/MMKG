@@ -42,7 +42,29 @@ function parseMastery(payload, courseId) {
         || score < 0 || score > 5) return null;
     mastery[zh] = score;
   }
-  return { course_id: courseId, mastery };
+  const result = { course_id: courseId, mastery };
+  if (payload.scope !== undefined) {
+    if (!["personal", "class_average"].includes(payload.scope)) return null;
+    result.scope = payload.scope;
+  }
+  if (payload.learner_count !== undefined) {
+    if (!Number.isInteger(payload.learner_count) || payload.learner_count < 0) return null;
+    result.learner_count = payload.learner_count;
+  }
+  if (payload.missing_records === "zero") result.missing_records = "zero";
+  if (payload.knowledge_points !== undefined) {
+    if (!Array.isArray(payload.knowledge_points)) return null;
+    result.knowledge_points = [];
+    const seen = new Set();
+    for (const point of payload.knowledge_points) {
+      if (!point || typeof point.id !== "string" || typeof point.name !== "string"
+          || seen.has(point.id) || !Object.hasOwn(mastery, point.id)
+          || point.mastery !== mastery[point.id]) return null;
+      seen.add(point.id);
+      result.knowledge_points.push({ id: point.id, name: point.name, mastery: point.mastery });
+    }
+  }
+  return result;
 }
 
 export function studentMasteryMiddleware(env = process.env, fetchImpl = fetch) {

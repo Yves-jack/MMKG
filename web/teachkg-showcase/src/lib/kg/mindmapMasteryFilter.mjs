@@ -3,6 +3,8 @@
  * and never promotes a child past its original parent.
  */
 
+import { masteryScore } from "./mindmapMasteryBinding.mjs";
+
 const STATUS_ORDER = Object.freeze({
   learning: 0,
   mastered: 1,
@@ -25,7 +27,7 @@ function scoreFor(node, masteryByZh) {
     ? masteryByZh.get(label)
     : Object.prototype.hasOwnProperty.call(masteryByZh || {}, label)
       ? masteryByZh[label]
-      : undefined;
+      : masteryScore(node, masteryByZh);
   if (raw === undefined || raw === null || raw === "") {
     return { status: "unrecorded", score: null };
   }

@@ -68,3 +68,11 @@ AI-Teaching 现有 iframe 路径 `/course/:courseId/kg/course?embed=ai-teaching`
 ## 与旧 HTML 的关系
 
 `web/pipeline-showcase/index.template.html` 与 `data/viz/*.html` 仍可作离线备份；本应用以 JSON + React 为准。
+
+
+### 掌握思维导图：个人与班级均值
+
+- 学生原有课程图谱入口继续显示个人掌握思维导图；首页通过同一 `/mindmap` 页面嵌入，使用 `mastery_view=1&compact=1`。
+- 掌握度接口按已验证的签名身份决定范围：学生只读本人；助教/教师只读当前课程在读学生的匿名均值。班级分母为当前 Canvas 在读学生数，未记录学生按 0 计，不纳入助教练习记录。
+- `knowledge_points` 提供数据库 ID 与完整知识点名称的对应关系；导图按 ID 或唯一中文名称绑定，不做模糊匹配。0 分与无记录分别显示，颜色由薄弱的红色过渡至已掌握的绿色，掌握越高圆点越小。
+- 保留原始树结构的逐节点 +/−、双击和键盘展开/收起，顶栏可逐层或全部展开。折叠按原始节点路径记录，百分比筛选不会改写知识点身份。

@@ -1,7 +1,10 @@
-import { useMemo, useRef, useState, type PointerEvent, type WheelEvent } from "react";
+import { useMemo, useRef, useState, type PointerEvent, type WheelEvent, type CSSProperties } from "react";
 import type { MindmapDoc, MindmapTreeNode } from "./MindmapTree";
 import { filterMindmapByMastery } from "@/lib/kg/mindmapMasteryFilter.mjs";
+import { collapseMindmap, masteryScore, masteryVisual } from "@/lib/kg/mindmapMasteryBinding.mjs";
 import styles from "./StudentMasteryMindmap.module.css";
+
+type ViewNode = MindmapTreeNode & { __sourcePath?: number[]; __hasChildren?: boolean; __open?: boolean };
 
 type PlacedNode = {
   node: MindmapTreeNode;
@@ -23,7 +26,7 @@ type Bounds = { x: number; y: number; width: number; height: number };
 
 const ROW = 58;
 const SIBLING_GAP = 12;
-const LEVEL_GAP = [190, 160, 125, 108, 95];
+const LEVEL_GAP = [160, 130, 120, 110, 110];
 const FONT_FAMILY = '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 
 function fontSize(depth: number): number {
@@ -52,7 +55,7 @@ function childrenOf(node: MindmapTreeNode): MindmapTreeNode[] {
 
 function isDenseLeafGroup(node: MindmapTreeNode): boolean {
   const children = childrenOf(node);
-  return children.length > 4 && children.every((child) => childrenOf(child).length === 0);
+  return children.length > 4 && children.every((child) => childrenOf(child).length === 0 && !(child as ViewNode).__hasChildren);
 }
 
 function subtreeHeight(node: MindmapTreeNode, memo: WeakMap<MindmapTreeNode, number>): number {
@@ -113,7 +116,7 @@ function layoutMindmap(doc: MindmapDoc) {
 
   const makeEdge = (parent: PlacedNode, child: PlacedNode, key: string, leafCorridorX?: number) => {
     const side = child.side || 1;
-    const x1 = parent.depth === 0 ? side * (parent.width / 2 + 26) : parent.x + side * (parent.width + 52);
+    const x1 = parent.depth === 0 ? side * (parent.width / 2 + 26) : parent.x + side * (parent.width + 100);
     const x2 = child.x;
     const gap = Math.abs(x2 - x1);
     const c = Math.min(gap * 0.52, 100);
@@ -180,20 +183,14 @@ function layoutMindmap(doc: MindmapDoc) {
   let minY = -80;
   let maxY = 80;
   for (const placed of nodes) {
-    const left = placed.side === -1 ? placed.x - placed.width - 80 : placed.side === 1 ? placed.x : -placed.width / 2;
-    const right = placed.side === 1 ? placed.x + placed.width + 80 : placed.side === -1 ? placed.x : placed.width / 2;
+    const left = placed.side === -1 ? placed.x - placed.width - 120 : placed.side === 1 ? placed.x : -placed.width / 2;
+    const right = placed.side === 1 ? placed.x + placed.width + 120 : placed.side === -1 ? placed.x : placed.width / 2;
     minX = Math.min(minX, left);
     maxX = Math.max(maxX, right);
     minY = Math.min(minY, placed.y - placed.fontSize - 24);
     maxY = Math.max(maxY, placed.y + placed.fontSize + 24);
   }
   return { nodes, edges, domains, bounds: { x: minX - 80, y: minY - 80, width: maxX - minX + 160, height: maxY - minY + 160 } as Bounds };
-}
-
-function statusText(score: number | undefined): string {
-  if (score == null) return "暂无记录";
-  if (score === 0) return "未学习 · 0 分";
-  return score >= 4 ? `已掌握 · ${score.toFixed(2)} 分` : `学习中 · ${score.toFixed(2)} 分`;
 }
 
 export function StudentMasteryMindmap({
@@ -204,6 +201,10 @@ export function StudentMasteryMindmap({
   onSelect,
   onClearSelect,
   message,
+  scope = "personal",
+  learnerCount,
+  compact = false,
+  onRefresh,
 }: {
   doc: MindmapDoc;
   mastery: Readonly<Record<string, number>>;
@@ -212,8 +213,14 @@ export function StudentMasteryMindmap({
   onSelect?: (node: MindmapTreeNode) => void;
   onClearSelect?: () => void;
   message?: string;
+  scope?: "personal" | "class_average";
+  learnerCount?: number;
+  compact?: boolean;
+  onRefresh?: () => void;
 }) {
-  const [percent, setPercent] = useState(25);
+  const [percent, setPercent] = useState(100);
+  const [expandDepth, setExpandDepth] = useState(2);
+  const [openPaths, setOpenPaths] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -222,7 +229,15 @@ export function StudentMasteryMindmap({
     () => filterMindmapByMastery(doc, mastery, percent, { selectedId, selectedPath, balanceDomains: true }),
     [doc, mastery, percent, selectedId, selectedPath],
   );
-  const layout = useMemo(() => layoutMindmap(filtered.doc), [filtered.doc]);
+  const collapsedDoc = useMemo(() => collapseMindmap(filtered.doc, expandDepth, openPaths), [filtered.doc, expandDepth, openPaths]);
+  const layout = useMemo(() => layoutMindmap(collapsedDoc), [collapsedDoc]);
+  const counts = filtered.stats.totalByStatus;
+  const setDepth = (depth: number) => { setExpandDepth(depth); setOpenPaths({}); };
+  const toggleNode = (node: ViewNode) => {
+    if (!node.__hasChildren) return;
+    const key = node.__sourcePath?.join(".") || "";
+    setOpenPaths((previous) => ({ ...previous, [key]: !node.__open }));
+  };
   const fitted: Bounds = {
     x: layout.bounds.x + pan.x + layout.bounds.width * (1 - 1 / zoom) / 2,
     y: layout.bounds.y + pan.y + layout.bounds.height * (1 - 1 / zoom) / 2,
@@ -267,10 +282,18 @@ export function StudentMasteryMindmap({
   };
 
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root} ${compact ? styles.compact : ""}`}>
       <div className={styles.toolbar}>
-        <span className={styles.counts}>显示 {filtered.stats.visibleNodes} / {filtered.stats.totalNodes} 个节点</span>
+        <span className={styles.counts}>显示 {layout.nodes.length} / {filtered.stats.totalNodes} 个节点</span>
+        <div className={styles.summary} role="status" aria-label="掌握情况统计">
+          <span>{scope === "class_average" ? `全班平均 · ${learnerCount ?? 0} 名学生` : "我的掌握情况"}</span>
+          <span>已掌握 {counts.mastered}</span><span>学习中 {counts.learning}</span><span>未学习 {counts.unlearned}</span><span>暂无记录 {counts.unrecorded}</span>
+        </div>
         <div className={styles.controls}>
+          <button type="button" className={styles.controlButton} onClick={() => setDepth(Math.min(doc.max_depth + 1, expandDepth + 1))}>展开一层</button>
+          <button type="button" className={styles.controlButton} onClick={() => setDepth(Math.max(0, expandDepth - 1))}>收起一层</button>
+          <button type="button" className={styles.controlButton} onClick={() => setDepth(doc.max_depth + 1)}>全部展开</button>
+          {onRefresh ? <button type="button" className={styles.controlButton} onClick={onRefresh}>刷新分数</button> : null}
           <label className={styles.controlLabel} htmlFor="mindmap-visible-percent">显示比例</label>
           <input id="mindmap-visible-percent" className={styles.percentSlider} type="range" min="0" max="100" step="1" value={percent} onChange={(event) => setRequestedPercent(Number(event.target.value))} />
           <input className={styles.controlSelect} aria-label="显示节点百分比" type="number" min="0" max="100" step="1" value={percent} onChange={(event) => setRequestedPercent(Number(event.target.value))} style={{ width: 62 }} />
@@ -285,7 +308,7 @@ export function StudentMasteryMindmap({
           className={`${styles.viewport} ${dragging ? styles.dragging : ""}`}
           viewBox={`${fitted.x} ${fitted.y} ${fitted.width} ${fitted.height}`}
           role="img"
-          aria-label={`学生知识点掌握思维导图，显示 ${filtered.stats.visibleNodes} 个节点`}
+          aria-label={`${scope === "class_average" ? "全班平均" : "学生"}知识点掌握思维导图，显示 ${layout.nodes.length} 个节点`}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -298,49 +321,65 @@ export function StudentMasteryMindmap({
             return <path key={edge.key} d={edge.path} className={`${styles.edge} ${edge.depth === 0 ? styles.edgeTrunk : edge.depth === 1 ? styles.edgeMajor : styles.edgeBranch} ${domain ? branchClass(domain, edge.branch) : ""}`} />;
           })}
           {layout.nodes.map((placed, index) => {
-            const score = Object.prototype.hasOwnProperty.call(mastery, placed.node.zh) ? mastery[placed.node.zh] : undefined;
-            const sourcePath = (placed.node as MindmapTreeNode & { __sourcePath?: number[] }).__sourcePath;
-            const selected = selectedPath
-              ? sourcePath?.join(".") === selectedPath.join(".")
-              : placed.node.id === selectedId;
+            const node = placed.node as ViewNode;
+            const score = masteryScore(node, mastery);
+            const visual = masteryVisual(score);
+            const sourcePath = node.__sourcePath;
+            const selected = selectedPath ? sourcePath?.join(".") === selectedPath.join(".") : node.id === selectedId;
             const domain = layout.domains[placed.branch];
             const nodeClass = placed.depth === 0 ? styles.nodeRoot : placed.depth === 1 ? styles.nodeDomain : placed.depth === 2 ? styles.nodeChapter : "";
             const anchor = placed.side === -1 ? "end" : placed.side === 1 ? "start" : "middle";
             const start = placed.side === -1 ? -placed.width : placed.side === 1 ? 0 : -placed.width / 2;
             const end = start + placed.width;
-            const badgeX = placed.side === -1 ? start - 27 : end + 27;
-            const marker = score == null ? "?" : score === 0 ? "0" : score.toFixed(1);
-            return (
-              <g
-                key={`${placed.node.id}-${index}`}
-                className={`${styles.node} ${nodeClass} ${domain ? branchClass(domain, placed.branch) : ""} ${selected ? styles.nodeSelected : ""} ${score === 0 || score == null ? styles.masteryUnseen : ""}`}
-                transform={`translate(${placed.x} ${placed.y})`}
-                role="button"
-                tabIndex={0}
-                aria-label={`${placed.node.zh}，${statusText(score)}`}
-                onClick={(event) => { event.stopPropagation(); if (!pointer.current?.moved) onSelect?.(placed.node); }}
-                onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelect?.(placed.node); } }}
-              >
-                <title>{`${placed.node.zh} · ${statusText(score)}`}</title>
+            const badgeX = placed.side === -1 ? start - 31 : end + 31;
+            const toggleX = placed.side === -1 ? start - 80 : end + 80;
+            const marker = score == null ? "?" : score.toFixed(1);
+            const ringRadius = visual.radius + 4;
+            return <g
+              key={sourcePath?.join(".") || `${node.id}-${index}`}
+              className={`${styles.node} ${nodeClass} ${domain ? branchClass(domain, placed.branch) : ""} ${selected ? styles.nodeSelected : ""}`}
+              transform={`translate(${placed.x} ${placed.y})`}
+              style={{ "--mastery-color": visual.color } as CSSProperties}
+              data-node-id={node.id} data-node-path={sourcePath?.join(".")} data-mastery={visual.status} data-score={score}
+            >
+              <g role="button" tabIndex={0} aria-label={`${node.zh}，${visual.label}`}
+                onClick={(event) => { event.stopPropagation(); if (!pointer.current?.moved) onSelect?.(node); }}
+                onDoubleClick={(event) => { event.stopPropagation(); toggleNode(node); }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelect?.(node); }
+                  if (node.__hasChildren && ["ArrowRight", "ArrowLeft", "+", "-"].includes(event.key)) {
+                    event.preventDefault();
+                    setOpenPaths((previous) => ({ ...previous, [sourcePath?.join(".") || ""]: event.key === "ArrowRight" || event.key === "+" }));
+                  }
+                }}>
+                <title>{`${node.zh} · ${visual.label}${node.__hasChildren ? " · 双击展开/收起下层" : ""}`}</title>
                 {placed.depth === 0 ? <rect className={styles.rootCard} x={-placed.width / 2 - 26} y={-placed.fontSize * 0.72} width={placed.width + 52} height={placed.fontSize * 1.5} rx="16" /> : null}
                 <rect className={styles.hitTarget} x={start - 12} y={-placed.fontSize * 0.7} width={placed.width + 24} height={placed.fontSize * 1.6} />
-                <text x="0" y="0" textAnchor={anchor} dominantBaseline="middle">{placed.node.zh}</text>
+                <text x="0" y="0" textAnchor={anchor} dominantBaseline="middle">{node.zh}</text>
                 {placed.depth > 0 ? <path className={styles.underline} d={`M ${start} ${placed.fontSize * 0.75} L ${end} ${placed.fontSize * 0.75}`} /> : null}
-                {placed.depth > 0 ? (
-                  <g transform={`translate(${badgeX} 0)`}>
-                    <circle className={styles.masteryBadge} r="22" />
-                    <circle className={styles.masteryTrack} r="17" />
-                    {score != null && score > 0 ? <circle className={styles.masteryArc} r="17" strokeDasharray={`${2 * Math.PI * 17 * score / 5} ${2 * Math.PI * 17}`} transform="rotate(-90)" /> : null}
-                    <text className={styles.masteryText} textAnchor="middle" dominantBaseline="middle">{marker}</text>
-                  </g>
-                ) : null}
+                {placed.depth > 0 ? <g transform={`translate(${badgeX} 0)`}>
+                  <circle className={styles.masteryBadge} r={visual.radius} />
+                  <circle className={styles.masteryTrack} r={ringRadius} />
+                  {score != null && score > 0 ? <circle className={styles.masteryArc} r={ringRadius} strokeDasharray={`${2 * Math.PI * ringRadius * score / 5} ${2 * Math.PI * ringRadius}`} transform="rotate(-90)" /> : null}
+                  <text className={styles.masteryText} style={{ fontSize: `${Math.max(11, visual.radius * 0.8)}px` }} textAnchor="middle" dominantBaseline="middle">{marker}</text>
+                </g> : null}
               </g>
-            );
+              {node.__hasChildren ? <g role="button" tabIndex={0} className={styles.collapseButton}
+                aria-label={`${node.__open ? "收起" : "展开"}${node.zh}的下层节点`} aria-expanded={Boolean(node.__open)}
+                transform={`translate(${toggleX} 0)`}
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={(event) => { event.stopPropagation(); toggleNode(node); }}
+                onKeyDown={(event) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); toggleNode(node); } }}>
+                <circle r="16" /><text textAnchor="middle" dominantBaseline="middle">{node.__open ? "−" : "+"}</text>
+              </g> : null}
+            </g>;
           })}
         </svg>
       </div>
       <div className={styles.legend}>
-        <span className={styles.legendItem}>圆环：掌握分数 0–5</span>
+        <span className={styles.legendItem}>掌握分数 0–5：红色薄弱 → 绿色掌握，分数越高圆点越小；灰色 ? 为暂无记录</span>
+        <span className={styles.legendItem}>双击节点或点 ＋/− 展开、折叠下层</span>
+        {scope === "class_average" ? <span className={styles.legendItem}>按全班在读学生平均；未记录学生按 0 计</span> : null}
         <span className={styles.legendItem}>各主分支按比例显示；分支内优先保留学习中的薄弱节点</span>
         {message ? <span className={styles.caption}>{message}</span> : null}
       </div>

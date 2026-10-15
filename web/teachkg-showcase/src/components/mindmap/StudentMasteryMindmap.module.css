@@ -230,7 +230,7 @@
 }
 
 .masteryArc {
-  stroke: #458a72;
+  stroke: var(--mastery-color, #458a72);
   stroke-linecap: round;
 }
 
@@ -239,13 +239,13 @@
 }
 
 .masteryBadge {
-  fill: var(--map-card);
+  fill: var(--mastery-color, #9da7ae);
   stroke: #dce1e4;
   stroke-width: 1px;
 }
 
 .node .masteryText {
-  fill: #426252;
+  fill: #fff;
   font-size: 18px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -301,3 +301,16 @@
     min-height: 400px;
   }
 }
+
+.summary { display: flex; flex-wrap: wrap; gap: 5px 12px; font-size: 12px; color: var(--map-muted); }
+.collapseButton { cursor: pointer; }
+.collapseButton circle { fill: #fff; stroke: var(--branch-ink); stroke-width: 2; }
+.node .collapseButton text { fill: var(--branch-ink); font-size: 23px; font-weight: 500; }
+.collapseButton:hover circle, .collapseButton:focus-visible circle { fill: #f0eeee; stroke-width: 4; }
+.compact { height: 100%; }
+.compact .toolbar { padding: 7px 9px; gap: 6px; }
+.compact .controls { margin-left: 0; gap: 5px; }
+.compact .controlButton, .compact .controlSelect { font-size: 12px; min-height: 28px; padding: 3px 7px; }
+.compact .canvas { flex: 1; min-height: 200px; }
+.compact .viewport { height: 100%; min-height: 200px; }
+.compact .legend { font-size: 11px; padding: 4px 8px; }
