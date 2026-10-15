@@ -1,0 +1,297 @@
+{
+  "lecture_id": "8",
+  "root": {
+    "id": "二叉树/binary tree",
+    "zh": "二叉树",
+    "importance": 0.81403,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "最优二叉树/optimal binary tree",
+        "zh": "最优二叉树",
+        "importance": 0.867942,
+        "relation": "belong_to",
+        "related": [
+          "Huffman算法",
+          "哈夫曼算法",
+          "哈夫曼编码",
+          "最优编码",
+          "最小编码方式"
+        ],
+        "children": [
+          {
+            "id": "叶结点/leaf node",
+            "zh": "叶结点",
+            "importance": 0.289778,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "父结点/parent node",
+            "zh": "父结点",
+            "importance": 0.233308,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "根结点/root node",
+            "zh": "根结点",
+            "importance": 0.0,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "树叶顶点/leaf vertex",
+        "zh": "树叶顶点",
+        "importance": 0.183866,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "二叉树/binary tree",
+      "zh": "二叉树",
+      "importance": 0.81403,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "最优二叉树/optimal binary tree",
+          "zh": "最优二叉树",
+          "importance": 0.867942,
+          "relation": "belong_to",
+          "related": [
+            "Huffman算法",
+            "哈夫曼算法",
+            "哈夫曼编码",
+            "最优编码",
+            "最小编码方式"
+          ],
+          "children": [
+            {
+              "id": "叶结点/leaf node",
+              "zh": "叶结点",
+              "importance": 0.289778,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "父结点/parent node",
+              "zh": "父结点",
+              "importance": 0.233308,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "根结点/root node",
+              "zh": "根结点",
+              "importance": 0.0,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "树叶顶点/leaf vertex",
+          "zh": "树叶顶点",
+          "importance": 0.183866,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "贪心算法/greedy algorithm",
+      "zh": "贪心算法",
+      "importance": 0.790277,
+      "relation": null,
+      "related": [
+        "最小权值选取"
+      ],
+      "children": []
+    },
+    {
+      "id": "贪心策略/greedy strategy",
+      "zh": "贪心策略",
+      "importance": 0.548015,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "Prim算法/Prim's algorithm",
+          "zh": "Prim算法",
+          "importance": 0.348043,
+          "relation": "belong_to",
+          "related": [
+            "Kruskal算法",
+            "稠密图"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "结点总数/total node count",
+      "zh": "结点总数",
+      "importance": 0.382277,
+      "relation": null,
+      "related": [
+        "边数"
+      ],
+      "children": [
+        {
+          "id": "叶子结点数/leaf vertex count",
+          "zh": "叶子结点数",
+          "importance": 0.364887,
+          "relation": "part_of",
+          "related": [
+            "度为二的结点数"
+          ],
+          "children": []
+        },
+        {
+          "id": "度为一的结点数/degree-1vertex count",
+          "zh": "度为一的结点数",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "度为二的结点数/degree-2vertex count",
+          "zh": "度为二的结点数",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [
+            "叶子结点数",
+            "边数"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "道路/Path",
+      "zh": "道路",
+      "importance": 0.373355,
+      "relation": null,
+      "related": [
+        "图的连通性"
+      ],
+      "children": [
+        {
+          "id": "回路/Circuit",
+          "zh": "回路",
+          "importance": 0.175472,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "前缀码/prefix code",
+      "zh": "前缀码",
+      "importance": 0.325646,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "哈夫曼编码/Huffman coding",
+          "zh": "哈夫曼编码",
+          "importance": 0.47486,
+          "relation": "belong_to",
+          "related": [
+            "数据压缩",
+            "最优二叉树",
+            "权值"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "最优树/optimal tree",
+      "zh": "最优树",
+      "importance": 0.324806,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "最优分支/optimal branch",
+          "zh": "最优分支",
+          "importance": 0.364887,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "支撑树/Spanning Tree",
+      "zh": "支撑树",
+      "importance": 0.321962,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "最短树/Minimum Spanning Tree",
+          "zh": "最短树",
+          "importance": 0.510637,
+          "relation": "belong_to",
+          "related": [
+            "Kruskal算法",
+            "最长树"
+          ],
+          "children": []
+        },
+        {
+          "id": "最长树/maximum spanning tree",
+          "zh": "最长树",
+          "importance": 0.401817,
+          "relation": "belong_to",
+          "related": [
+            "Kruskal算法",
+            "最短树"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 22,
+  "max_depth": 3,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第3章 树",
+    "root_id": "二叉树/binary tree",
+    "root_zh": "二叉树",
+    "virtual_root": false,
+    "n_trees": 8,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 56,
+    "n_edges_raw": 43,
+    "n_hierarchy_candidates": 23,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

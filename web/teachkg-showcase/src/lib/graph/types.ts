@@ -110,6 +110,8 @@ export type PipelineStage = {
 };
 
 export type PipelineItem = {
+  /** Fluent narration supplied by the latest pipeline export. */
+  fluency_text?: string;
   cue_id: string;
   lecture_id?: string;
   start_sec?: number;

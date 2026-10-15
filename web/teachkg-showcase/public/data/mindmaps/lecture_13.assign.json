@@ -1,0 +1,68 @@
+{
+  "lecture_id": "13",
+  "candidates": [
+    "第1章 命题逻辑的基本概念"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "等值演算/equivalence calculus",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.75,
+      "reason": "命题等值演算是命题逻辑的核心内容，与本章主题紧密相关"
+    },
+    {
+      "subtree_root_id": "二值逻辑/two-valued logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "二值逻辑下的命题与复合命题正是命题逻辑基本概念的核心内容"
+    },
+    {
+      "subtree_root_id": "非标准逻辑/non-standard logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.6,
+      "reason": "非标准逻辑作为命题逻辑的扩展与对比，可归入本章介绍性内容"
+    },
+    {
+      "subtree_root_id": "本课程",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.7,
+      "reason": "课程概述中经典逻辑与四论属于命题逻辑的引入性背景"
+    },
+    {
+      "subtree_root_id": "发展初期/发展初期",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.55,
+      "reason": "逻辑发展历史中形式化概念与命题逻辑的起源相关"
+    },
+    {
+      "subtree_root_id": "奠基时期/奠基时期",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.55,
+      "reason": "逻辑奠基时期的形式化发展是命题逻辑形成的历史背景"
+    },
+    {
+      "subtree_root_id": "前史时期/前史时期",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.5,
+      "reason": "逻辑前史时期的形式化萌芽与命题逻辑的起源相关"
+    },
+    {
+      "subtree_root_id": "初创时期/初创时期",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.55,
+      "reason": "逻辑初创时期的形式化发展是命题逻辑形成的重要阶段"
+    },
+    {
+      "subtree_root_id": "谓词逻辑完备性定理/Predicate Logic Completeness Theorem",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.4,
+      "reason": "谓词逻辑完备性定理与命题逻辑基本概念关联较弱，但作为逻辑学背景可归入本章"
+    },
+    {
+      "subtree_root_id": "离散数学/discrete mathematics",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    }
+  ]
+}

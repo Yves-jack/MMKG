@@ -33,10 +33,129 @@
 }
 
 .detailHead h3 {
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
   color: var(--text, #e6edf3);
+}
+
+.detailHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.editBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.editToggle,
+.editToggleOn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted, #8b97a8);
+  cursor: pointer;
+  user-select: none;
+}
+
+.editToggleOn {
+  color: #9ecbff;
+}
+
+.editToggle input,
+.editToggleOn input {
+  margin: 0;
+}
+
+.saveBtn {
+  font: inherit;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(62, 207, 142, 0.45);
+  background: rgba(62, 207, 142, 0.14);
+  color: #6ee7b7;
+  cursor: pointer;
+}
+
+.saveBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--muted, #8b97a8);
+}
+
+.saveOk,
+.saveErr {
+  margin: -4px 0 8px;
+  font-size: 11px;
+}
+
+.saveOk {
+  color: #6ee7b7;
+}
+
+.saveErr {
+  color: #fca5a5;
+}
+
+.nameInput,
+.kindSelect {
+  font: inherit;
+  font-size: 12px;
+  color: var(--text, #e6edf3);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 3px 7px;
+  min-width: 0;
+}
+
+.nameInput {
+  flex: 1;
+}
+
+.kindSelect {
+  flex-shrink: 0;
+}
+
+.fieldArea {
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text, #e6edf3);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 6px 8px;
+  width: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.deleteBtn {
+  margin-left: auto;
+  font: inherit;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.deleteBtn:hover {
+  background: rgba(248, 113, 113, 0.22);
 }
 
 .kindTabs {

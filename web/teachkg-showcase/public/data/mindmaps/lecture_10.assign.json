@@ -1,0 +1,50 @@
+{
+  "lecture_id": "10",
+  "candidates": [
+    "第4章 平面图与图的着色"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "平面图判定定理",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.9,
+      "reason": "平面图判定定理是平面图章节的关键内容。"
+    },
+    {
+      "subtree_root_id": "图/Graph",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "平面性判定算法/planarity testing algorithm",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "简单图/simple graph",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "非连通图/disconnected graph",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "割边/cut edge",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "多重图/multigraph",
+      "chapter": "第4章 平面图与图的着色",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    }
+  ]
+}

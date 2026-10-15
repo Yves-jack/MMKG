@@ -6,9 +6,12 @@ import { courseDataUrl } from "@/lib/course";
 import {
   buildCourseMindmapFromChapters,
   findChapterItemsForLectures,
+  preferCatalogChapters,
+  scoreChapterAgainstTerms,
   sliceChaptersForLectures,
   type CoursePartInfo,
 } from "@/lib/kg/mindmapChapterMerge";
+import { loadLectureOutlineSignal } from "@/lib/kg/mindmapOutline";
 import { chapterFileSlug, type MindmapIndexItem } from "@/lib/kg/mindmapTypes";
 import type { AssetsChapterCatalog } from "@/lib/kg/assetsLibrary";
 import { groupChaptersByPart } from "@/lib/kg/assetsLibrary";
@@ -64,69 +67,36 @@ function catalogPartsForCourse(
   }));
 }
 
-/** 课总图：优先用已含分册层的静态 course.json；否则按章+目录重拼 */
+function catalogChapterNames(
+  catalog: AssetsChapterCatalog | null | undefined
+): string[] {
+  if (catalog?.chapter_order?.length) return catalog.chapter_order;
+  return (catalog?.parts || []).flatMap((p) =>
+    (p.chapters || []).map((c) => String(c.name || "").trim())
+  );
+}
+
+/** 课总图：按已有章文件拼接；默认保留分册；骨架为 分册→章（章为最外层叶） */
 export async function loadCourseMindmapStitched(
   courseId: string,
   items: MindmapIndexItem[],
   opts: {
     courseTitle?: string;
     catalog?: AssetsChapterCatalog | null;
-    /** 骨架展示：章为最外层，仅大纲层级 */
+    /** 骨架：分册 → 章（章下无节） */
     skeletonOnly?: boolean;
+    /** false 时去掉分册层（默认保留） */
+    keepParts?: boolean;
   } = {}
 ): Promise<MindmapDoc> {
   const catalog = opts.catalog ?? (await loadChapterCatalog(courseId));
   const skeletonOnly = Boolean(opts.skeletonOnly);
+  const keepParts = opts.keepParts !== false;
 
-  if (skeletonOnly) {
-    const saved = await fetchJson<MindmapDoc>(
-      courseDataUrl(courseId, "mindmaps/course_skeleton.json")
-    );
-    if (saved?.root || saved?.roots?.length) {
-      return {
-        ...saved,
-        lecture_id: "course:skeleton",
-        meta: {
-          ...saved.meta,
-          scope: "course",
-          skeleton_view: true,
-          composed_from: saved.meta?.composed_from || "chapters",
-        },
-      };
-    }
-  }
-
+  // 骨架始终按章文件重拼（带分册、章为叶），避免旧 course_skeleton.json 缺分册/多节
   const legacy = await fetchJson<MindmapDoc>(
     courseDataUrl(courseId, "mindmaps/course.json")
   );
-
-  const legacyRoot = legacy?.roots?.[0] || legacy?.root;
-  const legacyHasParts = (legacyRoot?.children || []).some((c) =>
-    String(c.id || "").startsWith("__part__/")
-  );
-  // 静态课总图已带分册且有多章时直接用，避免运行时缺目录/缺章文件拼成「只有两章」
-  // 骨架视图不走完整静态课图（含实体细节），改从章文件抽层级
-  if (!skeletonOnly && legacy && legacyHasParts) {
-    const nPartKids = (legacyRoot?.children || []).reduce(
-      (s, p) => s + (p.children?.length || 0),
-      0
-    );
-    if (nPartKids >= 2) {
-      return {
-        ...legacy,
-        meta: {
-          ...legacy.meta,
-          scope: "course",
-          source: legacy.meta?.source || "kg",
-          n_parts: (legacyRoot?.children || []).filter((c) =>
-            String(c.id || "").startsWith("__part__/")
-          ).length,
-          n_chapters: nPartKids,
-          composed_from: legacy.meta?.composed_from || "chapters",
-        },
-      };
-    }
-  }
 
   const chapters = items
     .filter(
@@ -145,12 +115,22 @@ export async function loadCourseMindmapStitched(
       return na - nb || ca.localeCompare(cb, "zh");
     });
 
-  const loaded: { chapter: string; doc: MindmapDoc }[] = [];
+  const loadedRaw: { chapter: string; doc: MindmapDoc }[] = [];
+  const seenPath = new Set<string>();
   for (const it of chapters) {
+    const path =
+      it.path ||
+      `mindmaps/chapter_${chapterFileSlug(it.chapter || it.root_zh || "")}.json`;
+    if (seenPath.has(path)) continue;
     const doc = await loadChapterMindmapFile(courseId, it);
     if (!doc) continue;
-    loaded.push({ chapter: String(it.chapter || it.root_zh || ""), doc });
+    seenPath.add(path);
+    loadedRaw.push({ chapter: String(it.chapter || it.root_zh || ""), doc });
   }
+
+  const catalogNames = catalogChapterNames(catalog);
+  // 只保留目录内章，去掉分册重映射重复（如集合论「第1章」与「第9章」并存）
+  const loaded = preferCatalogChapters(loadedRaw, catalogNames);
 
   if (loaded.length) {
     const title =
@@ -158,31 +138,28 @@ export async function loadCourseMindmapStitched(
       items.find((i) => i.lecture_id === "course")?.root_zh ||
       items.find((i) => i.lecture_id === "course")?.chapter ||
       courseId;
-    const hasSummary = loaded.some(
-      (c) => c.doc.meta?.source === "summary+kg"
-    );
-    const catalogNames =
-      catalog?.chapter_order?.length
-        ? catalog.chapter_order
-        : (catalog?.parts || []).flatMap((p) =>
-            (p.chapters || []).map((c) => String(c.name || "").trim())
-          );
-    // 整课只拼本学期已有章导图，不为未讲章补空骨架
-    if (catalogNames.length) {
-      const order = new Map(catalogNames.map((n, i) => [String(n), i]));
-      loaded.sort(
-        (a, b) =>
-          (order.get(a.chapter) ?? 10_000) - (order.get(b.chapter) ?? 10_000) ||
-          a.chapter.localeCompare(b.chapter, "zh")
-      );
-    }
-    const parts = catalogPartsForCourse(
-      catalog,
-      loaded.map((c) => c.chapter)
-    );
+    const hasOutline = loaded.some((c) => {
+      const s = c.doc.meta?.source;
+      return s === "outline_text" || s === "outline+kg";
+    });
+    const hasSummary = loaded.some((c) => c.doc.meta?.source === "summary+kg");
+    const courseSource = hasOutline
+      ? loaded.some((c) => c.doc.meta?.source === "outline+kg")
+        ? "outline+kg"
+        : "outline_text"
+      : hasSummary
+        ? "summary+kg"
+        : "kg";
+    const parts = keepParts
+      ? catalogPartsForCourse(
+          catalog,
+          loaded.map((c) => c.chapter)
+        )
+      : [];
     return buildCourseMindmapFromChapters(title, loaded, {
-      source: hasSummary ? "summary+kg" : "kg",
+      source: courseSource,
       parts,
+      flattenParts: !keepParts,
       hierarchyOnly: skeletonOnly,
       shallow: skeletonOnly ? false : undefined,
       lectureId: skeletonOnly ? "course:skeleton" : "course",
@@ -197,12 +174,7 @@ export async function loadCourseMindmapStitched(
       items.find((i) => i.lecture_id === "course")?.root_zh ||
       items.find((i) => i.lecture_id === "course")?.chapter ||
       courseId;
-    const names =
-      catalog?.chapter_order?.length
-        ? catalog.chapter_order
-        : (catalog?.parts || []).flatMap((p) =>
-            (p.chapters || []).map((c) => String(c.name || "").trim())
-          );
+    const names = catalogNames;
     const emptyChapters = (names || [])
       .filter(Boolean)
       .map((chapter) => ({
@@ -234,13 +206,16 @@ export async function loadCourseMindmapStitched(
         } satisfies MindmapDoc,
       }));
     if (emptyChapters.length) {
-      const parts = catalogPartsForCourse(
-        catalog,
-        emptyChapters.map((c) => c.chapter)
-      );
+      const parts = keepParts
+        ? catalogPartsForCourse(
+            catalog,
+            emptyChapters.map((c) => c.chapter)
+          )
+        : [];
       return buildCourseMindmapFromChapters(title, emptyChapters, {
         source: "summary+kg",
         parts,
+        flattenParts: !keepParts,
         hierarchyOnly: true,
         lectureId: "course:skeleton",
       });
@@ -258,8 +233,37 @@ export async function loadCourseMindmapStitched(
   };
 }
 
+/** 已落盘的笔记匹配结果（LLM 精炼 final 优先） */
+export async function tryLoadNoteMatchSaved(
+  courseId: string,
+  lectureIds: string[],
+  sessionId?: string | null
+): Promise<MindmapDoc | null> {
+  const lids = lectureIds.map(String);
+  const sid =
+    String(sessionId || "").trim() ||
+    (lids.length === 2 ? `${lids[0]}_${lids[1]}` : lids[0] || "");
+  if (!sid) return null;
+  const candidates = [
+    `mindmaps/note_match/session_${sid}.final.json`,
+    `mindmaps/note_match/session_${sid}.prelim.json`,
+  ];
+  if (lids.length === 1) {
+    candidates.push(
+      `mindmaps/note_match/lecture_${lids[0]}.final.json`,
+      `mindmaps/note_match/lecture_${lids[0]}.prelim.json`
+    );
+  }
+  for (const rel of candidates) {
+    const doc = await fetchJson<MindmapDoc>(courseDataUrl(courseId, rel));
+    if (doc?.root || doc?.roots?.length) return doc;
+  }
+  return null;
+}
+
 /**
- * 讲次/堂次：从覆盖这些讲的章导图裁剪；太稀或缺文件时返回 null（调用方回退投影）。
+ * 讲次/堂次：章内容 × 课次复习信号 → 相关/残缺子树拼接；太稀时返回 null。
+ * 若已有 note_match final/prelim 落盘，优先直接加载。
  */
 export async function tryLoadMindmapSlicedFromChapters(
   courseId: string,
@@ -268,26 +272,130 @@ export async function tryLoadMindmapSlicedFromChapters(
     items?: MindmapIndexItem[];
     entityIds?: Iterable<string>;
     sessionId?: string;
+    /** 跳过落盘结果，强制运行时重切 */
+    forceRuntimeSlice?: boolean;
   } = {}
 ): Promise<MindmapDoc | null> {
-  const items = opts.items || (await loadMindmapIndex(courseId));
-  const chapterItems = findChapterItemsForLectures(items, lectureIds);
-  if (!chapterItems.length) return null;
-
-  const loaded: { chapter: string; doc: MindmapDoc }[] = [];
-  for (const it of chapterItems) {
-    const doc = await loadChapterMindmapFile(courseId, it);
-    if (!doc) continue;
-    loaded.push({ chapter: String(it.chapter || ""), doc });
+  const lids = lectureIds.map(String);
+  if (!opts.forceRuntimeSlice) {
+    const saved = await tryLoadNoteMatchSaved(courseId, lids, opts.sessionId);
+    if (saved) return saved;
   }
-  if (!loaded.length) return null;
+  const items = opts.items || (await loadMindmapIndex(courseId));
+  const signal = await loadLectureOutlineSignal(
+    courseId,
+    lids,
+    null,
+    opts.sessionId
+  );
+  const matchTerms = signal.order || [];
+  const noteCorpus = signal.noteCorpus || "";
 
-  const hasSummary = loaded.some((c) => c.doc.meta?.source === "summary+kg");
-  const hasReview = loaded.some((c) => c.doc.meta?.source === "review+kg");
-  return sliceChaptersForLectures(loaded, lectureIds, {
-    entityIds: opts.entityIds,
-    sessionId: opts.sessionId,
-    source: hasSummary ? "summary+kg" : hasReview ? "review+kg" : "kg",
-    minNodes: 4,
-  });
+  const resolveSource = (docs: MindmapDoc[]) => {
+    const hasOutline = docs.some((d) => {
+      const s = d.meta?.source;
+      return s === "outline_text" || s === "outline+kg";
+    });
+    if (hasOutline) {
+      return docs.some((d) => d.meta?.source === "outline+kg")
+        ? ("outline+kg" as const)
+        : ("outline_text" as const);
+    }
+    if (docs.some((d) => d.meta?.source === "summary+kg")) return "summary+kg" as const;
+    if (docs.some((d) => d.meta?.source === "review+kg")) return "review+kg" as const;
+    return signal.source || ("kg" as const);
+  };
+
+  const allChapterItems = items.filter(
+    (i) => i.scope === "chapter" || String(i.lecture_id).startsWith("chapter:")
+  );
+
+  /** 与 noteMatchRefine.buildPrelim 一致：全章打分，供错挂过滤 / 回退挑选 */
+  const scoreAllChapters = async () => {
+    const scored: { chapter: string; doc: MindmapDoc; score: number }[] = [];
+    if (!matchTerms.length && !noteCorpus) return scored;
+    const catalog = await loadChapterCatalog(courseId);
+    const catalogNames = catalogChapterNames(catalog);
+    const candidates = preferCatalogChapters(
+      allChapterItems.map((it) => ({
+        chapter: String(it.chapter || it.root_zh || ""),
+        item: it,
+      })),
+      catalogNames
+    );
+    for (const { chapter, item } of candidates) {
+      const doc = await loadChapterMindmapFile(courseId, item);
+      if (!doc) continue;
+      const score = scoreChapterAgainstTerms(doc, matchTerms, { noteCorpus });
+      if (score > 0) scored.push({ chapter, doc, score });
+    }
+    scored.sort((a, b) => b.score - a.score);
+    return scored;
+  };
+
+  // 1) 索引 lecture_ids 命中的章 — 仍用笔记打分过滤，避免错挂串章
+  const chapterItems = findChapterItemsForLectures(items, lids);
+  if (chapterItems.length) {
+    let loaded: { chapter: string; doc: MindmapDoc }[] = [];
+    for (const it of chapterItems) {
+      const doc = await loadChapterMindmapFile(courseId, it);
+      if (!doc) continue;
+      loaded.push({ chapter: String(it.chapter || ""), doc });
+    }
+    if (loaded.length && (matchTerms.length || noteCorpus)) {
+      const global = await scoreAllChapters();
+      const top = global[0]?.score || 0;
+      const kept: { chapter: string; doc: MindmapDoc; score: number }[] = [];
+      for (const row of loaded) {
+        const score = scoreChapterAgainstTerms(row.doc, matchTerms, {
+          noteCorpus,
+        });
+        if (score >= Math.max(12, top * 0.22)) {
+          kept.push({ ...row, score });
+        }
+      }
+      if (kept.length) {
+        kept.sort((a, b) => b.score - a.score);
+        loaded = kept.slice(0, 4).map(({ chapter, doc }) => ({ chapter, doc }));
+      } else if (top > 0) {
+        loaded = global
+          .filter((x) => x.score >= Math.max(20, top * 0.35))
+          .slice(0, 4)
+          .map(({ chapter, doc }) => ({ chapter, doc }));
+      }
+    }
+    if (loaded.length) {
+      const sliced = sliceChaptersForLectures(loaded, lids, {
+        entityIds: opts.entityIds,
+        matchTerms,
+        noteCorpus,
+        sessionId: opts.sessionId,
+        source: resolveSource(loaded.map((l) => l.doc)),
+        minNodes: 3,
+      });
+      if (sliced) return sliced;
+    }
+  }
+
+  // 2) lids 缺失/过时或切片过稀：按课次关键词 / 笔记正文对目录章打分
+  if (!matchTerms.length && !noteCorpus) return null;
+  const scored = await scoreAllChapters();
+  const top = scored[0]?.score || 0;
+  const picked = scored
+    .filter((s) => s.score >= Math.max(20, top * 0.35))
+    .slice(0, 4);
+  if (!picked.length) return null;
+
+  return sliceChaptersForLectures(
+    picked.map((p) => ({ chapter: p.chapter, doc: p.doc })),
+    lids,
+    {
+      entityIds: opts.entityIds,
+      matchTerms,
+      noteCorpus,
+      sessionId: opts.sessionId,
+      source: resolveSource(picked.map((p) => p.doc)),
+      minNodes: 3,
+    }
+  );
 }

@@ -108,7 +108,6 @@ export function ResizableShell({
       left={nav}
       right={
         <ResizableSplit
-          key={rightFixed != null ? "detail-rail" : "detail-panel"}
           className={shell.shellInner}
           storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
           sizedPane="right"

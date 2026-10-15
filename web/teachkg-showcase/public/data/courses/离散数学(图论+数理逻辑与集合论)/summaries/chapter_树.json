@@ -1,172 +1,146 @@
 {
   "chapter": "第3章 树",
-  "source": "classroom_ppt",
+  "source": "manual_llm_text_first",
   "outline": [
-    "连通图，连通支/联通分量，生成树，分割度",
-    "图论第3章 树",
-    "树的定义",
-    "树的等价定义",
-    "树的其他性质",
-    "支撑树/生成树",
+    "树与森林",
+    "树的性质",
     "二叉树",
-    "二叉树的性质",
-    "Huffman树：最优二叉树",
-    "Huffman编码",
-    "Huffman算法：贪心算法",
-    "Huffman算法伪代码",
-    "定理1: 由Huffman算法得到的二叉树是最优二叉树",
-    "例：Huffman算法",
-    "最优二叉树-Huffman树",
-    "用Kruskal算法求下图中的最短树"
-  ],
-  "sections": [
-    {
-      "title": "连通图，连通支/联通分量，生成树，分割度",
-      "bare": "连通图，连通支/联通分量，生成树，分割度",
-      "num": null
-    },
-    {
-      "title": "图论第3章 树",
-      "bare": "图论第3章 树",
-      "num": null
-    },
-    {
-      "title": "树的定义",
-      "bare": "树的定义",
-      "num": null
-    },
-    {
-      "title": "树的等价定义",
-      "bare": "树的等价定义",
-      "num": null
-    },
-    {
-      "title": "树的其他性质",
-      "bare": "树的其他性质",
-      "num": null
-    },
-    {
-      "title": "支撑树/生成树",
-      "bare": "支撑树/生成树",
-      "num": null
-    },
-    {
-      "title": "二叉树",
-      "bare": "二叉树",
-      "num": null
-    },
-    {
-      "title": "二叉树的性质",
-      "bare": "二叉树的性质",
-      "num": null
-    },
-    {
-      "title": "Huffman树：最优二叉树",
-      "bare": "Huffman树：最优二叉树",
-      "num": null
-    },
-    {
-      "title": "Huffman编码",
-      "bare": "Huffman编码",
-      "num": null
-    },
-    {
-      "title": "Huffman算法：贪心算法",
-      "bare": "Huffman算法：贪心算法",
-      "num": null
-    },
-    {
-      "title": "Huffman算法伪代码",
-      "bare": "Huffman算法伪代码",
-      "num": null
-    },
-    {
-      "title": "定理1: 由Huffman算法得到的二叉树是最优二叉树",
-      "bare": "定理1: 由Huffman算法得到的二叉树是最优二叉树",
-      "num": null
-    },
-    {
-      "title": "例：Huffman算法",
-      "bare": "例：Huffman算法",
-      "num": null
-    },
-    {
-      "title": "最优二叉树-Huffman树",
-      "bare": "最优二叉树-Huffman树",
-      "num": null
-    },
-    {
-      "title": "用Kruskal算法求下图中的最短树",
-      "bare": "用Kruskal算法求下图中的最短树",
-      "num": null
-    }
+    "Huffman算法",
+    "最短树",
+    "最短树算法"
   ],
   "edges": [
     {
       "parent": "树",
-      "child": "连通图，连通支/联通分量，生成树，分割度"
+      "child": "树与森林"
+    },
+    {
+      "parent": "树与森林",
+      "child": "树"
+    },
+    {
+      "parent": "树与森林",
+      "child": "森林"
+    },
+    {
+      "parent": "树与森林",
+      "child": "割边"
+    },
+    {
+      "parent": "树与森林",
+      "child": "生成树"
+    },
+    {
+      "parent": "树与森林",
+      "child": "支撑树"
     },
     {
       "parent": "树",
-      "child": "图论第3章 树"
+      "child": "树的性质"
     },
     {
-      "parent": "树",
-      "child": "树的定义"
+      "parent": "树的性质",
+      "child": "边为割边"
     },
     {
-      "parent": "树",
-      "child": "树的等价定义"
-    },
-    {
-      "parent": "树",
-      "child": "树的其他性质"
-    },
-    {
-      "parent": "树",
-      "child": "支撑树/生成树"
+      "parent": "树的性质",
+      "child": "边数公式"
     },
     {
       "parent": "树",
       "child": "二叉树"
     },
     {
-      "parent": "树",
-      "child": "二叉树的性质"
+      "parent": "二叉树",
+      "child": "根树"
+    },
+    {
+      "parent": "二叉树",
+      "child": "二叉树"
+    },
+    {
+      "parent": "二叉树",
+      "child": "二叉树性质"
+    },
+    {
+      "parent": "二叉树",
+      "child": "带权路径总长"
+    },
+    {
+      "parent": "二叉树",
+      "child": "最优二叉树"
+    },
+    {
+      "parent": "二叉树",
+      "child": "Huffman树"
     },
     {
       "parent": "树",
-      "child": "Huffman树：最优二叉树"
+      "child": "Huffman算法"
+    },
+    {
+      "parent": "Huffman算法",
+      "child": "编码最短"
     },
     {
       "parent": "树",
-      "child": "Huffman编码"
+      "child": "最短树"
+    },
+    {
+      "parent": "最短树",
+      "child": "最短树定义"
+    },
+    {
+      "parent": "最短树",
+      "child": "赋权连通图"
+    },
+    {
+      "parent": "最短树",
+      "child": "总长最小"
     },
     {
       "parent": "树",
-      "child": "Huffman算法：贪心算法"
+      "child": "最短树算法"
     },
     {
-      "parent": "树",
-      "child": "Huffman算法伪代码"
+      "parent": "最短树算法",
+      "child": "Kruskal算法"
     },
     {
-      "parent": "树",
-      "child": "定理1: 由Huffman算法得到的二叉树是最优二叉树"
-    },
-    {
-      "parent": "树",
-      "child": "例：Huffman算法"
-    },
-    {
-      "parent": "树",
-      "child": "最优二叉树-Huffman树"
-    },
-    {
-      "parent": "树",
-      "child": "用Kruskal算法求下图中的最短树"
+      "parent": "最短树算法",
+      "child": "Prim算法"
     }
   ],
-  "outline_text": "连通图，连通支/联通分量，生成树，分割度\n图论第3章 树\n树的定义\n树的等价定义\n树的其他性质\n支撑树/生成树\n二叉树\n二叉树的性质\nHuffman树：最优二叉树\nHuffman编码\nHuffman算法：贪心算法\nHuffman算法伪代码\n定理1: 由Huffman算法得到的二叉树是最优二叉树\n例：Huffman算法\n最优二叉树-Huffman树\n用Kruskal算法求下图中的最短树",
-  "llm_notes": null
+  "sections": [
+    {
+      "title": "树与森林",
+      "bare": "树与森林"
+    },
+    {
+      "title": "树的性质",
+      "bare": "树的性质"
+    },
+    {
+      "title": "二叉树",
+      "bare": "二叉树"
+    },
+    {
+      "title": "Huffman算法",
+      "bare": "Huffman算法"
+    },
+    {
+      "title": "最短树",
+      "bare": "最短树"
+    },
+    {
+      "title": "最短树算法",
+      "bare": "最短树算法"
+    }
+  ],
+  "outline_text": "树与森林\n  树\n  森林\n  割边\n  生成树\n  支撑树\n树的性质\n  边为割边\n  边数公式\n二叉树\n  根树\n  二叉树\n  二叉树性质\n  带权路径总长\n  最优二叉树\n  Huffman树\nHuffman算法\n  编码最短\n最短树\n  最短树定义\n  赋权连通图\n  总长最小\n最短树算法\n  Kruskal算法\n  Prim算法",
+  "updatedAt": "2026-10-13T16:12:10.786Z",
+  "raw_draft": "树Review\nl 树与（森）林\nl 定义：树（不含回路的连通图），森林（不含回路的图），割边（连接两个连\n通支），生成树/支撑树（生成子图是树）\nl 树的性质（树的边都是割边，若森林F有n个结点和k个连通支则F有n-k 条边）\nl 二叉树\nl 定义：根树，二叉树，二叉树性质，带权路径总长WPL，最优二叉树-Huffman\n树（编码最短）\nl 算法：Huffman算法\nl 最短树\nl 最短树定义(赋权连通图的总长最小的支撑树)\nl 最短树算法：Kruskal算法(O(m+plogm),适用于稀疏图)\nPrim算法(O(n2)，适用于稠密图)",
+  "llm_notes": "抽取了树、森林、二叉树、最短树及其算法等核心概念，合并了同义术语（如生成树/支撑树），并归纳了隐含的算法小节。",
+  "llm_model": "deepseek-chat",
+  "incremental": false
 }

@@ -1,0 +1,701 @@
+{
+  "lecture_id": "13",
+  "root": {
+    "id": "本课程",
+    "zh": "本课程",
+    "importance": 0.831221,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "经典逻辑",
+        "zh": "经典逻辑",
+        "importance": 0.626022,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "四论",
+        "zh": "四论",
+        "importance": 0.606973,
+        "relation": "part_of",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "本课程",
+      "zh": "本课程",
+      "importance": 0.831221,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "经典逻辑",
+          "zh": "经典逻辑",
+          "importance": 0.626022,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "四论",
+          "zh": "四论",
+          "importance": 0.606973,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "等值演算/equivalence calculus",
+      "zh": "等值演算",
+      "importance": 0.655852,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "命题逻辑/propositional logic",
+          "zh": "命题逻辑",
+          "importance": 0.92256,
+          "relation": "part_of",
+          "related": [
+            "一阶谓词逻辑",
+            "个体变量",
+            "公理系统",
+            "命题等值演算",
+            "复合命题",
+            "推理演算"
+          ],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "命题等值演算/propositional equivalence calculus",
+          "zh": "命题等值演算",
+          "importance": 0.704171,
+          "relation": "belong_to",
+          "related": [
+            "命题逻辑",
+            "命题逻辑的基本概念",
+            "推理演算",
+            "谓词逻辑等值演算"
+          ],
+          "children": [
+            {
+              "id": "命题逻辑/propositional logic",
+              "zh": "命题逻辑",
+              "importance": 0.92256,
+              "relation": "part_of",
+              "related": [
+                "一阶谓词逻辑",
+                "个体变量",
+                "公理系统",
+                "命题等值演算",
+                "复合命题",
+                "推理演算"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "谓词逻辑等值演算/predicate logic equivalence calculus",
+          "zh": "谓词逻辑等值演算",
+          "importance": 0.590431,
+          "relation": "belong_to",
+          "related": [
+            "一阶谓词逻辑",
+            "命题等值演算"
+          ],
+          "children": [
+            {
+              "id": "一阶谓词逻辑/first-order predicate logic",
+              "zh": "一阶谓词逻辑",
+              "importance": 0.913927,
+              "relation": "part_of",
+              "related": [
+                "代入",
+                "命题逻辑",
+                "谓词逻辑推理演算",
+                "谓词逻辑等值演算"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "二值逻辑/two-valued logic",
+      "zh": "二值逻辑",
+      "importance": 0.554777,
+      "relation": null,
+      "related": [
+        "多值逻辑",
+        "模糊逻辑",
+        "真值"
+      ],
+      "children": [
+        {
+          "id": "命题/proposition",
+          "zh": "命题",
+          "importance": 0.776067,
+          "relation": "belong_to",
+          "related": [
+            "复合命题",
+            "悖论",
+            "感叹句",
+            "疑问句",
+            "谓词逻辑",
+            "量词"
+          ],
+          "children": [
+            {
+              "id": "命题逻辑/propositional logic",
+              "zh": "命题逻辑",
+              "importance": 0.92256,
+              "relation": "part_of",
+              "related": [
+                "一阶谓词逻辑",
+                "个体变量",
+                "公理系统",
+                "命题等值演算",
+                "复合命题",
+                "推理演算"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "复合命题/compound proposition",
+              "zh": "复合命题",
+              "importance": 0.380813,
+              "relation": "belong_to",
+              "related": [
+                "命题",
+                "命题逻辑",
+                "简单命题",
+                "联结词"
+              ],
+              "children": []
+            },
+            {
+              "id": "祈使句/imperative sentence",
+              "zh": "祈使句",
+              "importance": 0.249827,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "发展初期/发展初期",
+      "zh": "发展初期",
+      "importance": 0.357575,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "形式化/formalization",
+          "zh": "形式化",
+          "importance": 0.931791,
+          "relation": "part_of",
+          "related": [
+            "不完备性定理",
+            "哥德尔",
+            "数学方法",
+            "莱布尼茨",
+            "逻辑代数化",
+            "逻辑推理"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "非标准逻辑/non-standard logic",
+      "zh": "非标准逻辑",
+      "importance": 0.279082,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "模糊逻辑/fuzzy logic",
+          "zh": "模糊逻辑",
+          "importance": 0.351868,
+          "relation": "belong_to",
+          "related": [
+            "二值逻辑"
+          ],
+          "children": []
+        },
+        {
+          "id": "多值逻辑/multi-valued logic",
+          "zh": "多值逻辑",
+          "importance": 0.308529,
+          "relation": "belong_to",
+          "related": [
+            "二值逻辑"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "离散数学/discrete mathematics",
+      "zh": "离散数学",
+      "importance": 0.265451,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "逻辑/logic",
+          "zh": "逻辑",
+          "importance": 0.892395,
+          "relation": "part_of",
+          "related": [
+            "中国古代",
+            "已知",
+            "新知",
+            "春秋战国时期"
+          ],
+          "children": [
+            {
+              "id": "形式逻辑",
+              "zh": "形式逻辑",
+              "importance": 0.992366,
+              "relation": "belong_to",
+              "related": [
+                "推理"
+              ],
+              "children": [
+                {
+                  "id": "形式化/formalization",
+                  "zh": "形式化",
+                  "importance": 0.931791,
+                  "relation": "belong_to",
+                  "related": [
+                    "不完备性定理",
+                    "哥德尔",
+                    "数学方法",
+                    "莱布尼茨",
+                    "逻辑代数化",
+                    "逻辑推理"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题逻辑/propositional logic",
+                      "zh": "命题逻辑",
+                      "importance": 0.92256,
+                      "relation": "belong_to",
+                      "related": [
+                        "一阶谓词逻辑",
+                        "个体变量",
+                        "公理系统",
+                        "命题等值演算",
+                        "复合命题",
+                        "推理演算"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "公理系统/axiomatic system",
+                      "zh": "公理系统",
+                      "importance": 0.791763,
+                      "relation": "part_of",
+                      "related": [
+                        "公理",
+                        "命题逻辑",
+                        "命题逻辑的基本概念",
+                        "证明论"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "布尔逻辑/Boolean logic",
+                      "zh": "布尔逻辑",
+                      "importance": 0.766363,
+                      "relation": "part_of",
+                      "related": [
+                        "布尔代数",
+                        "计算机科学"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "谓词逻辑/Predicate Logic",
+                      "zh": "谓词逻辑",
+                      "importance": 0.670713,
+                      "relation": "part_of",
+                      "related": [
+                        "个体",
+                        "公理化方法",
+                        "命题"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "谓词逻辑/Predicate Logic",
+                      "zh": "谓词逻辑",
+                      "importance": 0.670713,
+                      "relation": "belong_to",
+                      "related": [
+                        "个体",
+                        "公理化方法",
+                        "命题"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "证明论/Proof Theory",
+                      "zh": "证明论",
+                      "importance": 0.587132,
+                      "relation": "part_of",
+                      "related": [
+                        "公理系统",
+                        "希尔伯特"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "集合论/Set Theory",
+                      "zh": "集合论",
+                      "importance": 0.503741,
+                      "relation": "part_of",
+                      "related": [
+                        "Russell 悖论"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "布尔代数/Boolean algebra",
+                      "zh": "布尔代数",
+                      "importance": 0.501348,
+                      "relation": "part_of",
+                      "related": [
+                        "布尔逻辑"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "模型论/Model Theory",
+                      "zh": "模型论",
+                      "importance": 0.375634,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "命题演算/Propositional Calculus",
+                      "zh": "命题演算",
+                      "importance": 0.368792,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "命题逻辑/propositional logic",
+                  "zh": "命题逻辑",
+                  "importance": 0.92256,
+                  "relation": "belong_to",
+                  "related": [
+                    "一阶谓词逻辑",
+                    "个体变量",
+                    "公理系统",
+                    "命题等值演算",
+                    "复合命题",
+                    "推理演算"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题逻辑的基本概念/basic concepts of propositional logic",
+                      "zh": "命题逻辑的基本概念",
+                      "importance": 0.952838,
+                      "relation": "part_of",
+                      "related": [
+                        "公理系统",
+                        "命题等值演算",
+                        "推理演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "推理演算/inference calculus",
+                      "zh": "推理演算",
+                      "importance": 0.673918,
+                      "relation": "belong_to",
+                      "related": [
+                        "命题等值演算",
+                        "命题逻辑",
+                        "命题逻辑的基本概念",
+                        "谓词逻辑推理演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "联结词/connective",
+                      "zh": "联结词",
+                      "importance": 0.623384,
+                      "relation": "part_of",
+                      "related": [
+                        "命题公式",
+                        "复合命题",
+                        "真值表"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "真值/truth value",
+                      "zh": "真值",
+                      "importance": 0.536814,
+                      "relation": "belong_to",
+                      "related": [
+                        "二值逻辑",
+                        "论域"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "命题公式/propositional formula",
+                      "zh": "命题公式",
+                      "importance": 0.328499,
+                      "relation": "belong_to",
+                      "related": [
+                        "真值表",
+                        "联结词"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "命题公式/propositional formula",
+                      "zh": "命题公式",
+                      "importance": 0.328499,
+                      "relation": "part_of",
+                      "related": [
+                        "真值表",
+                        "联结词"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "简单命题/simple proposition",
+                      "zh": "简单命题",
+                      "importance": 0.310807,
+                      "relation": "belong_to",
+                      "related": [
+                        "复合命题"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "谓词逻辑/Predicate Logic",
+                  "zh": "谓词逻辑",
+                  "importance": 0.670713,
+                  "relation": "belong_to",
+                  "related": [
+                    "个体",
+                    "公理化方法",
+                    "命题"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题逻辑/propositional logic",
+                      "zh": "命题逻辑",
+                      "importance": 0.92256,
+                      "relation": "belong_to",
+                      "related": [
+                        "一阶谓词逻辑",
+                        "个体变量",
+                        "公理系统",
+                        "命题等值演算",
+                        "复合命题",
+                        "推理演算"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "一阶谓词逻辑/first-order predicate logic",
+                      "zh": "一阶谓词逻辑",
+                      "importance": 0.913927,
+                      "relation": "belong_to",
+                      "related": [
+                        "代入",
+                        "命题逻辑",
+                        "谓词逻辑推理演算",
+                        "谓词逻辑等值演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "公理化谓词逻辑系统",
+                      "zh": "公理化谓词逻辑系统",
+                      "importance": 0.367548,
+                      "relation": "belong_to",
+                      "related": [
+                        "弗雷格"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                },
+                {
+                  "id": "形式推理/formal deduction",
+                  "zh": "形式推理",
+                  "importance": 0.351868,
+                  "relation": "belong_to",
+                  "related": [
+                    "数学"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "三段论/syllogism",
+                  "zh": "三段论",
+                  "importance": 0.134131,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "非形式逻辑",
+              "zh": "非形式逻辑",
+              "importance": 0.468776,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "谓词逻辑完备性定理/Predicate Logic Completeness Theorem",
+      "zh": "谓词逻辑完备性定理",
+      "importance": 0.239246,
+      "relation": null,
+      "related": [],
+      "children": []
+    },
+    {
+      "id": "奠基时期/奠基时期",
+      "zh": "奠基时期",
+      "importance": 0.162801,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "形式化/formalization",
+          "zh": "形式化",
+          "importance": 0.931791,
+          "relation": "part_of",
+          "related": [
+            "不完备性定理",
+            "哥德尔",
+            "数学方法",
+            "莱布尼茨",
+            "逻辑代数化",
+            "逻辑推理"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "前史时期/前史时期",
+      "zh": "前史时期",
+      "importance": 0.162801,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "形式化/formalization",
+          "zh": "形式化",
+          "importance": 0.931791,
+          "relation": "part_of",
+          "related": [
+            "不完备性定理",
+            "哥德尔",
+            "数学方法",
+            "莱布尼茨",
+            "逻辑代数化",
+            "逻辑推理"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "初创时期/初创时期",
+      "zh": "初创时期",
+      "importance": 0.162801,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "形式化/formalization",
+          "zh": "形式化",
+          "importance": 0.931791,
+          "relation": "part_of",
+          "related": [
+            "不完备性定理",
+            "哥德尔",
+            "数学方法",
+            "莱布尼茨",
+            "逻辑代数化",
+            "逻辑推理"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 42,
+  "max_depth": 5,
+  "orphan_count": 4,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "本课程",
+    "root_zh": "本课程",
+    "virtual_root": false,
+    "n_trees": 10,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 98,
+    "n_edges_raw": 118,
+    "n_hierarchy_candidates": 85,
+    "attached_orphans": 4,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "rule_draft"
+  }
+}

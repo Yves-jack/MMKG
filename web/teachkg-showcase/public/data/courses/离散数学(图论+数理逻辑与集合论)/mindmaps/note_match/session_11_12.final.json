@@ -1,0 +1,249 @@
+{
+  "lecture_id": "11_12",
+  "root": {
+    "id": "__lecture__/11_12",
+    "zh": "第 6 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第4章 平面图与图的着色",
+        "zh": "第4章 平面图与图的着色",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "平面图与图的着色"
+        ],
+        "children": [
+          {
+            "id": "__section__/平面图基本概念",
+            "zh": "平面图基本概念",
+            "importance": 1,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/平面图基本概念/平面图",
+                "zh": "平面图",
+                "importance": 0.984791,
+                "relation": "outline_concept",
+                "related": [
+                  "平面图"
+                ],
+                "children": [
+                  {
+                    "id": "__topic__/平面图基本概念/非平面图",
+                    "zh": "非平面图",
+                    "importance": 1,
+                    "relation": "outline_concept",
+                    "related": [
+                      "非平面图"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "__section__/平面图判定定理",
+            "zh": "平面图判定定理",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/平面图判定定理/Kuratowski定理",
+                "zh": "Kuratowski定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/平面图判定定理/Wagner定理",
+                "zh": "Wagner定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/对偶图",
+            "zh": "对偶图",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__section__/图的着色",
+                "zh": "图的着色",
+                "importance": 0.45,
+                "relation": "toc_section",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/图的着色/五色定理",
+                    "zh": "五色定理",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/图的着色/四色定理",
+                    "zh": "四色定理",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/11_12",
+      "zh": "第 6 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第4章 平面图与图的着色",
+          "zh": "第4章 平面图与图的着色",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "平面图与图的着色"
+          ],
+          "children": [
+            {
+              "id": "__section__/平面图基本概念",
+              "zh": "平面图基本概念",
+              "importance": 1,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/平面图基本概念/平面图",
+                  "zh": "平面图",
+                  "importance": 0.984791,
+                  "relation": "outline_concept",
+                  "related": [
+                    "平面图"
+                  ],
+                  "children": [
+                    {
+                      "id": "__topic__/平面图基本概念/非平面图",
+                      "zh": "非平面图",
+                      "importance": 1,
+                      "relation": "outline_concept",
+                      "related": [
+                        "非平面图"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "__section__/平面图判定定理",
+              "zh": "平面图判定定理",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/平面图判定定理/Kuratowski定理",
+                  "zh": "Kuratowski定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/平面图判定定理/Wagner定理",
+                  "zh": "Wagner定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/对偶图",
+              "zh": "对偶图",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__section__/图的着色",
+                  "zh": "图的着色",
+                  "importance": 0.45,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/图的着色/五色定理",
+                      "zh": "五色定理",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/图的着色/四色定理",
+                      "zh": "四色定理",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 12,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 6 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "11",
+      "12"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "11_12",
+      "model": "deepseek-chat",
+      "keep_count": 11,
+      "drop_count": 1,
+      "llm_note": "保留平面图、判定定理、对偶图、着色等主线节点，剔除与笔记无关的Hamilton回路节点。",
+      "prelim_nodes": 13,
+      "final_nodes": 12
+    }
+  }
+}

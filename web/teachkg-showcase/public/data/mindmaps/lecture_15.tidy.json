@@ -1,0 +1,423 @@
+{
+  "lecture_id": "15",
+  "root": {
+    "id": "命题/proposition",
+    "zh": "命题",
+    "importance": 0.552777,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "原子命题/atomic proposition",
+        "zh": "原子命题",
+        "importance": 0.58732,
+        "relation": "belong_to",
+        "related": [
+          "合式公式",
+          "复合命题"
+        ],
+        "children": []
+      },
+      {
+        "id": "复合命题/compound proposition",
+        "zh": "复合命题",
+        "importance": 0.504791,
+        "relation": "belong_to",
+        "related": [
+          "原子命题",
+          "联结词"
+        ],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.552777,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "原子命题/atomic proposition",
+          "zh": "原子命题",
+          "importance": 0.58732,
+          "relation": "belong_to",
+          "related": [
+            "合式公式",
+            "复合命题"
+          ],
+          "children": []
+        },
+        {
+          "id": "复合命题/compound proposition",
+          "zh": "复合命题",
+          "importance": 0.504791,
+          "relation": "belong_to",
+          "related": [
+            "原子命题",
+            "联结词"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "命题变项/propositional variable",
+      "zh": "命题变项",
+      "importance": 0.341877,
+      "relation": null,
+      "related": [
+        "命题公式",
+        "真值表"
+      ],
+      "children": [
+        {
+          "id": "命题公式/propositional formula",
+          "zh": "命题公式",
+          "importance": 0.43955,
+          "relation": "part_of",
+          "related": [
+            "命题变项",
+            "成分命题",
+            "真值表",
+            "解释",
+            "语义",
+            "语法"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.42908,
+      "relation": null,
+      "related": [
+        "命题公式",
+        "命题变项"
+      ],
+      "children": [
+        {
+          "id": "真值/truth value",
+          "zh": "真值",
+          "importance": 0.435126,
+          "relation": "part_of",
+          "related": [
+            "二值逻辑",
+            "解释"
+          ],
+          "children": [
+            {
+              "id": "真/true",
+              "zh": "真",
+              "importance": 0.057465,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "假/false",
+              "zh": "假",
+              "importance": 0.057465,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.780948,
+      "relation": "part_of",
+      "related": [
+        "合式公式",
+        "命题逻辑",
+        "复合命题"
+      ],
+      "children": [
+        {
+          "id": "二元联结词/binary connective",
+          "zh": "二元联结词",
+          "importance": 0.726155,
+          "relation": "belong_to",
+          "related": [
+            "否定词"
+          ],
+          "children": [
+            {
+              "id": "否定/Negation",
+              "zh": "否定",
+              "importance": 0.167334,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "合取/conjunction",
+              "zh": "合取",
+              "importance": 0.206119,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "析取/disjunction",
+              "zh": "析取",
+              "importance": 0.168071,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "蕴含/implication",
+              "zh": "蕴含",
+              "importance": 0.207326,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "否定词/negation operator",
+          "zh": "否定词",
+          "importance": 0.342261,
+          "relation": "belong_to",
+          "related": [
+            "二元联结词"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "可满足式/satisfiable formula",
+      "zh": "可满足式",
+      "importance": 0.882998,
+      "relation": null,
+      "related": [
+        "可满足性",
+        "矛盾式"
+      ],
+      "children": [
+        {
+          "id": "公式/formula",
+          "zh": "公式",
+          "importance": 0.868821,
+          "relation": "belong_to",
+          "related": [],
+          "children": [],
+          "copy": true
+        },
+        {
+          "id": "重言式/tautology",
+          "zh": "重言式",
+          "importance": 0.537433,
+          "relation": "belong_to",
+          "related": [
+            "可满足性",
+            "矛盾式"
+          ],
+          "children": [
+            {
+              "id": "定理/theorem",
+              "zh": "定理",
+              "importance": 0.246044,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "合取范式/conjunctive normal form",
+      "zh": "合取范式",
+      "importance": 0.799243,
+      "relation": null,
+      "related": [
+        "3-SAT",
+        "DPLL算法",
+        "SAT问题",
+        "WalkSAT算法"
+      ],
+      "children": [
+        {
+          "id": "析取式/disjunctive form",
+          "zh": "析取式",
+          "importance": 0.478743,
+          "relation": "part_of",
+          "related": [
+            "DPLL 算法",
+            "propagate"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "NP完全问题/NP-complete problem",
+      "zh": "NP完全问题",
+      "importance": 0.650857,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "SAT问题/SAT problem",
+          "zh": "SAT问题",
+          "importance": 0.781017,
+          "relation": "belong_to",
+          "related": [
+            "DPLL算法",
+            "WalkSAT算法",
+            "合取范式"
+          ],
+          "children": []
+        },
+        {
+          "id": "可满足性判断问题/SAT",
+          "zh": "可满足性判断问题",
+          "importance": 0.476829,
+          "relation": "belong_to",
+          "related": [
+            "可满足性"
+          ],
+          "children": [
+            {
+              "id": "3-SAT",
+              "zh": "3-SAT",
+              "importance": 0.553579,
+              "relation": "belong_to",
+              "related": [
+                "合取范式"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "回溯试错搜索算法",
+      "zh": "回溯试错搜索算法",
+      "importance": 0.628123,
+      "relation": null,
+      "related": [],
+      "children": []
+    },
+    {
+      "id": "propagate",
+      "zh": "propagate",
+      "importance": 0.55662,
+      "relation": null,
+      "related": [
+        "析取式"
+      ],
+      "children": [
+        {
+          "id": "DPLL算法/DPLL algorithm",
+          "zh": "DPLL算法",
+          "importance": 1.0,
+          "relation": "part_of",
+          "related": [
+            "SAT问题",
+            "合取范式",
+            "子句",
+            "文字",
+            "赋值"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "逆波兰式/Reverse Polish notation",
+      "zh": "逆波兰式",
+      "importance": 0.898818,
+      "relation": null,
+      "related": [
+        "中缀表达式",
+        "中缀表达式转后缀表达式算法",
+        "后缀表达式计算算法",
+        "数据栈"
+      ],
+      "children": [
+        {
+          "id": "操作数/operand",
+          "zh": "操作数",
+          "importance": 0.553579,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "中缀表达式转后缀表达式算法/algorithm for converting infix to postfix",
+          "zh": "中缀表达式转后缀表达式算法",
+          "importance": 0.551226,
+          "relation": "part_of",
+          "related": [
+            "逆波兰式"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "数据栈/data stack",
+      "zh": "数据栈",
+      "importance": 0.866484,
+      "relation": null,
+      "related": [
+        "中缀表达式",
+        "后缀表达式计算",
+        "逆波兰式"
+      ],
+      "children": [
+        {
+          "id": "后缀表达式计算算法/algorithm for evaluating postfix expression",
+          "zh": "后缀表达式计算算法",
+          "importance": 0.600726,
+          "relation": "part_of",
+          "related": [
+            "逆波兰式"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 34,
+  "max_depth": 2,
+  "orphan_count": 4,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "逆波兰式/Reverse Polish notation",
+    "root_zh": "逆波兰式",
+    "virtual_root": false,
+    "n_trees": 10,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 56,
+    "n_edges_raw": 72,
+    "n_hierarchy_candidates": 40,
+    "attached_orphans": 4,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "合并了重复的DPLL算法节点，将联结词下的命题逻辑节点移至根层级，调整了真值顺序，并删除了冗余的否定词节点。"
+  }
+}

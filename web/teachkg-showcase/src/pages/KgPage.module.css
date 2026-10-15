@@ -285,6 +285,36 @@
   cursor: pointer;
 }
 
+.sideJumpBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+  background: color-mix(in srgb, var(--bg-elev, #1c2330) 55%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sideJumpBar .kgChip {
+  color: var(--text, #e6edf3);
+  background: color-mix(in srgb, var(--accent, #3ecf8e) 14%, var(--bg, #0e1116));
+  border-color: color-mix(in srgb, var(--accent, #3ecf8e) 38%, var(--line, rgba(255, 255, 255, 0.14)));
+}
+
+.sideJumpBar .kgChip:hover:not(:disabled) {
+  color: var(--text, #e6edf3);
+  background: color-mix(in srgb, var(--accent, #3ecf8e) 24%, var(--bg, #0e1116));
+  border-color: color-mix(in srgb, var(--accent, #3ecf8e) 55%, transparent);
+}
+
+.sideJumpBar .kgChip:disabled {
+  color: var(--muted, #8b97a8);
+  background: color-mix(in srgb, var(--bg-elev, #1c2330) 70%, transparent);
+  border-color: var(--line, rgba(255, 255, 255, 0.1));
+}
+
 .kgChip {
   display: inline-flex;
   align-items: center;
@@ -689,14 +719,27 @@
   height: 100%;
 }
 
+.entitySearchField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .entitySearchInput {
   width: 100%;
-  padding: 6px 10px;
+  padding: 6px 28px 6px 10px;
   font-size: 12px;
   color: var(--text);
   background: var(--bg-elev);
   border: 1px solid var(--line);
   border-radius: 7px;
+}
+
+/* 隐藏部分浏览器自带清除钮，统一用自定义 × */
+.entitySearchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .entitySearchInput:focus {
@@ -706,6 +749,33 @@
 
 .entitySearchInput:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.entitySearchClear {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted, #9aa3ad);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.entitySearchClear:hover {
+  background: color-mix(in srgb, var(--line) 55%, transparent);
+  color: var(--text);
+}
+
+.entitySearchClear:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
 }
 

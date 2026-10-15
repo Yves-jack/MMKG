@@ -1,0 +1,56 @@
+{
+  "lecture_id": "14",
+  "candidates": [
+    "第1章 命题逻辑的基本概念"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "命题/proposition",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.95,
+      "reason": "命题、原子命题、复合命题及联结词等是命题逻辑基本概念的核心内容"
+    },
+    {
+      "subtree_root_id": "基本联结词/basic logical connectives",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.98,
+      "reason": "基本联结词（否定、合取、析取、蕴含）是命题逻辑基本概念的重要组成部分"
+    },
+    {
+      "subtree_root_id": "逻辑联结词/logical connective",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.9,
+      "reason": "逻辑联结词与命题联结词属于命题逻辑基本概念范畴"
+    },
+    {
+      "subtree_root_id": "真值表/truth table",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.95,
+      "reason": "真值表是命题逻辑中定义联结词和判断命题真值的基本工具"
+    },
+    {
+      "subtree_root_id": "完备集/complete set",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "完备集涉及联结词的完备性，属于命题逻辑基本概念"
+    },
+    {
+      "subtree_root_id": "一阶谓词逻辑/first-order predicate logic",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.6,
+      "reason": "一阶谓词逻辑虽属谓词逻辑，但此处仅提及谓词概念，与命题逻辑基本概念相关"
+    },
+    {
+      "subtree_root_id": "形式语言/Formal Language",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.7,
+      "reason": "形式语言和形式公式是命题逻辑形式化的基础，属于基本概念"
+    },
+    {
+      "subtree_root_id": "公式/formula",
+      "chapter": "第1章 命题逻辑的基本概念",
+      "confidence": 0.8,
+      "reason": "公式是命题逻辑的基本研究对象，属于基本概念"
+    }
+  ]
+}

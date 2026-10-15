@@ -1,0 +1,38 @@
+{
+  "lecture_id": "40",
+  "candidates": [
+    "第9章 集合"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "集合/set",
+      "chapter": "第9章 集合",
+      "confidence": 0.95,
+      "reason": "集合的内涵定义与子集公理属于集合论基础，对应第9章集合。"
+    },
+    {
+      "subtree_root_id": "集合论/set theory",
+      "chapter": "第9章 集合",
+      "confidence": 0.9,
+      "reason": "正则公理是集合论公理体系的一部分，属于集合论基础内容。"
+    },
+    {
+      "subtree_root_id": "广义交/generalized intersection",
+      "chapter": "第9章 集合",
+      "confidence": 0.85,
+      "reason": "广义交是集合运算的扩展，属于集合论基本概念。"
+    },
+    {
+      "subtree_root_id": "ZF 公理系统/ZF Axiom System",
+      "chapter": "第9章 集合",
+      "confidence": 0.9,
+      "reason": "ZF公理系统是集合论的公理化基础，属于集合论内容。"
+    },
+    {
+      "subtree_root_id": "悖论/paradox",
+      "chapter": "第9章 集合",
+      "confidence": 0.8,
+      "reason": "罗素悖论与集合论基础相关，属于集合论内容。"
+    }
+  ]
+}

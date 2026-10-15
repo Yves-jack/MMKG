@@ -16,14 +16,24 @@ import {
   type MindmapDoc,
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
-import { loadReviewLecture, type AppReviewPoint } from "@/lib/review/data";
+import {
+  getCachedEntityEvidenceIndex,
+  hitsFromEntityEvidenceIndex,
+  loadEntityEvidenceIndex,
+  loadReviewLecture,
+  type AppReviewPoint,
+} from "@/lib/review/data";
 import {
   VideoChapterPlayer,
   type VideoSegment,
 } from "@/components/review/VideoChapterPlayer";
 import { toMediaUrl } from "@/lib/kg/adaptToPipeline";
 import { saveFocus } from "@/lib/review/focus";
-import { enrichVideoSegments } from "@/lib/review/enrichVideoSegments";
+import {
+  enrichVideoSegments,
+  loadPipelineVideoSegments,
+  overlaySpokenCaptionsFromPipeline,
+} from "@/lib/review/enrichVideoSegments";
 import { loadLectureAsrCaptions, type AsrCaption } from "@/lib/review/asrCaptions";
 import { loadReviewLectureMindmap } from "@/lib/review/loadReviewClassroomGraph";
 import { resolveConceptId } from "@/lib/review/conceptIdentity";
@@ -200,6 +210,64 @@ function resolveExactSearchEntity(
   );
 }
 
+/** 检索框文案 → 知识点 id（精确匹配 catalog / URL kp） */
+function resolveKpFromSearchBox(
+  draft: string,
+  catalog: SearchEntity[],
+  kpParam: string | null,
+): string | null {
+  const hit = resolveExactSearchEntity(catalog, draft);
+  if (hit?.id) return hit.id;
+  const fromUrl = String(kpParam || "").trim();
+  return fromUrl || null;
+}
+
+/**
+ * 按播放进度取最近知识点：
+ * 1) 证据时间戳 ≤ 播放点，取最近；
+ * 2) 否则从当前字幕往前扫，匹配点名出现在字幕中的最近一条。
+ */
+function resolveKpNearPlayback(
+  points: ReviewPoint[],
+  captions: AsrCaption[],
+  sec: number,
+): string | null {
+  if (!Number.isFinite(sec) || sec < 0 || !points.length) return null;
+
+  let bestEv: { id: string; t: number } | null = null;
+  for (const p of points) {
+    for (const e of p.evidence || []) {
+      const t0 = Number(e.start_sec);
+      if (!Number.isFinite(t0) || t0 > sec + 0.75) continue;
+      if (!bestEv || t0 > bestEv.t) bestEv = { id: p.id, t: t0 };
+    }
+  }
+  if (bestEv) return bestEv.id;
+
+  if (!captions.length) return null;
+  let idx = -1;
+  for (let i = 0; i < captions.length; i++) {
+    if (captions[i].start - 0.45 <= sec) idx = i;
+    else break;
+  }
+  if (idx < 0) return null;
+
+  const ranked = [...points].sort(
+    (a, b) => String(b.zh || "").trim().length - String(a.zh || "").trim().length,
+  );
+  for (let i = idx; i >= 0; i--) {
+    const text = String(captions[i].text || "");
+    if (!text.trim()) continue;
+    for (const p of ranked) {
+      const zh = String(p.zh || "").trim();
+      const idZh = zhName(p.id);
+      if (zh.length >= 2 && text.includes(zh)) return p.id;
+      if (idZh.length >= 2 && idZh !== zh && text.includes(idZh)) return p.id;
+    }
+  }
+  return null;
+}
+
 function hitsFromPoints(
   lecturePoints: { lectureId: string; points: ReviewPoint[] }[],
   kp: string | null,
@@ -372,7 +440,10 @@ export function ReviewPage() {
   const [entityHits, setEntityHits] = useState<EntitySegmentHit[]>([]);
   const [entityHitsLoading, setEntityHitsLoading] = useState(false);
   const [searchCatalog, setSearchCatalog] = useState<SearchEntity[]>([]);
+  const [searchCatalogLoading, setSearchCatalogLoading] = useState(false);
+  const [evidenceIndexReady, setEvidenceIndexReady] = useState(false);
   const [entitySearchOpen, setEntitySearchOpen] = useState(false);
+  const [searchSubmitHint, setSearchSubmitHint] = useState<string | null>(null);
   const entitySearchWrapRef = useRef<HTMLDivElement | null>(null);
   const [showVideo, setShowVideo] = useState(() => {
     try {
@@ -389,13 +460,39 @@ export function ReviewPage() {
   const videoIdParam = String(searchParams.get("video_id") || "").trim();
   const requestedParentOrigin = String(searchParams.get("parent_origin") || "").trim();
   const kgLaunchToken = String(searchParams.get("kg_token") || "").trim();
-  const entityMode = Boolean((kpParam && String(kpParam).trim()) || qParam);
+  // 检索提交瞬间先记 needle，避免 setSearchParams 尚未写回时空过滤匹配「整课所有片段」
+  const [pendingSearch, setPendingSearch] = useState<{
+    kp?: string;
+    q?: string;
+  } | null>(null);
+  const effectiveKp = String(pendingSearch?.kp || kpParam || "").trim() || null;
+  const effectiveQ = String(pendingSearch?.q || qParam || "").trim();
+  const entityMode = Boolean(effectiveKp || effectiveQ);
 
-  // 图谱跳转带 kp / 检索 q 时，同步检索框展示（清除只靠框内叉）
   useEffect(() => {
-    const next = String(qParam || kpParam || "").trim();
-    setEntitySearchDraft(next);
-  }, [kpParam, qParam]);
+    if (!pendingSearch) return;
+    const pendingKp = String(pendingSearch.kp || "").trim();
+    const pendingQ = String(pendingSearch.q || "").trim();
+    if (pendingKp && String(kpParam || "").trim() === pendingKp) {
+      setPendingSearch(null);
+      return;
+    }
+    if (pendingQ && qParam === pendingQ) {
+      setPendingSearch(null);
+    }
+  }, [pendingSearch, kpParam, qParam]);
+
+  // URL 带 kp / q 时同步检索框（优先中文名）；无筛选时不打断用户正在输入
+  useEffect(() => {
+    if (qParam) {
+      setEntitySearchDraft(qParam);
+      return;
+    }
+    if (kpParam) {
+      const hit = searchCatalog.find((e) => e.id === kpParam);
+      setEntitySearchDraft(hit?.zh || String(kpParam));
+    }
+  }, [kpParam, qParam, searchCatalog]);
 
   const parentOrigin = useMemo(() => {
     if (typeof document === "undefined") return "";
@@ -410,9 +507,15 @@ export function ReviewPage() {
 
   const canvasCourseId = String(searchParams.get("resource_course_id") || "").trim();
   const watchAccumRef = useRef({ lastSec: 0, watched: 0, reported: false });
+  /** 当前播放头（秒），供「按知识点练习」回推知识点 */
+  const playbackSecRef = useRef(0);
+  /** 视频元数据就绪后再拉检索目录 / 导图 / 笔记网络缓存，避免占满连接导致片源卡住 */
+  const [mediaReady, setMediaReady] = useState(false);
   useEffect(() => {
     watchAccumRef.current = { lastSec: 0, watched: 0, reported: false };
-  }, [rawId, courseId, kpParam]);
+    playbackSecRef.current = 0;
+    setMediaReady(false);
+  }, [rawId, courseId, kpParam, activePart]);
   const reportVideoWatch = useCallback(
     (sec: number, durationSec: number) => {
       if (!parentOrigin || window.parent === window) return;
@@ -444,11 +547,9 @@ export function ReviewPage() {
 
   const expandList = () => {
     setListCollapsed(false);
-    setDetailCollapsed(true);
   };
   const expandNotes = () => {
     setDetailCollapsed(false);
-    setListCollapsed(true);
   };
   const collapseList = () => setListCollapsed(true);
   const collapseNotes = () => setDetailCollapsed(true);
@@ -464,12 +565,31 @@ export function ReviewPage() {
     [videoItems]
   );
 
+  const sessionHasVideo = useMemo(() => {
+    const byId = new Map(
+      videoItems.map((v) => [String(v.lecture_id), Boolean(v.class_video || v.ppt_video)]),
+    );
+    return (s: { lectureIds: string[] }) =>
+      s.lectureIds.some((id) => byId.get(String(id)));
+  }, [videoItems]);
+
+  const firstPlayableSessionId = useMemo(() => {
+    const hit = sessions.find((s) => sessionHasVideo(s));
+    return hit?.id || sessions[0]?.id || "";
+  }, [sessions, sessionHasVideo]);
+
   const session = useMemo(
     () => resolveReviewSession(rawId, sessions),
     [rawId, sessions]
   );
 
   const sessionId = session?.id || "";
+
+  useEffect(() => {
+    if (mediaReady) return;
+    const t = window.setTimeout(() => setMediaReady(true), 4500);
+    return () => window.clearTimeout(t);
+  }, [mediaReady, sessionId, activePart]);
 
   const parsedRoute = useMemo(() => parseSessionRouteId(rawId), [rawId]);
 
@@ -520,14 +640,14 @@ export function ReviewPage() {
   }, [courseId]);
 
   useEffect(() => {
-    if (!rawId && sessions.length) {
+    if (!rawId && firstPlayableSessionId) {
       const qs = searchParams.toString();
       navigate(
-        `${coursePath(courseId, `/apps/review/${sessions[0].id}`)}${qs ? `?${qs}` : ""}`,
+        `${coursePath(courseId, `/apps/review/${firstPlayableSessionId}`)}${qs ? `?${qs}` : ""}`,
         { replace: true },
       );
     }
-  }, [rawId, sessions, courseId, navigate, searchParams]);
+  }, [rawId, firstPlayableSessionId, courseId, navigate, searchParams]);
 
   useEffect(() => {
     if (!session) return;
@@ -559,120 +679,211 @@ export function ReviewPage() {
     setActivePart(session.lectureIds[0] || "");
   }, [session, lecParam, videoIdParam]);
 
-  // 检索候选：汇总各讲知识点（下拉用包含匹配，提交用精确匹配）
+  // 预计算索引：只缓存模块级 by_id；React 只存 catalog + ready（避免大对象 setState 卡死）
   useEffect(() => {
-    if (!courseId || !videoItems.length) {
+    if (!courseId) {
+      setEvidenceIndexReady(false);
       setSearchCatalog([]);
+      setSearchCatalogLoading(false);
       return;
     }
     let cancelled = false;
-    const load = async () => {
-      const loaded = await Promise.all(
-        videoItems.map(async (item) => {
-          try {
-            const doc = await loadReviewLecture(courseId, String(item.lecture_id));
-            return (doc?.points || []) as ReviewPoint[];
-          } catch {
-            return [] as ReviewPoint[];
+    setSearchCatalogLoading(true);
+    void (async () => {
+      try {
+        const idx = await loadEntityEvidenceIndex(courseId);
+        if (cancelled) return;
+        setEvidenceIndexReady(true);
+        if (idx?.entities?.length) {
+          setSearchCatalog(idx.entities.map((e) => ({ id: e.id, zh: e.zh })));
+        } else {
+          // 无全课索引时，仅用当前课 points 作目录，绝不扫 40+ 讲
+          const byId = new Map<string, SearchEntity>();
+          for (const p of points as ReviewPoint[]) {
+            const id = String(p.id || "").trim();
+            if (!id || byId.has(id)) continue;
+            byId.set(id, { id, zh: String(p.zh || zhName(id)).trim() || id });
           }
-        }),
-      );
-      if (cancelled) return;
-      const byId = new Map<string, SearchEntity>();
-      for (const pts of loaded) {
-        for (const p of pts) {
-          const id = String(p.id || "").trim();
-          if (!id || byId.has(id)) continue;
-          byId.set(id, { id, zh: String(p.zh || zhName(id)).trim() || id });
+          setSearchCatalog(
+            [...byId.values()].sort((a, b) => a.zh.localeCompare(b.zh, "zh")),
+          );
         }
+      } catch {
+        if (!cancelled) setEvidenceIndexReady(true);
+      } finally {
+        if (!cancelled) setSearchCatalogLoading(false);
       }
-      setSearchCatalog([...byId.values()].sort((a, b) => a.zh.localeCompare(b.zh, "zh")));
-    };
-    void load();
+    })();
     return () => {
       cancelled = true;
     };
-  }, [courseId, videoItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- catalog from index; points merge below
+  }, [courseId]);
+
+  // 当前课 points 到位后并入目录（不触发重扫）
+  useEffect(() => {
+    if (!points.length) return;
+    setSearchCatalog((prev) => {
+      const byId = new Map(prev.map((e) => [e.id, e]));
+      let changed = false;
+      for (const p of points) {
+        const id = String(p.id || "").trim();
+        if (!id || byId.has(id)) continue;
+        byId.set(id, { id, zh: String(p.zh || zhName(id)).trim() || id });
+        changed = true;
+      }
+      if (!changed) return prev;
+      return [...byId.values()].sort((a, b) => a.zh.localeCompare(b.zh, "zh"));
+    });
+  }, [points]);
 
   useEffect(() => {
-    if (!entityMode || !courseId || !videoItems.length) {
+    if (!entityMode || !courseId) {
       setEntityHits([]);
       setEntityHitsLoading(false);
       return;
     }
+    // 尚无明确 needle 时绝不扫「整课命中」（matchesEntityFilter 空条件会返回 true）
+    if (!effectiveKp && !effectiveQ) {
+      setEntityHits([]);
+      setEntityHitsLoading(true);
+      return;
+    }
+
     let cancelled = false;
-    setEntityHitsLoading(true);
-    const load = async () => {
-      const loaded = await Promise.all(
-        videoItems.map(async (item) => {
-          const id = String(item.lecture_id);
-          try {
-            const doc = await loadReviewLecture(courseId, id);
-            return { lectureId: id, points: (doc?.points || []) as ReviewPoint[] };
-          } catch {
-            return { lectureId: id, points: [] as ReviewPoint[] };
-          }
-        }),
-      );
-      if (cancelled) return;
-      let hits = hitsFromPoints(loaded, kpParam, qParam);
-      if (kgLaunchToken && kpParam) {
-        try {
-          const linked = await fetchLinkedKnowledgeResources({
-            courseId,
-            knowledgePointId: String(kpParam),
-            kgToken: kgLaunchToken,
-            nodeName: zhName(String(kpParam)),
-          });
-          const seen = new Set(hits.map((h) => h.key));
-          for (const res of linked.resources) {
-            if (res.resource_type !== "video") continue;
-            const start = Number(res.start_sec);
-            if (!Number.isFinite(start)) continue;
-            const videoId = String(res.metadata?.video_id || res.resource_id || "").trim();
-            let lectureId = String(res.metadata?.lecture_id || "").trim();
-            if (!lectureId && videoId) {
-              const n = Number(videoId);
-              lectureId = Number.isFinite(n) ? String(Math.floor(n) + 1) : videoId;
-            }
-            if (!lectureId) continue;
-            const key = `${lectureId}:${Math.floor(start)}:${kpParam}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-            const meta = res.metadata || {};
-            const text =
-              clipSnippet(String(meta.summary || "")) ||
-              clipSnippet(String(meta.asr_text || meta.text || "")) ||
-              clipSnippet(String(res.content || "")) ||
-              clipSnippet(String(res.title || "")) ||
-              zhName(String(kpParam));
-            hits.push({
-              key,
-              lectureId,
-              start_sec: start,
-              end_sec: res.end_sec,
-              text,
-              pointId: String(kpParam),
-              pointZh: zhName(String(kpParam)),
-            });
-          }
-          hits.sort(
-            (a, b) =>
-              Number(a.lectureId) - Number(b.lectureId) ||
-              a.start_sec - b.start_sec,
-          );
-        } catch {
-          /* keep local evidence hits */
-        }
-      }
-      setEntityHits(hits);
+    const toHits = (
+      rows: {
+        lecture_id?: string;
+        lectureId?: string;
+        start_sec: number;
+        end_sec?: number | null;
+        text: string;
+        point_id?: string;
+        pointId?: string;
+        point_zh?: string;
+        pointZh?: string;
+      }[],
+    ): EntitySegmentHit[] =>
+      rows.map((h) => {
+        const lectureId = String(h.lecture_id || h.lectureId || "");
+        const pointId = String(h.point_id || h.pointId || effectiveKp || effectiveQ);
+        const start = Number(h.start_sec) || 0;
+        return {
+          key: `${lectureId}:${Math.floor(start)}:${pointId}`,
+          lectureId,
+          start_sec: start,
+          end_sec: h.end_sec,
+          text: String(h.text || ""),
+          pointId,
+          pointZh: String(h.point_zh || h.pointZh || zhName(pointId)),
+        };
+      });
+
+    const instant = hitsFromPoints(
+      [
+        {
+          lectureId: activePart || sessionId || "",
+          points: points as ReviewPoint[],
+        },
+      ],
+      effectiveKp,
+      effectiveQ,
+    );
+    // 先出当前课，避免等待索引时像卡住
+    if (instant.length) {
+      setEntityHits(instant);
       setEntityHitsLoading(false);
-    };
-    void load();
+    } else {
+      setEntityHitsLoading(true);
+    }
+
+    void (async () => {
+      // 直接 await 索引（模块缓存命中则几乎瞬时），不依赖 ready/cache 竞态
+      const idx =
+        getCachedEntityEvidenceIndex(courseId) ||
+        (await loadEntityEvidenceIndex(courseId));
+      if (cancelled) return;
+      if (idx && !evidenceIndexReady) setEvidenceIndexReady(true);
+      if (idx?.entities?.length) {
+        setSearchCatalog((prev) =>
+          prev.length >= idx.entities.length
+            ? prev
+            : idx.entities.map((e) => ({ id: e.id, zh: e.zh })),
+        );
+      }
+      const indexed = hitsFromEntityEvidenceIndex(idx, effectiveKp, effectiveQ);
+      const hits = indexed ? toHits(indexed) : [];
+      const shown = hits.length ? hits : instant;
+      setEntityHits(shown);
+      setEntityHitsLoading(false);
+
+      if (!kgLaunchToken || !effectiveKp) return;
+      try {
+        const linked = await Promise.race([
+          fetchLinkedKnowledgeResources({
+            courseId,
+            knowledgePointId: String(effectiveKp),
+            kgToken: kgLaunchToken,
+            nodeName: zhName(String(effectiveKp)),
+          }),
+          new Promise<null>((resolve) => setTimeout(() => resolve(null), 2000)),
+        ]);
+        if (cancelled || !linked) return;
+        const next = [...shown];
+        const seen = new Set(next.map((h) => h.key));
+        for (const res of linked.resources) {
+          if (res.resource_type !== "video") continue;
+          const start = Number(res.start_sec);
+          if (!Number.isFinite(start)) continue;
+          const videoId = String(
+            res.metadata?.video_id || res.resource_id || "",
+          ).trim();
+          let lectureId = String(
+            res.metadata?.lesson_id || res.metadata?.lecture_id || "",
+          ).trim();
+          if (!lectureId && videoId) {
+            const n = Number(videoId);
+            lectureId = Number.isFinite(n)
+              ? String(Math.floor(n) + 1)
+              : videoId;
+          }
+          if (!lectureId) continue;
+          const key = `${lectureId}:${Math.floor(start)}:${effectiveKp}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          const meta = res.metadata || {};
+          const text =
+            clipSnippet(String(meta.summary || "")) ||
+            clipSnippet(String(meta.asr_text || meta.text || "")) ||
+            clipSnippet(String(res.content || "")) ||
+            clipSnippet(String(res.title || "")) ||
+            zhName(String(effectiveKp));
+          next.push({
+            key,
+            lectureId,
+            start_sec: start,
+            end_sec: res.end_sec,
+            text,
+            pointId: String(effectiveKp),
+            pointZh: zhName(String(effectiveKp)),
+          });
+        }
+        next.sort(
+          (a, b) =>
+            Number(a.lectureId) - Number(b.lectureId) ||
+            a.start_sec - b.start_sec,
+        );
+        if (!cancelled) setEntityHits(next);
+      } catch {
+        /* keep local */
+      }
+    })();
+
     return () => {
       cancelled = true;
     };
-  }, [entityMode, courseId, videoItems, kpParam, qParam, kgLaunchToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entityMode, courseId, effectiveKp, effectiveQ, kgLaunchToken, activePart, sessionId]);
 
   const sessionLectureKey = session?.lectureIds?.join("_") || "";
 
@@ -699,13 +910,12 @@ export function ReviewPage() {
     };
     const bootParts: SessionPart[] = lectureIds.map((id) => {
       const item = videoItems.find((v) => String(v.lecture_id) === id);
-      const fallbackClass = `data/raw/${courseId}/video/class/${id}_0.mp4`;
-      const fallbackPpt = `data/raw/${courseId}/video/ppt/${id}_1.mp4`;
+      // 勿用约定路径兜底：无片源时 null，避免 404 URL 进播放器导致切换课次崩溃
       return {
         lectureId: id,
         title: item?.title,
-        class_video: item?.class_video || fallbackClass,
-        ppt_video: item?.ppt_video || fallbackPpt,
+        class_video: item?.class_video || null,
+        ppt_video: item?.ppt_video || null,
         duration_sec: item?.duration_sec ?? null,
         segments: [],
       };
@@ -716,8 +926,7 @@ export function ReviewPage() {
     setSessionHeading(sessionTitle(headingSession, bootParts.find((p) => p.title)?.title));
     setLoading(false);
     if (!bootHasVideo) {
-      setError("缺少本堂课复习数据与视频，请先运行 export_lecture_review.py");
-      return;
+      setError("本堂课暂无课堂视频文件");
     }
 
     const load = async () => {
@@ -735,19 +944,31 @@ export function ReviewPage() {
         );
         if (cancelled) return;
         const ok = loaded.filter((x) => x.doc);
-        const nextParts: SessionPart[] = loaded.map(({ lectureId, doc, item }) => {
-          const fallbackClass = `data/raw/${courseId}/video/class/${lectureId}_0.mp4`;
-          const fallbackPpt = `data/raw/${courseId}/video/ppt/${lectureId}_1.mp4`;
-          return {
-            lectureId,
-            title: doc?.title || item?.title,
-            class_video:
-              item?.class_video || doc?.class_video || fallbackClass,
-            ppt_video: item?.ppt_video || doc?.ppt_video || fallbackPpt,
-            duration_sec: doc?.duration_sec ?? item?.duration_sec ?? null,
-            segments: enrichVideoSegments(doc?.segments || [], doc?.points || []),
-          };
-        });
+        const nextParts: SessionPart[] = await Promise.all(
+          loaded.map(async ({ lectureId, doc, item }) => {
+            let segments = doc?.segments || [];
+            if (!segments.length) {
+              segments = await loadPipelineVideoSegments(courseId, lectureId);
+            } else {
+              // review 里 title/summary 常来自教材 extract；用 pipeline 口播对齐悬停介绍
+              segments = await overlaySpokenCaptionsFromPipeline(
+                courseId,
+                lectureId,
+                segments,
+              );
+            }
+            segments = enrichVideoSegments(segments, doc?.points || []);
+            return {
+              lectureId,
+              title: doc?.title || item?.title,
+              // 片源只信 showcase（已校验文件存在）；勿回落到 review JSON 里可能 404 的路径
+              class_video: item?.class_video || null,
+              ppt_video: item?.ppt_video || null,
+              duration_sec: doc?.duration_sec ?? item?.duration_sec ?? null,
+              segments,
+            };
+          }),
+        );
         const merged = mergeSessionPoints(
           ok.map(({ lectureId, doc }) => ({
             lectureId,
@@ -890,6 +1111,10 @@ export function ReviewPage() {
       setMindmapLoading(false);
       return;
     }
+    if (!mediaReady) {
+      setMindmapLoading(true);
+      return;
+    }
     setMindmap(null);
     setMindmapError(null);
     setMindmapLoading(true);
@@ -908,13 +1133,13 @@ export function ReviewPage() {
         setMindmapError(String(e.message || e));
       })
       .finally(() => {
-        setMindmapLoading(false);
+        if (!cancelled) setMindmapLoading(false);
       });
     return () => {
       cancelled = true;
       setMindmapLoading(false);
     };
-  }, [courseId, sessionId]);
+  }, [courseId, sessionId, mediaReady]);
 
   const graphPoints = points as AppReviewPoint[];
   const segments = activeVideo?.segments || [];
@@ -1043,7 +1268,13 @@ export function ReviewPage() {
   const goSession = (id: string) => {
     if (id === sessionId) return;
     const target = sessions.find((s) => s.id === id);
+    // 先锁定课次，规避 RR location 与 window.location 短暂不同步
     setForcedSessionId(id);
+    // 立刻清掉旧课次片源，避免切换瞬间用错视频 / 404 URL
+    setParts([]);
+    setPartsSessionId("");
+    setPoints([]);
+    setError(null);
     if (target?.lectureIds?.[0]) setActivePart(target.lectureIds[0]);
     setSeekToSec(null);
     setSelectedId(null);
@@ -1060,36 +1291,47 @@ export function ReviewPage() {
     if (kgLaunchToken) next.set("kg_token", kgLaunchToken);
     const qs = next.toString();
     const to = `${coursePath(courseId, `/apps/review/${id}`)}${qs ? `?${qs}` : ""}`;
+    // 只用 RR navigate：勿对无 basename 的路径 pushState（/staging/kg 下会跳飞白屏）
     navigate(to);
-    // RR 偶发只改了 window.location、内部 location 仍停在旧课次；强制对齐浏览器地址
-    if (typeof window !== "undefined") {
-      const want = to.startsWith("http") ? to : `${window.location.origin}${to.startsWith("/") ? "" : "/"}${to}`;
-      const cur = window.location.pathname + window.location.search;
-      const wantPath = want.replace(window.location.origin, "");
-      if (cur !== wantPath) {
-        window.history.pushState(window.history.state, "", wantPath);
-      }
-      // 触发一次 popstate，让依赖 location 的订阅有机会跟上
-      window.dispatchEvent(new PopStateEvent("popstate"));
-    }
   };
 
   const jumpToHit = (hit: EntitySegmentHit) => {
+    const lectureId = String(hit.lectureId || "").trim();
+    if (!lectureId) return;
     setSelectedId(hit.pointId);
     const targetSession =
-      sessions.find((s) => s.lectureIds.includes(hit.lectureId)) || session;
+      sessions.find((s) => s.lectureIds.includes(lectureId)) || null;
+    // 跨课次：与 goSession 一样先锁定 rawId，并清掉旧片源，否则 RR 路径短暂不同步时会停在原课
     if (targetSession && targetSession.id !== sessionId) {
+      setForcedSessionId(targetSession.id);
+      setParts([]);
+      setPartsSessionId("");
+      setPoints([]);
+      setError(null);
+      setActivePart(lectureId);
+      setSelectedMindNode(null);
+      setSeekToSec(hit.start_sec);
+      setSeekToken((n) => n + 1);
       const next = new URLSearchParams(searchParams);
-      next.set("lec", hit.lectureId);
+      next.set("lec", lectureId);
       next.set("kp", hit.pointId);
       next.set("t", String(Math.floor(hit.start_sec)));
+      if (parentOrigin) next.set("parent_origin", parentOrigin);
+      if (kgLaunchToken) next.set("kg_token", kgLaunchToken);
       const qs = next.toString();
       navigate(
-        `${coursePath(courseId, `/apps/review/${targetSession.id}`)}?${qs}`,
+        `${coursePath(courseId, `/apps/review/${targetSession.id}`)}${qs ? `?${qs}` : ""}`,
       );
       return;
     }
-    switchPart(hit.lectureId, { t: hit.start_sec, kp: hit.pointId });
+    // 索引讲次不在课次表里：仍尝试按讲次切分（同会话内上/下）
+    if (!targetSession) {
+      switchPart(lectureId, { t: hit.start_sec, kp: hit.pointId });
+      setSeekToSec(hit.start_sec);
+      setSeekToken((n) => n + 1);
+      return;
+    }
+    switchPart(lectureId, { t: hit.start_sec, kp: hit.pointId });
     setSeekToSec(hit.start_sec);
     setSeekToken((n) => n + 1);
   };
@@ -1113,12 +1355,25 @@ export function ReviewPage() {
       emitKnowledgeResourceOpen(resource, parentOrigin || "*");
       return;
     }
+    // 优先检索框知识点；否则按播放点（证据时间 / 字幕往前）取最近知识点
+    const fromSearch = resolveKpFromSearchBox(
+      entitySearchDraft,
+      searchCatalog,
+      kpParam,
+    );
+    const playSec =
+      playbackSecRef.current > 0
+        ? playbackSecRef.current
+        : seekToSec != null && Number.isFinite(seekToSec)
+          ? Number(seekToSec)
+          : 0;
+    const fromPlay = resolveKpNearPlayback(points, captions, playSec);
     const seedKp =
-      selectedId ||
-      (kpParam && String(kpParam).trim()) ||
-      points[0]?.id ||
-      "";
-    if (!seedKp) return;
+      fromSearch || fromPlay || selectedId || "";
+    if (!seedKp) {
+      window.alert("未定位到知识点：请在检索框输入知识点，或先播放到相关片段再试");
+      return;
+    }
     const resource: LinkedKnowledgeResource = {
       resource_type: "exercise",
       resource_id: seedKp,
@@ -1161,6 +1416,8 @@ export function ReviewPage() {
   const applyExactEntitySearch = (entity: SearchEntity) => {
     setEntitySearchDraft(entity.zh || entity.id);
     setEntitySearchOpen(false);
+    setSearchSubmitHint(null);
+    setPendingSearch({ kp: entity.id });
     const next = new URLSearchParams(searchParams);
     next.delete("q");
     next.set("kp", entity.id);
@@ -1174,18 +1431,46 @@ export function ReviewPage() {
     if (!q) {
       next.delete("kp");
       next.delete("q");
+      setSearchSubmitHint(null);
+      setPendingSearch(null);
       setSearchParams(next, { replace: true });
       return;
     }
+    // 当前课 points 也可命中（目录尚未扫完时）
+    const fromSessionPoints = (points as ReviewPoint[]).find((p) => {
+      const zh = String(p.zh || "").trim();
+      const idZh = zhName(p.id);
+      return (
+        p.id === q ||
+        zh === q ||
+        idZh === q ||
+        zh.toLowerCase() === q.toLowerCase() ||
+        idZh.toLowerCase() === q.toLowerCase()
+      );
+    });
     const hit =
       resolveExactSearchEntity(searchCatalog, q) ||
+      (fromSessionPoints
+        ? {
+            id: fromSessionPoints.id,
+            zh: String(fromSessionPoints.zh || zhName(fromSessionPoints.id)),
+          }
+        : null) ||
       entitySearchCandidates[0] ||
       null;
     if (hit) {
+      setSearchSubmitHint(null);
       applyExactEntitySearch(hit);
       return;
     }
-    // 无精确实体：清空结果（仍进入检索态提示「暂无」）
+    if (searchCatalogLoading && searchCatalog.length < 8) {
+      // 目录还很空：进入检索态并提示，避免「点了没反应」
+      setSearchSubmitHint("索引仍在加载，稍后结果会补全…");
+    } else {
+      setSearchSubmitHint(null);
+    }
+    // 无精确实体：仍进入检索态（相关视频列表）
+    setPendingSearch({ q });
     next.delete("kp");
     next.set("q", q);
     setSearchParams(next, { replace: true });
@@ -1197,6 +1482,7 @@ export function ReviewPage() {
     next.delete("q");
     setEntitySearchDraft("");
     setEntitySearchOpen(false);
+    setPendingSearch(null);
     setSearchParams(next, { replace: true });
   };
 
@@ -1231,9 +1517,12 @@ export function ReviewPage() {
     );
   }
 
-  if (!rawId && sessions.length) {
+  if (!rawId && firstPlayableSessionId) {
     return (
-      <Navigate to={coursePath(courseId, `/apps/review/${sessions[0].id}`)} replace />
+      <Navigate
+        to={coursePath(courseId, `/apps/review/${firstPlayableSessionId}`)}
+        replace
+      />
     );
   }
 
@@ -1347,40 +1636,71 @@ export function ReviewPage() {
               submitEntityVideoSearch();
             }}
           >
-            <input
-              type="search"
-              className={styles.entitySearchInput}
-              value={entitySearchDraft}
-              placeholder="检索视频"
-              aria-label="检索视频"
-              autoComplete="off"
-              onFocus={() => setEntitySearchOpen(true)}
-              onChange={(e) => {
-                const v = e.target.value;
-                setEntitySearchDraft(v);
-                setEntitySearchOpen(true);
-                // 检索框叉掉清空时同步退出实体筛选
-                if (!v.trim() && entityMode) clearEntityFilter();
+            <div className={styles.entitySearchField}>
+              <input
+                type="search"
+                className={styles.entitySearchInput}
+                value={entitySearchDraft}
+                placeholder="检索视频"
+                aria-label="检索视频"
+                autoComplete="off"
+                onFocus={() => setEntitySearchOpen(true)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setEntitySearchDraft(v);
+                  setEntitySearchOpen(true);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") {
+                    setEntitySearchOpen(false);
+                    return;
+                  }
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    if (entitySearchCandidates[0]) {
+                      applyExactEntitySearch(entitySearchCandidates[0]);
+                    } else {
+                      submitEntityVideoSearch();
+                    }
+                  }
+                }}
+              />
+              {entitySearchDraft.trim() ? (
+                <button
+                  type="button"
+                  className={styles.entitySearchClear}
+                  aria-label="清除搜索"
+                  title="清除"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    clearEntityFilter();
+                  }}
+                >
+                  ×
+                </button>
+              ) : null}
+            </div>
+            <button
+              type="submit"
+              className={styles.jump}
+              onClick={(e) => {
+                // 显式触发，避免个别环境下 form submit 被吞
+                e.preventDefault();
+                submitEntityVideoSearch();
               }}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") {
-                  setEntitySearchOpen(false);
-                  return;
-                }
-                if (e.key === "Enter" && entitySearchCandidates[0]) {
-                  e.preventDefault();
-                  applyExactEntitySearch(entitySearchCandidates[0]);
-                }
-              }}
-            />
-            <button type="submit" className={styles.jump}>
-              检索
+            >
+              {searchCatalogLoading && searchCatalog.length < 4 ? "索引中…" : "检索"}
             </button>
           </form>
           {entitySearchOpen && entitySearchDraft.trim() ? (
             <div className={styles.entitySearchMenu} role="listbox">
               {entitySearchCandidates.length === 0 ? (
-                <div className={styles.entitySearchEmpty}>无精确可匹配实体</div>
+                <div className={styles.entitySearchEmpty}>
+                  {searchCatalogLoading
+                    ? "索引加载中，可先点检索或稍后再试"
+                    : "无匹配实体"}
+                </div>
               ) : (
                 entitySearchCandidates.map((m) => (
                   <button
@@ -1405,17 +1725,53 @@ export function ReviewPage() {
       </div>
       {entityMode ? (
         <ul className={styles.videoList}>
+          {searchSubmitHint ? (
+            <li className={styles.listHint}>{searchSubmitHint}</li>
+          ) : null}
           {entityHitsLoading ? (
             <li className={styles.listHint}>加载相关视频…</li>
           ) : null}
           {!entityHitsLoading && !entityHits.length ? (
-            <li className={styles.listHint}>暂无与该实体相关的视频</li>
+            <li className={styles.listHint}>
+              {searchCatalogLoading
+                ? "索引加载中，正在查找相关片段…"
+                : "暂无与该实体相关的视频"}
+            </li>
           ) : null}
           {entityHits.map((hit) => {
             const active =
               hit.lectureId === activePart &&
               seekToSec != null &&
               Math.abs(Number(seekToSec) - hit.start_sec) < 1.5;
+            const hitSession =
+              sessions.find((s) => s.lectureIds.includes(String(hit.lectureId))) ||
+              null;
+            const hitPartIdx = hitSession
+              ? hitSession.lectureIds.indexOf(String(hit.lectureId))
+              : -1;
+            const hitSessionLabel =
+              hitSession?.label ||
+              (() => {
+                const n = Number(hit.lectureId);
+                return Number.isFinite(n) && n > 0
+                  ? `第 ${Math.ceil(n / 2)} 次课`
+                  : `第 ${hit.lectureId} 讲`;
+              })();
+            const hitPartTag =
+              hitSession && hitSession.lectureIds.length === 2
+                ? hitPartIdx === 0
+                  ? "上"
+                  : "下"
+                : hitSession && hitSession.lectureIds.length === 1
+                  ? null
+                  : (() => {
+                      const n = Number(hit.lectureId);
+                      if (!Number.isFinite(n) || n <= 0) return null;
+                      return n % 2 === 1 ? "上" : "下";
+                    })();
+            const hitBadge = hitPartTag
+              ? `${hitSessionLabel} · ${hitPartTag}`
+              : hitSessionLabel;
             return (
               <li key={hit.key}>
                 <button
@@ -1424,7 +1780,7 @@ export function ReviewPage() {
                   onClick={() => jumpToHit(hit)}
                 >
                   <span className={styles.videoBadge}>
-                    L{hit.lectureId} · {fmtClock(hit.start_sec)}
+                    {hitBadge} · {fmtClock(hit.start_sec)}
                   </span>
                   <span className={styles.videoMeta}>
                     <strong>{hit.pointZh}</strong>
@@ -1440,6 +1796,7 @@ export function ReviewPage() {
           {sessions.map((s) => {
             const active = s.id === sessionId;
             const dateText = sessionDateLabel(s);
+            const hasVid = sessionHasVideo(s);
             return (
               <li key={s.id}>
                 <button
@@ -1449,7 +1806,13 @@ export function ReviewPage() {
                 >
                   <span className={styles.videoMeta}>
                     <strong>{s.label}</strong>
-                    {dateText ? <span>{dateText}</span> : null}
+                    {!hasVid || dateText ? (
+                      <span>
+                        {!hasVid ? "暂无课堂视频" : ""}
+                        {!hasVid && dateText ? " · " : ""}
+                        {dateText || ""}
+                      </span>
+                    ) : null}
                   </span>
                 </button>
               </li>
@@ -1476,7 +1839,7 @@ export function ReviewPage() {
               storageKey="split-review-video-graph"
               sizedPane="left"
               initialLeftRatio={0.36}
-              minLeftPx={120}
+              minLeftPx={200}
               minRightPx={160}
               enabled={Boolean(
                 showVideo &&
@@ -1490,6 +1853,13 @@ export function ReviewPage() {
                       {sessionParts.map((p, i) => {
                         const url = toMediaUrl(p.class_video || null);
                         const on = String(p.lectureId) === String(activePart);
+                        const sessionLabel = session?.label || "本次课";
+                        const partTag =
+                          sessionParts.length === 2
+                            ? i === 0
+                              ? "上"
+                              : "下"
+                            : `第 ${p.lectureId} 讲`;
                         return (
                           <button
                             key={p.lectureId}
@@ -1499,8 +1869,9 @@ export function ReviewPage() {
                             className={on ? styles.videoPartActive : styles.videoPartBtn}
                             onClick={() => switchPart(p.lectureId)}
                           >
-                            第 {p.lectureId} 讲
-                            {sessionParts.length === 2 ? (i === 0 ? " · 上" : " · 下") : ""}
+                            {sessionParts.length === 2
+                              ? `${sessionLabel} · ${partTag}`
+                              : partTag}
                             {!url ? "（无文件）" : ""}
                           </button>
                         );
@@ -1517,12 +1888,14 @@ export function ReviewPage() {
                       seekNonce={seekToken}
                       captions={captions}
                       fill
-                      onTime={(sec) =>
+                      onReady={() => setMediaReady(true)}
+                      onTime={(sec) => {
+                        playbackSecRef.current = sec;
                         reportVideoWatch(
                           sec,
                           Number(activeVideo?.duration_sec) || 0,
-                        )
-                      }
+                        );
+                      }}
                     />
                   ) : (
                     <div className={styles.playerEmpty}>
@@ -1644,7 +2017,7 @@ export function ReviewPage() {
             </button>
             <LectureStudyNotes
               courseId={courseId}
-              lectureId={activePart || sessionId || rawId}
+              lectureId={sessionId || activePart || rawId}
               title={sessionHeading || session?.label}
               points={graphPoints}
               focusId={selectedId}
@@ -1653,6 +2026,7 @@ export function ReviewPage() {
                 selectedMindNode?.zh ||
                 (selectedId ? zhName(selectedId) : null)
               }
+              deferNetwork={!mediaReady}
               onCollapse={collapseNotes}
             />
           </aside>

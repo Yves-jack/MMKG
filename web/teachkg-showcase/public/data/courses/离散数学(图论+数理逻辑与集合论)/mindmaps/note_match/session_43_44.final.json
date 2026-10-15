@@ -1,0 +1,397 @@
+{
+  "lecture_id": "43_44",
+  "root": {
+    "id": "__lecture__/43_44",
+    "zh": "第 22 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第10章 关系",
+        "zh": "第10章 关系",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "关系"
+        ],
+        "children": [
+          {
+            "id": "__section__/关系基本概念",
+            "zh": "关系基本概念",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/关系基本概念/关系定义",
+                "zh": "关系定义",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/关系性质",
+            "zh": "关系性质",
+            "importance": 0.726034,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/关系性质/自反性",
+                "zh": "自反性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/非自反性",
+                "zh": "非自反性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/对称性",
+                "zh": "对称性",
+                "importance": 0.726034,
+                "relation": "outline_concept",
+                "related": [
+                  "对称性"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/反对称性",
+                "zh": "反对称性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/传递性",
+                "zh": "传递性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/偏序关系与盖住",
+            "zh": "偏序关系与盖住",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/偏序关系与盖住/偏序关系",
+                "zh": "偏序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "偏序关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/偏序关系与盖住/盖住关系",
+                "zh": "盖住关系",
+                "importance": 0.4187920081987902,
+                "relation": "outline_concept",
+                "related": [
+                  "盖住关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/偏序关系与盖住/哈斯图",
+                "zh": "哈斯图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "哈斯图"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/序关系类型",
+            "zh": "序关系类型",
+            "importance": 0.563915,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/序关系类型/链与反链",
+                "zh": "链与反链",
+                "importance": 0.563915,
+                "relation": "outline_concept",
+                "related": [],
+                "children": [
+                  {
+                    "id": "反链/antichain",
+                    "zh": "反链",
+                    "importance": 0.563915,
+                    "relation": "belong_to",
+                    "related": [
+                      "可比"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "__topic__/序关系类型/全序关系",
+                "zh": "全序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/序关系类型/拟序关系",
+                "zh": "拟序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "拟序关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/序关系类型/良序关系",
+                "zh": "良序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "良序关系"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/43_44",
+      "zh": "第 22 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第10章 关系",
+          "zh": "第10章 关系",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "关系"
+          ],
+          "children": [
+            {
+              "id": "__section__/关系基本概念",
+              "zh": "关系基本概念",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/关系基本概念/关系定义",
+                  "zh": "关系定义",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/关系性质",
+              "zh": "关系性质",
+              "importance": 0.726034,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/关系性质/自反性",
+                  "zh": "自反性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/非自反性",
+                  "zh": "非自反性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/对称性",
+                  "zh": "对称性",
+                  "importance": 0.726034,
+                  "relation": "outline_concept",
+                  "related": [
+                    "对称性"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/反对称性",
+                  "zh": "反对称性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/传递性",
+                  "zh": "传递性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/偏序关系与盖住",
+              "zh": "偏序关系与盖住",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/偏序关系与盖住/偏序关系",
+                  "zh": "偏序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "偏序关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/偏序关系与盖住/盖住关系",
+                  "zh": "盖住关系",
+                  "importance": 0.4187920081987902,
+                  "relation": "outline_concept",
+                  "related": [
+                    "盖住关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/偏序关系与盖住/哈斯图",
+                  "zh": "哈斯图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "哈斯图"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/序关系类型",
+              "zh": "序关系类型",
+              "importance": 0.563915,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/序关系类型/链与反链",
+                  "zh": "链与反链",
+                  "importance": 0.563915,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "反链/antichain",
+                      "zh": "反链",
+                      "importance": 0.563915,
+                      "relation": "belong_to",
+                      "related": [
+                        "可比"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "__topic__/序关系类型/全序关系",
+                  "zh": "全序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/序关系类型/拟序关系",
+                  "zh": "拟序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "拟序关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/序关系类型/良序关系",
+                  "zh": "良序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "良序关系"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 20,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 22 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "43",
+      "44"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "43_44",
+      "model": "deepseek-chat",
+      "keep_count": 19,
+      "drop_count": 45,
+      "llm_note": "本课主要讲授偏序集相关概念（偏序、盖住、哈斯图、链反链、全序、拟序、良序），故保留第10章中偏序相关节点，剔除关系基本概念中未展开的附属节点、关系运算、闭包、等价关系、相容关系以及第11章函数和第12章基数等无关章节。",
+      "prelim_nodes": 66,
+      "final_nodes": 20
+    }
+  }
+}

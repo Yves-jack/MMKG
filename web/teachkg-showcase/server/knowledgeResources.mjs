@@ -191,7 +191,7 @@ export async function loadKnowledgeResources(
   };
 }
 
-export function knowledgeResourcesMiddleware(env = process.env, fetchImpl = fetch) {
+export function knowledgeResourcesMiddleware(envOrFactory = process.env, fetchImpl = fetch) {
   return async function knowledgeResources(req, res, next) {
     const rawUrl = String(req.url || "");
     const path = rawUrl.split("?")[0];
@@ -213,6 +213,8 @@ export function knowledgeResourcesMiddleware(env = process.env, fetchImpl = fetc
     if (!courseId || !knowledgePointId) {
       return json(res, 400, { error: "course_id and knowledge_point_id are required" });
     }
+    const env =
+      typeof envOrFactory === "function" ? envOrFactory() : envOrFactory || {};
     try {
       return json(
         res,

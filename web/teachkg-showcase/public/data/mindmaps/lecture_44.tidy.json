@@ -1,0 +1,423 @@
+{
+  "lecture_id": "44",
+  "root": {
+    "id": "集合/set",
+    "zh": "集合",
+    "importance": 0.664162,
+    "relation": null,
+    "related": [
+      "双射",
+      "映射",
+      "自然数"
+    ],
+    "children": [
+      {
+        "id": "函数集合/set of functions",
+        "zh": "函数集合",
+        "importance": 0.420495,
+        "relation": "belong_to",
+        "related": [],
+        "children": [
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.690803,
+            "relation": "belong_to",
+            "related": [
+              "关系",
+              "单值性",
+              "合成",
+              "等价关系",
+              "选择公理",
+              "集合"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "基数/cardinality",
+        "zh": "基数",
+        "importance": 0.286174,
+        "relation": "belong_to",
+        "related": [
+          "等势",
+          "自然数"
+        ],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.664162,
+      "relation": null,
+      "related": [
+        "双射",
+        "映射",
+        "自然数"
+      ],
+      "children": [
+        {
+          "id": "函数集合/set of functions",
+          "zh": "函数集合",
+          "importance": 0.420495,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.690803,
+              "relation": "belong_to",
+              "related": [
+                "关系",
+                "单值性",
+                "合成",
+                "等价关系",
+                "选择公理",
+                "集合"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "基数/cardinality",
+          "zh": "基数",
+          "importance": 0.286174,
+          "relation": "belong_to",
+          "related": [
+            "等势",
+            "自然数"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "关系/relation",
+      "zh": "关系",
+      "importance": 0.627116,
+      "relation": null,
+      "related": [
+        "合成",
+        "映射",
+        "选择公理"
+      ],
+      "children": [
+        {
+          "id": "映射/mapping",
+          "zh": "映射",
+          "importance": 0.690803,
+          "relation": "belong_to",
+          "related": [
+            "关系",
+            "单值性",
+            "合成",
+            "等价关系",
+            "选择公理",
+            "集合"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "良序集/well-ordered set",
+      "zh": "良序集",
+      "importance": 0.597992,
+      "relation": null,
+      "related": [
+        "树叶"
+      ],
+      "children": [
+        {
+          "id": "整数集/set of integers",
+          "zh": "整数集",
+          "importance": 0.730279,
+          "relation": "belong_to",
+          "related": [],
+          "children": [
+            {
+              "id": "自然数集/natural number set",
+              "zh": "自然数集",
+              "importance": 0.697424,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "正整数/positive integer",
+              "zh": "正整数",
+              "importance": 0.452565,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "负整数/negative integer",
+              "zh": "负整数",
+              "importance": 0.392565,
+              "relation": "part_of",
+              "related": [
+                "有序对"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "序数/ordinal",
+          "zh": "序数",
+          "importance": 0.455768,
+          "relation": "belong_to",
+          "related": [
+            "空集"
+          ],
+          "children": [
+            {
+              "id": "自然数集/natural number set",
+              "zh": "自然数集",
+              "importance": 0.697424,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "空集/empty set",
+              "zh": "空集",
+              "importance": 0.269623,
+              "relation": "belong_to",
+              "related": [
+                "序数"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "关系运算/operation on relations",
+      "zh": "关系运算",
+      "importance": 0.579551,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "投影/Projection",
+          "zh": "投影",
+          "importance": 0.408637,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "选择/Selection",
+          "zh": "选择",
+          "importance": 0.368724,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "乘积/product",
+          "zh": "乘积",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "等价类/Equivalence Class",
+      "zh": "等价类",
+      "importance": 0.527431,
+      "relation": "part_of",
+      "related": [
+        "划分",
+        "商集",
+        "实数",
+        "无理数",
+        "有理数",
+        "等价关系"
+      ],
+      "children": [
+        {
+          "id": "商集/quotient set",
+          "zh": "商集",
+          "importance": 0.659557,
+          "relation": "part_of",
+          "related": [
+            "等价关系",
+            "等价类"
+          ],
+          "children": [
+            {
+              "id": "有理数集/set of rational numbers",
+              "zh": "有理数集",
+              "importance": 0.624741,
+              "relation": "part_of",
+              "related": [
+                "等价关系"
+              ],
+              "children": [
+                {
+                  "id": "等价类/Equivalence Class",
+                  "zh": "等价类",
+                  "importance": 0.527431,
+                  "relation": "part_of",
+                  "related": [
+                    "划分",
+                    "商集",
+                    "实数",
+                    "无理数",
+                    "有理数",
+                    "等价关系"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ],
+              "copy": true
+            }
+          ]
+        }
+      ],
+      "copy": true
+    },
+    {
+      "id": "可数集/countable set",
+      "zh": "可数集",
+      "importance": 0.30377,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "实数集/real numbers",
+          "zh": "实数集",
+          "importance": 0.83279,
+          "relation": "part_of",
+          "related": [],
+          "children": [
+            {
+              "id": "有理数/rational number",
+              "zh": "有理数",
+              "importance": 0.784618,
+              "relation": "belong_to",
+              "related": [
+                "基本函数",
+                "等价关系",
+                "等价类"
+              ],
+              "children": [
+                {
+                  "id": "有理数集/set of rational numbers",
+                  "zh": "有理数集",
+                  "importance": 0.624741,
+                  "relation": "part_of",
+                  "related": [
+                    "等价关系"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "无理数/irrational number",
+              "zh": "无理数",
+              "importance": 0.560246,
+              "relation": "belong_to",
+              "related": [
+                "等价关系",
+                "等价类"
+              ],
+              "children": []
+            },
+            {
+              "id": "自然数集/natural number set",
+              "zh": "自然数集",
+              "importance": 0.697424,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "实数/real number",
+              "zh": "实数",
+              "importance": 0.628506,
+              "relation": "belong_to",
+              "related": [
+                "基本函数",
+                "等价关系",
+                "等价类",
+                "自然数"
+              ],
+              "children": []
+            }
+          ],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "特殊关系/special relation",
+      "zh": "特殊关系",
+      "importance": 0.282648,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "映射/mapping",
+          "zh": "映射",
+          "importance": 0.690803,
+          "relation": "belong_to",
+          "related": [
+            "关系",
+            "单值性",
+            "合成",
+            "等价关系",
+            "选择公理",
+            "集合"
+          ],
+          "children": [],
+          "copy": true
+        }
+      ]
+    }
+  ],
+  "n_nodes": 31,
+  "max_depth": 3,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第11章 函数",
+    "root_id": "集合/set",
+    "root_zh": "集合",
+    "virtual_root": false,
+    "n_trees": 7,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 46,
+    "n_edges_raw": 106,
+    "n_hierarchy_candidates": 60,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "合并重复的映射、满射、单射、等价类、自然数集、实数集节点，删除冗余子节点，调整映射下子节点顺序，使结构更清晰。"
+  }
+}

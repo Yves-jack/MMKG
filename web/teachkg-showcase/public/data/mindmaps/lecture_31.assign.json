@@ -1,0 +1,14 @@
+{
+  "lecture_id": "31",
+  "candidates": [
+    "第5章 谓词逻辑的等值和推理演算"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "数理逻辑/Mathematical Logic",
+      "chapter": "第5章 谓词逻辑的等值和推理演算",
+      "confidence": 0.8,
+      "reason": "导图整体属于数理逻辑，且核心子树为谓词逻辑，与候选章节主题一致。"
+    }
+  ]
+}

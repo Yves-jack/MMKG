@@ -1,392 +1,202 @@
 {
   "lecture_id": "chapter:第4章 平面图与图的着色",
   "root": {
-    "id": "__chapter__/平面图与图的着色",
+    "id": "__chapter__/第4章 平面图与图的着色",
     "zh": "第4章 平面图与图的着色",
-    "importance": 0.7,
+    "importance": 0.8,
     "relation": null,
-    "related": [],
+    "related": [
+      "平面图与图的着色"
+    ],
     "children": [
       {
-        "id": "平面图/planar graph",
-        "zh": "平面图",
-        "importance": 0.984791,
-        "relation": "belong_to",
-        "related": [
-          "图的着色",
-          "域着色",
-          "对偶图",
-          "点染色"
-        ],
+        "id": "__section__/平面图基本概念",
+        "zh": "平面图基本概念",
+        "importance": 1,
+        "relation": "toc_section",
+        "related": [],
         "children": [
           {
-            "id": "对偶图/dual graph",
-            "zh": "对偶图",
-            "importance": 1.0,
-            "relation": "belong_to",
+            "id": "__topic__/平面图基本概念/可平面图",
+            "zh": "可平面图",
+            "importance": 0.775744,
+            "relation": "outline_concept",
             "related": [
-              "图的着色",
-              "平面图",
-              "简单图",
-              "自环",
-              "重边"
+              "可平面图"
             ],
             "children": []
           },
           {
-            "id": "简单平面图/simple planar graph",
-            "zh": "简单平面图",
-            "importance": 0.679178,
-            "relation": "belong_to",
-            "related": [
-              "五色定理",
-              "四色定理",
-              "欧拉公式"
-            ],
-            "children": []
-          },
-          {
-            "id": "极大平面图/maximal planar graph",
-            "zh": "极大平面图",
-            "importance": 0.449206,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "平面连通图/connected planar graph",
-            "zh": "平面连通图",
-            "importance": 0.296151,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "3-正则平面图/3-regular planar graph",
-            "zh": "3-正则平面图",
-            "importance": 0.291971,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "面/face",
-            "zh": "面",
-            "importance": 0.150401,
-            "relation": "part_of",
-            "related": [],
-            "children": [
-              {
-                "id": "内部域/internal face",
-                "zh": "内部域",
-                "importance": 0.122105,
-                "relation": "part_of",
-                "related": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "顶点/vertex",
-            "zh": "顶点",
-            "importance": 0.497035,
-            "relation": "part_of",
-            "related": [
-              "自环"
-            ],
-            "children": []
-          },
-          {
-            "id": "结点数小于5的图/graphs with fewer than5vertices",
-            "zh": "结点数小于5的图",
-            "importance": 0.0,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "边数小于9的图/graph with fewer than9edges",
-            "zh": "边数小于9的图",
-            "importance": 0.0,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "可平面图/planar embeddable graph",
-        "zh": "可平面图",
-        "importance": 0.775744,
-        "relation": null,
-        "related": [
-          "平面嵌入"
-        ],
-        "children": [
-          {
-            "id": "平面图/planar graph",
+            "id": "__topic__/平面图基本概念/平面图",
             "zh": "平面图",
             "importance": 0.984791,
-            "relation": "belong_to",
+            "relation": "outline_concept",
             "related": [
-              "图的着色",
-              "域着色",
-              "对偶图",
-              "点染色"
-            ],
-            "children": [],
-            "copy": true
-          }
-        ]
-      },
-      {
-        "id": "非平面图/non-planar graph",
-        "zh": "非平面图",
-        "importance": 1.0,
-        "relation": "belong_to",
-        "related": [
-          "平面图"
-        ],
-        "children": [
-          {
-            "id": "K5",
-            "zh": "K5",
-            "importance": 0.965032,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "K3,3",
-            "zh": "K3,3",
-            "importance": 0.912922,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "K型图/K-type graph",
-            "zh": "K型图",
-            "importance": 0.740769,
-            "relation": "belong_to",
-            "related": [
-              "K型子图",
-              "增加度为2的结点"
-            ],
-            "children": []
-          },
-          {
-            "id": "完全图K5/complete graph K5",
-            "zh": "完全图K5",
-            "importance": 0.444781,
-            "relation": "belong_to",
-            "related": [
-              "Kuratowski定理",
-              "Wagner定理"
-            ],
-            "children": []
-          },
-          {
-            "id": "完全二分图K3,3/complete bipartite graph K3,3",
-            "zh": "完全二分图K3,3",
-            "importance": 0.062869,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "K_5",
-            "zh": "K_5",
-            "importance": 0.052842,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "平面图判定定理",
-        "zh": "平面图判定定理",
-        "importance": 0.663702,
-        "relation": null,
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "平面性判定算法/planarity testing algorithm",
-        "zh": "平面性判定算法",
-        "importance": 0.0,
-        "relation": null,
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "图的着色/graph coloring",
-        "zh": "图的着色",
-        "importance": 0.970883,
-        "relation": null,
-        "related": [
-          "五色定理",
-          "哈密顿回路",
-          "对偶图",
-          "平面图",
-          "最大度"
-        ],
-        "children": [
-          {
-            "id": "点着色/vertex coloring",
-            "zh": "点着色",
-            "importance": 0.905103,
-            "relation": "belong_to",
-            "related": [
-              "课程表编排问题",
-              "边着色",
-              "面着色"
-            ],
-            "children": []
-          },
-          {
-            "id": "面着色/face coloring",
-            "zh": "面着色",
-            "importance": 0.840099,
-            "relation": "belong_to",
-            "related": [
-              "点着色"
-            ],
-            "children": []
-          },
-          {
-            "id": "边着色/edge coloring",
-            "zh": "边着色",
-            "importance": 0.555267,
-            "relation": "belong_to",
-            "related": [
-              "度数最大的节点",
-              "点着色",
-              "课程表编排问题"
+              "平面图"
             ],
             "children": [
               {
-                "id": "二部图边着色/bipartite graph edge coloring",
-                "zh": "二部图边着色",
-                "importance": 0.172811,
-                "relation": "belong_to",
+                "id": "__topic__/平面图基本概念/非平面图",
+                "zh": "非平面图",
+                "importance": 1,
+                "relation": "outline_concept",
+                "related": [
+                  "非平面图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/平面图基本概念/连通平面图",
+                "zh": "连通平面图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/平面图基本概念/一般平面图",
+                "zh": "一般平面图",
+                "importance": 0.4,
+                "relation": "outline_concept",
                 "related": [],
                 "children": []
               }
             ]
           },
           {
-            "id": "面着色问题/face coloring problem",
-            "zh": "面着色问题",
-            "importance": 0.314748,
-            "relation": "belong_to",
+            "id": "__topic__/平面图基本概念/极大平面图",
+            "zh": "极大平面图",
+            "importance": 0.449206,
+            "relation": "outline_concept",
             "related": [
-              "对偶图",
-              "点着色问题"
+              "极大平面图"
             ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图性质",
+        "zh": "平面图性质",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/平面图性质/欧拉公式",
+            "zh": "欧拉公式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
             "children": []
           },
           {
-            "id": "边染色/edge coloring",
-            "zh": "边染色",
-            "importance": 0.291271,
-            "relation": "belong_to",
-            "related": [
-              "点染色"
-            ],
+            "id": "__topic__/平面图性质/边数不等式",
+            "zh": "边数不等式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
             "children": []
           },
           {
-            "id": "地图着色/map coloring",
-            "zh": "地图着色",
-            "importance": 0.290328,
-            "relation": "belong_to",
+            "id": "__topic__/平面图性质/最小度结点",
+            "zh": "最小度结点",
+            "importance": 0.4,
+            "relation": "outline_concept",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "割边/cut edge",
-        "zh": "割边",
-        "importance": 0.046564,
-        "relation": "belong_to",
+        "id": "__section__/平面图判定定理",
+        "zh": "平面图判定定理",
+        "importance": 0.45,
+        "relation": "toc_section",
         "related": [],
         "children": [
           {
-            "id": "悬边/pendant edge",
-            "zh": "悬边",
-            "importance": 0.546111,
-            "relation": "belong_to",
+            "id": "__topic__/平面图判定定理/Kuratowski定理",
+            "zh": "Kuratowski定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/平面图判定定理/Wagner定理",
+            "zh": "Wagner定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "简单图/simple graph",
-        "zh": "简单图",
-        "importance": 0.617945,
-        "relation": null,
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "非连通图/disconnected graph",
-        "zh": "非连通图",
-        "importance": 0.588391,
-        "relation": null,
-        "related": [
-          "连通图"
-        ],
-        "children": [
-          {
-            "id": "极大连通子图/maximal connected subgraph",
-            "zh": "极大连通子图",
-            "importance": 0.243884,
-            "relation": "part_of",
-            "related": [
-              "割点"
-            ],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "多重图/multigraph",
-        "zh": "多重图",
-        "importance": 0.341893,
-        "relation": null,
+        "id": "__section__/对偶图",
+        "zh": "对偶图",
+        "importance": 0.45,
+        "relation": "toc_section",
         "related": [],
         "children": [
           {
-            "id": "重边/multiple edges",
-            "zh": "重边",
-            "importance": 0.280321,
-            "relation": "part_of",
-            "related": [
-              "可平面性"
-            ],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "边/edge",
-        "zh": "边",
-        "importance": 0.074868,
-        "relation": null,
-        "related": [],
-        "children": [
-          {
-            "id": "割边/cut edge",
-            "zh": "割边",
-            "importance": 0.046564,
-            "relation": "belong_to",
+            "id": "__topic__/对偶图/对偶图唯一性",
+            "zh": "对偶图唯一性",
+            "importance": 0.4,
+            "relation": "outline_concept",
             "related": [],
-            "children": [],
-            "copy": true
+            "children": []
+          },
+          {
+            "id": "__topic__/对偶图/对偶图连通性",
+            "zh": "对偶图连通性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/对偶图/对偶图存在条件",
+            "zh": "对偶图存在条件",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/图的着色",
+            "zh": "图的着色",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/图的着色/五色定理",
+                "zh": "五色定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的着色/四色定理",
+                "zh": "四色定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/图的着色/Hamilton回路与四色",
+                    "zh": "Hamilton回路",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -394,418 +204,253 @@
   },
   "roots": [
     {
-      "id": "__chapter__/平面图与图的着色",
+      "id": "__chapter__/第4章 平面图与图的着色",
       "zh": "第4章 平面图与图的着色",
-      "importance": 0.7,
+      "importance": 0.8,
       "relation": null,
-      "related": [],
+      "related": [
+        "平面图与图的着色"
+      ],
       "children": [
         {
-          "id": "平面图/planar graph",
-          "zh": "平面图",
-          "importance": 0.984791,
-          "relation": "belong_to",
-          "related": [
-            "图的着色",
-            "域着色",
-            "对偶图",
-            "点染色"
-          ],
+          "id": "__section__/平面图基本概念",
+          "zh": "平面图基本概念",
+          "importance": 1,
+          "relation": "toc_section",
+          "related": [],
           "children": [
             {
-              "id": "对偶图/dual graph",
-              "zh": "对偶图",
-              "importance": 1.0,
-              "relation": "belong_to",
+              "id": "__topic__/平面图基本概念/可平面图",
+              "zh": "可平面图",
+              "importance": 0.775744,
+              "relation": "outline_concept",
               "related": [
-                "图的着色",
-                "平面图",
-                "简单图",
-                "自环",
-                "重边"
+                "可平面图"
               ],
               "children": []
             },
             {
-              "id": "简单平面图/simple planar graph",
-              "zh": "简单平面图",
-              "importance": 0.679178,
-              "relation": "belong_to",
-              "related": [
-                "五色定理",
-                "四色定理",
-                "欧拉公式"
-              ],
-              "children": []
-            },
-            {
-              "id": "极大平面图/maximal planar graph",
-              "zh": "极大平面图",
-              "importance": 0.449206,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "平面连通图/connected planar graph",
-              "zh": "平面连通图",
-              "importance": 0.296151,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "3-正则平面图/3-regular planar graph",
-              "zh": "3-正则平面图",
-              "importance": 0.291971,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "面/face",
-              "zh": "面",
-              "importance": 0.150401,
-              "relation": "part_of",
-              "related": [],
-              "children": [
-                {
-                  "id": "内部域/internal face",
-                  "zh": "内部域",
-                  "importance": 0.122105,
-                  "relation": "part_of",
-                  "related": [],
-                  "children": []
-                }
-              ]
-            },
-            {
-              "id": "顶点/vertex",
-              "zh": "顶点",
-              "importance": 0.497035,
-              "relation": "part_of",
-              "related": [
-                "自环"
-              ],
-              "children": []
-            },
-            {
-              "id": "结点数小于5的图/graphs with fewer than5vertices",
-              "zh": "结点数小于5的图",
-              "importance": 0.0,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "边数小于9的图/graph with fewer than9edges",
-              "zh": "边数小于9的图",
-              "importance": 0.0,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "可平面图/planar embeddable graph",
-          "zh": "可平面图",
-          "importance": 0.775744,
-          "relation": null,
-          "related": [
-            "平面嵌入"
-          ],
-          "children": [
-            {
-              "id": "平面图/planar graph",
+              "id": "__topic__/平面图基本概念/平面图",
               "zh": "平面图",
               "importance": 0.984791,
-              "relation": "belong_to",
+              "relation": "outline_concept",
               "related": [
-                "图的着色",
-                "域着色",
-                "对偶图",
-                "点染色"
-              ],
-              "children": [],
-              "copy": true
-            }
-          ]
-        },
-        {
-          "id": "非平面图/non-planar graph",
-          "zh": "非平面图",
-          "importance": 1.0,
-          "relation": "belong_to",
-          "related": [
-            "平面图"
-          ],
-          "children": [
-            {
-              "id": "K5",
-              "zh": "K5",
-              "importance": 0.965032,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "K3,3",
-              "zh": "K3,3",
-              "importance": 0.912922,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "K型图/K-type graph",
-              "zh": "K型图",
-              "importance": 0.740769,
-              "relation": "belong_to",
-              "related": [
-                "K型子图",
-                "增加度为2的结点"
-              ],
-              "children": []
-            },
-            {
-              "id": "完全图K5/complete graph K5",
-              "zh": "完全图K5",
-              "importance": 0.444781,
-              "relation": "belong_to",
-              "related": [
-                "Kuratowski定理",
-                "Wagner定理"
-              ],
-              "children": []
-            },
-            {
-              "id": "完全二分图K3,3/complete bipartite graph K3,3",
-              "zh": "完全二分图K3,3",
-              "importance": 0.062869,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "K_5",
-              "zh": "K_5",
-              "importance": 0.052842,
-              "relation": "belong_to",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "平面图判定定理",
-          "zh": "平面图判定定理",
-          "importance": 0.663702,
-          "relation": null,
-          "related": [],
-          "children": []
-        },
-        {
-          "id": "平面性判定算法/planarity testing algorithm",
-          "zh": "平面性判定算法",
-          "importance": 0.0,
-          "relation": null,
-          "related": [],
-          "children": []
-        },
-        {
-          "id": "图的着色/graph coloring",
-          "zh": "图的着色",
-          "importance": 0.970883,
-          "relation": null,
-          "related": [
-            "五色定理",
-            "哈密顿回路",
-            "对偶图",
-            "平面图",
-            "最大度"
-          ],
-          "children": [
-            {
-              "id": "点着色/vertex coloring",
-              "zh": "点着色",
-              "importance": 0.905103,
-              "relation": "belong_to",
-              "related": [
-                "课程表编排问题",
-                "边着色",
-                "面着色"
-              ],
-              "children": []
-            },
-            {
-              "id": "面着色/face coloring",
-              "zh": "面着色",
-              "importance": 0.840099,
-              "relation": "belong_to",
-              "related": [
-                "点着色"
-              ],
-              "children": []
-            },
-            {
-              "id": "边着色/edge coloring",
-              "zh": "边着色",
-              "importance": 0.555267,
-              "relation": "belong_to",
-              "related": [
-                "度数最大的节点",
-                "点着色",
-                "课程表编排问题"
+                "平面图"
               ],
               "children": [
                 {
-                  "id": "二部图边着色/bipartite graph edge coloring",
-                  "zh": "二部图边着色",
-                  "importance": 0.172811,
-                  "relation": "belong_to",
+                  "id": "__topic__/平面图基本概念/非平面图",
+                  "zh": "非平面图",
+                  "importance": 1,
+                  "relation": "outline_concept",
+                  "related": [
+                    "非平面图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/平面图基本概念/连通平面图",
+                  "zh": "连通平面图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/平面图基本概念/一般平面图",
+                  "zh": "一般平面图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
                   "related": [],
                   "children": []
                 }
               ]
             },
             {
-              "id": "面着色问题/face coloring problem",
-              "zh": "面着色问题",
-              "importance": 0.314748,
-              "relation": "belong_to",
+              "id": "__topic__/平面图基本概念/极大平面图",
+              "zh": "极大平面图",
+              "importance": 0.449206,
+              "relation": "outline_concept",
               "related": [
-                "对偶图",
-                "点着色问题"
+                "极大平面图"
               ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图性质",
+          "zh": "平面图性质",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/平面图性质/欧拉公式",
+              "zh": "欧拉公式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
               "children": []
             },
             {
-              "id": "边染色/edge coloring",
-              "zh": "边染色",
-              "importance": 0.291271,
-              "relation": "belong_to",
-              "related": [
-                "点染色"
-              ],
+              "id": "__topic__/平面图性质/边数不等式",
+              "zh": "边数不等式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
               "children": []
             },
             {
-              "id": "地图着色/map coloring",
-              "zh": "地图着色",
-              "importance": 0.290328,
-              "relation": "belong_to",
+              "id": "__topic__/平面图性质/最小度结点",
+              "zh": "最小度结点",
+              "importance": 0.4,
+              "relation": "outline_concept",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "割边/cut edge",
-          "zh": "割边",
-          "importance": 0.046564,
-          "relation": "belong_to",
+          "id": "__section__/平面图判定定理",
+          "zh": "平面图判定定理",
+          "importance": 0.45,
+          "relation": "toc_section",
           "related": [],
           "children": [
             {
-              "id": "悬边/pendant edge",
-              "zh": "悬边",
-              "importance": 0.546111,
-              "relation": "belong_to",
+              "id": "__topic__/平面图判定定理/Kuratowski定理",
+              "zh": "Kuratowski定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/平面图判定定理/Wagner定理",
+              "zh": "Wagner定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "简单图/simple graph",
-          "zh": "简单图",
-          "importance": 0.617945,
-          "relation": null,
-          "related": [],
-          "children": []
-        },
-        {
-          "id": "非连通图/disconnected graph",
-          "zh": "非连通图",
-          "importance": 0.588391,
-          "relation": null,
-          "related": [
-            "连通图"
-          ],
-          "children": [
-            {
-              "id": "极大连通子图/maximal connected subgraph",
-              "zh": "极大连通子图",
-              "importance": 0.243884,
-              "relation": "part_of",
-              "related": [
-                "割点"
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "多重图/multigraph",
-          "zh": "多重图",
-          "importance": 0.341893,
-          "relation": null,
+          "id": "__section__/对偶图",
+          "zh": "对偶图",
+          "importance": 0.45,
+          "relation": "toc_section",
           "related": [],
           "children": [
             {
-              "id": "重边/multiple edges",
-              "zh": "重边",
-              "importance": 0.280321,
-              "relation": "part_of",
-              "related": [
-                "可平面性"
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "边/edge",
-          "zh": "边",
-          "importance": 0.074868,
-          "relation": null,
-          "related": [],
-          "children": [
-            {
-              "id": "割边/cut edge",
-              "zh": "割边",
-              "importance": 0.046564,
-              "relation": "belong_to",
+              "id": "__topic__/对偶图/对偶图唯一性",
+              "zh": "对偶图唯一性",
+              "importance": 0.4,
+              "relation": "outline_concept",
               "related": [],
-              "children": [],
-              "copy": true
+              "children": []
+            },
+            {
+              "id": "__topic__/对偶图/对偶图连通性",
+              "zh": "对偶图连通性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/对偶图/对偶图存在条件",
+              "zh": "对偶图存在条件",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/图的着色",
+              "zh": "图的着色",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/图的着色/五色定理",
+                  "zh": "五色定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的着色/四色定理",
+                  "zh": "四色定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/图的着色/Hamilton回路与四色",
+                      "zh": "Hamilton回路",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
       ]
     }
   ],
-  "n_nodes": 40,
-  "max_depth": 3,
-  "orphan_count": 0,
+  "n_nodes": 23,
+  "max_depth": 4,
+  "orphan_count": 108,
   "meta": {
     "chapter": "第4章 平面图与图的着色",
-    "root_zh": "平面图与图的着色",
+    "root_zh": "第4章 平面图与图的着色",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
+      "1",
       "9",
       "10",
       "11",
-      "12"
+      "12",
+      "16",
+      "17"
     ],
-    "pipeline": "lecture_assign_merge",
-    "stitch": "entity_merge",
-    "source": "kg",
+    "source": "outline+kg",
     "n_trees": 1,
-    "llm_tidy_notes": "合并了重复的平面图节点（保留主平面图节点，将可平面图下的子节点并入），将内部域挂到面下，统一了边着色/边染色术语，并调整了整体顺序使平面图相关概念在前。",
-    "llm_merge": true,
-    "llm_merge_notes": "合并了重复的平面图节点（保留主平面图节点，将可平面图下的子节点并入），将内部域挂到面下，统一了边着色/边染色术语，并调整了整体顺序使平面图相关概念在前。"
-  }
+    "skeleton_source": "manual_llm",
+    "n_sections": 6,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__section__/非平面图特征": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/K5": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/K3,3": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/边数条件": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/平面图判定定理/K型子图": "__section__/平面图判定定理",
+      "__topic__/平面图判定定理/可收缩子图": "__section__/平面图判定定理",
+      "__topic__/对偶图/对偶图定义": "__section__/对偶图",
+      "__topic__/图的着色/四色猜想": "__section__/图的着色",
+      "__topic__/对偶图/对偶图参数关系": "__section__/对偶图"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__section__/非平面图特征": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/K5": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/K3,3": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/边数条件": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/平面图判定定理/K型子图": "__section__/平面图判定定理",
+    "__topic__/平面图判定定理/可收缩子图": "__section__/平面图判定定理",
+    "__topic__/对偶图/对偶图定义": "__section__/对偶图",
+    "__topic__/图的着色/四色猜想": "__section__/图的着色",
+    "__topic__/对偶图/对偶图参数关系": "__section__/对偶图"
+  },
+  "concept_links": []
 }

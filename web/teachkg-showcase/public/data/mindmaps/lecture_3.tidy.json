@@ -1,0 +1,748 @@
+{
+  "lecture_id": "3",
+  "root": {
+    "id": "图/Graph",
+    "zh": "图",
+    "importance": 0.417779,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "图的基本概念/basic concepts of graphs",
+        "zh": "图的基本概念",
+        "importance": 1.0,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "邻点集/neighborhood",
+            "zh": "邻点集",
+            "importance": 0.179874,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "顶点度/vertex degree",
+            "zh": "顶点度",
+            "importance": 0.0,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "有向图/directed graph",
+        "zh": "有向图",
+        "importance": 0.763538,
+        "relation": null,
+        "related": [
+          "关联矩阵",
+          "简单图"
+        ],
+        "children": [
+          {
+            "id": "顶点/vertex",
+            "zh": "顶点",
+            "importance": 0.683944,
+            "relation": "part_of",
+            "related": [
+              "关联矩阵",
+              "列压缩",
+              "行压缩"
+            ],
+            "children": [
+              {
+                "id": "起点/source vertex",
+                "zh": "起点",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [
+                  "行压缩"
+                ],
+                "children": []
+              },
+              {
+                "id": "终点/terminal vertex",
+                "zh": "终点",
+                "importance": 0.497738,
+                "relation": "belong_to",
+                "related": [
+                  "列压缩",
+                  "直接前趋"
+                ],
+                "children": []
+              },
+              {
+                "id": "始点/initial vertex",
+                "zh": "始点",
+                "importance": 0.147995,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "有向边/directed edge",
+            "zh": "有向边",
+            "importance": 0.304579,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "简单图/simple graph",
+        "zh": "简单图",
+        "importance": 0.442427,
+        "relation": "belong_to",
+        "related": [
+          "无向图",
+          "有向图",
+          "补图"
+        ],
+        "children": [
+          {
+            "id": "完全图/complete graph",
+            "zh": "完全图",
+            "importance": 0.073593,
+            "relation": "belong_to",
+            "related": [
+              "补图"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "有限图/finite graph",
+        "zh": "有限图",
+        "importance": 0.326755,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "无限图/infinite graph",
+        "zh": "无限图",
+        "importance": 0.326755,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "图/Graph",
+      "zh": "图",
+      "importance": 0.417779,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "图的基本概念/basic concepts of graphs",
+          "zh": "图的基本概念",
+          "importance": 1.0,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "邻点集/neighborhood",
+              "zh": "邻点集",
+              "importance": 0.179874,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "顶点度/vertex degree",
+              "zh": "顶点度",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "有向图/directed graph",
+          "zh": "有向图",
+          "importance": 0.763538,
+          "relation": null,
+          "related": [
+            "关联矩阵",
+            "简单图"
+          ],
+          "children": [
+            {
+              "id": "顶点/vertex",
+              "zh": "顶点",
+              "importance": 0.683944,
+              "relation": "part_of",
+              "related": [
+                "关联矩阵",
+                "列压缩",
+                "行压缩"
+              ],
+              "children": [
+                {
+                  "id": "起点/source vertex",
+                  "zh": "起点",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "行压缩"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "终点/terminal vertex",
+                  "zh": "终点",
+                  "importance": 0.497738,
+                  "relation": "belong_to",
+                  "related": [
+                    "列压缩",
+                    "直接前趋"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "始点/initial vertex",
+                  "zh": "始点",
+                  "importance": 0.147995,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "有向边/directed edge",
+              "zh": "有向边",
+              "importance": 0.304579,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "简单图/simple graph",
+          "zh": "简单图",
+          "importance": 0.442427,
+          "relation": "belong_to",
+          "related": [
+            "无向图",
+            "有向图",
+            "补图"
+          ],
+          "children": [
+            {
+              "id": "完全图/complete graph",
+              "zh": "完全图",
+              "importance": 0.073593,
+              "relation": "belong_to",
+              "related": [
+                "补图"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "有限图/finite graph",
+          "zh": "有限图",
+          "importance": 0.326755,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "无限图/infinite graph",
+          "zh": "无限图",
+          "importance": 0.326755,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "图的表示方法/graph representation",
+      "zh": "图的表示方法",
+      "importance": 0.533623,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "邻接矩阵/adjacency matrix",
+          "zh": "邻接矩阵",
+          "importance": 0.675298,
+          "relation": "belong_to",
+          "related": [
+            "加权形式",
+            "反向表",
+            "权矩阵",
+            "正向表",
+            "自环",
+            "重边"
+          ],
+          "children": [
+            {
+              "id": "无向图的邻接矩阵/adjacency matrix of undirected graph",
+              "zh": "无向图的邻接矩阵",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "有向图的邻接矩阵/adjacency matrix of directed graph",
+              "zh": "有向图的邻接矩阵",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "关联矩阵/incidence matrix",
+          "zh": "关联矩阵",
+          "importance": 0.589077,
+          "relation": "belong_to",
+          "related": [
+            "无向图",
+            "有向图",
+            "自环",
+            "边",
+            "边列表",
+            "重边"
+          ],
+          "children": []
+        },
+        {
+          "id": "正向表/forward star",
+          "zh": "正向表",
+          "importance": 0.737429,
+          "relation": "belong_to",
+          "related": [
+            "行压缩",
+            "逆向表",
+            "邻接矩阵"
+          ],
+          "children": []
+        },
+        {
+          "id": "逆向表/inverse adjacency list",
+          "zh": "逆向表",
+          "importance": 0.556477,
+          "relation": "belong_to",
+          "related": [
+            "列压缩",
+            "正向表"
+          ],
+          "children": []
+        },
+        {
+          "id": "边列表/edge list",
+          "zh": "边列表",
+          "importance": 0.460169,
+          "relation": null,
+          "related": [
+            "关联矩阵",
+            "自环",
+            "赋权图",
+            "重边"
+          ],
+          "children": [
+            {
+              "id": "向量/vector",
+              "zh": "向量",
+              "importance": 0.225652,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "压缩方式/compression method",
+          "zh": "压缩方式",
+          "importance": 0.07628,
+          "relation": null,
+          "related": [
+            "应用需求"
+          ],
+          "children": [
+            {
+              "id": "行压缩/row compression",
+              "zh": "行压缩",
+              "importance": 0.187912,
+              "relation": "belong_to",
+              "related": [
+                "列压缩",
+                "基式",
+                "按起点索引",
+                "正向表",
+                "起点",
+                "边数"
+              ],
+              "children": [
+                {
+                  "id": "哨兵元素/sentinel element",
+                  "zh": "哨兵元素",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [
+                    "后继个数"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "列压缩/column compression",
+              "zh": "列压缩",
+              "importance": 0.175,
+              "relation": "belong_to",
+              "related": [
+                "反向表",
+                "基式",
+                "按终点索引",
+                "终点",
+                "行压缩",
+                "边数"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "应用需求/application requirement",
+          "zh": "应用需求",
+          "importance": 0.072557,
+          "relation": null,
+          "related": [
+            "压缩方式"
+          ],
+          "children": [
+            {
+              "id": "按起点索引/source indexing",
+              "zh": "按起点索引",
+              "importance": 0.040252,
+              "relation": "belong_to",
+              "related": [
+                "行压缩"
+              ],
+              "children": []
+            },
+            {
+              "id": "按终点索引/terminal indexing",
+              "zh": "按终点索引",
+              "importance": 0.037539,
+              "relation": "belong_to",
+              "related": [
+                "列压缩"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "子图/subgraph",
+      "zh": "子图",
+      "importance": 0.503181,
+      "relation": null,
+      "related": [
+        "差图"
+      ],
+      "children": [
+        {
+          "id": "导出子图/induced subgraph",
+          "zh": "导出子图",
+          "importance": 0.463031,
+          "relation": "belong_to",
+          "related": [
+            "图的同构",
+            "边集"
+          ],
+          "children": []
+        },
+        {
+          "id": "支撑子图/spanning subgraph",
+          "zh": "支撑子图",
+          "importance": 0.105707,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "图的运算/graph operation",
+      "zh": "图的运算",
+      "importance": 0.22333,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "并运算/union operation",
+          "zh": "并运算",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "交运算/intersection operation",
+          "zh": "交运算",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "差图/difference graph",
+          "zh": "差图",
+          "importance": 0.265915,
+          "relation": "belong_to",
+          "related": [
+            "子图",
+            "补图"
+          ],
+          "children": [
+            {
+              "id": "补图/complement graph",
+              "zh": "补图",
+              "importance": 0.176936,
+              "relation": "belong_to",
+              "related": [
+                "完全图",
+                "差图",
+                "简单图"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "对称差运算/symmetric difference operation",
+          "zh": "对称差运算",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "等价关系/equivalence relation",
+      "zh": "等价关系",
+      "importance": 0.199599,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "图的同构/graph isomorphism",
+          "zh": "图的同构",
+          "importance": 0.644039,
+          "relation": "belong_to",
+          "related": [
+            "化学药品的分子结构判断",
+            "双射",
+            "导出子图",
+            "电路布局验证"
+          ],
+          "children": [
+            {
+              "id": "一般图同构/general graph isomorphism",
+              "zh": "一般图同构",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [
+                "边间双射",
+                "顶点间双射"
+              ],
+              "children": []
+            },
+            {
+              "id": "简单图同构/simple graph isomorphism",
+              "zh": "简单图同构",
+              "importance": 0.0,
+              "relation": "belong_to",
+              "related": [
+                "双射",
+                "顶点间双射"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "必要不充分条件/necessary but not sufficient condition",
+      "zh": "必要不充分条件",
+      "importance": 0.0,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "点数相等/equal number of vertices",
+          "zh": "点数相等",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "边数相等/equal number of edges",
+          "zh": "边数相等",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "结点度的非增序列相同/same non-increasing degree sequence",
+          "zh": "结点度的非增序列相同",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "导出子图同构/induced subgraph isomorphism",
+          "zh": "导出子图同构",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "内邻集/in-neighborhood",
+      "zh": "内邻集",
+      "importance": 0.0,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "前趋/predecessor",
+          "zh": "前趋",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "外邻集/out-neighborhood",
+      "zh": "外邻集",
+      "importance": 0.0,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "后继谓词S/Successor Predicate S",
+          "zh": "后继谓词S",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "分子结构图/molecular structure graph",
+      "zh": "分子结构图",
+      "importance": 0.0,
+      "relation": null,
+      "related": [
+        "化学药品的分子结构判断"
+      ],
+      "children": [
+        {
+          "id": "原子/atom",
+          "zh": "原子",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "化学键/chemical bond",
+          "zh": "化学键",
+          "importance": 0.0,
+          "relation": "part_of",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "双射/bijection",
+      "zh": "双射",
+      "importance": 0.303409,
+      "relation": null,
+      "related": [
+        "图的同构",
+        "简单图同构"
+      ],
+      "children": [
+        {
+          "id": "顶点间双射/vertex bijection",
+          "zh": "顶点间双射",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [
+            "一般图同构",
+            "简单图同构"
+          ],
+          "children": []
+        },
+        {
+          "id": "边间双射/edge bijection",
+          "zh": "边间双射",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [
+            "一般图同构"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 58,
+  "max_depth": 3,
+  "orphan_count": 3,
+  "meta": {
+    "chapter": "第1章 图的基本概念与表示",
+    "root_id": "图的基本概念/basic concepts of graphs",
+    "root_zh": "图的基本概念",
+    "virtual_root": false,
+    "n_trees": 15,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 80,
+    "n_edges_raw": 90,
+    "n_hierarchy_candidates": 53,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "将散落的主题按图、表示方法、子图、运算、同构等核心概念归类；将“图”作为根节点收纳基本概念、有向图、简单图等；删除孤立或重复的节点，调整顺序使重要主题靠前。"
+  }
+}

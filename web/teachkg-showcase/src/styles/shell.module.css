@@ -396,13 +396,10 @@
 .canvasWrap {
   flex: 1;
   min-height: 0;
-  overflow: auto;
-  padding: 28px 32px 48px;
-  background-image:
-    linear-gradient(rgba(42, 51, 68, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 51, 68, 0.35) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: -1px -1px;
+  overflow: hidden;
+  padding: 0;
+  /* 与 MindmapTree --mm-bg 一致，去掉格子底 */
+  background: #fafafa;
 }
 
 .canvasPlain {
@@ -444,7 +441,7 @@
   }
 
   .canvasWrap {
-    padding: 16px 12px 28px;
+    padding: 0;
   }
 
   .canvasPlain {

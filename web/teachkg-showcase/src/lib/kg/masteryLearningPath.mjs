@@ -1,6 +1,6 @@
 import { masteryScore, masteryVisual } from "./mindmapMasteryBinding.mjs";
 
-/** Source chapter order, then breadth first within each chapter. Never order by layout coordinates. */
+/** Source chapter order, then depth first within each chapter. Never order by layout coordinates. */
 export function masteryLearningPath(doc, mastery) {
   const chapters = [];
   const find = (node, path) => {
@@ -15,16 +15,13 @@ export function masteryLearningPath(doc, mastery) {
   );
   const result = [];
   for (const chapter of chapters) {
-    const queue = [chapter];
-    for (let i = 0; i < queue.length; i++) {
-      const { node, path } = queue[i];
+    const visit = ({ node, path }) => {
       const score = masteryScore(node, mastery);
       if (score != null && score < 2.5)
         result.push({ key: path.join("."), score, label: node.zh });
-      (node.children || []).forEach((child, j) =>
-        queue.push({ node: child, path: [...path, j] }),
-      );
-    }
+      (node.children || []).forEach((child, j) => visit({ node: child, path: [...path, j] }));
+    };
+    visit(chapter);
   }
   return result;
 }

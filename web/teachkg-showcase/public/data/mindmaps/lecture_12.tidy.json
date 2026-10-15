@@ -1,0 +1,282 @@
+{
+  "lecture_id": "12",
+  "root": {
+    "id": "平面图/planar graph",
+    "zh": "平面图",
+    "importance": 0.844301,
+    "relation": null,
+    "related": [
+      "DMP算法",
+      "图的着色",
+      "域染色",
+      "对偶图",
+      "欧拉定理"
+    ],
+    "children": [
+      {
+        "id": "简单平面图/simple planar graph",
+        "zh": "简单平面图",
+        "importance": 0.679178,
+        "relation": "belong_to",
+        "related": [
+          "五色定理",
+          "四色定理",
+          "欧拉公式"
+        ],
+        "children": []
+      },
+      {
+        "id": "3-正则平面图/3-regular planar graph",
+        "zh": "3-正则平面图",
+        "importance": 0.291971,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "平面图/planar graph",
+      "zh": "平面图",
+      "importance": 0.844301,
+      "relation": null,
+      "related": [
+        "DMP算法",
+        "图的着色",
+        "域染色",
+        "对偶图",
+        "欧拉定理"
+      ],
+      "children": [
+        {
+          "id": "简单平面图/simple planar graph",
+          "zh": "简单平面图",
+          "importance": 0.679178,
+          "relation": "belong_to",
+          "related": [
+            "五色定理",
+            "四色定理",
+            "欧拉公式"
+          ],
+          "children": []
+        },
+        {
+          "id": "3-正则平面图/3-regular planar graph",
+          "zh": "3-正则平面图",
+          "importance": 0.291971,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "非平面图/non-planar graph",
+      "zh": "非平面图",
+      "importance": 0.098254,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "K_5",
+          "zh": "K_5",
+          "importance": 0.052842,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "图的着色/graph coloring",
+      "zh": "图的着色",
+      "importance": 0.674376,
+      "relation": null,
+      "related": [
+        "五色定理",
+        "哈密顿回路",
+        "对偶图",
+        "平面图",
+        "最大度"
+      ],
+      "children": [
+        {
+          "id": "点着色/vertex coloring",
+          "zh": "点着色",
+          "importance": 0.453904,
+          "relation": "belong_to",
+          "related": [
+            "课程表编排问题",
+            "边着色"
+          ],
+          "children": []
+        },
+        {
+          "id": "边着色/edge coloring",
+          "zh": "边着色",
+          "importance": 0.555267,
+          "relation": "belong_to",
+          "related": [
+            "度数最大的节点",
+            "点着色",
+            "课程表编排问题"
+          ],
+          "children": [
+            {
+              "id": "二部图边着色/bipartite graph edge coloring",
+              "zh": "二部图边着色",
+              "importance": 0.172811,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "面着色问题/face coloring problem",
+          "zh": "面着色问题",
+          "importance": 0.314748,
+          "relation": "belong_to",
+          "related": [
+            "对偶图",
+            "点着色问题"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "道路/Path",
+      "zh": "道路",
+      "importance": 0.396967,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "欧拉道路/Eulerian Path",
+          "zh": "欧拉道路",
+          "importance": 0.054232,
+          "relation": "belong_to",
+          "related": [
+            "H 道路"
+          ],
+          "children": []
+        },
+        {
+          "id": "H 道路/H path",
+          "zh": "H 道路",
+          "importance": 0.087506,
+          "relation": "belong_to",
+          "related": [
+            "H 回路",
+            "欧拉道路"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "回路/Circuit",
+      "zh": "回路",
+      "importance": 0.386213,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "欧拉回路/Eulerian circuit",
+          "zh": "欧拉回路",
+          "importance": 0.050355,
+          "relation": "belong_to",
+          "related": [
+            "H 回路"
+          ],
+          "children": []
+        },
+        {
+          "id": "H 回路/H circuit",
+          "zh": "H 回路",
+          "importance": 0.087506,
+          "relation": "belong_to",
+          "related": [
+            "H 道路",
+            "欧拉回路"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "正则图/regular graph",
+      "zh": "正则图",
+      "importance": 0.720489,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "三正则图/3-regular graph",
+          "zh": "三正则图",
+          "importance": 0.554904,
+          "relation": "belong_to",
+          "related": [
+            "哈密顿回路",
+            "四色定理"
+          ],
+          "children": [
+            {
+              "id": "由三个K4构成的三正则图/3-regular graph composed of three K4",
+              "zh": "由三个K4构成的三正则图",
+              "importance": 0.237091,
+              "relation": "belong_to",
+              "related": [
+                "哈密顿回路",
+                "哈密顿图",
+                "四色定理"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "图/Graph",
+      "zh": "图",
+      "importance": 0.10151,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "二分图/Bipartite Graph",
+          "zh": "二分图",
+          "importance": 0.174055,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 21,
+  "max_depth": 2,
+  "orphan_count": 3,
+  "meta": {
+    "chapter": "第3章 树",
+    "root_id": "平面图/planar graph",
+    "root_zh": "平面图",
+    "virtual_root": false,
+    "n_trees": 8,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 65,
+    "n_edges_raw": 45,
+    "n_hierarchy_candidates": 23,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "删除了与主题无关的Hamilton回路、2-可着色及其子节点，合并了重复的3-正则图节点，调整了主题顺序，使结构更清晰。"
+  }
+}

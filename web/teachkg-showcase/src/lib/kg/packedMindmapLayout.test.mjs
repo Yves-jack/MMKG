@@ -110,11 +110,16 @@ test("the complete course retains every occurrence and has no overlapping node/c
       ),
     ),
   );
-  for (const depth of [2, 99]) {
+  for (const depth of [2, 3, 99]) {
     const input = preparePackedMindmap(collapseMindmap(doc, depth), measure);
     const start = performance.now(),
       result = layoutPackedMindmap(input);
     assert.equal(result.nodes.length, input.records.length);
+    if (depth === 3) {
+      const section = result.nodes.find(n => n.node.zh === "图的定义");
+      assert.ok(section, "default expansion includes chapter sections");
+      assert.ok(!result.nodes.some(n => n.key.startsWith(section.key + ".")), "knowledge below the section remains collapsed");
+    }
     for (let i = 0; i < result.nodes.length; i++)
       for (let j = i + 1; j < result.nodes.length; j++) {
         const a = result.nodes[i],

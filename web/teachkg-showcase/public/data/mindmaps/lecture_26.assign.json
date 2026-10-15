@@ -1,0 +1,38 @@
+{
+  "lecture_id": "26",
+  "candidates": [
+    "第3章 命题逻辑的公理化系统"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "规则/rule",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.9,
+      "reason": "公理系统是本章核心主题，规则作为其组成部分归属本章。"
+    },
+    {
+      "subtree_root_id": "条件/condition",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.85,
+      "reason": "相继式、公式串等是公理化系统中证明论的核心概念，属于本章。"
+    },
+    {
+      "subtree_root_id": "推理规则/inference rule",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.95,
+      "reason": "分离规则、传递规则等是公理化系统推理规则的具体内容，直接对应本章。"
+    },
+    {
+      "subtree_root_id": "联结词/connective",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.7,
+      "reason": "联结词是命题逻辑的基础，在公理化系统中作为符号出现，归属本章。"
+    },
+    {
+      "subtree_root_id": "推理方法/inference method",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.8,
+      "reason": "自然演绎是公理化系统的一种推理方法，属于本章内容。"
+    }
+  ]
+}

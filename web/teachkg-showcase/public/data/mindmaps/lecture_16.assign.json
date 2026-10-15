@@ -1,0 +1,52 @@
+{
+  "lecture_id": "16",
+  "candidates": [
+    "第2章 道路与回路",
+    "第3章 树",
+    "第4章 平面图与图的着色"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "平面图/planar graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "对偶图/dual graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "赋权连通图/weighted connected graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "连通图/connected graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "无向图/undirected graph",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "选题方向/选题方向",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    },
+    {
+      "subtree_root_id": "困难任务/difficult task",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.0,
+      "reason": "fallback_unassigned"
+    }
+  ]
+}

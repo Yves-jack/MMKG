@@ -1,0 +1,270 @@
+{
+  "lecture_id": "26",
+  "root": {
+    "id": "规则/rule",
+    "zh": "规则",
+    "importance": 1.0,
+    "relation": null,
+    "related": [
+      "公式证明",
+      "消去联结词",
+      "王浩算法",
+      "相继式"
+    ],
+    "children": [
+      {
+        "id": "公理系统/axiomatic system",
+        "zh": "公理系统",
+        "importance": 0.672112,
+        "relation": "part_of",
+        "related": [],
+        "children": [],
+        "copy": true
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "规则/rule",
+      "zh": "规则",
+      "importance": 1.0,
+      "relation": null,
+      "related": [
+        "公式证明",
+        "消去联结词",
+        "王浩算法",
+        "相继式"
+      ],
+      "children": [
+        {
+          "id": "公理系统/axiomatic system",
+          "zh": "公理系统",
+          "importance": 0.672112,
+          "relation": "part_of",
+          "related": [],
+          "children": [],
+          "copy": true
+        }
+      ]
+    },
+    {
+      "id": "条件/condition",
+      "zh": "条件",
+      "importance": 0.698856,
+      "relation": null,
+      "related": [
+        "合取"
+      ],
+      "children": [
+        {
+          "id": "相继式/sequent",
+          "zh": "相继式",
+          "importance": 0.951573,
+          "relation": "part_of",
+          "related": [
+            "消去联结词",
+            "王浩算法",
+            "蕴含",
+            "规则"
+          ],
+          "children": [
+            {
+              "id": "公式串/formula string",
+              "zh": "公式串",
+              "importance": 0.868795,
+              "relation": "part_of",
+              "related": [],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "公式/formula",
+              "zh": "公式",
+              "importance": 0.764718,
+              "relation": "belong_to",
+              "related": [
+                "加头规则",
+                "拧规则",
+                "调规则"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "后件/succedent",
+              "zh": "后件",
+              "importance": 0.657593,
+              "relation": "part_of",
+              "related": [
+                "前提",
+                "析取",
+                "消去联结词"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "条件式/conditional formula",
+          "zh": "条件式",
+          "importance": 0.599371,
+          "relation": "part_of",
+          "related": [
+            "等值演算"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.638809,
+      "relation": null,
+      "related": [
+        "公式证明"
+      ],
+      "children": [
+        {
+          "id": "分离规则/分离规则",
+          "zh": "分离规则",
+          "importance": 0.548747,
+          "relation": "belong_to",
+          "related": [
+            "公式证明",
+            "前提",
+            "永真推理",
+            "证明"
+          ],
+          "children": []
+        },
+        {
+          "id": "传递规则/rule of transitivity",
+          "zh": "传递规则",
+          "importance": 0.0,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "加头规则/rule of thinning",
+          "zh": "加头规则",
+          "importance": 0.498402,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "公式证明"
+          ],
+          "children": []
+        },
+        {
+          "id": "调规则/rule of exchange",
+          "zh": "调规则",
+          "importance": 0.609515,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "公式证明"
+          ],
+          "children": []
+        },
+        {
+          "id": "拧规则/rule of contraction",
+          "zh": "拧规则",
+          "importance": 0.609515,
+          "relation": "belong_to",
+          "related": [
+            "公式",
+            "公式证明"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.354508,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "蕴含/implication",
+          "zh": "蕴含",
+          "importance": 0.490653,
+          "relation": "belong_to",
+          "related": [
+            "演绎定理",
+            "相继式"
+          ],
+          "children": [
+            {
+              "id": "公式/formula",
+              "zh": "公式",
+              "importance": 0.764718,
+              "relation": "belong_to",
+              "related": [
+                "加头规则",
+                "拧规则",
+                "调规则"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "合取/conjunction",
+          "zh": "合取",
+          "importance": 0.159261,
+          "relation": "belong_to",
+          "related": [
+            "条件"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "推理方法/inference method",
+      "zh": "推理方法",
+      "importance": 0.331977,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "自然演绎/natural deduction",
+          "zh": "自然演绎",
+          "importance": 0.266635,
+          "relation": "belong_to",
+          "related": [
+            "永真推理"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 20,
+  "max_depth": 2,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化系统",
+    "root_id": "规则/rule",
+    "root_zh": "规则",
+    "virtual_root": false,
+    "n_trees": 5,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 35,
+    "n_edges_raw": 51,
+    "n_hierarchy_candidates": 22,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "仅调整了推理规则子节点顺序，将分离规则和传递规则提前；其余保持原结构，未删减或合并。"
+  }
+}

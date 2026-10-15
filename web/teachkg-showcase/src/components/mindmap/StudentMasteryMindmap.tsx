@@ -82,7 +82,7 @@ export function StudentMasteryMindmap({
   compact?: boolean;
 }) {
   const [percent, setPercent] = useState(100);
-  const expandDepth = 2;
+  const expandDepth = 3;
   const [openPaths, setOpenPaths] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });

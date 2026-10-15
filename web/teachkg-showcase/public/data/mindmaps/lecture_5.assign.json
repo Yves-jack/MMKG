@@ -1,0 +1,80 @@
+{
+  "lecture_id": "5",
+  "candidates": [
+    "第2章 道路与回路"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "图论/graph theory",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.9,
+      "reason": "该子树包含回路、欧拉回路、欧拉道路等核心概念，属于道路与回路主题。"
+    },
+    {
+      "subtree_root_id": "求可达性的通用方法/General Reachability Method",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.85,
+      "reason": "可达性判定与搜索方法、邻接矩阵相关，属于道路与回路的应用。"
+    },
+    {
+      "subtree_root_id": "邻接矩阵的幂之和/sum of powers of adjacency matrix",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.8,
+      "reason": "邻接矩阵的幂用于计算路径数量，属于道路与回路内容。"
+    },
+    {
+      "subtree_root_id": "充要条件/necessary and sufficient condition",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.75,
+      "reason": "欧拉道路的充要条件（奇点个数）属于道路与回路。"
+    },
+    {
+      "subtree_root_id": "充分条件/sufficient condition",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.7,
+      "reason": "欧拉回路的充分条件（奇点个数）属于道路与回路。"
+    },
+    {
+      "subtree_root_id": "合作距离/collaborative distance",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.6,
+      "reason": "合作距离可视为图论中路径长度的应用，与道路相关。"
+    },
+    {
+      "subtree_root_id": "人际网络/social network",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.6,
+      "reason": "人际网络中的连通性、路径概念属于道路与回路的应用。"
+    },
+    {
+      "subtree_root_id": "循环序列/Cyclic sequence",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.65,
+      "reason": "De Bruijn循环与欧拉回路相关，属于道路与回路。"
+    },
+    {
+      "subtree_root_id": "循环二进制序列设计/cyclic binary sequence design",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.65,
+      "reason": "de Bruijn循环设计基于欧拉回路，属于道路与回路。"
+    },
+    {
+      "subtree_root_id": "四位二进制数/four-bit binary number",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.5,
+      "reason": "四位二进制数作为de Bruijn序列的元素，与道路应用相关。"
+    },
+    {
+      "subtree_root_id": "三元组/ordered triple",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.5,
+      "reason": "三元组状态用于de Bruijn序列构造，与道路相关。"
+    },
+    {
+      "subtree_root_id": "逻辑运算/logical operation",
+      "chapter": "第2章 道路与回路",
+      "confidence": 0.4,
+      "reason": "逻辑运算用于邻接矩阵的布尔运算，辅助可达性判定，属于道路与回路。"
+    }
+  ]
+}

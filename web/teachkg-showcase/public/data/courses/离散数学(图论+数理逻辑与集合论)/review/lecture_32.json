@@ -1,0 +1,1687 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "lecture_id": "32",
+  "title": "第 32 讲",
+  "n_points": 24,
+  "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/32_0.mp4",
+  "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/32_1.mp4",
+  "duration_sec": 3247,
+  "segments": [
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1200_787400",
+      "index": 1,
+      "start_sec": 1.2,
+      "end_sec": 787.4,
+      "title": "我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么",
+      "summary": "我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_788500_822500",
+      "index": 2,
+      "start_sec": 788.5,
+      "end_sec": 822.5,
+      "title": "通过这个例子，我们看它们等不等值，但是等不可满足",
+      "summary": "通过这个例子，我们看它们等不等值，但是等不可满足"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+      "index": 3,
+      "start_sec": 827.4,
+      "end_sec": 1051.6,
+      "title": "推理就是去判定哪些推理是正确的，哪些是错误的",
+      "summary": "推理就是去判定哪些推理是正确的，哪些是错误的"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+      "index": 4,
+      "start_sec": 1052.9,
+      "end_sec": 1384.6,
+      "title": "这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”",
+      "summary": "这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1386900_1395500",
+      "index": 5,
+      "start_sec": 1386.9,
+      "end_sec": 1395.5,
+      "title": "这个我们就不说了",
+      "summary": "这个我们就不说了"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1397200_1443500",
+      "index": 6,
+      "start_sec": 1397.2,
+      "end_sec": 1443.5,
+      "title": "规则里面，仍然是第二章的规则，加入了一个个体变量的代入",
+      "summary": "规则里面，仍然是第二章的规则，加入了一个个体变量的代入"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+      "index": 7,
+      "start_sec": 1444.4,
+      "end_sec": 1651.7,
+      "title": "全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到…",
+      "summary": "全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1653400_1938100",
+      "index": 8,
+      "start_sec": 1653.4,
+      "end_sec": 1938.1,
+      "title": "其实我通常喜欢直接就用 x：任意 x，推出 A(x)，没有关系，只要它是一个体变元，在 A 中只是作为体…",
+      "summary": "其实我通常喜欢直接就用 x：任意 x，推出 A(x)，没有关系，只要它是一个体变元，在 A 中只是作为体…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_1939600_2034300",
+      "index": 9,
+      "start_sec": 1939.6,
+      "end_sec": 2034.3,
+      "title": "谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再用…",
+      "summary": "谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再用…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2035500_2050600",
+      "index": 10,
+      "start_sec": 2035.5,
+      "end_sec": 2050.6,
+      "title": "所以我们用得着前面说的这些关于量词的推理演算公式吗",
+      "summary": "所以我们用得着前面说的这些关于量词的推理演算公式吗"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2055699_2073000",
+      "index": 11,
+      "start_sec": 2055.7,
+      "end_sec": 2073.0,
+      "title": "这些用得着吗",
+      "summary": "这些用得着吗"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2073900_2097700",
+      "index": 12,
+      "start_sec": 2073.9,
+      "end_sec": 2097.7,
+      "title": "但我们真正推理的时候用不着这些",
+      "summary": "但我们真正推理的时候用不着这些"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+      "index": 13,
+      "start_sec": 2098.5,
+      "end_sec": 2453.2,
+      "title": "再看这个例子",
+      "summary": "再看这个例子"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2454900_2619800",
+      "index": 14,
+      "start_sec": 2454.9,
+      "end_sec": 2619.8,
+      "title": "看看下面这个是不是正确的",
+      "summary": "看看下面这个是不是正确的"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2621000_2639400",
+      "index": 15,
+      "start_sec": 2621.0,
+      "end_sec": 2639.4,
+      "title": "不成立，不成立",
+      "summary": "不成立，不成立"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_2640200_3058900",
+      "index": 16,
+      "start_sec": 2640.2,
+      "end_sec": 3058.9,
+      "title": "有的病人喜欢所有医生",
+      "summary": "有的病人喜欢所有医生"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_32_3060500_3247000",
+      "index": 17,
+      "start_sec": 3060.5,
+      "end_sec": 3247.0,
+      "title": "少一点嘛，反正是收的问题，看什么时候收吧",
+      "summary": "少一点嘛，反正是收的问题，看什么时候收吧"
+    }
+  ],
+  "points": [
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 1,
+      "mention_count": 17,
+      "origin": "textbook",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更…",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "组成",
+          "natural_statement": "量词是谓词演算的组成部分"
+        },
+        {
+          "subject": "分配律/分配律",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "分配律依赖量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "代入规则/代入规则",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "代入规则涉及量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "related_with",
+          "object": "推理演算过程/inference calculus process",
+          "label": "相关",
+          "natural_statement": "量词相关推理演算过程"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "量词是谓词公式的组成部分"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "depend_on",
+          "object": "量词/quantifier",
+          "label": "依赖",
+          "natural_statement": "否定词可作用于量词"
+        }
+      ],
+      "rank": 1,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+          "text": "在推理中，关于量词的推理规则主要有全称量词消去、全称量词引入、存在量词消去和存在量词引入。 全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到 A(y)。在莫先生那本书上，这被称为隐含的全称封闭空间。也就是说，当一个公式中含有自由变元 x 时，它实际上隐含着一个全称封闭空间；无论全称量词在形式上是否写出，它都隐含地存在。因此，只要 x 是自由的，全称量词既可以消去，也可以加上。当然，加上全称量词是有条件的，不能随意添加。 存在量词消去是指：∃x A(x) ⇒ A(c)。由 ∃x A(x)，可以引入一个个…",
+          "start_sec": 1444.4,
+          "end_sec": 1651.7
+        }
+      ]
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.8526787725688684,
+      "mention_count": 15,
+      "origin": "textbook",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "组成",
+          "natural_statement": "全称量词表示逻辑公式"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "全称量词表示谓词逻辑"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "相关",
+          "natural_statement": "全称量词等价于合取"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "全称量词/universal quantifier",
+          "label": "依赖",
+          "natural_statement": "代入依赖于全称量词"
+        },
+        {
+          "subject": "全称命题/universal proposition",
+          "predicate": "depend_on",
+          "object": "全称量词/universal quantifier",
+          "label": "依赖",
+          "natural_statement": "全称命题依赖于全称量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "相关",
+          "natural_statement": "全称量词对蕴含的分配律"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "related_with",
+          "object": "全称量词/universal quantifier",
+          "label": "相关",
+          "natural_statement": "自由变元隐含全称封闭空间全称量词"
+        }
+      ],
+      "rank": 2,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+          "text": "在推理中，关于量词的推理规则主要有全称量词消去、全称量词引入、存在量词消去和存在量词引入。 全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到 A(y)。在莫先生那本书上，这被称为隐含的全称封闭空间。也就是说，当一个公式中含有自由变元 x 时，它实际上隐含着一个全称封闭空间；无论全称量词在形式上是否写出，它都隐含地存在。因此，只要 x 是自由的，全称量词既可以消去，也可以加上。当然，加上全称量词是有条件的，不能随意添加。 存在量词消去是指：∃x A(x) ⇒ A(c)。由 ∃x A(x)，可以引入一个个…",
+          "start_sec": 1444.4,
+          "end_sec": 1651.7
+        }
+      ]
+    },
+    {
+      "id": "变元/variable symbol",
+      "zh": "变元",
+      "importance": 0.7293190947838848,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "definition": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变元/variable symbol",
+          "label": "属于",
+          "natural_statement": "自由变元是一种变元"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "全称量词约束变元"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "存在量词约束变元"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "related_with",
+          "object": "变元/variable symbol",
+          "label": "相关",
+          "natural_statement": "个体常项区别于变元"
+        }
+      ],
+      "rank": 3,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2454900_2619800",
+          "text": "看看下面这个是不是正确的。这是一个前提，这个前提可以把任意的 x 去掉，没问题。那这个时候，从 2 到 3，把存在量词去掉。然后再把 z 引入全称量词，因为 z 是任意的；再消去全称量词，用 b 代入，变成 b 大于 b，然后推出任意 x，x 大于 x，对不对？哪一步错了？我想请问一下。3 到 4，正确吗？为什么？因为 b 和 z 有问题，b 和 z 是什么？我这里 z 是一个变元，自由变元。3 到 4 没问题。2 到 3 错了。2 到 3 哪儿错了？有自由变元。我去存在量词的时候，不能有自由变元，一定要注意。A(x) 中去存在量词的时候，要求 A(x)…",
+          "start_sec": 2454.9,
+          "end_sec": 2619.8
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2621000_2639400",
+          "text": "不成立，不成立。第5到第6步也是错的，因为b不是变元，而是一个个体常项，也不能够作代入。好，我们再来，推理演算。",
+          "start_sec": 2621,
+          "end_sec": 2639.4
+        }
+      ]
+    },
+    {
+      "id": "代入/instantiation",
+      "zh": "代入",
+      "importance": 0.7075375132978096,
+      "mention_count": 20,
+      "origin": "new",
+      "summary": "代入（instantiation）是数理逻辑与集合论中的基本操作，表示将一个变量替换为另一个具体项的过程。在λ演算中，代入是其核心运作机制，用于模拟计算和函数应用。它通过变量置换来传递信息和执行逻辑推导，是构成可计算性的基础。",
+      "definition": "代入（instantiation）是数理逻辑与集合论中的基本操作，表示将一个变量替换为另一个具体项的过程。在λ演算中，代入是其核心运作机制，用于模拟计算和函数应用。它通过变量置换来传递信息和执行逻辑推导，是构成可计算性的基础。",
+      "neighbors": [
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "全称量词/universal quantifier",
+          "label": "依赖",
+          "natural_statement": "代入依赖于全称量词"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "代入属于谓词演算"
+        },
+        {
+          "subject": "全称命题/universal proposition",
+          "predicate": "related_with",
+          "object": "代入/instantiation",
+          "label": "相关",
+          "natural_statement": "全称命题允许进行代入"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "等值式/equivalence formula",
+          "label": "依赖",
+          "natural_statement": "置换利用等值式"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "假言推理/modus ponens",
+          "label": "依赖",
+          "natural_statement": "分离规则通过代入得到"
+        },
+        {
+          "subject": "全称消去",
+          "predicate": "related_with",
+          "object": "代入/instantiation",
+          "label": "相关",
+          "natural_statement": "全称消去相关个体代入"
+        },
+        {
+          "subject": "谓词演算的推理演算",
+          "predicate": "related_with",
+          "object": "代入/instantiation",
+          "label": "相关",
+          "natural_statement": "谓词演算的推理演算涉及个体代入"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "depend_on",
+          "object": "代入/instantiation",
+          "label": "依赖",
+          "natural_statement": "推理演算使用代入"
+        }
+      ],
+      "rank": 4,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2073900_2097700",
+          "text": "但我们真正推理的时候用不着这些。我们真正的推理就是比如这个例子，这个我们就不说了，太简单了。这里全称消去，然后个体代入。像这个，这是前提，前提把这个消去，然后再把 x 变成苏格拉底，个体代入。",
+          "start_sec": 2073.9,
+          "end_sec": 2097.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "蕴含/implication",
+      "zh": "蕴含",
+      "importance": 0.6971052023128202,
+      "mention_count": 11,
+      "origin": "textbook",
+      "summary": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提…",
+      "definition": "蕴含（→）是数理逻辑中的一种二元联结词，表示一个命题为真推出另一个命题为真的关系。它等价于后件的否定或前件的否定，即 P → Q 等价于 ¬P ∨ Q。其核心功能是将复杂的逻辑公式转化为仅含否定、析取和合取的形式，便于证明和理解，并允许前提条件的顺序交换（如 P → (Q → R) = Q → (P → R)），同时其逆否形式 ¬Q → ¬P 与原蕴含式等值。",
+      "neighbors": [
+        {
+          "subject": "蕴含/implication",
+          "predicate": "part_of",
+          "object": "逻辑公式/logical formula",
+          "label": "组成",
+          "natural_statement": "蕴含表示逻辑公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "蕴含表示逻辑联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "相关",
+          "natural_statement": "蕴含表示合取"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "蕴含等价于联结词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "蕴含/implication",
+          "label": "相关",
+          "natural_statement": "全称量词对蕴含的分配律"
+        },
+        {
+          "subject": "前件/antecedent",
+          "predicate": "part_of",
+          "object": "蕴含/implication",
+          "label": "组成",
+          "natural_statement": "前件是蕴含的组成部分"
+        },
+        {
+          "subject": "后件/succedent",
+          "predicate": "part_of",
+          "object": "蕴含/implication",
+          "label": "组成",
+          "natural_statement": "后件是蕴含的组成部分"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "相关",
+          "natural_statement": "蕴含表示析取"
+        }
+      ],
+      "rank": 5,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2640200_3058900",
+          "text": "有的病人喜欢所有医生；没有病人喜欢庸医；所以没有医生是庸医。这个我们翻译过，翻译出这样的前提。由这两个前提推出这个结论，大家试试看，证明一下。我想请问：这里面的存在量词可以去吗？可以，因为这个 x 不是自由的。像这种，都是先要把否定词深入。看到这个，又看到这个，马上就想到用德摩根律；我们看到或的一般都会用到蕴含式。这个为真，就表明这个为真，而且这个为真，P(c) 为真，这个也为真。然后你看，都不用往下走了，已经出来了。就这道题，我们不引申这些，随便写。首先前提一，我不写引入，直接把存在量词去掉，就变成 P(c)；任意的 y 这个我也不写了，时间关系。那么…",
+          "start_sec": 2640.2,
+          "end_sec": 3058.9
+        }
+      ]
+    },
+    {
+      "id": "推理演算/inference calculus",
+      "zh": "推理演算",
+      "importance": 0.6903972264386421,
+      "mention_count": 10,
+      "origin": "textbook",
+      "summary": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实…",
+      "definition": "推理演算（inference calculus）是数理逻辑中研究推理形式和推理演变规律的学科。它通过引入基本推理规则和重言蕴涵式（推理定律），构建证明方法，实现从已知前提推导出结论的过程。推理演算在命题逻辑和谓词逻辑中都发挥着核心作用，是实现逻辑证明的关键手段。例如，在谓词逻辑中，结合归结法进行推理演算，可以高效地进行逻辑推导。",
+      "neighbors": [
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "组成",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于数理逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词演算"
+        },
+        {
+          "subject": "三段论/三段论",
+          "predicate": "related_with",
+          "object": "推理演算/inference calculus",
+          "label": "相关",
+          "natural_statement": "三段论在推理演算中应用"
+        },
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "depend_on",
+          "object": "推理演算/inference calculus",
+          "label": "依赖",
+          "natural_statement": "谓词公式在推理演算中进行推理"
+        },
+        {
+          "subject": "谓词演算的推理演算",
+          "predicate": "belong_to",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "谓词演算的推理演算是一种推理演算"
+        }
+      ],
+      "rank": 6,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1939600_2034300",
+          "text": "引入很简单。就是我们刚才说的这些，推理演算就变得很简单了。我们再看一下，比如说我们刚才说的三段论。前提是这两个：∀x(P(x)→Q(x))，∀x(Q(x)→R(x))，我们就推出 ∀x(P(x)→R(x))。证明非常简单：把第一个前提中的全称量词去掉，得到(2)；把第二个前提中的全称量词去掉，得到(4)。(2)(4)用第二章学过的三段论，得到(5)。最后再把全称引入，就得到结论。所以我为什么告诉你们，前面说的这十个关于量词的推理演算公式用不着呢？用不着。谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再…",
+          "start_sec": 1939.6,
+          "end_sec": 2034.3
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2621000_2639400",
+          "text": "不成立，不成立。第5到第6步也是错的，因为b不是变元，而是一个个体常项，也不能够作代入。好，我们再来，推理演算。",
+          "start_sec": 2621,
+          "end_sec": 2639.4
+        }
+      ]
+    },
+    {
+      "id": "谓词演算/Predicate Calculus",
+      "zh": "谓词演算",
+      "importance": 0.676739425755444,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "谓词演算（Predicate Calculus）是数理逻辑的一个分支，旨在扩展命题逻辑，引入量词和谓词来表达更复杂的逻辑关系。它通过量词（如全称量词∀和存在量词∃）和谓词（表示对象属性或对象间关系的断言）的引入，使其能够处理个体、属性和关系…",
+      "definition": "谓词演算（Predicate Calculus）是数理逻辑的一个分支，旨在扩展命题逻辑，引入量词和谓词来表达更复杂的逻辑关系。它通过量词（如全称量词∀和存在量词∃）和谓词（表示对象属性或对象间关系的断言）的引入，使其能够处理个体、属性和关系，从而具有比命题逻辑更广泛的应用，例如在验证公式、定义自由变元和量词的控制域等方面，常与集合论的证明方法相结合。",
+      "neighbors": [
+        {
+          "subject": "谓词演算/Predicate Calculus",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "谓词演算属于数理逻辑"
+        },
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "推理演算属于谓词演算"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "代入属于谓词演算"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "命题属于谓词演算"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "组成",
+          "natural_statement": "量词是谓词演算的组成部分"
+        },
+        {
+          "subject": "全称命题/universal proposition",
+          "predicate": "belong_to",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "属于",
+          "natural_statement": "全称命题属于谓词演算"
+        },
+        {
+          "subject": "逻辑公式/logical formula",
+          "predicate": "part_of",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "组成",
+          "natural_statement": "逻辑公式是谓词演算的组成部分"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词演算/Predicate Calculus",
+          "label": "组成",
+          "natural_statement": "论域是谓词演算的组成部分"
+        }
+      ],
+      "rank": 7,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "推理/inference",
+      "zh": "推理",
+      "importance": 0.6419011507497276,
+      "mention_count": 25,
+      "origin": "textbook",
+      "summary": "推理是在数理逻辑与集合论中，用于描述命题之间必然真假关系的演绎过程，其本质是将真实的前提转化为必然真实的结论。在自然推理系统中，推理可以被形式化地表示为一系列命题的有序序列，其因果关系明了，并与函数项存在一一对应关系，例如，在特定逻辑系统中…",
+      "definition": "推理是在数理逻辑与集合论中，用于描述命题之间必然真假关系的演绎过程，其本质是将真实的前提转化为必然真实的结论。在自然推理系统中，推理可以被形式化地表示为一系列命题的有序序列，其因果关系明了，并与函数项存在一一对应关系，例如，在特定逻辑系统中，若 $\\Sigma$, $\\neg A \\vdash B$ 同时 $\\Sigma$, $\\neg A \\vdash \\neg B$，则可推断出 $\\Sigma \\vdash A$。",
+      "neighbors": [
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "belong_to",
+          "object": "推理/inference",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理"
+        }
+      ],
+      "rank": 8,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_788500_822500",
+          "text": "就这个例子，你们自己去考虑考虑。通过这个例子，我们看它们等不等值，但是等不可满足。好，关于范式就讲这么多，等值演算就结束了，就这么简单。接下来给大家讲推理演算，推理演算更简单。 推理演算很简单。",
+          "start_sec": 788.5,
+          "end_sec": 822.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        }
+      ]
+    },
+    {
+      "id": "存在量词/existential quantifier",
+      "zh": "存在量词",
+      "importance": 0.5983686060746259,
+      "mention_count": 13,
+      "origin": "textbook",
+      "summary": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变量至少存在一个使其命题为真的量词。它通常用符号“∃”表示，表示“至少存在一个”或“有些”。例如，命题(∃x)Q(x)为真，当且仅当在论域中至少存在…",
+      "definition": "存在量词（Existential Quantifier），在谓词逻辑中，是用来表示命题中某个变量至少存在一个使其命题为真的量词。它通常用符号“∃”表示，表示“至少存在一个”或“有些”。例如，命题(∃x)Q(x)为真，当且仅当在论域中至少存在一个元素x0，使得Q(x0)为真。存在量词∃是析取词∨的推广，在有限域下，(∃x)P(x)可以表示为命题逻辑中由析取词描述的公式。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "个体常项/individual constant",
+          "label": "依赖",
+          "natural_statement": "存在量词消去时引入个体常项"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "个体变元/individual variable",
+          "label": "依赖",
+          "natural_statement": "存在量词约束个体变元"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "相关",
+          "natural_statement": "全称量词等价于存在量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "存在量词约束变元"
+        },
+        {
+          "subject": "消去存在量词",
+          "predicate": "depend_on",
+          "object": "存在量词/existential quantifier",
+          "label": "依赖",
+          "natural_statement": "消去存在量词针对存在量词"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "相关",
+          "natural_statement": "否定词相关存在量词"
+        }
+      ],
+      "rank": 9,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+          "text": "在推理中，关于量词的推理规则主要有全称量词消去、全称量词引入、存在量词消去和存在量词引入。 全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到 A(y)。在莫先生那本书上，这被称为隐含的全称封闭空间。也就是说，当一个公式中含有自由变元 x 时，它实际上隐含着一个全称封闭空间；无论全称量词在形式上是否写出，它都隐含地存在。因此，只要 x 是自由的，全称量词既可以消去，也可以加上。当然，加上全称量词是有条件的，不能随意添加。 存在量词消去是指：∃x A(x) ⇒ A(c)。由 ∃x A(x)，可以引入一个个…",
+          "start_sec": 1444.4,
+          "end_sec": 1651.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1653400_1938100",
+          "text": "这四个规则我们可以直接拿来用。讲量词消去的时候，我们要求 A(x) 中…… 比如要把 x 变成 y，那么要求 A(x) 中没有 y 出现，至少不能有 y 的约束出现；如果 y 约束出现，就不用 y，改用别的变元。其实我通常喜欢直接就用 x：任意 x，推出 A(x)，没有关系，只要它是一个体变元，在 A 中只是作为体变元出现就可以了。这里的意思是说，如果任意 x，存在 z，x 小于 z，那么把任意 x 消去以后，这个体变元可以写 x，也可以写 y，但不能写 z。也就是说，A(x) 中已经出现过的那些变元，不能用来代替被消去的变元。比如不能写 z，因为那会变…",
+          "start_sec": 1653.4,
+          "end_sec": 1938.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "前提/premise",
+      "zh": "前提",
+      "importance": 0.5938785657937298,
+      "mention_count": 19,
+      "origin": "textbook",
+      "summary": "前提（Premise）是在数理逻辑与集合论的推理系统中，作为推理的起点或依据的陈述。它是在推导结论之前被假设为真的命题，可以是一个或多个公式的合取。在自然演绎系统中，前提与公理或变形规则共同构成推导过程的基础，一个语句若在整个推理中起作用…",
+      "definition": "前提（Premise）是在数理逻辑与集合论的推理系统中，作为推理的起点或依据的陈述。它是在推导结论之前被假设为真的命题，可以是一个或多个公式的合取。在自然演绎系统中，前提与公理或变形规则共同构成推导过程的基础，一个语句若在整个推理中起作用，则被称为“活的”前提。正确理解前提与结论的区别对于逻辑推演至关重要。",
+      "neighbors": [
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖",
+          "natural_statement": "分离规则依赖前提"
+        }
+      ],
+      "rank": 10,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1939600_2034300",
+          "text": "引入很简单。就是我们刚才说的这些，推理演算就变得很简单了。我们再看一下，比如说我们刚才说的三段论。前提是这两个：∀x(P(x)→Q(x))，∀x(Q(x)→R(x))，我们就推出 ∀x(P(x)→R(x))。证明非常简单：把第一个前提中的全称量词去掉，得到(2)；把第二个前提中的全称量词去掉，得到(4)。(2)(4)用第二章学过的三段论，得到(5)。最后再把全称引入，就得到结论。所以我为什么告诉你们，前面说的这十个关于量词的推理演算公式用不着呢？用不着。谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再…",
+          "start_sec": 1939.6,
+          "end_sec": 2034.3
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2073900_2097700",
+          "text": "但我们真正推理的时候用不着这些。我们真正的推理就是比如这个例子，这个我们就不说了，太简单了。这里全称消去，然后个体代入。像这个，这是前提，前提把这个消去，然后再把 x 变成苏格拉底，个体代入。",
+          "start_sec": 2073.9,
+          "end_sec": 2097.7
+        }
+      ]
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.5176751575249651,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具…",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "推理演算/inference calculus",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "推理演算属于命题逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "belong_to",
+          "object": "数理逻辑/Mathematical Logic",
+          "label": "属于",
+          "natural_statement": "命题逻辑属于数理逻辑"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "命题逻辑/propositional logic",
+          "label": "组成",
+          "natural_statement": "联结词属于命题逻辑"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "命题属于二值逻辑"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "分离规则属于命题逻辑"
+        }
+      ],
+      "rank": 11,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "__cross_cue__1_4",
+          "text": "### 第1段 我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了：它为真、它为假，或者它为假、它为真。举个例子，设 f(1)=2，f(…",
+          "start_sec": 1.2,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "__cross_cue__3_6",
+          "text": "### 第3段 推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的…",
+          "start_sec": 827.4,
+          "end_sec": 1443.5
+        }
+      ]
+    },
+    {
+      "id": "自由变元/free variable",
+      "zh": "自由变元",
+      "importance": 0.5017733700565041,
+      "mention_count": 9,
+      "origin": "textbook",
+      "summary": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量词∃）约束的变量。例如，在谓词公式P(x)中，如果x没有被任何量词限定，则x是自由变元。自由变元的值可以被自由地选择，其在公式中的含义会随着个体域…",
+      "definition": "自由变元（free variable）是在数理逻辑的公式中，不受任何量词（如全称量词∀或存在量词∃）约束的变量。例如，在谓词公式P(x)中，如果x没有被任何量词限定，则x是自由变元。自由变元的值可以被自由地选择，其在公式中的含义会随着个体域的选择而变化。",
+      "neighbors": [
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "related_with",
+          "object": "全称量词/universal quantifier",
+          "label": "相关",
+          "natural_statement": "自由变元隐含全称封闭空间全称量词"
+        },
+        {
+          "subject": "消去存在量词",
+          "predicate": "depend_on",
+          "object": "自由变元/free variable",
+          "label": "依赖",
+          "natural_statement": "消去存在量词要求自由变元中不能有"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变元/variable symbol",
+          "label": "属于",
+          "natural_statement": "自由变元是一种变元"
+        }
+      ],
+      "rank": 12,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+          "text": "在推理中，关于量词的推理规则主要有全称量词消去、全称量词引入、存在量词消去和存在量词引入。 全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到 A(y)。在莫先生那本书上，这被称为隐含的全称封闭空间。也就是说，当一个公式中含有自由变元 x 时，它实际上隐含着一个全称封闭空间；无论全称量词在形式上是否写出，它都隐含地存在。因此，只要 x 是自由的，全称量词既可以消去，也可以加上。当然，加上全称量词是有条件的，不能随意添加。 存在量词消去是指：∃x A(x) ⇒ A(c)。由 ∃x A(x)，可以引入一个个…",
+          "start_sec": 1444.4,
+          "end_sec": 1651.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2454900_2619800",
+          "text": "看看下面这个是不是正确的。这是一个前提，这个前提可以把任意的 x 去掉，没问题。那这个时候，从 2 到 3，把存在量词去掉。然后再把 z 引入全称量词，因为 z 是任意的；再消去全称量词，用 b 代入，变成 b 大于 b，然后推出任意 x，x 大于 x，对不对？哪一步错了？我想请问一下。3 到 4，正确吗？为什么？因为 b 和 z 有问题，b 和 z 是什么？我这里 z 是一个变元，自由变元。3 到 4 没问题。2 到 3 错了。2 到 3 哪儿错了？有自由变元。我去存在量词的时候，不能有自由变元，一定要注意。A(x) 中去存在量词的时候，要求 A(x)…",
+          "start_sec": 2454.9,
+          "end_sec": 2619.8
+        }
+      ]
+    },
+    {
+      "id": "假言推理/modus ponens",
+      "zh": "假言推理",
+      "importance": 0.45394916814006425,
+      "mention_count": 4,
+      "origin": "textbook",
+      "summary": "假言推理（Modus Ponens），又称分离规则，是数理逻辑和集合论中最常用的一种基本推理形式。它允许我们从一个蕴含式（P → Q）和其前件（P）的真值推导出后件（Q）的真值。在形式上，该推理规则表达为：若公式 P 成立，且公式 P →…",
+      "definition": "假言推理（Modus Ponens），又称分离规则，是数理逻辑和集合论中最常用的一种基本推理形式。它允许我们从一个蕴含式（P → Q）和其前件（P）的真值推导出后件（Q）的真值。在形式上，该推理规则表达为：若公式 P 成立，且公式 P → Q 成立，则可推导出 Q 成立。",
+      "neighbors": [
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于推理规则"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "分离规则属于命题逻辑"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "depend_on",
+          "object": "前提/premise",
+          "label": "依赖",
+          "natural_statement": "分离规则依赖前提"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "推理式/inference formula",
+          "label": "属于",
+          "natural_statement": "分离规则是推理式"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "假言推理/modus ponens",
+          "label": "依赖",
+          "natural_statement": "分离规则通过代入得到"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "part_of",
+          "object": "谓词演算的推理演算",
+          "label": "组成",
+          "natural_statement": "分离规则是谓词演算的推理演算的组成部分"
+        }
+      ],
+      "rank": 13,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "等值/equivalence",
+      "zh": "等值",
+      "importance": 0.43258398387216107,
+      "mention_count": 7,
+      "origin": "textbook",
+      "summary": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍…",
+      "definition": "等值（Equivalence）是数理逻辑中描述两个命题公式或谓词公式之间逻辑关系的概念。当且仅当在任一解释下，两个公式都具有相同的真值，或者其中一个公式可以由另一个公式通过逻辑推理导出（即 $A \\leftrightarrow B$ 为普遍有效公式），则称它们是等值的。等值关系允许在公式中用等值的公式进行替换，是判断重言式、矛盾式及公式化简的基础。",
+      "neighbors": [
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "等值表示逻辑联结词"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "等值依赖真值表"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "等值等价于联结词"
+        }
+      ],
+      "rank": 14,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1200_787400",
+          "text": "好，接下来我们来举个例子，看看这个 Skolem 函数为什么不等值，但它是等可满足的。我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了…",
+          "start_sec": 1.2,
+          "end_sec": 787.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_788500_822500",
+          "text": "就这个例子，你们自己去考虑考虑。通过这个例子，我们看它们等不等值，但是等不可满足。好，关于范式就讲这么多，等值演算就结束了，就这么简单。接下来给大家讲推理演算，推理演算更简单。 推理演算很简单。",
+          "start_sec": 788.5,
+          "end_sec": 822.5
+        }
+      ]
+    },
+    {
+      "id": "个体常项/individual constant",
+      "zh": "个体常项",
+      "importance": 0.42589457530074465,
+      "mention_count": 3,
+      "origin": "textbook",
+      "summary": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定、固定个体的符号，类似于一个具有特定名称的个体（如“张三”）或一个代表论域中特定元素的符号（如“c”）。个体常项是逻辑语言中的基本成分，不同于个体…",
+      "definition": "个体常项（Individual Constant），在数理逻辑和集合论中，是用于指称论域中特定、固定个体的符号，类似于一个具有特定名称的个体（如“张三”）或一个代表论域中特定元素的符号（如“c”）。个体常项是逻辑语言中的基本成分，不同于个体变项，它不接受量词的量化，且一旦被指定，就始终代表论域中的同一对象。在构成命题时，个体常项与谓词常项或谓词变项结合，将命题形式转化为具体的命题。",
+      "neighbors": [
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "个体常项/individual constant",
+          "label": "依赖",
+          "natural_statement": "存在量词消去时引入个体常项"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "belong_to",
+          "object": "常项/constant term",
+          "label": "属于",
+          "natural_statement": "个体常项表示常项"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "related_with",
+          "object": "变元/variable symbol",
+          "label": "相关",
+          "natural_statement": "个体常项区别于变元"
+        },
+        {
+          "subject": "存在量词消去",
+          "predicate": "depend_on",
+          "object": "个体常项/individual constant",
+          "label": "依赖",
+          "natural_statement": "存在量词消去引入常项个体常项"
+        }
+      ],
+      "rank": 15,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2621000_2639400",
+          "text": "不成立，不成立。第5到第6步也是错的，因为b不是变元，而是一个个体常项，也不能够作代入。好，我们再来，推理演算。",
+          "start_sec": 2621,
+          "end_sec": 2639.4
+        }
+      ]
+    },
+    {
+      "id": "个体变元/individual variable",
+      "zh": "个体变元",
+      "importance": 0.4245014573214519,
+      "mention_count": 3,
+      "origin": "new",
+      "neighbors": [
+        {
+          "subject": "依赖关系/dependency relation",
+          "predicate": "related_with",
+          "object": "个体变元/individual variable",
+          "label": "相关",
+          "natural_statement": "依赖关系表示个体变元之间的关系"
+        },
+        {
+          "subject": "个体变元/individual variable",
+          "predicate": "depend_on",
+          "object": "全称量词/universal quantifier",
+          "label": "依赖",
+          "natural_statement": "全称量词受个体变元约束"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "depend_on",
+          "object": "个体变元/individual variable",
+          "label": "依赖",
+          "natural_statement": "存在量词约束个体变元"
+        },
+        {
+          "subject": "全称消去",
+          "predicate": "depend_on",
+          "object": "个体变元/individual variable",
+          "label": "依赖",
+          "natural_statement": "全称消去消去时需代入个体变元"
+        }
+      ],
+      "rank": 16,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1653400_1938100",
+          "text": "这四个规则我们可以直接拿来用。讲量词消去的时候，我们要求 A(x) 中…… 比如要把 x 变成 y，那么要求 A(x) 中没有 y 出现，至少不能有 y 的约束出现；如果 y 约束出现，就不用 y，改用别的变元。其实我通常喜欢直接就用 x：任意 x，推出 A(x)，没有关系，只要它是一个体变元，在 A 中只是作为体变元出现就可以了。这里的意思是说，如果任意 x，存在 z，x 小于 z，那么把任意 x 消去以后，这个体变元可以写 x，也可以写 y，但不能写 z。也就是说，A(x) 中已经出现过的那些变元，不能用来代替被消去的变元。比如不能写 z，因为那会变…",
+          "start_sec": 1653.4,
+          "end_sec": 1938.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "后件/succedent",
+      "zh": "后件",
+      "importance": 0.4133054855428914,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "后件(succedent)是数理逻辑与集合论中用于表示逻辑推导关系的相继式 (sequent) 的组成部分，特指相继式 $\\alpha \\stackrel{s}{\\rightarrow} \\beta$ 中位于箭头右侧的公式串 $\\beta$…",
+      "definition": "后件(succedent)是数理逻辑与集合论中用于表示逻辑推导关系的相继式 (sequent) 的组成部分，特指相继式 $\\alpha \\stackrel{s}{\\rightarrow} \\beta$ 中位于箭头右侧的公式串 $\\beta$。它代表了在给定前件 $\\alpha$ (即前提条件) 下可以推导出的结论。",
+      "neighbors": [
+        {
+          "subject": "后件/succedent",
+          "predicate": "part_of",
+          "object": "蕴含/implication",
+          "label": "组成",
+          "natural_statement": "后件是蕴含的组成部分"
+        }
+      ],
+      "rank": 17,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "__cross_cue__1_4",
+          "text": "### 第1段 我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了：它为真、它为假，或者它为假、它为真。举个例子，设 f(1)=2，f(…",
+          "start_sec": 1.2,
+          "end_sec": 1384.6
+        }
+      ]
+    },
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.4098125216227666,
+      "mention_count": 7,
+      "origin": "textbook",
+      "summary": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范…",
+      "definition": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范式不唯一，但λ-演算中的范式（即不含β-归约形式的项）是唯一的，且任何项经有限步β-归约后必能终止于其唯一的范式。",
+      "neighbors": [
+        {
+          "subject": "Skolem范式/Skolem normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "Skolem范式是范式的一种"
+        }
+      ],
+      "rank": 18,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1200_787400",
+          "text": "好，接下来我们来举个例子，看看这个 Skolem 函数为什么不等值，但它是等可满足的。我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了…",
+          "start_sec": 1.2,
+          "end_sec": 787.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_788500_822500",
+          "text": "就这个例子，你们自己去考虑考虑。通过这个例子，我们看它们等不等值，但是等不可满足。好，关于范式就讲这么多，等值演算就结束了，就这么简单。接下来给大家讲推理演算，推理演算更简单。 推理演算很简单。",
+          "start_sec": 788.5,
+          "end_sec": 822.5
+        },
+        {
+          "cue_id": "__cross_cue__1_4",
+          "text": "### 第1段 我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了：它为真、它为假，或者它为假、它为真。举个例子，设 f(1)=2，f(…",
+          "start_sec": 1.2,
+          "end_sec": 1384.6
+        }
+      ]
+    },
+    {
+      "id": "推理式/inference formula",
+      "zh": "推理式",
+      "importance": 0.40654365285165767,
+      "mention_count": 3,
+      "origin": "new",
+      "neighbors": [
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "推理式/inference formula",
+          "label": "属于",
+          "natural_statement": "分离规则是推理式"
+        },
+        {
+          "subject": "分配律/分配律",
+          "predicate": "related_with",
+          "object": "推理式/inference formula",
+          "label": "相关",
+          "natural_statement": "分配律不成立时产生推理式"
+        },
+        {
+          "subject": "等值式/equivalence formula",
+          "predicate": "depend_on",
+          "object": "推理式/inference formula",
+          "label": "依赖",
+          "natural_statement": "等值式可拆分为推理式"
+        }
+      ],
+      "rank": 19,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "__cross_cue__1_4",
+          "text": "### 第1段 我们来看一下这个例子：∀x∃y P(x,y)，它的 Skolem 范式是什么？它的 Skolem 范式是 ∀x P(x,f(x))，这就是它的 Skolem 函数。 我们要在一个简单的有限域上去验证，不能太长，无限域没法验证。在有限域上它变成什么？设在 {1,2} 上，原式变成： (P(1,1)∨P(1,2)) ∧ (P(2,1)∨P(2,2))。 Skolem 范式变成： P(1,f(1)) ∧ P(2,f(2))。 大家证明一下为什么它们俩不等值。举一个反例就可以了：它为真、它为假，或者它为假、它为真。举个例子，设 f(1)=2，f(…",
+          "start_sec": 1.2,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "__cross_cue__3_6",
+          "text": "### 第3段 推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的…",
+          "start_sec": 827.4,
+          "end_sec": 1443.5
+        }
+      ]
+    },
+    {
+      "id": "个体/Individual",
+      "zh": "个体",
+      "importance": 0.39791040020612223,
+      "mention_count": 5,
+      "origin": "textbook",
+      "summary": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。它代表了一个具体的、独立的实体，可以用于描述特定属性或作为集合的成员。例如，在自然数集合的论域中，'3'就是一个个体。",
+      "definition": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。它代表了一个具体的、独立的实体，可以用于描述特定属性或作为集合的成员。例如，在自然数集合的论域中，'3'就是一个个体。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "个体代入规则/individual substitution rule",
+          "predicate": "depend_on",
+          "object": "个体/Individual",
+          "label": "依赖",
+          "natural_statement": "个体代入规则作用于个体"
+        }
+      ],
+      "rank": 20,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        }
+      ]
+    },
+    {
+      "id": "三段论/三段论",
+      "zh": "三段论",
+      "importance": 0.37604299296554033,
+      "mention_count": 5,
+      "origin": "textbook",
+      "summary": "三段论（Syllogism）是数理逻辑中一种推理形式，表示为若前件命题蕴含后件命题，则可以推导出该蕴含关系。例如，在命题逻辑中，形式$(P\\rightarrow Q)$ $\\wedge$ $(Q\\rightarrow R)$ $\\Right…",
+      "definition": "三段论（Syllogism）是数理逻辑中一种推理形式，表示为若前件命题蕴含后件命题，则可以推导出该蕴含关系。例如，在命题逻辑中，形式$(P\\rightarrow Q)$ $\\wedge$ $(Q\\rightarrow R)$ $\\Rightarrow$ $P\\rightarrow R$ 被称为三段论；在其他语境下，如命题 $(C \\vee D) \\rightarrow (A \\wedge \\neg B)$ ((1)(2)三段论) 也属于此类推理结构。",
+      "neighbors": [
+        {
+          "subject": "三段论/三段论",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "三段论具有推理规则"
+        },
+        {
+          "subject": "三段论/三段论",
+          "predicate": "related_with",
+          "object": "推理演算/inference calculus",
+          "label": "相关",
+          "natural_statement": "三段论在推理演算中应用"
+        },
+        {
+          "subject": "三段论/三段论",
+          "predicate": "part_of",
+          "object": "谓词演算的推理演算",
+          "label": "组成",
+          "natural_statement": "三段论是谓词演算的推理演算的组成部分"
+        }
+      ],
+      "rank": 21,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1939600_2034300",
+          "text": "引入很简单。就是我们刚才说的这些，推理演算就变得很简单了。我们再看一下，比如说我们刚才说的三段论。前提是这两个：∀x(P(x)→Q(x))，∀x(Q(x)→R(x))，我们就推出 ∀x(P(x)→R(x))。证明非常简单：把第一个前提中的全称量词去掉，得到(2)；把第二个前提中的全称量词去掉，得到(4)。(2)(4)用第二章学过的三段论，得到(5)。最后再把全称引入，就得到结论。所以我为什么告诉你们，前面说的这十个关于量词的推理演算公式用不着呢？用不着。谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再…",
+          "start_sec": 1939.6,
+          "end_sec": 2034.3
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2640200_3058900",
+          "text": "有的病人喜欢所有医生；没有病人喜欢庸医；所以没有医生是庸医。这个我们翻译过，翻译出这样的前提。由这两个前提推出这个结论，大家试试看，证明一下。我想请问：这里面的存在量词可以去吗？可以，因为这个 x 不是自由的。像这种，都是先要把否定词深入。看到这个，又看到这个，马上就想到用德摩根律；我们看到或的一般都会用到蕴含式。这个为真，就表明这个为真，而且这个为真，P(c) 为真，这个也为真。然后你看，都不用往下走了，已经出来了。就这道题，我们不引申这些，随便写。首先前提一，我不写引入，直接把存在量词去掉，就变成 P(c)；任意的 y 这个我也不写了，时间关系。那么…",
+          "start_sec": 2640.2,
+          "end_sec": 3058.9
+        }
+      ]
+    },
+    {
+      "id": "公式/formula",
+      "zh": "公式",
+      "importance": 0.3705303920775052,
+      "mention_count": 6,
+      "origin": "textbook",
+      "summary": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范…",
+      "definition": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范式）或子句集来分析其逻辑性质，并可被计算处理。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        }
+      ],
+      "rank": 22,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1444400_1651700",
+          "text": "在推理中，关于量词的推理规则主要有全称量词消去、全称量词引入、存在量词消去和存在量词引入。 全称量词消去是指：∀x A(x) ⇒ A(y)，即对任意 x 成立的 A(x)，可以消去全称量词，得到 A(y)。在莫先生那本书上，这被称为隐含的全称封闭空间。也就是说，当一个公式中含有自由变元 x 时，它实际上隐含着一个全称封闭空间；无论全称量词在形式上是否写出，它都隐含地存在。因此，只要 x 是自由的，全称量词既可以消去，也可以加上。当然，加上全称量词是有条件的，不能随意添加。 存在量词消去是指：∃x A(x) ⇒ A(c)。由 ∃x A(x)，可以引入一个个…",
+          "start_sec": 1444.4,
+          "end_sec": 1651.7
+        }
+      ]
+    },
+    {
+      "id": "推理规则/inference rule",
+      "zh": "推理规则",
+      "importance": 0.35340763630853844,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。它们与基本推理公式配合使用，确保逻辑的严谨性。例如，前提引入规则允许在推理过程中随时引入前提，而条件证明规则则建立了条件句推导的等价性。推理规则的有效…",
+      "definition": "推理规则是数理逻辑中用于从已知命题推导出新命题的有效步骤或模式，是推理演算的核心组成部分。它们与基本推理公式配合使用，确保逻辑的严谨性。例如，前提引入规则允许在推理过程中随时引入前提，而条件证明规则则建立了条件句推导的等价性。推理规则的有效性是逻辑系统的基石，能够保持普遍有效性，并广泛应用于命题逻辑和谓词逻辑的证明演算中。",
+      "neighbors": [
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "分离规则属于推理规则"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "belong_to",
+          "object": "推理/inference",
+          "label": "属于",
+          "natural_statement": "推理规则属于推理"
+        },
+        {
+          "subject": "推理规则/inference rule",
+          "predicate": "part_of",
+          "object": "推理演算/inference calculus",
+          "label": "组成",
+          "natural_statement": "推理规则属于推理演算"
+        },
+        {
+          "subject": "三段论/三段论",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "三段论具有推理规则"
+        },
+        {
+          "subject": "个体代入规则/individual substitution rule",
+          "predicate": "belong_to",
+          "object": "推理规则/inference rule",
+          "label": "属于",
+          "natural_statement": "个体代入规则属于推理规则"
+        }
+      ],
+      "rank": 23,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_827400_1051600",
+          "text": "推理就是去判定哪些推理是正确的，哪些是错误的。比如这是一个正确的推理：对任意 x，Man(x) 蕴含 Mortal(x)，即所有人都会死；孔子是一个人，所以孔子会死。在谓词演算中，因为全称命题对任意 x 都成立，所以可以把 x 做个体代入。把 x 替换为孔子，去掉全称量词，就变成命题：“孔子是人”推出“孔子会死”。没有 x 了，这就是一个命题。这也就是命题逻辑中的分离规则，也叫肯定前件。因此这是一个正确的推理。下面这个例子：存在一个又高又胖的人，可以推出存在一个高个子，也可以推出存在一个胖子。这个方向可以推，但不等值。所以这也是一个正确的推理。下面这个例…",
+          "start_sec": 827.4,
+          "end_sec": 1051.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1939600_2034300",
+          "text": "引入很简单。就是我们刚才说的这些，推理演算就变得很简单了。我们再看一下，比如说我们刚才说的三段论。前提是这两个：∀x(P(x)→Q(x))，∀x(Q(x)→R(x))，我们就推出 ∀x(P(x)→R(x))。证明非常简单：把第一个前提中的全称量词去掉，得到(2)；把第二个前提中的全称量词去掉，得到(4)。(2)(4)用第二章学过的三段论，得到(5)。最后再把全称引入，就得到结论。所以我为什么告诉你们，前面说的这十个关于量词的推理演算公式用不着呢？用不着。谓词公式的推理演算，步骤就是想办法把前提中的量词用消去规则去掉，然后用第二章的推理演算得到结论，最后再…",
+          "start_sec": 1939.6,
+          "end_sec": 2034.3
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1052900_1384600",
+          "text": "好，那么我们刚才擦掉了一部分。我们这里说“A 推出 B”，意思就是当 A 为真时，B 一定为真。这时我们说前者是较强的条件，后者是较弱的条件，由强可以推出弱；反过来，由弱不能推出强。比如先看这个例子：存在一个 x，对任意 y，P(x,y) 都为真。A 推出 B，就是 A 为真时推出 B 为真；A 为假时 B 怎么样，我们不关心。这里左边是“存在一个 x，对任意 y，P(x,y) 都为真”；右边是“对任意 y，都存在一个 x，使 P(x,y) 为真”。这两个哪个要求更强？左边更强：左边要求同一个 x 对所有 y 都成立；右边对不同的 y 可以有不同的 x…",
+          "start_sec": 1052.9,
+          "end_sec": 1384.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_1397200_1443500",
+          "text": "规则里面，仍然是第二章的规则，加入了一个个体变量的代入。就这个：∀x(Man(x)→Die(x))，是对所有的 x 而言的。那么我这里所有的 x，用一个个体苏格拉底代入，同样为真。这个叫个体代入规则。其他就这八个规则。但是我们还要加上几个规则，这几个规则用得多，是关于量词的规则。",
+          "start_sec": 1397.2,
+          "end_sec": 1443.5
+        }
+      ]
+    },
+    {
+      "id": "谓词演算的推理演算",
+      "zh": "谓词演算的推理演算",
+      "importance": 0.3484710318475546,
+      "mention_count": 1,
+      "origin": "new",
+      "summary": "谓词演算的推理演算是数理逻辑中基于谓词演算形式系统进行推理证明的演算过程，其核心步骤是先将前提中的量词通过规则消去，利用命题演算的推理规则推出结论，最后再恢复量词。该过程涉及个体代入，其中全称量词消去时的个体代入是特殊且关键的操作，分离规则…",
+      "definition": "谓词演算的推理演算是数理逻辑中基于谓词演算形式系统进行推理证明的演算过程，其核心步骤是先将前提中的量词通过规则消去，利用命题演算的推理规则推出结论，最后再恢复量词。该过程涉及个体代入，其中全称量词消去时的个体代入是特殊且关键的操作，分离规则（假言推理）是其核心推理规则。",
+      "neighbors": [
+        {
+          "subject": "谓词演算的推理演算",
+          "predicate": "related_with",
+          "object": "代入/instantiation",
+          "label": "相关",
+          "natural_statement": "谓词演算的推理演算涉及个体代入"
+        },
+        {
+          "subject": "个体代入规则/individual substitution rule",
+          "predicate": "part_of",
+          "object": "谓词演算的推理演算",
+          "label": "组成",
+          "natural_statement": "个体代入规则是谓词演算的推理演算的组成部分"
+        },
+        {
+          "subject": "谓词演算的推理演算",
+          "predicate": "belong_to",
+          "object": "推理演算/inference calculus",
+          "label": "属于",
+          "natural_statement": "谓词演算的推理演算是一种推理演算"
+        },
+        {
+          "subject": "假言推理/modus ponens",
+          "predicate": "part_of",
+          "object": "谓词演算的推理演算",
+          "label": "组成",
+          "natural_statement": "分离规则是谓词演算的推理演算的组成部分"
+        },
+        {
+          "subject": "三段论/三段论",
+          "predicate": "part_of",
+          "object": "谓词演算的推理演算",
+          "label": "组成",
+          "natural_statement": "三段论是谓词演算的推理演算的组成部分"
+        }
+      ],
+      "rank": 24,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2098500_2453200",
+          "text": "再看这个例子。前提中有两个前提，要得出一个结论。首先就要想办法把前提中的量词都去掉，推出结论之后，再把量词加上去。这个前提中的量词一下子还不好去：一个是存在量词，一个是全称量词，没法直接把后件取出来。好，我们先把后件拿出来。因为有两个前提，通过分离规则，就可以得到这个后件。这时，两个量词就可以去掉了：存在量词那个前提变成 P(c)，全称量词那一式变成 (P(x)∨Q(x))→R(x)。然后想办法得到 R(x)。R(x) 是那个蕴含式的后件，现在有 P(c)，所以把 x 用 c 代入，这就是个体代入规则。代入后，(P(x)∨Q(x))→R(x) 变成 (P…",
+          "start_sec": 2098.5,
+          "end_sec": 2453.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_32_2640200_3058900",
+          "text": "有的病人喜欢所有医生；没有病人喜欢庸医；所以没有医生是庸医。这个我们翻译过，翻译出这样的前提。由这两个前提推出这个结论，大家试试看，证明一下。我想请问：这里面的存在量词可以去吗？可以，因为这个 x 不是自由的。像这种，都是先要把否定词深入。看到这个，又看到这个，马上就想到用德摩根律；我们看到或的一般都会用到蕴含式。这个为真，就表明这个为真，而且这个为真，P(c) 为真，这个也为真。然后你看，都不用往下走了，已经出来了。就这道题，我们不引申这些，随便写。首先前提一，我不写引入，直接把存在量词去掉，就变成 P(c)；任意的 y 这个我也不写了，时间关系。那么…",
+          "start_sec": 2640.2,
+          "end_sec": 3058.9
+        }
+      ]
+    }
+  ]
+}

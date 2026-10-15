@@ -19,21 +19,21 @@ const doc = {
   ]),
 };
 const scores = { a: 0, b: 2.49, deep: 1, boundary: 2.5, invalid: NaN, next: 2 };
-test("chapters retain source order; breadth-first traversal precedes deeper descendants", () => {
+test("chapters retain source order; each section and all descendants finish before the next section", () => {
   const sequence = masteryLearningPath(doc, scores);
   assert.deepEqual(
     sequence.map((s) => s.label),
-    ["a", "b", "deep", "next", "a"],
+    ["a", "deep", "b", "next", "a"],
   );
   assert.deepEqual(
     sequence.map((s) => s.key),
-    ["0.0.0.0", "0.0.0.1", "0.0.0.0.0", "0.0.1.0", "0.1.0.0"],
+    ["0.0.0.0", "0.0.0.0.0", "0.0.0.1", "0.0.1.0", "0.1.0.0"],
   );
 });
 test("zero is eligible, exactly 2.5 and absent/invalid scores are excluded", () => {
   assert.deepEqual(
     masteryLearningPath(doc, scores).map((s) => s.score),
-    [0, 2.49, 1, 2, 0],
+    [0, 1, 2.49, 2, 0],
   );
   assert.deepEqual(masteryLearningPath(doc, {}), []);
 });

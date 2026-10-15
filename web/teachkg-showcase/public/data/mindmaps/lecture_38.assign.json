@@ -1,0 +1,50 @@
+{
+  "lecture_id": "38",
+  "candidates": [
+    "第9章 集合"
+  ],
+  "assignments": [
+    {
+      "subtree_root_id": "基数/cardinality",
+      "chapter": "第9章 集合",
+      "confidence": 0.95,
+      "reason": "基数、幂集基数、笛卡尔积基数及集合运算均属于集合论中集合基数的核心内容"
+    },
+    {
+      "subtree_root_id": "子集/subset",
+      "chapter": "第9章 集合",
+      "confidence": 0.9,
+      "reason": "子集与有序对是集合论的基本概念，属于集合章节"
+    },
+    {
+      "subtree_root_id": "自然数集合/Set of Natural Numbers",
+      "chapter": "第9章 集合",
+      "confidence": 0.85,
+      "reason": "自然数集合与空集是集合论的基础内容，属于集合章节"
+    },
+    {
+      "subtree_root_id": "笛卡儿积/Cartesian product",
+      "chapter": "第9章 集合",
+      "confidence": 0.9,
+      "reason": "笛卡儿积是集合运算的重要组成部分，属于集合章节"
+    },
+    {
+      "subtree_root_id": "量词/quantifier",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.8,
+      "reason": "量词是谓词逻辑的核心概念，不属于集合论范畴"
+    },
+    {
+      "subtree_root_id": "谓词逻辑/Predicate Logic",
+      "chapter": "第4章 谓词逻辑的基本概念",
+      "confidence": 0.85,
+      "reason": "谓词逻辑及一阶谓词逻辑属于谓词逻辑基本概念章节"
+    },
+    {
+      "subtree_root_id": "初始符号/initial symbols",
+      "chapter": "第3章 命题逻辑的公理化系统",
+      "confidence": 0.75,
+      "reason": "初始符号与公理系统属于公理化系统的构成要素，归入命题逻辑公理化系统"
+    }
+  ]
+}

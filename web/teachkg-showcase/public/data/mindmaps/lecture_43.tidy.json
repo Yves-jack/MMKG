@@ -1,0 +1,317 @@
+{
+  "lecture_id": "43",
+  "root": {
+    "id": "结构/Structure",
+    "zh": "结构",
+    "importance": 0.326109,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "偏序集/poset",
+        "zh": "偏序集",
+        "importance": 1.0,
+        "relation": "belong_to",
+        "related": [
+          "全序集",
+          "可比",
+          "哈斯图",
+          "盖住关系",
+          "良序集"
+        ],
+        "children": [
+          {
+            "id": "链/chain",
+            "zh": "链",
+            "importance": 0.130772,
+            "relation": "belong_to",
+            "related": [
+              "可比"
+            ],
+            "children": []
+          },
+          {
+            "id": "反链/antichain",
+            "zh": "反链",
+            "importance": 0.563915,
+            "relation": "belong_to",
+            "related": [
+              "可比"
+            ],
+            "children": [
+              {
+                "id": "单个元素",
+                "zh": "单个元素",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "最大元/greatest element",
+            "zh": "最大元",
+            "importance": 0.545492,
+            "relation": "part_of",
+            "related": [
+              "极大元"
+            ],
+            "children": []
+          },
+          {
+            "id": "极大元/maximal element",
+            "zh": "极大元",
+            "importance": 0.508002,
+            "relation": "part_of",
+            "related": [
+              "最大元",
+              "非空有限集合"
+            ],
+            "children": []
+          },
+          {
+            "id": "极小元/minimal element",
+            "zh": "极小元",
+            "importance": 0.501869,
+            "relation": "part_of",
+            "related": [
+              "最小元",
+              "非空有限集合"
+            ],
+            "children": []
+          },
+          {
+            "id": "上界/upper bound",
+            "zh": "上界",
+            "importance": 0.762972,
+            "relation": "belong_to",
+            "related": [
+              "下确界"
+            ],
+            "children": [
+              {
+                "id": "下确界/infimum",
+                "zh": "下确界",
+                "importance": 0.76764,
+                "relation": "belong_to",
+                "related": [
+                  "上界",
+                  "下界"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "下界/lower bound",
+            "zh": "下界",
+            "importance": 0.682496,
+            "relation": "belong_to",
+            "related": [
+              "下确界"
+            ],
+            "children": []
+          },
+          {
+            "id": "良序集/well-ordered set",
+            "zh": "良序集",
+            "importance": 0.34084,
+            "relation": "belong_to",
+            "related": [
+              "偏序集",
+              "集合",
+              "非空子集"
+            ],
+            "children": []
+          },
+          {
+            "id": "恒等关系/identity relation",
+            "zh": "恒等关系",
+            "importance": 0.275706,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "上/top element",
+            "zh": "上",
+            "importance": 0.0,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "结构/Structure",
+      "zh": "结构",
+      "importance": 0.326109,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "偏序集/poset",
+          "zh": "偏序集",
+          "importance": 1.0,
+          "relation": "belong_to",
+          "related": [
+            "全序集",
+            "可比",
+            "哈斯图",
+            "盖住关系",
+            "良序集"
+          ],
+          "children": [
+            {
+              "id": "链/chain",
+              "zh": "链",
+              "importance": 0.130772,
+              "relation": "belong_to",
+              "related": [
+                "可比"
+              ],
+              "children": []
+            },
+            {
+              "id": "反链/antichain",
+              "zh": "反链",
+              "importance": 0.563915,
+              "relation": "belong_to",
+              "related": [
+                "可比"
+              ],
+              "children": [
+                {
+                  "id": "单个元素",
+                  "zh": "单个元素",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "最大元/greatest element",
+              "zh": "最大元",
+              "importance": 0.545492,
+              "relation": "part_of",
+              "related": [
+                "极大元"
+              ],
+              "children": []
+            },
+            {
+              "id": "极大元/maximal element",
+              "zh": "极大元",
+              "importance": 0.508002,
+              "relation": "part_of",
+              "related": [
+                "最大元",
+                "非空有限集合"
+              ],
+              "children": []
+            },
+            {
+              "id": "极小元/minimal element",
+              "zh": "极小元",
+              "importance": 0.501869,
+              "relation": "part_of",
+              "related": [
+                "最小元",
+                "非空有限集合"
+              ],
+              "children": []
+            },
+            {
+              "id": "上界/upper bound",
+              "zh": "上界",
+              "importance": 0.762972,
+              "relation": "belong_to",
+              "related": [
+                "下确界"
+              ],
+              "children": [
+                {
+                  "id": "下确界/infimum",
+                  "zh": "下确界",
+                  "importance": 0.76764,
+                  "relation": "belong_to",
+                  "related": [
+                    "上界",
+                    "下界"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "下界/lower bound",
+              "zh": "下界",
+              "importance": 0.682496,
+              "relation": "belong_to",
+              "related": [
+                "下确界"
+              ],
+              "children": []
+            },
+            {
+              "id": "良序集/well-ordered set",
+              "zh": "良序集",
+              "importance": 0.34084,
+              "relation": "belong_to",
+              "related": [
+                "偏序集",
+                "集合",
+                "非空子集"
+              ],
+              "children": []
+            },
+            {
+              "id": "恒等关系/identity relation",
+              "zh": "恒等关系",
+              "importance": 0.275706,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "上/top element",
+              "zh": "上",
+              "importance": 0.0,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 14,
+  "max_depth": 3,
+  "orphan_count": 2,
+  "meta": {
+    "chapter": "第10章 关系",
+    "root_id": "结构/Structure",
+    "root_zh": "结构",
+    "virtual_root": false,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 24,
+    "n_edges_raw": 38,
+    "n_hierarchy_candidates": 23,
+    "attached_orphans": 2,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "调整了偏序集下子节点的顺序，将链、反链等核心概念前置，上界/下界及其相关概念归组，并保留所有原有节点，未做删除或合并。"
+  }
+}

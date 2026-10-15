@@ -1,0 +1,192 @@
+{
+  "lecture_id": "11",
+  "root": {
+    "id": "图的着色/graph coloring",
+    "zh": "图的着色",
+    "importance": 0.970883,
+    "relation": null,
+    "related": [
+      "对偶图",
+      "平面图"
+    ],
+    "children": [
+      {
+        "id": "点着色/vertex coloring",
+        "zh": "点着色",
+        "importance": 0.905103,
+        "relation": "belong_to",
+        "related": [
+          "面着色"
+        ],
+        "children": []
+      },
+      {
+        "id": "面着色/face coloring",
+        "zh": "面着色",
+        "importance": 0.840099,
+        "relation": "belong_to",
+        "related": [
+          "点着色"
+        ],
+        "children": []
+      },
+      {
+        "id": "边染色/edge coloring",
+        "zh": "边染色",
+        "importance": 0.291271,
+        "relation": "belong_to",
+        "related": [
+          "点染色"
+        ],
+        "children": []
+      },
+      {
+        "id": "地图着色/map coloring",
+        "zh": "地图着色",
+        "importance": 0.290328,
+        "relation": "belong_to",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "图的着色/graph coloring",
+      "zh": "图的着色",
+      "importance": 0.970883,
+      "relation": null,
+      "related": [
+        "对偶图",
+        "平面图"
+      ],
+      "children": [
+        {
+          "id": "点着色/vertex coloring",
+          "zh": "点着色",
+          "importance": 0.905103,
+          "relation": "belong_to",
+          "related": [
+            "面着色"
+          ],
+          "children": []
+        },
+        {
+          "id": "面着色/face coloring",
+          "zh": "面着色",
+          "importance": 0.840099,
+          "relation": "belong_to",
+          "related": [
+            "点着色"
+          ],
+          "children": []
+        },
+        {
+          "id": "边染色/edge coloring",
+          "zh": "边染色",
+          "importance": 0.291271,
+          "relation": "belong_to",
+          "related": [
+            "点染色"
+          ],
+          "children": []
+        },
+        {
+          "id": "地图着色/map coloring",
+          "zh": "地图着色",
+          "importance": 0.290328,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "可平面图/planar embeddable graph",
+      "zh": "可平面图",
+      "importance": 0.775744,
+      "relation": null,
+      "related": [
+        "平面嵌入"
+      ],
+      "children": [
+        {
+          "id": "平面图/planar graph",
+          "zh": "平面图",
+          "importance": 0.984791,
+          "relation": "belong_to",
+          "related": [
+            "图的着色",
+            "域着色",
+            "对偶图",
+            "点染色"
+          ],
+          "children": [
+            {
+              "id": "对偶图/dual graph",
+              "zh": "对偶图",
+              "importance": 1.0,
+              "relation": "belong_to",
+              "related": [
+                "图的着色",
+                "平面图",
+                "简单图",
+                "自环",
+                "重边"
+              ],
+              "children": [
+                {
+                  "id": "顶点/vertex",
+                  "zh": "顶点",
+                  "importance": 0.102128,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "边/edge",
+      "zh": "边",
+      "importance": 0.074868,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "割边/cut edge",
+          "zh": "割边",
+          "importance": 0.046564,
+          "relation": "belong_to",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 11,
+  "max_depth": 3,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 平面图与图的着色",
+    "root_id": "图的着色/graph coloring",
+    "root_zh": "图的着色",
+    "virtual_root": false,
+    "n_trees": 3,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 24,
+    "n_edges_raw": 19,
+    "n_hierarchy_candidates": 14,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "llm_tidy",
+    "llm_tidy_notes": "合并同义节点（点着色/点染色、面着色/域着色），删除噪声节点（染色），调整顺序使核心主题靠前，保留原有结构。"
+  }
+}

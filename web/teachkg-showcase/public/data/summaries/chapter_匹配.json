@@ -1,0 +1,62 @@
+{
+  "chapter": "第5章 匹配",
+  "source": "classroom_ppt",
+  "outline": [
+    "让每个学生更优秀",
+    "```html",
+    "<html><body>",
+    "命题逻辑公理系统B—加头定理",
+    "<h2>命题逻辑公理系统B—加头导出规则</h2>"
+  ],
+  "sections": [
+    {
+      "title": "让每个学生更优秀",
+      "bare": "让每个学生更优秀",
+      "num": null
+    },
+    {
+      "title": "```html",
+      "bare": "```html",
+      "num": null
+    },
+    {
+      "title": "<html><body>",
+      "bare": "<html><body>",
+      "num": null
+    },
+    {
+      "title": "命题逻辑公理系统B—加头定理",
+      "bare": "命题逻辑公理系统B—加头定理",
+      "num": null
+    },
+    {
+      "title": "<h2>命题逻辑公理系统B—加头导出规则</h2>",
+      "bare": "<h2>命题逻辑公理系统B—加头导出规则</h2>",
+      "num": null
+    }
+  ],
+  "edges": [
+    {
+      "parent": "匹配",
+      "child": "让每个学生更优秀"
+    },
+    {
+      "parent": "匹配",
+      "child": "```html"
+    },
+    {
+      "parent": "匹配",
+      "child": "<html><body>"
+    },
+    {
+      "parent": "匹配",
+      "child": "命题逻辑公理系统B—加头定理"
+    },
+    {
+      "parent": "匹配",
+      "child": "<h2>命题逻辑公理系统B—加头导出规则</h2>"
+    }
+  ],
+  "outline_text": "让每个学生更优秀\n```html\n<html><body>\n命题逻辑公理系统B—加头定理\n<h2>命题逻辑公理系统B—加头导出规则</h2>",
+  "llm_notes": null
+}

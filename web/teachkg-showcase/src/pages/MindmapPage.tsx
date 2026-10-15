@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
-import { RelatedAssetsPanel, SelectionDetail, countRelatedAssets } from "@/components/graph/SelectionPanels";
+import { RelatedAssetsPanel, countRelatedAssets } from "@/components/graph/SelectionPanels";
 import { ResizableShell } from "@/components/graph/ResizableShell";
 import {
   MindmapTree,
@@ -11,7 +11,10 @@ import {
 import { bindMasteryToMindmap, masteryScore, masteryVisual, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
 import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
 import {
+  ensureAssetsLibraryIndexes,
   groupChaptersByPart,
+  mindmapNodeAssetPolicy,
+  RELATED_ASSET_KINDS,
   type AssetsChapterCatalog,
   type AssetsLibrary,
 } from "@/lib/kg/assetsLibrary";
@@ -23,7 +26,6 @@ import {
 } from "@/lib/review/reviewSession";
 import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
 import { ChapterOutlinePanel } from "@/components/mindmap/ChapterOutlinePanel";
-import { MindmapHistoryPanel } from "@/components/mindmap/MindmapHistoryPanel";
 import {
   buildChapterMindmapDoc,
   mergeMindmapIndexWithChapters,
@@ -45,13 +47,15 @@ import {
   SHARED_PANEL_KEYS,
   writeSharedEntitySelection,
 } from "@/lib/kg/sharedEntitySelection";
-import { LinkedResourceCardList } from "@/components/graph/LinkedResourceCards";
+import {
+  LinkedResourceCardList,
+  LinkedResourceJumpBar,
+} from "@/components/graph/LinkedResourceCards";
 import {
   applyMindmapEditPatch,
   clearMindmapEditPatch,
   isStaleMindmapEditPatch,
   loadMindmapEditPatch,
-  type MindmapHistoryItem,
 } from "@/lib/review/mindmapEdits";
 import {
   chapterFileSlug,
@@ -64,7 +68,6 @@ import {
   type MindmapIndexDoc,
   type MindmapIndexItem,
 } from "@/lib/kg/mindmapTypes";
-import type { PipelineNode, PipelineStage } from "@/lib/graph/types";
 import { canEditKnowledgeGraph } from "@/lib/integration/editPermission";
 import {
   emitKnowledgeResourceOpen,
@@ -73,6 +76,7 @@ import {
   mmkgLogin,
   type LinkedKnowledgeResource,
 } from "@/lib/integration/knowledgeResources";
+import { knowledgeResourceIdentity, isStructuralMindmapNode } from "@/lib/kg/mindmapResourceIdentity.mjs";
 import { withBase } from "@/lib/withBase";
 import pipe from "@/styles/panels.module.css";
 import assetsNav from "@/pages/AssetsPage.module.css";
@@ -412,12 +416,7 @@ async function loadMindmapDoc(
 }
 
 function isSyntheticMindmapNode(node: MindmapTreeNode) {
-  const id = String(node.id || "");
-  return (
-    id.startsWith("__") ||
-    id.startsWith("chapter:") ||
-    id.startsWith("part:")
-  );
+  return isStructuralMindmapNode(node);
 }
 
 function shortEntityKey(id: string) {
@@ -434,11 +433,21 @@ function matchKgEntityId(
   const tryIds = [node.id, node.zh, redirects?.[node.id], redirects?.[node.zh]]
     .map((v) => String(v || "").trim())
     .filter(Boolean);
+  const lowerMap = new Map<string, string>();
+  for (const id of kgIds) {
+    lowerMap.set(id.toLowerCase(), id);
+    const zh = shortEntityKey(id);
+    if (zh) lowerMap.set(zh.toLowerCase(), id);
+  }
   for (const raw of tryIds) {
     if (kgIds.has(raw)) return raw;
     const short = shortEntityKey(raw);
     if (short && kgIds.has(short)) return short;
-    const hit = kgByShort.get(raw) || (short ? kgByShort.get(short) : undefined);
+    const hit =
+      kgByShort.get(raw) ||
+      (short ? kgByShort.get(short) : undefined) ||
+      lowerMap.get(raw.toLowerCase()) ||
+      (short ? lowerMap.get(short.toLowerCase()) : undefined);
     if (hit) return hit;
   }
   return null;
@@ -489,17 +498,12 @@ export function MindmapPage() {
   const [error, setError] = useState<string | null>(null);
   const [mapKey, setMapKey] = useState(0);
   const [selected, setSelected] = useState<MindmapTreeNode | null>(null);
-  const [detailPanelOpen, setDetailPanelOpen] = useState(false);
   const [assetsPanelOpen, setAssetsPanelOpen] = useState(false);
-  const [videoPanelOpen, setVideoPanelOpen] = useState(false);
-  const [exercisePanelOpen, setExercisePanelOpen] = useState(false);
   const [animationPanelOpen, setAnimationPanelOpen] = useState(false);
   const focusAppliedRef = useRef("");
   const [library, setLibrary] = useState<AssetsLibrary | null>(null);
-  const [entityDefinitions, setEntityDefinitions] = useState<Record<string, string> | null>(null);
   const [kgIds, setKgIds] = useState<Set<string>>(() => new Set());
   const [kgByShort, setKgByShort] = useState<Map<string, string>>(() => new Map());
-  const [kgClassroom, setKgClassroom] = useState<Record<string, number> | null>(null);
   const [sideLinkedResources, setSideLinkedResources] = useState<{
     nodeId: string;
     loading: boolean;
@@ -507,11 +511,10 @@ export function MindmapPage() {
     error: string;
   } | null>(null);
   const sideResourceSeq = useRef(0);
-  const [historyItems, setHistoryItems] = useState<MindmapHistoryItem[]>([]);
   const [lectureNavOpen, setLectureNavOpen] = useState(true);
   const [chapterNavOpen, setChapterNavOpen] = useState(true);
   const [partOpen, setPartOpen] = useState<Record<string, boolean>>({});
-  const [detailCollapsed, setDetailCollapsed] = useState(false);
+  const [detailCollapsed, setDetailCollapsed] = useState(true);
   const [studentMastery, setStudentMastery] = useState<{
     identity: string;
     scores: Record<string, number>;
@@ -520,7 +523,6 @@ export function MindmapPage() {
   }>({ identity: "", scores: Object.create(null) });
   const [masteryMessage, setMasteryMessage] = useState("");
   const [masteryRefresh, setMasteryRefresh] = useState(0);
-  const mindUndoRef = useRef<(() => void) | null>(null);
   /** 大纲重建后更新 index 时跳过一次磁盘重载，避免缓存旧文件盖掉新图 */
   const skipNextDocLoadRef = useRef(false);
 
@@ -686,7 +688,7 @@ export function MindmapPage() {
         id: s.id,
         lectureIds: s.lectureIds,
         index: idx,
-        label: String(idx),
+        label: `第 ${idx} 次课`,
         title:
           s.lectureIds.length === 2
             ? `第 ${idx} 次课（第 ${s.lectureIds[0]}–${s.lectureIds[1]} 讲）`
@@ -695,14 +697,14 @@ export function MindmapPage() {
     });
   }, [lectureItems]);
 
+  /** 章/整课：不按讲次收窄；单讲/session：传讲次仅作排序优先 */
   const lectureIdForLinks = useMemo(() => {
     if (!navId || isAnyCourseNavId(navId) || parseChapterNavId(navId)) {
-      const lids = doc?.meta?.lecture_ids;
-      return lids?.[0] || "";
+      return "";
     }
     const parsed = parseSessionRouteId(navId);
     return parsed?.lectureIds[0] || navId;
-  }, [navId, doc]);
+  }, [navId]);
 
   const parentOrigin = useMemo(() => {
     if (typeof document === "undefined" || !document.referrer) return "";
@@ -722,19 +724,68 @@ export function MindmapPage() {
     return matchKgEntityId(selected, kgIds, kgByShort, doc?.id_redirects);
   }, [selected, kgIds, kgByShort, doc?.id_redirects]);
 
+  const linkedEntityId = knowledgeResourceIdentity(selected, kgEntityId);
+
+  const assetPolicy = useMemo(
+    () => (selected ? mindmapNodeAssetPolicy(selected.id) : "none"),
+    [selected]
+  );
+
+  /**
+   * 叶：KG 全名 + 标题 + redirect，概念/边挂载（不含卡名乱撞）。
+   * topic：仅标题索引精确命中。
+   * 章节：不匹配。
+   */
+  const mindmapAssetQuery = useMemo(() => {
+    if (!selected || assetPolicy === "none") {
+      return { entityId: null as string | null, aliases: [] as string[] };
+    }
+    const zh = String(selected.zh || "").trim();
+    if (assetPolicy === "strict") {
+      const label =
+        zh ||
+        String(selected.id || "")
+          .split("/")
+          .filter((p) => p && !p.startsWith("__"))
+          .pop() ||
+        "";
+      return { entityId: label || null, aliases: [] as string[] };
+    }
+    // leaf：优先规范实体 id；补标题与 redirect，避免只靠短名乱扩
+    const rawId = String(selected.id || "").trim();
+    const looksEntity =
+      Boolean(rawId) &&
+      !rawId.startsWith("__") &&
+      !rawId.startsWith("chapter:") &&
+      !rawId.startsWith("part:");
+    const out = new Set<string>();
+    for (const v of [
+      kgEntityId || "",
+      zh,
+      looksEntity ? rawId : "",
+      doc?.id_redirects?.[rawId],
+      zh ? doc?.id_redirects?.[zh] : "",
+    ]) {
+      const t = String(v || "").trim();
+      if (t) out.add(t);
+    }
+    const entityId = kgEntityId || (looksEntity ? rawId : "") || zh || null;
+    const aliases = [...out].filter((a) => a && a !== entityId);
+    return { entityId, aliases };
+  }, [selected, assetPolicy, kgEntityId, doc?.id_redirects]);
+
   const selectMindmapNode = (node: MindmapTreeNode | null) => {
     setSelected(node);
     if (!node) {
       writeSharedEntitySelection(null);
       return;
     }
+    setDetailCollapsed(false);
     const eid = matchKgEntityId(node, kgIds, kgByShort, doc?.id_redirects);
     writeSharedEntitySelection({
       id: eid || node.id,
       label: node.zh || shortEntityKey(eid || node.id),
     });
-    setDetailCollapsed(false);
-    setDetailPanelOpen(true);
   };
 
   /** 章 / 课次：用关联章做大纲；整课与骨架不展示输入框 */
@@ -883,43 +934,15 @@ export function MindmapPage() {
     }
   };
 
-  const kgDetailStage = useMemo((): PipelineStage | null => {
-    if (!selected || !kgEntityId) return null;
-    const short = shortEntityKey(kgEntityId);
-    const node: PipelineNode = {
-      id: kgEntityId,
-      label: selected.zh || short,
-      kind: "entity",
-      importance:
-        kgClassroom?.[kgEntityId] ??
-        kgClassroom?.[short] ??
-        selected.importance ??
-        null,
-    };
-    return {
-      id: "mindmap-kg-lookup",
-      title: "选中详情",
-      nodes: [node],
-      edges: [],
-    };
-  }, [selected, kgEntityId, kgClassroom]);
-
   useEffect(() => {
     fetch(`${courseDataUrl(courseId, "assets_library.json")}?t=${Date.now()}`)
       .then((r) => (r.ok ? r.json() : null))
-      .then((d) => setLibrary(d && Array.isArray(d.cards) ? d : null))
+      .then((d) =>
+        setLibrary(
+          d && Array.isArray(d.cards) ? ensureAssetsLibraryIndexes(d) : null
+        )
+      )
       .catch(() => setLibrary(null));
-  }, [courseId]);
-
-  useEffect(() => {
-    fetch(`${courseDataUrl(courseId, "entity_definitions.json")}?t=${Date.now()}`, {
-      cache: "no-store",
-    })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j: Record<string, string> | null) => {
-        setEntityDefinitions(j && typeof j === "object" ? j : {});
-      })
-      .catch(() => setEntityDefinitions({}));
   }, [courseId]);
 
   useEffect(() => {
@@ -941,15 +964,11 @@ export function MindmapPage() {
           }
           setKgIds(ids);
           setKgByShort(byShort);
-          setKgClassroom(
-            j?.classroom && typeof j.classroom === "object" ? j.classroom : scores
-          );
         }
       )
       .catch(() => {
         setKgIds(new Set());
         setKgByShort(new Map());
-        setKgClassroom(null);
       });
   }, [courseId]);
 
@@ -966,11 +985,11 @@ export function MindmapPage() {
   };
 
   useEffect(() => {
-    if (!kgEntityId) {
+    if (!linkedEntityId) {
       setSideLinkedResources(null);
       return;
     }
-    const nodeId = kgEntityId;
+    const nodeId = linkedEntityId;
     if (!isAiTeachingEmbed) {
       setSideLinkedResources({
         nodeId,
@@ -1022,7 +1041,7 @@ export function MindmapPage() {
         });
       });
   }, [
-    kgEntityId,
+    linkedEntityId,
     isAiTeachingEmbed,
     resourceCourseId,
     kgLaunchToken,
@@ -1072,10 +1091,13 @@ export function MindmapPage() {
       return;
     }
     setError(null);
+    // 先清空旧图，避免整课↔骨架切换时用旧树 hydrate 新 expandStorageKey
+    setDoc(null);
     setMapKey((k) => k + 1);
     setSelected(null);
     focusAppliedRef.current = "";
     let cancelled = false;
+    const loadForNav = navId;
     (async () => {
       if (isMasteryEmbed && isCourseNavId(navId)) {
         const response = await fetch(courseDataUrl(courseId, "mindmaps/student_mastery_course.json"), { cache: "no-store" });
@@ -1096,23 +1118,23 @@ export function MindmapPage() {
           setDoc(applyMindmapEditPatch(d, null));
           return;
         }
-        const patch = loadMindmapEditPatch(courseId, navId);
+        const patch = loadMindmapEditPatch(courseId, loadForNav);
         // 整课结构以服务器为准：有分册层时清掉易把课图压成「两章」的旧本地补丁
         if (
-          isAnyCourseNavId(navId) ||
+          isAnyCourseNavId(loadForNav) ||
           isStaleMindmapEditPatch(d, patch)
         ) {
           const root = d.roots?.[0] || d.root;
           const hasParts = (root?.children || []).some((c) =>
             String(c.id || "").startsWith("__part__/")
           );
-          if (isAnyCourseNavId(navId) && (hasParts || isCourseSkeletonNavId(navId))) {
-            clearMindmapEditPatch(courseId, navId);
+          if (isAnyCourseNavId(loadForNav) && (hasParts || isCourseSkeletonNavId(loadForNav))) {
+            clearMindmapEditPatch(courseId, loadForNav);
             setDoc(applyMindmapEditPatch(d, null));
             return;
           }
           if (isStaleMindmapEditPatch(d, patch)) {
-            clearMindmapEditPatch(courseId, navId);
+            clearMindmapEditPatch(courseId, loadForNav);
             setDoc(applyMindmapEditPatch(d, null));
             return;
           }
@@ -1156,7 +1178,7 @@ export function MindmapPage() {
   const titleText = (() => {
     if (isMasteryEmbed) return studentMastery.scope === "class_average" ? "全班平均掌握思维导图" : "知识点掌握思维导图";
     if (isCourseSkeletonNavId(navId)) return "整课骨架展示";
-    if (isCourseNavId(navId)) return "整课思维导图";
+    if (isCourseNavId(navId)) return "整课知识导图";
     const ch = parseChapterNavId(navId);
     if (ch) return displayChapterName(ch);
     const sess = sessionNavItems.find((s) => s.id === navId);
@@ -1166,7 +1188,7 @@ export function MindmapPage() {
       return `第 ${sessionIndexFromLectureIds(parsed.lectureIds)} 次课`;
     }
     if (navId) return `第 ${navId} 次课`;
-    return "思维导图";
+    return "知识导图";
   })();
 
   return (
@@ -1179,46 +1201,42 @@ export function MindmapPage() {
       nav={!isMasteryEmbed ? (
         <aside className={shell.sidebar}>
           <div className={shell.sideHead}>
-            <Link
-              className={shell.back}
-              to={
-                isAiTeachingEmbed
-                  ? (() => {
-                      const q = new URLSearchParams(sp);
-                      const fid = kgEntityId || selected?.id || "";
-                      if (fid) q.set("focus", String(fid));
-                      const search = q.toString();
-                      return {
-                        pathname: coursePath(courseId, "/kg/course"),
-                        search: search ? `?${search}` : "",
-                      };
-                    })()
-                  : coursePath(courseId)
-              }
-              onClick={() => {
-                if (!isAiTeachingEmbed) return;
-                const fid = kgEntityId || selected?.id || "";
-                if (!fid) return;
-                writeSharedEntitySelection({
-                  id: String(fid),
-                  label: selected?.zh || shortEntityKey(String(fid)),
-                });
-              }}
-              title={isAiTeachingEmbed ? "返回知识图谱" : "返回课程"}
-            >
-              <span className={shell.backIcon} aria-hidden>
-                ←
-              </span>
-              <span className={shell.backBrand}>
-                {isAiTeachingEmbed ? (
-                  "返回知识图谱"
-                ) : (
-                  <>
-                    Edu<em>KG</em>
-                  </>
-                )}
-              </span>
-            </Link>
+            {isAiTeachingEmbed ? (
+              <Link
+                className={`${kg.kgChip} ${kg.kgChipAccent}`}
+                style={{ textDecoration: "none", marginBottom: 10 }}
+                to={(() => {
+                  const q = new URLSearchParams(sp);
+                  const fid = kgEntityId || selected?.id || "";
+                  if (fid) q.set("focus", String(fid));
+                  const search = q.toString();
+                  return {
+                    pathname: coursePath(courseId, "/kg/course"),
+                    search: search ? `?${search}` : "",
+                  };
+                })()}
+                onClick={() => {
+                  const fid = kgEntityId || selected?.id || "";
+                  if (!fid) return;
+                  writeSharedEntitySelection({
+                    id: String(fid),
+                    label: selected?.zh || shortEntityKey(String(fid)),
+                  });
+                }}
+                title="查看知识图谱"
+              >
+                查看知识图谱
+              </Link>
+            ) : (
+              <Link className={shell.back} to={coursePath(courseId)} title="返回课程">
+                <span className={shell.backIcon} aria-hidden>
+                  ←
+                </span>
+                <span className={shell.backBrand}>
+                  Edu<em>KG</em>
+                </span>
+              </Link>
+            )}
             <p className={shell.eyebrow}>Mindmap</p>
             <h1 className={shell.sideTitle}>知识导图</h1>
           </div>
@@ -1358,24 +1376,24 @@ export function MindmapPage() {
       ) : undefined}
       main={
         <main className={shell.main} style={compactMastery ? { height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" } : undefined}>
-          {!compactMastery && <header className={shell.topbar}>
-            <div className={shell.topbarText}>
-              <h2>{titleText}</h2>
-            </div>
-
-            {doc && (
-              <div className={shell.stats}>
-                <div>
-                  <strong>{doc.n_nodes}</strong>
-                  <span>节点</span>
-                </div>
-                <div>
-                  <strong>{doc.max_depth}</strong>
-                  <span>深度</span>
-                </div>
+          {!compactMastery && <header className={kg.kgTopbar}>
+            <div className={kg.kgTopbarPrimary}>
+              <div className={kg.kgTitleBlock}>
+                <h2>{titleText}</h2>
               </div>
-            )}
-
+              {doc ? (
+                <div className={kg.kgStats}>
+                  <div>
+                    <strong>{doc.n_nodes}</strong>
+                    <span>节点</span>
+                  </div>
+                  <div>
+                    <strong>{doc.max_depth}</strong>
+                    <span>深度</span>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </header>}
 
           {error && <p className="empty-hint">{error}</p>}
@@ -1395,6 +1413,7 @@ export function MindmapPage() {
                 scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")}
                 compact={compactMastery}
               /> : <MindmapTree
+                key={`mm-expand:${courseId}:${navId || "none"}:${doc.lecture_id || ""}:${lectureVariant || ""}:${mapKey}`}
                 doc={doc}
                 resetKey={mapKey}
                 selectedId={selected?.id || null}
@@ -1402,11 +1421,19 @@ export function MindmapPage() {
                 onClearSelect={() => selectMindmapNode(null)}
                 editEnabled={canEditMindmap}
                 expandAll={lectureVariant === "deep"}
+                expandPreset={
+                  isCourseSkeletonNavId(navId)
+                    ? "course"
+                    : isCourseNavId(navId)
+                      ? "course"
+                      : "full"
+                }
+                expandStorageKey={`teachkg.mindmap.expand.v4:${courseId}:${encodeURIComponent(navId || "none")}${
+                  lectureVariant === "deep" ? ":deep" : ""
+                }`}
                 courseId={courseId}
                 lectureId={navId}
                 onDocChange={setDoc}
-                onHistoryChange={setHistoryItems}
-                undoRef={mindUndoRef}
                 onResetEdits={() => {
                   setMapKey((k) => k + 1);
                   if (!index) return;
@@ -1445,37 +1472,17 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>
           <div className={kg.kgSideScroll}>
-          <CollapsiblePanel
-            title="选中详情"
-            storageKey={SHARED_PANEL_KEYS.detail}
-            defaultOpen={false}
-            open={detailPanelOpen}
-            onOpenChange={setDetailPanelOpen}
-            bodyClassName={kg.sideCardBody}
-          >
-            {isMasteryEmbed && selected ? <p role="status">{studentMastery.scope === "class_average" ? "全班平均掌握度" : "我的掌握度"}：{masteryVisual(masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)).label}</p> : null}
-            {selected && kgDetailStage && kgEntityId ? (
-              <SelectionDetail
-                stage={kgDetailStage}
-                selectedNodeId={kgEntityId}
-                selectedEdgeId={null}
-                hideFiltered={false}
-                mode="lecture"
-                importanceMode="classroom"
-                entityDefinitions={entityDefinitions}
-              />
-            ) : selected ? (
-              <div className={pipe.detailCard}>
-                <div className={pipe.detailBadge}>导图节点</div>
-                <p style={{ margin: "8px 0 0" }}>
-                  <strong>{selected.zh}</strong>
-                </p>
-              </div>
-            ) : (
-              <div className={pipe.sideEmpty}>点击导图节点查看详情与资源</div>
-            )}
-          </CollapsiblePanel>
-
+          {isMasteryEmbed && selected ? <div className={pipe.detailCard}><strong>{selected.zh}</strong><p role="status">{studentMastery.scope === "class_average" ? "全班平均掌握度" : "我的掌握度"}：{masteryVisual(masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)).label}</p></div> : null}
+          {isAiTeachingEmbed && selected && linkedEntityId ? (
+            <LinkedResourceJumpBar
+              loading={!!sideLinkedResources?.loading}
+              resources={sideLinkedResources?.resources || []}
+              selectedNodeId={linkedEntityId}
+              courseId={courseId}
+              resourceCourseId={resourceCourseId || courseId}
+              onOpen={openLinkedResource}
+            />
+          ) : null}
           {canEditMindmap && chapterForOutline ? (
             <CollapsiblePanel
               title="大纲 / 总结输入"
@@ -1493,30 +1500,19 @@ export function MindmapPage() {
             </CollapsiblePanel>
           ) : null}
 
-          {canEditMindmap && !isAnyCourseNavId(navId) ? (
-            <CollapsiblePanel
-              title="操作历史"
-              storageKey="mindmap-panel-history-v3"
-              defaultOpen={false}
-              bodyClassName={kg.sideCardBody}
-            >
-              <MindmapHistoryPanel
-                items={historyItems}
-                onUndo={() => mindUndoRef.current?.()}
-              />
-            </CollapsiblePanel>
-          ) : null}
-
           {selected ? (
             <CollapsiblePanel
-              title={`相关资源-${
-                countRelatedAssets(kgEntityId || selected.id, library, {
-                  entityAliases: [selected.zh].filter(Boolean),
-                  lectureId: lectureIdForLinks || null,
-                  lectureOnly:
-                    Boolean(lectureIdForLinks) && !isAnyCourseNavId(navId),
-                  kinds: ["formula", "example", "theorem"],
-                })
+              title={`相关资源 · ${
+                assetPolicy === "none"
+                  ? 0
+                  : countRelatedAssets(mindmapAssetQuery.entityId, library, {
+                      entityAliases: mindmapAssetQuery.aliases,
+                      lectureId: lectureIdForLinks || null,
+                      lectureOnly: false,
+                      kinds: [...RELATED_ASSET_KINDS],
+                      matchMode:
+                        assetPolicy === "strict" ? "strict" : "concept",
+                    })
               }`}
               storageKey={SHARED_PANEL_KEYS.assets}
               defaultOpen={false}
@@ -1525,87 +1521,27 @@ export function MindmapPage() {
               bodyClassName={kg.sideCardBody}
             >
               <RelatedAssetsPanel
-                entityId={kgEntityId || selected.id}
-                entityAliases={[selected.zh].filter(Boolean)}
-                library={library}
+                entityId={mindmapAssetQuery.entityId}
+                entityAliases={mindmapAssetQuery.aliases}
+                library={assetPolicy === "none" ? null : library}
                 lectureId={lectureIdForLinks || null}
-                lectureOnly={
-                  Boolean(lectureIdForLinks) && !isAnyCourseNavId(navId)
+                lectureOnly={false}
+                kinds={[...RELATED_ASSET_KINDS]}
+                maxItems={12}
+                matchMode={assetPolicy === "strict" ? "strict" : "concept"}
+                emptyHint={
+                  assetPolicy === "none"
+                    ? "章节节点不匹配资源"
+                    : assetPolicy === "strict"
+                    ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
+                    : null
                 }
-                kinds={["formula", "example", "theorem"]}
-                maxItems={8}
               />
             </CollapsiblePanel>
           ) : null}
 
-          {selected && kgEntityId ? (
+          {selected && linkedEntityId ? (
             <>
-              <CollapsiblePanel
-                title={`视频跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "video").length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.video}
-                defaultOpen={false}
-                open={videoPanelOpen}
-                onOpenChange={setVideoPanelOpen}
-                bodyClassName={kg.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={kg.resourceMenuState}>正在查询视频…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "video"
-                    );
-                    if (!rows.length) {
-                      return <div className={pipe.sideEmpty}>暂无关联视频</div>;
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="video"
-                        nodeLabel={selected.zh || ""}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
-              <CollapsiblePanel
-                title={`练习跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "exercise").length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.exercise}
-                defaultOpen={false}
-                open={exercisePanelOpen}
-                onOpenChange={setExercisePanelOpen}
-                bodyClassName={kg.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={kg.resourceMenuState}>正在查询练习…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "exercise"
-                    );
-                    if (!rows.length) {
-                      return <div className={pipe.sideEmpty}>暂无关联练习</div>;
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="exercise"
-                        nodeLabel={selected.zh || ""}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
               <CollapsiblePanel
                 title={`动画跳转 · ${
                   sideLinkedResources?.resources.filter((r) => r.resource_type === "animation").length || 0
