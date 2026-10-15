@@ -427,3 +427,51 @@
   outline: 2px solid #538bc6;
   outline-offset: 3px;
 }
+
+.layoutToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #665d56;
+  font-size: 12px;
+  white-space: nowrap;
+  padding-right: 12px;
+  border-right: 1px solid #e5ded7;
+}
+.layoutToggle input {
+  appearance: none;
+  width: 32px;
+  height: 18px;
+  margin: 0;
+  border-radius: 12px;
+  background: #c7c5c4;
+  cursor: pointer;
+  position: relative;
+}
+.layoutToggle input::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.15s;
+}
+.layoutToggle input:checked {
+  background: #9e3843;
+}
+.layoutToggle input:checked::after {
+  transform: translateX(14px);
+}
+.layoutToggle input:focus-visible {
+  outline: 2px solid #9e3843;
+  outline-offset: 3px;
+}
+.freeLayout .node {
+  cursor: grab;
+}
+.freeLayout .node:active {
+  cursor: grabbing;
+}

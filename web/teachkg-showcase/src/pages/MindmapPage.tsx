@@ -1473,7 +1473,7 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>}
           <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
-          {isMasteryEmbed && selected ? <MasteryNodeSummary label={selected.zh} score={masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)} scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")} onClose={() => setDetailCollapsed(true)} /> : null}
+          {isMasteryEmbed && selected ? <MasteryNodeSummary courseId={courseId} node={selected} label={selected.zh} score={masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)} scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")} onClose={() => setDetailCollapsed(true)} /> : null}
           {isAiTeachingEmbed && selected && linkedEntityId ? (
             <LinkedResourceJumpBar
               className={compactMastery ? details.actions : undefined}

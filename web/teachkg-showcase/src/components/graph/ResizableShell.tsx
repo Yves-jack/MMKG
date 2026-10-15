@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import shell from "@/styles/shell.module.css";
+import { ResizableDetailOverlay } from "./ResizableDetailOverlay";
 import { ResizableSplit } from "./ResizableSplit";
 
 type Props = {
@@ -48,10 +49,23 @@ export function ResizableShell({
   const leftMin = navFixedLeftPx ?? 160;
 
   if (detailOverlay && !nav) {
-    return <div className={`${shell.shell} ${shell.shellSolo}`} style={{ position: "relative" }}>
-      {main}
-      {detail ? <div className={shell.detailOverlay}>{detail}</div> : null}
-    </div>;
+    return (
+      <div
+        className={`${shell.shell} ${shell.shellSolo}`}
+        style={{ position: "relative" }}
+      >
+        {main}
+        {detail ? (
+          <ResizableDetailOverlay
+            storageKey={`${storagePrefix}-overlay-width`}
+            initialWidth={detailInitialRightPx}
+            minWidth={detailMinRightPx}
+          >
+            {detail}
+          </ResizableDetailOverlay>
+        ) : null}
+      </div>
+    );
   }
 
   if (!nav && !detail) {
@@ -62,7 +76,9 @@ export function ResizableShell({
     return (
       <ResizableSplit
         className={rootClass}
-        storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
+        storageKey={
+          rightFixed != null ? undefined : `${storagePrefix}-detail-r`
+        }
         sizedPane="right"
         initialRightPx={rightInitial}
         initialRightRatio={0.34}
@@ -109,7 +125,9 @@ export function ResizableShell({
       right={
         <ResizableSplit
           className={shell.shellInner}
-          storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
+          storageKey={
+            rightFixed != null ? undefined : `${storagePrefix}-detail-r`
+          }
           sizedPane="right"
           initialRightPx={rightInitial}
           initialRightRatio={0.32}

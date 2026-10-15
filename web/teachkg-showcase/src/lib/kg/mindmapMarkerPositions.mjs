@@ -1,5 +1,14 @@
 /** Shared geometry for mastery badges, fold controls and learning-path anchors. */
 export function mindmapMarkerPositions(node) {
+  if (node.free)
+    return {
+      start: (node.width - node.textWidth) / 2,
+      end: (node.width + node.textWidth) / 2,
+      middleY: node.depth === 0 ? node.height / 2 : 32,
+      badgeX: node.width / 2,
+      toggleX:
+        node.width / 2 + (node.depth === 0 ? node.textWidth / 2 + 24 : 48),
+    };
   const middleY = node.height / 2;
   if (node.compact)
     return {

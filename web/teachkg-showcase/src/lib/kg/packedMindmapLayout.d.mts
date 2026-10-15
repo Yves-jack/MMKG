@@ -20,6 +20,7 @@ export type PackedRecord = {
 };
 export type PackedInput = { rootKey: string; records: PackedRecord[] };
 export type PackedNode = PackedRecord & {
+  free?: boolean;
   compact?: boolean;
   left: number;
   right: number;

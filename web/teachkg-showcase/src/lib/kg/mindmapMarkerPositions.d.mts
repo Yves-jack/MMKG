@@ -6,6 +6,7 @@ export function mindmapMarkerPositions(node: {
   extra: number;
   textWidth: number;
   compact?: boolean;
+  free?: boolean;
 }): {
   start: number;
   end: number;

@@ -6,9 +6,16 @@
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background:
-    radial-gradient(900px 480px at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 55%),
-    radial-gradient(700px 420px at 100% 10%, color-mix(in srgb, var(--delta) 6%, transparent), transparent 50%),
+  background: radial-gradient(
+      900px 480px at 0% 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      700px 420px at 100% 10%,
+      color-mix(in srgb, var(--delta) 6%, transparent),
+      transparent 50%
+    ),
     var(--bg);
 }
 
@@ -71,12 +78,11 @@
   text-decoration: none;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--accent) 10%, var(--bg-elev)),
-      color-mix(in srgb, var(--bg) 55%, var(--bg-elev))
-    );
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 10%, var(--bg-elev)),
+    color-mix(in srgb, var(--bg) 55%, var(--bg-elev))
+  );
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
   transition:
     border-color 0.16s ease,
@@ -98,7 +104,9 @@
   color: var(--accent);
   background: var(--accent-dim);
   border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-  transition: transform 0.16s ease, background 0.16s ease;
+  transition:
+    transform 0.16s ease,
+    background 0.16s ease;
 }
 
 .backBrand {
@@ -117,12 +125,11 @@
 .back:hover {
   color: var(--text);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--accent) 18%, var(--bg-elev)),
-      color-mix(in srgb, var(--bg-elev) 80%, var(--bg))
-    );
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 18%, var(--bg-elev)),
+    color-mix(in srgb, var(--bg-elev) 80%, var(--bg))
+  );
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
   transform: translateX(-1px);
 }
@@ -464,4 +471,57 @@
   }
 }
 
-.shellSolo > .detailOverlay { position: absolute; flex: none; top: 52px; right: 12px; width: min(340px, calc(100% - 24px)); max-height: calc(100% - 132px); min-height: 0; overflow: auto; z-index: 10; box-sizing: border-box; border: 1px solid #e7e0d8; border-radius: 16px; background: #fff; box-shadow: 0 12px 36px rgb(42 32 28 / 14%), 0 2px 6px rgb(42 32 28 / 5%); overscroll-behavior: contain; }
+.shellSolo > .detailOverlay {
+  position: absolute;
+  flex: none;
+  top: 52px;
+  right: 12px;
+  width: min(340px, calc(100% - 24px));
+  max-height: calc(100% - 132px);
+  min-height: 0;
+  overflow: auto;
+  z-index: 10;
+  box-sizing: border-box;
+  border: 1px solid #e7e0d8;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow:
+    0 12px 36px rgb(42 32 28 / 14%),
+    0 2px 6px rgb(42 32 28 / 5%);
+  overscroll-behavior: contain;
+}
+
+.shellSolo > .detailOverlay {
+  overflow: hidden;
+  display: flex;
+}
+.detailOverlayContent {
+  width: 100%;
+  min-width: 0;
+  max-height: inherit;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.detailResizeHandle {
+  position: absolute;
+  z-index: 2;
+  inset: 0 auto 0 0;
+  width: 10px;
+  cursor: col-resize;
+  touch-action: none;
+}
+.detailResizeHandle::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 36px;
+  top: 50%;
+  left: 2px;
+  border-radius: 3px;
+  background: #c6bab0;
+}
+.detailResizeHandle:hover,
+.detailResizeHandle:focus-visible {
+  background: #a1493e20;
+  outline: none;
+}

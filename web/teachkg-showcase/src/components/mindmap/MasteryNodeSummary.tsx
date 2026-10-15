@@ -1,14 +1,19 @@
 import type { CSSProperties } from "react";
 import { masteryVisual } from "@/lib/kg/mindmapMasteryBinding.mjs";
+import { MasteryEntityDetails } from "./MasteryEntityDetails";
 import styles from "./MasteryNodeDetails.module.css";
 
 export function MasteryNodeSummary({
   label,
+  node,
+  courseId,
   score,
   scope,
   onClose,
 }: {
   label: string;
+  node: { id: string; zh: string };
+  courseId: string;
   score: number | undefined;
   scope: "personal" | "class_average";
   onClose: () => void;
@@ -60,6 +65,7 @@ export function MasteryNodeSummary({
       ) : (
         <p className={styles.emptyScore}>完成练习后查看掌握程度</p>
       )}
+      <MasteryEntityDetails courseId={courseId} node={node} />
     </section>
   );
 }

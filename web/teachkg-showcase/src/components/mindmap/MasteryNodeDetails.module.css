@@ -161,3 +161,56 @@ aside.panel {
   font-size: 12px;
   line-height: 1.7;
 }
+
+.entityInfo {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #eee7df;
+  font-size: 12px;
+  line-height: 1.75;
+  color: #51443c;
+}
+.canonical {
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+  color: #71645b;
+}
+.aliases {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+.aliases > span {
+  color: #8a8077;
+}
+.aliases > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.alias {
+  display: inline-flex;
+  padding: 0 7px;
+  background: #f6f3ef;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+.emptyDetail {
+  color: #968b82;
+}
+.definition {
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #faf8f5;
+  padding: 9px 10px;
+}
+.definition summary {
+  cursor: pointer;
+  color: #68544a;
+  font-weight: 600;
+}
+.definition > div {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}

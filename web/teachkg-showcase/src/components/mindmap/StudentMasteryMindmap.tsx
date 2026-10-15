@@ -20,6 +20,7 @@ import {
 import { mindmapMarkerPositions } from "@/lib/kg/mindmapMarkerPositions.mjs";
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
+import { useMasteryForceLayout } from "@/lib/kg/useMasteryForceLayout";
 import styles from "./StudentMasteryMindmap.module.css";
 
 type ViewNode = MindmapTreeNode & {
@@ -82,6 +83,8 @@ export function StudentMasteryMindmap({
   scope?: "personal" | "class_average";
   compact?: boolean;
 }) {
+  const [freeLayout, setFreeLayout] = useState(false);
+  const [forceReset, setForceReset] = useState(0);
   const [percent, setPercent] = useState(100);
   const [showLabels, setShowLabels] = useState(true);
   const [expandDepth, setExpandDepth] = useState(3);
@@ -96,6 +99,7 @@ export function StudentMasteryMindmap({
     x: number;
     y: number;
     moved: boolean;
+    nodeKey?: string;
   } | null>(null);
   const filtered = useMemo(
     () =>
@@ -114,8 +118,10 @@ export function StudentMasteryMindmap({
     () => preparePackedMindmap(collapsedDoc, textWidth, { showLabels }),
     [collapsedDoc, showLabels],
   );
-  const packed = usePackedMindmapLayout(packedInput);
-  const layout = packed.layout || {
+  const packed = usePackedMindmapLayout(packedInput, !freeLayout);
+  const force = useMasteryForceLayout(packedInput, freeLayout, forceReset);
+  const activeLayout = freeLayout ? force.layout : packed.layout;
+  const layout = activeLayout || {
     nodes: [],
     edges: [],
     domains: [],
@@ -153,6 +159,7 @@ export function StudentMasteryMindmap({
     resetViewport();
   };
   const resetMap = () => {
+    setForceReset((previous) => previous + 1);
     setShowLabels(true);
     setPercent(100);
     setExpandDepth(3);
@@ -162,6 +169,7 @@ export function StudentMasteryMindmap({
   };
   const handlePointerDown = (event: PointerEvent<SVGSVGElement>) => {
     if (event.button !== 0) return;
+    if (freeLayout) force.freezeViewport();
     pointer.current = {
       id: event.pointerId,
       startX: event.clientX,
@@ -195,13 +203,33 @@ export function StudentMasteryMindmap({
       const after = new DOMPoint(event.clientX, event.clientY).matrixTransform(
         inverse,
       );
-      setPan((previous) => ({
-        x: previous.x - (after.x - before.x),
-        y: previous.y - (after.y - before.y),
-      }));
+      if (current.nodeKey && freeLayout)
+        force.moveNode(current.nodeKey, after.x - before.x, after.y - before.y);
+      else
+        setPan((previous) => ({
+          x: previous.x - (after.x - before.x),
+          y: previous.y - (after.y - before.y),
+        }));
     }
     current.x = event.clientX;
     current.y = event.clientY;
+  };
+  const handleNodePointerDown = (
+    event: PointerEvent<SVGGElement>,
+    nodeKey: string,
+  ) => {
+    if (!freeLayout || event.button !== 0) return;
+    event.stopPropagation();
+    force.freezeViewport();
+    pointer.current = {
+      id: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      x: event.clientX,
+      y: event.clientY,
+      moved: false,
+      nodeKey,
+    };
   };
   const handlePointerUp = (event: PointerEvent<SVGSVGElement>) => {
     if (pointer.current?.id !== event.pointerId) return;
@@ -217,6 +245,7 @@ export function StudentMasteryMindmap({
   };
   const handleWheel = (event: WheelEvent<SVGSVGElement>) => {
     event.preventDefault();
+    if (freeLayout) force.freezeViewport();
     setZoom((previous) =>
       Math.max(
         0.5,
@@ -228,10 +257,25 @@ export function StudentMasteryMindmap({
   return (
     <div
       className={`${styles.root} ${compact ? styles.compact : ""}`}
-      aria-busy={!packed.layout}
+      aria-busy={!activeLayout}
+      data-layout-mode={freeLayout ? "free" : "strict"}
     >
-      <div className={styles.toolbar}>
+      <div className={styles.toolbar} data-mastery-toolbar>
         <div className={styles.controls}>
+          <label className={styles.layoutToggle}>
+            <span>严格布局</span>
+            <input
+              type="checkbox"
+              role="switch"
+              aria-label="自由布局"
+              checked={freeLayout}
+              onChange={(event) => {
+                setFreeLayout(event.target.checked);
+                resetViewport();
+              }}
+            />
+            <span>自由布局</span>
+          </label>
           <label
             className={styles.controlLabel}
             htmlFor="mindmap-visible-percent"
@@ -292,9 +336,11 @@ export function StudentMasteryMindmap({
           </label>
         </div>
       </div>
-      {!packed.layout ? (
+      {!activeLayout ? (
         <p className={styles.caption} role="status">
-          {packed.error || "正在按子树轮廓优化布局…"}
+          {freeLayout
+            ? "正在计算自由布局…"
+            : packed.error || "正在按子树轮廓优化布局…"}
         </p>
       ) : null}
       <div className={styles.canvas}>
@@ -304,7 +350,7 @@ export function StudentMasteryMindmap({
           </p>
         ) : null}
         <svg
-          className={`${styles.viewport} ${dragging ? styles.dragging : ""}`}
+          className={`${styles.viewport} ${dragging ? styles.dragging : ""} ${freeLayout ? styles.freeLayout : ""}`}
           viewBox={`${fitted.x} ${fitted.y} ${fitted.width} ${fitted.height}`}
           role="img"
           aria-label={`${scope === "class_average" ? "全班平均" : "学生"}知识点掌握思维导图，显示 ${layout.nodes.length} 个节点`}
@@ -382,6 +428,7 @@ export function StudentMasteryMindmap({
                 transform={`translate(${placed.left} ${placed.top})`}
                 style={{ "--mastery-color": visual.color } as CSSProperties}
                 data-node-compact={placed.compact || undefined}
+                data-node-free={placed.free || undefined}
                 data-node-id={node.id}
                 data-node-path={sourcePath?.join(".")}
                 data-mastery={visual.status}
@@ -391,6 +438,9 @@ export function StudentMasteryMindmap({
                   role="button"
                   tabIndex={0}
                   aria-label={`${node.zh}，${visual.label}`}
+                  onPointerDown={(event) =>
+                    handleNodePointerDown(event, placed.key)
+                  }
                   onClick={(event) => {
                     event.stopPropagation();
                     if (!pointer.current?.moved) onSelect?.(node);
@@ -435,7 +485,7 @@ export function StudentMasteryMindmap({
                     width={placed.width}
                     height={placed.height}
                   />
-                  {placed.depth > 0 && !placed.compact ? (
+                  {placed.depth > 0 && !placed.compact && !placed.free ? (
                     <rect
                       className={styles.labelBacking}
                       x={start - 4}
@@ -450,12 +500,16 @@ export function StudentMasteryMindmap({
                       data-node-label=""
                       key={lineIndex}
                       x={start}
-                      y={placed.fontSize + lineIndex * (placed.fontSize + 9)}
+                      y={
+                        (placed.free && placed.depth > 0 ? 72 : 0) +
+                        placed.fontSize +
+                        lineIndex * (placed.fontSize + 9)
+                      }
                     >
                       {line}
                     </text>
                   ))}
-                  {placed.depth > 0 && !placed.compact ? (
+                  {placed.depth > 0 && !placed.compact && !placed.free ? (
                     <path
                       className={styles.underline}
                       d={`M 0 ${placed.height} L ${placed.width} ${placed.height}`}

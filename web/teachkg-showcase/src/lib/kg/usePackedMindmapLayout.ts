@@ -3,7 +3,7 @@ import type { PackedInput, PackedLayout } from "./packedMindmapLayout.mjs";
 
 const cache = new Map<string, PackedLayout>();
 /** Beam search runs off the UI thread; reopening a known fold state reuses its geometry. */
-export function usePackedMindmapLayout(input: PackedInput) {
+export function usePackedMindmapLayout(input: PackedInput, enabled = true) {
   const key = useMemo(
     () =>
       JSON.stringify(
@@ -24,6 +24,7 @@ export function usePackedMindmapLayout(input: PackedInput) {
     error?: string;
   }>({ key: "" });
   useEffect(() => {
+    if (!enabled) return;
     const cached = cache.get(key);
     if (cached) {
       setState({ key, layout: cached });
@@ -46,6 +47,6 @@ export function usePackedMindmapLayout(input: PackedInput) {
     worker.onerror = () => setState({ key, error: "子树布局计算失败，请重试" });
     worker.postMessage(input);
     return () => worker.terminate();
-  }, [key]);
+  }, [key, enabled]);
   return state.key === key ? state : { key };
 }
