@@ -1,146 +1,754 @@
 {
   "lecture_id": "chapter:第2章 命题逻辑的等值和推理演算",
   "root": {
-    "id": "__chapter__/第2章 命题逻辑的等值和推理演算",
+    "id": "__chapter__/命题逻辑的等值和推理演算",
     "zh": "第2章 命题逻辑的等值和推理演算",
-    "importance": 0.8,
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "命题逻辑的等值和推理演算"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/等值演算",
-        "zh": "等值演算",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
+        "id": "等值式/equivalence formula",
+        "zh": "等值式",
+        "importance": 0.169771,
+        "relation": null,
+        "related": [
+          "等值定理"
+        ],
         "children": [
           {
-            "id": "__topic__/等值演算/等值",
-            "zh": "等值",
-            "importance": 0.43258398387216107,
-            "relation": "outline_concept",
+            "id": "命题公式/propositional formula",
+            "zh": "命题公式",
+            "importance": 0.736438,
+            "relation": "belong_to",
             "related": [
-              "等值"
+              "主合取范式",
+              "真值表",
+              "真值表法",
+              "等值演算"
             ],
-            "children": []
+            "children": [],
+            "copy": true
           },
           {
-            "id": "__topic__/等值演算/等值定理",
+            "id": "基本等值式演算法",
+            "zh": "基本等值式演算法",
+            "importance": 0.365225,
+            "relation": "belong_to",
+            "related": [
+              "等值演算"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "等值定理/Equivalence Theorem",
             "zh": "等值定理",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "importance": 0.318669,
+            "relation": "belong_to",
             "related": [
-              "等值定理"
+              "等值式",
+              "等值演算",
+              "重言式"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "等值演算/equivalence calculus",
+            "zh": "等值演算",
+            "importance": 0.301877,
+            "relation": "part_of",
+            "related": [
+              "公式演算法"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "对偶性/duality",
+        "zh": "对偶性",
+        "importance": 1.0,
+        "relation": null,
+        "related": [
+          "否定",
+          "对偶式"
+        ],
+        "children": [
+          {
+            "id": "对偶/dual",
+            "zh": "对偶",
+            "importance": 0.580372,
+            "relation": "belong_to",
+            "related": [
+              "运算符"
             ],
             "children": []
           },
           {
-            "id": "__topic__/等值演算/等值证明",
-            "zh": "等值证明",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "摩根律/De Morgan's Laws",
+            "zh": "摩根律",
+            "importance": 0.229065,
+            "relation": "belong_to",
+            "related": [
+              "内否",
+              "否定",
+              "对偶式"
+            ],
+            "children": []
+          },
+          {
+            "id": "对偶规律",
+            "zh": "对偶规律",
+            "importance": 0.0,
+            "relation": "belong_to",
             "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/等值演算/基本等值式",
-            "zh": "基本等值式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "基本等值式"
-            ],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/范式",
+        "id": "范式/normal form",
         "zh": "范式",
-        "importance": 0.983804,
-        "relation": "toc_section",
-        "related": [],
+        "importance": 0.893149,
+        "relation": null,
+        "related": [
+          "公式等值",
+          "对偶式",
+          "逻辑表达式"
+        ],
         "children": [
           {
-            "id": "__topic__/范式/主范式",
+            "id": "主范式/principal normal form",
             "zh": "主范式",
             "importance": 0.983804,
-            "relation": "outline_concept",
+            "relation": "part_of",
             "related": [
-              "主范式"
+              "主析取范式",
+              "极大项",
+              "极小项",
+              "真值表",
+              "部分指派法"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "主析取范式/principal disjunctive normal form",
+                "zh": "主析取范式",
+                "importance": 0.987204,
+                "relation": "part_of",
+                "related": [
+                  "主合取范式",
+                  "主范式",
+                  "全集",
+                  "变元",
+                  "否定",
+                  "极小项"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "主合取范式/principal conjunctive normal form",
+                "zh": "主合取范式",
+                "importance": 0.195862,
+                "relation": "belong_to",
+                "related": [
+                  "命题公式",
+                  "真值表"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ],
+            "copy": true
           },
           {
-            "id": "__topic__/范式/范式求法",
-            "zh": "范式求法",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
+            "id": "析取范式/disjunctive normal form",
+            "zh": "析取范式",
+            "importance": 0.925586,
+            "relation": "part_of",
+            "related": [
+              "分配律",
+              "合取范式",
+              "求范式的步骤",
+              "真值表法",
+              "矛盾式",
+              "逻辑联结词"
+            ],
+            "children": [
+              {
+                "id": "合取式/conjunctive form",
+                "zh": "合取式",
+                "importance": 0.272151,
+                "relation": null,
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ],
+            "copy": true
           },
           {
-            "id": "__topic__/范式/范式用途",
-            "zh": "范式用途",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "合取范式/conjunctive normal form",
+            "zh": "合取范式",
+            "importance": 0.805279,
+            "relation": "part_of",
+            "related": [
+              "A与非B",
+              "分配律",
+              "子句集",
+              "析取范式",
+              "求范式的步骤",
+              "真值表法",
+              "逻辑联结词"
+            ],
+            "children": [
+              {
+                "id": "析取式/disjunctive form",
+                "zh": "析取式",
+                "importance": 0.759325,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "子句/clause",
+                "zh": "子句",
+                "importance": 0.528062,
+                "relation": "part_of",
+                "related": [
+                  "归结",
+                  "归结式",
+                  "归结过程"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ],
+            "copy": true
+          },
+          {
+            "id": "求范式的步骤/steps for finding normal forms",
+            "zh": "求范式的步骤",
+            "importance": 0.556204,
+            "relation": null,
+            "related": [
+              "合取范式",
+              "摩根律",
+              "析取范式",
+              "等值演算",
+              "蕴含",
+              "逻辑联结词"
+            ],
+            "children": [
+              {
+                "id": "真值表法/Truth Table Method",
+                "zh": "真值表法",
+                "importance": 0.337171,
+                "relation": "belong_to",
+                "related": [
+                  "合取范式",
+                  "析取范式"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "等值演算法/equivalence calculus method",
+                "zh": "等值演算法",
+                "importance": 0.24467,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "Skolem范式/Skolem normal form",
+            "zh": "Skolem范式",
+            "importance": 0.5543,
+            "relation": "belong_to",
+            "related": [
+              "Skolem函数",
+              "原式",
+              "有限域",
+              "等可满足性"
+            ],
+            "children": [
+              {
+                "id": "Skolem函数/Skolem function",
+                "zh": "Skolem函数",
+                "importance": 0.422585,
+                "relation": "belong_to",
+                "related": [
+                  "Skolem范式"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "成真指派法",
+            "zh": "成真指派法",
+            "importance": 0.550494,
+            "relation": null,
+            "related": [
+              "析取",
+              "真值表"
+            ],
+            "children": [
+              {
+                "id": "从真值表写公式",
+                "zh": "从真值表写公式",
+                "importance": 0.522529,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "合取项/conjunct",
+                "zh": "合取项",
+                "importance": 0.371132,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "否定词/negation operator",
+                "zh": "否定词",
+                "importance": 0.307687,
+                "relation": "part_of",
+                "related": [
+                  "内否"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "成假指派法",
+            "zh": "成假指派法",
+            "importance": 0.408751,
+            "relation": null,
+            "related": [
+              "合取"
+            ],
+            "children": [
+              {
+                "id": "析取项/disjunct",
+                "zh": "析取项",
+                "importance": 0.209591,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "推理关系/inference relation",
+        "zh": "推理关系",
+        "importance": 0.601368,
+        "relation": null,
+        "related": [
+          "假言推理"
+        ],
+        "children": [
+          {
+            "id": "推理形式/inference form",
+            "zh": "推理形式",
+            "importance": 1.0,
+            "relation": "part_of",
+            "related": [
+              "前提",
+              "命题公式",
+              "推理",
+              "结论"
+            ],
+            "children": [
+              {
+                "id": "前提/premise",
+                "zh": "前提",
+                "importance": 0.530669,
+                "relation": "part_of",
+                "related": [
+                  "中间结论",
+                  "分离规则",
+                  "推理公式",
+                  "推理规则"
+                ],
+                "children": []
+              },
+              {
+                "id": "结论/conclusion",
+                "zh": "结论",
+                "importance": 0.385893,
+                "relation": "part_of",
+                "related": [
+                  "推理规则"
+                ],
+                "children": []
+              },
+              {
+                "id": "假言推理/modus ponens",
+                "zh": "假言推理",
+                "importance": 0.452684,
+                "relation": "belong_to",
+                "related": [
+                  "推理关系",
+                  "蕴含"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "推理方法/inference method",
+            "zh": "推理方法",
+            "importance": 0.66848,
+            "relation": null,
             "related": [],
+            "children": [
+              {
+                "id": "推理演算/inference calculus",
+                "zh": "推理演算",
+                "importance": 0.782167,
+                "relation": "belong_to",
+                "related": [
+                  "三段论",
+                  "个体代入规则",
+                  "推理规则",
+                  "谓词公式"
+                ],
+                "children": [
+                  {
+                    "id": "推理规则/inference rule",
+                    "zh": "推理规则",
+                    "importance": 0.57039,
+                    "relation": "belong_to",
+                    "related": [
+                      "推理演算"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "推理公式/inference formula",
+                    "zh": "推理公式",
+                    "importance": 0.47445,
+                    "relation": "belong_to",
+                    "related": [
+                      "前提"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "公理系统/axiomatic system",
+                    "zh": "公理系统",
+                    "importance": 0.427439,
+                    "relation": "part_of",
+                    "related": [
+                      "定理",
+                      "重言式"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "中间结论/Intermediate Conclusion",
+                    "zh": "中间结论",
+                    "importance": 0.250467,
+                    "relation": "part_of",
+                    "related": [
+                      "T规则",
+                      "前提",
+                      "推理规则"
+                    ],
+                    "children": []
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "公式演算法/formula calculus method",
+                "zh": "公式演算法",
+                "importance": 0.570973,
+                "relation": "part_of",
+                "related": [
+                  "等值演算"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "公理系统推理/axiomatic system inference",
+                "zh": "公理系统推理",
+                "importance": 0.462605,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "解释法/interpretation method",
+                "zh": "解释法",
+                "importance": 0.43129,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "证明方法/proof methods",
+        "zh": "证明方法",
+        "importance": 0.786696,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "真值表法/Truth Table Method",
+            "zh": "真值表法",
+            "importance": 0.337171,
+            "relation": "belong_to",
+            "related": [
+              "合取范式",
+              "析取范式"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "等值定理法",
+            "zh": "等值定理法",
+            "importance": 0.473066,
+            "relation": "belong_to",
+            "related": [],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "数理逻辑/Mathematical Logic",
+        "zh": "数理逻辑",
+        "importance": 0.589639,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.591598,
+            "relation": "belong_to",
+            "related": [
+              "假言推理",
+              "命题形式",
+              "联结词"
+            ],
+            "children": [
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.283827,
+                "relation": "part_of",
+                "related": [
+                  "命题"
+                ],
+                "children": []
+              },
+              {
+                "id": "公式/formula",
+                "zh": "公式",
+                "importance": 0.264129,
+                "relation": "part_of",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.262591,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ],
+            "copy": true
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.782167,
+            "relation": "belong_to",
+            "related": [
+              "三段论",
+              "个体代入规则",
+              "推理规则",
+              "谓词公式"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "变元/variable symbol",
+        "zh": "变元",
+        "importance": 0.560496,
+        "relation": null,
+        "related": [
+          "全称量词",
+          "存在量词",
+          "置换"
+        ],
+        "children": [
+          {
+            "id": "自由出现/free occurrence",
+            "zh": "自由出现",
+            "importance": 0.14695,
+            "relation": "belong_to",
+            "related": [
+              "全称量词",
+              "消去存在量词",
+              "置换",
+              "自由个体变项"
+            ],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/推理演算",
-        "zh": "推理演算",
-        "importance": 0.8190597924788892,
-        "relation": "toc_section",
+        "id": "子句集/clause set",
+        "zh": "子句集",
+        "importance": 0.558648,
+        "relation": null,
+        "related": [
+          "合取范式",
+          "归结",
+          "归结过程"
+        ],
+        "children": [
+          {
+            "id": "子句/clause",
+            "zh": "子句",
+            "importance": 0.528062,
+            "relation": "part_of",
+            "related": [
+              "归结",
+              "归结式",
+              "归结过程"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "归结证明过程/Resolution proof process",
+        "zh": "归结证明过程",
+        "importance": 0.463005,
+        "relation": null,
+        "related": [
+          "归结",
+          "矛盾式"
+        ],
+        "children": [
+          {
+            "id": "归结过程/resolution process",
+            "zh": "归结过程",
+            "importance": 0.522918,
+            "relation": "part_of",
+            "related": [
+              "子句",
+              "子句集"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "importance": 0.428892,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/推理演算/重言蕴涵",
-            "zh": "重言蕴涵",
-            "importance": 0.8190597924788892,
-            "relation": "outline_concept",
+            "id": "全称量词/universal quantifier",
+            "zh": "全称量词",
+            "importance": 0.779923,
+            "relation": "part_of",
             "related": [
-              "重言蕴涵"
+              "个体代入规则",
+              "个体变项",
+              "全称命题",
+              "变元",
+              "合取",
+              "否定词"
             ],
-            "children": []
+            "children": [],
+            "copy": true
           },
           {
-            "id": "__topic__/推理演算/重言蕴涵证明",
-            "zh": "重言蕴涵证明",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.262591,
+            "relation": "belong_to",
             "related": [],
-            "children": []
-          },
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "函数/function",
+        "zh": "函数",
+        "importance": 0.232165,
+        "relation": null,
+        "related": [],
+        "children": [
           {
-            "id": "__topic__/推理演算/基本重言蕴涵式",
-            "zh": "基本重言蕴涵式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/推理演算/推理规则",
-            "zh": "推理规则",
-            "importance": 0.57039,
-            "relation": "outline_concept",
+            "id": "Skolem函数/Skolem function",
+            "zh": "Skolem函数",
+            "importance": 0.422585,
+            "relation": "belong_to",
             "related": [
-              "推理规则"
+              "Skolem范式"
             ],
-            "children": []
-          },
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "命题形式/propositional form",
+        "zh": "命题形式",
+        "importance": 0.112611,
+        "relation": null,
+        "related": [
+          "命题"
+        ],
+        "children": [
           {
-            "id": "__topic__/推理演算/归结推理",
-            "zh": "归结推理",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.262591,
+            "relation": "belong_to",
             "related": [],
-            "children": []
+            "children": [],
+            "copy": true
           }
         ]
       }
@@ -148,158 +756,766 @@
   },
   "roots": [
     {
-      "id": "__chapter__/第2章 命题逻辑的等值和推理演算",
+      "id": "__chapter__/命题逻辑的等值和推理演算",
       "zh": "第2章 命题逻辑的等值和推理演算",
-      "importance": 0.8,
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "命题逻辑的等值和推理演算"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/等值演算",
-          "zh": "等值演算",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
+          "id": "等值式/equivalence formula",
+          "zh": "等值式",
+          "importance": 0.169771,
+          "relation": null,
+          "related": [
+            "等值定理"
+          ],
           "children": [
             {
-              "id": "__topic__/等值演算/等值",
-              "zh": "等值",
-              "importance": 0.43258398387216107,
-              "relation": "outline_concept",
+              "id": "命题公式/propositional formula",
+              "zh": "命题公式",
+              "importance": 0.736438,
+              "relation": "belong_to",
               "related": [
-                "等值"
+                "主合取范式",
+                "真值表",
+                "真值表法",
+                "等值演算"
               ],
-              "children": []
+              "children": [],
+              "copy": true
             },
             {
-              "id": "__topic__/等值演算/等值定理",
+              "id": "基本等值式演算法",
+              "zh": "基本等值式演算法",
+              "importance": 0.365225,
+              "relation": "belong_to",
+              "related": [
+                "等值演算"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "等值定理/Equivalence Theorem",
               "zh": "等值定理",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "importance": 0.318669,
+              "relation": "belong_to",
               "related": [
-                "等值定理"
+                "等值式",
+                "等值演算",
+                "重言式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "等值演算/equivalence calculus",
+              "zh": "等值演算",
+              "importance": 0.301877,
+              "relation": "part_of",
+              "related": [
+                "公式演算法"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "对偶性/duality",
+          "zh": "对偶性",
+          "importance": 1.0,
+          "relation": null,
+          "related": [
+            "否定",
+            "对偶式"
+          ],
+          "children": [
+            {
+              "id": "对偶/dual",
+              "zh": "对偶",
+              "importance": 0.580372,
+              "relation": "belong_to",
+              "related": [
+                "运算符"
               ],
               "children": []
             },
             {
-              "id": "__topic__/等值演算/等值证明",
-              "zh": "等值证明",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "摩根律/De Morgan's Laws",
+              "zh": "摩根律",
+              "importance": 0.229065,
+              "relation": "belong_to",
+              "related": [
+                "内否",
+                "否定",
+                "对偶式"
+              ],
+              "children": []
+            },
+            {
+              "id": "对偶规律",
+              "zh": "对偶规律",
+              "importance": 0.0,
+              "relation": "belong_to",
               "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/等值演算/基本等值式",
-              "zh": "基本等值式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "基本等值式"
-              ],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/范式",
+          "id": "范式/normal form",
           "zh": "范式",
-          "importance": 0.983804,
-          "relation": "toc_section",
-          "related": [],
+          "importance": 0.893149,
+          "relation": null,
+          "related": [
+            "公式等值",
+            "对偶式",
+            "逻辑表达式"
+          ],
           "children": [
             {
-              "id": "__topic__/范式/主范式",
+              "id": "主范式/principal normal form",
               "zh": "主范式",
               "importance": 0.983804,
-              "relation": "outline_concept",
+              "relation": "part_of",
               "related": [
-                "主范式"
+                "主析取范式",
+                "极大项",
+                "极小项",
+                "真值表",
+                "部分指派法"
               ],
-              "children": []
+              "children": [
+                {
+                  "id": "主析取范式/principal disjunctive normal form",
+                  "zh": "主析取范式",
+                  "importance": 0.987204,
+                  "relation": "part_of",
+                  "related": [
+                    "主合取范式",
+                    "主范式",
+                    "全集",
+                    "变元",
+                    "否定",
+                    "极小项"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "主合取范式/principal conjunctive normal form",
+                  "zh": "主合取范式",
+                  "importance": 0.195862,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题公式",
+                    "真值表"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ],
+              "copy": true
             },
             {
-              "id": "__topic__/范式/范式求法",
-              "zh": "范式求法",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
+              "id": "析取范式/disjunctive normal form",
+              "zh": "析取范式",
+              "importance": 0.925586,
+              "relation": "part_of",
+              "related": [
+                "分配律",
+                "合取范式",
+                "求范式的步骤",
+                "真值表法",
+                "矛盾式",
+                "逻辑联结词"
+              ],
+              "children": [
+                {
+                  "id": "合取式/conjunctive form",
+                  "zh": "合取式",
+                  "importance": 0.272151,
+                  "relation": null,
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ],
+              "copy": true
             },
             {
-              "id": "__topic__/范式/范式用途",
-              "zh": "范式用途",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "合取范式/conjunctive normal form",
+              "zh": "合取范式",
+              "importance": 0.805279,
+              "relation": "part_of",
+              "related": [
+                "A与非B",
+                "分配律",
+                "子句集",
+                "析取范式",
+                "求范式的步骤",
+                "真值表法",
+                "逻辑联结词"
+              ],
+              "children": [
+                {
+                  "id": "析取式/disjunctive form",
+                  "zh": "析取式",
+                  "importance": 0.759325,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "子句/clause",
+                  "zh": "子句",
+                  "importance": 0.528062,
+                  "relation": "part_of",
+                  "related": [
+                    "归结",
+                    "归结式",
+                    "归结过程"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ],
+              "copy": true
+            },
+            {
+              "id": "求范式的步骤/steps for finding normal forms",
+              "zh": "求范式的步骤",
+              "importance": 0.556204,
+              "relation": null,
+              "related": [
+                "合取范式",
+                "摩根律",
+                "析取范式",
+                "等值演算",
+                "蕴含",
+                "逻辑联结词"
+              ],
+              "children": [
+                {
+                  "id": "真值表法/Truth Table Method",
+                  "zh": "真值表法",
+                  "importance": 0.337171,
+                  "relation": "belong_to",
+                  "related": [
+                    "合取范式",
+                    "析取范式"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "等值演算法/equivalence calculus method",
+                  "zh": "等值演算法",
+                  "importance": 0.24467,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "Skolem范式/Skolem normal form",
+              "zh": "Skolem范式",
+              "importance": 0.5543,
+              "relation": "belong_to",
+              "related": [
+                "Skolem函数",
+                "原式",
+                "有限域",
+                "等可满足性"
+              ],
+              "children": [
+                {
+                  "id": "Skolem函数/Skolem function",
+                  "zh": "Skolem函数",
+                  "importance": 0.422585,
+                  "relation": "belong_to",
+                  "related": [
+                    "Skolem范式"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "成真指派法",
+              "zh": "成真指派法",
+              "importance": 0.550494,
+              "relation": null,
+              "related": [
+                "析取",
+                "真值表"
+              ],
+              "children": [
+                {
+                  "id": "从真值表写公式",
+                  "zh": "从真值表写公式",
+                  "importance": 0.522529,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "合取项/conjunct",
+                  "zh": "合取项",
+                  "importance": 0.371132,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "否定词/negation operator",
+                  "zh": "否定词",
+                  "importance": 0.307687,
+                  "relation": "part_of",
+                  "related": [
+                    "内否"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "成假指派法",
+              "zh": "成假指派法",
+              "importance": 0.408751,
+              "relation": null,
+              "related": [
+                "合取"
+              ],
+              "children": [
+                {
+                  "id": "析取项/disjunct",
+                  "zh": "析取项",
+                  "importance": 0.209591,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "推理关系/inference relation",
+          "zh": "推理关系",
+          "importance": 0.601368,
+          "relation": null,
+          "related": [
+            "假言推理"
+          ],
+          "children": [
+            {
+              "id": "推理形式/inference form",
+              "zh": "推理形式",
+              "importance": 1.0,
+              "relation": "part_of",
+              "related": [
+                "前提",
+                "命题公式",
+                "推理",
+                "结论"
+              ],
+              "children": [
+                {
+                  "id": "前提/premise",
+                  "zh": "前提",
+                  "importance": 0.530669,
+                  "relation": "part_of",
+                  "related": [
+                    "中间结论",
+                    "分离规则",
+                    "推理公式",
+                    "推理规则"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "结论/conclusion",
+                  "zh": "结论",
+                  "importance": 0.385893,
+                  "relation": "part_of",
+                  "related": [
+                    "推理规则"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "假言推理/modus ponens",
+                  "zh": "假言推理",
+                  "importance": 0.452684,
+                  "relation": "belong_to",
+                  "related": [
+                    "推理关系",
+                    "蕴含"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "推理方法/inference method",
+              "zh": "推理方法",
+              "importance": 0.66848,
+              "relation": null,
               "related": [],
+              "children": [
+                {
+                  "id": "推理演算/inference calculus",
+                  "zh": "推理演算",
+                  "importance": 0.782167,
+                  "relation": "belong_to",
+                  "related": [
+                    "三段论",
+                    "个体代入规则",
+                    "推理规则",
+                    "谓词公式"
+                  ],
+                  "children": [
+                    {
+                      "id": "推理规则/inference rule",
+                      "zh": "推理规则",
+                      "importance": 0.57039,
+                      "relation": "belong_to",
+                      "related": [
+                        "推理演算"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "推理公式/inference formula",
+                      "zh": "推理公式",
+                      "importance": 0.47445,
+                      "relation": "belong_to",
+                      "related": [
+                        "前提"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "公理系统/axiomatic system",
+                      "zh": "公理系统",
+                      "importance": 0.427439,
+                      "relation": "part_of",
+                      "related": [
+                        "定理",
+                        "重言式"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "中间结论/Intermediate Conclusion",
+                      "zh": "中间结论",
+                      "importance": 0.250467,
+                      "relation": "part_of",
+                      "related": [
+                        "T规则",
+                        "前提",
+                        "推理规则"
+                      ],
+                      "children": []
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "公式演算法/formula calculus method",
+                  "zh": "公式演算法",
+                  "importance": 0.570973,
+                  "relation": "part_of",
+                  "related": [
+                    "等值演算"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "公理系统推理/axiomatic system inference",
+                  "zh": "公理系统推理",
+                  "importance": 0.462605,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "解释法/interpretation method",
+                  "zh": "解释法",
+                  "importance": 0.43129,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "证明方法/proof methods",
+          "zh": "证明方法",
+          "importance": 0.786696,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "真值表法/Truth Table Method",
+              "zh": "真值表法",
+              "importance": 0.337171,
+              "relation": "belong_to",
+              "related": [
+                "合取范式",
+                "析取范式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "等值定理法",
+              "zh": "等值定理法",
+              "importance": 0.473066,
+              "relation": "belong_to",
+              "related": [],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "数理逻辑/Mathematical Logic",
+          "zh": "数理逻辑",
+          "importance": 0.589639,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.591598,
+              "relation": "belong_to",
+              "related": [
+                "假言推理",
+                "命题形式",
+                "联结词"
+              ],
+              "children": [
+                {
+                  "id": "联结词/connective",
+                  "zh": "联结词",
+                  "importance": 0.283827,
+                  "relation": "part_of",
+                  "related": [
+                    "命题"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "公式/formula",
+                  "zh": "公式",
+                  "importance": 0.264129,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.262591,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ],
+              "copy": true
+            },
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.782167,
+              "relation": "belong_to",
+              "related": [
+                "三段论",
+                "个体代入规则",
+                "推理规则",
+                "谓词公式"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "变元/variable symbol",
+          "zh": "变元",
+          "importance": 0.560496,
+          "relation": null,
+          "related": [
+            "全称量词",
+            "存在量词",
+            "置换"
+          ],
+          "children": [
+            {
+              "id": "自由出现/free occurrence",
+              "zh": "自由出现",
+              "importance": 0.14695,
+              "relation": "belong_to",
+              "related": [
+                "全称量词",
+                "消去存在量词",
+                "置换",
+                "自由个体变项"
+              ],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/推理演算",
-          "zh": "推理演算",
-          "importance": 0.8190597924788892,
-          "relation": "toc_section",
+          "id": "子句集/clause set",
+          "zh": "子句集",
+          "importance": 0.558648,
+          "relation": null,
+          "related": [
+            "合取范式",
+            "归结",
+            "归结过程"
+          ],
+          "children": [
+            {
+              "id": "子句/clause",
+              "zh": "子句",
+              "importance": 0.528062,
+              "relation": "part_of",
+              "related": [
+                "归结",
+                "归结式",
+                "归结过程"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "归结证明过程/Resolution proof process",
+          "zh": "归结证明过程",
+          "importance": 0.463005,
+          "relation": null,
+          "related": [
+            "归结",
+            "矛盾式"
+          ],
+          "children": [
+            {
+              "id": "归结过程/resolution process",
+              "zh": "归结过程",
+              "importance": 0.522918,
+              "relation": "part_of",
+              "related": [
+                "子句",
+                "子句集"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "谓词逻辑/Predicate Logic",
+          "zh": "谓词逻辑",
+          "importance": 0.428892,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/推理演算/重言蕴涵",
-              "zh": "重言蕴涵",
-              "importance": 0.8190597924788892,
-              "relation": "outline_concept",
+              "id": "全称量词/universal quantifier",
+              "zh": "全称量词",
+              "importance": 0.779923,
+              "relation": "part_of",
               "related": [
-                "重言蕴涵"
+                "个体代入规则",
+                "个体变项",
+                "全称命题",
+                "变元",
+                "合取",
+                "否定词"
               ],
-              "children": []
+              "children": [],
+              "copy": true
             },
             {
-              "id": "__topic__/推理演算/重言蕴涵证明",
-              "zh": "重言蕴涵证明",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.262591,
+              "relation": "belong_to",
               "related": [],
-              "children": []
-            },
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "函数/function",
+          "zh": "函数",
+          "importance": 0.232165,
+          "relation": null,
+          "related": [],
+          "children": [
             {
-              "id": "__topic__/推理演算/基本重言蕴涵式",
-              "zh": "基本重言蕴涵式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/推理演算/推理规则",
-              "zh": "推理规则",
-              "importance": 0.57039,
-              "relation": "outline_concept",
+              "id": "Skolem函数/Skolem function",
+              "zh": "Skolem函数",
+              "importance": 0.422585,
+              "relation": "belong_to",
               "related": [
-                "推理规则"
+                "Skolem范式"
               ],
-              "children": []
-            },
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "命题形式/propositional form",
+          "zh": "命题形式",
+          "importance": 0.112611,
+          "relation": null,
+          "related": [
+            "命题"
+          ],
+          "children": [
             {
-              "id": "__topic__/推理演算/归结推理",
-              "zh": "归结推理",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.262591,
+              "relation": "belong_to",
               "related": [],
-              "children": []
+              "children": [],
+              "copy": true
             }
           ]
         }
       ]
     }
   ],
-  "n_nodes": 16,
-  "max_depth": 2,
-  "orphan_count": 128,
+  "n_nodes": 66,
+  "max_depth": 4,
+  "orphan_count": 0,
   "meta": {
     "chapter": "第2章 命题逻辑的等值和推理演算",
-    "root_zh": "第2章 命题逻辑的等值和推理演算",
+    "root_zh": "命题逻辑的等值和推理演算",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
@@ -310,18 +1526,12 @@
       "22",
       "32"
     ],
-    "source": "outline+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 3,
-    "pipeline": "text_first_v1",
-    "id_redirects": {
-      "基本等值式/basic equivalence formula": "__topic__/等值演算/基本等值式"
-    }
-  },
-  "remoteLinks": [],
-  "id_redirects": {
-    "基本等值式/basic equivalence formula": "__topic__/等值演算/基本等值式"
-  },
-  "concept_links": []
+    "llm_tidy_notes": "去除了讲次层级，将重复的'真值表法'、'推理演算'、'推理规则'、'子句'、'Skolem函数'、'谓词'等节点合并保留一个id，并将'证明方法'下的'真值表法'与'范式'下的'真值表法'合并，'数理逻辑'下的'推理演算'与'推理方法'下的'推理演算'合并，'子句集'下的'子句'与'合取范式'下的'子句'合并，'函数'下的'Skolem函数'与'Skolem范式'下的'Skolem函数'合并，'命题形式'下的'谓词'与'数理逻辑'下的'谓词'合并。",
+    "llm_merge": true,
+    "llm_merge_notes": "去除了讲次层级，将重复的'真值表法'、'推理演算'、'推理规则'、'子句'、'Skolem函数'、'谓词'等节点合并保留一个id，并将'证明方法'下的'真值表法'与'范式'下的'真值表法'合并，'数理逻辑'下的'推理演算'与'推理方法'下的'推理演算'合并，'子句集'下的'子句'与'合取范式'下的'子句'合并，'函数'下的'Skolem函数'与'Skolem范式'下的'Skolem函数'合并，'命题形式'下的'谓词'与'数理逻辑'下的'谓词'合并。"
+  }
 }

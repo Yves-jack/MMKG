@@ -1,364 +1,241 @@
 {
   "lecture_id": "chapter:第10章 关系",
   "root": {
-    "id": "__chapter__/第10章 关系",
-    "zh": "第2章 关系",
-    "importance": 0.8,
+    "id": "__chapter__/关系",
+    "zh": "第10章 关系",
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "关系"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/关系基本概念",
-        "zh": "关系基本概念",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.754227,
+        "relation": null,
+        "related": [
+          "Warshall算法",
+          "关系的幂",
+          "对称闭包",
+          "有限集合A",
+          "自反",
+          "选择公理",
+          "闭包"
+        ],
         "children": [
           {
-            "id": "__topic__/关系基本概念/关系定义",
-            "zh": "关系定义",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系基本概念/关系限制",
-            "zh": "关系限制",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系基本概念/关系的象",
-            "zh": "关系的象",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系基本概念/关系域",
-            "zh": "关系域",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/关系运算",
-        "zh": "关系运算",
-        "importance": 0.705527,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/关系运算/关系的逆",
-            "zh": "关系的逆",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系运算/关系的合成",
-            "zh": "关系的合成",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/关系性质",
-        "zh": "关系性质",
-        "importance": 0.726034,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/关系性质/自反性",
-            "zh": "自反性",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系性质/非自反性",
-            "zh": "非自反性",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系性质/对称性",
-            "zh": "对称性",
-            "importance": 0.726034,
-            "relation": "outline_concept",
+            "id": "二元关系/binary relation",
+            "zh": "二元关系",
+            "importance": 0.665706,
+            "relation": "belong_to",
             "related": [
-              "对称性"
+              "关系幂",
+              "实数域上的指数运算",
+              "自反",
+              "自然数指数运算"
             ],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系性质/反对称性",
-            "zh": "反对称性",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系性质/传递性",
-            "zh": "传递性",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__section__/关系性质定理",
-            "zh": "关系性质定理",
-            "importance": 0.45,
-            "relation": "toc_section",
-            "related": [],
             "children": [
               {
-                "id": "__topic__/关系性质定理/逆关系保性质",
-                "zh": "逆关系保性质",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [],
-                "children": []
-              },
-              {
-                "id": "__topic__/关系性质定理/交关系保性质",
-                "zh": "交关系保性质",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [],
-                "children": []
-              },
-              {
-                "id": "__topic__/关系性质定理/并关系保部分性质",
-                "zh": "并关系保部分性质",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [],
+                "id": "关系幂/power of a relation",
+                "zh": "关系幂",
+                "importance": 0.366737,
+                "relation": "belong_to",
+                "related": [
+                  "二元关系"
+                ],
                 "children": []
               }
             ]
+          },
+          {
+            "id": "n元关系/n-ary relation",
+            "zh": "n元关系",
+            "importance": 0.661483,
+            "relation": "belong_to",
+            "related": [
+              "二元关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "函数/function",
+            "zh": "函数",
+            "importance": 0.485635,
+            "relation": "belong_to",
+            "related": [
+              "选择公理"
+            ],
+            "children": []
+          },
+          {
+            "id": "值域/range",
+            "zh": "值域",
+            "importance": 0.784788,
+            "relation": "part_of",
+            "related": [
+              "域"
+            ],
+            "children": []
+          },
+          {
+            "id": "域/field",
+            "zh": "域",
+            "importance": 0.12644,
+            "relation": "part_of",
+            "related": [
+              "值域"
+            ],
+            "children": []
+          },
+          {
+            "id": "合成/composition",
+            "zh": "合成",
+            "importance": 0.705527,
+            "relation": "belong_to",
+            "related": [
+              "逆关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "关系的限制/R↑A",
+            "zh": "关系的限制",
+            "importance": 0.200033,
+            "relation": "part_of",
+            "related": [
+              "关系的象"
+            ],
+            "children": []
+          },
+          {
+            "id": "有限集合A",
+            "zh": "有限集合A",
+            "importance": 0.376545,
+            "relation": "belong_to",
+            "related": [
+              "关系",
+              "定理",
+              "集合A"
+            ],
+            "children": []
           }
         ]
       },
       {
-        "id": "__section__/关系闭包",
-        "zh": "关系闭包",
-        "importance": 0.5206232394427,
-        "relation": "toc_section",
+        "id": "特殊关系/special relation",
+        "zh": "特殊关系",
+        "importance": 0.739573,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/关系闭包/自反闭包",
-            "zh": "自反闭包",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "自反闭包"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系闭包/对称闭包",
-            "zh": "对称闭包",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "对称闭包"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系闭包/传递闭包",
-            "zh": "传递闭包",
-            "importance": 0.5206232394427,
-            "relation": "outline_concept",
-            "related": [
-              "传递闭包"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/关系闭包/闭包构造",
-            "zh": "闭包构造",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "全域关系/universal relation",
+            "zh": "全域关系",
+            "importance": 0.061793,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/关系闭包/幂等定理",
-            "zh": "幂等定理",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "恒等关系/identity relation",
+            "zh": "恒等关系",
+            "importance": 0.275706,
+            "relation": "part_of",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/等价关系与划分",
-        "zh": "等价关系与划分",
+        "id": "等价关系/equivalence relation",
+        "zh": "等价关系",
         "importance": 0.937639,
-        "relation": "toc_section",
-        "related": [],
+        "relation": "belong_to",
+        "related": [
+          "传递",
+          "划分",
+          "商集",
+          "对称",
+          "对称性",
+          "等价类",
+          "自反"
+        ],
         "children": [
           {
-            "id": "__topic__/等价关系与划分/等价关系",
-            "zh": "等价关系",
-            "importance": 0.937639,
-            "relation": "outline_concept",
+            "id": "等价类/Equivalence Class",
+            "zh": "等价类",
+            "importance": 0.172893,
+            "relation": "belong_to",
             "related": [
               "等价关系"
             ],
             "children": []
           },
           {
-            "id": "__topic__/等价关系与划分/等价类",
-            "zh": "等价类",
-            "importance": 0.4334587567705956,
-            "relation": "outline_concept",
-            "related": [
-              "等价类"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/等价关系与划分/商集",
-            "zh": "商集",
-            "importance": 0.4515831388220867,
-            "relation": "outline_concept",
-            "related": [
-              "商集"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/等价关系与划分/划分诱导等价关系",
-            "zh": "划分诱导等价关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "模3同余关系",
+            "zh": "模3同余关系",
+            "importance": 0.0,
+            "relation": "belong_to",
             "related": [],
+            "children": []
+          },
+          {
+            "id": "对称性/symmetry",
+            "zh": "对称性",
+            "importance": 0.726034,
+            "relation": "part_of",
+            "related": [
+              "对称闭包",
+              "等价关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "闭包/closure",
+            "zh": "闭包",
+            "importance": 0.979925,
+            "relation": "part_of",
+            "related": [
+              "传递",
+              "关系",
+              "对称",
+              "最小关系",
+              "等价关系",
+              "自反"
+            ],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/相容关系与覆盖",
-        "zh": "相容关系与覆盖",
-        "importance": 0.45,
-        "relation": "toc_section",
+        "id": "结构/Structure",
+        "zh": "结构",
+        "importance": 0.326109,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/相容关系与覆盖/相容关系",
-            "zh": "相容关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "偏序集/poset",
+            "zh": "偏序集",
+            "importance": 1.0,
+            "relation": "belong_to",
             "related": [
-              "相容关系"
+              "全序集",
+              "可比",
+              "哈斯图",
+              "盖住关系",
+              "良序集"
             ],
-            "children": []
-          },
-          {
-            "id": "__topic__/相容关系与覆盖/最大相容类",
-            "zh": "最大相容类",
-            "importance": 0.420688,
-            "relation": "outline_concept",
-            "related": [
-              "最大相容类"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/相容关系与覆盖/覆盖诱导相容关系",
-            "zh": "覆盖诱导相容关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/偏序关系与盖住",
-        "zh": "偏序关系与盖住",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/偏序关系与盖住/偏序关系",
-            "zh": "偏序关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "偏序关系"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/偏序关系与盖住/盖住关系",
-            "zh": "盖住关系",
-            "importance": 0.4187920081987902,
-            "relation": "outline_concept",
-            "related": [
-              "盖住关系"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/偏序关系与盖住/哈斯图",
-            "zh": "哈斯图",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "哈斯图"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/偏序关系与盖住/盖住诱导偏序",
-            "zh": "盖住诱导偏序",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/序关系类型",
-        "zh": "序关系类型",
-        "importance": 0.563915,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/序关系类型/链与反链",
-            "zh": "链与反链",
-            "importance": 0.563915,
-            "relation": "outline_concept",
-            "related": [],
             "children": [
+              {
+                "id": "链/chain",
+                "zh": "链",
+                "importance": 0.130772,
+                "relation": "belong_to",
+                "related": [
+                  "可比"
+                ],
+                "children": []
+              },
               {
                 "id": "反链/antichain",
                 "zh": "反链",
@@ -370,44 +247,141 @@
                 "children": []
               },
               {
-                "id": "链/chain",
-                "zh": "链",
-                "importance": 0.130772,
+                "id": "最大元/greatest element",
+                "zh": "最大元",
+                "importance": 0.545492,
+                "relation": "part_of",
+                "related": [
+                  "极大元"
+                ],
+                "children": []
+              },
+              {
+                "id": "极大元/maximal element",
+                "zh": "极大元",
+                "importance": 0.508002,
+                "relation": "part_of",
+                "related": [
+                  "最大元",
+                  "非空有限集合"
+                ],
+                "children": []
+              },
+              {
+                "id": "极小元/minimal element",
+                "zh": "极小元",
+                "importance": 0.501869,
+                "relation": "part_of",
+                "related": [
+                  "最小元",
+                  "非空有限集合"
+                ],
+                "children": []
+              },
+              {
+                "id": "上界/upper bound",
+                "zh": "上界",
+                "importance": 0.762972,
                 "relation": "belong_to",
                 "related": [
-                  "可比"
+                  "下确界"
                 ],
+                "children": []
+              },
+              {
+                "id": "下界/lower bound",
+                "zh": "下界",
+                "importance": 0.682496,
+                "relation": "belong_to",
+                "related": [
+                  "下确界"
+                ],
+                "children": []
+              },
+              {
+                "id": "良序集/well-ordered set",
+                "zh": "良序集",
+                "importance": 0.34084,
+                "relation": "belong_to",
+                "related": [
+                  "偏序集",
+                  "集合",
+                  "非空子集"
+                ],
+                "children": []
+              },
+              {
+                "id": "上/top element",
+                "zh": "上",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
                 "children": []
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "id": "相容类/compatibility class",
+        "zh": "相容类",
+        "importance": 0.218987,
+        "relation": null,
+        "related": [],
+        "children": [
           {
-            "id": "__topic__/序关系类型/全序关系",
-            "zh": "全序关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "最大相容类/maximal compatibility class",
+            "zh": "最大相容类",
+            "importance": 0.420688,
+            "relation": "belong_to",
             "related": [],
-            "children": []
-          },
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "关系图/relation graph",
+        "zh": "关系图",
+        "importance": 0.849739,
+        "relation": null,
+        "related": [],
+        "children": [
           {
-            "id": "__topic__/序关系类型/拟序关系",
-            "zh": "拟序关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "有向边/directed edge",
+            "zh": "有向边",
+            "importance": 0.546054,
+            "relation": "part_of",
             "related": [
-              "拟序关系"
+              "关系"
             ],
             "children": []
-          },
+          }
+        ]
+      },
+      {
+        "id": "运算/operation",
+        "zh": "运算",
+        "importance": 0.384288,
+        "relation": null,
+        "related": [],
+        "children": [
           {
-            "id": "__topic__/序关系类型/良序关系",
-            "zh": "良序关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "良序关系"
-            ],
-            "children": []
+            "id": "集合B",
+            "zh": "集合B",
+            "importance": 0.058285,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "R的幂/R^q",
+                "zh": "R的幂",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           }
         ]
       }
@@ -415,364 +389,241 @@
   },
   "roots": [
     {
-      "id": "__chapter__/第10章 关系",
-      "zh": "第2章 关系",
-      "importance": 0.8,
+      "id": "__chapter__/关系",
+      "zh": "第10章 关系",
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "关系"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/关系基本概念",
-          "zh": "关系基本概念",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
+          "id": "关系/relation",
+          "zh": "关系",
+          "importance": 0.754227,
+          "relation": null,
+          "related": [
+            "Warshall算法",
+            "关系的幂",
+            "对称闭包",
+            "有限集合A",
+            "自反",
+            "选择公理",
+            "闭包"
+          ],
           "children": [
             {
-              "id": "__topic__/关系基本概念/关系定义",
-              "zh": "关系定义",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系基本概念/关系限制",
-              "zh": "关系限制",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系基本概念/关系的象",
-              "zh": "关系的象",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系基本概念/关系域",
-              "zh": "关系域",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/关系运算",
-          "zh": "关系运算",
-          "importance": 0.705527,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/关系运算/关系的逆",
-              "zh": "关系的逆",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系运算/关系的合成",
-              "zh": "关系的合成",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/关系性质",
-          "zh": "关系性质",
-          "importance": 0.726034,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/关系性质/自反性",
-              "zh": "自反性",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系性质/非自反性",
-              "zh": "非自反性",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系性质/对称性",
-              "zh": "对称性",
-              "importance": 0.726034,
-              "relation": "outline_concept",
+              "id": "二元关系/binary relation",
+              "zh": "二元关系",
+              "importance": 0.665706,
+              "relation": "belong_to",
               "related": [
-                "对称性"
+                "关系幂",
+                "实数域上的指数运算",
+                "自反",
+                "自然数指数运算"
               ],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系性质/反对称性",
-              "zh": "反对称性",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系性质/传递性",
-              "zh": "传递性",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__section__/关系性质定理",
-              "zh": "关系性质定理",
-              "importance": 0.45,
-              "relation": "toc_section",
-              "related": [],
               "children": [
                 {
-                  "id": "__topic__/关系性质定理/逆关系保性质",
-                  "zh": "逆关系保性质",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [],
-                  "children": []
-                },
-                {
-                  "id": "__topic__/关系性质定理/交关系保性质",
-                  "zh": "交关系保性质",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [],
-                  "children": []
-                },
-                {
-                  "id": "__topic__/关系性质定理/并关系保部分性质",
-                  "zh": "并关系保部分性质",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [],
+                  "id": "关系幂/power of a relation",
+                  "zh": "关系幂",
+                  "importance": 0.366737,
+                  "relation": "belong_to",
+                  "related": [
+                    "二元关系"
+                  ],
                   "children": []
                 }
               ]
+            },
+            {
+              "id": "n元关系/n-ary relation",
+              "zh": "n元关系",
+              "importance": 0.661483,
+              "relation": "belong_to",
+              "related": [
+                "二元关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "函数/function",
+              "zh": "函数",
+              "importance": 0.485635,
+              "relation": "belong_to",
+              "related": [
+                "选择公理"
+              ],
+              "children": []
+            },
+            {
+              "id": "值域/range",
+              "zh": "值域",
+              "importance": 0.784788,
+              "relation": "part_of",
+              "related": [
+                "域"
+              ],
+              "children": []
+            },
+            {
+              "id": "域/field",
+              "zh": "域",
+              "importance": 0.12644,
+              "relation": "part_of",
+              "related": [
+                "值域"
+              ],
+              "children": []
+            },
+            {
+              "id": "合成/composition",
+              "zh": "合成",
+              "importance": 0.705527,
+              "relation": "belong_to",
+              "related": [
+                "逆关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "关系的限制/R↑A",
+              "zh": "关系的限制",
+              "importance": 0.200033,
+              "relation": "part_of",
+              "related": [
+                "关系的象"
+              ],
+              "children": []
+            },
+            {
+              "id": "有限集合A",
+              "zh": "有限集合A",
+              "importance": 0.376545,
+              "relation": "belong_to",
+              "related": [
+                "关系",
+                "定理",
+                "集合A"
+              ],
+              "children": []
             }
           ]
         },
         {
-          "id": "__section__/关系闭包",
-          "zh": "关系闭包",
-          "importance": 0.5206232394427,
-          "relation": "toc_section",
+          "id": "特殊关系/special relation",
+          "zh": "特殊关系",
+          "importance": 0.739573,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/关系闭包/自反闭包",
-              "zh": "自反闭包",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "自反闭包"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系闭包/对称闭包",
-              "zh": "对称闭包",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "对称闭包"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系闭包/传递闭包",
-              "zh": "传递闭包",
-              "importance": 0.5206232394427,
-              "relation": "outline_concept",
-              "related": [
-                "传递闭包"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/关系闭包/闭包构造",
-              "zh": "闭包构造",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "全域关系/universal relation",
+              "zh": "全域关系",
+              "importance": 0.061793,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/关系闭包/幂等定理",
-              "zh": "幂等定理",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "恒等关系/identity relation",
+              "zh": "恒等关系",
+              "importance": 0.275706,
+              "relation": "part_of",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/等价关系与划分",
-          "zh": "等价关系与划分",
+          "id": "等价关系/equivalence relation",
+          "zh": "等价关系",
           "importance": 0.937639,
-          "relation": "toc_section",
-          "related": [],
+          "relation": "belong_to",
+          "related": [
+            "传递",
+            "划分",
+            "商集",
+            "对称",
+            "对称性",
+            "等价类",
+            "自反"
+          ],
           "children": [
             {
-              "id": "__topic__/等价关系与划分/等价关系",
-              "zh": "等价关系",
-              "importance": 0.937639,
-              "relation": "outline_concept",
+              "id": "等价类/Equivalence Class",
+              "zh": "等价类",
+              "importance": 0.172893,
+              "relation": "belong_to",
               "related": [
                 "等价关系"
               ],
               "children": []
             },
             {
-              "id": "__topic__/等价关系与划分/等价类",
-              "zh": "等价类",
-              "importance": 0.4334587567705956,
-              "relation": "outline_concept",
-              "related": [
-                "等价类"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/等价关系与划分/商集",
-              "zh": "商集",
-              "importance": 0.4515831388220867,
-              "relation": "outline_concept",
-              "related": [
-                "商集"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/等价关系与划分/划分诱导等价关系",
-              "zh": "划分诱导等价关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "模3同余关系",
+              "zh": "模3同余关系",
+              "importance": 0.0,
+              "relation": "belong_to",
               "related": [],
+              "children": []
+            },
+            {
+              "id": "对称性/symmetry",
+              "zh": "对称性",
+              "importance": 0.726034,
+              "relation": "part_of",
+              "related": [
+                "对称闭包",
+                "等价关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "闭包/closure",
+              "zh": "闭包",
+              "importance": 0.979925,
+              "relation": "part_of",
+              "related": [
+                "传递",
+                "关系",
+                "对称",
+                "最小关系",
+                "等价关系",
+                "自反"
+              ],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/相容关系与覆盖",
-          "zh": "相容关系与覆盖",
-          "importance": 0.45,
-          "relation": "toc_section",
+          "id": "结构/Structure",
+          "zh": "结构",
+          "importance": 0.326109,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/相容关系与覆盖/相容关系",
-              "zh": "相容关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "偏序集/poset",
+              "zh": "偏序集",
+              "importance": 1.0,
+              "relation": "belong_to",
               "related": [
-                "相容关系"
+                "全序集",
+                "可比",
+                "哈斯图",
+                "盖住关系",
+                "良序集"
               ],
-              "children": []
-            },
-            {
-              "id": "__topic__/相容关系与覆盖/最大相容类",
-              "zh": "最大相容类",
-              "importance": 0.420688,
-              "relation": "outline_concept",
-              "related": [
-                "最大相容类"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/相容关系与覆盖/覆盖诱导相容关系",
-              "zh": "覆盖诱导相容关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/偏序关系与盖住",
-          "zh": "偏序关系与盖住",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/偏序关系与盖住/偏序关系",
-              "zh": "偏序关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "偏序关系"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/偏序关系与盖住/盖住关系",
-              "zh": "盖住关系",
-              "importance": 0.4187920081987902,
-              "relation": "outline_concept",
-              "related": [
-                "盖住关系"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/偏序关系与盖住/哈斯图",
-              "zh": "哈斯图",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "哈斯图"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/偏序关系与盖住/盖住诱导偏序",
-              "zh": "盖住诱导偏序",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/序关系类型",
-          "zh": "序关系类型",
-          "importance": 0.563915,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/序关系类型/链与反链",
-              "zh": "链与反链",
-              "importance": 0.563915,
-              "relation": "outline_concept",
-              "related": [],
               "children": [
+                {
+                  "id": "链/chain",
+                  "zh": "链",
+                  "importance": 0.130772,
+                  "relation": "belong_to",
+                  "related": [
+                    "可比"
+                  ],
+                  "children": []
+                },
                 {
                   "id": "反链/antichain",
                   "zh": "反链",
@@ -784,89 +635,168 @@
                   "children": []
                 },
                 {
-                  "id": "链/chain",
-                  "zh": "链",
-                  "importance": 0.130772,
+                  "id": "最大元/greatest element",
+                  "zh": "最大元",
+                  "importance": 0.545492,
+                  "relation": "part_of",
+                  "related": [
+                    "极大元"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "极大元/maximal element",
+                  "zh": "极大元",
+                  "importance": 0.508002,
+                  "relation": "part_of",
+                  "related": [
+                    "最大元",
+                    "非空有限集合"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "极小元/minimal element",
+                  "zh": "极小元",
+                  "importance": 0.501869,
+                  "relation": "part_of",
+                  "related": [
+                    "最小元",
+                    "非空有限集合"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "上界/upper bound",
+                  "zh": "上界",
+                  "importance": 0.762972,
                   "relation": "belong_to",
                   "related": [
-                    "可比"
+                    "下确界"
                   ],
+                  "children": []
+                },
+                {
+                  "id": "下界/lower bound",
+                  "zh": "下界",
+                  "importance": 0.682496,
+                  "relation": "belong_to",
+                  "related": [
+                    "下确界"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "良序集/well-ordered set",
+                  "zh": "良序集",
+                  "importance": 0.34084,
+                  "relation": "belong_to",
+                  "related": [
+                    "偏序集",
+                    "集合",
+                    "非空子集"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "上/top element",
+                  "zh": "上",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
                   "children": []
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "id": "相容类/compatibility class",
+          "zh": "相容类",
+          "importance": 0.218987,
+          "relation": null,
+          "related": [],
+          "children": [
             {
-              "id": "__topic__/序关系类型/全序关系",
-              "zh": "全序关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "最大相容类/maximal compatibility class",
+              "zh": "最大相容类",
+              "importance": 0.420688,
+              "relation": "belong_to",
               "related": [],
-              "children": []
-            },
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "关系图/relation graph",
+          "zh": "关系图",
+          "importance": 0.849739,
+          "relation": null,
+          "related": [],
+          "children": [
             {
-              "id": "__topic__/序关系类型/拟序关系",
-              "zh": "拟序关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "有向边/directed edge",
+              "zh": "有向边",
+              "importance": 0.546054,
+              "relation": "part_of",
               "related": [
-                "拟序关系"
+                "关系"
               ],
               "children": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "运算/operation",
+          "zh": "运算",
+          "importance": 0.384288,
+          "relation": null,
+          "related": [],
+          "children": [
             {
-              "id": "__topic__/序关系类型/良序关系",
-              "zh": "良序关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "良序关系"
-              ],
-              "children": []
+              "id": "集合B",
+              "zh": "集合B",
+              "importance": 0.058285,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "R的幂/R^q",
+                  "zh": "R的幂",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
             }
           ]
         }
       ]
     }
   ],
-  "n_nodes": 46,
+  "n_nodes": 37,
   "max_depth": 3,
-  "orphan_count": 99,
+  "orphan_count": 0,
   "meta": {
     "chapter": "第10章 关系",
-    "root_zh": "第10章 关系",
+    "root_zh": "关系",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
+      "18",
+      "39",
       "41",
       "42",
       "43"
     ],
-    "source": "outline+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 9,
-    "pipeline": "text_first_v1",
-    "id_redirects": {
-      "合成/composition": "__section__/关系运算",
-      "__topic__/关系运算/合成对并/交的分配": "__section__/关系运算",
-      "__topic__/关系运算/合成与逆的定理": "__section__/关系运算",
-      "__topic__/关系性质/性质实例": "__section__/关系性质",
-      "__topic__/等价关系与划分/一一对应": "__section__/等价关系与划分",
-      "__topic__/相容关系与覆盖/非一一对应": "__section__/相容关系与覆盖",
-      "__topic__/相容关系与覆盖/完全覆盖": "__section__/相容关系与覆盖",
-      "__topic__/偏序关系与盖住/特殊元素": "__section__/偏序关系与盖住"
-    }
-  },
-  "remoteLinks": [],
-  "id_redirects": {
-    "合成/composition": "__section__/关系运算",
-    "__topic__/关系运算/合成对并/交的分配": "__section__/关系运算",
-    "__topic__/关系运算/合成与逆的定理": "__section__/关系运算",
-    "__topic__/关系性质/性质实例": "__section__/关系性质",
-    "__topic__/等价关系与划分/一一对应": "__section__/等价关系与划分",
-    "__topic__/相容关系与覆盖/非一一对应": "__section__/相容关系与覆盖",
-    "__topic__/相容关系与覆盖/完全覆盖": "__section__/相容关系与覆盖",
-    "__topic__/偏序关系与盖住/特殊元素": "__section__/偏序关系与盖住"
-  },
-  "concept_links": []
+    "llm_tidy_notes": "合并了重复的二元关系节点，将关系幂挂到二元关系下；将恒等关系归入特殊关系；将等价关系提升为章级主题；域从关系图移入关系下；删除空节点；调整了整体顺序。",
+    "llm_merge": true,
+    "llm_merge_notes": "合并了重复的二元关系节点，将关系幂挂到二元关系下；将恒等关系归入特殊关系；将等价关系提升为章级主题；域从关系图移入关系下；删除空节点；调整了整体顺序。"
+  }
 }

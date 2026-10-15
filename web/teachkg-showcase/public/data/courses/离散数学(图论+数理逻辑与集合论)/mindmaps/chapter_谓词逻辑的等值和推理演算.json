@@ -1,248 +1,201 @@
 {
   "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
   "root": {
-    "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+    "id": "__chapter__/谓词逻辑的等值和推理演算",
     "zh": "第5章 谓词逻辑的等值和推理演算",
-    "importance": 0.8,
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "谓词逻辑的等值和推理演算"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/谓词公式等值",
-        "zh": "谓词公式等值",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
+        "id": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "importance": 0.775269,
+        "relation": "belong_to",
+        "related": [
+          "映射"
+        ],
         "children": [
           {
-            "id": "__topic__/谓词公式等值/等值定理",
-            "zh": "等值定理",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "一阶语言/First-order Language",
+            "zh": "一阶语言",
+            "importance": 0.860251,
+            "relation": null,
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/谓词公式等值/命题逻辑移植",
-            "zh": "命题逻辑移植",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/谓词公式等值/量词否定型",
-            "zh": "量词否定型",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/谓词公式等值/量词分配律",
-            "zh": "量词分配律",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/谓词公式等值/变元易名规则",
-            "zh": "变元易名规则",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/等值演算",
-        "zh": "等值演算",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/等值演算/演算方法",
-            "zh": "演算方法",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/等值演算/置换规则",
-            "zh": "置换规则",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/等值演算/代入规则",
-            "zh": "代入规则",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/范式",
-        "zh": "范式",
-        "importance": 0.6466523815516021,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/范式/前束范式",
-            "zh": "前束范式",
-            "importance": 0.6466523815516021,
-            "relation": "outline_concept",
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.805862,
+            "relation": "belong_to",
             "related": [
-              "前束范式"
+              "公式",
+              "函数符号",
+              "可满足性",
+              "命题逻辑公式",
+              "普遍有效性",
+              "有限域"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.529929,
+            "relation": null,
+            "related": [
+              "解释证明法"
             ],
             "children": []
           },
           {
-            "id": "__topic__/范式/Skolem范式",
-            "zh": "Skolem范式",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.730615,
+            "relation": null,
             "related": [
-              "Skolem范式"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/范式/前束析取范式",
-            "zh": "前束析取范式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/范式/前束合取范式",
-            "zh": "前束合取范式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/范式/存在前束范式",
-            "zh": "存在前束范式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/推理式与推理演算",
-        "zh": "推理式与推理演算",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/推理式与推理演算/推理形式",
-            "zh": "推理形式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/推理式与推理演算/逻辑推论",
-            "zh": "逻辑推论",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/推理式与推理演算/基本推理式",
-            "zh": "基本推理式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/推理式与推理演算/推理规则",
-            "zh": "推理规则",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "推理规则"
+              "命题公式",
+              "矛盾式",
+              "重言式"
             ],
             "children": [
               {
-                "id": "__topic__/推理式与推理演算/量词推理规则",
-                "zh": "量词推理规则",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [],
-                "children": []
+                "id": "子句集/clause set",
+                "zh": "子句集",
+                "importance": 0.606133,
+                "relation": null,
+                "related": [
+                  "合取范式",
+                  "归结"
+                ],
+                "children": [
+                  {
+                    "id": "子句/clause",
+                    "zh": "子句",
+                    "importance": 1.0,
+                    "relation": "part_of",
+                    "related": [
+                      "全称量词",
+                      "归结",
+                      "归结式",
+                      "归结过程"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
               }
             ]
           },
           {
-            "id": "__topic__/推理式与推理演算/推理演算方法",
-            "zh": "推理演算方法",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.563378,
+            "relation": "belong_to",
+            "related": [
+              "命题等值演算",
+              "推理规则",
+              "等值"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "蕴涵式/implication form",
+            "zh": "蕴涵式",
+            "importance": 0.290817,
+            "relation": null,
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/归结推理",
-        "zh": "归结推理",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.393027,
+        "relation": "belong_to",
+        "related": [
+          "命题变项",
+          "命题形式",
+          "复合命题",
+          "联结词",
+          "集合"
+        ],
         "children": [
           {
-            "id": "__topic__/归结推理/归结证明法",
-            "zh": "归结证明法",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.090346,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/归结推理/归结式",
-            "zh": "归结式",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/归结推理/归结过程",
-            "zh": "归结过程",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "复合命题/compound proposition",
+            "zh": "复合命题",
+            "importance": 0.112138,
+            "relation": "part_of",
             "related": [
-              "归结过程"
+              "公式",
+              "命题"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "命题形式/propositional form",
+            "zh": "命题形式",
+            "importance": 0.317963,
+            "relation": null,
+            "related": [
+              "命题"
             ],
             "children": []
           },
           {
-            "id": "__topic__/归结推理/归结树",
-            "zh": "归结树",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
+            "id": "命题公式/propositional formula",
+            "zh": "命题公式",
+            "importance": 0.398092,
+            "relation": "belong_to",
+            "related": [
+              "范式"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.330785,
+            "relation": "part_of",
+            "related": [
+              "二值逻辑",
+              "公式",
+              "命题"
+            ],
+            "children": []
+          },
+          {
+            "id": "重言式/tautology",
+            "zh": "重言式",
+            "importance": 0.100947,
+            "relation": "belong_to",
+            "related": [
+              "范式"
+            ],
+            "children": []
+          },
+          {
+            "id": "推理规则/inference rule",
+            "zh": "推理规则",
+            "importance": 0.196602,
+            "relation": "part_of",
+            "related": [
+              "推理演算"
+            ],
             "children": []
           }
         ]
@@ -251,248 +204,201 @@
   },
   "roots": [
     {
-      "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+      "id": "__chapter__/谓词逻辑的等值和推理演算",
       "zh": "第5章 谓词逻辑的等值和推理演算",
-      "importance": 0.8,
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "谓词逻辑的等值和推理演算"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/谓词公式等值",
-          "zh": "谓词公式等值",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
+          "id": "谓词逻辑/Predicate Logic",
+          "zh": "谓词逻辑",
+          "importance": 0.775269,
+          "relation": "belong_to",
+          "related": [
+            "映射"
+          ],
           "children": [
             {
-              "id": "__topic__/谓词公式等值/等值定理",
-              "zh": "等值定理",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "一阶语言/First-order Language",
+              "zh": "一阶语言",
+              "importance": 0.860251,
+              "relation": null,
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/谓词公式等值/命题逻辑移植",
-              "zh": "命题逻辑移植",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/谓词公式等值/量词否定型",
-              "zh": "量词否定型",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/谓词公式等值/量词分配律",
-              "zh": "量词分配律",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/谓词公式等值/变元易名规则",
-              "zh": "变元易名规则",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/等值演算",
-          "zh": "等值演算",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/等值演算/演算方法",
-              "zh": "演算方法",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/等值演算/置换规则",
-              "zh": "置换规则",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/等值演算/代入规则",
-              "zh": "代入规则",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/范式",
-          "zh": "范式",
-          "importance": 0.6466523815516021,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/范式/前束范式",
-              "zh": "前束范式",
-              "importance": 0.6466523815516021,
-              "relation": "outline_concept",
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.805862,
+              "relation": "belong_to",
               "related": [
-                "前束范式"
+                "公式",
+                "函数符号",
+                "可满足性",
+                "命题逻辑公式",
+                "普遍有效性",
+                "有限域"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "等值式/equivalence formula",
+              "zh": "等值式",
+              "importance": 0.529929,
+              "relation": null,
+              "related": [
+                "解释证明法"
               ],
               "children": []
             },
             {
-              "id": "__topic__/范式/Skolem范式",
-              "zh": "Skolem范式",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.730615,
+              "relation": null,
               "related": [
-                "Skolem范式"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/范式/前束析取范式",
-              "zh": "前束析取范式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/范式/前束合取范式",
-              "zh": "前束合取范式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/范式/存在前束范式",
-              "zh": "存在前束范式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/推理式与推理演算",
-          "zh": "推理式与推理演算",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/推理式与推理演算/推理形式",
-              "zh": "推理形式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/推理式与推理演算/逻辑推论",
-              "zh": "逻辑推论",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/推理式与推理演算/基本推理式",
-              "zh": "基本推理式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/推理式与推理演算/推理规则",
-              "zh": "推理规则",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "推理规则"
+                "命题公式",
+                "矛盾式",
+                "重言式"
               ],
               "children": [
                 {
-                  "id": "__topic__/推理式与推理演算/量词推理规则",
-                  "zh": "量词推理规则",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [],
-                  "children": []
+                  "id": "子句集/clause set",
+                  "zh": "子句集",
+                  "importance": 0.606133,
+                  "relation": null,
+                  "related": [
+                    "合取范式",
+                    "归结"
+                  ],
+                  "children": [
+                    {
+                      "id": "子句/clause",
+                      "zh": "子句",
+                      "importance": 1.0,
+                      "relation": "part_of",
+                      "related": [
+                        "全称量词",
+                        "归结",
+                        "归结式",
+                        "归结过程"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
                 }
               ]
             },
             {
-              "id": "__topic__/推理式与推理演算/推理演算方法",
-              "zh": "推理演算方法",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.563378,
+              "relation": "belong_to",
+              "related": [
+                "命题等值演算",
+                "推理规则",
+                "等值"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "蕴涵式/implication form",
+              "zh": "蕴涵式",
+              "importance": 0.290817,
+              "relation": null,
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/归结推理",
-          "zh": "归结推理",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
+          "id": "命题/proposition",
+          "zh": "命题",
+          "importance": 0.393027,
+          "relation": "belong_to",
+          "related": [
+            "命题变项",
+            "命题形式",
+            "复合命题",
+            "联结词",
+            "集合"
+          ],
           "children": [
             {
-              "id": "__topic__/归结推理/归结证明法",
-              "zh": "归结证明法",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "简单命题/simple proposition",
+              "zh": "简单命题",
+              "importance": 0.090346,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/归结推理/归结式",
-              "zh": "归结式",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/归结推理/归结过程",
-              "zh": "归结过程",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "复合命题/compound proposition",
+              "zh": "复合命题",
+              "importance": 0.112138,
+              "relation": "part_of",
               "related": [
-                "归结过程"
+                "公式",
+                "命题"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "命题形式/propositional form",
+              "zh": "命题形式",
+              "importance": 0.317963,
+              "relation": null,
+              "related": [
+                "命题"
               ],
               "children": []
             },
             {
-              "id": "__topic__/归结推理/归结树",
-              "zh": "归结树",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
+              "id": "命题公式/propositional formula",
+              "zh": "命题公式",
+              "importance": 0.398092,
+              "relation": "belong_to",
+              "related": [
+                "范式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.330785,
+              "relation": "part_of",
+              "related": [
+                "二值逻辑",
+                "公式",
+                "命题"
+              ],
+              "children": []
+            },
+            {
+              "id": "重言式/tautology",
+              "zh": "重言式",
+              "importance": 0.100947,
+              "relation": "belong_to",
+              "related": [
+                "范式"
+              ],
+              "children": []
+            },
+            {
+              "id": "推理规则/inference rule",
+              "zh": "推理规则",
+              "importance": 0.196602,
+              "relation": "part_of",
+              "related": [
+                "推理演算"
+              ],
               "children": []
             }
           ]
@@ -500,37 +406,24 @@
       ]
     }
   ],
-  "n_nodes": 29,
-  "max_depth": 3,
-  "orphan_count": 46,
+  "n_nodes": 18,
+  "max_depth": 4,
+  "orphan_count": 0,
   "meta": {
     "chapter": "第5章 谓词逻辑的等值和推理演算",
-    "root_zh": "第5章 谓词逻辑的等值和推理演算",
+    "root_zh": "谓词逻辑的等值和推理演算",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
-      "31"
+      "31",
+      "33"
     ],
-    "source": "outline+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 5,
-    "pipeline": "text_first_v1",
-    "id_redirects": {
-      "__topic__/谓词公式等值/等值定义": "__section__/谓词公式等值",
-      "__topic__/等值演算/量词分配应用": "__section__/等值演算",
-      "__topic__/范式/范式转化步骤": "__section__/范式",
-      "__topic__/归结推理/合一": "__section__/归结推理",
-      "__topic__/归结推理/子句集构造": "__section__/归结推理"
-    }
-  },
-  "remoteLinks": [],
-  "id_redirects": {
-    "__topic__/谓词公式等值/等值定义": "__section__/谓词公式等值",
-    "__topic__/等值演算/量词分配应用": "__section__/等值演算",
-    "__topic__/范式/范式转化步骤": "__section__/范式",
-    "__topic__/归结推理/合一": "__section__/归结推理",
-    "__topic__/归结推理/子句集构造": "__section__/归结推理"
-  },
-  "concept_links": []
+    "llm_tidy_notes": "移除数理逻辑、二值逻辑等背景层级，将子句集挂到范式下，谓词逻辑与命题逻辑并列作为章下两大知识子树。",
+    "llm_merge": true,
+    "llm_merge_notes": "移除数理逻辑、二值逻辑等背景层级，将子句集挂到范式下，谓词逻辑与命题逻辑并列作为章下两大知识子树。"
+  }
 }

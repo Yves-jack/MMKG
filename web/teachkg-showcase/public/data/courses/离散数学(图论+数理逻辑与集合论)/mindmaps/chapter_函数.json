@@ -1,178 +1,96 @@
 {
   "lecture_id": "chapter:第11章 函数",
   "root": {
-    "id": "__chapter__/第11章 函数",
-    "zh": "第3章 函数",
-    "importance": 0.8,
+    "id": "__chapter__/函数",
+    "zh": "第11章 函数",
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "函数"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/函数基本概念",
-        "zh": "函数基本概念",
-        "importance": 1,
-        "relation": "toc_section",
+        "id": "关系/relation",
+        "zh": "关系",
+        "importance": 0.627116,
+        "relation": null,
+        "related": [
+          "合成",
+          "映射",
+          "选择公理"
+        ],
+        "children": [
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.690803,
+            "relation": "belong_to",
+            "related": [
+              "关系",
+              "单值性",
+              "合成",
+              "等价关系",
+              "选择公理",
+              "集合"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "关系运算/operation on relations",
+        "zh": "关系运算",
+        "importance": 0.579551,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/函数基本概念/单值性",
-            "zh": "单值性",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [
-              "单值性"
-            ],
+            "id": "投影/Projection",
+            "zh": "投影",
+            "importance": 0.408637,
+            "relation": "part_of",
+            "related": [],
             "children": []
           },
           {
-            "id": "__topic__/函数基本概念/全域性",
-            "zh": "全域性",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "选择/Selection",
+            "zh": "选择",
+            "importance": 0.368724,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "乘积/product",
+            "zh": "乘积",
+            "importance": 0.0,
+            "relation": "part_of",
             "related": [],
             "children": []
           }
         ]
       },
       {
-        "id": "__section__/特殊函数",
-        "zh": "特殊函数",
-        "importance": 0.7336037850428373,
-        "relation": "toc_section",
+        "id": "特殊关系/special relation",
+        "zh": "特殊关系",
+        "importance": 0.282648,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/特殊函数/满射",
-            "zh": "满射",
-            "importance": 0.4934982927833013,
-            "relation": "outline_concept",
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.690803,
+            "relation": "belong_to",
             "related": [
-              "满射"
+              "关系",
+              "单值性",
+              "合成",
+              "等价关系",
+              "选择公理",
+              "集合"
             ],
-            "children": []
-          },
-          {
-            "id": "__topic__/特殊函数/单射",
-            "zh": "单射",
-            "importance": 0.4891669722433864,
-            "relation": "outline_concept",
-            "related": [
-              "单射"
-            ],
-            "children": []
-          },
-          {
-            "id": "__topic__/特殊函数/双射",
-            "zh": "双射",
-            "importance": 0.7336037850428373,
-            "relation": "outline_concept",
-            "related": [
-              "双射"
-            ],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/集合等势",
-        "zh": "集合等势",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/集合等势/双射存在",
-            "zh": "双射存在",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/集合等势/等势记法",
-            "zh": "等势记法",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/逆函数",
-        "zh": "逆函数",
-        "importance": 0.5748983876188669,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/逆函数/逆关系",
-            "zh": "逆关系",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/逆函数/双射逆函数",
-            "zh": "双射逆函数",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/逆函数/左逆",
-            "zh": "左逆",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/逆函数/右逆",
-            "zh": "右逆",
-            "importance": 0.5748983876188669,
-            "relation": "outline_concept",
-            "related": [
-              "右逆"
-            ],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "__section__/函数合成",
-        "zh": "函数合成",
-        "importance": 0.45,
-        "relation": "toc_section",
-        "related": [],
-        "children": [
-          {
-            "id": "__topic__/函数合成/合成满射性质",
-            "zh": "合成满射性质",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/函数合成/合成单射性质",
-            "zh": "合成单射性质",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
-          },
-          {
-            "id": "__topic__/函数合成/合成双射性质",
-            "zh": "合成双射性质",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": []
+            "children": [],
+            "copy": true
           }
         ]
       }
@@ -180,237 +98,119 @@
   },
   "roots": [
     {
-      "id": "__chapter__/第11章 函数",
-      "zh": "第3章 函数",
-      "importance": 0.8,
+      "id": "__chapter__/函数",
+      "zh": "第11章 函数",
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "函数"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/函数基本概念",
-          "zh": "函数基本概念",
-          "importance": 1,
-          "relation": "toc_section",
+          "id": "关系/relation",
+          "zh": "关系",
+          "importance": 0.627116,
+          "relation": null,
+          "related": [
+            "合成",
+            "映射",
+            "选择公理"
+          ],
+          "children": [
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.690803,
+              "relation": "belong_to",
+              "related": [
+                "关系",
+                "单值性",
+                "合成",
+                "等价关系",
+                "选择公理",
+                "集合"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "关系运算/operation on relations",
+          "zh": "关系运算",
+          "importance": 0.579551,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/函数基本概念/单值性",
-              "zh": "单值性",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [
-                "单值性"
-              ],
+              "id": "投影/Projection",
+              "zh": "投影",
+              "importance": 0.408637,
+              "relation": "part_of",
+              "related": [],
               "children": []
             },
             {
-              "id": "__topic__/函数基本概念/全域性",
-              "zh": "全域性",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "选择/Selection",
+              "zh": "选择",
+              "importance": 0.368724,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "乘积/product",
+              "zh": "乘积",
+              "importance": 0.0,
+              "relation": "part_of",
               "related": [],
               "children": []
             }
           ]
         },
         {
-          "id": "__section__/特殊函数",
-          "zh": "特殊函数",
-          "importance": 0.7336037850428373,
-          "relation": "toc_section",
+          "id": "特殊关系/special relation",
+          "zh": "特殊关系",
+          "importance": 0.282648,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/特殊函数/满射",
-              "zh": "满射",
-              "importance": 0.4934982927833013,
-              "relation": "outline_concept",
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.690803,
+              "relation": "belong_to",
               "related": [
-                "满射"
+                "关系",
+                "单值性",
+                "合成",
+                "等价关系",
+                "选择公理",
+                "集合"
               ],
-              "children": []
-            },
-            {
-              "id": "__topic__/特殊函数/单射",
-              "zh": "单射",
-              "importance": 0.4891669722433864,
-              "relation": "outline_concept",
-              "related": [
-                "单射"
-              ],
-              "children": []
-            },
-            {
-              "id": "__topic__/特殊函数/双射",
-              "zh": "双射",
-              "importance": 0.7336037850428373,
-              "relation": "outline_concept",
-              "related": [
-                "双射"
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/集合等势",
-          "zh": "集合等势",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/集合等势/双射存在",
-              "zh": "双射存在",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/集合等势/等势记法",
-              "zh": "等势记法",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/逆函数",
-          "zh": "逆函数",
-          "importance": 0.5748983876188669,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/逆函数/逆关系",
-              "zh": "逆关系",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/逆函数/双射逆函数",
-              "zh": "双射逆函数",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/逆函数/左逆",
-              "zh": "左逆",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/逆函数/右逆",
-              "zh": "右逆",
-              "importance": 0.5748983876188669,
-              "relation": "outline_concept",
-              "related": [
-                "右逆"
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "__section__/函数合成",
-          "zh": "函数合成",
-          "importance": 0.45,
-          "relation": "toc_section",
-          "related": [],
-          "children": [
-            {
-              "id": "__topic__/函数合成/合成满射性质",
-              "zh": "合成满射性质",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/函数合成/合成单射性质",
-              "zh": "合成单射性质",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
-            },
-            {
-              "id": "__topic__/函数合成/合成双射性质",
-              "zh": "合成双射性质",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": []
+              "children": [],
+              "copy": true
             }
           ]
         }
       ]
     }
   ],
-  "n_nodes": 20,
+  "n_nodes": 9,
   "max_depth": 2,
-  "orphan_count": 23,
+  "orphan_count": 0,
   "meta": {
     "chapter": "第11章 函数",
-    "root_zh": "第11章 函数",
+    "root_zh": "函数",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
       "44"
     ],
-    "source": "outline+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 7,
-    "pipeline": "text_first_v1",
-    "id_redirects": {
-      "__topic__/函数基本概念/函数与关系": "__section__/函数基本概念",
-      "函数/function": "__section__/函数基本概念",
-      "关系/relation": "__section__/函数基本概念",
-      "__topic__/函数基本概念/函数定义": "__section__/函数基本概念",
-      "__topic__/集合等势/等势定义": "__section__/集合等势",
-      "__topic__/集合等势/N×N等势示例": "__section__/集合等势",
-      "__topic__/逆函数/左逆等于右逆": "__section__/逆函数",
-      "__topic__/逆函数/逆函数条件": "__section__/逆函数",
-      "__topic__/函数合成/合成定义": "__section__/函数合成",
-      "__section__/函数集合": "__chapter__/第11章 函数",
-      "__topic__/函数集合/A到B函数集合": "__chapter__/第11章 函数",
-      "__topic__/函数集合/基数计算": "__chapter__/第11章 函数",
-      "__section__/选择公理": "__chapter__/第11章 函数",
-      "__topic__/选择公理/选择公理形式1": "__chapter__/第11章 函数",
-      "__topic__/选择公理/关系与函数包含": "__chapter__/第11章 函数",
-      "__topic__/选择公理/定义域保持": "__chapter__/第11章 函数"
-    }
-  },
-  "remoteLinks": [],
-  "id_redirects": {
-    "__topic__/函数基本概念/函数与关系": "__section__/函数基本概念",
-    "函数/function": "__section__/函数基本概念",
-    "关系/relation": "__section__/函数基本概念",
-    "__topic__/函数基本概念/函数定义": "__section__/函数基本概念",
-    "__topic__/集合等势/等势定义": "__section__/集合等势",
-    "__topic__/集合等势/N×N等势示例": "__section__/集合等势",
-    "__topic__/逆函数/左逆等于右逆": "__section__/逆函数",
-    "__topic__/逆函数/逆函数条件": "__section__/逆函数",
-    "__topic__/函数合成/合成定义": "__section__/函数合成",
-    "__section__/函数集合": "__chapter__/第11章 函数",
-    "__topic__/函数集合/A到B函数集合": "__chapter__/第11章 函数",
-    "__topic__/函数集合/基数计算": "__chapter__/第11章 函数",
-    "__section__/选择公理": "__chapter__/第11章 函数",
-    "__topic__/选择公理/选择公理形式1": "__chapter__/第11章 函数",
-    "__topic__/选择公理/关系与函数包含": "__chapter__/第11章 函数",
-    "__topic__/选择公理/定义域保持": "__chapter__/第11章 函数"
-  },
-  "concept_links": []
+    "llm_tidy_notes": "输入中无讲次层级，且未发现重复或需合并的碎片，故仅保留原结构，未做改动。",
+    "llm_merge": true,
+    "llm_merge_notes": "输入中无讲次层级，且未发现重复或需合并的碎片，故仅保留原结构，未做改动。"
+  }
 }

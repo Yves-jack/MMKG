@@ -1,63 +1,269 @@
 {
   "lecture_id": "chapter:第3章 树",
   "root": {
-    "id": "__chapter__/第3章 树",
+    "id": "__chapter__/树",
     "zh": "第3章 树",
-    "importance": 0.8,
+    "importance": 0.7,
     "relation": null,
-    "related": [
-      "树"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "__section__/树与森林",
-        "zh": "树与森林",
-        "importance": 0.679587,
-        "relation": "toc_section",
-        "related": [],
+        "id": "连通图/connected graph",
+        "zh": "连通图",
+        "importance": 0.960894,
+        "relation": null,
+        "related": [
+          "H 回路",
+          "H 道路",
+          "支撑树",
+          "欧拉回路",
+          "欧拉道路",
+          "道路"
+        ],
         "children": [
           {
-            "id": "__topic__/树与森林/树",
+            "id": "树/tree",
             "zh": "树",
             "importance": 0.679587,
-            "relation": "outline_concept",
-            "related": [
-              "树"
-            ],
+            "relation": "belong_to",
+            "related": [],
             "children": [
               {
-                "id": "__topic__/树与森林/生成树",
-                "zh": "生成树",
-                "importance": 0.4,
-                "relation": "outline_concept",
+                "id": "支撑树/Spanning Tree",
+                "zh": "支撑树",
+                "importance": 0.679151,
+                "relation": "belong_to",
+                "related": [
+                  "破圈法",
+                  "连通图"
+                ],
+                "children": [
+                  {
+                    "id": "最短树/Minimum Spanning Tree",
+                    "zh": "最短树",
+                    "importance": 0.510637,
+                    "relation": "belong_to",
+                    "related": [
+                      "Kruskal算法",
+                      "最长树"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "最长树/maximum spanning tree",
+                    "zh": "最长树",
+                    "importance": 0.401817,
+                    "relation": "belong_to",
+                    "related": [
+                      "Kruskal算法",
+                      "最短树"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "树叶/leaf",
+                "zh": "树叶",
+                "importance": 0.602823,
+                "relation": "belong_to",
                 "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "树枝/branch",
+                "zh": "树枝",
+                "importance": 0.563033,
+                "relation": "part_of",
+                "related": [
+                  "割边"
+                ],
                 "children": []
               },
               {
-                "id": "__topic__/树与森林/支撑树",
-                "zh": "支撑树",
-                "importance": 0.679151,
-                "relation": "outline_concept",
-                "related": [
-                  "支撑树"
-                ],
+                "id": "边/edge",
+                "zh": "边",
+                "importance": 0.234099,
+                "relation": "part_of",
+                "related": [],
                 "children": []
               }
             ]
           },
           {
-            "id": "__topic__/树与森林/森林",
-            "zh": "森林",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "极小连通图/minimally connected graph",
+            "zh": "极小连通图",
+            "importance": 0.266674,
+            "relation": "belong_to",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/树与森林/割边",
-            "zh": "割边",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "Petersen图/Petersen graph",
+            "zh": "Petersen图",
+            "importance": 0.818951,
+            "relation": "belong_to",
+            "related": [
+              "H 回路",
+              "欧拉回路"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "二叉树/binary tree",
+        "zh": "二叉树",
+        "importance": 0.81403,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "最优二叉树/optimal binary tree",
+            "zh": "最优二叉树",
+            "importance": 0.867942,
+            "relation": "belong_to",
+            "related": [
+              "Huffman算法",
+              "哈夫曼算法",
+              "哈夫曼编码",
+              "最优编码",
+              "最小编码方式"
+            ],
+            "children": [
+              {
+                "id": "叶结点/leaf node",
+                "zh": "叶结点",
+                "importance": 0.289778,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "父结点/parent node",
+                "zh": "父结点",
+                "importance": 0.233308,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "根结点/root node",
+                "zh": "根结点",
+                "importance": 0.0,
+                "relation": "part_of",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "树叶顶点/leaf vertex",
+            "zh": "树叶顶点",
+            "importance": 0.183866,
+            "relation": "part_of",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "贪心算法/greedy algorithm",
+        "zh": "贪心算法",
+        "importance": 0.790277,
+        "relation": null,
+        "related": [
+          "最小权值选取"
+        ],
+        "children": []
+      },
+      {
+        "id": "有向图/directed graph",
+        "zh": "有向图",
+        "importance": 0.65445,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "有向树/directed tree",
+            "zh": "有向树",
+            "importance": 0.887048,
+            "relation": "belong_to",
+            "related": [],
+            "children": [
+              {
+                "id": "根树/rooted tree",
+                "zh": "根树",
+                "importance": 0.875485,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "贪心策略/greedy strategy",
+        "zh": "贪心策略",
+        "importance": 0.548015,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "Prim算法/Prim's algorithm",
+            "zh": "Prim算法",
+            "importance": 0.348043,
+            "relation": "belong_to",
+            "related": [
+              "Kruskal算法",
+              "稠密图"
+            ],
+            "children": [],
+            "copy": true
+          }
+        ]
+      },
+      {
+        "id": "图论中的树/tree in graph theory",
+        "zh": "图论中的树",
+        "importance": 0.458544,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "无向树/undirected tree",
+            "zh": "无向树",
+            "importance": 0.433474,
+            "relation": "belong_to",
+            "related": [
+              "回路"
+            ],
+            "children": []
+          },
+          {
+            "id": "非根树/non-rooted tree",
+            "zh": "非根树",
+            "importance": 0.186971,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "林/forest",
+        "zh": "林",
+        "importance": 0.435833,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "连通分支/connected component",
+            "zh": "连通分支",
+            "importance": 0.636867,
+            "relation": "part_of",
             "related": [
               "割边"
             ],
@@ -66,100 +272,99 @@
         ]
       },
       {
-        "id": "__section__/二叉树",
-        "zh": "二叉树",
-        "importance": 0.875485,
-        "relation": "toc_section",
-        "related": [],
+        "id": "结点总数/total node count",
+        "zh": "结点总数",
+        "importance": 0.382277,
+        "relation": null,
+        "related": [
+          "边数"
+        ],
         "children": [
           {
-            "id": "__topic__/二叉树/根树",
-            "zh": "根树",
-            "importance": 0.875485,
-            "relation": "outline_concept",
+            "id": "叶子结点数/leaf vertex count",
+            "zh": "叶子结点数",
+            "importance": 0.364887,
+            "relation": "part_of",
             "related": [
-              "根树"
+              "度为二的结点数"
             ],
             "children": []
           },
           {
-            "id": "__topic__/二叉树/带权路径总长",
-            "zh": "带权路径总长",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "度为一的结点数/degree-1vertex count",
+            "zh": "度为一的结点数",
+            "importance": 0.0,
+            "relation": "part_of",
             "related": [],
             "children": []
           },
           {
-            "id": "__topic__/二叉树/最优二叉树",
-            "zh": "最优二叉树",
-            "importance": 0.867942,
-            "relation": "outline_concept",
+            "id": "度为二的结点数/degree-2vertex count",
+            "zh": "度为二的结点数",
+            "importance": 0.0,
+            "relation": "part_of",
             "related": [
-              "最优二叉树"
+              "叶子结点数",
+              "边数"
             ],
             "children": []
-          },
-          {
-            "id": "__topic__/二叉树/Huffman树",
-            "zh": "Huffman树",
-            "importance": 0.4,
-            "relation": "outline_concept",
-            "related": [],
-            "children": [
-              {
-                "id": "__section__/Huffman算法",
-                "zh": "Huffman算法",
-                "importance": 0.45,
-                "relation": "toc_section",
-                "related": [],
-                "children": []
-              }
-            ]
           }
         ]
       },
       {
-        "id": "__section__/最短树",
-        "zh": "最短树",
-        "importance": 0.45,
-        "relation": "toc_section",
+        "id": "道路/Path",
+        "zh": "道路",
+        "importance": 0.373355,
+        "relation": null,
+        "related": [
+          "图的连通性"
+        ],
+        "children": [
+          {
+            "id": "回路/Circuit",
+            "zh": "回路",
+            "importance": 0.175472,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "前缀码/prefix code",
+        "zh": "前缀码",
+        "importance": 0.325646,
+        "relation": null,
         "related": [],
         "children": [
           {
-            "id": "__topic__/最短树/赋权连通图",
-            "zh": "赋权连通图",
-            "importance": 0.4,
-            "relation": "outline_concept",
+            "id": "哈夫曼编码/Huffman coding",
+            "zh": "哈夫曼编码",
+            "importance": 0.47486,
+            "relation": "belong_to",
+            "related": [
+              "数据压缩",
+              "最优二叉树",
+              "权值"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "最优树/optimal tree",
+        "zh": "最优树",
+        "importance": 0.324806,
+        "relation": null,
+        "related": [],
+        "children": [
+          {
+            "id": "最优分支/optimal branch",
+            "zh": "最优分支",
+            "importance": 0.364887,
+            "relation": "part_of",
             "related": [],
             "children": []
-          },
-          {
-            "id": "__section__/最短树算法",
-            "zh": "最短树算法",
-            "importance": 0.45,
-            "relation": "toc_section",
-            "related": [],
-            "children": [
-              {
-                "id": "__topic__/最短树算法/Kruskal算法",
-                "zh": "Kruskal算法",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [],
-                "children": []
-              },
-              {
-                "id": "__topic__/最短树算法/Prim算法",
-                "zh": "Prim算法",
-                "importance": 0.4,
-                "relation": "outline_concept",
-                "related": [
-                  "Prim算法"
-                ],
-                "children": []
-              }
-            ]
           }
         ]
       }
@@ -167,63 +372,269 @@
   },
   "roots": [
     {
-      "id": "__chapter__/第3章 树",
+      "id": "__chapter__/树",
       "zh": "第3章 树",
-      "importance": 0.8,
+      "importance": 0.7,
       "relation": null,
-      "related": [
-        "树"
-      ],
+      "related": [],
       "children": [
         {
-          "id": "__section__/树与森林",
-          "zh": "树与森林",
-          "importance": 0.679587,
-          "relation": "toc_section",
-          "related": [],
+          "id": "连通图/connected graph",
+          "zh": "连通图",
+          "importance": 0.960894,
+          "relation": null,
+          "related": [
+            "H 回路",
+            "H 道路",
+            "支撑树",
+            "欧拉回路",
+            "欧拉道路",
+            "道路"
+          ],
           "children": [
             {
-              "id": "__topic__/树与森林/树",
+              "id": "树/tree",
               "zh": "树",
               "importance": 0.679587,
-              "relation": "outline_concept",
-              "related": [
-                "树"
-              ],
+              "relation": "belong_to",
+              "related": [],
               "children": [
                 {
-                  "id": "__topic__/树与森林/生成树",
-                  "zh": "生成树",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
+                  "id": "支撑树/Spanning Tree",
+                  "zh": "支撑树",
+                  "importance": 0.679151,
+                  "relation": "belong_to",
+                  "related": [
+                    "破圈法",
+                    "连通图"
+                  ],
+                  "children": [
+                    {
+                      "id": "最短树/Minimum Spanning Tree",
+                      "zh": "最短树",
+                      "importance": 0.510637,
+                      "relation": "belong_to",
+                      "related": [
+                        "Kruskal算法",
+                        "最长树"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "最长树/maximum spanning tree",
+                      "zh": "最长树",
+                      "importance": 0.401817,
+                      "relation": "belong_to",
+                      "related": [
+                        "Kruskal算法",
+                        "最短树"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "树叶/leaf",
+                  "zh": "树叶",
+                  "importance": 0.602823,
+                  "relation": "belong_to",
                   "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "树枝/branch",
+                  "zh": "树枝",
+                  "importance": 0.563033,
+                  "relation": "part_of",
+                  "related": [
+                    "割边"
+                  ],
                   "children": []
                 },
                 {
-                  "id": "__topic__/树与森林/支撑树",
-                  "zh": "支撑树",
-                  "importance": 0.679151,
-                  "relation": "outline_concept",
-                  "related": [
-                    "支撑树"
-                  ],
+                  "id": "边/edge",
+                  "zh": "边",
+                  "importance": 0.234099,
+                  "relation": "part_of",
+                  "related": [],
                   "children": []
                 }
               ]
             },
             {
-              "id": "__topic__/树与森林/森林",
-              "zh": "森林",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "极小连通图/minimally connected graph",
+              "zh": "极小连通图",
+              "importance": 0.266674,
+              "relation": "belong_to",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/树与森林/割边",
-              "zh": "割边",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "Petersen图/Petersen graph",
+              "zh": "Petersen图",
+              "importance": 0.818951,
+              "relation": "belong_to",
+              "related": [
+                "H 回路",
+                "欧拉回路"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "二叉树/binary tree",
+          "zh": "二叉树",
+          "importance": 0.81403,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "最优二叉树/optimal binary tree",
+              "zh": "最优二叉树",
+              "importance": 0.867942,
+              "relation": "belong_to",
+              "related": [
+                "Huffman算法",
+                "哈夫曼算法",
+                "哈夫曼编码",
+                "最优编码",
+                "最小编码方式"
+              ],
+              "children": [
+                {
+                  "id": "叶结点/leaf node",
+                  "zh": "叶结点",
+                  "importance": 0.289778,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "父结点/parent node",
+                  "zh": "父结点",
+                  "importance": 0.233308,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "根结点/root node",
+                  "zh": "根结点",
+                  "importance": 0.0,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "树叶顶点/leaf vertex",
+              "zh": "树叶顶点",
+              "importance": 0.183866,
+              "relation": "part_of",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "贪心算法/greedy algorithm",
+          "zh": "贪心算法",
+          "importance": 0.790277,
+          "relation": null,
+          "related": [
+            "最小权值选取"
+          ],
+          "children": []
+        },
+        {
+          "id": "有向图/directed graph",
+          "zh": "有向图",
+          "importance": 0.65445,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "有向树/directed tree",
+              "zh": "有向树",
+              "importance": 0.887048,
+              "relation": "belong_to",
+              "related": [],
+              "children": [
+                {
+                  "id": "根树/rooted tree",
+                  "zh": "根树",
+                  "importance": 0.875485,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "贪心策略/greedy strategy",
+          "zh": "贪心策略",
+          "importance": 0.548015,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "Prim算法/Prim's algorithm",
+              "zh": "Prim算法",
+              "importance": 0.348043,
+              "relation": "belong_to",
+              "related": [
+                "Kruskal算法",
+                "稠密图"
+              ],
+              "children": [],
+              "copy": true
+            }
+          ]
+        },
+        {
+          "id": "图论中的树/tree in graph theory",
+          "zh": "图论中的树",
+          "importance": 0.458544,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "无向树/undirected tree",
+              "zh": "无向树",
+              "importance": 0.433474,
+              "relation": "belong_to",
+              "related": [
+                "回路"
+              ],
+              "children": []
+            },
+            {
+              "id": "非根树/non-rooted tree",
+              "zh": "非根树",
+              "importance": 0.186971,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "林/forest",
+          "zh": "林",
+          "importance": 0.435833,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "连通分支/connected component",
+              "zh": "连通分支",
+              "importance": 0.636867,
+              "relation": "part_of",
               "related": [
                 "割边"
               ],
@@ -232,144 +643,123 @@
           ]
         },
         {
-          "id": "__section__/二叉树",
-          "zh": "二叉树",
-          "importance": 0.875485,
-          "relation": "toc_section",
-          "related": [],
+          "id": "结点总数/total node count",
+          "zh": "结点总数",
+          "importance": 0.382277,
+          "relation": null,
+          "related": [
+            "边数"
+          ],
           "children": [
             {
-              "id": "__topic__/二叉树/根树",
-              "zh": "根树",
-              "importance": 0.875485,
-              "relation": "outline_concept",
+              "id": "叶子结点数/leaf vertex count",
+              "zh": "叶子结点数",
+              "importance": 0.364887,
+              "relation": "part_of",
               "related": [
-                "根树"
+                "度为二的结点数"
               ],
               "children": []
             },
             {
-              "id": "__topic__/二叉树/带权路径总长",
-              "zh": "带权路径总长",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "度为一的结点数/degree-1vertex count",
+              "zh": "度为一的结点数",
+              "importance": 0.0,
+              "relation": "part_of",
               "related": [],
               "children": []
             },
             {
-              "id": "__topic__/二叉树/最优二叉树",
-              "zh": "最优二叉树",
-              "importance": 0.867942,
-              "relation": "outline_concept",
+              "id": "度为二的结点数/degree-2vertex count",
+              "zh": "度为二的结点数",
+              "importance": 0.0,
+              "relation": "part_of",
               "related": [
-                "最优二叉树"
+                "叶子结点数",
+                "边数"
               ],
               "children": []
-            },
-            {
-              "id": "__topic__/二叉树/Huffman树",
-              "zh": "Huffman树",
-              "importance": 0.4,
-              "relation": "outline_concept",
-              "related": [],
-              "children": [
-                {
-                  "id": "__section__/Huffman算法",
-                  "zh": "Huffman算法",
-                  "importance": 0.45,
-                  "relation": "toc_section",
-                  "related": [],
-                  "children": []
-                }
-              ]
             }
           ]
         },
         {
-          "id": "__section__/最短树",
-          "zh": "最短树",
-          "importance": 0.45,
-          "relation": "toc_section",
+          "id": "道路/Path",
+          "zh": "道路",
+          "importance": 0.373355,
+          "relation": null,
+          "related": [
+            "图的连通性"
+          ],
+          "children": [
+            {
+              "id": "回路/Circuit",
+              "zh": "回路",
+              "importance": 0.175472,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "前缀码/prefix code",
+          "zh": "前缀码",
+          "importance": 0.325646,
+          "relation": null,
           "related": [],
           "children": [
             {
-              "id": "__topic__/最短树/赋权连通图",
-              "zh": "赋权连通图",
-              "importance": 0.4,
-              "relation": "outline_concept",
+              "id": "哈夫曼编码/Huffman coding",
+              "zh": "哈夫曼编码",
+              "importance": 0.47486,
+              "relation": "belong_to",
+              "related": [
+                "数据压缩",
+                "最优二叉树",
+                "权值"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "最优树/optimal tree",
+          "zh": "最优树",
+          "importance": 0.324806,
+          "relation": null,
+          "related": [],
+          "children": [
+            {
+              "id": "最优分支/optimal branch",
+              "zh": "最优分支",
+              "importance": 0.364887,
+              "relation": "part_of",
               "related": [],
               "children": []
-            },
-            {
-              "id": "__section__/最短树算法",
-              "zh": "最短树算法",
-              "importance": 0.45,
-              "relation": "toc_section",
-              "related": [],
-              "children": [
-                {
-                  "id": "__topic__/最短树算法/Kruskal算法",
-                  "zh": "Kruskal算法",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [],
-                  "children": []
-                },
-                {
-                  "id": "__topic__/最短树算法/Prim算法",
-                  "zh": "Prim算法",
-                  "importance": 0.4,
-                  "relation": "outline_concept",
-                  "related": [
-                    "Prim算法"
-                  ],
-                  "children": []
-                }
-              ]
             }
           ]
         }
       ]
     }
   ],
-  "n_nodes": 18,
-  "max_depth": 3,
-  "orphan_count": 65,
+  "n_nodes": 38,
+  "max_depth": 4,
+  "orphan_count": 0,
   "meta": {
     "chapter": "第3章 树",
-    "root_zh": "第3章 树",
+    "root_zh": "树",
     "virtual_root": true,
     "scope": "chapter",
     "lecture_ids": [
       "7",
-      "8",
-      "12",
-      "16"
+      "8"
     ],
-    "source": "outline+kg",
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
     "n_trees": 1,
-    "skeleton_source": "manual_llm",
-    "n_sections": 6,
-    "pipeline": "text_first_v1",
-    "id_redirects": {
-      "__topic__/最短树/最短树定义": "__section__/最短树",
-      "__topic__/最短树/总长最小": "__section__/最短树",
-      "__topic__/二叉树/二叉树性质": "__section__/二叉树",
-      "__section__/树的性质": "__chapter__/第3章 树",
-      "__topic__/树的性质/边为割边": "__chapter__/第3章 树",
-      "__topic__/树的性质/边数公式": "__chapter__/第3章 树",
-      "__topic__/Huffman算法/编码最短": "__section__/Huffman算法"
-    }
-  },
-  "remoteLinks": [],
-  "id_redirects": {
-    "__topic__/最短树/最短树定义": "__section__/最短树",
-    "__topic__/最短树/总长最小": "__section__/最短树",
-    "__topic__/二叉树/二叉树性质": "__section__/二叉树",
-    "__section__/树的性质": "__chapter__/第3章 树",
-    "__topic__/树的性质/边为割边": "__chapter__/第3章 树",
-    "__topic__/树的性质/边数公式": "__chapter__/第3章 树",
-    "__topic__/Huffman算法/编码最短": "__section__/Huffman算法"
-  },
-  "concept_links": []
+    "llm_tidy_notes": "已去除讲次层级，将各讲碎片直接挂到章根下；合并了同义节点（如“树叶”与“树叶顶点”保留“树叶”），并将“最优二叉树”与“最优树”等概念归并到相关子树下，调整了部分节点的挂靠关系，使结构更连贯。",
+    "llm_merge": true,
+    "llm_merge_notes": "已去除讲次层级，将各讲碎片直接挂到章根下；合并了同义节点（如“树叶”与“树叶顶点”保留“树叶”），并将“最优二叉树”与“最优树”等概念归并到相关子树下，调整了部分节点的挂靠关系，使结构更连贯。"
+  }
 }
