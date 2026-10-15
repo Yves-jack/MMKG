@@ -82,6 +82,7 @@ export function StudentMasteryMindmap({
   compact?: boolean;
 }) {
   const [percent, setPercent] = useState(100);
+  const [showLabels, setShowLabels] = useState(true);
   const [expandDepth, setExpandDepth] = useState(3);
   const [openPaths, setOpenPaths] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
@@ -151,6 +152,7 @@ export function StudentMasteryMindmap({
     resetViewport();
   };
   const resetMap = () => {
+    setShowLabels(true);
     setPercent(100);
     setExpandDepth(3);
     setOpenPaths({});
@@ -224,7 +226,7 @@ export function StudentMasteryMindmap({
 
   return (
     <div
-      className={`${styles.root} ${compact ? styles.compact : ""}`}
+      className={`${styles.root} ${compact ? styles.compact : ""} ${showLabels ? "" : styles.labelsHidden}`}
       aria-busy={!packed.layout}
     >
       <div className={styles.toolbar}>
@@ -261,12 +263,29 @@ export function StudentMasteryMindmap({
             style={{ width: 62 }}
           />
           <span className={styles.percentValue}>%</span>
-          <button type="button" className={styles.controlButton} onClick={expandAll}>
+          <button
+            type="button"
+            className={styles.controlButton}
+            onClick={expandAll}
+          >
             全部展开
           </button>
-          <button type="button" className={styles.controlButton} onClick={resetMap}>
+          <button
+            type="button"
+            className={styles.controlButton}
+            onClick={resetMap}
+          >
             重置
           </button>
+          <label className={styles.labelToggle}>
+            <input
+              type="checkbox"
+              role="switch"
+              checked={showLabels}
+              onChange={(event) => setShowLabels(event.target.checked)}
+            />
+            <span>显示节点文字</span>
+          </label>
         </div>
       </div>
       {!packed.layout ? (
@@ -431,6 +450,8 @@ export function StudentMasteryMindmap({
                   ) : null}
                   {placed.lines.map((line, lineIndex) => (
                     <text
+                      className={styles.nodeLabel}
+                      data-node-label=""
                       key={lineIndex}
                       x={start}
                       y={placed.fontSize + lineIndex * (placed.fontSize + 9)}

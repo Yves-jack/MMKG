@@ -8,7 +8,9 @@ import {
   type MindmapDoc,
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
-import { bindMasteryToMindmap, masteryScore, masteryVisual, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
+import { bindMasteryToMindmap, masteryScore, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
+import { MasteryNodeSummary } from "@/components/mindmap/MasteryNodeSummary";
+import details from "@/components/mindmap/MasteryNodeDetails.module.css";
 import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
 import {
   ensureAssetsLibraryIndexes,
@@ -779,6 +781,7 @@ export function MindmapPage() {
       return;
     }
     setDetailCollapsed(false);
+    if (compactMastery) setAssetsPanelOpen(true);
     const eid = matchKgEntityId(node, kgIds, kgByShort, doc?.id_redirects);
     writeSharedEntitySelection({
       id: eid || node.id,
@@ -1458,8 +1461,8 @@ export function MindmapPage() {
             </button>
           </aside>
         ) : (
-        <aside className={`${pipe.side} ${kg.kgSidePanel}`}>
-          <button
+        <aside className={`${pipe.side} ${kg.kgSidePanel} ${compactMastery ? details.panel : ""}`} aria-label={compactMastery ? "知识点详情" : undefined}>
+          {!compactMastery && <button
             type="button"
             className={kg.kgSideEdgeBtn}
             style={compactMastery ? { left: 12, top: 24, transform: "none" } : undefined}
@@ -1468,11 +1471,12 @@ export function MindmapPage() {
             onClick={() => setDetailCollapsed(true)}
           >
             <span aria-hidden>›</span>
-          </button>
-          <div className={kg.kgSideScroll}>
-          {isMasteryEmbed && selected ? <div className={pipe.detailCard}><strong>{selected.zh}</strong><p role="status">{studentMastery.scope === "class_average" ? "全班平均掌握度" : "我的掌握度"}：{masteryVisual(masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)).label}</p></div> : null}
+          </button>}
+          <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
+          {isMasteryEmbed && selected ? <MasteryNodeSummary label={selected.zh} score={masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)} scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")} onClose={() => setDetailCollapsed(true)} /> : null}
           {isAiTeachingEmbed && selected && linkedEntityId ? (
             <LinkedResourceJumpBar
+              className={compactMastery ? details.actions : undefined}
               loading={!!sideLinkedResources?.loading}
               resources={sideLinkedResources?.resources || []}
               selectedNodeId={linkedEntityId}
@@ -1513,10 +1517,11 @@ export function MindmapPage() {
                     })
               }`}
               storageKey={SHARED_PANEL_KEYS.assets}
+              className={compactMastery ? details.resourceSection : undefined}
               defaultOpen={false}
               open={assetsPanelOpen}
               onOpenChange={setAssetsPanelOpen}
-              bodyClassName={kg.sideCardBody}
+              bodyClassName={`${kg.sideCardBody} ${compactMastery ? details.resourceBody : ""}`}
             >
               <RelatedAssetsPanel
                 entityId={mindmapAssetQuery.entityId}
@@ -1528,7 +1533,7 @@ export function MindmapPage() {
                 maxItems={12}
                 matchMode={assetPolicy === "strict" ? "strict" : "concept"}
                 emptyHint={
-                  assetPolicy === "none"
+                  compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
                     ? "章节节点不匹配资源"
                     : assetPolicy === "strict"
                     ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
@@ -1538,13 +1543,14 @@ export function MindmapPage() {
             </CollapsiblePanel>
           ) : null}
 
-          {selected && linkedEntityId ? (
+          {selected && linkedEntityId && (!compactMastery || sideLinkedResources?.loading || sideLinkedResources?.error || sideLinkedResources?.resources.some((r) => r.resource_type === "animation")) ? (
             <>
               <CollapsiblePanel
                 title={`动画跳转 · ${
                   sideLinkedResources?.resources.filter((r) => r.resource_type === "animation").length || 0
                 }`}
                 storageKey={SHARED_PANEL_KEYS.animation}
+                className={compactMastery ? details.resourceSection : undefined}
                 defaultOpen={false}
                 open={animationPanelOpen}
                 onOpenChange={setAnimationPanelOpen}

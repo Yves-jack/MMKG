@@ -154,6 +154,7 @@ export function LinkedResourceJumpBar({
   resourceCourseId,
   onOpen,
   showAnimation = false,
+  className,
 }: {
   loading?: boolean;
   resources: LinkedKnowledgeResource[];
@@ -163,6 +164,7 @@ export function LinkedResourceJumpBar({
   resourceCourseId?: string;
   onOpen: (resource: LinkedKnowledgeResource) => void;
   showAnimation?: boolean;
+  className?: string;
 }) {
   const nodeId = selectedNodeId ? String(selectedNodeId) : "";
   const course = resourceCourseId || courseId;
@@ -195,7 +197,7 @@ export function LinkedResourceJumpBar({
   };
 
   return (
-    <div className={styles.sideJumpBar}>
+    <div className={`${styles.sideJumpBar} ${className || ""}`}>
       <button
         type="button"
         className={styles.kgChip}

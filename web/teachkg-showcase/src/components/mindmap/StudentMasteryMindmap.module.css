@@ -380,3 +380,55 @@
 .controls {
   margin-left: 0;
 }
+
+.labelToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 5px;
+  padding-left: 10px;
+  border-left: 1px solid var(--map-border);
+  color: var(--map-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.labelToggle input {
+  appearance: none;
+  position: relative;
+  width: 32px;
+  height: 18px;
+  margin: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #c9cbd0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.labelToggle input::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 2px #0002;
+  transition: transform 0.15s;
+}
+.labelToggle input:checked {
+  background: #a43e52;
+}
+.labelToggle input:checked::after {
+  transform: translateX(14px);
+}
+.labelToggle input:focus-visible {
+  outline: 2px solid #538bc6;
+  outline-offset: 3px;
+}
+.labelsHidden .nodeLabel,
+.labelsHidden .labelBacking,
+.labelsHidden .rootCard {
+  display: none;
+}

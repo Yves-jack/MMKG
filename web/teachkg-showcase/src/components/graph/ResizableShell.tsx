@@ -50,7 +50,7 @@ export function ResizableShell({
   if (detailOverlay && !nav) {
     return <div className={`${shell.shell} ${shell.shellSolo}`} style={{ position: "relative" }}>
       {main}
-      {detail ? <div style={{ position: "absolute", right: 8, top: 44, bottom: 8, width: "min(340px, 85%)", zIndex: 10, background: "#fff", boxShadow: "0 8px 28px #0003", overflow: "auto" }}>{detail}</div> : null}
+      {detail ? <div className={shell.detailOverlay}>{detail}</div> : null}
     </div>;
   }
 
