@@ -5,6 +5,7 @@ import {
   layoutPackedMindmap,
   preparePackedMindmap,
 } from "./packedMindmapLayout.mjs";
+import { mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
 import { collapseMindmap } from "./mindmapMasteryBinding.mjs";
 const measure = (text, size) =>
   [...text].reduce(
@@ -116,9 +117,12 @@ test("the complete course retains every occurrence and has no overlapping node/c
       result = layoutPackedMindmap(input);
     assert.equal(result.nodes.length, input.records.length);
     if (depth === 3) {
-      const section = result.nodes.find(n => n.node.zh === "图的定义");
+      const section = result.nodes.find((n) => n.node.zh === "图的定义");
       assert.ok(section, "default expansion includes chapter sections");
-      assert.ok(!result.nodes.some(n => n.key.startsWith(section.key + ".")), "knowledge below the section remains collapsed");
+      assert.ok(
+        !result.nodes.some((n) => n.key.startsWith(section.key + ".")),
+        "knowledge below the section remains collapsed",
+      );
     }
     for (let i = 0; i < result.nodes.length; i++)
       for (let j = i + 1; j < result.nodes.length; j++) {
@@ -134,6 +138,72 @@ test("the complete course retains every occurrence and has no overlapping node/c
       }
     t.diagnostic(
       `${result.nodes.length} nodes: ${Math.round(performance.now() - start)} ms, no rectangle overlaps`,
+    );
+  }
+});
+
+test("hidden labels keep only the course title and pack markers without text space", (t) => {
+  const doc = JSON.parse(
+    fs.readFileSync(
+      new URL(
+        "../../../public/data/courses/离散数学(图论+数理逻辑与集合论)/mindmaps/student_mastery_course.json",
+        import.meta.url,
+      ),
+    ),
+  );
+  for (const depth of [3, 99]) {
+    const collapsed = collapseMindmap(doc, depth);
+    const named = preparePackedMindmap(collapsed, measure);
+    const compact = preparePackedMindmap(collapsed, measure, {
+      showLabels: false,
+    });
+    assert.deepEqual(
+      compact.records.map((n) => [n.key, n.node.id, n.children]),
+      named.records.map((n) => [n.key, n.node.id, n.children]),
+    );
+    assert.deepEqual(
+      compact.records[0].spec,
+      named.records[0].spec,
+      "course title geometry remains unchanged",
+    );
+    assert.equal(compact.records.filter((n) => n.spec.lines.length).length, 1);
+    for (const record of compact.records.slice(1)) {
+      assert.equal(record.spec.textWidth, 0);
+      assert.deepEqual(record.spec.lines, []);
+      assert.equal(record.spec.extra, 0);
+      assert.equal(record.spec.h, 64);
+      assert.equal(record.spec.w, record.node.__hasChildren ? 112 : 64);
+    }
+    const area = (input) =>
+      input.records.reduce((sum, n) => sum + n.spec.w * n.spec.h, 0);
+    assert.ok(
+      area(compact) < area(named) / 2,
+      "removed text no longer occupies node rectangles",
+    );
+    const result = layoutPackedMindmap(compact);
+    assert.equal(result.nodes.length, depth === 3 ? 87 : 433);
+    for (const node of result.nodes.filter((n) => n.compact)) {
+      const marker = mindmapMarkerPositions(node);
+      assert.ok(marker.badgeX - 28 >= 0 && marker.badgeX + 28 <= node.width);
+      if (node.node.__hasChildren)
+        assert.ok(
+          marker.toggleX - 16 >= 0 && marker.toggleX + 16 <= node.width,
+        );
+    }
+    for (let i = 0; i < result.nodes.length; i++)
+      for (let j = i + 1; j < result.nodes.length; j++) {
+        const a = result.nodes[i],
+          b = result.nodes[j];
+        assert.ok(
+          a.right <= b.left ||
+            b.right <= a.left ||
+            a.bottom <= b.top ||
+            b.bottom <= a.top,
+          `${a.key} overlaps ${b.key}`,
+        );
+      }
+    t.diagnostic(
+      `${result.nodes.length} compact nodes, ${Math.round((area(compact) / area(named)) * 100)}% original node area; no overlaps`,
     );
   }
 });

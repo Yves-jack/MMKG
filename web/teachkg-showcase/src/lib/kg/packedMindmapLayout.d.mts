@@ -9,6 +9,7 @@ export type PackedRecord = {
   branch: number;
   children: string[];
   spec: {
+    compact?: boolean;
     lines: string[];
     fontSize: number;
     textWidth: number;
@@ -19,6 +20,7 @@ export type PackedRecord = {
 };
 export type PackedInput = { rootKey: string; records: PackedRecord[] };
 export type PackedNode = PackedRecord & {
+  compact?: boolean;
   left: number;
   right: number;
   top: number;
@@ -53,6 +55,6 @@ export type PackedLayout = {
 export function preparePackedMindmap(
   doc: MindmapDoc,
   measure: (text: string, size: number) => number,
-  options?: { markers?: boolean },
+  options?: { markers?: boolean; showLabels?: boolean },
 ): PackedInput;
 export function layoutPackedMindmap(input: PackedInput): PackedLayout;

@@ -1,3 +1,4 @@
+import { mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
 import { masteryScore, masteryVisual } from "./mindmapMasteryBinding.mjs";
 
 /** Source chapter order, then depth first within each chapter. Never order by layout coordinates. */
@@ -19,7 +20,9 @@ export function masteryLearningPath(doc, mastery) {
       const score = masteryScore(node, mastery);
       if (score != null && score < 2.5)
         result.push({ key: path.join("."), score, label: node.zh });
-      (node.children || []).forEach((child, j) => visit({ node: child, path: [...path, j] }));
+      (node.children || []).forEach((child, j) =>
+        visit({ node: child, path: [...path, j] }),
+      );
     };
     visit(chapter);
   }
@@ -33,13 +36,11 @@ export function visibleLearningPath(sequence, nodes) {
     .filter((step) => placed.has(step.key))
     .map((step) => {
       const node = placed.get(step.key);
-      const start = node.side === -1 && node.depth > 0 ? node.extra + 12 : 12;
+      const marker = mindmapMarkerPositions(node);
       return {
         ...step,
-        x:
-          node.left +
-          (node.side === -1 ? start - 34 : start + node.textWidth + 34),
-        y: node.top + node.height / 2,
+        x: node.left + marker.badgeX,
+        y: node.top + marker.middleY,
         radius: masteryVisual(step.score).radius + 5,
       };
     });

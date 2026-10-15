@@ -17,6 +17,7 @@ import {
   masteryLearningPath,
   visibleLearningPath,
 } from "@/lib/kg/masteryLearningPath.mjs";
+import { mindmapMarkerPositions } from "@/lib/kg/mindmapMarkerPositions.mjs";
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
 import styles from "./StudentMasteryMindmap.module.css";
@@ -110,8 +111,8 @@ export function StudentMasteryMindmap({
     [filtered.doc, expandDepth, openPaths],
   );
   const packedInput = useMemo(
-    () => preparePackedMindmap(collapsedDoc, textWidth),
-    [collapsedDoc],
+    () => preparePackedMindmap(collapsedDoc, textWidth, { showLabels }),
+    [collapsedDoc, showLabels],
   );
   const packed = usePackedMindmapLayout(packedInput);
   const layout = packed.layout || {
@@ -226,7 +227,7 @@ export function StudentMasteryMindmap({
 
   return (
     <div
-      className={`${styles.root} ${compact ? styles.compact : ""} ${showLabels ? "" : styles.labelsHidden}`}
+      className={`${styles.root} ${compact ? styles.compact : ""}`}
       aria-busy={!packed.layout}
     >
       <div className={styles.toolbar}>
@@ -277,7 +278,10 @@ export function StudentMasteryMindmap({
           >
             重置
           </button>
-          <label className={styles.labelToggle}>
+          <label
+            className={styles.labelToggle}
+            title="课程标题始终显示；开关控制其他节点名称"
+          >
             <input
               type="checkbox"
               role="switch"
@@ -367,17 +371,8 @@ export function StudentMasteryMindmap({
                   : placed.depth === 2
                     ? styles.nodeChapter
                     : "";
-            const start =
-              placed.side === -1 && placed.depth > 0 ? placed.extra + 12 : 12;
-            const end = start + placed.textWidth;
-            const badgeX = placed.side === -1 ? start - 34 : end + 34;
-            const toggleX =
-              placed.depth === 0
-                ? end + 24
-                : placed.side === -1
-                  ? start - 80
-                  : end + 80;
-            const middleY = placed.height / 2;
+            const { start, badgeX, toggleX, middleY } =
+              mindmapMarkerPositions(placed);
             const marker = score == null ? "?" : score.toFixed(1);
             const ringRadius = visual.radius + 3;
             return (
@@ -386,6 +381,7 @@ export function StudentMasteryMindmap({
                 className={`${styles.node} ${nodeClass} ${domain ? branchClass(domain, placed.branch) : ""} ${selected ? styles.nodeSelected : ""}`}
                 transform={`translate(${placed.left} ${placed.top})`}
                 style={{ "--mastery-color": visual.color } as CSSProperties}
+                data-node-compact={placed.compact || undefined}
                 data-node-id={node.id}
                 data-node-path={sourcePath?.join(".")}
                 data-mastery={visual.status}
@@ -439,7 +435,7 @@ export function StudentMasteryMindmap({
                     width={placed.width}
                     height={placed.height}
                   />
-                  {placed.depth > 0 ? (
+                  {placed.depth > 0 && !placed.compact ? (
                     <rect
                       className={styles.labelBacking}
                       x={start - 4}
@@ -459,7 +455,7 @@ export function StudentMasteryMindmap({
                       {line}
                     </text>
                   ))}
-                  {placed.depth > 0 ? (
+                  {placed.depth > 0 && !placed.compact ? (
                     <path
                       className={styles.underline}
                       d={`M 0 ${placed.height} L ${placed.width} ${placed.height}`}

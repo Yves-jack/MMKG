@@ -65,3 +65,38 @@ test("collapsed/filtered nodes never acquire proxy arrows and visible ordering i
   assert.deepEqual(visibleLearningPath(sequence, []), []);
   assert.deepEqual(visibleLearningPath(sequence, placed.slice(0, 1)), []);
 });
+
+test("hidden-label learning paths follow compact circle positions rather than old text widths", () => {
+  const sequence = [
+    { key: "a", score: 0 },
+    { key: "b", score: 1 },
+  ];
+  const placed = [
+    {
+      key: "a",
+      compact: true,
+      side: 1,
+      left: 0,
+      top: 0,
+      width: 112,
+      height: 64,
+      textWidth: 900,
+    },
+    {
+      key: "b",
+      compact: true,
+      side: -1,
+      left: 300,
+      top: 0,
+      width: 64,
+      height: 64,
+      textWidth: 900,
+    },
+  ];
+  const [edge] = visibleLearningPath(sequence, placed);
+  const numbers = edge.path.match(/-?[\d.]+/g).map(Number);
+  assert.equal(numbers[1], 32);
+  assert.equal(numbers.at(-1), 32);
+  assert.ok(numbers[0] > 32 && numbers[0] < 80);
+  assert.ok(numbers.at(-2) > 280 && numbers.at(-2) < 332);
+});

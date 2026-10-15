@@ -1,3 +1,5 @@
+import { mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
+
 /**
  * Browser port of business-handoff-color-only.zip / business-handoff/layout.py.
  * Reference SHA-256: 48ba4fcd86527e52c1fa0a483b2fd13ecb65345164777e99f4dd90ee871a070e
@@ -58,25 +60,35 @@ function inside(point, box) {
   );
 }
 
-export function preparePackedMindmap(doc, measure, { markers = true } = {}) {
+export function preparePackedMindmap(
+  doc,
+  measure,
+  { markers = true, showLabels = true } = {},
+) {
   const records = [];
   const visit = (node, depth, path, branch) => {
     const key = (node.__sourcePath || path).join(".");
     const fontSize =
       depth === 0 ? 48 : depth === 1 ? 42 : depth === 2 ? 34 : 27;
+    const compact = !showLabels && depth > 0;
     const limit = fontSize < 34 ? 500 : 620;
     const lines = [];
-    let current = "";
-    for (const char of String(node.zh || "")) {
-      if (current && measure(current + char, fontSize) > limit) {
-        lines.push(current);
-        current = "";
+    if (!compact) {
+      let current = "";
+      for (const char of String(node.zh || "")) {
+        if (current && measure(current + char, fontSize) > limit) {
+          lines.push(current);
+          current = "";
+        }
+        current += char;
       }
-      current += char;
+      if (current || !lines.length) lines.push(current);
     }
-    if (current || !lines.length) lines.push(current);
-    const textWidth = Math.max(...lines.map((line) => measure(line, fontSize)));
-    const extra = markers ? (depth === 0 ? 40 : 104) : 0;
+    const textWidth = compact
+      ? 0
+      : Math.max(...lines.map((line) => measure(line, fontSize)));
+    const extra = compact ? 0 : markers ? (depth === 0 ? 40 : 104) : 0;
+    const hasChildren = node.__hasChildren ?? (node.children || []).length > 0;
     const record = {
       key,
       node,
@@ -84,11 +96,14 @@ export function preparePackedMindmap(doc, measure, { markers = true } = {}) {
       branch,
       children: [],
       spec: {
+        compact,
         lines,
         fontSize,
         textWidth,
-        w: textWidth + 24 + extra,
-        h: Math.max(markers ? 58 : 0, lines.length * (fontSize + 9) + 10),
+        w: compact ? (hasChildren ? 112 : 64) : textWidth + 24 + extra,
+        h: compact
+          ? 64
+          : Math.max(markers ? 58 : 0, lines.length * (fontSize + 9) + 10),
         extra,
       },
     };
@@ -194,8 +209,8 @@ export function layoutPackedMindmap(input) {
         if (typeof child !== "string") {
           const rows = leafRows(child.leaves),
             near = Math.max(...rows.map(([inner]) => spec(inner).w));
-          const nearX = this.outer(id)[0] + side * 60,
-            farX = nearX + side * (near + 55);
+          const nearX = this.outer(id)[0] + side * (spec(id).compact ? 28 : 60),
+            farX = nearX + side * (near + (spec(id).compact ? 24 : 55));
           let rowCursor = cursor + NODE_PAD / 2;
           for (const [inner, outer] of rows) {
             const rowH = Math.max(
@@ -213,7 +228,12 @@ export function layoutPackedMindmap(input) {
           }
           cursor += gridHeight(child.leaves) + SIBLING_GAP;
         } else {
-          this.subtree(child, this.outer(id)[0] + side * 60, cursor, side);
+          this.subtree(
+            child,
+            this.outer(id)[0] + side * (spec(id).compact ? 28 : 60),
+            cursor,
+            side,
+          );
           this.edges.push([id, child]);
           cursor += needed(child) + SIBLING_GAP;
         }
@@ -234,7 +254,7 @@ export function layoutPackedMindmap(input) {
     let collisions = 0;
     // The reference has text only. Keep the added mastery/collapse controls
     // from colliding with a chapter when its parent domain is unusually wide.
-    if (spec(domain).extra > 0) {
+    if (spec(domain).extra > 0 || spec(domain).compact) {
       const domainBox = trial.items.get(domain);
       for (const [id, box] of trial.items)
         if (
@@ -480,11 +500,25 @@ export function layoutPackedMindmap(input) {
       candidates[0];
     return `M ${from.join(" ")} C ${p1.join(" ")} ${p2.join(" ")} ${to.join(" ")}`;
   }
+  function connector(id, outward) {
+    const box = layout.items.get(id),
+      record = byKey.get(id);
+    if (!record.spec.compact)
+      return outward ? layout.outer(id) : layout.inner(id);
+    const marker = mindmapMarkerPositions({
+      ...record,
+      ...box,
+      compact: true,
+      width: record.spec.w,
+      height: record.spec.h,
+    });
+    return [box.left + marker.badgeX, box.top + marker.middleY];
+  }
   function edgePath(parent, child) {
     const inner = layout.gridFar.get(parent + "/" + child);
     if (inner) {
-      const from = layout.outer(inner),
-        to = layout.inner(child),
+      const from = connector(inner, true),
+        to = connector(child, false),
         dx = to[0] - from[0],
         bow = Math.min(42, Math.abs(dx) * 0.14),
         box = layout.items.get(parent),
@@ -496,16 +530,20 @@ export function layoutPackedMindmap(input) {
     if (parent === rootKey)
       return smoothCurve(
         [b.side === -1 ? a.left : a.right, a.bottom],
-        [b.side === -1 ? b.right : b.left, b.bottom],
+        spec(child).compact
+          ? connector(child, false)
+          : [b.side === -1 ? b.right : b.left, b.bottom],
         [parent, child],
       );
     if (domains.includes(parent))
       return smoothCurve(
-        [b.right < a.left ? a.left : a.right, a.bottom],
-        layout.inner(child),
+        spec(parent).compact
+          ? connector(parent, true)
+          : [b.right < a.left ? a.left : a.right, a.bottom],
+        connector(child, false),
         [parent, child],
       );
-    return smoothCurve(layout.outer(parent), layout.inner(child), [
+    return smoothCurve(connector(parent, true), connector(child, false), [
       parent,
       child,
     ]);
@@ -513,6 +551,7 @@ export function layoutPackedMindmap(input) {
   const nodes = [...layout.items].map(([key, box]) => ({
     ...byKey.get(key),
     ...box,
+    compact: spec(key).compact || false,
     width: spec(key).w,
     height: spec(key).h,
     fontSize: spec(key).fontSize,
