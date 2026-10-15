@@ -13,6 +13,10 @@ import {
   masteryScore,
   masteryVisual,
 } from "@/lib/kg/mindmapMasteryBinding.mjs";
+import {
+  masteryLearningPath,
+  visibleLearningPath,
+} from "@/lib/kg/masteryLearningPath.mjs";
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
 import styles from "./StudentMasteryMindmap.module.css";
@@ -65,9 +69,7 @@ export function StudentMasteryMindmap({
   onClearSelect,
   message,
   scope = "personal",
-  learnerCount,
   compact = false,
-  onRefresh,
 }: {
   doc: MindmapDoc;
   mastery: Readonly<Record<string, number>>;
@@ -77,12 +79,10 @@ export function StudentMasteryMindmap({
   onClearSelect?: () => void;
   message?: string;
   scope?: "personal" | "class_average";
-  learnerCount?: number;
   compact?: boolean;
-  onRefresh?: () => void;
 }) {
   const [percent, setPercent] = useState(100);
-  const [expandDepth, setExpandDepth] = useState(2);
+  const expandDepth = 2;
   const [openPaths, setOpenPaths] = useState<Record<string, boolean>>({});
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -120,11 +120,11 @@ export function StudentMasteryMindmap({
     bounds: { x: -500, y: -300, width: 1000, height: 600 },
   };
 
-  const counts = filtered.stats.totalByStatus;
-  const setDepth = (depth: number) => {
-    setExpandDepth(depth);
-    setOpenPaths({});
-  };
+  const learningSequence = useMemo(
+    () => (scope === "personal" ? masteryLearningPath(doc, mastery) : []),
+    [doc, mastery, scope],
+  );
+  const learningEdges = visibleLearningPath(learningSequence, layout.nodes);
   const toggleNode = (node: ViewNode) => {
     if (!node.__hasChildren) return;
     const key = node.__sourcePath?.join(".") || "";
@@ -209,53 +209,7 @@ export function StudentMasteryMindmap({
       aria-busy={!packed.layout}
     >
       <div className={styles.toolbar}>
-        <span className={styles.counts}>
-          显示 {layout.nodes.length} / {filtered.stats.totalNodes} 个节点
-        </span>
-        <div className={styles.summary} role="status" aria-label="掌握情况统计">
-          <span>
-            {scope === "class_average"
-              ? `全班平均 · ${learnerCount ?? 0} 名学生`
-              : "我的掌握情况"}
-          </span>
-          <span>已掌握 {counts.mastered}</span>
-          <span>学习中 {counts.learning}</span>
-          <span>未学习 {counts.unlearned}</span>
-          <span>暂无记录 {counts.unrecorded}</span>
-        </div>
         <div className={styles.controls}>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() =>
-              setDepth(Math.min(doc.max_depth + 1, expandDepth + 1))
-            }
-          >
-            展开一层
-          </button>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() => setDepth(Math.max(0, expandDepth - 1))}
-          >
-            收起一层
-          </button>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() => setDepth(doc.max_depth + 1)}
-          >
-            全部展开
-          </button>
-          {onRefresh ? (
-            <button
-              type="button"
-              className={styles.controlButton}
-              onClick={onRefresh}
-            >
-              刷新分数
-            </button>
-          ) : null}
           <label
             className={styles.controlLabel}
             htmlFor="mindmap-visible-percent"
@@ -288,30 +242,6 @@ export function StudentMasteryMindmap({
             style={{ width: 62 }}
           />
           <span className={styles.percentValue}>%</span>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() => setZoom((value) => Math.min(12, value * 1.25))}
-          >
-            ＋
-          </button>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() => setZoom((value) => Math.max(0.5, value / 1.25))}
-          >
-            －
-          </button>
-          <button
-            type="button"
-            className={styles.controlButton}
-            onClick={() => {
-              setZoom(1);
-              setPan({ x: 0, y: 0 });
-            }}
-          >
-            适合窗口
-          </button>
         </div>
       </div>
       {!packed.layout ? (
@@ -320,6 +250,11 @@ export function StudentMasteryMindmap({
         </p>
       ) : null}
       <div className={styles.canvas}>
+        {message ? (
+          <p className={styles.notice} role="status">
+            {message}
+          </p>
+        ) : null}
         <svg
           className={`${styles.viewport} ${dragging ? styles.dragging : ""}`}
           viewBox={`${fitted.x} ${fitted.y} ${fitted.width} ${fitted.height}`}
@@ -335,6 +270,19 @@ export function StudentMasteryMindmap({
               onClearSelect?.();
           }}
         >
+          <defs>
+            <marker
+              id="mastery-learning-arrow"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6045cc" />
+            </marker>
+          </defs>
           {layout.edges.map((edge) => {
             const domain = layout.domains[edge.branch];
             return (
@@ -345,6 +293,18 @@ export function StudentMasteryMindmap({
               />
             );
           })}
+          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 2.5 分">
+            {learningEdges.map((edge) => (
+              <path
+                key={`${edge.from}:${edge.to}`}
+                data-learning-from={edge.from}
+                data-learning-to={edge.to}
+                d={edge.path}
+                className={styles.learningEdge}
+                markerEnd="url(#mastery-learning-arrow)"
+              />
+            ))}
+          </g>
           {layout.nodes.map((placed, index) => {
             const node = placed.node as ViewNode;
             const score = masteryScore(node, mastery);
@@ -365,7 +325,7 @@ export function StudentMasteryMindmap({
             const start =
               placed.side === -1 && placed.depth > 0 ? placed.extra + 12 : 12;
             const end = start + placed.textWidth;
-            const badgeX = placed.side === -1 ? start - 31 : end + 31;
+            const badgeX = placed.side === -1 ? start - 34 : end + 34;
             const toggleX =
               placed.depth === 0
                 ? end + 24
@@ -374,7 +334,7 @@ export function StudentMasteryMindmap({
                   : end + 80;
             const middleY = placed.height / 2;
             const marker = score == null ? "?" : score.toFixed(1);
-            const ringRadius = visual.radius + 4;
+            const ringRadius = visual.radius + 3;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -434,6 +394,15 @@ export function StudentMasteryMindmap({
                     width={placed.width}
                     height={placed.height}
                   />
+                  {placed.depth > 0 ? (
+                    <rect
+                      className={styles.labelBacking}
+                      x={start - 4}
+                      y={0}
+                      width={placed.textWidth + 8}
+                      height={placed.height - 3}
+                    />
+                  ) : null}
                   {placed.lines.map((line, lineIndex) => (
                     <text
                       key={lineIndex}
@@ -467,7 +436,7 @@ export function StudentMasteryMindmap({
                       <text
                         className={styles.masteryText}
                         style={{
-                          fontSize: `${Math.max(11, visual.radius * 0.8)}px`,
+                          fontSize: "20px",
                         }}
                         textAnchor="middle"
                         dominantBaseline="middle"
@@ -507,23 +476,6 @@ export function StudentMasteryMindmap({
             );
           })}
         </svg>
-      </div>
-      <div className={styles.legend}>
-        <span className={styles.legendItem}>
-          掌握分数 0–5：红色薄弱 → 绿色掌握，分数越高圆点越小；灰色 ? 为暂无记录
-        </span>
-        <span className={styles.legendItem}>
-          双击节点或点 ＋/− 展开、折叠下层
-        </span>
-        {scope === "class_average" ? (
-          <span className={styles.legendItem}>
-            按全班在读学生平均；未记录学生按 0 计
-          </span>
-        ) : null}
-        <span className={styles.legendItem}>
-          各主分支按比例显示；分支内优先保留学习中的薄弱节点
-        </span>
-        {message ? <span className={styles.caption}>{message}</span> : null}
       </div>
     </div>
   );

@@ -1172,6 +1172,7 @@ export function MindmapPage() {
   return (
     <ResizableShell
       storagePrefix="shell-mindmap"
+      detailOverlay={compactMastery}
       detailFixedRightPx={detailCollapsed ? 32 : undefined}
       detailMinRightPx={220}
       detailInitialRightPx={340}
@@ -1392,9 +1393,7 @@ export function MindmapPage() {
                 onClearSelect={() => selectMindmapNode(null)}
                 message={masteryMessage}
                 scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")}
-                learnerCount={studentMastery.learnerCount}
                 compact={compactMastery}
-                onRefresh={() => setMasteryRefresh((value) => value + 1)}
               /> : <MindmapTree
                 doc={doc}
                 resetKey={mapKey}
@@ -1420,7 +1419,7 @@ export function MindmapPage() {
           )}
         </main>
       }
-      detail={compactMastery && detailCollapsed ? undefined :
+      detail={compactMastery && (detailCollapsed || !selected) ? undefined :
         detailCollapsed ? (
           <aside className={kg.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -1438,6 +1437,7 @@ export function MindmapPage() {
           <button
             type="button"
             className={kg.kgSideEdgeBtn}
+            style={compactMastery ? { left: 12, top: 24, transform: "none" } : undefined}
             title="收起详情"
             aria-label="收起详情"
             onClick={() => setDetailCollapsed(true)}

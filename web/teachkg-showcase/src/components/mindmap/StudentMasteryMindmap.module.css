@@ -255,31 +255,6 @@
   fill: var(--map-muted);
 }
 
-.legend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 8px 16px 4px;
-  color: var(--map-muted);
-  font-size: 13px;
-}
-
-.legendItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.legendSwatch {
-  width: 10px;
-  height: 10px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--branch-ink);
-}
-
 .caption {
   padding: 6px 16px 12px;
   color: var(--map-muted);
@@ -302,15 +277,107 @@
   }
 }
 
-.summary { display: flex; flex-wrap: wrap; gap: 5px 12px; font-size: 12px; color: var(--map-muted); }
-.collapseButton { cursor: pointer; }
-.collapseButton circle { fill: #fff; stroke: var(--branch-ink); stroke-width: 2; }
-.node .collapseButton text { fill: var(--branch-ink); font-size: 23px; font-weight: 500; }
-.collapseButton:hover circle, .collapseButton:focus-visible circle { fill: #f0eeee; stroke-width: 4; }
-.compact { height: 100%; }
-.compact .toolbar { padding: 7px 9px; gap: 6px; }
-.compact .controls { margin-left: 0; gap: 5px; }
-.compact .controlButton, .compact .controlSelect { font-size: 12px; min-height: 28px; padding: 3px 7px; }
-.compact .canvas { flex: 1; min-height: 200px; }
-.compact .viewport { height: 100%; min-height: 200px; }
-.compact .legend { font-size: 11px; padding: 4px 8px; }
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  font-size: 12px;
+  color: var(--map-muted);
+}
+.collapseButton {
+  cursor: pointer;
+}
+.collapseButton circle {
+  fill: #fff;
+  stroke: var(--branch-ink);
+  stroke-width: 2;
+}
+.node .collapseButton text {
+  fill: var(--branch-ink);
+  font-size: 23px;
+  font-weight: 500;
+}
+.collapseButton:hover circle,
+.collapseButton:focus-visible circle {
+  fill: #f0eeee;
+  stroke-width: 4;
+}
+.compact {
+  height: 100%;
+}
+.compact .toolbar {
+  padding: 7px 9px;
+  gap: 6px;
+}
+.compact .controls {
+  margin-left: 0;
+  gap: 5px;
+}
+.compact .controlButton,
+.compact .controlSelect {
+  font-size: 12px;
+  min-height: 28px;
+  padding: 3px 7px;
+}
+.compact .canvas {
+  flex: 1;
+  min-height: 200px;
+}
+.compact .viewport {
+  height: 100%;
+  min-height: 200px;
+}
+
+.labelBacking {
+  fill: var(--map-bg);
+  pointer-events: none;
+}
+.learningEdge {
+  fill: none;
+  stroke: #6045cc;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.masteryBadge {
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 25%));
+}
+.masteryTrack {
+  stroke: #d2d8e3;
+  stroke-width: 5;
+}
+.masteryArc {
+  stroke-width: 5;
+}
+.node .masteryText {
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: rgb(0 0 0 / 22%);
+  stroke-width: 1;
+}
+.node[data-score="0"] .masteryBadge {
+  stroke: #8b2525;
+}
+.notice {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 8px;
+  z-index: 1;
+  margin: 0;
+  padding: 6px;
+  font-size: 12px;
+  color: #833;
+  background: #fff5ee;
+}
+.compact .toolbar {
+  flex: none;
+  padding: 4px 9px;
+}
+.controls {
+  margin-left: 0;
+}

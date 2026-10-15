@@ -38,7 +38,7 @@ export function masteryVisual(score) {
   const value = Math.max(0, Math.min(5, score));
   const t = value / 5;
   return {
-    radius: 24 - value * 2.8,
+    radius: 25 - value * 1.2,
     color: `rgb(${Math.round(180 - t * 90)}, ${Math.round(90 + t * 70)}, ${Math.round(80 + t * 40)})`,
     status: value === 0 ? "unlearned" : value >= 4 ? "mastered" : "learning",
     label: `${value === 0 ? "未学习" : value >= 4 ? "已掌握" : "学习中"} · ${value.toFixed(2)} 分`,

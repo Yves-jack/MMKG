@@ -8,6 +8,8 @@ type Props = {
   main: ReactNode;
   /** 有 detail 时为三栏或两栏（主区 | 详情） */
   detail?: ReactNode;
+  /** Float details over a full-width canvas in compact embeds. */
+  detailOverlay?: boolean;
   /** localStorage 前缀，如 shell-pipeline */
   storagePrefix: string;
   /** 右侧详情栏初始宽度（px） */
@@ -29,6 +31,7 @@ export function ResizableShell({
   nav,
   main,
   detail,
+  detailOverlay = false,
   storagePrefix,
   detailInitialRightPx = 340,
   detailMinRightPx = 220,
@@ -43,6 +46,13 @@ export function ResizableShell({
   const leftFixed = navFixedLeftPx;
   const leftInitial = navFixedLeftPx ?? navInitialLeftPx;
   const leftMin = navFixedLeftPx ?? 160;
+
+  if (detailOverlay && !nav) {
+    return <div className={`${shell.shell} ${shell.shellSolo}`} style={{ position: "relative" }}>
+      {main}
+      {detail ? <div style={{ position: "absolute", right: 8, top: 44, bottom: 8, width: "min(340px, 85%)", zIndex: 10, background: "#fff", boxShadow: "0 8px 28px #0003", overflow: "auto" }}>{detail}</div> : null}
+    </div>;
+  }
 
   if (!nav && !detail) {
     return <div className={`${rootClass} ${shell.shellSolo}`}>{main}</div>;
