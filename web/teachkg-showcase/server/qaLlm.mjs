@@ -92,6 +92,8 @@ const SYSTEM = `你是离散数学 / 数理逻辑课程的课堂助教，回答�
 export async function callLlm(env, messages, opts = {}) {
   const apiKey =
     env.LLM_API_KEY ||
+    env.SJTU_LLM_API_KEY ||
+    env.MMKG_LLM_API_KEY ||
     env.OPENAI_API_KEY ||
     env.DASHSCOPE_API_KEY ||
     env.VITE_LLM_API_KEY ||
@@ -104,6 +106,7 @@ export async function callLlm(env, messages, opts = {}) {
 
   const base = String(
     env.LLM_BASE_URL ||
+      env.SJTU_LLM_BASE_URL ||
       env.EXERCISE_LLM_BASE_URL ||
       env.OPENAI_BASE_URL ||
       env.DASHSCOPE_BASE_URL ||
@@ -112,6 +115,7 @@ export async function callLlm(env, messages, opts = {}) {
   ).replace(/\/$/, "");
   const model =
     env.LLM_MODEL ||
+    env.SJTU_LLM_MODEL ||
     env.LLM_DEFAULT_MODEL ||
     env.EXERCISE_LLM_MODEL ||
     env.OPENAI_MODEL ||

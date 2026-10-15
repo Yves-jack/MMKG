@@ -10,8 +10,11 @@
     "dev": "vite",
     "prebuild": "node scripts/sync-data.mjs",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/ensureNoteMatchInDist.mjs",
     "preview": "vite preview",
-    "test:integration": "node --test server/knowledgeResources.test.mjs"
+    "ensure-note-match": "node scripts/ensureNoteMatchInDist.mjs",
+    "test:integration": "node --test server/knowledgeResources.test.mjs",
+    "test": "node --test server/*.test.mjs src/lib/kg/*.test.mjs"
   },
   "dependencies": {
     "katex": "^0.18.1",

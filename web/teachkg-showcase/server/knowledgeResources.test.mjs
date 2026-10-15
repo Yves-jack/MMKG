@@ -178,7 +178,7 @@ test("keeps MMKG cue start_sec when VideoSearch returns a coarser window", async
   assert.equal(result.resources[0].metadata.window_start_sec, 0);
 });
 
-test("omits linked videos instead of inventing display content when VideoSearch is unavailable", async () => {
+test("keeps known MMKG video links without inventing content when VideoSearch is unavailable", async () => {
   const result = await loadKnowledgeResources(
     {
       courseId: "92311",
@@ -200,7 +200,13 @@ test("omits linked videos instead of inventing display content when VideoSearch 
     },
   );
 
-  assert.deepEqual(result.resources, []);
+  assert.equal(result.resources.length, 1);
+  const video = result.resources[0];
+  assert.equal(video.resource_type, "video");
+  assert.equal(video.metadata.video_id, "video-1");
+  assert.equal(video.start_sec, 10);
+  assert.equal(video.content, "");
+  assert.equal(video.metadata.window_start_sec, null);
   assert.equal(result.warnings.length, 1);
   assert.match(result.warnings[0], /VideoSearch segment metadata HTTP 503/);
 });

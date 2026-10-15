@@ -144,6 +144,111 @@ export function videoSegmentKey(resource: LinkedKnowledgeResource): string {
 
 type ResourceKind = "video" | "exercise" | "animation";
 
+/** 右栏一键跳转：练习 / 视频（及可选动画；图谱实体侧默认不展动画 chip） */
+export function LinkedResourceJumpBar({
+  loading,
+  resources,
+  selectedNodeId,
+  selectedEdgeId,
+  courseId,
+  resourceCourseId,
+  onOpen,
+  showAnimation = false,
+  className,
+}: {
+  loading?: boolean;
+  resources: LinkedKnowledgeResource[];
+  selectedNodeId?: string | null;
+  selectedEdgeId?: string | null;
+  courseId: string;
+  resourceCourseId?: string;
+  onOpen: (resource: LinkedKnowledgeResource) => void;
+  showAnimation?: boolean;
+  className?: string;
+}) {
+  const nodeId = selectedNodeId ? String(selectedNodeId) : "";
+  const course = resourceCourseId || courseId;
+  const hasExercise = resources.some((r) => r.resource_type === "exercise");
+  const hasVideo = resources.some((r) => r.resource_type === "video");
+  const hasAnimation = resources.some((r) => r.resource_type === "animation");
+
+  /** 视频仍允许按节点 fallback；练习必须题库已匹配到题，否则禁止跳转 */
+  const openVideoOrFallback = () => {
+    const row = resources.find((r) => r.resource_type === "video");
+    if (row) {
+      onOpen(row);
+      return;
+    }
+    if (!nodeId) return;
+    onOpen({
+      resource_type: "video",
+      resource_id: "kp-fallback",
+      course_id: course,
+      title: "相关视频",
+      metadata: {
+        knowledge_point_id: nodeId,
+        seed_knowledge_point_id: nodeId,
+        kp: nodeId,
+        course_id: course,
+      },
+    });
+  };
+
+  return (
+    <div className={`${styles.sideJumpBar} ${className || ""}`}>
+      <button
+        type="button"
+        className={styles.kgChip}
+        disabled={!!loading || !hasExercise}
+        title={
+          loading
+            ? "正在匹配练习…"
+            : !hasExercise
+              ? "题库暂无对应练习"
+              : selectedEdgeId
+                ? "跳转关系相关练习"
+                : "跳转相关练习"
+        }
+        onClick={() => {
+          const row = resources.find((r) => r.resource_type === "exercise");
+          if (row) onOpen(row);
+        }}
+      >
+        {loading ? "匹配练习…" : hasExercise ? "跳转相关练习" : "暂无对应练习"}
+      </button>
+      <button
+        type="button"
+        className={styles.kgChip}
+        disabled={!!loading || (!hasVideo && !nodeId)}
+        title={
+          loading
+            ? "正在匹配视频…"
+            : selectedEdgeId
+              ? "跳转关系共现视频"
+              : "跳转相关视频"
+        }
+        onClick={openVideoOrFallback}
+      >
+        {loading ? "匹配视频…" : "跳转相关视频"}
+      </button>
+      {showAnimation ? (
+        <button
+          type="button"
+          className={styles.kgChip}
+          disabled={!!loading || !hasAnimation}
+          title="跳转相关动画"
+          onClick={() => {
+            const row = resources.find((r) => r.resource_type === "animation");
+            if (row) onOpen(row);
+          }}
+        >
+          {loading ? "匹配动画…" : "跳转相关动画"}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 export function LinkedResourceCardList({
   resources,
   kind,

@@ -18,17 +18,42 @@ services:
           - mmkg-backend
 
   mmkg-frontend:
+    # 禁止回落到 base 的 mmkg-frontend:latest（缺笔记/检索等叠层）
+    image: mmkg-frontend:pr3-20261015
+    # 显式 preview，避免错误 commit 把 CMD 改成 build/tsc 导致重启循环
+    command: ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]
     environment:
+      # 空字符串会盖掉 base compose 默认值，导致动画/练习资源拉不到
+      AI_TEACHING_API_URL: ${AI_TEACHING_API_URL:-http://staging-ai-teaching-backend-main:5001}
       VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
+      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
+      SJTU_LLM_API_KEY: ${SJTU_LLM_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://models.sjtu.edu.cn/api}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-chat}
+      LLM_DEFAULT_MODEL: ${MMKG_LLM_MODEL:-deepseek-chat}
     container_name: staging-mmkg-frontend
+    volumes:
+      # preview /repo-data 读这里；课堂视频在 data/raw/<course>/video/class
+      - ./data:/workspace/data
+      # 课程号目录片源（部分元数据仍指向此树）
+      - /home/canvas/videos:/videos:ro
+      # 源码/中间件跟主机 MMKG-staging，避免 recreate 丢掉 docker-cp 叠层
+      - ./web/teachkg-showcase/src:/workspace/web/teachkg-showcase/src
+      - ./web/teachkg-showcase/server:/workspace/web/teachkg-showcase/server
+      - ./web/teachkg-showcase/vite.config.ts:/workspace/web/teachkg-showcase/vite.config.ts
+      - ./web/teachkg-showcase/public/data:/workspace/web/teachkg-showcase/public/data
     build:
       args:
         VITE_BASE_PATH: /staging/kg/
         VITE_MMKG_API_BASE: /staging/kg-api
     networks:
       runtime:
+        # 兼容旧 nginx；正式入口已改为容器名 staging-mmkg-frontend
         aliases:
           - mmkg-frontend
+      # 加入 AI-Teaching 网，容器名即可被 AT nginx 解析，不依赖 alias
+      ai_teaching: {}
 
 volumes:
   mmkg-data:
@@ -37,3 +62,6 @@ volumes:
 networks:
   runtime:
     name: staging-runtime
+  ai_teaching:
+    external: true
+    name: ai-teaching-staging_staging-ai-teaching-net

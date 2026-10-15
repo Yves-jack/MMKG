@@ -1,0 +1,36 @@
+name: showcase-ci
+
+on:
+  pull_request:
+    paths:
+      - "web/teachkg-showcase/**"
+      - "deploy/Dockerfile.frontend"
+      - ".github/workflows/showcase-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "web/teachkg-showcase/**"
+      - "deploy/Dockerfile.frontend"
+      - ".github/workflows/showcase-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/teachkg-showcase
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/teachkg-showcase/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      # Match the Docker build without regenerating deployment course data.
+      - run: npx tsc -b
+      - run: npx vite build

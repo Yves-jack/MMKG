@@ -38,11 +38,9 @@
   margin: 12px 16px 0;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--bg-elev);
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px);
-  background-size: 28px 28px;
+  /* 与导图 --mm-bg 一致：纯色底，无格子 */
+  background: #fafafa;
+  background-image: none;
   overflow: hidden;
 }
 
@@ -569,7 +567,7 @@
 .assetList {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .assetKindBar {
@@ -611,14 +609,17 @@
   flex: 0 0 auto;
 }
 
+/* 对齐资源库 AssetsPage .card / .kindBadge / .cardSummary / .cardLatex / .cardConcepts */
 .assetCard {
-  padding: 7px 8px;
+  text-align: left;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+  background: rgba(22, 27, 34, 0.65);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  padding: 9px 10px;
+  color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .assetHeadRow {
@@ -629,19 +630,17 @@
 }
 
 .assetHead {
-  flex: 1;
-  min-width: 0;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: baseline;
+  gap: 8px;
   flex-wrap: wrap;
+  min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
   color: inherit;
   text-align: left;
-  cursor: pointer;
   font: inherit;
 }
 
@@ -655,9 +654,10 @@
   letter-spacing: 0.04em;
   padding: 1px 7px;
   border-radius: 999px;
-  background: rgba(176, 122, 161, 0.22);
-  color: #f0d6e6;
-  border: 1px solid rgba(176, 122, 161, 0.4);
+  background: rgba(176, 122, 161, 0.18);
+  color: #d8b4c8;
+  border: 1px solid rgba(176, 122, 161, 0.35);
+  flex: 0 0 auto;
 }
 
 .assetSource {
@@ -672,7 +672,7 @@
 }
 
 .assetTitle {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #f3f6fb;
   min-width: 0;
@@ -704,9 +704,53 @@
 }
 
 .assetSummary {
-  font-size: 12px;
-  line-height: 1.45;
-  color: #c4cdd8;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted, #a8b3c2);
+}
+
+.assetLatex {
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: #fde68a;
+  overflow-x: auto;
+}
+
+/* 方法卡步骤框：色调跟顶部「方法」图例 #fb7185 */
+.assetStepsBox {
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--hl, #fb7185) 45%, transparent);
+  background: color-mix(in srgb, var(--hl, #fb7185) 12%, transparent);
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.assetStepsToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--hl, #fb7185);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.assetStepsToggle:hover {
+  opacity: 0.9;
 }
 
 .assetEvidence {
@@ -785,25 +829,31 @@
 
 .assetSteps {
   margin: 0;
-  padding-left: 18px;
+  padding: 4px 0 2px 18px;
+  border-top: 1px dashed color-mix(in srgb, var(--hl, #fb7185) 35%, transparent);
   font-size: 12px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: #e8edf4;
+}
+
+.assetSteps li + li {
+  margin-top: 4px;
 }
 
 .assetConcepts {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 4px 6px;
 }
 
 .assetConceptChip {
-  font-size: 10px;
+  font-style: normal;
+  font-size: 10.5px;
   padding: 1px 6px;
   border-radius: 999px;
-  background: rgba(62, 207, 142, 0.1);
-  color: #86efac;
-  border: 1px solid rgba(62, 207, 142, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted, #9aa8b8);
 }
 
 .assetMeta {
@@ -1234,8 +1284,13 @@
   color: #111827;
 }
 
+:global(html[data-embed="ai-teaching"]) .assetCard {
+  background: #fff;
+  border-color: #e7e0d4;
+}
+
 :global(html[data-embed="ai-teaching"]) .assetKind {
-  /* 颜色由 kind 内联 --hl 控制，与顶部图例点一致 */
+  /* 颜色由 kind 内联 --hl 控制，与顶部筛选点一致 */
   color: var(--hl, #1c1917);
   background: color-mix(in srgb, var(--hl, #1c1917) 14%, #fff);
   border-color: color-mix(in srgb, var(--hl, #1c1917) 45%, #c4b8a8);
@@ -1245,10 +1300,39 @@
 :global(html[data-embed="ai-teaching"]) .assetFieldLabel,
 :global(html[data-embed="ai-teaching"]) .assetStatement,
 :global(html[data-embed="ai-teaching"]) .assetSteps,
-:global(html[data-embed="ai-teaching"]) .assetSummary,
 :global(html[data-embed="ai-teaching"]) .assetEn,
 :global(html[data-embed="ai-teaching"]) .assetChev {
   color: #111827;
+}
+
+:global(html[data-embed="ai-teaching"]) .assetSummary {
+  color: #57534e;
+}
+
+:global(html[data-embed="ai-teaching"]) .assetLatex {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #92400e;
+}
+
+:global(html[data-embed="ai-teaching"]) .assetStepsBox {
+  background: color-mix(in srgb, var(--hl, #fb7185) 10%, #fff);
+  border-color: color-mix(in srgb, var(--hl, #fb7185) 40%, #c4b8a8);
+}
+
+:global(html[data-embed="ai-teaching"]) .assetStepsToggle {
+  color: var(--hl, #e11d48);
+}
+
+:global(html[data-embed="ai-teaching"]) .assetSteps {
+  color: #1c1917;
+  border-top-color: color-mix(in srgb, var(--hl, #fb7185) 30%, #c4b8a8);
+}
+
+:global(html[data-embed="ai-teaching"]) .assetConceptChip {
+  background: #f5f0e8;
+  border-color: #e7e0d4;
+  color: #57534e;
 }
 
 :global(html[data-embed="ai-teaching"]) .assetHead:hover .assetTitle {
