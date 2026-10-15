@@ -335,9 +335,8 @@
 .learningEdge {
   fill: none;
   stroke: #6045cc;
-  stroke-width: 2;
-  stroke-dasharray: 7 5;
-  vector-effect: non-scaling-stroke;
+  stroke-width: 4;
+  stroke-dasharray: 12 8;
   opacity: 0.85;
   pointer-events: none;
 }
