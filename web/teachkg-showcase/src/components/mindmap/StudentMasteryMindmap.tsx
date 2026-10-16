@@ -339,7 +339,7 @@ export function StudentMasteryMindmap({
             <span>显示节点文字</span>
           </label>
           {scope === "personal" ? (
-            <span className={styles.learningLegend} title="沿紫色箭头，按章节顺序补强掌握度低于 2.5 分的知识点">
+            <span className={styles.learningLegend} title="沿紫色箭头，按章节顺序补强掌握度低于 50% 的知识点">
               <span className={styles.learningLegendArrow} aria-hidden="true">⟶</span>
               学习路径
             </span>
@@ -398,7 +398,7 @@ export function StudentMasteryMindmap({
               />
             );
           })}
-          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 2.5 分">
+          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 50%">
             {learningEdges.map((edge) => (
               <g key={`${edge.from}:${edge.to}`}>
                 <path d={edge.path} className={styles.learningEdgeHalo} />
