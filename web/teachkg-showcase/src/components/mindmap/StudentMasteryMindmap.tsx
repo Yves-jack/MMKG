@@ -33,7 +33,7 @@ type ViewNode = MindmapTreeNode & {
 };
 
 type Bounds = { x: number; y: number; width: number; height: number };
-const FREE_VISUAL_SCALE = 3;
+const FREE_VISUAL_SCALE = 1.5;
 const FONT_FAMILY =
   '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 let measurementContext: CanvasRenderingContext2D | null = null;
@@ -431,7 +431,7 @@ export function StudentMasteryMindmap({
                     : "";
             const { start, badgeX, toggleX, middleY } =
               mindmapMarkerPositions(placed);
-            const marker = score == null ? "?" : score.toFixed(1);
+            const marker = score == null ? "?" : `${Math.round(score * 20)}%`;
             const badgeRadius = visual.radius * (placed.free ? freeMasteryGeometry.badgeScale : 1);
             const ringRadius = badgeRadius + 3;
             const labelScale = placed.free && placed.depth > 0 ? FREE_VISUAL_SCALE : 1;
@@ -550,7 +550,7 @@ export function StudentMasteryMindmap({
                       <text
                         className={styles.masteryText}
                         style={{
-                          fontSize: placed.free ? "24px" : "20px",
+                          fontSize: placed.free ? "19px" : "14px",
                         }}
                         textAnchor="middle"
                         dominantBaseline="middle"
