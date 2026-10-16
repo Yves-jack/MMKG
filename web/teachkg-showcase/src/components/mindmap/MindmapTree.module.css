@@ -981,20 +981,3 @@
   background: var(--mm-line, #d4d5d9);
 }
 
-
-/* Only ordinary whole-course roots use silhouette packing. */
-.childCol[data-course-packed="1"] { display: block; flex-shrink: 0; }
-.childCol[data-course-packed="1"] > .childRow {
-  position: absolute;
-  top: var(--course-y);
-  left: var(--course-x);
-  width: max-content;
-}
-.childCol[data-course-packed="1"][data-dir="rtl"] > .childRow {
-  left: auto;
-  right: var(--course-x);
-}
-
-/* Avoid showing old connectors while descendants propagate a new layout. */
-.canvas[data-course-routing="pending"] > .remoteSvg,
-.canvas[data-course-routing="settled"] > .remoteSvg { visibility: hidden; }
