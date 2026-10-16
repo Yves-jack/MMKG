@@ -87,6 +87,7 @@ import {
   type LinkedKnowledgeResource,
 } from "@/lib/integration/knowledgeResources";
 import { knowledgeResourceIdentity, isStructuralMindmapNode } from "@/lib/kg/mindmapResourceIdentity.mjs";
+import { aggregateMindmapResourceQueries } from "@/lib/kg/mindmapResourceAggregation.mjs";
 import { withBase } from "@/lib/withBase";
 import pipe from "@/styles/panels.module.css";
 import assetsNav from "@/pages/AssetsPage.module.css";
@@ -555,33 +556,6 @@ function mindmapDirectAssetQuery(
   };
 }
 
-/**
- * 从叶节点向上逐层汇总。父节点只读取直接子节点已经汇总好的查询，
- * 再加上自身查询；根节点也计算，供整棵树的汇总保持完整。
- */
-function buildMindmapAssetQueryMap(
-  roots: MindmapTreeNode[],
-  directQuery: (node: MindmapTreeNode) => RelatedAssetQuery | null,
-): Map<MindmapTreeNode, RelatedAssetQuery[]> {
-  const byNode = new Map<MindmapTreeNode, RelatedAssetQuery[]>();
-  const visit = (node: MindmapTreeNode): RelatedAssetQuery[] => {
-    const childQueries = (node.children || []).flatMap((child) => visit(child));
-    const own = directQuery(node);
-    const merged = own ? [own, ...childQueries] : childQueries;
-    const seen = new Set<string>();
-    const unique = merged.filter((query) => {
-      const key = `${query.matchMode || "full"}\u0000${query.entityId || ""}\u0000${(query.entityAliases || []).join("\u0001")}`;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-    byNode.set(node, unique);
-    return unique;
-  };
-  for (const root of roots) visit(root);
-  return byNode;
-}
-
 export function MindmapPage() {
   const courseId = useCourseId();
   const [sp, setSp] = useSearchParams();
@@ -869,16 +843,17 @@ export function MindmapPage() {
     return { entityId, aliases };
   }, [selected, assetPolicy, kgEntityId, doc?.id_redirects]);
 
-  const mindmapAssetQueriesByNode = useMemo(() => {
-    const roots = doc?.roots?.length ? doc.roots : doc?.root ? [doc.root] : [];
-    return buildMindmapAssetQueryMap(roots, (node) =>
-      mindmapDirectAssetQuery(node, kgIds, kgByShort, doc?.id_redirects)
-    );
-  }, [doc, kgIds, kgByShort]);
-
-  const selectedAssetQueries = selected
-    ? mindmapAssetQueriesByNode.get(selected) || []
-    : [];
+  // MindmapTree 会为展示文案转换部分节点，不能用原树对象引用查找。
+  // 直接从当前选中子树自底向上汇总：叶节点保持原映射，父节点合并自身和直接子节点的汇总结果。
+  const selectedAssetQueries = useMemo(
+    () =>
+      selected
+        ? aggregateMindmapResourceQueries(selected, (node) =>
+            mindmapDirectAssetQuery(node, kgIds, kgByShort, doc?.id_redirects)
+          )
+        : [],
+    [selected, kgIds, kgByShort, doc?.id_redirects]
+  );
   const selectedIsRoot = Boolean(
     selected &&
       (doc?.roots?.length ? doc.roots : doc?.root ? [doc.root] : []).some(
