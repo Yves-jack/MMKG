@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useLayoutEffect, useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import {
   addChildNode,
   canReorderSibling,
@@ -33,6 +33,7 @@ import { remapSetTheoryChapterLabelsInDoc } from "@/lib/kg/mindmapTypes";
 import { collectSubtreeIds, retargetIdentity, type ConceptLink } from "@/lib/review/conceptIdentity";
 import { withBase } from "@/lib/withBase";
 import styles from "./MindmapTree.module.css";
+import { courseConnectorPath } from "@/lib/kg/compactCourseLayout.mjs";
 import { CourseBranchColumn } from "./CourseBranchColumn";
 
 export type MindmapTreeNode = {
@@ -1014,6 +1015,7 @@ function MapBranch({
       forceOpenPath,
       series: childSeries,
       growDir: colDir as "ltr" | "rtl",
+      compactCourseBranches,
       childSeries,
     };
   };
@@ -1193,7 +1195,7 @@ function MapBranch({
     >
       {showLeft ? (
         <CourseBranchColumn dir="rtl" open={open}
-          compact={splitRoot && compactCourseBranches} onLayout={onLayout}>
+          compact={compactCourseBranches} onLayout={onLayout}>
           {leftKids.map((item, j) =>
             renderChildRow(item.node, item.index, j, leftKids.length, "rtl")
           )}
@@ -1212,7 +1214,7 @@ function MapBranch({
 
       {showRight ? (
         <CourseBranchColumn dir={splitRoot ? "ltr" : growDir} open={open}
-          compact={splitRoot && compactCourseBranches} onLayout={onLayout}>
+          compact={compactCourseBranches} onLayout={onLayout}>
           {splitRoot
             ? rightKids.map((item, j) =>
                 renderChildRow(item.node, item.index, j, rightKids.length, "ltr")
@@ -1414,6 +1416,8 @@ type Seg = {
 
 type TreeEdge = {
   id: string;
+  fromPath: string;
+  toPath: string;
   d: string;
   series: number;
   weight: "trunk" | "major" | "branch" | "twig";
@@ -2035,7 +2039,30 @@ export function MindmapTree({
     return () => ro.disconnect();
   }, [bumpLayout, key]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !compactCourseBranches) return;
+    let first = 0, second = 0;
+    const changed = () => {
+      canvas.dataset.courseRouting = "pending";
+      cancelAnimationFrame(first);
+      cancelAnimationFrame(second);
+      first = requestAnimationFrame(() => {
+        second = requestAnimationFrame(() => {
+          canvas.dataset.courseRouting = "settled";
+          bumpLayout();
+        });
+      });
+    };
+    canvas.addEventListener("course-layout-settled", changed);
+    return () => {
+      canvas.removeEventListener("course-layout-settled", changed);
+      cancelAnimationFrame(first); cancelAnimationFrame(second);
+      delete canvas.dataset.courseRouting;
+    };
+  }, [compactCourseBranches, bumpLayout]);
+
+  useLayoutEffect(() => {
     const root = canvasRef.current;
     if (!root) {
       setSegs([]);
@@ -2177,7 +2204,12 @@ export function MindmapTree({
           }
           nextEdges.push({
             id: `te-${bi}-${ci}-${ri}-${childBubble.getAttribute("data-node-path") || ri}`,
-            d: handoffCubic(parentPt.x, parentPt.y, childPt.x, childPt.y),
+            fromPath: parentBubble.dataset.nodePath || "",
+            toPath: childBubble.dataset.nodePath || "",
+            d: childCol.dataset.coursePacked === "1"
+              ? courseConnectorPath(parentPt, childPt, colDir === "rtl"
+                ? localBox(childCol).right - 4 : localBox(childCol).left + 4)
+              : handoffCubic(parentPt.x, parentPt.y, childPt.x, childPt.y),
             series: Math.max(1, Math.min(6, Number(row.getAttribute("data-series") || 1))),
             weight,
             weak: row.getAttribute("data-weak") === "1",
@@ -2187,6 +2219,7 @@ export function MindmapTree({
     });
     setTreeEdges(nextEdges);
     setNodeUnderlines(nextUnderlines);
+    if (root.dataset.courseRouting === "settled") root.dataset.courseRouting = "ready";
 
     if (!remoteLinks.length) {
       setSegs([]);
@@ -2954,6 +2987,8 @@ export function MindmapTree({
                 return (
                   <path
                     key={e.id}
+                    data-mind-edge-from={e.fromPath}
+                    data-mind-edge-to={e.toPath}
                     d={e.d}
                     className={`${styles.treeEdge} ${weightCls}`}
                     data-series={e.series}

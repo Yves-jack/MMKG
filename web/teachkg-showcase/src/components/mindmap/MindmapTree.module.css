@@ -994,3 +994,7 @@
   left: auto;
   right: var(--course-x);
 }
+
+/* Avoid showing old connectors while descendants propagate a new layout. */
+.canvas[data-course-routing="pending"] > .remoteSvg,
+.canvas[data-course-routing="settled"] > .remoteSvg { visibility: hidden; }

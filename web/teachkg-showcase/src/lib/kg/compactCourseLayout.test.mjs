@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { packCourseBranches } from './compactCourseLayout.mjs';
+import { packCourseBranches, courseConnectorBoxes, courseConnectorPath, courseUnderlineY } from './compactCourseLayout.mjs';
 
 const box = (x, y, width, height) => ({ x, y, width, height });
 const branch = (height, boxes, width = 500) => ({ height, width, boxes,
@@ -14,20 +14,44 @@ function check(branches, result) {
     previous = p.y + b.anchorY;
     assert.ok(p.y >= 0 && p.y + b.height <= result.height);
     assert.ok(p.x >= 0 && p.x <= 480 && p.x + b.width <= result.width);
-    for (const r of b.boxes) {
-      const rect = { ...r, x: r.x + p.x, y: r.y + p.y };
+    const translated = b.boxes.map(r => ({ ...r, x: r.x + p.x, y: r.y + p.y }));
+    if (b.incoming) translated.push({ x: 0, y: p.y + b.incoming.y - 4,
+      width: p.x + b.incoming.x, height: 8 });
+    for (const rect of translated) {
       for (const other of occupied) {
         assert.ok(rect.x >= other.x + other.width + 14 || other.x >= rect.x + rect.width + 14 ||
           rect.y >= other.y + other.height + 14 || other.y >= rect.y + rect.height + 14);
       }
     }
-    occupied.push(...b.boxes.map(r => ({ ...r, x: r.x + p.x, y: r.y + p.y })));
+    occupied.push(...translated);
   });
 }
 test('empty and single branch keep natural dimensions', () => {
   assert.deepEqual(packCourseBranches([]), { width: 0, height: 0, positions: [] });
   assert.deepEqual(packCourseBranches([branch(40, [box(22, 0, 150, 40)], 172)]),
     { width: 172, height: 40, positions: [{ x: 0, y: 0 }] });
+});
+
+test('long incoming connectors and internal lanes cannot cross sibling subtree silhouettes', () => {
+  const make = height => ({ ...branch(height,
+    [box(22, height / 2 - 20, 150, 40), box(220, 0, 140, height),
+      ...courseConnectorBoxes({ x: 172, y: height / 2 + 18 }, { x: 220, y: 20 }, 200)], 360),
+    incoming: { x: 22, y: height / 2 + 18 } });
+  for (const heights of [[500, 60, 60, 500], [80, 420, 40, 180, 500, 60], [60, 60, 500]]) {
+    const branches = heights.map(make);
+    check(branches, packCourseBranches(branches));
+  }
+});
+
+test('connector geometry mirrors on the left and stays in reserved lanes', () => {
+  const parent = { x: 0, y: 10 }, child = { x: 180, y: 90 };
+  const boxes = courseConnectorBoxes(parent, child, 20);
+  assert.equal(boxes.length, 3);
+  assert.equal(boxes[1].x, 16);
+  assert.match(courseConnectorPath(parent, child, 20), /^M0,10 H14 Q20,10/);
+  assert.match(courseConnectorPath(parent, { x: -180, y: 90 }, -20), /^M0,10 H-14 Q-20,10/);
+  assert.equal(courseConnectorPath(parent, { x: 180, y: 10 }, 20), 'M0,10 H20 V10 H180');
+  assert.equal(courseUnderlineY(0, 40, 'chapter'), 38);
 });
 test('unequal branches use longer connectors to reduce total height', () => {
   const make = height => branch(height, [box(22, height / 2 - 20, 150, 40), box(220, 0, 140, height)], 360);

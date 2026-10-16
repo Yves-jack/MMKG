@@ -19,7 +19,7 @@ services:
 
   mmkg-frontend:
     # 禁止回落到 base 的 mmkg-frontend:latest（缺笔记/检索等叠层）
-    image: mmkg-frontend:course-compact-20261016
+    image: mmkg-frontend:course-recursive-20261016
     # 显式 preview，避免错误 commit 把 CMD 改成 build/tsc 导致重启循环
     command: ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]
     environment:
