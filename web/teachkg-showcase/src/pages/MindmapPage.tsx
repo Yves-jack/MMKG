@@ -642,7 +642,8 @@ export function MindmapPage() {
   const isMasteryEmbed = isAiTeachingEmbed && sp.get("mastery_view") === "1" &&
     ["student", "studentenrollment", "ta", "taenrollment", "teacher", "teacherenrollment"].includes(verifiedRole.toLowerCase().trim());
   const compactMastery = isMasteryEmbed && sp.get("compact") === "1";
-  const completedMasteryLecture = isMasteryEmbed && ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim())
+  // All mastery roles share the student page’s taught lecture scope.
+  const completedMasteryLecture = isMasteryEmbed
     ? personalMasteryLectureLimit(courseId) : null;
   const navId = isMasteryEmbed ? "course" : requestedNavId;
   const canEditMindmap = useMemo(
