@@ -1,0 +1,30 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "lecture",
+  "lecture_id": "1",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 2,
+  "decided": 2,
+  "failed": 0,
+  "workers": 6,
+  "decisions": {
+    "集合/set": {
+      "properties": [
+        "笛卡尔积是集合之间的一种基本运算，它从给定集合中取出元素，组成所有可能的有序多元组，从而构成一个新的集合。",
+        "基数是集合的一个基本属性，用于衡量集合中元素的“数量”或“大小”，反映了集合的势。"
+      ],
+      "reason": "两条特性原本互不重复，仅对第一条进行了润色，使其表述更通顺、更符合课堂阅读习惯。",
+      "before_count": 2,
+      "after_count": 2
+    },
+    "离散数学/Discrete Mathematics": {
+      "properties": [
+        "离散数学包含大量定义和定理，内容体系庞大，需要系统记忆与理解。",
+        "离散数学具有较强的抽象性和方法性，强调逻辑推理与问题求解技巧。"
+      ],
+      "reason": "将“定义多”和“定理多”合并为一条，突出内容体系庞大；将“抽象性”和“方法性强”合并为一条，强调学科思维与解题方法。",
+      "before_count": 4,
+      "after_count": 2
+    }
+  }
+}

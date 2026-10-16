@@ -7,12 +7,13 @@ import {
   saveLectureNotesCache,
 } from "@/lib/review/localDb";
 import {
-  attachThemeEntities,
+  attachSectionEntities,
   buildLocalLectureNotes,
+  conceptSections,
   fetchLectureNotes,
-  isThemeNotes,
-  pickThemeForFocus,
-  themeOnlySections,
+  isLectureNotes,
+  peekLectureNotesCache,
+  pickSectionForFocus,
   type LectureNoteSection,
   type LectureNotesDoc,
   type NoteBlock,
@@ -20,21 +21,12 @@ import {
 } from "@/lib/review/reviewNotes";
 import styles from "./LectureStudyNotes.module.css";
 
-const KIND_LABEL: Record<string, string> = {
-  theme: "主题",
-  concept: "主题",
-  structure: "主题",
-  tips: "技巧",
-  checklist: "自测",
-  extra: "拓展",
-};
-
 const BLOCK_FALLBACK_LABEL: Record<NoteBlockType, string> = {
-  hook: "脉络",
+  hook: "说明",
   def: "定义",
-  fact: "要点",
+  fact: "性质",
   example: "例",
-  pitfall: "易错",
+  pitfall: "注",
   cue: "自测",
 };
 
@@ -45,18 +37,33 @@ function sectionMatches(
 ) {
   const id = (focusId || "").trim();
   const f = (focusZh || "").trim();
+  if (id && (sec.entityIds || []).includes(id)) return true;
   if (id && (sec.related || []).includes(id)) return true;
   if (!f) return false;
   if (sec.title === f) return true;
   return (sec.related || []).some((r) => r === f);
 }
 
+function polishOverview(text: string): string {
+  return String(text || "")
+    .replace(/本次课为单课复习[，,]?\s*/g, "本次课")
+    .replace(/本次课\s*聚焦/g, "本次课聚焦")
+    .trim();
+}
+
+/** 去掉「一、」「（一）」等中文序标，避免与「第 N 部分」重复 */
+function stripCnOrdinalPrefix(text: string): string {
+  return String(text || "")
+    .replace(/^[（(]?[一二三四五六七八九十百千零〇]+[)）]?[、.．:：]\s*/u, "")
+    .trim();
+}
+
 function NoteBlocks({ blocks }: { blocks: NoteBlock[] }) {
-  const [openAnswers, setOpenAnswers] = useState<Set<number>>(() => new Set());
-  if (!blocks.length) return null;
+  const visible = blocks.filter((b) => b.type !== "def");
+  if (!visible.length) return null;
   return (
     <div className={styles.blocks}>
-      {blocks.map((b, i) => (
+      {visible.map((b, i) => (
         <div
           key={`${b.type}-${i}`}
           className={styles.block}
@@ -67,31 +74,25 @@ function NoteBlocks({ blocks }: { blocks: NoteBlock[] }) {
           </span>
           <div className={styles.blockText}>
             <LatexText text={b.text} />
-            {b.type === "cue" && b.answer ? (
-              <div className={styles.cueAnswer}>
-                <button
-                  type="button"
-                  className={styles.cueAnswerBtn}
-                  onClick={() =>
-                    setOpenAnswers((prev) => {
-                      const next = new Set(prev);
-                      if (next.has(i)) next.delete(i);
-                      else next.add(i);
-                      return next;
-                    })
-                  }
-                >
-                  {openAnswers.has(i) ? "收起参考答" : "查看参考答"}
-                </button>
-                {openAnswers.has(i) ? (
-                  <p className={styles.cueAnswerBody}>
-                    <LatexText text={b.answer} />
-                  </p>
-                ) : null}
-              </div>
-            ) : null}
           </div>
         </div>
+      ))}
+    </div>
+  );
+}
+
+function PartBody({ body }: { body: string }) {
+  const paras = body
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  if (!paras.length) return null;
+  return (
+    <div className={styles.partBody}>
+      {paras.map((p, i) => (
+        <p key={i}>
+          <LatexText text={p} />
+        </p>
       ))}
     </div>
   );
@@ -104,6 +105,8 @@ type Props = {
   points: AppReviewPoint[];
   focusId?: string | null;
   focusZh?: string | null;
+  /** 为 true 时不打笔记网络接口，只用本地缓存/本地稿，避免与视频抢连接 */
+  deferNetwork?: boolean;
   onCollapse?: () => void;
 };
 
@@ -114,13 +117,13 @@ export function LectureStudyNotes({
   points,
   focusId = null,
   focusZh = null,
-  onCollapse,
+  deferNetwork = false,
 }: Props) {
   const [notes, setNotes] = useState<LectureNotesDoc | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set());
-  const [activeThemeId, setActiveThemeId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [showBackTop, setShowBackTop] = useState(false);
   const genRef = useRef(0);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -128,14 +131,23 @@ export function LectureStudyNotes({
   const applyDoc = (doc: LectureNotesDoc) => {
     const cleaned: LectureNotesDoc = {
       ...doc,
-      sections: themeOnlySections(doc.sections || []),
+      overview: polishOverview(doc.overview || ""),
+      themes: [],
+      outline:
+        doc.outline?.length
+          ? doc.outline
+          : (doc.sections || []).map((s) => s.title),
+      sections: conceptSections(doc.sections || []).map((s) => ({
+        ...s,
+        blocks: (s.blocks || []).filter((b) => b.type !== "def"),
+      })),
     };
-    const attached = attachThemeEntities(cleaned, points);
+    const attached = attachSectionEntities(cleaned, points);
     setNotes(attached);
-    const themeIds = attached.themes.map((t) => t.id);
-    // 默认展开第一个主题，更像打开笔记本
-    setOpenIds(new Set(themeIds.slice(0, 1)));
-    setActiveThemeId(themeIds[0] || null);
+    const ids = attached.sections.map((s) => s.id);
+    // 讲义阅读：默认全部展开
+    setOpenIds(new Set(ids));
+    setActiveId(ids[0] || null);
   };
 
   const load = async (force: boolean) => {
@@ -146,26 +158,64 @@ export function LectureStudyNotes({
     const gen = ++genRef.current;
     setLoading(true);
     setError(null);
-    // 重新生成时先清空正文，避免「点了没反应」的错觉
     if (force) {
       setNotes(null);
       try {
         await clearLectureNotesCache(courseId, lectureId);
       } catch {
-        /* 清缓存失败仍继续请求服务端 force */
-      }
-    } else {
-      const cached = await loadLectureNotesCache(courseId, lectureId);
-      const cachedNotes = cached?.notes as LectureNotesDoc | undefined;
-      if (isThemeNotes(cachedNotes)) {
-        if (gen !== genRef.current) return;
-        applyDoc(cachedNotes);
-        setLoading(false);
-        return;
+        /* continue */
       }
     }
 
     try {
+      if (!force) {
+        // 始终先读服务端落盘稿（GET 很轻）；deferNetwork 只避免顺带触发 LLM 重生成
+        const peeked = await peekLectureNotesCache({
+          courseId,
+          lectureId,
+          points,
+        });
+        if (gen !== genRef.current) return;
+        if (peeked) {
+          applyDoc(peeked);
+          await saveLectureNotesCache(courseId, lectureId, peeked);
+          return;
+        }
+        const cached = await loadLectureNotesCache(courseId, lectureId);
+        const cachedNotes = cached?.notes as LectureNotesDoc | undefined;
+        // 丢弃「本地整理」回退稿，避免课名 + 等历史失败后永久卡住错误大纲
+        if (
+          isLectureNotes(cachedNotes) &&
+          cachedNotes.source !== "local" &&
+          !String(cachedNotes.subtitle || "").includes("本地整理")
+        ) {
+          if (gen !== genRef.current) return;
+          applyDoc(cachedNotes);
+          return;
+        }
+        if (cachedNotes) {
+          try {
+            await clearLectureNotesCache(courseId, lectureId);
+          } catch {
+            /* ignore */
+          }
+        }
+        // 视频未就绪时先不拼本地大纲，等 deferNetwork 解除后再试（避免「一、图论等」脏缓存）
+        if (deferNetwork) {
+          setNotes(null);
+          return;
+        }
+        const local = buildLocalLectureNotes({
+          courseId,
+          lectureId,
+          title,
+          points,
+        });
+        applyDoc(local);
+        await saveLectureNotesCache(courseId, lectureId, local);
+        return;
+      }
+
       const doc = await fetchLectureNotes({
         courseId,
         lectureId,
@@ -176,19 +226,16 @@ export function LectureStudyNotes({
       if (gen !== genRef.current) return;
       applyDoc(doc);
       await saveLectureNotesCache(courseId, lectureId, doc);
-      if (force) {
-        if (doc.source === "local") {
-          setError(
-            doc.subtitle?.includes("生成失败")
-              ? doc.subtitle
-              : doc.subtitle ||
-                  "已重新生成本地笔记（未配置或调用大模型失败）",
-          );
-        } else if (doc.source === "disk") {
-          setError("服务端仍返回缓存稿；若内容未变可再点一次重新生成");
-        } else {
-          setError(`已重新生成（${doc.model || "大模型"}）`);
-        }
+      if (doc.source === "local") {
+        setError(
+          doc.subtitle?.includes("生成失败") || doc.subtitle?.includes("未配置")
+            ? doc.subtitle
+            : doc.subtitle || "已重新生成本地笔记（大模型不可用）",
+        );
+      } else if (doc.source === "disk") {
+        setError("服务端仍返回缓存稿；若内容未变可再点一次重新生成");
+      } else {
+        setError(`已重新生成（${doc.model || "大模型"}）`);
       }
     } catch (e) {
       if (gen !== genRef.current) return;
@@ -206,32 +253,25 @@ export function LectureStudyNotes({
     return () => {
       genRef.current += 1;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- reload when lecture/points change
-  }, [courseId, lectureId, points.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reload when lecture/points/network gate change
+  }, [courseId, lectureId, points.length, deferNetwork]);
 
   useEffect(() => {
     if (!notes || (!focusId && !focusZh)) return;
-    const theme = pickThemeForFocus(notes, focusId, focusZh);
     const sec =
-      (theme && notes.sections.find((s) => s.id === theme.id)) ||
-      (theme && notes.sections.find((s) => s.title === theme.title)) ||
+      pickSectionForFocus(notes, focusId, focusZh) ||
       notes.sections.find((s) => sectionMatches(s, focusId, focusZh));
-    const cardId = theme?.id || sec?.id;
-    if (!cardId) return;
-    const expandId = sec?.id || theme?.id;
-    setActiveThemeId(cardId);
+    if (!sec) return;
+    setActiveId(sec.id);
     setOpenIds((prev) => {
       const next = new Set(prev);
-      next.add(cardId);
-      if (expandId) next.add(expandId);
+      next.add(sec.id);
       return next;
     });
     requestAnimationFrame(() => {
       const root = scrollRef.current;
       if (!root) return;
-      const el =
-        root.querySelector(`[data-sec="${expandId}"]`) ||
-        root.querySelector(`[data-sec="${cardId}"]`);
+      const el = root.querySelector(`[data-sec="${sec.id}"]`);
       el?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }, [focusId, focusZh, notes]);
@@ -249,6 +289,21 @@ export function LectureStudyNotes({
     scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const scrollToPart = (id: string) => {
+    setActiveId(id);
+    setOpenIds((prev) => {
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+    requestAnimationFrame(() => {
+      const root = scrollRef.current;
+      if (!root) return;
+      const el = root.querySelector(`[data-sec="${id}"]`);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   const toggle = (id: string) => {
     setOpenIds((prev) => {
       const next = new Set(prev);
@@ -258,105 +313,117 @@ export function LectureStudyNotes({
     });
   };
 
-  const themeSections = notes?.sections.filter(
-    (s) => s.kind === "theme" || s.kind === "concept" || s.kind === "structure"
-  );
+  const partList = notes?.sections || [];
+  const outline =
+    notes?.outline?.length ? notes.outline : partList.map((s) => s.title);
 
   return (
     <div className={styles.root}>
-      <div className={styles.toolbar}>
-        <span>本堂课堂笔记</span>
-        <div className={styles.toolbarActions}>
-          <button
-            type="button"
-            className={styles.toolBtn}
-            disabled={loading || !points.length}
-            onClick={() => void load(true)}
-          >
-            {loading ? "生成中…" : "重新生成"}
-          </button>
-        </div>
-      </div>
-
       {!points.length ? (
-        <p className={styles.empty}>本堂课暂无知识点，无法生成笔记</p>
+        <p className={styles.empty}>本次课暂无知识点，无法生成笔记</p>
       ) : loading ? (
         <div className={styles.loadingBox}>
-          <p>正在按主题重写本堂课笔记…</p>
-          <p className={styles.hint}>
-            会整理成 5～8 个主题：脉络 → 定义 → 要点 → 例子 → 易错 → 自测
-          </p>
+          <p>正在整理本次课讲义…</p>
+          <p className={styles.hint}>一篇笔记：大纲 → 分部分讲解（覆盖本课两讲）</p>
         </div>
       ) : notes ? (
         <div className={styles.scrollWrap}>
           <div className={styles.scroll} ref={scrollRef}>
-          {error ? <p className={styles.warn}>{error}</p> : null}
+            {error ? <p className={styles.warn}>{error}</p> : null}
 
-          <div className={styles.sections}>
-            {(themeSections || []).map((sec) => {
-              const open = openIds.has(sec.id);
-              const focused =
-                sectionMatches(sec, focusId, focusZh) || activeThemeId === sec.id;
-              const theme = notes.themes.find(
-                (t) => t.id === sec.id || t.title === sec.title
-              );
-              const blocks = sec.blocks || [];
-              return (
-                <section
-                  key={sec.id}
-                  className={styles.section}
-                  data-sec={sec.id}
-                  data-kind="theme"
-                  data-focus={focused ? "1" : "0"}
-                >
-                  <button
-                    type="button"
-                    className={styles.secHead}
-                    aria-expanded={open}
-                    onClick={() => {
-                      setActiveThemeId(sec.id);
-                      toggle(sec.id);
-                    }}
+            <div className={styles.sections}>
+              <section className={styles.hero} data-kind="overview">
+                {notes.overview ? (
+                  <p className={styles.overview}>
+                    <LatexText text={polishOverview(notes.overview)} />
+                  </p>
+                ) : null}
+                {outline.length ? (
+                  <nav className={styles.outline} aria-label="大纲">
+                    <p className={styles.outlineLabel}>大纲</p>
+                    <ul>
+                      {outline.map((item, i) => {
+                        const target = partList[i];
+                        return (
+                          <li key={`${item}-${i}`}>
+                            {target ? (
+                              <button
+                                type="button"
+                                className={styles.outlineLink}
+                                onClick={() => scrollToPart(target.id)}
+                              >
+                                <LatexText text={item} />
+                              </button>
+                            ) : (
+                              <span>
+                                <LatexText text={item} />
+                              </span>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </nav>
+                ) : null}
+              </section>
+
+              {partList.map((sec, idx) => {
+                const open = openIds.has(sec.id);
+                const focused =
+                  sectionMatches(sec, focusId, focusZh) || activeId === sec.id;
+                const blocks = sec.blocks || [];
+                return (
+                  <section
+                    key={sec.id}
+                    className={styles.section}
+                    data-sec={sec.id}
+                    data-kind="part"
+                    data-focus={focused ? "1" : "0"}
                   >
-                    <span className={styles.kind}>{KIND_LABEL[sec.kind] || "主题"}</span>
-                    <span className={styles.secTitle}>{sec.title}</span>
-                    <span className={styles.chev}>{open ? "▾" : "▸"}</span>
-                  </button>
-                  {/* 折叠时只留一句预览；展开后用 hook 开场，避免 oneLiner/summary/hook 三段重复 */}
-                  {!open ? (
-                    theme?.oneLiner || sec.summary ? (
+                    <button
+                      type="button"
+                      className={styles.secHead}
+                      aria-expanded={open}
+                      onClick={() => {
+                        setActiveId(sec.id);
+                        toggle(sec.id);
+                      }}
+                    >
+                      <span className={styles.kind}>第 {idx + 1} 部分</span>
+                      <span className={styles.secTitle}>
+                        {stripCnOrdinalPrefix(sec.title)}
+                      </span>
+                      <span className={styles.chev}>{open ? "▾" : "▸"}</span>
+                    </button>
+                    {!open && sec.summary ? (
                       <p className={styles.oneLiner}>
-                        <LatexText text={theme?.oneLiner || sec.summary} />
+                        <LatexText text={sec.summary} />
                       </p>
-                    ) : null
-                  ) : null}
-                  {open ? (
-                    <div className={styles.detail}>
-                      <NoteBlocks blocks={blocks} />
-                      {!blocks.length && sec.bullets?.length ? (
-                        <ul>
-                          {sec.bullets.map((b, i) => (
-                            <li key={i}>
-                              <LatexText text={b} />
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                      {sec.tips?.length ? (
-                        <div className={styles.tips}>
-                          {sec.tips.map((t, i) => (
-                            <p key={i}>
-                              <LatexText text={t} />
-                            </p>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  ) : null}
-                </section>
-              );
-            })}
-          </div>
+                    ) : null}
+                    {open ? (
+                      <div className={styles.detail}>
+                        {sec.summary ? (
+                          <p className={styles.partSummary}>
+                            <LatexText text={sec.summary} />
+                          </p>
+                        ) : null}
+                        <PartBody body={sec.body || ""} />
+                        <NoteBlocks blocks={blocks} />
+                        {!sec.body && !blocks.length && sec.bullets?.length ? (
+                          <ul>
+                            {sec.bullets.map((b, i) => (
+                              <li key={i}>
+                                <LatexText text={b} />
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </section>
+                );
+              })}
+            </div>
           </div>
           {showBackTop ? (
             <button

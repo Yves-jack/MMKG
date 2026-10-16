@@ -42,22 +42,23 @@ from teachkg.utils.llm_client import LLMClient, llm_settings_from_config
 
 logger = logging.getLogger("extract_assets_lecture_batch")
 
-PROMPT = """你是离散数学 / 图论课程助教。请从【课堂全文】抽取值得独立成卡的定理、原理、方法。
-
-【必须抽（若文中出现）】
-Dijkstra / 最短路算法、Huffman / 哈夫曼算法、图着色 / 地图着色、欧拉定理、握手引理、
-BFS / DFS / 广度优先 / 深度优先、树 / 生成树相关算法结论、公理化方法等。
+PROMPT = """你是教学知识图谱的「定理 / 原理 / 方法」抽取专家（课程无关，适用于任意理工/经管等课程）。只抽原文讲清内容的资产；宁缺毋滥。
 
 【三类】
-- theorem：有明确结论的定理/引理/推论
-- principle：课堂强调的原则/公理思想（不要硬造「××原理」空壳）
-- technique：可操作方法，steps 至少 2 步
+- theorem：原文有可陈述的结论/判定条件（若…则…、当且仅当、充要、对任意…成立 等）。statement 必须写结论本身。仅点名「某某定理/某人解决了某问题」而无结论 → 不抽。
+- principle：老师强调的原则/基本思想；不要硬造「××原理」空壳；纯定义/分类 → 不抽。
+- technique：原文有可照做的多步过程；steps≥2 且须能从原文归纳，禁止补教材常识步骤。仅点名算法/方法 → 不抽。
+
+【拒抽】
+- 寒暄、进度、学科史一句带过、无实质内容的点名
+- summary 禁止写成「课堂提及的××」
+- 为凑数而抽
 
 【硬约束】
-1. evidence 必须是课堂全文的连续原文子串（约 15–120 字）
-2. name 用「中文」或「中文/English」
-3. technique 必填 steps；theorem/principle 的 steps 为 []
-4. 只输出合法 JSON，不要注释
+1. evidence 必须是课堂全文连续原文子串（约 24–180 字），覆盖实质内容；对不上就不要抽
+2. name 用「中文」或「中文/English」；勿杜撰原文未出现的正式编号名
+3. theorem：statement 填结论；technique 必填真实 steps；principle/theorem 的 steps 为 []
+4. 只输出合法 JSON
 
 输出格式：
 {{
@@ -65,10 +66,10 @@ BFS / DFS / 广度优先 / 深度优先、树 / 生成树相关算法结论、�
     {{
       "kind": "theorem|principle|technique",
       "name": "中文名或中文/English",
-      "summary": "一句摘要",
-      "statement": "陈述可空",
+      "summary": "一句实质摘要（禁止「课堂提及的…」）",
+      "statement": "定理结论或原理陈述",
       "steps": ["步骤1", "步骤2"],
-      "evidence": "课堂原文连续子串"
+      "evidence": "课堂原文连续子串（含实质内容）"
     }}
   ]
 }}
@@ -135,8 +136,7 @@ def soften_cards(
         steps = [str(s).strip() for s in (row.get("steps") or []) if str(s).strip()]
         if kind != "technique":
             steps = []
-        if kind == "technique" and len(steps) < 2:
-            steps = ["明确输入与目标", "按方法步骤执行并检查结果"]
+        # 不再垫默认两步：方法必须 LLM 给出真实多步流程，否则质检丢弃
         reason = _quality_drop_reason(kind, name, evidence, steps, text)
         if reason:
             logger.info("drop (%s): %s", reason, name)
@@ -183,10 +183,9 @@ def cards_from_kg_hints(
         "axiom",
         "algorithm",
         "method",
-        "方法强弱",
-        "最短路",
-        "染色",
-        "欧拉",
+        "lemma",
+        "corollary",
+        "principle",
     }
     out: list[AssetCard] = []
     for e in entities:
@@ -198,14 +197,13 @@ def cards_from_kg_hints(
             continue
         kind = None
         if re.search(
-            r"定理|theorem|引理|lemma|推论|corollary|握手|欧拉", name, re.I
+            r"定理|theorem|引理|lemma|推论|corollary|定律|law\b", name, re.I
         ):
             kind = "theorem"
-        elif re.search(r"原理|principle|公理|axiom|定律", name, re.I):
+        elif re.search(r"原理|principle|公理|axiom", name, re.I):
             kind = "principle"
         elif re.search(
-            r"算法|方法|technique|method|algorithm|Dijkstra|Huffman|哈夫曼|"
-            r"着色|染色|BFS|DFS|广度优先|深度优先|最短路",
+            r"算法|方法|technique|method|algorithm|流程|步骤",
             name,
             re.I,
         ):
@@ -232,18 +230,30 @@ def cards_from_kg_hints(
             idx = text.find(zh)
             if idx < 0:
                 continue
-            evidence = text[max(0, idx - 20) : idx + len(zh) + 60].strip()
-        steps = (
-            ["明确问题与输入", f"应用「{zh}」完成计算或判定", "检查结果是否满足定义/目标"]
-            if kind == "technique"
-            else []
+            # 扩到邻近句，避免「课堂提及」短窗无结论
+            left = max(0, idx - 40)
+            right = min(len(text), idx + len(zh) + 200)
+            evidence = text[left:right].strip()
+        steps: list[str] = []
+        # 方法兜底禁止垫默认步骤；无真实多步则不当 technique
+        if kind == "technique":
+            continue
+        # 用 evidence 首句作实质摘要，禁止「课堂提及的××」
+        summary = re.split(r"[。！？!?]", evidence, maxsplit=1)[0].strip()
+        if len(re.sub(r"\s+", "", summary)) < 8:
+            summary = zh
+        reason = _quality_drop_reason(
+            kind, name, evidence, steps, text, summary=summary, statement=""
         )
+        if reason:
+            logger.info("skip kg hint (%s): %s", reason, name)
+            continue
         card = AssetCard(
             asset_id=f"kg_{kind[:4]}_{_slug(zh)}_L{lecture_id}",
             kind=kind,  # type: ignore[arg-type]
             name=name,
             aliases=[],
-            summary=f"课堂提及的{zh}",
+            summary=summary,
             statement="",
             steps=steps,
             concepts=[],
@@ -262,10 +272,20 @@ def cards_from_kg_hints(
 
 def merge_unique(cards: list[AssetCard]) -> list[AssetCard]:
     by: dict[str, AssetCard] = {}
+
+    def score(c: AssetCard) -> tuple:
+        summary = (c.summary or "").strip()
+        placeholder = 1 if summary.startswith("课堂提及的") else 0
+        has_stmt = 1 if (c.statement or "").strip() else 0
+        has_steps = 1 if c.steps else 0
+        ev_len = len(c.evidence or "")
+        # 优先非占位、有陈述/步骤，再比 evidence 长度
+        return (1 - placeholder, has_stmt, has_steps, ev_len)
+
     for c in cards:
         key = f"{c.kind}\t{primary_zh(c.name)}"
         prev = by.get(key)
-        if not prev or len(c.evidence or "") > len(prev.evidence or ""):
+        if not prev or score(c) > score(prev):
             by[key] = c
     return list(by.values())
 
@@ -306,9 +326,29 @@ def main() -> int:
     all_llm: list[AssetCard] = []
 
     for lec in lectures:
-        cues = load_lecture_cues(cues_path, lec)
-        text = clean_lecture_text("\n".join(c["extract_text"] for c in cues))
-        logger.info("lecture %s cues=%d chars=%d", lec, len(cues), len(text))
+        cues = load_lecture_cues(cues_path, lec, text_source="fluency")
+        text = clean_lecture_text(
+            "\n".join(
+                (
+                    c.get("fluency_text")
+                    or c.get("asr_text")
+                    or c.get("extract_text")
+                    or ""
+                )
+                for c in cues
+            )
+        )
+        src_counts: dict[str, int] = {}
+        for c in cues:
+            k = str(c.get("text_source") or "?")
+            src_counts[k] = src_counts.get(k, 0) + 1
+        logger.info(
+            "lecture %s cues=%d chars=%d (pref=fluency, used=%s)",
+            lec,
+            len(cues),
+            len(text),
+            src_counts,
+        )
         if len(text) < 40:
             logger.warning("lecture %s text too short, skip LLM", lec)
             cards: list[AssetCard] = []
@@ -331,7 +371,11 @@ def main() -> int:
             logger.info("LLM cards lecture %s: %d", lec, len(cards))
 
         kg_path = ROOT / "data" / "kg" / course / f"lecture_{lec}" / "kg.json"
-        entities, edges = load_lecture_kg(kg_path)
+        if kg_path.is_file():
+            entities, edges = load_lecture_kg(kg_path)
+        else:
+            logger.warning("missing lecture kg %s; skip KG hints", kg_path)
+            entities, edges = [], []
         hint_cards = cards_from_kg_hints(
             text=text, lecture_id=str(lec), entities=entities
         )
@@ -361,13 +405,47 @@ def main() -> int:
         logger.info("wrote %s (%d)", cache, len(cards))
         all_llm.extend(cards)
 
-    # reload all lecture caches
+    # 占位卡（课堂提及的…）自动补全 statement/summary
+    if lectures:
+        import subprocess
+
+        cmd = [
+            sys.executable,
+            str(ROOT / "scripts" / "teaching" / "backfill_asset_placeholders.py"),
+            "--config",
+            str(args.config),
+            "--course-id",
+            course,
+            "--lectures",
+            ",".join(lectures),
+            "--skip-assign",
+        ]
+        logger.info("backfill placeholders for lectures=%s", ",".join(lectures))
+        try:
+            subprocess.run(cmd, check=False)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("backfill failed: %s", exc)
+
+    # reload all lecture caches (+ formula caches if present)
     merged: list[AssetCard] = []
     for p in sorted(assets_dir.glob("llm_assets_lecture_*.json")):
         payload = json.loads(p.read_text(encoding="utf-8"))
         for row in payload.get("cards") or []:
             if isinstance(row, dict):
                 merged.append(AssetCard.from_dict(row))
+    try:
+        from teachkg.assets.formula_quality import keep_generic_formulas
+
+        for p in sorted(assets_dir.glob("llm_assets_formula_example_lecture_*.json")):
+            payload = json.loads(p.read_text(encoding="utf-8"))
+            rows = [
+                AssetCard.from_dict(row)
+                for row in (payload.get("assets") or [])
+                if isinstance(row, dict)
+            ]
+            merged.extend(keep_generic_formulas(rows))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("skip formula caches merge: %s", exc)
 
     cfg = TeachKGConfig.from_yaml(args.config)
     tb_path = Path(

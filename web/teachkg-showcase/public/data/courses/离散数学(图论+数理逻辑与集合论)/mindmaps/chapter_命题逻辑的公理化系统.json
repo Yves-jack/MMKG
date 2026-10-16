@@ -1,0 +1,861 @@
+{
+  "lecture_id": "chapter:第3章 命题逻辑的公理化系统",
+  "root": {
+    "id": "__chapter__/第3章 命题逻辑的公理化系统",
+    "zh": "第3章 命题逻辑的公理化系统",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "命题逻辑的公理化系统"
+    ],
+    "children": [
+      {
+        "id": "__section__/经典与非经典逻辑",
+        "zh": "经典与非经典逻辑",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/经典与非经典逻辑/经典逻辑",
+            "zh": "经典逻辑",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "经典逻辑"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/经典与非经典逻辑/多值逻辑",
+            "zh": "多值逻辑",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/经典与非经典逻辑/模态逻辑",
+            "zh": "模态逻辑",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/经典与非经典逻辑/不确定逻辑",
+            "zh": "不确定逻辑",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/形式化与公理化",
+        "zh": "形式化与公理化",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/形式化与公理化/形式化",
+            "zh": "形式化",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式化与公理化/公理化",
+            "zh": "公理化",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式化与公理化/具体公理化系统",
+            "zh": "具体公理化系统",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式化与公理化/形式公理化系统",
+            "zh": "形式公理化系统",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/形式系统的组成",
+        "zh": "形式系统的组成",
+        "importance": 1,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/形式系统的组成/初始符号",
+            "zh": "初始符号",
+            "importance": 0.704977,
+            "relation": "outline_concept",
+            "related": [
+              "初始符号"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式系统的组成/形成规则",
+            "zh": "形成规则",
+            "importance": 0.731614,
+            "relation": "outline_concept",
+            "related": [
+              "形成规则"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式系统的组成/公理",
+            "zh": "公理",
+            "importance": 1,
+            "relation": "outline_concept",
+            "related": [
+              "公理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式系统的组成/变形规则",
+            "zh": "变形规则",
+            "importance": 0.806549,
+            "relation": "outline_concept",
+            "related": [
+              "变形规则"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/形式系统的组成/定理",
+            "zh": "定理",
+            "importance": 0.805716,
+            "relation": "outline_concept",
+            "related": [
+              "定理"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/推理系统分类",
+        "zh": "推理系统分类",
+        "importance": 0.996153,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/推理系统分类/自然推理系统",
+            "zh": "自然推理系统",
+            "importance": 0.996153,
+            "relation": "outline_concept",
+            "related": [
+              "自然推理系统"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理系统分类/公理推理系统",
+            "zh": "公理推理系统",
+            "importance": 0.678454,
+            "relation": "outline_concept",
+            "related": [
+              "公理推理系统"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理系统分类/语法与语义",
+            "zh": "语法与语义",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": [
+              {
+                "id": "语法/Syntax",
+                "zh": "语法",
+                "importance": 0.32741757154611256,
+                "relation": null,
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "语义/semantics",
+                "zh": "语义",
+                "importance": 0.2719124786291595,
+                "relation": null,
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__section__/公理系统性质",
+        "zh": "公理系统性质",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/公理系统性质/协调性",
+            "zh": "协调性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "协调性"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统性质/完备性",
+            "zh": "完备性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "完备性"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统性质/独立性",
+            "zh": "独立性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题逻辑公理系统A",
+        "zh": "命题逻辑公理系统A",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/命题逻辑公理系统A/初始符号",
+            "zh": "初始符号",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统A/定义",
+            "zh": "定义",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统A/形成规则",
+            "zh": "形成规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统A/公理",
+            "zh": "公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统A/变形规则",
+            "zh": "变形规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统A/重言证明",
+            "zh": "重言证明",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B",
+        "zh": "命题逻辑公理系统B",
+        "importance": 0.851375,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/命题逻辑公理系统B/初始符号",
+            "zh": "初始符号",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统B/形成规则",
+            "zh": "形成规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统B/公理",
+            "zh": "公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统B/推理规则",
+            "zh": "推理规则",
+            "importance": 0.794731,
+            "relation": "outline_concept",
+            "related": [
+              "推理规则"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统B/加头定理",
+            "zh": "加头定理",
+            "importance": 0.851375,
+            "relation": "outline_concept",
+            "related": [
+              "加头定理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/命题逻辑公理系统B/导出规则",
+            "zh": "导出规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/王浩算法",
+        "zh": "王浩算法",
+        "importance": 0.951573,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/王浩算法/初始符号",
+            "zh": "初始符号",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/王浩算法/形成规则",
+            "zh": "形成规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/王浩算法/相继式",
+            "zh": "相继式",
+            "importance": 0.951573,
+            "relation": "outline_concept",
+            "related": [
+              "相继式"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/王浩算法/公理",
+            "zh": "公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/王浩算法/变形规则",
+            "zh": "变形规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第3章 命题逻辑的公理化系统",
+      "zh": "第3章 命题逻辑的公理化系统",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "命题逻辑的公理化系统"
+      ],
+      "children": [
+        {
+          "id": "__section__/经典与非经典逻辑",
+          "zh": "经典与非经典逻辑",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/经典与非经典逻辑/经典逻辑",
+              "zh": "经典逻辑",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "经典逻辑"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/经典与非经典逻辑/多值逻辑",
+              "zh": "多值逻辑",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/经典与非经典逻辑/模态逻辑",
+              "zh": "模态逻辑",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/经典与非经典逻辑/不确定逻辑",
+              "zh": "不确定逻辑",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/形式化与公理化",
+          "zh": "形式化与公理化",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/形式化与公理化/形式化",
+              "zh": "形式化",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式化与公理化/公理化",
+              "zh": "公理化",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式化与公理化/具体公理化系统",
+              "zh": "具体公理化系统",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式化与公理化/形式公理化系统",
+              "zh": "形式公理化系统",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/形式系统的组成",
+          "zh": "形式系统的组成",
+          "importance": 1,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/形式系统的组成/初始符号",
+              "zh": "初始符号",
+              "importance": 0.704977,
+              "relation": "outline_concept",
+              "related": [
+                "初始符号"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式系统的组成/形成规则",
+              "zh": "形成规则",
+              "importance": 0.731614,
+              "relation": "outline_concept",
+              "related": [
+                "形成规则"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式系统的组成/公理",
+              "zh": "公理",
+              "importance": 1,
+              "relation": "outline_concept",
+              "related": [
+                "公理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式系统的组成/变形规则",
+              "zh": "变形规则",
+              "importance": 0.806549,
+              "relation": "outline_concept",
+              "related": [
+                "变形规则"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/形式系统的组成/定理",
+              "zh": "定理",
+              "importance": 0.805716,
+              "relation": "outline_concept",
+              "related": [
+                "定理"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/推理系统分类",
+          "zh": "推理系统分类",
+          "importance": 0.996153,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/推理系统分类/自然推理系统",
+              "zh": "自然推理系统",
+              "importance": 0.996153,
+              "relation": "outline_concept",
+              "related": [
+                "自然推理系统"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理系统分类/公理推理系统",
+              "zh": "公理推理系统",
+              "importance": 0.678454,
+              "relation": "outline_concept",
+              "related": [
+                "公理推理系统"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理系统分类/语法与语义",
+              "zh": "语法与语义",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": [
+                {
+                  "id": "语法/Syntax",
+                  "zh": "语法",
+                  "importance": 0.32741757154611256,
+                  "relation": null,
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "语义/semantics",
+                  "zh": "语义",
+                  "importance": 0.2719124786291595,
+                  "relation": null,
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__section__/公理系统性质",
+          "zh": "公理系统性质",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/公理系统性质/协调性",
+              "zh": "协调性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "协调性"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统性质/完备性",
+              "zh": "完备性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "完备性"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统性质/独立性",
+              "zh": "独立性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题逻辑公理系统A",
+          "zh": "命题逻辑公理系统A",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/命题逻辑公理系统A/初始符号",
+              "zh": "初始符号",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统A/定义",
+              "zh": "定义",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统A/形成规则",
+              "zh": "形成规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统A/公理",
+              "zh": "公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统A/变形规则",
+              "zh": "变形规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统A/重言证明",
+              "zh": "重言证明",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B",
+          "zh": "命题逻辑公理系统B",
+          "importance": 0.851375,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/命题逻辑公理系统B/初始符号",
+              "zh": "初始符号",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统B/形成规则",
+              "zh": "形成规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统B/公理",
+              "zh": "公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统B/推理规则",
+              "zh": "推理规则",
+              "importance": 0.794731,
+              "relation": "outline_concept",
+              "related": [
+                "推理规则"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统B/加头定理",
+              "zh": "加头定理",
+              "importance": 0.851375,
+              "relation": "outline_concept",
+              "related": [
+                "加头定理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/命题逻辑公理系统B/导出规则",
+              "zh": "导出规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/王浩算法",
+          "zh": "王浩算法",
+          "importance": 0.951573,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/王浩算法/初始符号",
+              "zh": "初始符号",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/王浩算法/形成规则",
+              "zh": "形成规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/王浩算法/相继式",
+              "zh": "相继式",
+              "importance": 0.951573,
+              "relation": "outline_concept",
+              "related": [
+                "相继式"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/王浩算法/公理",
+              "zh": "公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/王浩算法/变形规则",
+              "zh": "变形规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 47,
+  "max_depth": 3,
+  "orphan_count": 126,
+  "meta": {
+    "chapter": "第3章 命题逻辑的公理化系统",
+    "root_zh": "第3章 命题逻辑的公理化系统",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "23",
+      "24",
+      "25",
+      "26"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 8,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "公理/公理": "__topic__/形式系统的组成/公理"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "公理/公理": "__topic__/形式系统的组成/公理"
+  },
+  "concept_links": []
+}

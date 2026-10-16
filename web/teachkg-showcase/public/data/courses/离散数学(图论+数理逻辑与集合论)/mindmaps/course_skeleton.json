@@ -1,0 +1,377 @@
+{
+  "lecture_id": "course:skeleton",
+  "root": {
+    "id": "__course__/离散数学(图论+数理逻辑与集合论)",
+    "zh": "离散数学(图论+数理逻辑与集合论)",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__part__/graph",
+        "zh": "分册 · 图论",
+        "importance": 0.75,
+        "relation": "toc_part",
+        "related": [],
+        "children": [
+          {
+            "id": "__chapter__/第1章 图的基本概念与表示",
+            "zh": "第1章 图的基本概念与表示",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第2章 道路与回路",
+            "zh": "第2章 道路与回路",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第3章 树",
+            "zh": "第3章 树",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第4章 平面图与图的着色",
+            "zh": "第4章 平面图与图的着色",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__part__/logic",
+        "zh": "分册 · 数理逻辑",
+        "importance": 0.75,
+        "relation": "toc_part",
+        "related": [],
+        "children": [
+          {
+            "id": "__chapter__/第1章 命题逻辑的基本概念",
+            "zh": "第1章 命题逻辑的基本概念",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第2章 命题逻辑的等值和推理演算",
+            "zh": "第2章 命题逻辑的等值和推理演算",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第3章 命题逻辑的公理化系统",
+            "zh": "第3章 命题逻辑的公理化系统",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第4章 谓词逻辑的基本概念",
+            "zh": "第4章 谓词逻辑的基本概念",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+            "zh": "第5章 谓词逻辑的等值和推理演算",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第6章 谓词逻辑的公理化系统",
+            "zh": "第6章 谓词逻辑的公理化系统",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__part__/set",
+        "zh": "分册 · 集合论",
+        "importance": 0.75,
+        "relation": "toc_part",
+        "related": [],
+        "children": [
+          {
+            "id": "__chapter__/第9章 集合",
+            "zh": "第9章 集合",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第10章 关系",
+            "zh": "第10章 关系",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第11章 函数",
+            "zh": "第11章 函数",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__chapter__/第12章 实数集合与集合的基数",
+            "zh": "第12章 实数集合与集合的基数",
+            "importance": 0.65,
+            "relation": "toc_chapter",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__course__/离散数学(图论+数理逻辑与集合论)",
+      "zh": "离散数学(图论+数理逻辑与集合论)",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__part__/graph",
+          "zh": "分册 · 图论",
+          "importance": 0.75,
+          "relation": "toc_part",
+          "related": [],
+          "children": [
+            {
+              "id": "__chapter__/第1章 图的基本概念与表示",
+              "zh": "第1章 图的基本概念与表示",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第2章 道路与回路",
+              "zh": "第2章 道路与回路",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第3章 树",
+              "zh": "第3章 树",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第4章 平面图与图的着色",
+              "zh": "第4章 平面图与图的着色",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__part__/logic",
+          "zh": "分册 · 数理逻辑",
+          "importance": 0.75,
+          "relation": "toc_part",
+          "related": [],
+          "children": [
+            {
+              "id": "__chapter__/第1章 命题逻辑的基本概念",
+              "zh": "第1章 命题逻辑的基本概念",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第2章 命题逻辑的等值和推理演算",
+              "zh": "第2章 命题逻辑的等值和推理演算",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第3章 命题逻辑的公理化系统",
+              "zh": "第3章 命题逻辑的公理化系统",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第4章 谓词逻辑的基本概念",
+              "zh": "第4章 谓词逻辑的基本概念",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+              "zh": "第5章 谓词逻辑的等值和推理演算",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第6章 谓词逻辑的公理化系统",
+              "zh": "第6章 谓词逻辑的公理化系统",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__part__/set",
+          "zh": "分册 · 集合论",
+          "importance": 0.75,
+          "relation": "toc_part",
+          "related": [],
+          "children": [
+            {
+              "id": "__chapter__/第9章 集合",
+              "zh": "第9章 集合",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第10章 关系",
+              "zh": "第10章 关系",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第11章 函数",
+              "zh": "第11章 函数",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__chapter__/第12章 实数集合与集合的基数",
+              "zh": "第12章 实数集合与集合的基数",
+              "importance": 0.65,
+              "relation": "toc_chapter",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 18,
+  "max_depth": 2,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "离散数学(图论+数理逻辑与集合论)",
+    "root_zh": "离散数学(图论+数理逻辑与集合论)",
+    "virtual_root": true,
+    "scope": "course",
+    "lecture_ids": [
+      "2",
+      "3",
+      "4",
+      "6",
+      "1",
+      "4",
+      "5",
+      "6",
+      "7",
+      "16",
+      "7",
+      "8",
+      "12",
+      "16",
+      "1",
+      "9",
+      "10",
+      "11",
+      "12",
+      "16",
+      "17",
+      "13",
+      "14",
+      "15",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "28",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "32",
+      "23",
+      "24",
+      "25",
+      "26",
+      "29",
+      "30",
+      "31",
+      "34",
+      "35",
+      "36",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "42",
+      "41",
+      "42",
+      "43",
+      "44",
+      "44"
+    ],
+    "source": "outline+kg",
+    "n_chapters": 14,
+    "n_parts": 3,
+    "n_trees": 1,
+    "composed_from": "chapters",
+    "pipeline": "text_first_v1",
+    "skeleton_view": true
+  }
+}

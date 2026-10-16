@@ -1189,7 +1189,8 @@ function GraphCanvasInner(
         /* ignore */
       }
       tries += 1;
-      if (tries < 12) {
+      // 整课大图 + 搜索钉回过滤外节点时，DataSet 同步可能更慢
+      if (tries < 24) {
         window.setTimeout(attempt, 50);
       } else {
         onFocusConsumedRef.current?.();

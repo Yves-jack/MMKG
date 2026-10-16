@@ -1,0 +1,1958 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "lecture_id": "29",
+  "title": "第 29 讲",
+  "n_points": 24,
+  "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/29_0.mp4",
+  "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/29_1.mp4",
+  "duration_sec": 3235.2,
+  "segments": [
+    {
+      "id": "29-lead-0",
+      "index": 1,
+      "start_sec": 0.0,
+      "end_sec": 151.5,
+      "title": "",
+      "summary": ""
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+      "index": 2,
+      "start_sec": 151.5,
+      "end_sec": 810.2,
+      "title": "论域无穷时，判定谓词公式的永真性或可满足性较困难",
+      "summary": "论域无穷时，判定谓词公式的永真性或可满足性较困难"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+      "index": 3,
+      "start_sec": 811.3,
+      "end_sec": 930.4,
+      "title": "在有限论域下，一阶谓词公式可展开为命题公式，从而简化真值判定",
+      "summary": "在有限论域下，一阶谓词公式可展开为命题公式，从而简化真值判定"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+      "index": 4,
+      "start_sec": 931.6,
+      "end_sec": 1352.0,
+      "title": "谓词公式的解释由五部分组成：论域、命题变项指派、自由个体变项指派、函数变项指派、谓词变项指派",
+      "summary": "谓词公式的解释由五部分组成：论域、命题变项指派、自由个体变项指派、函数变项指派、谓词变项指派"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+      "index": 5,
+      "start_sec": 1352.9,
+      "end_sec": 2217.7,
+      "title": "谓词通过成真指派的集合唯一定义，一元谓词由真值表唯一定义，多元谓词的定义域为论域的笛卡尔积，有序对需用尖…",
+      "summary": "谓词通过成真指派的集合唯一定义，一元谓词由真值表唯一定义，多元谓词的定义域为论域的笛卡尔积，有序对需用尖…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_2218500_2455700",
+      "index": 6,
+      "start_sec": 2218.5,
+      "end_sec": 2455.7,
+      "title": "判定谓词公式是否普遍有效需考虑所有解释，难度很大",
+      "summary": "判定谓词公式是否普遍有效需考虑所有解释，难度很大"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+      "index": 7,
+      "start_sec": 2459.5,
+      "end_sec": 2809.0,
+      "title": "命题逻辑重言式的任何代入实例都是一阶逻辑中的普遍有效公式",
+      "summary": "命题逻辑重言式的任何代入实例都是一阶逻辑中的普遍有效公式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_29_2810800_3235200",
+      "index": 8,
+      "start_sec": 2810.8,
+      "end_sec": 3235.2,
+      "title": "上述定理可由第一个证明推出其余",
+      "summary": "上述定理可由第一个证明推出其余"
+    }
+  ],
+  "points": [
+    {
+      "id": "论域/domain of discourse",
+      "zh": "论域",
+      "importance": 1,
+      "mention_count": 18,
+      "origin": "textbook",
+      "summary": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0…",
+      "definition": "论域（domain of discourse）是数理逻辑与集合论中用于确定谓词真值和个体变元取值的非空集合。它规定了公式中个体变元所能代表的实体范围，其选取直接影响谓词公式的解释与真值判断。例如，在一个论域为实数的解释下，谓词 \"x+y=0\" 可能为真，但在仅包含自然数的论域下则可能为假。论域可以是有穷或无穷的集合，其设定是构成谓词逻辑解释的关键部分。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "depend_on",
+          "object": "谓词公式/predicate formula",
+          "label": "依赖",
+          "natural_statement": "论域可为无限谓词公式"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "谓词依赖论域"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "真值依赖论域"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "函数依赖论域"
+        },
+        {
+          "subject": "个体常项/individual constant",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体常项属于论域"
+        },
+        {
+          "subject": "无限集合/infinite set",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "无限集合包含论域"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "depend_on",
+          "object": "量化/Quantification",
+          "label": "依赖",
+          "natural_statement": "论域依赖量化"
+        }
+      ],
+      "rank": 1,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2810800_3235200",
+          "text": "公式在有限域上的真假性。这里有几个比较重要的结论。首先，一个公式的真假性，或者说它是普遍有效的还是可满足的，只依赖于个体域的大小。k-个体域就是含有k个元素的有限个体域。如果一个公式在某个k-个体域上普遍有效，那么在任何一个k-个体域上它都普遍有效；如果它在某个k-个体域上可满足，那么在任何一个k-个体域上它都可满足。也就是说，在有限域上，公式的普遍有效性和可满足性仅依赖于个体域的大小。比如，在自然数集上取k个元素构成个体域时普遍有效，那么取桌子、椅子、窗户等k个元素构成个体域时也普遍有效。 此外有两条重要的单调性结论：大永真推出小永真，即公式在k-个体…",
+          "start_sec": 2810.8,
+          "end_sec": 3235.2
+        }
+      ]
+    },
+    {
+      "id": "公式/formula",
+      "zh": "公式",
+      "importance": 0.9854771098026295,
+      "mention_count": 9,
+      "origin": "textbook",
+      "summary": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范…",
+      "definition": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范式）或子句集来分析其逻辑性质，并可被计算处理。",
+      "neighbors": [
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "谓词公式属于公式"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "蕴含依赖公式"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "命题包含公式"
+        },
+        {
+          "subject": "前提/premise",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "前提属于公式"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "析取/disjunction",
+          "label": "依赖",
+          "natural_statement": "公式依赖析取"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "自由变元属于公式"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "related_with",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "公式表示主合取范式"
+        },
+        {
+          "subject": "命题公式/propositional formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "命题公式包含公式"
+        }
+      ],
+      "rank": 2,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "谓词公式/predicate formula",
+      "zh": "谓词公式",
+      "importance": 0.9451988913998774,
+      "mention_count": 6,
+      "origin": "textbook",
+      "summary": "谓词公式是数理逻辑中用于表达命题的符号化语言，它包含谓词、变量、量词和逻辑联结词。谓词公式在特定解释下具有确定的真值，其等值式和推理式是普遍有效的。例如，在有限域上的转换有助于理解复杂的谓词公式，而子集公理模式则通过谓词公式定义了集合的子集…",
+      "definition": "谓词公式是数理逻辑中用于表达命题的符号化语言，它包含谓词、变量、量词和逻辑联结词。谓词公式在特定解释下具有确定的真值，其等值式和推理式是普遍有效的。例如，在有限域上的转换有助于理解复杂的谓词公式，而子集公理模式则通过谓词公式定义了集合的子集。",
+      "neighbors": [
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "谓词公式是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "量词是谓词公式的组成部分"
+        },
+        {
+          "subject": "个体/Individual",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "个体是谓词公式的组成部分"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "谓词是谓词公式的组成部分"
+        },
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "belong_to",
+          "object": "形式语言/Formal Language",
+          "label": "属于",
+          "natural_statement": "谓词公式属于形式语言"
+        },
+        {
+          "subject": "一阶谓词/First-order Predicate Symbol",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "一阶谓词组成谓词公式"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "联结词组成谓词公式"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "depend_on",
+          "object": "谓词公式/predicate formula",
+          "label": "依赖",
+          "natural_statement": "论域可为无限谓词公式"
+        }
+      ],
+      "rank": 3,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+          "text": "在有限论域下，我们可以对公式进行这样的展开。这样一来，判断一个一阶谓词公式在有限论域下的真值，计算起来就相对简单了。例如，对于有两个个体变元的全称量词公式，我们先对 \\(x\\) 进行展开，再对 \\(y\\) 进行展开，就变成了这样。如果两个量词中有一个是存在量词，比如 \\((\\forall x)(\\exists y) P(x,y)\\)，我们也先对 \\(x\\) 展开：\\(x\\) 取 1 和 2，然后取合取；再对存在 \\(y\\) 展开，\\(y\\) 取 1 或 2 时，对应的就是析取。这样就得到了这样的形式。如果是 \\((\\exists x)(\\forall y…",
+          "start_sec": 811.3,
+          "end_sec": 930.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "一阶逻辑/first-order logic",
+      "zh": "一阶逻辑",
+      "importance": 0.6182542046135018,
+      "mention_count": 3,
+      "origin": "textbook",
+      "summary": "一阶逻辑（First-Order Logic, FOL）是数理逻辑的一个分支，它在命题逻辑的基础上引入了量词（如全称量词∀和存在量词∃）、谓词、函数符号、个体常量和变量，用于精确描述个体及其性质和关系。一阶逻辑的核心在于区分自由变元和约束变…",
+      "definition": "一阶逻辑（First-Order Logic, FOL）是数理逻辑的一个分支，它在命题逻辑的基础上引入了量词（如全称量词∀和存在量词∃）、谓词、函数符号、个体常量和变量，用于精确描述个体及其性质和关系。一阶逻辑的核心在于区分自由变元和约束变元，并通过量词对变元进行约束，从而构建复杂的逻辑表达式，是形式化推理和数学证明的重要基础。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "个体是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "量词是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "函数是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "谓词公式/predicate formula",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "谓词公式是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "一阶逻辑/first-order logic",
+          "predicate": "related_with",
+          "object": "命题逻辑/propositional logic",
+          "label": "相关",
+          "natural_statement": "一阶谓词逻辑扩展命题逻辑"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "一阶逻辑/first-order logic",
+          "label": "相关",
+          "natural_statement": "矛盾式代入后仍为一阶谓词逻辑"
+        },
+        {
+          "subject": "变元/variable symbol",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "变元是组成部分一阶谓词逻辑"
+        },
+        {
+          "subject": "一阶逻辑/first-order logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑是子类谓词逻辑"
+        }
+      ],
+      "rank": 4,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "谓词/predicate",
+      "zh": "谓词",
+      "importance": 0.603769374801952,
+      "mention_count": 12,
+      "origin": "textbook",
+      "summary": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕…",
+      "definition": "谓词是数理逻辑中用于表示命题中主词性质或个体间关系的表达式，通常记作 P(x) 或 P(x, y) 等。它是一个命题形式，其真假值取决于个体域中具体个体变量的取值，可以被视为从个体域到真值集合 {T, F} 的一个映射。在命题逻辑中，谓词捕获了不同命题的共同结构，并通过量词与个体变量结合形成合式公式。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "谓词属于映射"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "谓词是谓词公式的组成部分"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "依赖",
+          "natural_statement": "命题函数依赖个体变项"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "谓词依赖论域"
+        },
+        {
+          "subject": "一元谓词/unary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "一元谓词属于谓词"
+        },
+        {
+          "subject": "多元谓词/n-ary predicate",
+          "predicate": "belong_to",
+          "object": "谓词/predicate",
+          "label": "属于",
+          "natural_statement": "多元谓词表示谓词"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "谓词表示关系"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "性质/property",
+          "label": "属于",
+          "natural_statement": "谓词具有性质"
+        }
+      ],
+      "rank": 5,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "谓词逻辑/Predicate Logic",
+      "zh": "谓词逻辑",
+      "importance": 0.5458930370526589,
+      "origin": "textbook",
+      "summary": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工…",
+      "definition": "谓词逻辑（Predicate Logic）是数理逻辑中的一个分支，它通过引入谓词、变量、量词（如全称量词和存在量词）以及函数，对命题进行更细致的剖析，从而能够描述更复杂的推理规律和逻辑关系。相较于命题逻辑，谓词逻辑具有更强的表达能力，是人工智能领域中重要的知识表示和推理方法，广泛应用于描述计算机处理的知识。谓词逻辑研究普遍有效的公式（定理）的证明和推理演算，但其真值表法和判定性问题较命题逻辑更为复杂。例如，一阶谓词逻辑是其常见形式，其中论域的概念类似于集合论中的全集。",
+      "neighbors": [
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "量词属于谓词逻辑"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "公式属于谓词逻辑"
+        },
+        {
+          "subject": "变项/variable",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "变项表示谓词逻辑"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "谓词属于谓词逻辑"
+        },
+        {
+          "subject": "论域/domain of discourse",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "论域属于谓词逻辑"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "related_with",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "相关",
+          "natural_statement": "函数相关谓词逻辑"
+        },
+        {
+          "subject": "一阶逻辑/first-order logic",
+          "predicate": "belong_to",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "属于",
+          "natural_statement": "一阶谓词逻辑是子类谓词逻辑"
+        }
+      ],
+      "rank": 6,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "函数/function",
+      "zh": "函数",
+      "importance": 0.5087110002529032,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写…",
+      "definition": "函数（function）在数理逻辑与集合论中，是指从一个集合（定义域）到另一个集合（值域）的映射关系，它确保定义域中的每个元素恰好对应值域中的一个元素。与谓词不同，函数将个体映射为个体，而非真假值。在谓词逻辑中，函数嵌入在谓词中，通常用小写字母表示，例如 $f(x)$ 表示个体 $x$ 的某种变换。函数可以被看作是一种特殊的二元关系，其关系矩阵的每行恰好有一个1，或者在关系图中，定义域中的每个顶点恰好发出一条有向边。函数还可进一步区分为单射（一对一）、满射（映上）和双射（一一对应），并可以进行复合、求逆等运算。",
+      "neighbors": [
+        {
+          "subject": "谓词/predicate",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "谓词属于映射"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "函数是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "函数依赖论域"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "关系/relation",
+          "label": "属于",
+          "natural_statement": "函数属于关系"
+        },
+        {
+          "subject": "特征函数/characteristic function",
+          "predicate": "belong_to",
+          "object": "函数/function",
+          "label": "属于",
+          "natural_statement": "特征函数属于函数"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "函数属于集合论"
+        },
+        {
+          "subject": "函数/function",
+          "predicate": "related_with",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "相关",
+          "natural_statement": "函数相关谓词逻辑"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "related_with",
+          "object": "函数/function",
+          "label": "相关",
+          "natural_statement": "等价关系相关函数"
+        }
+      ],
+      "rank": 7,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "永真式/eternally true formula",
+      "zh": "永真式",
+      "importance": 0.5058363328825979,
+      "mention_count": 12,
+      "origin": "textbook",
+      "summary": "永真式是数理逻辑中的一种命题公式，其真值在所有可能的解释下都为真，也称为普遍有效式或定理。它表示一个逻辑上必然成立的命题，例如析取范式中的变量与其否定同时出现。在证明理论中，永真式是定理的代名词，其为真的根本原因在于其内在的逻辑结构，不依赖…",
+      "definition": "永真式是数理逻辑中的一种命题公式，其真值在所有可能的解释下都为真，也称为普遍有效式或定理。它表示一个逻辑上必然成立的命题，例如析取范式中的变量与其否定同时出现。在证明理论中，永真式是定理的代名词，其为真的根本原因在于其内在的逻辑结构，不依赖于任何特定的真值指派。",
+      "neighbors": [
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "重言式属于公式"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "related_with",
+          "object": "真值表/truth table",
+          "label": "相关",
+          "natural_statement": "重言式相关真值表"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "可满足式/satisfiable formula",
+          "label": "属于",
+          "natural_statement": "重言式属于可满足式"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "谓词公式/predicate formula",
+          "label": "属于",
+          "natural_statement": "普遍有效式是谓词公式的一种"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "related_with",
+          "object": "一般逻辑规律",
+          "label": "相关",
+          "natural_statement": "普遍有效式反映一般逻辑规律"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "谓词逻辑公式/predicate logic formula",
+          "label": "属于",
+          "natural_statement": "普遍有效式是谓词逻辑公式的一种"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "重言式属于命题逻辑"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "related_with",
+          "object": "矛盾式/contradiction",
+          "label": "相关",
+          "natural_statement": "重言式具有矛盾式"
+        }
+      ],
+      "rank": 8,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2218500_2455700",
+          "text": "我们刚才说了，谓词公式按照真假性分类，和命题公式一样。命题公式不是分永真、永假、可满足吗？在我们这里也是永真、永假、可满足，只是名称不一样。永真的我们把它叫做普遍有效式，它反映了一般逻辑规律。可满足式还是叫可满足式；永假式或矛盾式都可以叫不可满足式。不可满足式、永假式、矛盾式都是一回事。命题公式里的永真式叫重言式；重言式、永真式、普遍有效式，其实都是一回事，就是在所有解释下都为真。在我们这里通常叫普遍有效式。 那么要判断一个谓词公式是不是重言式或普遍有效式，是不是很难？因为我们刚才说了，论域可以取很多种。比如这个论域 X 取 1 到 2，只是某一种解释而…",
+          "start_sec": 2218.5,
+          "end_sec": 2455.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2810800_3235200",
+          "text": "公式在有限域上的真假性。这里有几个比较重要的结论。首先，一个公式的真假性，或者说它是普遍有效的还是可满足的，只依赖于个体域的大小。k-个体域就是含有k个元素的有限个体域。如果一个公式在某个k-个体域上普遍有效，那么在任何一个k-个体域上它都普遍有效；如果它在某个k-个体域上可满足，那么在任何一个k-个体域上它都可满足。也就是说，在有限域上，公式的普遍有效性和可满足性仅依赖于个体域的大小。比如，在自然数集上取k个元素构成个体域时普遍有效，那么取桌子、椅子、窗户等k个元素构成个体域时也普遍有效。 此外有两条重要的单调性结论：大永真推出小永真，即公式在k-个体…",
+          "start_sec": 2810.8,
+          "end_sec": 3235.2
+        }
+      ]
+    },
+    {
+      "id": "集合/set",
+      "zh": "集合",
+      "importance": 0.5025447590120219,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "集合是离散数学中将不同元素汇集而成的总体，其元素的个数称为基数，用|S|表示。集合间的交集（A ∩ B）包含同时属于A和B的元素，并集（A ∪ B）包含属于A或B的元素，两者都满足分配律。非空集合A的划分是由若干个非空子集合组成的集合，这些…",
+      "definition": "集合是离散数学中将不同元素汇集而成的总体，其元素的个数称为基数，用|S|表示。集合间的交集（A ∩ B）包含同时属于A和B的元素，并集（A ∪ B）包含属于A或B的元素，两者都满足分配律。非空集合A的划分是由若干个非空子集合组成的集合，这些子集合的并集为A，且任意两个子集合的交集为空集。集合中的元素a属于集合S记为a ∈ S。",
+      "neighbors": [
+        {
+          "subject": "有序对/ordered pair",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "有序对依赖集合"
+        },
+        {
+          "subject": "关系/relation",
+          "predicate": "depend_on",
+          "object": "集合/set",
+          "label": "依赖",
+          "natural_statement": "关系依赖集合"
+        },
+        {
+          "subject": "笛卡儿积/Cartesian product",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "笛卡儿积属于集合"
+        },
+        {
+          "subject": "无限集合/infinite set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "无限集合属于集合"
+        },
+        {
+          "subject": "自然数集直积/Cartesian product of natural numbers",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "自然数集直积属于集合"
+        },
+        {
+          "subject": "有穷集合/Finite Set",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "有穷集合属于集合"
+        },
+        {
+          "subject": "集合/set",
+          "predicate": "belong_to",
+          "object": "集合论/Set Theory",
+          "label": "属于",
+          "natural_statement": "集合属于集合论"
+        },
+        {
+          "subject": "广义交/generalized intersection",
+          "predicate": "belong_to",
+          "object": "集合/set",
+          "label": "属于",
+          "natural_statement": "广义交属于集合"
+        }
+      ],
+      "rank": 9,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "__cross_cue__1_7",
+          "text": "### 第1段 一阶谓词逻辑引入个体、谓词和量词等概念。个体用 a、b、c 或变量 x、y、z 表示；谓词用 p、q 表示；量词约束个体，区分所有个体满足或存在个体满足。自然语言到形式语言的翻译有规律可循。论域若不特别指明则为任何事物；谓词是论域到真值的映射，另有个体函数。论域无穷时，判定谓词公式的永真性或可满足性较困难。在有限论域 {a1, a2, ..., ak} 上，全称量词 ∀x P(x) 可展开为 P(a1) ∧ P(a2) ∧ ... ∧ P(ak)，即全称量词是合取的推广；存在量词 ∃x P(x) 可展开为 P(a1) ∨ P(a2) ∨…",
+          "start_sec": 151.5,
+          "end_sec": 3235.2
+        }
+      ]
+    },
+    {
+      "id": "量词/quantifier",
+      "zh": "量词",
+      "importance": 0.48297170459393113,
+      "mention_count": 5,
+      "origin": "textbook",
+      "summary": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更…",
+      "definition": "量词是数理逻辑中用于表示个体数量的逻辑词项，主要用于限制个体的存在或普遍性，而非具体数量的描述。最基本的量词是全称量词“所有的”（∀）和存在量词“至少有一个”（∃）。量词所约束的变量范围称为其辖域。在谓词逻辑中，量词与合式公式的组合构成了更复杂的逻辑表达，如（∀x）A 或（∃x）A，这些量词的引入和消除规则，以及其与逻辑联结词的分配律，是谓词逻辑推理的关键。带有量词的公式可以写成前束范式，如Q1x1Q2x2…QnxnB(x1,x2,…,xn)，其中Qi为量词。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "存在量词/existential quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "存在量词表示量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "量词是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "量词是谓词公式的组成部分"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "depend_on",
+          "object": "量化/Quantification",
+          "label": "依赖",
+          "natural_statement": "量词依赖量化"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "量词/quantifier",
+          "label": "相关",
+          "natural_statement": "否定词相关量词"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "命题形式/propositional form",
+          "label": "组成",
+          "natural_statement": "量词属于命题形式"
+        },
+        {
+          "subject": "量词/quantifier",
+          "predicate": "part_of",
+          "object": "前束范式/Prenex Normal Form",
+          "label": "组成",
+          "natural_statement": "量词属于前束范式"
+        }
+      ],
+      "rank": 10,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+          "text": "在有限论域下，我们可以对公式进行这样的展开。这样一来，判断一个一阶谓词公式在有限论域下的真值，计算起来就相对简单了。例如，对于有两个个体变元的全称量词公式，我们先对 \\(x\\) 进行展开，再对 \\(y\\) 进行展开，就变成了这样。如果两个量词中有一个是存在量词，比如 \\((\\forall x)(\\exists y) P(x,y)\\)，我们也先对 \\(x\\) 展开：\\(x\\) 取 1 和 2，然后取合取；再对存在 \\(y\\) 展开，\\(y\\) 取 1 或 2 时，对应的就是析取。这样就得到了这样的形式。如果是 \\((\\exists x)(\\forall y…",
+          "start_sec": 811.3,
+          "end_sec": 930.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        }
+      ]
+    },
+    {
+      "id": "矛盾式/contradiction",
+      "zh": "矛盾式",
+      "importance": 0.4555683370652828,
+      "mention_count": 6,
+      "origin": "new",
+      "summary": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。这类公式是逻辑上不可满足的，例如，如果一个公式可以被归结为空子句（□），则证明其为矛盾式。理解矛盾式对于判断公式的等值性、重言式以及证明推理的有效性至…",
+      "definition": "矛盾式（contradiction）是在数理逻辑中，一个公式无论在任何解释下其真值都为假。这类公式是逻辑上不可满足的，例如，如果一个公式可以被归结为空子句（□），则证明其为矛盾式。理解矛盾式对于判断公式的等值性、重言式以及证明推理的有效性至关重要，定理2.8.2表明，$A \\Rightarrow B$ 成立的充分必要条件是 $A \\wedge \\neg B$ 是矛盾式。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "矛盾式/contradiction",
+          "label": "属于",
+          "natural_statement": "公式属于矛盾式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "真值表/truth table",
+          "label": "相关",
+          "natural_statement": "矛盾式相关真值表"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "可满足式/satisfiable formula",
+          "label": "相关",
+          "natural_statement": "矛盾式相关可满足式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "belong_to",
+          "object": "谓词公式/predicate formula",
+          "label": "属于",
+          "natural_statement": "不可满足式是谓词公式的一种"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "belong_to",
+          "object": "谓词逻辑公式/predicate logic formula",
+          "label": "属于",
+          "natural_statement": "不可满足式是谓词逻辑公式的一种"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "related_with",
+          "object": "矛盾式/contradiction",
+          "label": "相关",
+          "natural_statement": "重言式具有矛盾式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "一阶逻辑/first-order logic",
+          "label": "相关",
+          "natural_statement": "矛盾式代入后仍为一阶谓词逻辑"
+        }
+      ],
+      "rank": 11,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2218500_2455700",
+          "text": "我们刚才说了，谓词公式按照真假性分类，和命题公式一样。命题公式不是分永真、永假、可满足吗？在我们这里也是永真、永假、可满足，只是名称不一样。永真的我们把它叫做普遍有效式，它反映了一般逻辑规律。可满足式还是叫可满足式；永假式或矛盾式都可以叫不可满足式。不可满足式、永假式、矛盾式都是一回事。命题公式里的永真式叫重言式；重言式、永真式、普遍有效式，其实都是一回事，就是在所有解释下都为真。在我们这里通常叫普遍有效式。 那么要判断一个谓词公式是不是重言式或普遍有效式，是不是很难？因为我们刚才说了，论域可以取很多种。比如这个论域 X 取 1 到 2，只是某一种解释而…",
+          "start_sec": 2218.5,
+          "end_sec": 2455.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "个体变项/individual variable",
+      "zh": "个体变项",
+      "importance": 0.4454148401259351,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通常以小写字母 x, y, z 等表示。个体变项可以被量词（如全称量词∀和存在量词∃）所约束，形成约束变项，也可以不受量词约束。个体变项是构建逻辑公…",
+      "definition": "个体变项（individual variable）是数理逻辑中用于指代论域中个体对象的符号，通常以小写字母 x, y, z 等表示。个体变项可以被量词（如全称量词∀和存在量词∃）所约束，形成约束变项，也可以不受量词约束。个体变项是构建逻辑公式、进行代入以及定义合式公式的关键要素，其变化范围限定为个体域或论域。",
+      "neighbors": [
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "个体变项表示变项"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "个体变项是谓词公式的组成部分"
+        },
+        {
+          "subject": "自由个体变项/free individual variable",
+          "predicate": "belong_to",
+          "object": "个体变项/individual variable",
+          "label": "属于",
+          "natural_statement": "自由个体变项是一种个体变项"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "依赖",
+          "natural_statement": "全称量词依赖个体变项"
+        },
+        {
+          "subject": "谓词/predicate",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "依赖",
+          "natural_statement": "命题函数依赖个体变项"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "related_with",
+          "object": "个体对象/Individual Object",
+          "label": "相关",
+          "natural_statement": "个体变项相关个体对象"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "belong_to",
+          "object": "个体词/individual term",
+          "label": "属于",
+          "natural_statement": "个体变项属于个体词"
+        },
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "part_of",
+          "object": "一阶语言/First-order Language",
+          "label": "组成",
+          "natural_statement": "个体变项表示一阶语言"
+        }
+      ],
+      "rank": 12,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "真值/truth value",
+      "zh": "真值",
+      "importance": 0.43012300485325206,
+      "mention_count": 6,
+      "origin": "textbook",
+      "summary": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中…",
+      "definition": "真值是陈述句符合或不符合事实的程度，是命题逻辑的核心属性，通常用T（真）或F（假）表示，也可分别用1或0表示。命题的真值是构成它的命题的真值根据逻辑联结词（如合取、析取、蕴含、双条件）确定的，并可通过真值表进行系统化表达。在某些逻辑系统中，也引入了不确定（U）等其他真值。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "组成",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "论域/domain of discourse",
+          "label": "依赖",
+          "natural_statement": "真值依赖论域"
+        },
+        {
+          "subject": "假/false",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "属于",
+          "natural_statement": "假表示真值"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "简单命题/simple proposition",
+          "label": "依赖",
+          "natural_statement": "真值依赖简单命题"
+        },
+        {
+          "subject": "等价关系/equivalence relation",
+          "predicate": "depend_on",
+          "object": "真值/truth value",
+          "label": "依赖",
+          "natural_statement": "等价关系依赖真值"
+        },
+        {
+          "subject": "真/true",
+          "predicate": "belong_to",
+          "object": "真值/truth value",
+          "label": "属于",
+          "natural_statement": "真表示真值"
+        },
+        {
+          "subject": "真值/truth value",
+          "predicate": "depend_on",
+          "object": "否定命题/negated proposition",
+          "label": "依赖",
+          "natural_statement": "真值依赖否定命题"
+        },
+        {
+          "subject": "二值逻辑/two-valued logic",
+          "predicate": "depend_on",
+          "object": "真值/truth value",
+          "label": "依赖",
+          "natural_statement": "二值逻辑依赖真值"
+        }
+      ],
+      "rank": 13,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+          "text": "在有限论域下，我们可以对公式进行这样的展开。这样一来，判断一个一阶谓词公式在有限论域下的真值，计算起来就相对简单了。例如，对于有两个个体变元的全称量词公式，我们先对 \\(x\\) 进行展开，再对 \\(y\\) 进行展开，就变成了这样。如果两个量词中有一个是存在量词，比如 \\((\\forall x)(\\exists y) P(x,y)\\)，我们也先对 \\(x\\) 展开：\\(x\\) 取 1 和 2，然后取合取；再对存在 \\(y\\) 展开，\\(y\\) 取 1 或 2 时，对应的就是析取。这样就得到了这样的形式。如果是 \\((\\exists x)(\\forall y…",
+          "start_sec": 811.3,
+          "end_sec": 930.4
+        }
+      ]
+    },
+    {
+      "id": "可满足/satisfiable",
+      "zh": "可满足",
+      "importance": 0.3809557086200156,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "可满足（satisfiable）是数理逻辑中用于描述命题逻辑或一阶逻辑公式的一个性质，指存在至少一种解释（或赋值），使得该公式的真值为真。当一个公式可以被满足时，它就是可满足的。例如，公式A ∨ ¬A 是一个永真公式，因此是可满足的；反之…",
+      "definition": "可满足（satisfiable）是数理逻辑中用于描述命题逻辑或一阶逻辑公式的一个性质，指存在至少一种解释（或赋值），使得该公式的真值为真。当一个公式可以被满足时，它就是可满足的。例如，公式A ∨ ¬A 是一个永真公式，因此是可满足的；反之，若公式¬A是可满足的，则意味着A至少存在一种赋值使其为假，故A本身是不可满足的。",
+      "neighbors": [
+        {
+          "subject": "单调性/monotonicity",
+          "predicate": "depend_on",
+          "object": "可满足/satisfiable",
+          "label": "依赖",
+          "natural_statement": "单调性基于可满足"
+        }
+      ],
+      "rank": 14,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2810800_3235200",
+          "text": "公式在有限域上的真假性。这里有几个比较重要的结论。首先，一个公式的真假性，或者说它是普遍有效的还是可满足的，只依赖于个体域的大小。k-个体域就是含有k个元素的有限个体域。如果一个公式在某个k-个体域上普遍有效，那么在任何一个k-个体域上它都普遍有效；如果它在某个k-个体域上可满足，那么在任何一个k-个体域上它都可满足。也就是说，在有限域上，公式的普遍有效性和可满足性仅依赖于个体域的大小。比如，在自然数集上取k个元素构成个体域时普遍有效，那么取桌子、椅子、窗户等k个元素构成个体域时也普遍有效。 此外有两条重要的单调性结论：大永真推出小永真，即公式在k-个体…",
+          "start_sec": 2810.8,
+          "end_sec": 3235.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        }
+      ]
+    },
+    {
+      "id": "联结词/connective",
+      "zh": "联结词",
+      "importance": 0.3809436932777329,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础…",
+      "definition": "联结词是数理逻辑和集合论中用于连接一个或多个简单命题，从而构成新的复合命题的基本符号和操作。常见的联结词如否定（¬）、合取（∧）、析取（∨）、蕴涵（→）和等价（↔）等，它们通过定义真值关系来决定复合命题的真假。联结词是构建命题逻辑公式的基础，并与计算机的逻辑门电路（如与门、或门、非门）有直接对应关系。",
+      "neighbors": [
+        {
+          "subject": "联结词/connective",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "联结词组成谓词公式"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "依赖",
+          "natural_statement": "公式依赖联结词"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "相关",
+          "natural_statement": "联结词相关命题"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "合取等价于联结词"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "依赖",
+          "natural_statement": "真值表依赖联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "联结词/connective",
+          "label": "属于",
+          "natural_statement": "蕴含等价于联结词"
+        }
+      ],
+      "rank": 15,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+          "text": "在有限论域下，我们可以对公式进行这样的展开。这样一来，判断一个一阶谓词公式在有限论域下的真值，计算起来就相对简单了。例如，对于有两个个体变元的全称量词公式，我们先对 \\(x\\) 进行展开，再对 \\(y\\) 进行展开，就变成了这样。如果两个量词中有一个是存在量词，比如 \\((\\forall x)(\\exists y) P(x,y)\\)，我们也先对 \\(x\\) 展开：\\(x\\) 取 1 和 2，然后取合取；再对存在 \\(y\\) 展开，\\(y\\) 取 1 或 2 时，对应的就是析取。这样就得到了这样的形式。如果是 \\((\\exists x)(\\forall y…",
+          "start_sec": 811.3,
+          "end_sec": 930.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "可满足式/satisfiable formula",
+      "zh": "可满足式",
+      "importance": 0.37395933044569585,
+      "mention_count": 4,
+      "origin": "textbook",
+      "summary": "可满足式（satisfiable formula）是数理逻辑与集合论中，指在某个解释下其真值可以为真的谓词逻辑公式。这意味着存在一个模型的赋值，使得该公式成立，例如重言式就是一种可满足式。与永假式（不可满足式）相对，一个公式若非永假，则必可…",
+      "definition": "可满足式（satisfiable formula）是数理逻辑与集合论中，指在某个解释下其真值可以为真的谓词逻辑公式。这意味着存在一个模型的赋值，使得该公式成立，例如重言式就是一种可满足式。与永假式（不可满足式）相对，一个公式若非永假，则必可满足。",
+      "neighbors": [
+        {
+          "subject": "可满足式/satisfiable formula",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "可满足式属于公式"
+        },
+        {
+          "subject": "可满足式/satisfiable formula",
+          "predicate": "related_with",
+          "object": "真值表/truth table",
+          "label": "相关",
+          "natural_statement": "可满足式相关真值表"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "可满足式/satisfiable formula",
+          "label": "属于",
+          "natural_statement": "重言式属于可满足式"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "可满足式/satisfiable formula",
+          "label": "相关",
+          "natural_statement": "矛盾式相关可满足式"
+        },
+        {
+          "subject": "可满足式/satisfiable formula",
+          "predicate": "belong_to",
+          "object": "谓词逻辑公式/predicate logic formula",
+          "label": "属于",
+          "natural_statement": "可满足式属于谓词逻辑公式"
+        },
+        {
+          "subject": "可满足式/satisfiable formula",
+          "predicate": "belong_to",
+          "object": "谓词公式/predicate formula",
+          "label": "属于",
+          "natural_statement": "可满足式是谓词公式的一种"
+        }
+      ],
+      "rank": 16,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2218500_2455700",
+          "text": "我们刚才说了，谓词公式按照真假性分类，和命题公式一样。命题公式不是分永真、永假、可满足吗？在我们这里也是永真、永假、可满足，只是名称不一样。永真的我们把它叫做普遍有效式，它反映了一般逻辑规律。可满足式还是叫可满足式；永假式或矛盾式都可以叫不可满足式。不可满足式、永假式、矛盾式都是一回事。命题公式里的永真式叫重言式；重言式、永真式、普遍有效式，其实都是一回事，就是在所有解释下都为真。在我们这里通常叫普遍有效式。 那么要判断一个谓词公式是不是重言式或普遍有效式，是不是很难？因为我们刚才说了，论域可以取很多种。比如这个论域 X 取 1 到 2，只是某一种解释而…",
+          "start_sec": 2218.5,
+          "end_sec": 2455.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "变项/variable",
+      "zh": "变项",
+      "importance": 0.3634437876794348,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。在逻辑推理中，变项可以被特定个体或个体集合替代，其自由出现或被量词约束的状态对于公式的解释和真值判断至关重要。例如，在谓词逻辑中，$P(x)$ 表示…",
+      "definition": "变项（variable）是数理逻辑中的基本符号，用于表示逻辑公式中的不确定或可替换的个体。在逻辑推理中，变项可以被特定个体或个体集合替代，其自由出现或被量词约束的状态对于公式的解释和真值判断至关重要。例如，在谓词逻辑中，$P(x)$ 表示 '$x$ 是学生'，这里的 $x$ 是一个变项。",
+      "neighbors": [
+        {
+          "subject": "个体变项/individual variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "个体变项表示变项"
+        },
+        {
+          "subject": "函数变项/function variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "函数变项是一种变项"
+        },
+        {
+          "subject": "谓词变项/predicate variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "谓词变项是一种变项"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "命题变项是一种变项"
+        },
+        {
+          "subject": "自由变元/free variable",
+          "predicate": "belong_to",
+          "object": "变项/variable",
+          "label": "属于",
+          "natural_statement": "自由变元属于变项"
+        },
+        {
+          "subject": "变项/variable",
+          "predicate": "part_of",
+          "object": "命题形式/propositional form",
+          "label": "组成",
+          "natural_statement": "变项属于命题形式"
+        },
+        {
+          "subject": "变项/variable",
+          "predicate": "related_with",
+          "object": "否定/Negation",
+          "label": "相关",
+          "natural_statement": "变项相关否定"
+        },
+        {
+          "subject": "变项/variable",
+          "predicate": "part_of",
+          "object": "谓词逻辑/Predicate Logic",
+          "label": "组成",
+          "natural_statement": "变项表示谓词逻辑"
+        }
+      ],
+      "rank": 17,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "命题逻辑/propositional logic",
+      "zh": "命题逻辑",
+      "importance": 0.3610009446593731,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具…",
+      "definition": "命题逻辑是数理逻辑的一个分支，研究命题的推理演算，其中命题被视为基本单元，不分析其内部结构。它利用命题变项、命题联结词和圆括号构成合式公式，并使用真值表等工具来判断命题的真假关系和进行推理。命题逻辑是计算机硬件电路表示、分析和设计的重要工具，其研究内容可推广至谓词逻辑。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "公式属于命题逻辑"
+        },
+        {
+          "subject": "命题逻辑/propositional logic",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "相关",
+          "natural_statement": "命题逻辑相关命题"
+        },
+        {
+          "subject": "一阶逻辑/first-order logic",
+          "predicate": "related_with",
+          "object": "命题逻辑/propositional logic",
+          "label": "相关",
+          "natural_statement": "一阶谓词逻辑扩展命题逻辑"
+        },
+        {
+          "subject": "永真式/eternally true formula",
+          "predicate": "belong_to",
+          "object": "命题逻辑/propositional logic",
+          "label": "属于",
+          "natural_statement": "重言式属于命题逻辑"
+        }
+      ],
+      "rank": 18,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "k-个体域/k-individual domain",
+      "zh": "k-个体域",
+      "importance": 0.35929714947408237,
+      "mention_count": 7,
+      "origin": "new",
+      "summary": "k-个体域是论域中元素个数为有限数k的个体域，即包含恰好k个不同个体的集合。在离散数学中，若两个论域大小相同（均为k-个体域），则它们之间存在一一映射，因此k-个体域是刻画论域基数（大小）的基本概念，常用于有限模型和谓词逻辑的语义解释中。",
+      "definition": "k-个体域是论域中元素个数为有限数k的个体域，即包含恰好k个不同个体的集合。在离散数学中，若两个论域大小相同（均为k-个体域），则它们之间存在一一映射，因此k-个体域是刻画论域基数（大小）的基本概念，常用于有限模型和谓词逻辑的语义解释中。",
+      "neighbors": [
+        {
+          "subject": "k-个体域/k-individual domain",
+          "predicate": "belong_to",
+          "object": "有限域/finite domain",
+          "label": "属于",
+          "natural_statement": "k-个体域是有限域的一种"
+        },
+        {
+          "subject": "k-个体域/k-individual domain",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "k-个体域是个体域的一种"
+        }
+      ],
+      "rank": 19,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2810800_3235200",
+          "text": "公式在有限域上的真假性。这里有几个比较重要的结论。首先，一个公式的真假性，或者说它是普遍有效的还是可满足的，只依赖于个体域的大小。k-个体域就是含有k个元素的有限个体域。如果一个公式在某个k-个体域上普遍有效，那么在任何一个k-个体域上它都普遍有效；如果它在某个k-个体域上可满足，那么在任何一个k-个体域上它都可满足。也就是说，在有限域上，公式的普遍有效性和可满足性仅依赖于个体域的大小。比如，在自然数集上取k个元素构成个体域时普遍有效，那么取桌子、椅子、窗户等k个元素构成个体域时也普遍有效。 此外有两条重要的单调性结论：大永真推出小永真，即公式在k-个体…",
+          "start_sec": 2810.8,
+          "end_sec": 3235.2
+        },
+        {
+          "cue_id": "__cross_cue__1_7",
+          "text": "### 第1段 一阶谓词逻辑引入个体、谓词和量词等概念。个体用 a、b、c 或变量 x、y、z 表示；谓词用 p、q 表示；量词约束个体，区分所有个体满足或存在个体满足。自然语言到形式语言的翻译有规律可循。论域若不特别指明则为任何事物；谓词是论域到真值的映射，另有个体函数。论域无穷时，判定谓词公式的永真性或可满足性较困难。在有限论域 {a1, a2, ..., ak} 上，全称量词 ∀x P(x) 可展开为 P(a1) ∧ P(a2) ∧ ... ∧ P(ak)，即全称量词是合取的推广；存在量词 ∃x P(x) 可展开为 P(a1) ∨ P(a2) ∨…",
+          "start_sec": 151.5,
+          "end_sec": 3235.2
+        }
+      ]
+    },
+    {
+      "id": "变元/variable symbol",
+      "zh": "变元",
+      "importance": 0.3586816904113862,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "definition": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "neighbors": [
+        {
+          "subject": "变元/variable symbol",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "变元是组成部分一阶谓词逻辑"
+        },
+        {
+          "subject": "个体变元",
+          "predicate": "belong_to",
+          "object": "变元/variable symbol",
+          "label": "属于",
+          "natural_statement": "个体变元是子类变元"
+        },
+        {
+          "subject": "谓词变元",
+          "predicate": "belong_to",
+          "object": "变元/variable symbol",
+          "label": "属于",
+          "natural_statement": "谓词变元是子类变元"
+        },
+        {
+          "subject": "代入/instantiation",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "代入作用于变元"
+        }
+      ],
+      "rank": 20,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_811300_930400",
+          "text": "在有限论域下，我们可以对公式进行这样的展开。这样一来，判断一个一阶谓词公式在有限论域下的真值，计算起来就相对简单了。例如，对于有两个个体变元的全称量词公式，我们先对 \\(x\\) 进行展开，再对 \\(y\\) 进行展开，就变成了这样。如果两个量词中有一个是存在量词，比如 \\((\\forall x)(\\exists y) P(x,y)\\)，我们也先对 \\(x\\) 展开：\\(x\\) 取 1 和 2，然后取合取；再对存在 \\(y\\) 展开，\\(y\\) 取 1 或 2 时，对应的就是析取。这样就得到了这样的形式。如果是 \\((\\exists x)(\\forall y…",
+          "start_sec": 811.3,
+          "end_sec": 930.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    },
+    {
+      "id": "命题/proposition",
+      "zh": "命题",
+      "importance": 0.35550753528251877,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合…",
+      "definition": "命题（proposition）是数理逻辑与集合论中的基本陈述句，具有确定的真值（真或假）。它区别于命题变项，后者真值不定。命题可以是简单命题（原子命题），不含逻辑联结词；也可以是由逻辑联结词（如与、或、非、蕴含、等价）连接简单命题构成的复合命题。命题的真值关系可用真值表表示，是逻辑推理的基础。",
+      "neighbors": [
+        {
+          "subject": "命题/proposition",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "命题包含公式"
+        },
+        {
+          "subject": "命题/proposition",
+          "predicate": "part_of",
+          "object": "前提/premise",
+          "label": "组成",
+          "natural_statement": "命题属于前提"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "相关",
+          "natural_statement": "命题变项具有命题"
+        },
+        {
+          "subject": "复合命题/compound proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "复合命题属于命题"
+        },
+        {
+          "subject": "联结词/connective",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "相关",
+          "natural_statement": "联结词相关命题"
+        },
+        {
+          "subject": "命题形式/propositional form",
+          "predicate": "related_with",
+          "object": "命题/proposition",
+          "label": "相关",
+          "natural_statement": "命题形式相关命题"
+        },
+        {
+          "subject": "主词/subject",
+          "predicate": "part_of",
+          "object": "命题/proposition",
+          "label": "组成",
+          "natural_statement": "主词属于命题"
+        },
+        {
+          "subject": "简单命题/simple proposition",
+          "predicate": "belong_to",
+          "object": "命题/proposition",
+          "label": "属于",
+          "natural_statement": "简单命题包含命题"
+        }
+      ],
+      "rank": 21,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        }
+      ]
+    },
+    {
+      "id": "个体/Individual",
+      "zh": "个体",
+      "importance": 0.3537677305767535,
+      "mention_count": 6,
+      "origin": "textbook",
+      "summary": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。它代表了一个具体的、独立的实体，可以用于描述特定属性或作为集合的成员。例如，在自然数集合的论域中，'3'就是一个个体。",
+      "definition": "个体（Individual）是数理逻辑与集合论中，论域（Domain）内的一个基本元素或对象。它代表了一个具体的、独立的实体，可以用于描述特定属性或作为集合的成员。例如，在自然数集合的论域中，'3'就是一个个体。",
+      "neighbors": [
+        {
+          "subject": "个体/Individual",
+          "predicate": "belong_to",
+          "object": "论域/domain of discourse",
+          "label": "属于",
+          "natural_statement": "个体属于论域"
+        },
+        {
+          "subject": "个体/Individual",
+          "predicate": "part_of",
+          "object": "一阶逻辑/first-order logic",
+          "label": "组成",
+          "natural_statement": "个体是一阶谓词逻辑的组成部分"
+        },
+        {
+          "subject": "个体/Individual",
+          "predicate": "part_of",
+          "object": "谓词公式/predicate formula",
+          "label": "组成",
+          "natural_statement": "个体是谓词公式的组成部分"
+        }
+      ],
+      "rank": 22,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_2459500_2809000",
+          "text": "但是有一些定理：命题逻辑重言式的任何代入实例，都是一阶逻辑中的普遍有效公式。比如 \\(P\\vee\\neg P\\) 是一个重言式，把命题变元 \\(P\\) 用任意一个一阶谓词公式代入，例如用 \\((\\forall x)P(x)\\) 代入，得到 \\((\\forall x)P(x)\\vee\\neg(\\forall x)P(x)\\)，它仍然是一个普遍有效式。 可满足式很多。例如 \\((\\forall x)P(x)\\)，取个体域 \\(D\\) 为交大09级新生，\\(P\\) 为“高考成绩大于600”，它就是一个可满足式。再如 \\((\\exists x)P(x)\\)，取…",
+          "start_sec": 2459.5,
+          "end_sec": 2809
+        }
+      ]
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.34533936216965405,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "真值/truth value",
+          "predicate": "part_of",
+          "object": "真值表/truth table",
+          "label": "组成",
+          "natural_statement": "真值属于真值表"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "命题变项/propositional variable",
+          "label": "依赖",
+          "natural_statement": "真值表依赖命题变项"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表相关主合取范式"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "复合命题/compound proposition",
+          "label": "相关",
+          "natural_statement": "真值表相关复合命题"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "联结词/connective",
+          "label": "依赖",
+          "natural_statement": "真值表依赖联结词"
+        },
+        {
+          "subject": "等值/equivalence",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "等值依赖真值表"
+        },
+        {
+          "subject": "矛盾式/contradiction",
+          "predicate": "related_with",
+          "object": "真值表/truth table",
+          "label": "相关",
+          "natural_statement": "矛盾式相关真值表"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "否定/Negation",
+          "label": "相关",
+          "natural_statement": "真值表相关否定"
+        }
+      ],
+      "rank": 23,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_931600_1352000",
+          "text": "一个谓词公式的解释包含哪些呢？一个谓词公式 A 中会有个体变项，比如 x1、x2、…；还可能有函数变项，比如 f1、f2、…；还有命题变项，用小写 p1、p2、…；还有谓词变项，用大写 Q1、Q2、… 来区分。一个谓词公式 A 的变项有这么多，它其实可以看作这些变项到 True/False 的一个映射，由 True/False 决定其真值。当然其中还隐含了论域 D，论域也可以取不同的个体论域，所以可变的东西非常多。 对于任何一个解释 I，首先要对论域进行解释，限定这个论域是自然数、整数、一切事物，还是全体交大的学生等等；然后要对所有个体变项解释，比如 x…",
+          "start_sec": 931.6,
+          "end_sec": 1352
+        }
+      ]
+    },
+    {
+      "id": "全称量词/universal quantifier",
+      "zh": "全称量词",
+      "importance": 0.3440476481751528,
+      "mention_count": 4,
+      "origin": "textbook",
+      "summary": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中…",
+      "definition": "全称量词（universal quantifier），通常表示为 ∀，是谓词逻辑中用于指示其后的命题对于论域中的所有个体都成立的逻辑符号。其核心功能是表述“对所有”的普遍性断言，例如命题 (∀x) P(x) 成立当且仅当 P(x) 对论域中的所有 x 均为真。在有限域下，全称量词结合合取词可以转化为命题逻辑公式，并遵循分配律 (∀x)(P(x) ∧ Q(x)) ≡ (∀x)P(x) ∧ (∀x)Q(x)。",
+      "neighbors": [
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "belong_to",
+          "object": "量词/quantifier",
+          "label": "属于",
+          "natural_statement": "全称量词表示量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "合取/conjunction",
+          "label": "相关",
+          "natural_statement": "全称量词等价于合取"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "depend_on",
+          "object": "个体变项/individual variable",
+          "label": "依赖",
+          "natural_statement": "全称量词依赖个体变项"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "析取/disjunction",
+          "label": "相关",
+          "natural_statement": "全称量词等价于析取"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "全称量词/universal quantifier",
+          "label": "相关",
+          "natural_statement": "否定词相关全称量词"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "全称量词表示逻辑公式"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "part_of",
+          "object": "量词转换律/quantifier conversion law",
+          "label": "组成",
+          "natural_statement": "全称量词属于量词转换律"
+        },
+        {
+          "subject": "全称量词/universal quantifier",
+          "predicate": "related_with",
+          "object": "存在量词/existential quantifier",
+          "label": "相关",
+          "natural_statement": "全称量词等价于存在量词"
+        }
+      ],
+      "rank": 24,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_151500_810200",
+          "text": "我们讲了一阶谓词逻辑，first-order logic。在一阶谓词逻辑里，我们提出了一些新的概念。一个合式公式（well-formed formula）中包含很多个体；个体通常用 a、b、c 表示，或者用变量 x、y、z 表示。我们还提出了谓词的概念，谓词通常用 p、q 表示。量词用来约束个体：是所有个体都要满足条件，还是存在某个个体满足条件即可。这些就是谓词逻辑中新引入的概念。 我们也介绍过，把自然语言翻译成形式语言是有规律的。通常我们会说“任意的”，也翻译过皮亚诺（Peano）算术公理，以及其他一些公理。 讲到个体，就会有论域。如果不特别指明，论域…",
+          "start_sec": 151.5,
+          "end_sec": 810.2
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_29_1352900_2217700",
+          "text": "指派非常多，我们先看一个有限论域下的指派。考虑对公式 \\((\\forall x)(P(x) \\rightarrow Q(f(x), a))\\) 的解释。\\(\\forall x\\) 的辖域是整个公式。这里的 \\(a\\) 是个体常项，和 \\(x\\) 不是一回事；个体常项需要指派。论域 \\(D\\) 指派为 \\(\\{1,2\\}\\)。\\(x\\) 是个体变项，被全称量词约束，其取值由论域决定；如果个体变项只出现在函数和谓词中，就不需要单独指派。个体常项 \\(a\\) 的指派为 1。\\(f\\) 的指派通过取值表确定：\\(f(1)=2\\)，\\(f(2)=1\\)。这样就唯一…",
+          "start_sec": 1352.9,
+          "end_sec": 2217.7
+        }
+      ]
+    }
+  ]
+}

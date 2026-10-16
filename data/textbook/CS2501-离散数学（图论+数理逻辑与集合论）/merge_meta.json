@@ -1,0 +1,9 @@
+{
+  "merged_from": [
+    "data/textbook/CS2501-离散数学（图论与代数结构）",
+    "data/textbook/CS2501-离散数学（数理逻辑与集合论）"
+  ],
+  "n_entities": 2179,
+  "n_relations": 3901,
+  "n_chapters": 21
+}

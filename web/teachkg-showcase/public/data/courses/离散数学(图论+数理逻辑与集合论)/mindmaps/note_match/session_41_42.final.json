@@ -1,0 +1,461 @@
+{
+  "lecture_id": "41_42",
+  "root": {
+    "id": "__lecture__/41_42",
+    "zh": "第 21 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第10章 关系",
+        "zh": "第10章 关系",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "关系"
+        ],
+        "children": [
+          {
+            "id": "__section__/关系基本概念",
+            "zh": "关系基本概念",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/关系基本概念/关系定义",
+                "zh": "关系定义",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系基本概念/关系限制",
+                "zh": "关系限制",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系基本概念/关系的象",
+                "zh": "关系的象",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系基本概念/关系域",
+                "zh": "关系域",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/关系运算",
+            "zh": "关系运算",
+            "importance": 0.705527,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/关系运算/关系的逆",
+                "zh": "关系的逆",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/关系性质",
+            "zh": "关系性质",
+            "importance": 0.726034,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/关系性质/自反性",
+                "zh": "自反性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/非自反性",
+                "zh": "非自反性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/对称性",
+                "zh": "对称性",
+                "importance": 0.726034,
+                "relation": "outline_concept",
+                "related": [
+                  "对称性"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/反对称性",
+                "zh": "反对称性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/关系性质/传递性",
+                "zh": "传递性",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/等价关系与划分",
+            "zh": "等价关系与划分",
+            "importance": 0.937639,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/等价关系与划分/等价关系",
+                "zh": "等价关系",
+                "importance": 0.937639,
+                "relation": "outline_concept",
+                "related": [
+                  "等价关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/等价关系与划分/等价类",
+                "zh": "等价类",
+                "importance": 0.4334587567705956,
+                "relation": "outline_concept",
+                "related": [
+                  "等价类"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/等价关系与划分/商集",
+                "zh": "商集",
+                "importance": 0.4515831388220867,
+                "relation": "outline_concept",
+                "related": [
+                  "商集"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/等价关系与划分/划分诱导等价关系",
+                "zh": "划分诱导等价关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/偏序关系与盖住",
+            "zh": "偏序关系与盖住",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/偏序关系与盖住/偏序关系",
+                "zh": "偏序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "偏序关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/偏序关系与盖住/盖住关系",
+                "zh": "盖住关系",
+                "importance": 0.4187920081987902,
+                "relation": "outline_concept",
+                "related": [
+                  "盖住关系"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/偏序关系与盖住/哈斯图",
+                "zh": "哈斯图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "哈斯图"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/41_42",
+      "zh": "第 21 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第10章 关系",
+          "zh": "第10章 关系",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "关系"
+          ],
+          "children": [
+            {
+              "id": "__section__/关系基本概念",
+              "zh": "关系基本概念",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/关系基本概念/关系定义",
+                  "zh": "关系定义",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系基本概念/关系限制",
+                  "zh": "关系限制",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系基本概念/关系的象",
+                  "zh": "关系的象",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系基本概念/关系域",
+                  "zh": "关系域",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/关系运算",
+              "zh": "关系运算",
+              "importance": 0.705527,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/关系运算/关系的逆",
+                  "zh": "关系的逆",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/关系性质",
+              "zh": "关系性质",
+              "importance": 0.726034,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/关系性质/自反性",
+                  "zh": "自反性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/非自反性",
+                  "zh": "非自反性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/对称性",
+                  "zh": "对称性",
+                  "importance": 0.726034,
+                  "relation": "outline_concept",
+                  "related": [
+                    "对称性"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/反对称性",
+                  "zh": "反对称性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/关系性质/传递性",
+                  "zh": "传递性",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/等价关系与划分",
+              "zh": "等价关系与划分",
+              "importance": 0.937639,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/等价关系与划分/等价关系",
+                  "zh": "等价关系",
+                  "importance": 0.937639,
+                  "relation": "outline_concept",
+                  "related": [
+                    "等价关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/等价关系与划分/等价类",
+                  "zh": "等价类",
+                  "importance": 0.4334587567705956,
+                  "relation": "outline_concept",
+                  "related": [
+                    "等价类"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/等价关系与划分/商集",
+                  "zh": "商集",
+                  "importance": 0.4515831388220867,
+                  "relation": "outline_concept",
+                  "related": [
+                    "商集"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/等价关系与划分/划分诱导等价关系",
+                  "zh": "划分诱导等价关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/偏序关系与盖住",
+              "zh": "偏序关系与盖住",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/偏序关系与盖住/偏序关系",
+                  "zh": "偏序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "偏序关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/偏序关系与盖住/盖住关系",
+                  "zh": "盖住关系",
+                  "importance": 0.4187920081987902,
+                  "relation": "outline_concept",
+                  "related": [
+                    "盖住关系"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/偏序关系与盖住/哈斯图",
+                  "zh": "哈斯图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "哈斯图"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 24,
+  "max_depth": 3,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 21 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "41",
+      "42"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "41_42",
+      "model": "deepseek-chat",
+      "keep_count": 23,
+      "drop_count": 30,
+      "llm_note": "本课主要讲授关系的基本概念、运算、性质以及等价关系和偏序关系，故保留第10章相关核心节点，剔除第9章集合基础、关系性质定理、关系闭包、相容关系、序关系类型等次要或未展开内容。",
+      "prelim_nodes": 54,
+      "final_nodes": 24
+    }
+  }
+}

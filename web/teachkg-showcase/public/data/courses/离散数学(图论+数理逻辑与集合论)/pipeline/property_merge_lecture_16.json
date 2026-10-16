@@ -1,0 +1,30 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "lecture",
+  "lecture_id": "16",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 2,
+  "decided": 2,
+  "failed": 0,
+  "workers": 6,
+  "decisions": {
+    "平面图/planar graph": {
+      "properties": [
+        "欧拉公式是平面图的核心性质，它揭示了任何连通平面图中顶点数、边数和面数之间的基本数量关系，即 V - E + F = 2。",
+        "平面图的对偶图具有结点数小于18且域数小于等于11的性质。"
+      ],
+      "reason": "原两条特性语义独立，分别保留并润色，补充了欧拉公式的具体形式，使表述更完整清晰。",
+      "before_count": 2,
+      "after_count": 2
+    },
+    "平面连通图/connected planar graph": {
+      "properties": [
+        "平面连通图满足欧拉公式：顶点数 n、边数 m 与面数 d 之间恒有 n - m + d = 2，这是其最基本的拓扑性质，反映了图在平面嵌入中的结构约束。",
+        "平面连通图是欧拉图当且仅当它的所有面可以用两种颜色正确染色（即域 2-可着色），这一性质在后续证明中作为关键依据。"
+      ],
+      "reason": "将原第一条保留并润色为更通顺的表述；原第二条中“前文提出…后文证明”的冗余过程性描述被精简，保留核心判定条件及其用途，两条互补不重复，故合并后仍为两条。",
+      "before_count": 2,
+      "after_count": 2
+    }
+  }
+}

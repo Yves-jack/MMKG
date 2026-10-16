@@ -19,6 +19,384 @@
       "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/2_0.mp4",
       "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/2_1.mp4",
       "duration_sec": 3299.5
+    },
+    {
+      "lecture_id": "3",
+      "title": "第 3 讲",
+      "n_points": 24,
+      "path": "review/lecture_3.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/3_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/3_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "4",
+      "title": "第 4 讲",
+      "n_points": 24,
+      "path": "review/lecture_4.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/4_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/4_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "5",
+      "title": "第 5 讲",
+      "n_points": 24,
+      "path": "review/lecture_5.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/5_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/5_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "6",
+      "title": "第 6 讲",
+      "n_points": 24,
+      "path": "review/lecture_6.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/6_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/6_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "7",
+      "title": "第 7 讲",
+      "n_points": 24,
+      "path": "review/lecture_7.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/7_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/7_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "8",
+      "title": "第 8 讲",
+      "n_points": 24,
+      "path": "review/lecture_8.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/8_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/8_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "9",
+      "title": "第 9 讲",
+      "n_points": 24,
+      "path": "review/lecture_9.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/9_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/9_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "10",
+      "title": "第 10 讲",
+      "n_points": 24,
+      "path": "review/lecture_10.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/10_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/10_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "11",
+      "title": "第 11 讲",
+      "n_points": 24,
+      "path": "review/lecture_11.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/11_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/11_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "12",
+      "title": "第 12 讲",
+      "n_points": 24,
+      "path": "review/lecture_12.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/12_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/12_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "13",
+      "title": "第 13 讲",
+      "n_points": 24,
+      "path": "review/lecture_13.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/13_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/13_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "14",
+      "title": "第 14 讲",
+      "n_points": 24,
+      "path": "review/lecture_14.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/14_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/14_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "15",
+      "title": "第 15 讲",
+      "n_points": 24,
+      "path": "review/lecture_15.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/15_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/15_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "16",
+      "title": "第 16 讲",
+      "n_points": 24,
+      "path": "review/lecture_16.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/16_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/16_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "17",
+      "title": "第 17 讲",
+      "n_points": 0,
+      "path": "review/lecture_17.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/17_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/17_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "18",
+      "title": "第 18 讲",
+      "n_points": 24,
+      "path": "review/lecture_18.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/18_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/18_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "19",
+      "title": "第 19 讲",
+      "n_points": 24,
+      "path": "review/lecture_19.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/19_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/19_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "20",
+      "title": "第 20 讲",
+      "n_points": 24,
+      "path": "review/lecture_20.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/20_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/20_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "21",
+      "title": "第 21 讲",
+      "n_points": 24,
+      "path": "review/lecture_21.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/21_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/21_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "22",
+      "title": "第 22 讲",
+      "n_points": 24,
+      "path": "review/lecture_22.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/22_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/22_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "23",
+      "title": "第 23 讲",
+      "n_points": 24,
+      "path": "review/lecture_23.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/23_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/23_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "24",
+      "title": "第 24 讲",
+      "n_points": 24,
+      "path": "review/lecture_24.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/24_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/24_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "25",
+      "title": "第 25 讲",
+      "n_points": 24,
+      "path": "review/lecture_25.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/25_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/25_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "26",
+      "title": "第 26 讲",
+      "n_points": 24,
+      "path": "review/lecture_26.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/26_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/26_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "27",
+      "title": "第 27 讲",
+      "n_points": 24,
+      "path": "review/lecture_27.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/27_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/27_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "28",
+      "title": "第 28 讲",
+      "n_points": 24,
+      "path": "review/lecture_28.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/28_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/28_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "29",
+      "title": "第 29 讲",
+      "n_points": 24,
+      "path": "review/lecture_29.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/29_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/29_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "30",
+      "title": "第 30 讲",
+      "n_points": 24,
+      "path": "review/lecture_30.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/30_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/30_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "31",
+      "title": "第 31 讲",
+      "n_points": 24,
+      "path": "review/lecture_31.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/31_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/31_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "32",
+      "title": "第 32 讲",
+      "n_points": 24,
+      "path": "review/lecture_32.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/32_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/32_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "33",
+      "title": "第 33 讲",
+      "n_points": 24,
+      "path": "review/lecture_33.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/33_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/33_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "34",
+      "title": "第 34 讲",
+      "n_points": 24,
+      "path": "review/lecture_34.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/34_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/34_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "35",
+      "title": "第 35 讲",
+      "n_points": 15,
+      "path": "review/lecture_35.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/35_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/35_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "36",
+      "title": "第 36 讲",
+      "n_points": 14,
+      "path": "review/lecture_36.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/36_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/36_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "37",
+      "title": "第 37 讲",
+      "n_points": 24,
+      "path": "review/lecture_37.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/37_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/37_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "38",
+      "title": "第 38 讲",
+      "n_points": 24,
+      "path": "review/lecture_38.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/38_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/38_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "39",
+      "title": "第 39 讲",
+      "n_points": 24,
+      "path": "review/lecture_39.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/39_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/39_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "40",
+      "title": "第 40 讲",
+      "n_points": 23,
+      "path": "review/lecture_40.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/40_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/40_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "41",
+      "title": "第 41 讲",
+      "n_points": 24,
+      "path": "review/lecture_41.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/41_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/41_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "42",
+      "title": "第 42 讲",
+      "n_points": 24,
+      "path": "review/lecture_42.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/42_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/42_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "43",
+      "title": "第 43 讲",
+      "n_points": 24,
+      "path": "review/lecture_43.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/43_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/43_1.mp4",
+      "duration_sec": null
+    },
+    {
+      "lecture_id": "44",
+      "title": "第 44 讲",
+      "n_points": 24,
+      "path": "review/lecture_44.json",
+      "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/44_0.mp4",
+      "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/44_1.mp4",
+      "duration_sec": null
     }
   ]
 }

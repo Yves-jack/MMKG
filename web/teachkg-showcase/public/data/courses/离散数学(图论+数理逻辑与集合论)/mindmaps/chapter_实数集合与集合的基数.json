@@ -1,0 +1,488 @@
+{
+  "lecture_id": "chapter:第12章 实数集合与集合的基数",
+  "root": {
+    "id": "__chapter__/第12章 实数集合与集合的基数",
+    "zh": "第4章 实数集合与集合的基数",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "实数集合与集合的基数"
+    ],
+    "children": [
+      {
+        "id": "__manual__/集合类型/mv6x1vm1-rkcd",
+        "zh": "集合类型",
+        "importance": 0.35,
+        "relation": "manual",
+        "related": [],
+        "deps": [],
+        "children": [
+          {
+            "id": "__section__/自然数集合N",
+            "zh": "自然数集合N",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/自然数集合N/后继与前驱",
+                "zh": "后继与前驱",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/自然数集合N/无穷公理",
+                "zh": "无穷公理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/整数集合Z",
+            "zh": "整数集合Z",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/有理数集合Q",
+            "zh": "有理数集合Q",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/实数集合R",
+            "zh": "实数集合R",
+            "importance": 0.784618,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "有理数/rational number",
+                "zh": "有理数",
+                "importance": 0.784618,
+                "relation": "belong_to",
+                "related": [
+                  "基本函数",
+                  "等价关系",
+                  "等价类"
+                ],
+                "children": []
+              },
+              {
+                "id": "无理数/irrational number",
+                "zh": "无理数",
+                "importance": 0.560246,
+                "relation": "belong_to",
+                "related": [
+                  "等价关系",
+                  "等价类"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__section__/基数",
+        "zh": "基数",
+        "importance": 0.47913886365354225,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/基数/有限基数",
+            "zh": "有限基数",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/基数/无限基数",
+            "zh": "无限基数",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/基数/基数与序数关系",
+            "zh": "基数与序数关系",
+            "importance": 0.47913886365354225,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/传递集合",
+            "zh": "传递集合",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/传递集合/传递集合定理",
+                "zh": "传递集合定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/序数",
+            "zh": "序数",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/序数/良序关系",
+                "zh": "良序关系",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/序数/超限序数",
+                "zh": "超限序数",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/集合等势",
+            "zh": "集合等势",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/集合等势/双射函数",
+                "zh": "双射函数",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__section__/康托定理",
+                "zh": "康托定理",
+                "importance": 0.45,
+                "relation": "toc_section",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/连续统假设",
+            "zh": "连续统假设",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第12章 实数集合与集合的基数",
+      "zh": "第4章 实数集合与集合的基数",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "实数集合与集合的基数"
+      ],
+      "children": [
+        {
+          "id": "__manual__/集合类型/mv6x1vm1-rkcd",
+          "zh": "集合类型",
+          "importance": 0.35,
+          "relation": "manual",
+          "related": [],
+          "deps": [],
+          "children": [
+            {
+              "id": "__section__/自然数集合N",
+              "zh": "自然数集合N",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/自然数集合N/后继与前驱",
+                  "zh": "后继与前驱",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/自然数集合N/无穷公理",
+                  "zh": "无穷公理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/整数集合Z",
+              "zh": "整数集合Z",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/有理数集合Q",
+              "zh": "有理数集合Q",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/实数集合R",
+              "zh": "实数集合R",
+              "importance": 0.784618,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "有理数/rational number",
+                  "zh": "有理数",
+                  "importance": 0.784618,
+                  "relation": "belong_to",
+                  "related": [
+                    "基本函数",
+                    "等价关系",
+                    "等价类"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "无理数/irrational number",
+                  "zh": "无理数",
+                  "importance": 0.560246,
+                  "relation": "belong_to",
+                  "related": [
+                    "等价关系",
+                    "等价类"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__section__/基数",
+          "zh": "基数",
+          "importance": 0.47913886365354225,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/基数/有限基数",
+              "zh": "有限基数",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/基数/无限基数",
+              "zh": "无限基数",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/基数/基数与序数关系",
+              "zh": "基数与序数关系",
+              "importance": 0.47913886365354225,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/传递集合",
+              "zh": "传递集合",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/传递集合/传递集合定理",
+                  "zh": "传递集合定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/序数",
+              "zh": "序数",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/序数/良序关系",
+                  "zh": "良序关系",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/序数/超限序数",
+                  "zh": "超限序数",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/集合等势",
+              "zh": "集合等势",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/集合等势/双射函数",
+                  "zh": "双射函数",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__section__/康托定理",
+                  "zh": "康托定理",
+                  "importance": 0.45,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/连续统假设",
+              "zh": "连续统假设",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 23,
+  "max_depth": 3,
+  "orphan_count": 29,
+  "meta": {
+    "chapter": "第12章 实数集合与集合的基数",
+    "root_zh": "第12章 实数集合与集合的基数",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "44"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 10,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__topic__/有理数集合Q/Q1定义": "__section__/有理数集合Q",
+      "__topic__/集合等势/等势示例": "__section__/集合等势",
+      "__topic__/实数集合R/实数等价类": "__section__/实数集合R",
+      "__topic__/实数集合R/等价关系≃": "__section__/实数集合R",
+      "__topic__/实数集合R/基本函数": "__section__/实数集合R",
+      "__topic__/实数集合R/有理数与无理数": "__section__/实数集合R",
+      "__topic__/有理数集合Q/商集构造": "__section__/有理数集合Q",
+      "__topic__/有理数集合Q/等价关系≃": "__section__/有理数集合Q",
+      "__topic__/整数集合Z/整数构造": "__section__/整数集合Z",
+      "__topic__/整数集合Z/负整数Z-": "__section__/整数集合Z",
+      "__topic__/整数集合Z/正整数Z+": "__section__/整数集合Z",
+      "__topic__/自然数集合N/自然数三歧性": "__section__/自然数集合N",
+      "__topic__/自然数集合N/自然数定义": "__section__/自然数集合N",
+      "__topic__/自然数集合N/自然数序关系": "__section__/自然数集合N",
+      "__topic__/传递集合/传递集合定义": "__section__/传递集合",
+      "__topic__/序数/序数定义": "__section__/序数",
+      "__topic__/序数/序数示例": "__section__/序数",
+      "__topic__/基数/基数定义": "__section__/基数",
+      "基数/cardinality": "__topic__/基数/基数与序数关系",
+      "__topic__/集合等势/等势定义": "__section__/集合等势",
+      "__topic__/集合等势/不可数集合": "__section__/集合等势",
+      "__topic__/集合等势/可数集合": "__section__/集合等势",
+      "__topic__/康托定理/对角化证明": "__section__/康托定理",
+      "__topic__/康托定理/N与R不等势": "__section__/康托定理",
+      "__topic__/康托定理/A与P(A)不等势": "__section__/康托定理",
+      "__topic__/连续统假设/连续统假设内容": "__section__/连续统假设",
+      "__topic__/连续统假设/独立性": "__section__/连续统假设",
+      "__topic__/连续统假设/基数序列": "__section__/连续统假设"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__topic__/有理数集合Q/Q1定义": "__section__/有理数集合Q",
+    "__topic__/集合等势/等势示例": "__section__/集合等势",
+    "__topic__/实数集合R/实数等价类": "__section__/实数集合R",
+    "__topic__/实数集合R/等价关系≃": "__section__/实数集合R",
+    "__topic__/实数集合R/基本函数": "__section__/实数集合R",
+    "__topic__/实数集合R/有理数与无理数": "__section__/实数集合R",
+    "__topic__/有理数集合Q/商集构造": "__section__/有理数集合Q",
+    "__topic__/有理数集合Q/等价关系≃": "__section__/有理数集合Q",
+    "__topic__/整数集合Z/整数构造": "__section__/整数集合Z",
+    "__topic__/整数集合Z/负整数Z-": "__section__/整数集合Z",
+    "__topic__/整数集合Z/正整数Z+": "__section__/整数集合Z",
+    "__topic__/自然数集合N/自然数三歧性": "__section__/自然数集合N",
+    "__topic__/自然数集合N/自然数定义": "__section__/自然数集合N",
+    "__topic__/自然数集合N/自然数序关系": "__section__/自然数集合N",
+    "__topic__/传递集合/传递集合定义": "__section__/传递集合",
+    "__topic__/序数/序数定义": "__section__/序数",
+    "__topic__/序数/序数示例": "__section__/序数",
+    "__topic__/基数/基数定义": "__section__/基数",
+    "基数/cardinality": "__topic__/基数/基数与序数关系",
+    "__topic__/集合等势/等势定义": "__section__/集合等势",
+    "__topic__/集合等势/不可数集合": "__section__/集合等势",
+    "__topic__/集合等势/可数集合": "__section__/集合等势",
+    "__topic__/康托定理/对角化证明": "__section__/康托定理",
+    "__topic__/康托定理/N与R不等势": "__section__/康托定理",
+    "__topic__/康托定理/A与P(A)不等势": "__section__/康托定理",
+    "__topic__/连续统假设/连续统假设内容": "__section__/连续统假设",
+    "__topic__/连续统假设/独立性": "__section__/连续统假设",
+    "__topic__/连续统假设/基数序列": "__section__/连续统假设"
+  },
+  "concept_links": []
+}

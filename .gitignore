@@ -51,3 +51,13 @@ data/kg/*/*
 !data/textbook/**
 data/textbook/**/entity_embeddings.npy
 *.npy
+# Codex deployment backups and local deployment markers
+.codex-backups/
+.deployed_git_rev
+.deployed_pr3.json
+
+# Mindmap generation intermediates; keep final JSON artifacts only
+**/mindmaps/*.assign.json
+**/mindmaps/*.draft.json
+**/mindmaps/*.tidy.json
+**/mindmaps/*.prev.json

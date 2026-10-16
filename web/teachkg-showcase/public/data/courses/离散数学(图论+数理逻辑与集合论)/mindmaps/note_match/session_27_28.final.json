@@ -1,0 +1,417 @@
+{
+  "lecture_id": "27_28",
+  "root": {
+    "id": "__lecture__/27_28",
+    "zh": "第 14 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第4章 谓词逻辑的基本概念",
+        "zh": "第4章 谓词逻辑的基本概念",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "谓词逻辑的基本概念"
+        ],
+        "children": [
+          {
+            "id": "__section__/基本概念",
+            "zh": "基本概念",
+            "importance": 1,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/基本概念/谓词",
+                "zh": "谓词",
+                "importance": 1,
+                "relation": "outline_concept",
+                "related": [
+                  "谓词"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/基本概念/个体",
+                "zh": "个体",
+                "importance": 0.9064078405908405,
+                "relation": "outline_concept",
+                "related": [
+                  "个体"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/基本概念/量词",
+                "zh": "量词",
+                "importance": 0.731236,
+                "relation": "outline_concept",
+                "related": [
+                  "量词"
+                ],
+                "children": [
+                  {
+                    "id": "__topic__/量词与辖域/辖域",
+                    "zh": "辖域",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/量词与辖域/自由变元",
+                    "zh": "自由变元",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [
+                      "自由变元"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/量词与辖域/约束变元",
+                    "zh": "约束变元",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [
+                      "约束变元"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "__section__/公式与解释",
+            "zh": "公式与解释",
+            "importance": 0.523286,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/公式与解释/合式公式",
+                "zh": "合式公式",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "合式公式"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/公式与解释/解释",
+                "zh": "解释",
+                "importance": 0.523286,
+                "relation": "outline_concept",
+                "related": [
+                  "解释"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/公式与解释/指派",
+                "zh": "指派",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__section__/公式分类",
+                "zh": "公式分类",
+                "importance": 0.778029,
+                "relation": "toc_section",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/范式",
+            "zh": "范式",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/范式/前束范式",
+                "zh": "前束范式",
+                "importance": 0.444039,
+                "relation": "outline_concept",
+                "related": [
+                  "前束范式"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/AEIO命题",
+            "zh": "AEIO命题",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/AEIO命题/全称肯定命题",
+                "zh": "全称肯定命题",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/AEIO命题/全称否定命题",
+                "zh": "全称否定命题",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/AEIO命题/特称肯定命题",
+                "zh": "特称肯定命题",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/AEIO命题/特称否定命题",
+                "zh": "特称否定命题",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/27_28",
+      "zh": "第 14 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第4章 谓词逻辑的基本概念",
+          "zh": "第4章 谓词逻辑的基本概念",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "谓词逻辑的基本概念"
+          ],
+          "children": [
+            {
+              "id": "__section__/基本概念",
+              "zh": "基本概念",
+              "importance": 1,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/基本概念/谓词",
+                  "zh": "谓词",
+                  "importance": 1,
+                  "relation": "outline_concept",
+                  "related": [
+                    "谓词"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/基本概念/个体",
+                  "zh": "个体",
+                  "importance": 0.9064078405908405,
+                  "relation": "outline_concept",
+                  "related": [
+                    "个体"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/基本概念/量词",
+                  "zh": "量词",
+                  "importance": 0.731236,
+                  "relation": "outline_concept",
+                  "related": [
+                    "量词"
+                  ],
+                  "children": [
+                    {
+                      "id": "__topic__/量词与辖域/辖域",
+                      "zh": "辖域",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/量词与辖域/自由变元",
+                      "zh": "自由变元",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [
+                        "自由变元"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/量词与辖域/约束变元",
+                      "zh": "约束变元",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [
+                        "约束变元"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "__section__/公式与解释",
+              "zh": "公式与解释",
+              "importance": 0.523286,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/公式与解释/合式公式",
+                  "zh": "合式公式",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "合式公式"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/公式与解释/解释",
+                  "zh": "解释",
+                  "importance": 0.523286,
+                  "relation": "outline_concept",
+                  "related": [
+                    "解释"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/公式与解释/指派",
+                  "zh": "指派",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__section__/公式分类",
+                  "zh": "公式分类",
+                  "importance": 0.778029,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/范式",
+              "zh": "范式",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/范式/前束范式",
+                  "zh": "前束范式",
+                  "importance": 0.444039,
+                  "relation": "outline_concept",
+                  "related": [
+                    "前束范式"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/AEIO命题",
+              "zh": "AEIO命题",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/AEIO命题/全称肯定命题",
+                  "zh": "全称肯定命题",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/AEIO命题/全称否定命题",
+                  "zh": "全称否定命题",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/AEIO命题/特称肯定命题",
+                  "zh": "特称肯定命题",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/AEIO命题/特称否定命题",
+                  "zh": "特称否定命题",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 21,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 14 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "27",
+      "28"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "27_28",
+      "model": "deepseek-chat",
+      "keep_count": 20,
+      "drop_count": 0,
+      "llm_note": "本课笔记覆盖谓词逻辑基本概念、量词辖域、公式解释、分类、范式及AEIO命题，所有初步匹配节点均对应主要内容，故全部保留。",
+      "prelim_nodes": 21,
+      "final_nodes": 21
+    }
+  }
+}

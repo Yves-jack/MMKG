@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
-import { RelatedAssetsPanel, countRelatedAssets } from "@/components/graph/SelectionPanels";
+import {
+  RelatedAssetsPanel,
+  countRelatedAssets,
+  type RelatedAssetQuery,
+} from "@/components/graph/SelectionPanels";
 import { ResizableShell } from "@/components/graph/ResizableShell";
 import {
   MindmapTree,
@@ -495,6 +499,89 @@ function findMindmapNodeByFocus(
   return hit;
 }
 
+function mindmapDirectAssetQuery(
+  node: MindmapTreeNode,
+  kgIds: Set<string>,
+  kgByShort: Map<string, string>,
+  redirects?: Record<string, string> | null,
+): RelatedAssetQuery | null {
+  const policy = mindmapNodeAssetPolicy(node.id);
+  const hasChildren = Boolean(node.children?.length);
+  const zh = String(node.zh || "").trim();
+
+  // 结构父节点过去不直接匹配；汇总模式下允许用自身标题精确命中。
+  // 结构叶节点仍保持原来的 none 策略，避免改变叶节点与资源的对应。
+  if (policy === "none") {
+    if (!hasChildren || !zh) return null;
+    return { entityId: zh, entityAliases: [], matchMode: "strict" };
+  }
+  if (policy === "strict") {
+    const label =
+      zh ||
+      String(node.id || "")
+        .split("/")
+        .filter((part) => part && !part.startsWith("__"))
+        .pop() ||
+      "";
+    return label
+      ? { entityId: label, entityAliases: [], matchMode: "strict" }
+      : null;
+  }
+
+  const kgEntityId = matchKgEntityId(node, kgIds, kgByShort, redirects);
+  const rawId = String(node.id || "").trim();
+  const looksEntity =
+    Boolean(rawId) &&
+    !rawId.startsWith("__") &&
+    !rawId.startsWith("chapter:") &&
+    !rawId.startsWith("part:");
+  const values = new Set<string>();
+  for (const value of [
+    kgEntityId || "",
+    zh,
+    looksEntity ? rawId : "",
+    redirects?.[rawId],
+    zh ? redirects?.[zh] : "",
+  ]) {
+    const normalized = String(value || "").trim();
+    if (normalized) values.add(normalized);
+  }
+  const entityId = kgEntityId || (looksEntity ? rawId : "") || zh || null;
+  if (!entityId) return null;
+  return {
+    entityId,
+    entityAliases: [...values].filter((value) => value !== entityId),
+    matchMode: "concept",
+  };
+}
+
+/**
+ * 从叶节点向上逐层汇总。父节点只读取直接子节点已经汇总好的查询，
+ * 再加上自身查询；根节点也计算，供整棵树的汇总保持完整。
+ */
+function buildMindmapAssetQueryMap(
+  roots: MindmapTreeNode[],
+  directQuery: (node: MindmapTreeNode) => RelatedAssetQuery | null,
+): Map<MindmapTreeNode, RelatedAssetQuery[]> {
+  const byNode = new Map<MindmapTreeNode, RelatedAssetQuery[]>();
+  const visit = (node: MindmapTreeNode): RelatedAssetQuery[] => {
+    const childQueries = (node.children || []).flatMap((child) => visit(child));
+    const own = directQuery(node);
+    const merged = own ? [own, ...childQueries] : childQueries;
+    const seen = new Set<string>();
+    const unique = merged.filter((query) => {
+      const key = `${query.matchMode || "full"}\u0000${query.entityId || ""}\u0000${(query.entityAliases || []).join("\u0001")}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    byNode.set(node, unique);
+    return unique;
+  };
+  for (const root of roots) visit(root);
+  return byNode;
+}
+
 export function MindmapPage() {
   const courseId = useCourseId();
   const [sp, setSp] = useSearchParams();
@@ -780,6 +867,23 @@ export function MindmapPage() {
     const aliases = [...out].filter((a) => a && a !== entityId);
     return { entityId, aliases };
   }, [selected, assetPolicy, kgEntityId, doc?.id_redirects]);
+
+  const mindmapAssetQueriesByNode = useMemo(() => {
+    const roots = doc?.roots?.length ? doc.roots : doc?.root ? [doc.root] : [];
+    return buildMindmapAssetQueryMap(roots, (node) =>
+      mindmapDirectAssetQuery(node, kgIds, kgByShort, doc?.id_redirects)
+    );
+  }, [doc, kgIds, kgByShort]);
+
+  const selectedAssetQueries = selected
+    ? mindmapAssetQueriesByNode.get(selected) || []
+    : [];
+  const selectedIsRoot = Boolean(
+    selected &&
+      (doc?.roots?.length ? doc.roots : doc?.root ? [doc.root] : []).some(
+        (root) => root === selected || root.id === selected.id
+      )
+  );
 
   const selectMindmapNode = (node: MindmapTreeNode | null) => {
     setSelected(node);
@@ -1238,9 +1342,10 @@ export function MindmapPage() {
     });
   }, [selected, kgEntityId]);
 
-  const selectedAssetCount = selected && assetPolicy !== "none"
+  const selectedAssetCount = selected && !selectedIsRoot
     ? countRelatedAssets(mindmapAssetQuery.entityId, library, {
         entityAliases: mindmapAssetQuery.aliases,
+        queries: selectedAssetQueries,
         lectureId: lectureIdForLinks || null,
         lectureOnly: false,
         kinds: [...RELATED_ASSET_KINDS],
@@ -1411,7 +1516,7 @@ export function MindmapPage() {
                             }))
                           }
                         >
-                          <span>分册 · {part.title}</span>
+                          <span>{part.title}</span>
                           <em>{open ? "收起" : "展开"}</em>
                         </button>
                         {open ? (
@@ -1555,7 +1660,7 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>}
           <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
-          {selected ? (
+          {selected && !selectedIsRoot ? (
             <CollapsiblePanel
               title={`相关资源 · ${selectedResourceCount}`}
               storageKey={SHARED_PANEL_KEYS.assets}
@@ -1574,20 +1679,22 @@ export function MindmapPage() {
                   courseId={courseId}
                   resourceCourseId={resourceCourseId || courseId}
                   onOpen={openLinkedResource}
-                  showAnimation
                 />
               ) : null}
               <RelatedAssetsPanel
                 entityId={mindmapAssetQuery.entityId}
                 entityAliases={mindmapAssetQuery.aliases}
-                library={assetPolicy === "none" ? null : library}
+                queries={selectedAssetQueries}
+                library={library}
                 lectureId={lectureIdForLinks || null}
                 lectureOnly={false}
                 kinds={[...RELATED_ASSET_KINDS]}
                 maxItems={12}
                 matchMode={assetPolicy === "strict" ? "strict" : "concept"}
                 emptyHint={
-                  compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
+                  selected.children?.length
+                    ? "该节点及其子节点暂无相关资源"
+                    : compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
                     ? "章节节点不匹配资源"
                     : assetPolicy === "strict"
                     ? "主题节点仅按标题精确匹配资源；暂无同名挂载"

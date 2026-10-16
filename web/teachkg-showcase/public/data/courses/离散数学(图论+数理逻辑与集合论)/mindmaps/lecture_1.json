@@ -1,73 +1,470 @@
 {
   "lecture_id": "1",
   "root": {
-    "id": "逻辑/logic",
-    "zh": "逻辑",
-    "importance": 0.213936,
+    "id": "__lecture__/1",
+    "zh": "第 1 讲",
+    "importance": 0.9,
     "relation": null,
-    "related": [
-      "数学"
-    ],
+    "related": [],
     "children": [
       {
-        "id": "数理逻辑/Mathematical Logic",
-        "zh": "数理逻辑",
-        "importance": 0.442417,
-        "relation": "belong_to",
-        "related": [
-          "形式语言",
-          "数学推理",
-          "计算机科学",
-          "逻辑推理"
-        ],
+        "id": "__chapter__/图的基本概念与表示",
+        "zh": "第1章 图的基本概念与表示",
+        "importance": 0.663931,
+        "relation": "toc_chapter",
+        "related": [],
         "children": [
           {
-            "id": "布尔逻辑/Boolean Logic",
-            "zh": "布尔逻辑",
-            "importance": 0.032102,
-            "relation": "part_of",
+            "id": "三大科学思维/三大科学思维",
+            "zh": "三大科学思维",
+            "importance": 0.663931,
+            "relation": null,
             "related": [
-              "数字电路",
-              "计算机硬件"
+              "创新的基础和灵魂"
             ],
-            "children": []
+            "children": [
+              {
+                "id": "理论思维/理论思维",
+                "zh": "理论思维",
+                "importance": 0.744717,
+                "relation": "part_of",
+                "related": [
+                  "假设",
+                  "公理",
+                  "定理",
+                  "演绎",
+                  "逻辑推理"
+                ],
+                "children": [
+                  {
+                    "id": "数学/mathematics",
+                    "zh": "数学",
+                    "importance": 0.967964,
+                    "relation": "belong_to",
+                    "related": [
+                      "逻辑",
+                      "逻辑推理",
+                      "集合",
+                      "集合论"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "实验思维/实验思维",
+                "zh": "实验思维",
+                "importance": 0.621137,
+                "relation": "part_of",
+                "related": [
+                  "总结归纳",
+                  "数据观察"
+                ],
+                "children": [
+                  {
+                    "id": "物理/物理",
+                    "zh": "物理",
+                    "importance": 0.360145,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "化学/化学",
+                    "zh": "化学",
+                    "importance": 0.360145,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "计算思维/计算思维",
+                "zh": "计算思维",
+                "importance": 0.524564,
+                "relation": "part_of",
+                "related": [
+                  "设计和构造"
+                ],
+                "children": [
+                  {
+                    "id": "计算机科学/Computer Science",
+                    "zh": "计算机科学",
+                    "importance": 0.712572,
+                    "relation": "belong_to",
+                    "related": [
+                      "数理逻辑",
+                      "离散数学"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "架构思维/Architecture Thinking",
+            "zh": "架构思维",
+            "importance": 0.366686,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "离散数学/Discrete Mathematics",
+                "zh": "离散数学",
+                "importance": 1.0,
+                "relation": "part_of",
+                "related": [
+                  "计算机",
+                  "计算机科学",
+                  "计算机领域"
+                ],
+                "children": [
+                  {
+                    "id": "数理逻辑与集合论/Mathematical Logic and Set Theory",
+                    "zh": "数理逻辑与集合论",
+                    "importance": 0.84208,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "图论/Graph Theory",
+                    "zh": "图论",
+                    "importance": 0.288457,
+                    "relation": "part_of",
+                    "related": [
+                      "哥尼斯堡七桥问题",
+                      "图",
+                      "数据结构",
+                      "网络路由",
+                      "路径算法"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "数论",
+                    "zh": "数论",
+                    "importance": 0.586831,
+                    "relation": "part_of",
+                    "related": [
+                      "密码学"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "组合数学",
+                    "zh": "组合数学",
+                    "importance": 0.211917,
+                    "relation": "part_of",
+                    "related": [
+                      "代数"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "定理/theorem",
+                    "zh": "定理",
+                    "importance": 0.417909,
+                    "relation": "part_of",
+                    "related": [
+                      "公理系统",
+                      "理论思维"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "算法设计/Algorithm Design",
+                    "zh": "算法设计",
+                    "importance": 0.366686,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "架构设计/Architecture Design",
+                    "zh": "架构设计",
+                    "importance": 0.366686,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "id": "集合/set",
-        "zh": "集合",
-        "importance": 0.399887,
-        "relation": "chapter_topic",
-        "related": [
-          "关系",
-          "抽象代数",
-          "数学",
-          "笛卡儿积"
-        ],
+        "id": "__chapter__/命题逻辑的基本概念",
+        "zh": "第1章 命题逻辑的基本概念",
+        "importance": 0.821852,
+        "relation": "toc_chapter",
+        "related": [],
         "children": [
           {
-            "id": "子集/subset",
-            "zh": "子集",
-            "importance": 0.029121,
-            "relation": "belong_to",
-            "related": [],
-            "children": []
+            "id": "逻辑推理/logical deduction",
+            "zh": "逻辑推理",
+            "importance": 0.821852,
+            "relation": null,
+            "related": [
+              "数学",
+              "理论思维"
+            ],
+            "children": [
+              {
+                "id": "数理逻辑/Mathematical Logic",
+                "zh": "数理逻辑",
+                "importance": 0.986877,
+                "relation": "part_of",
+                "related": [
+                  "形式语言",
+                  "计算机科学"
+                ],
+                "children": [
+                  {
+                    "id": "命题演算/Propositional Calculus",
+                    "zh": "命题演算",
+                    "importance": 0.313955,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "谓词演算/Predicate Calculus",
+                    "zh": "谓词演算",
+                    "importance": 0.347872,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "公理系统/axiomatic system",
+                    "zh": "公理系统",
+                    "importance": 0.665403,
+                    "relation": "part_of",
+                    "related": [
+                      "公理",
+                      "公理化集合论",
+                      "定理"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "布尔逻辑/Boolean Logic",
+                    "zh": "布尔逻辑",
+                    "importance": 0.242872,
+                    "relation": "part_of",
+                    "related": [
+                      "数字电路",
+                      "计算机硬件"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "模型论/Model Theory",
+                    "zh": "模型论",
+                    "importance": 0.099002,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "证明论/Proof Theory",
+                    "zh": "证明论",
+                    "importance": 0.086808,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "递归论/Recursion Theory",
+                    "zh": "递归论",
+                    "importance": 0.049107,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "三段论/syllogism",
+                "zh": "三段论",
+                "importance": 0.242725,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "名辩学",
+                "zh": "名辩学",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "白马非马",
+                "zh": "白马非马",
+                "importance": 0.0,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
           },
           {
-            "id": "无限集合/infinite set",
-            "zh": "无限集合",
-            "importance": 0.027654,
-            "relation": "belong_to",
+            "id": "逻辑/logic",
+            "zh": "逻辑",
+            "importance": 0.567724,
+            "relation": null,
+            "related": [
+              "数学"
+            ],
+            "children": [
+              {
+                "id": "数理逻辑/Mathematical Logic",
+                "zh": "数理逻辑",
+                "importance": 0.986877,
+                "relation": "part_of",
+                "related": [
+                  "形式语言",
+                  "计算机科学"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的基本概念",
+        "zh": "第4章 谓词逻辑的基本概念",
+        "importance": 0.45,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.266745,
+            "relation": null,
             "related": [],
             "children": [
               {
-                "id": "自然数/natural number",
-                "zh": "自然数",
-                "importance": 0.030409,
+                "id": "一阶谓词逻辑/first-order predicate logic",
+                "zh": "一阶谓词逻辑",
+                "importance": 0.616465,
                 "relation": "belong_to",
                 "related": [
-                  "离散数学",
+                  "推理",
+                  "程序语义正确性",
+                  "语义",
+                  "集合论"
+                ],
+                "children": [
+                  {
+                    "id": "谓词/predicate",
+                    "zh": "谓词",
+                    "importance": 0.123991,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/集合",
+        "zh": "第9章 集合",
+        "importance": 0.742477,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "数学对象/mathematical object",
+            "zh": "数学对象",
+            "importance": 0.742477,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "集合/set",
+                "zh": "集合",
+                "importance": 0.797701,
+                "relation": "belong_to",
+                "related": [
+                  "关系",
+                  "子集",
+                  "数学",
+                  "笛卡儿积",
+                  "自然数"
+                ],
+                "children": [
+                  {
+                    "id": "元素/Element",
+                    "zh": "元素",
+                    "importance": 0.039484,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "无限集合/infinite set",
+                    "zh": "无限集合",
+                    "importance": 0.331391,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "自然数/natural number",
+                "zh": "自然数",
+                "importance": 0.418583,
+                "relation": "belong_to",
+                "related": [
+                  "集合",
+                  "集合论"
+                ],
+                "children": []
+              },
+              {
+                "id": "无理数/irrational number",
+                "zh": "无理数",
+                "importance": 0.392653,
+                "relation": "belong_to",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "悖论/paradox",
+            "zh": "悖论",
+            "importance": 0.322989,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "Russell 悖论/Russell's paradox",
+                "zh": "Russell 悖论",
+                "importance": 0.216906,
+                "relation": "belong_to",
+                "related": [
+                  "公理化集合论",
                   "集合论"
                 ],
                 "children": []
@@ -75,116 +472,517 @@
             ]
           }
         ]
-      },
-      {
-        "id": "公理系统/axiomatic system",
-        "zh": "公理系统",
-        "importance": 0.233737,
-        "relation": "chapter_topic",
-        "related": [
-          "集合论"
-        ],
-        "children": []
-      },
-      {
-        "id": "公理/axiom",
-        "zh": "公理",
-        "importance": 0.200395,
-        "relation": "chapter_topic",
-        "related": [
-          "定理",
-          "理论思维"
-        ],
-        "children": []
-      },
-      {
-        "id": "理论/theory",
-        "zh": "理论",
-        "importance": 0.135029,
-        "relation": "chapter_topic",
-        "related": [],
-        "children": []
-      },
-      {
-        "id": "集合论/Set Theory",
-        "zh": "集合论",
-        "importance": 0.134928,
-        "relation": "chapter_topic",
-        "related": [
-          "公理系统",
-          "数学",
-          "自然数"
-        ],
-        "children": [
-          {
-            "id": "关系/relation",
-            "zh": "关系",
-            "importance": 0.072337,
-            "relation": "belong_to",
-            "related": [
-              "关系的运算",
-              "集合"
-            ],
-            "children": []
-          },
-          {
-            "id": "关系的运算/operation of relations",
-            "zh": "关系的运算",
-            "importance": 0.012816,
-            "relation": "belong_to",
-            "related": [
-              "关系"
-            ],
-            "children": []
-          },
-          {
-            "id": "集合代数/Set Algebra",
-            "zh": "集合代数",
-            "importance": 0.009321,
-            "relation": "part_of",
-            "related": [],
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "一阶谓词逻辑/first-order predicate logic",
-        "zh": "一阶谓词逻辑",
-        "importance": 0.021954,
-        "relation": "belong_to",
-        "related": [
-          "程序语义正确性"
-        ],
-        "children": [
-          {
-            "id": "谓词/predicate",
-            "zh": "谓词",
-            "importance": 0.129661,
-            "relation": "part_of",
-            "related": [
-              "程序关键点"
-            ],
-            "children": []
-          }
-        ]
       }
     ]
   },
-  "n_nodes": 16,
+  "roots": [
+    {
+      "id": "__lecture__/1",
+      "zh": "第 1 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/图的基本概念与表示",
+          "zh": "第1章 图的基本概念与表示",
+          "importance": 0.663931,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "三大科学思维/三大科学思维",
+              "zh": "三大科学思维",
+              "importance": 0.663931,
+              "relation": null,
+              "related": [
+                "创新的基础和灵魂"
+              ],
+              "children": [
+                {
+                  "id": "理论思维/理论思维",
+                  "zh": "理论思维",
+                  "importance": 0.744717,
+                  "relation": "part_of",
+                  "related": [
+                    "假设",
+                    "公理",
+                    "定理",
+                    "演绎",
+                    "逻辑推理"
+                  ],
+                  "children": [
+                    {
+                      "id": "数学/mathematics",
+                      "zh": "数学",
+                      "importance": 0.967964,
+                      "relation": "belong_to",
+                      "related": [
+                        "逻辑",
+                        "逻辑推理",
+                        "集合",
+                        "集合论"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "实验思维/实验思维",
+                  "zh": "实验思维",
+                  "importance": 0.621137,
+                  "relation": "part_of",
+                  "related": [
+                    "总结归纳",
+                    "数据观察"
+                  ],
+                  "children": [
+                    {
+                      "id": "物理/物理",
+                      "zh": "物理",
+                      "importance": 0.360145,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "化学/化学",
+                      "zh": "化学",
+                      "importance": 0.360145,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "计算思维/计算思维",
+                  "zh": "计算思维",
+                  "importance": 0.524564,
+                  "relation": "part_of",
+                  "related": [
+                    "设计和构造"
+                  ],
+                  "children": [
+                    {
+                      "id": "计算机科学/Computer Science",
+                      "zh": "计算机科学",
+                      "importance": 0.712572,
+                      "relation": "belong_to",
+                      "related": [
+                        "数理逻辑",
+                        "离散数学"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "架构思维/Architecture Thinking",
+              "zh": "架构思维",
+              "importance": 0.366686,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "离散数学/Discrete Mathematics",
+                  "zh": "离散数学",
+                  "importance": 1.0,
+                  "relation": "part_of",
+                  "related": [
+                    "计算机",
+                    "计算机科学",
+                    "计算机领域"
+                  ],
+                  "children": [
+                    {
+                      "id": "数理逻辑与集合论/Mathematical Logic and Set Theory",
+                      "zh": "数理逻辑与集合论",
+                      "importance": 0.84208,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "图论/Graph Theory",
+                      "zh": "图论",
+                      "importance": 0.288457,
+                      "relation": "part_of",
+                      "related": [
+                        "哥尼斯堡七桥问题",
+                        "图",
+                        "数据结构",
+                        "网络路由",
+                        "路径算法"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "数论",
+                      "zh": "数论",
+                      "importance": 0.586831,
+                      "relation": "part_of",
+                      "related": [
+                        "密码学"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "组合数学",
+                      "zh": "组合数学",
+                      "importance": 0.211917,
+                      "relation": "part_of",
+                      "related": [
+                        "代数"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "定理/theorem",
+                      "zh": "定理",
+                      "importance": 0.417909,
+                      "relation": "part_of",
+                      "related": [
+                        "公理系统",
+                        "理论思维"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "算法设计/Algorithm Design",
+                      "zh": "算法设计",
+                      "importance": 0.366686,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "架构设计/Architecture Design",
+                      "zh": "架构设计",
+                      "importance": 0.366686,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/命题逻辑的基本概念",
+          "zh": "第1章 命题逻辑的基本概念",
+          "importance": 0.821852,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "逻辑推理/logical deduction",
+              "zh": "逻辑推理",
+              "importance": 0.821852,
+              "relation": null,
+              "related": [
+                "数学",
+                "理论思维"
+              ],
+              "children": [
+                {
+                  "id": "数理逻辑/Mathematical Logic",
+                  "zh": "数理逻辑",
+                  "importance": 0.986877,
+                  "relation": "part_of",
+                  "related": [
+                    "形式语言",
+                    "计算机科学"
+                  ],
+                  "children": [
+                    {
+                      "id": "命题演算/Propositional Calculus",
+                      "zh": "命题演算",
+                      "importance": 0.313955,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "谓词演算/Predicate Calculus",
+                      "zh": "谓词演算",
+                      "importance": 0.347872,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "公理系统/axiomatic system",
+                      "zh": "公理系统",
+                      "importance": 0.665403,
+                      "relation": "part_of",
+                      "related": [
+                        "公理",
+                        "公理化集合论",
+                        "定理"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "布尔逻辑/Boolean Logic",
+                      "zh": "布尔逻辑",
+                      "importance": 0.242872,
+                      "relation": "part_of",
+                      "related": [
+                        "数字电路",
+                        "计算机硬件"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "模型论/Model Theory",
+                      "zh": "模型论",
+                      "importance": 0.099002,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "证明论/Proof Theory",
+                      "zh": "证明论",
+                      "importance": 0.086808,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "递归论/Recursion Theory",
+                      "zh": "递归论",
+                      "importance": 0.049107,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "三段论/syllogism",
+                  "zh": "三段论",
+                  "importance": 0.242725,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "名辩学",
+                  "zh": "名辩学",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "白马非马",
+                  "zh": "白马非马",
+                  "importance": 0.0,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "逻辑/logic",
+              "zh": "逻辑",
+              "importance": 0.567724,
+              "relation": null,
+              "related": [
+                "数学"
+              ],
+              "children": [
+                {
+                  "id": "数理逻辑/Mathematical Logic",
+                  "zh": "数理逻辑",
+                  "importance": 0.986877,
+                  "relation": "part_of",
+                  "related": [
+                    "形式语言",
+                    "计算机科学"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/谓词逻辑的基本概念",
+          "zh": "第4章 谓词逻辑的基本概念",
+          "importance": 0.45,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.266745,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "一阶谓词逻辑/first-order predicate logic",
+                  "zh": "一阶谓词逻辑",
+                  "importance": 0.616465,
+                  "relation": "belong_to",
+                  "related": [
+                    "推理",
+                    "程序语义正确性",
+                    "语义",
+                    "集合论"
+                  ],
+                  "children": [
+                    {
+                      "id": "谓词/predicate",
+                      "zh": "谓词",
+                      "importance": 0.123991,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/集合",
+          "zh": "第9章 集合",
+          "importance": 0.742477,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "数学对象/mathematical object",
+              "zh": "数学对象",
+              "importance": 0.742477,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "集合/set",
+                  "zh": "集合",
+                  "importance": 0.797701,
+                  "relation": "belong_to",
+                  "related": [
+                    "关系",
+                    "子集",
+                    "数学",
+                    "笛卡儿积",
+                    "自然数"
+                  ],
+                  "children": [
+                    {
+                      "id": "元素/Element",
+                      "zh": "元素",
+                      "importance": 0.039484,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "无限集合/infinite set",
+                      "zh": "无限集合",
+                      "importance": 0.331391,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "自然数/natural number",
+                  "zh": "自然数",
+                  "importance": 0.418583,
+                  "relation": "belong_to",
+                  "related": [
+                    "集合",
+                    "集合论"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "无理数/irrational number",
+                  "zh": "无理数",
+                  "importance": 0.392653,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "悖论/paradox",
+              "zh": "悖论",
+              "importance": 0.322989,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "Russell 悖论/Russell's paradox",
+                  "zh": "Russell 悖论",
+                  "importance": 0.216906,
+                  "relation": "belong_to",
+                  "related": [
+                    "公理化集合论",
+                    "集合论"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 47,
   "max_depth": 4,
-  "orphan_count": 36,
+  "orphan_count": 3,
   "meta": {
-    "chapter": "第1章 命题逻辑的基本概念",
-    "root_id": "逻辑/logic",
-    "root_zh": "逻辑",
-    "virtual_root": false,
-    "max_nodes": 64,
-    "max_depth_cap": 4,
-    "max_children": 8,
-    "n_entities_raw": 52,
-    "n_edges_raw": 68,
-    "n_hierarchy_candidates": 45,
-    "attached_orphans": 0,
-    "alias_merged": 0
+    "chapter": "第2章 道路与回路",
+    "root_id": "逻辑推理/logical deduction",
+    "root_zh": "第 1 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 92,
+    "n_edges_raw": 118,
+    "n_hierarchy_candidates": 72,
+    "attached_orphans": 3,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "仅将第1章章名规范为'第1章 图的基本概念与表示'，其余结构未改动。",
+    "chapters": [
+      "第1章 图的基本概念与表示",
+      "第1章 命题逻辑的基本概念",
+      "第4章 谓词逻辑的基本概念",
+      "第9章 集合"
+    ],
+    "llm_tune_notes": "仅将第1章章名规范为'第1章 图的基本概念与表示'，其余结构未改动。",
+    "chapter_candidates": [
+      "第2章 道路与回路",
+      "第4章 平面图与图的着色"
+    ]
   }
 }

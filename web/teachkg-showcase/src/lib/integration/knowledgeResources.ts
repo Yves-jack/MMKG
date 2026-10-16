@@ -251,3 +251,43 @@ export function emitKnowledgeResourceOpen(
   );
   return true;
 }
+
+/** AI-Teaching 匹配到的正式知识点 id（图谱节点 id 往往对不上练习库 knowledgeId） */
+export function matchedKnowledgePointId(
+  match?: LinkedKnowledgeResources["match"] | null,
+): string {
+  const rows = match?.matched_knowledge_points;
+  if (!Array.isArray(rows) || !rows.length) return "";
+  return String(rows[0]?.id || "").trim();
+}
+
+/** 匹配知识点可读名（用于练习页「当前知识点」展示，避免只剩 uuid） */
+export function matchedKnowledgePointLabel(
+  match?: LinkedKnowledgeResources["match"] | null,
+): string {
+  const rows = match?.matched_knowledge_points;
+  if (!Array.isArray(rows) || !rows.length) return "";
+  const row = rows[0] || {};
+  return String(
+    (row as { content?: string; name?: string; label?: string }).content
+      || (row as { name?: string }).name
+      || (row as { label?: string }).label
+      || "",
+  ).trim();
+}
+
+/**
+ * 练习跳转用的 seed KP：优先 AT 匹配 id，其次图谱选中节点。
+ * 不要用练习资源自带的 knowledge_point_id（可能是别的题绑定点）。
+ */
+export function resolvePracticeSeedKp(input: {
+  matchedKpId?: string | null;
+  selectedNodeId?: string | null;
+  edgeEndpointId?: string | null;
+}): string {
+  return (
+    String(input.matchedKpId || "").trim() ||
+    String(input.selectedNodeId || "").trim() ||
+    String(input.edgeEndpointId || "").trim()
+  );
+}

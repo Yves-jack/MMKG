@@ -15,6 +15,8 @@ import { callLlm } from "./qaLlm.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../../..");
 const showcasePublic = path.resolve(__dirname, "../public/data/courses");
+/** vite preview 实际托管 dist，落盘必须同步，否则刷新仍是旧图 */
+const showcaseDist = path.resolve(__dirname, "../dist/data/courses");
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -72,18 +74,21 @@ function isCourseSkeletonKey(chapter) {
 function summaryPaths(courseId, chapter) {
   const course = safeSegment(courseId);
   if (!course) return [];
+  // 可写路径优先（public/dist）；viz 常在 :ro 数据卷上，写失败可跳过
   if (isCourseSkeletonKey(chapter)) {
     return [
-      path.join(repoRoot, "data/viz", courseId, "summaries", "course_skeleton.json"),
       path.join(showcasePublic, courseId, "summaries", "course_skeleton.json"),
+      path.join(showcaseDist, courseId, "summaries", "course_skeleton.json"),
+      path.join(repoRoot, "data/viz", courseId, "summaries", "course_skeleton.json"),
     ];
   }
   const slug = chapterFileSlug(chapter);
   if (!slug) return [];
   const name = `chapter_${slug}.json`;
   return [
-    path.join(repoRoot, "data/viz", courseId, "summaries", name),
     path.join(showcasePublic, courseId, "summaries", name),
+    path.join(showcaseDist, courseId, "summaries", name),
+    path.join(repoRoot, "data/viz", courseId, "summaries", name),
   ];
 }
 
@@ -92,25 +97,81 @@ function mindmapPaths(courseId, chapter) {
   if (!course) return [];
   if (isCourseSkeletonKey(chapter)) {
     return [
-      path.join(repoRoot, "data/viz", courseId, "mindmaps", "course_skeleton.json"),
       path.join(showcasePublic, courseId, "mindmaps", "course_skeleton.json"),
+      path.join(showcaseDist, courseId, "mindmaps", "course_skeleton.json"),
+      path.join(repoRoot, "data/viz", courseId, "mindmaps", "course_skeleton.json"),
     ];
   }
   const slug = chapterFileSlug(chapter);
   if (!slug) return [];
   const name = `chapter_${slug}.json`;
   return [
-    path.join(repoRoot, "data/viz", courseId, "mindmaps", name),
     path.join(showcasePublic, courseId, "mindmaps", name),
+    path.join(showcaseDist, courseId, "mindmaps", name),
+    path.join(repoRoot, "data/viz", courseId, "mindmaps", name),
   ];
+}
+
+/** KG 时代备份目录（text_first 实验前整目录复制） */
+function mindmapBackupPaths(courseId, chapter) {
+  const course = safeSegment(courseId);
+  if (!course || isCourseSkeletonKey(chapter)) return [];
+  const slug = chapterFileSlug(chapter);
+  if (!slug) return [];
+  const name = `chapter_${slug}.json`;
+  return [
+    path.join(repoRoot, "data/viz", courseId, "mindmaps_kg_v1", name),
+    path.join(showcasePublic, courseId, "mindmaps_kg_v1", name),
+  ];
+}
+
+function restoreMindmapFromBackup(courseId, chapter) {
+  const backups = mindmapBackupPaths(courseId, chapter);
+  const targets = mindmapPaths(courseId, chapter);
+  let src = null;
+  for (const p of backups) {
+    if (fs.existsSync(p)) {
+      src = p;
+      break;
+    }
+  }
+  if (!src) {
+    const err = new Error("备份中不存在该章导图（mindmaps_kg_v1）");
+    err.code = "NO_BACKUP";
+    throw err;
+  }
+  const raw = fs.readFileSync(src, "utf8");
+  const doc = JSON.parse(raw);
+  const written = [];
+  for (const p of targets) {
+    try {
+      fs.mkdirSync(path.dirname(p), { recursive: true });
+      fs.writeFileSync(p, raw, "utf8");
+      written.push(path.relative(repoRoot, p).replace(/\\/g, "/"));
+    } catch (e) {
+      const code = e?.code || "";
+      if (code === "EROFS" || code === "EACCES" || code === "EPERM") {
+        console.warn("[mindmap-outline] skip read-only restore", p, code);
+        continue;
+      }
+      throw e;
+    }
+  }
+  if (!written.length) {
+    const err = new Error("还原失败：目标路径均为只读");
+    err.code = "EROFS";
+    throw err;
+  }
+  return { written, path: path.relative(repoRoot, src).replace(/\\/g, "/"), doc };
 }
 
 function indexPaths(courseId) {
   const course = safeSegment(courseId);
   if (!course) return [];
   return [
-    path.join(repoRoot, "data/viz", courseId, "mindmaps", "index.json"),
     path.join(showcasePublic, courseId, "mindmaps", "index.json"),
+    path.join(showcaseDist, courseId, "mindmaps", "index.json"),
+    path.join(repoRoot, "data/viz", courseId, "mindmaps", "index.json"),
   ];
 }
 
@@ -150,7 +211,7 @@ function parseOutlineText(chapter, text, source = "manual") {
     }
     const indent = raw.match(/^(\s*)/)?.[1].length || 0;
     const title = clean(raw);
-    if (!title || title.length > 40) continue;
+    if (!title || title.length > 64) continue;
     if (indent >= 2 && lastSection) {
       edges.push({ parent: lastSection, child: title });
       continue;
@@ -319,6 +380,41 @@ const INCREMENTAL_SYSTEM = `你是课程助教，负责把「已有章导图大�
   "notes": "一句说明合并了哪些内容、如何归位"
 }`;
 
+/** 文本优先：允许从较长教材/笔记抽取完整概念树（不绑定已有 KG entity id） */
+const TEXT_FIRST_SYSTEM = `你是课程助教，负责把教材摘录、讲义或课堂笔记整理成「章思维导图」的 2–3 级概念树。
+
+任务：从输入长文中抽取本章知识点结构，用于直接生成导图节点（节点可以是文中概念，不必已在知识图谱中存在）。
+
+层级原则：
+1. 一级：概括性范畴名（本章内 4–12 个），表达这一组在讲什么；禁止把子项用「与/和/、」简单拼成父标题。
+2. 二级：尽量原子的概念/术语名；并列关系拆开，不要整句做节点。
+3. 尽量完整覆盖文中出现的重要概念；同义合并可以；不要漏掉主干定义与分类。
+4. 可以从长文归纳出文中隐含但未单独成行的小节名（只要仍属于本章主题）；禁止编造与本章无关的整章内容。
+5. 只保留概念/主题短名，去掉例题演算过程、口语寒暄、过长公式推导。
+6. 标题尽量短（父≤14 字，子≤12 字），中文。
+7. 必须输出 JSON（不要 Markdown 围栏）：
+{
+  "sections": [
+    { "title": "概括性一级主题", "children": ["原子概念", "..."] }
+  ],
+  "notes": "一句说明抽取与归纳要点"
+}`;
+
+const TEXT_FIRST_INCREMENTAL_SYSTEM = `你是课程助教，负责把「已有章导图大纲」与「本次新增教材/笔记摘录」做增量合并，输出完整 2–3 级概念树。
+
+合并原则：
+1. 以已有大纲为骨架，保留合理分组；把新摘录中的概念并入最合适父级，必要时新增少量一级主题。
+2. 节点可以是文中新概念（不要求已在知识图谱中）；同义去重；冲突时取更规范、更短的写法。
+3. 父级用概括范畴名；子级尽量原子；禁止编造与本章无关的整章。
+4. 标题尽量短（父≤14 字，子≤12 字），中文。
+5. 必须输出 JSON（不要 Markdown 围栏）：
+{
+  "sections": [
+    { "title": "概括性一级主题", "children": ["原子概念", "..."] }
+  ],
+  "notes": "一句说明合并了哪些内容"
+}`;
+
 async function normalizeOutlineWithLlm(
   env,
   chapter,
@@ -329,6 +425,8 @@ async function normalizeOutlineWithLlm(
   const existing = String(opts.existingOutline || "").trim();
   const incremental = Boolean(opts.incremental) && Boolean(existing);
   const courseSkeleton = Boolean(opts.courseSkeleton) || isCourseSkeletonKey(chapter);
+  const textFirst = Boolean(opts.textFirst) && !courseSkeleton;
+  const draftCap = textFirst ? 16000 : 8000;
 
   if (!draft) {
     const err = new Error("empty outline");
@@ -358,6 +456,29 @@ async function normalizeOutlineWithLlm(
         "请整理成整课 章→节 骨架 JSON。最外层是章；不要细概念。",
       ].join("\n");
     }
+  } else if (textFirst && incremental) {
+    system = TEXT_FIRST_INCREMENTAL_SYSTEM;
+    user = [
+      `课程章名：${chapter}`,
+      "",
+      "【已有章概念树】",
+      existing.slice(0, draftCap),
+      "",
+      "【本次新增教材/笔记摘录】",
+      draft.slice(0, draftCap),
+      "",
+      "请输出合并后的完整章概念树 JSON（文本优先，可不绑定知识图谱实体）。",
+    ].join("\n");
+  } else if (textFirst) {
+    system = TEXT_FIRST_SYSTEM;
+    user = [
+      `课程章名：${chapter}`,
+      "",
+      "【教材摘录 / 讲义 / 课堂笔记】",
+      draft.slice(0, draftCap),
+      "",
+      "请抽取整理成章概念树 JSON。节点可以是文中概念，不要求已在知识图谱中。",
+    ].join("\n");
   } else if (incremental) {
     system = INCREMENTAL_SYSTEM;
     user = [
@@ -389,7 +510,7 @@ async function normalizeOutlineWithLlm(
       { role: "system", content: system },
       { role: "user", content: user },
     ],
-    { temperature: 0.2, timeoutMs: 90000 }
+    { temperature: 0.2, timeoutMs: textFirst ? 120000 : 90000 }
   );
   const parsed = parseModelJson(content);
   const outline_text = courseSkeleton
@@ -410,6 +531,7 @@ async function normalizeOutlineWithLlm(
     existing_outline: incremental ? existing : undefined,
     chapters: courseSkeleton ? parsed?.chapters : undefined,
     course_skeleton: courseSkeleton,
+    text_first: textFirst,
   };
 }
 
@@ -428,12 +550,34 @@ function readSummary(courseId, chapter) {
   return null;
 }
 
+/** 跳过只读挂载（staging 的 /workspace/data:ro）；至少一个可写路径成功即可 */
+function writeJsonFile(filePath, obj) {
+  try {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, JSON.stringify(obj, null, 2) + "\n", "utf8");
+    return true;
+  } catch (e) {
+    const code = e?.code || "";
+    if (code === "EROFS" || code === "EACCES" || code === "EPERM") {
+      console.warn("[mindmap-outline] skip read-only path", filePath, code);
+      return false;
+    }
+    throw e;
+  }
+}
+
 function writeSummary(courseId, chapter, doc) {
   const written = [];
   for (const p of summaryPaths(courseId, chapter)) {
-    fs.mkdirSync(path.dirname(p), { recursive: true });
-    fs.writeFileSync(p, JSON.stringify(doc, null, 2) + "\n", "utf8");
+    if (!writeJsonFile(p, doc)) continue;
     written.push(path.relative(repoRoot, p).replace(/\\/g, "/"));
+  }
+  if (!written.length) {
+    const err = new Error(
+      "大纲无法写入：目标路径均为只读（请写 public/dist，勿依赖 /workspace/data）"
+    );
+    err.code = "EROFS";
+    throw err;
   }
   return written;
 }
@@ -453,9 +597,13 @@ function writeMindmapDoc(courseId, chapter, mindmap) {
     };
     const written = [];
     for (const p of mindmapPaths(courseId, chapter)) {
-      fs.mkdirSync(path.dirname(p), { recursive: true });
-      fs.writeFileSync(p, JSON.stringify(doc, null, 2) + "\n", "utf8");
+      if (!writeJsonFile(p, doc)) continue;
       written.push(path.relative(repoRoot, p).replace(/\\/g, "/"));
+    }
+    if (!written.length) {
+      const err = new Error("章导图无法写入：目标路径均为只读");
+      err.code = "EROFS";
+      throw err;
     }
     return { written, path: relPath, doc };
   }
@@ -475,9 +623,13 @@ function writeMindmapDoc(courseId, chapter, mindmap) {
   };
   const written = [];
   for (const p of mindmapPaths(courseId, chapter)) {
-    fs.mkdirSync(path.dirname(p), { recursive: true });
-    fs.writeFileSync(p, JSON.stringify(doc, null, 2) + "\n", "utf8");
+    if (!writeJsonFile(p, doc)) continue;
     written.push(path.relative(repoRoot, p).replace(/\\/g, "/"));
+  }
+  if (!written.length) {
+    const err = new Error("章导图无法写入：目标路径均为只读");
+    err.code = "EROFS";
+    throw err;
   }
 
   // 同步 index 条目元数据（存在才改，不造整课索引）
@@ -526,8 +678,9 @@ function writeMindmapDoc(courseId, chapter, mindmap) {
           source: doc.meta?.source || "summary+kg",
         });
       }
-      fs.writeFileSync(ip, JSON.stringify(idx, null, 2) + "\n", "utf8");
-      written.push(path.relative(repoRoot, ip).replace(/\\/g, "/"));
+      if (writeJsonFile(ip, idx)) {
+        written.push(path.relative(repoRoot, ip).replace(/\\/g, "/"));
+      }
     } catch {
       /* ignore index sync errors */
     }
@@ -537,6 +690,8 @@ function writeMindmapDoc(courseId, chapter, mindmap) {
 
 export function mindmapOutlineMiddleware(env = process.env) {
   return async function mindmapOutlineMw(req, res, next) {
+    // 每次请求合并 process.env，避免 preview 启动时密钥尚未注入进闭包
+    const liveEnv = { ...env, ...process.env };
     try {
       const rawUrl = String(req.url || "");
       if (!rawUrl.startsWith("/api/mindmap-outline")) return next();
@@ -583,10 +738,33 @@ export function mindmapOutlineMiddleware(env = process.env) {
         const chapter = String(body.chapter || "").trim();
         let outline_text = String(body.outline_text ?? body.text ?? "");
         const normalize = Boolean(body.normalize);
+        const textFirst =
+          String(body.mode || "").trim() === "text_first" ||
+          Boolean(body.text_first);
         const mindmap = body.mindmap && typeof body.mindmap === "object" ? body.mindmap : null;
         const persistMindmap = Boolean(body.persist_mindmap) || Boolean(mindmap);
         if (!courseId || !chapter) {
           return json(res, 400, { error: "courseId and chapter required" });
+        }
+
+        if (body.restore_from_backup) {
+          try {
+            const restored = restoreMindmapFromBackup(courseId, chapter);
+            return json(res, 200, {
+              ok: true,
+              courseId,
+              chapter,
+              restored: true,
+              written_mindmap: restored.written,
+              path: restored.path,
+              mindmap: restored.doc,
+            });
+          } catch (e) {
+            return json(res, e?.code === "NO_BACKUP" ? 404 : 500, {
+              error: String(e?.message || e),
+              code: e?.code || "RESTORE_FAIL",
+            });
+          }
         }
 
         // 仅落盘章导图（大纲已在先前请求写过）
@@ -624,13 +802,14 @@ export function mindmapOutlineMiddleware(env = process.env) {
               body.incremental === undefined || body.incremental === null
                 ? Boolean(existingOutline)
                 : Boolean(body.incremental);
-            llmMeta = await normalizeOutlineWithLlm(env, chapter, outline_text, {
+            llmMeta = await normalizeOutlineWithLlm(liveEnv, chapter, outline_text, {
               incremental: wantIncremental,
               existingOutline,
               courseSkeleton: isCourseSkeletonKey(chapter) || Boolean(body.course_skeleton),
+              textFirst,
             });
             outline_text = llmMeta.outline_text;
-            source = "manual_llm";
+            source = textFirst ? "manual_llm_text_first" : "manual_llm";
           } catch (e) {
             if (e?.code === "NO_LLM_KEY") {
               return json(res, 503, {

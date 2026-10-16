@@ -1,0 +1,21 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "lecture",
+  "lecture_id": "6",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 1,
+  "decided": 1,
+  "failed": 0,
+  "workers": 6,
+  "decisions": {
+    "哈密顿道路和回路问题/Hamiltonian path and circuit problem": {
+      "properties": [
+        "哈密顿道路和回路问题至今没有简单的充要条件，仅有若干充分条件和一个必要条件，因此判定一个图是否存在哈密顿道路或回路通常很困难。",
+        "该问题目前没有有效算法，只能通过穷举法求解，其时间复杂度为阶乘级（n!），随着顶点数增加计算量急剧膨胀。"
+      ],
+      "reason": "将“没有简单充要条件”与“仅有若干充分条件和一个必要条件”合并为一条；将“只能穷举”“没有有效算法”和“复杂度为n!”合并为一条，并补充了教学性解释。",
+      "before_count": 5,
+      "after_count": 2
+    }
+  }
+}

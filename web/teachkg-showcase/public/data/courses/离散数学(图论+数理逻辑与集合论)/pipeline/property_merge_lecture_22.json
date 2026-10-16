@@ -1,0 +1,21 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "scope": "lecture",
+  "lecture_id": "22",
+  "prompt": "prompts/stage3/node_property_merge.txt",
+  "candidate_count": 1,
+  "decided": 1,
+  "failed": 0,
+  "workers": 6,
+  "decisions": {
+    "推理公式/inference formula": {
+      "properties": [
+        "推理公式是否成立，可通过其对应的条件蕴含式是否为重言式来判断：若公式 A→B 为重言式，则推理公式 A⇒B 成立。",
+        "推理公式也可通过矛盾式来判定：若公式 A∧¬B 为矛盾式，则推理公式 A⇒B 成立。"
+      ],
+      "reason": "两条特性分别对应重言式和矛盾式两种判定方法，语义互补，故保留为两条，并润色为更通顺的课堂表述。",
+      "before_count": 2,
+      "after_count": 2
+    }
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
+  "root": {
+    "id": "__chapter__/谓词逻辑的等值和推理演算",
+    "zh": "第5章 谓词逻辑的等值和推理演算",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "谓词逻辑/Predicate Logic",
+        "zh": "谓词逻辑",
+        "importance": 0.775269,
+        "relation": "belong_to",
+        "related": [
+          "映射"
+        ],
+        "children": [
+          {
+            "id": "一阶语言/First-order Language",
+            "zh": "一阶语言",
+            "importance": 0.860251,
+            "relation": null,
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "谓词/predicate",
+            "zh": "谓词",
+            "importance": 0.805862,
+            "relation": "belong_to",
+            "related": [
+              "公式",
+              "函数符号",
+              "可满足性",
+              "命题逻辑公式",
+              "普遍有效性",
+              "有限域"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "等值式/equivalence formula",
+            "zh": "等值式",
+            "importance": 0.529929,
+            "relation": null,
+            "related": [
+              "解释证明法"
+            ],
+            "children": []
+          },
+          {
+            "id": "范式/normal form",
+            "zh": "范式",
+            "importance": 0.730615,
+            "relation": null,
+            "related": [
+              "命题公式",
+              "矛盾式",
+              "重言式"
+            ],
+            "children": [
+              {
+                "id": "子句集/clause set",
+                "zh": "子句集",
+                "importance": 0.606133,
+                "relation": null,
+                "related": [
+                  "合取范式",
+                  "归结"
+                ],
+                "children": [
+                  {
+                    "id": "子句/clause",
+                    "zh": "子句",
+                    "importance": 1.0,
+                    "relation": "part_of",
+                    "related": [
+                      "全称量词",
+                      "归结",
+                      "归结式",
+                      "归结过程"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "推理演算/inference calculus",
+            "zh": "推理演算",
+            "importance": 0.563378,
+            "relation": "belong_to",
+            "related": [
+              "命题等值演算",
+              "推理规则",
+              "等值"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "蕴涵式/implication form",
+            "zh": "蕴涵式",
+            "importance": 0.290817,
+            "relation": null,
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "命题/proposition",
+        "zh": "命题",
+        "importance": 0.393027,
+        "relation": "belong_to",
+        "related": [
+          "命题变项",
+          "命题形式",
+          "复合命题",
+          "联结词",
+          "集合"
+        ],
+        "children": [
+          {
+            "id": "简单命题/simple proposition",
+            "zh": "简单命题",
+            "importance": 0.090346,
+            "relation": "belong_to",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "复合命题/compound proposition",
+            "zh": "复合命题",
+            "importance": 0.112138,
+            "relation": "part_of",
+            "related": [
+              "公式",
+              "命题"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "命题形式/propositional form",
+            "zh": "命题形式",
+            "importance": 0.317963,
+            "relation": null,
+            "related": [
+              "命题"
+            ],
+            "children": []
+          },
+          {
+            "id": "命题公式/propositional formula",
+            "zh": "命题公式",
+            "importance": 0.398092,
+            "relation": "belong_to",
+            "related": [
+              "范式"
+            ],
+            "children": [],
+            "copy": true
+          },
+          {
+            "id": "联结词/connective",
+            "zh": "联结词",
+            "importance": 0.330785,
+            "relation": "part_of",
+            "related": [
+              "二值逻辑",
+              "公式",
+              "命题"
+            ],
+            "children": []
+          },
+          {
+            "id": "重言式/tautology",
+            "zh": "重言式",
+            "importance": 0.100947,
+            "relation": "belong_to",
+            "related": [
+              "范式"
+            ],
+            "children": []
+          },
+          {
+            "id": "推理规则/inference rule",
+            "zh": "推理规则",
+            "importance": 0.196602,
+            "relation": "part_of",
+            "related": [
+              "推理演算"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/谓词逻辑的等值和推理演算",
+      "zh": "第5章 谓词逻辑的等值和推理演算",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "谓词逻辑/Predicate Logic",
+          "zh": "谓词逻辑",
+          "importance": 0.775269,
+          "relation": "belong_to",
+          "related": [
+            "映射"
+          ],
+          "children": [
+            {
+              "id": "一阶语言/First-order Language",
+              "zh": "一阶语言",
+              "importance": 0.860251,
+              "relation": null,
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "谓词/predicate",
+              "zh": "谓词",
+              "importance": 0.805862,
+              "relation": "belong_to",
+              "related": [
+                "公式",
+                "函数符号",
+                "可满足性",
+                "命题逻辑公式",
+                "普遍有效性",
+                "有限域"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "等值式/equivalence formula",
+              "zh": "等值式",
+              "importance": 0.529929,
+              "relation": null,
+              "related": [
+                "解释证明法"
+              ],
+              "children": []
+            },
+            {
+              "id": "范式/normal form",
+              "zh": "范式",
+              "importance": 0.730615,
+              "relation": null,
+              "related": [
+                "命题公式",
+                "矛盾式",
+                "重言式"
+              ],
+              "children": [
+                {
+                  "id": "子句集/clause set",
+                  "zh": "子句集",
+                  "importance": 0.606133,
+                  "relation": null,
+                  "related": [
+                    "合取范式",
+                    "归结"
+                  ],
+                  "children": [
+                    {
+                      "id": "子句/clause",
+                      "zh": "子句",
+                      "importance": 1.0,
+                      "relation": "part_of",
+                      "related": [
+                        "全称量词",
+                        "归结",
+                        "归结式",
+                        "归结过程"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "推理演算/inference calculus",
+              "zh": "推理演算",
+              "importance": 0.563378,
+              "relation": "belong_to",
+              "related": [
+                "命题等值演算",
+                "推理规则",
+                "等值"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "蕴涵式/implication form",
+              "zh": "蕴涵式",
+              "importance": 0.290817,
+              "relation": null,
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "命题/proposition",
+          "zh": "命题",
+          "importance": 0.393027,
+          "relation": "belong_to",
+          "related": [
+            "命题变项",
+            "命题形式",
+            "复合命题",
+            "联结词",
+            "集合"
+          ],
+          "children": [
+            {
+              "id": "简单命题/simple proposition",
+              "zh": "简单命题",
+              "importance": 0.090346,
+              "relation": "belong_to",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "复合命题/compound proposition",
+              "zh": "复合命题",
+              "importance": 0.112138,
+              "relation": "part_of",
+              "related": [
+                "公式",
+                "命题"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "命题形式/propositional form",
+              "zh": "命题形式",
+              "importance": 0.317963,
+              "relation": null,
+              "related": [
+                "命题"
+              ],
+              "children": []
+            },
+            {
+              "id": "命题公式/propositional formula",
+              "zh": "命题公式",
+              "importance": 0.398092,
+              "relation": "belong_to",
+              "related": [
+                "范式"
+              ],
+              "children": [],
+              "copy": true
+            },
+            {
+              "id": "联结词/connective",
+              "zh": "联结词",
+              "importance": 0.330785,
+              "relation": "part_of",
+              "related": [
+                "二值逻辑",
+                "公式",
+                "命题"
+              ],
+              "children": []
+            },
+            {
+              "id": "重言式/tautology",
+              "zh": "重言式",
+              "importance": 0.100947,
+              "relation": "belong_to",
+              "related": [
+                "范式"
+              ],
+              "children": []
+            },
+            {
+              "id": "推理规则/inference rule",
+              "zh": "推理规则",
+              "importance": 0.196602,
+              "relation": "part_of",
+              "related": [
+                "推理演算"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 18,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_zh": "谓词逻辑的等值和推理演算",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "31",
+      "33"
+    ],
+    "pipeline": "lecture_assign_merge",
+    "stitch": "entity_merge",
+    "source": "kg",
+    "n_trees": 1,
+    "llm_tidy_notes": "移除数理逻辑、二值逻辑等背景层级，将子句集挂到范式下，谓词逻辑与命题逻辑并列作为章下两大知识子树。",
+    "llm_merge": true,
+    "llm_merge_notes": "移除数理逻辑、二值逻辑等背景层级，将子句集挂到范式下，谓词逻辑与命题逻辑并列作为章下两大知识子树。"
+  }
+}

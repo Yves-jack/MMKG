@@ -67,6 +67,28 @@ export type AppAsset = {
   related_entities?: string[];
 };
 
+/** 预计算：实体 → 全课 evidence 片段（避免检索时扫全部 lecture_*.json） */
+export type EntityEvidenceHit = {
+  lecture_id: string;
+  start_sec: number;
+  end_sec?: number | null;
+  text: string;
+  point_id: string;
+  point_zh: string;
+};
+
+export type EntityEvidenceIndex = {
+  version: number;
+  course_id?: string;
+  generated_at?: string;
+  entities: { id: string; zh: string }[];
+  by_id: Record<string, EntityEvidenceHit[]>;
+  by_zh?: Record<string, string[]>;
+};
+
+const entityIndexCache = new Map<string, EntityEvidenceIndex | null>();
+const entityIndexInflight = new Map<string, Promise<EntityEvidenceIndex | null>>();
+
 function zhName(name: string): string {
   return (name || "").split("/")[0].trim() || name;
 }
@@ -109,15 +131,29 @@ export function originLabel(origin: string): string {
   return origin || "—";
 }
 
-async function fetchJson<T>(url: string): Promise<T | null> {
+async function fetchJson<T>(
+  url: string,
+  opts?: { timeoutMs?: number },
+): Promise<T | null> {
+  const timeoutMs = opts?.timeoutMs;
+  const ctrl = typeof timeoutMs === "number" ? new AbortController() : null;
+  const timer =
+    ctrl && timeoutMs
+      ? setTimeout(() => ctrl.abort(), Math.max(200, timeoutMs))
+      : null;
   try {
-    const r = await fetch(`${url}?t=${Date.now()}`, { cache: "no-store" });
+    const r = await fetch(`${url}?t=${Date.now()}`, {
+      cache: "no-store",
+      signal: ctrl?.signal,
+    });
     if (!r.ok) return null;
     const ct = r.headers.get("content-type") || "";
     if (ct.includes("text/html")) return null;
     return (await r.json()) as T;
   } catch {
     return null;
+  } finally {
+    if (timer) clearTimeout(timer);
   }
 }
 
@@ -146,13 +182,134 @@ export async function loadReviewIndex(courseId: string): Promise<AppReviewIndexI
 /**
  * 课内 review/ 优先；缺失时回退仓库级 /data/review/（MMKG-runtime 导出常先落这里）。
  * 仍无 points 时，用 kg_processed 节点合成复习点，保证笔记/检索有实质内容。
+ * @param opts.synthesize 默认 true；检索目录扫全课时应 false，避免对缺失讲次连打 kg 404
  */
+export async function loadEntityEvidenceIndex(
+  courseId: string,
+): Promise<EntityEvidenceIndex | null> {
+  const key = String(courseId || "").trim();
+  if (!key) return null;
+  if (entityIndexCache.has(key)) return entityIndexCache.get(key) || null;
+  const pending = entityIndexInflight.get(key);
+  if (pending) return pending;
+
+  const request = (async () => {
+    const raw = await fetchJson<EntityEvidenceIndex>(
+      courseDataUrl(key, "review/entity_evidence_index.json"),
+      // 约 1MB；经校园网关偶发很慢，8s 会误杀导致「检索没反应」
+      { timeoutMs: 60000 },
+    );
+    if (!raw?.entities?.length || !raw.by_id || typeof raw.by_id !== "object") {
+      entityIndexCache.set(key, null);
+      return null;
+    }
+    const normalized: EntityEvidenceIndex = {
+      version: Number(raw.version) || 1,
+      course_id: raw.course_id,
+      generated_at: raw.generated_at,
+      entities: raw.entities
+        .map((e) => ({
+          id: String(e.id || "").trim(),
+          zh: String(e.zh || zhName(String(e.id || ""))).trim(),
+        }))
+        .filter((e) => e.id),
+      by_id: raw.by_id,
+      by_zh: raw.by_zh && typeof raw.by_zh === "object" ? raw.by_zh : undefined,
+    };
+    entityIndexCache.set(key, normalized);
+    return normalized;
+  })().finally(() => {
+    entityIndexInflight.delete(key);
+  });
+
+  entityIndexInflight.set(key, request);
+  return request;
+}
+
+/** 同步读缓存（检索热路径，避免把大索引放进 React state）。 */
+export function getCachedEntityEvidenceIndex(
+  courseId: string,
+): EntityEvidenceIndex | null {
+  const key = String(courseId || "").trim();
+  if (!key || !entityIndexCache.has(key)) return null;
+  return entityIndexCache.get(key) || null;
+}
+
+/** 从预计算索引取某实体的片段；无索引时返回 null（调用方回退扫讲次）。 */
+export function hitsFromEntityEvidenceIndex(
+  index: EntityEvidenceIndex | null | undefined,
+  kp: string | null,
+  q: string,
+): EntityEvidenceHit[] | null {
+  if (!index?.by_id) return null;
+  const needle = String(kp || "").trim();
+  const query = String(q || "").trim();
+  const ids = new Set<string>();
+
+  if (needle) {
+    ids.add(needle);
+    const nZh = zhName(needle);
+    for (const e of index.entities) {
+      if (e.id === needle || e.zh === needle || e.zh === nZh || zhName(e.id) === nZh) {
+        ids.add(e.id);
+      }
+    }
+    for (const id of index.by_zh?.[nZh] || []) ids.add(id);
+    for (const id of index.by_zh?.[needle] || []) ids.add(id);
+  } else if (query) {
+    const qZh = zhName(query);
+    for (const e of index.entities) {
+      if (
+        e.id === query ||
+        e.zh === query ||
+        e.zh === qZh ||
+        zhName(e.id) === query ||
+        zhName(e.id) === qZh
+      ) {
+        ids.add(e.id);
+      }
+    }
+    for (const id of index.by_zh?.[qZh] || []) ids.add(id);
+    for (const id of index.by_zh?.[query] || []) ids.add(id);
+  } else {
+    return [];
+  }
+
+  const out: EntityEvidenceHit[] = [];
+  const seen = new Set<string>();
+  for (const id of ids) {
+    for (const h of index.by_id[id] || []) {
+      const lid = String(h.lecture_id || "").trim();
+      const start = Number(h.start_sec);
+      if (!lid || !Number.isFinite(start)) continue;
+      const key = `${lid}:${Math.floor(start)}:${h.point_id || id}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({
+        lecture_id: lid,
+        start_sec: start,
+        end_sec: h.end_sec ?? null,
+        text: String(h.text || ""),
+        point_id: String(h.point_id || id),
+        point_zh: String(h.point_zh || zhName(id)),
+      });
+    }
+  }
+  out.sort(
+    (a, b) =>
+      Number(a.lecture_id) - Number(b.lecture_id) || a.start_sec - b.start_sec,
+  );
+  return out;
+}
+
 export async function loadReviewLecture(
   courseId: string,
-  lectureId: string
+  lectureId: string,
+  opts?: { synthesize?: boolean },
 ): Promise<AppReviewDoc | null> {
   const lid = String(lectureId || "").trim();
   if (!lid) return null;
+  const synthesize = opts?.synthesize !== false;
   const primary = await fetchJson<AppReviewDoc>(
     courseDataUrl(courseId, `review/lecture_${lid}.json`)
   );
@@ -170,6 +327,7 @@ export async function loadReviewLecture(
   }
 
   const base = primary || fallback;
+  if (!synthesize) return base;
   const synthesized = await synthesizeReviewPointsFromKg(courseId, lid);
   if (!synthesized.length) return base;
   return {

@@ -86,6 +86,10 @@ class VideoChunksPayload(BaseModel):
     chunks: list[VideoChunk] = Field(min_length=1, max_length=1000)
 
 
+class VideoChunkIdsPayload(BaseModel):
+    ids: list[str] = Field(min_length=1, max_length=100)
+
+
 class VideoRelation(BaseModel):
     knowledge_point_id: str = Field(min_length=1, max_length=196)
     knowledge_point_name: str = Field(default="", max_length=1024)
@@ -314,6 +318,18 @@ def video_chunks(course_id: str, body: VideoChunksPayload, authorization: str | 
     return {**ingested, "extraction_job": job}
 
 
+@router.post("/v1/courses/{course_id}/video-chunks/by-ids")
+def video_chunks_by_ids(
+    course_id: str,
+    body: VideoChunkIdsPayload,
+    user=Depends(auth.get_current_user),
+) -> dict[str, Any]:
+    """Course-scoped chunk metadata lookup (absorbs VideoSearch get_many for Review)."""
+    auth.require_course(user, course_id)
+    items = store.find_video_chunks_by_ids(_storage_course(course_id), body.ids)
+    return {"courseid": course_id, "items": items}
+
+
 @router.put("/v1/courses/{course_id}/video-relations/import")
 def import_relations(course_id: str, body: VideoRelationsPayload, authorization: str | None = Header(default=None)) -> dict[str, Any]:
     _require_ingest(authorization)
@@ -339,6 +355,11 @@ def point_segments(course_id: str, point_id: str, name: str | None = Query(defau
                 "video_id": str(item["video_id"]),
                 "start_sec": float(item["start_sec"]),
                 "end_sec": float(item["end_sec"]),
+                **(
+                    {"link": str(item["link"])}
+                    if str(item.get("link") or "").strip()
+                    else {}
+                ),
             }
             for item in video_refs
             if str(item.get("segment_id") or "").strip()

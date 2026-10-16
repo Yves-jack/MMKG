@@ -9,17 +9,31 @@ import {
   assetRoleLabel,
   assetReviewSeek,
   compareAssetsByAppearance,
+  ensureAssetsLibraryIndexes,
   findPeerAssets,
   groupChaptersByPart,
   type AssetCard,
   type AssetsLibrary,
 } from "@/lib/kg/assetsLibrary";
+import {
+  patchCardInLibrary,
+  removeCardFromLibrary,
+  saveAssetsLibrary,
+} from "@/lib/kg/assetsLibraryApi";
 import { WatchClassroom } from "@/components/review/WatchClassroom";
 import { loadManifest } from "@/lib/catalog";
 import { courseDataUrl, coursePath, useCourseId } from "@/lib/course";
 import type { PipelinePayload } from "@/lib/graph/types";
 import shell from "@/styles/shell.module.css";
 import styles from "./AssetsPage.module.css";
+
+const KIND_OPTIONS = [
+  "principle",
+  "theorem",
+  "technique",
+  "formula",
+  "example",
+] as const;
 
 type CueChunk = {
   cueId: string;
@@ -66,23 +80,6 @@ function cardsForChapter(library: AssetsLibrary | null, chapter: string): AssetC
     .sort(compareAssetsByAppearance);
 }
 
-function EvidenceBlock({ text }: { text: string }) {
-  return (
-    <details
-      className={styles.cardEvidence}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <summary className={styles.evidenceToggle}>
-        原文依据
-        <span>展开 / 收起</span>
-      </summary>
-      <div className={styles.evidenceBody}>
-        <LatexText text={text} />
-      </div>
-    </details>
-  );
-}
-
 export function AssetsPage() {
   const courseId = useCourseId();
   const { lectureId: rawId } = useParams();
@@ -108,6 +105,10 @@ export function AssetsPage() {
   const [view, setView] = useState<{ type: "lecture" | "chapter"; key: string }>(
     () => ({ type: "lecture", key: "" })
   );
+  const [editMode, setEditMode] = useState(false);
+  const [dirty, setDirty] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const cardListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -131,7 +132,9 @@ export function AssetsPage() {
       }
       setReadyLectures(ready);
       const libraryData =
-        lib && Array.isArray(lib.cards) ? (lib as AssetsLibrary) : null;
+        lib && Array.isArray(lib.cards)
+          ? ensureAssetsLibraryIndexes(lib as AssetsLibrary)
+          : null;
       setLibrary(libraryData);
       const withAssets = new Set<string>();
       for (const c of libraryData?.cards || []) {
@@ -180,7 +183,10 @@ export function AssetsPage() {
         let idx = 0;
         for (const it of items) {
           if (it.is_cross_cue) continue;
-          const text = String(it.asr_text || it.extract_text || "").trim();
+          // 资源库正文：优先 fluency（通畅口播），再 asr，最后 extract
+          const text = String(
+            it.fluency_text || it.asr_text || it.extract_text || "",
+          ).trim();
           if (!text) continue;
           idx += 1;
           out.push({
@@ -347,6 +353,49 @@ export function AssetsPage() {
     setChunks([]);
   };
 
+  const updateCard = (assetId: string, patch: Partial<AssetCard>) => {
+    setLibrary((prev) => {
+      if (!prev) return prev;
+      return patchCardInLibrary(prev, assetId, patch);
+    });
+    setDirty(true);
+    setSaveMsg(null);
+  };
+
+  const deleteCard = (assetId: string) => {
+    if (!window.confirm("删除该资产卡片？未保存前可刷新页面撤销。")) return;
+    setLibrary((prev) => {
+      if (!prev) return prev;
+      return removeCardFromLibrary(prev, assetId);
+    });
+    setSelectedId((cur) => (cur === assetId ? null : cur));
+    setDirty(true);
+    setSaveMsg(null);
+  };
+
+  const handleSave = async () => {
+    if (!library || !courseId || saving) return;
+    setSaving(true);
+    setSaveMsg(null);
+    try {
+      const next = await saveAssetsLibrary(courseId, library);
+      setLibrary(next);
+      setDirty(false);
+      setSaveMsg("已保存");
+      const withAssets = new Set<string>();
+      for (const c of next.cards || []) {
+        if (c.source !== "llm") continue;
+        const lid = c.grounding?.lecture_id;
+        if (lid != null && String(lid) !== "") withAssets.add(String(lid));
+      }
+      setAssetLectures(withAssets);
+    } catch (e) {
+      setSaveMsg(e instanceof Error ? e.message : "保存失败");
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const scopeTitle =
     view.type === "chapter" ? view.key : `第 ${lectureId} 讲 · 合并课堂文本`;
   const detailTitle = view.type === "chapter" ? "本章资产" : "本讲资产";
@@ -451,7 +500,7 @@ export function AssetsPage() {
                             }))
                           }
                         >
-                          <span>分册 · {part.title}</span>
+                          <span>{part.title}</span>
                           <em>
                             {open ? "收起" : "展开"}
                           </em>
@@ -548,7 +597,30 @@ export function AssetsPage() {
       detail={
         <aside className={styles.detailCol}>
           <div className={styles.detailHead}>
-            <h3>{detailTitle}</h3>
+            <div className={styles.detailHeadRow}>
+              <h3>{detailTitle}</h3>
+              <div className={styles.editBar}>
+                <label className={editMode ? styles.editToggleOn : styles.editToggle}>
+                  <input
+                    type="checkbox"
+                    checked={editMode}
+                    onChange={(e) => setEditMode(e.target.checked)}
+                  />
+                  编辑
+                </label>
+                <button
+                  type="button"
+                  className={styles.saveBtn}
+                  disabled={!dirty || saving || !library}
+                  onClick={() => void handleSave()}
+                >
+                  {saving ? "保存中…" : dirty ? "保存" : "已保存"}
+                </button>
+              </div>
+            </div>
+            {saveMsg ? (
+              <p className={dirty ? styles.saveErr : styles.saveOk}>{saveMsg}</p>
+            ) : null}
             <div className={styles.kindTabs}>
               {(
                 [
@@ -594,20 +666,85 @@ export function AssetsPage() {
                     }}
                   >
                     <div className={styles.cardHead}>
-                      <span className={styles.kindBadge}>{assetKindLabel(card.kind)}</span>
-                      <strong>{shortName(card.name)}</strong>
+                      {editMode && active ? (
+                        <select
+                          className={styles.kindSelect}
+                          value={
+                            KIND_OPTIONS.includes(card.kind as (typeof KIND_OPTIONS)[number])
+                              ? card.kind
+                              : "principle"
+                          }
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={(e) =>
+                            updateCard(card.asset_id, { kind: e.target.value })
+                          }
+                        >
+                          {KIND_OPTIONS.map((k) => (
+                            <option key={k} value={k}>
+                              {assetKindLabel(k)}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <span className={styles.kindBadge}>{assetKindLabel(card.kind)}</span>
+                      )}
+                      {editMode && active ? (
+                        <input
+                          className={styles.nameInput}
+                          value={card.name || ""}
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={(e) =>
+                            updateCard(card.asset_id, { name: e.target.value })
+                          }
+                        />
+                      ) : (
+                        <strong>{shortName(card.name)}</strong>
+                      )}
+                      {editMode ? (
+                        <button
+                          type="button"
+                          className={styles.deleteBtn}
+                          title="删除卡片"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteCard(card.asset_id);
+                          }}
+                        >
+                          删除
+                        </button>
+                      ) : null}
                     </div>
-                    {card.summary ? (
+                    {editMode && active ? (
+                      <textarea
+                        className={styles.fieldArea}
+                        rows={2}
+                        placeholder="摘要"
+                        value={card.summary || ""}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={(e) =>
+                          updateCard(card.asset_id, { summary: e.target.value })
+                        }
+                      />
+                    ) : card.summary ? (
                       <div className={styles.cardSummary}>
                         <LatexText text={card.summary} />
                       </div>
                     ) : null}
-                    {card.kind === "formula" && (card.latex || "").trim() ? (
+                    {editMode && active && card.kind === "formula" ? (
+                      <input
+                        className={styles.nameInput}
+                        placeholder="LaTeX"
+                        value={card.latex || ""}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={(e) =>
+                          updateCard(card.asset_id, { latex: e.target.value })
+                        }
+                      />
+                    ) : card.kind === "formula" && (card.latex || "").trim() ? (
                       <div className={styles.cardLatex}>
                         <LatexText text={`$${card.latex}$`} />
                       </div>
                     ) : null}
-                    {card.evidence ? <EvidenceBlock text={card.evidence} /> : null}
                     {(card.concepts || []).length ? (
                       <div className={styles.cardConcepts}>
                         {(card.concepts || []).map((c, i) => {
@@ -634,7 +771,7 @@ export function AssetsPage() {
             )}
           </div>
 
-          {selectedWatch ? (
+          {selectedWatch && !editMode ? (
             <div className={styles.selectedExtra}>
               <WatchClassroom
                 courseId={courseId}
@@ -644,7 +781,7 @@ export function AssetsPage() {
               />
             </div>
           ) : null}
-          {selectedPeers.length ? (
+          {selectedPeers.length && !editMode ? (
             <div className={styles.selectedExtra}>
               <h4>相关资源</h4>
               <div className={styles.peerList}>
@@ -661,7 +798,43 @@ export function AssetsPage() {
               </div>
             </div>
           ) : null}
-          {selected?.steps?.length || selected?.statement ? (
+          {selected && editMode ? (
+            <div className={styles.selectedExtra}>
+              <h4>陈述 / 步骤 / 依据</h4>
+              <textarea
+                className={styles.fieldArea}
+                rows={3}
+                placeholder="陈述 / 结论"
+                value={selected.statement || ""}
+                onChange={(e) =>
+                  updateCard(selected.asset_id, { statement: e.target.value })
+                }
+              />
+              <textarea
+                className={styles.fieldArea}
+                rows={4}
+                placeholder="步骤（每行一条）"
+                value={(selected.steps || []).join("\n")}
+                onChange={(e) =>
+                  updateCard(selected.asset_id, {
+                    steps: e.target.value
+                      .split("\n")
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                  })
+                }
+              />
+              <textarea
+                className={styles.fieldArea}
+                rows={3}
+                placeholder="原文依据（编辑用，卡片不展示）"
+                value={selected.evidence || ""}
+                onChange={(e) =>
+                  updateCard(selected.asset_id, { evidence: e.target.value })
+                }
+              />
+            </div>
+          ) : selected?.steps?.length || selected?.statement ? (
             <div className={styles.selectedExtra}>
               <h4>陈述 / 步骤</h4>
               {selected.statement ? (

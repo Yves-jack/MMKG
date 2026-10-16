@@ -1,0 +1,746 @@
+{
+  "lecture_id": "chapter:第6章 谓词逻辑的公理化系统",
+  "root": {
+    "id": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "zh": "第6章 谓词逻辑的公理化系统",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "谓词逻辑的公理化系统"
+    ],
+    "children": [
+      {
+        "id": "__section__/初始符号",
+        "zh": "初始符号",
+        "importance": 0.5134640701946065,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/初始符号/命题变项",
+            "zh": "命题变项",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/初始符号/个体变项",
+            "zh": "个体变项",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/初始符号/谓词变项",
+            "zh": "谓词变项",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/初始符号/联结词",
+            "zh": "联结词",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "联结词"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/初始符号/量词",
+            "zh": "量词",
+            "importance": 0.5134640701946065,
+            "relation": "outline_concept",
+            "related": [
+              "量词"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/初始符号/括号逗号",
+            "zh": "括号逗号",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/公理系统FOL1",
+        "zh": "公理系统FOL1",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/公理系统FOL1/六条公理",
+            "zh": "六条公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/六条推理规则",
+            "zh": "六条推理规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/代入规则",
+            "zh": "代入规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/分离规则",
+            "zh": "分离规则",
+            "importance": 0.4043957522355478,
+            "relation": "outline_concept",
+            "related": [
+              "分离规则"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/置换规则",
+            "zh": "置换规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/约束个体易名",
+            "zh": "约束个体易名",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/后件概括",
+            "zh": "后件概括",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL1/前件存在",
+            "zh": "前件存在",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/公理系统FOL2",
+        "zh": "公理系统FOL2",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/公理系统FOL2/十五条公理",
+            "zh": "十五条公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL2/两条量词公理",
+            "zh": "两条量词公理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL2/三条推理规则",
+            "zh": "三条推理规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL2/全称规则",
+            "zh": "全称规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统FOL2/存在规则",
+            "zh": "存在规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/定理建立与推理",
+        "zh": "定理建立",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/定理建立与推理/重言证明",
+            "zh": "重言证明",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/定理建立与推理/永真推理",
+            "zh": "永真推理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/定理建立与推理/自然推理",
+            "zh": "自然推理",
+            "importance": 0.4046516867641968,
+            "relation": "outline_concept",
+            "related": [
+              "自然推理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/定理建立与推理/归结推理",
+            "zh": "归结推理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/推理定理",
+        "zh": "推理定理",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/推理定理/前提序列",
+            "zh": "前提序列",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理定理/结论蕴含式",
+            "zh": "结论蕴含式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/典型定理",
+        "zh": "典型定理",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/典型定理/量词交换定理",
+            "zh": "量词交换定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/典型定理/量词分配定理",
+            "zh": "量词分配定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/典型定理/量词与命题联结",
+            "zh": "量词与命题联结",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/典型定理/量词否定关系",
+            "zh": "量词否定关系",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/公理系统性质",
+        "zh": "公理系统性质",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/公理系统性质/协调性",
+            "zh": "协调性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统性质/完备性",
+            "zh": "完备性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统性质/独立性",
+            "zh": "独立性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/公理系统性质/FOL1性质",
+            "zh": "FOL1性质",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "zh": "第6章 谓词逻辑的公理化系统",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "谓词逻辑的公理化系统"
+      ],
+      "children": [
+        {
+          "id": "__section__/初始符号",
+          "zh": "初始符号",
+          "importance": 0.5134640701946065,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/初始符号/命题变项",
+              "zh": "命题变项",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/初始符号/个体变项",
+              "zh": "个体变项",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/初始符号/谓词变项",
+              "zh": "谓词变项",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/初始符号/联结词",
+              "zh": "联结词",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "联结词"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/初始符号/量词",
+              "zh": "量词",
+              "importance": 0.5134640701946065,
+              "relation": "outline_concept",
+              "related": [
+                "量词"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/初始符号/括号逗号",
+              "zh": "括号逗号",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/公理系统FOL1",
+          "zh": "公理系统FOL1",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/公理系统FOL1/六条公理",
+              "zh": "六条公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/六条推理规则",
+              "zh": "六条推理规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/代入规则",
+              "zh": "代入规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/分离规则",
+              "zh": "分离规则",
+              "importance": 0.4043957522355478,
+              "relation": "outline_concept",
+              "related": [
+                "分离规则"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/置换规则",
+              "zh": "置换规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/约束个体易名",
+              "zh": "约束个体易名",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/后件概括",
+              "zh": "后件概括",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL1/前件存在",
+              "zh": "前件存在",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/公理系统FOL2",
+          "zh": "公理系统FOL2",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/公理系统FOL2/十五条公理",
+              "zh": "十五条公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL2/两条量词公理",
+              "zh": "两条量词公理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL2/三条推理规则",
+              "zh": "三条推理规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL2/全称规则",
+              "zh": "全称规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统FOL2/存在规则",
+              "zh": "存在规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/定理建立与推理",
+          "zh": "定理建立",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/定理建立与推理/重言证明",
+              "zh": "重言证明",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/定理建立与推理/永真推理",
+              "zh": "永真推理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/定理建立与推理/自然推理",
+              "zh": "自然推理",
+              "importance": 0.4046516867641968,
+              "relation": "outline_concept",
+              "related": [
+                "自然推理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/定理建立与推理/归结推理",
+              "zh": "归结推理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/推理定理",
+          "zh": "推理定理",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/推理定理/前提序列",
+              "zh": "前提序列",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理定理/结论蕴含式",
+              "zh": "结论蕴含式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/典型定理",
+          "zh": "典型定理",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/典型定理/量词交换定理",
+              "zh": "量词交换定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/典型定理/量词分配定理",
+              "zh": "量词分配定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/典型定理/量词与命题联结",
+              "zh": "量词与命题联结",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/典型定理/量词否定关系",
+              "zh": "量词否定关系",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/公理系统性质",
+          "zh": "公理系统性质",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/公理系统性质/协调性",
+              "zh": "协调性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统性质/完备性",
+              "zh": "完备性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统性质/独立性",
+              "zh": "独立性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/公理系统性质/FOL1性质",
+              "zh": "FOL1性质",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 41,
+  "max_depth": 2,
+  "orphan_count": 78,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化系统",
+    "root_zh": "第6章 谓词逻辑的公理化系统",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "34",
+      "35",
+      "36"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 9,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__topic__/定义与形成规则/定义D1-D3": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "分离规则/分离规则": "__topic__/公理系统FOL1/分离规则",
+      "__topic__/推理定理/k=0特例": "__section__/推理定理",
+      "__section__/公理化系统概述": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__topic__/公理化系统概述/命题逻辑推广": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__topic__/公理化系统概述/新增量词符号": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__topic__/公理化系统概述/公理与规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "公理/公理": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "规则/rule": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__section__/定义与形成规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__topic__/定义与形成规则/形成规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+      "__topic__/定义与形成规则/wff概念": "__chapter__/第6章 谓词逻辑的公理化系统"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__topic__/定义与形成规则/定义D1-D3": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "分离规则/分离规则": "__topic__/公理系统FOL1/分离规则",
+    "__topic__/推理定理/k=0特例": "__section__/推理定理",
+    "__section__/公理化系统概述": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__topic__/公理化系统概述/命题逻辑推广": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__topic__/公理化系统概述/新增量词符号": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__topic__/公理化系统概述/公理与规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "公理/公理": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "规则/rule": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__section__/定义与形成规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__topic__/定义与形成规则/形成规则": "__chapter__/第6章 谓词逻辑的公理化系统",
+    "__topic__/定义与形成规则/wff概念": "__chapter__/第6章 谓词逻辑的公理化系统"
+  },
+  "concept_links": []
+}

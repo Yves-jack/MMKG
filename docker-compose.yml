@@ -53,6 +53,13 @@ services:
       MMKG_API_URL: http://mmkg-backend:8000/api
       AI_TEACHING_API_URL: ${AI_TEACHING_API_URL:-http://ai-teaching-backend-main:5001}
       VIDEO_SEARCH_API_URL: ${VIDEO_SEARCH_API_URL:-http://video-search-api:8000}
+      # 课堂笔记 / 问答（Node 服务端调 LLM；此前仅 backend 有密钥导致笔记回落本地稿）
+      LLM_API_KEY: ${MMKG_LLM_API_KEY:-}
+      SJTU_LLM_API_KEY: ${SJTU_LLM_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_BASE_URL: ${MMKG_LLM_BASE_URL:-https://models.sjtu.edu.cn/api}
+      LLM_MODEL: ${MMKG_LLM_MODEL:-deepseek-chat}
+      LLM_DEFAULT_MODEL: ${MMKG_LLM_MODEL:-deepseek-chat}
     expose:
       - "5173"
     networks:

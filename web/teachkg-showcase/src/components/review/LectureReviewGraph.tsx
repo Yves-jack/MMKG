@@ -496,7 +496,7 @@ export function LectureReviewGraph({
       const ok = await graphRef.current?.exportPng({
         scale: 3,
         filename: `review-kg-L${lectureId}-${stamp}.png`,
-        background: "#0b1220",
+        background: "transparent",
       });
       if (!ok) window.alert("导出失败：当前图谱尚未就绪，请稍后重试");
     } finally {
@@ -519,53 +519,53 @@ export function LectureReviewGraph({
   return (
     <div className={styles.wrap}>
       <div className={styles.head}>
-        <div className={styles.headActions}>
-          <div className={styles.entitySearch} ref={entitySearchRef}>
-            <input
-              type="search"
-              className={styles.entitySearchInput}
-              value={entityQuery}
-              placeholder="搜索实体…"
-              aria-label="搜索实体"
-              autoComplete="off"
-              disabled={!filtered.nodes.length}
-              onFocus={() => setEntitySearchOpen(true)}
-              onChange={(e) => {
-                setEntityQuery(e.target.value);
-                setEntitySearchOpen(true);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") {
-                  setEntitySearchOpen(false);
-                  return;
-                }
-                if (e.key === "Enter" && entityMatches[0]) {
-                  e.preventDefault();
-                  focusEntity(entityMatches[0].id);
-                }
-              }}
-            />
-            {entitySearchOpen && entityQuery.trim() ? (
-              <div className={styles.entitySearchMenu} role="listbox">
-                {entityMatches.length === 0 ? (
-                  <div className={styles.entitySearchEmpty}>无匹配实体</div>
-                ) : (
-                  entityMatches.map((m) => (
-                    <button
-                      key={m.id}
-                      type="button"
-                      role="option"
-                      className={styles.entitySearchItem}
-                      onClick={() => focusEntity(m.id)}
-                      title={m.id}
-                    >
-                      <span>{m.label}</span>
-                    </button>
-                  ))
-                )}
-              </div>
-            ) : null}
-          </div>
+        <div className={styles.entitySearch} ref={entitySearchRef}>
+          <input
+            type="search"
+            className={styles.entitySearchInput}
+            value={entityQuery}
+            placeholder="搜索实体…"
+            aria-label="搜索实体"
+            autoComplete="off"
+            disabled={!filtered.nodes.length}
+            onFocus={() => setEntitySearchOpen(true)}
+            onChange={(e) => {
+              setEntityQuery(e.target.value);
+              setEntitySearchOpen(true);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setEntitySearchOpen(false);
+                return;
+              }
+              if (e.key === "Enter" && entityMatches[0]) {
+                e.preventDefault();
+                focusEntity(entityMatches[0].id);
+              }
+            }}
+          />
+          {entitySearchOpen && entityQuery.trim() ? (
+            <div className={styles.entitySearchMenu} role="listbox">
+              {entityMatches.length === 0 ? (
+                <div className={styles.entitySearchEmpty}>无匹配实体</div>
+              ) : (
+                entityMatches.map((m) => (
+                  <button
+                    key={m.id}
+                    type="button"
+                    role="option"
+                    className={styles.entitySearchItem}
+                    onClick={() => focusEntity(m.id)}
+                    title={m.id}
+                  >
+                    <span>{m.label}</span>
+                  </button>
+                ))
+              )}
+            </div>
+          ) : null}
+        </div>
+        <div className={styles.headEnd}>
           <button
             type="button"
             className={`${kgStyles.kgChip} ${
@@ -728,7 +728,7 @@ export function LectureReviewGraph({
             className={kgStyles.kgExportBtn}
             disabled={!filtered.nodes.length || exportingPng}
             onClick={() => void exportCurrentGraphPng()}
-            title="按当前筛选与视口导出高清 PNG"
+            title="按当前筛选导出整图高清 PNG（含被面板遮挡的节点）"
           >
             {exportingPng ? "导出中…" : "导出图片"}
           </button>

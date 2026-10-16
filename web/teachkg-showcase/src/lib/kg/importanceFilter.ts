@@ -277,18 +277,40 @@ function isProcessSource(source?: string | null): boolean {
  * 隐藏 related_with。
  * @param pruneShortPaths 默认 true：隐藏后再剪最长路径≤2（课堂 KG 图例用）。
  *   复习图谱传 false：只隐藏，不二次剪枝，避免「单边」观感变化。
+ * @param forceKeepIds 搜索钉回等：保留这些点及一跳邻居；与钉回相关的 related_with 边也暂留
  */
 export function applyRelatedWithVisibility(
   stage: PipelineStage,
   hideRelatedWith: boolean,
-  opts: { pruneShortPaths?: boolean } = {}
+  opts: {
+    pruneShortPaths?: boolean;
+    forceKeepIds?: Iterable<string> | null;
+  } = {}
 ): PipelineStage {
   if (!hideRelatedWith) return stage;
   const pruneShortPaths = opts.pruneShortPaths !== false;
   const allEdges = stage.edges || [];
-  const withoutRel = allEdges.filter(
-    (e) => (e.relation || e.label || "") !== "related_with"
-  );
+  const forceKeep = new Set<string>();
+  if (opts.forceKeepIds) {
+    for (const id of opts.forceKeepIds) {
+      const s = String(id || "").trim();
+      if (s) forceKeep.add(s);
+    }
+  }
+  if (forceKeep.size) {
+    for (const e of allEdges) {
+      if (forceKeep.has(String(e.from || "")) && e.to) forceKeep.add(String(e.to));
+      if (forceKeep.has(String(e.to || "")) && e.from) forceKeep.add(String(e.from));
+    }
+  }
+  const withoutRel = allEdges.filter((e) => {
+    if ((e.relation || e.label || "") !== "related_with") return true;
+    // 钉回邻域：暂留相关 related_with，避免邻居被裁成孤立点
+    return (
+      forceKeep.size > 0 &&
+      (forceKeep.has(String(e.from || "")) || forceKeep.has(String(e.to || "")))
+    );
+  });
   const processKept = withoutRel.filter((e) => isProcessSource(e.source));
   const main = withoutRel.filter((e) => !isProcessSource(e.source));
 
@@ -298,6 +320,7 @@ export function applyRelatedWithVisibility(
       if (e.from) keep.add(e.from);
       if (e.to) keep.add(e.to);
     }
+    for (const id of forceKeep) keep.add(id);
     return {
       ...stage,
       edges: [...main, ...processKept],
@@ -318,6 +341,7 @@ export function applyRelatedWithVisibility(
     if (e.from) keep.add(e.from);
     if (e.to) keep.add(e.to);
   }
+  for (const id of forceKeep) keep.add(id);
   const extraIso = iso.removed.length;
   const prevIso = Number(stage.stats?.process_isolated_removed || 0);
   return {

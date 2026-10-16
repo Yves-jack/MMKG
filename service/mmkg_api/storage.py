@@ -231,6 +231,41 @@ class GraphStore:
             raise ValueError("video_chunks.json must contain a chunks list")
         return [dict(item) for item in chunks]
 
+    def find_video_chunks_by_ids(self, course_id: str, segment_ids: list[str]) -> list[Graph]:
+        """Return chunk metadata for the given segment ids (course-scoped, order preserved)."""
+        wanted = [str(value).strip() for value in segment_ids if str(value).strip()]
+        if not wanted:
+            return []
+        by_id = {
+            str(row.get("segment_id") or "").strip(): row
+            for row in self.read_video_chunks(course_id)
+            if str(row.get("segment_id") or "").strip()
+        }
+        items: list[Graph] = []
+        for segment_id in dict.fromkeys(wanted):
+            row = by_id.get(segment_id)
+            if not row:
+                continue
+            video_id = str(row.get("video_id") or row.get("lesson_id") or "").strip()
+            lesson_id = str(row.get("lesson_id") or video_id).strip()
+            summary = str(row.get("summary") or row.get("text") or row.get("asr_text") or "")
+            items.append(
+                {
+                    "id": segment_id,
+                    "segment_id": segment_id,
+                    "lesson_id": lesson_id,
+                    "video_id": video_id or lesson_id,
+                    "start_sec": float(row.get("start_sec") or 0),
+                    "end_sec": float(row.get("end_sec") or row.get("start_sec") or 0),
+                    "summary": summary,
+                    "text": str(row.get("text") or row.get("asr_text") or ""),
+                    "link": str(row.get("link") or ""),
+                    "course_id": str(course_id),
+                    "knowledge_point_ids": list(row.get("knowledge_point_ids") or []),
+                }
+            )
+        return items
+
     def ingest_video_chunks(self, course_id: str, chunks: list[Graph]) -> Graph:
         existing = {str(row["segment_id"]): row for row in self.read_video_chunks(course_id)}
         accepted: list[str] = []

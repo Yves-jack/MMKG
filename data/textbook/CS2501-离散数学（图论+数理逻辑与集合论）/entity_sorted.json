@@ -1,0 +1,8718 @@
+[
+  [
+    "数理逻辑与集合论/Mathematical Logic and Set Theory",
+    0.9806018518518519
+  ],
+  [
+    "图/Graph",
+    0.98
+  ],
+  [
+    "离散数学/Discrete Mathematics",
+    0.8014139724831029
+  ],
+  [
+    "谓词逻辑/Predicate Logic",
+    0.7633714407389391
+  ],
+  [
+    "离散数学/discrete mathematics",
+    0.7158150368288719
+  ],
+  [
+    "数理逻辑/Mathematical Logic",
+    0.7134368680225702
+  ],
+  [
+    "图论/graph theory",
+    0.7042358104549463
+  ],
+  [
+    "命题逻辑/propositional logic",
+    0.6830592144990062
+  ],
+  [
+    "集合/set",
+    0.6562405227898307
+  ],
+  [
+    "公式/formula",
+    0.6482536103722212
+  ],
+  [
+    "论域/domain of discourse",
+    0.5818792608156922
+  ],
+  [
+    "基础数学课程/fundamental mathematics course",
+    0.5587677554146424
+  ],
+  [
+    "集合论/Set Theory",
+    0.5449035849650553
+  ],
+  [
+    "联结词/connective",
+    0.5102048260425234
+  ],
+  [
+    "代数系统/algebraic system",
+    0.5034211013582682
+  ],
+  [
+    "一阶语言/First-order Language",
+    0.49782275319959396
+  ],
+  [
+    "无向图/undirected graph",
+    0.4656530561508905
+  ],
+  [
+    "道路/Path",
+    0.42209568163463773
+  ],
+  [
+    "二元组/ordered pair",
+    0.3872424372027256
+  ],
+  [
+    "公理系统/axiomatic system",
+    0.3806720551040943
+  ],
+  [
+    "关系/relation",
+    0.37837716275687816
+  ],
+  [
+    "一阶理论/First-order Theory",
+    0.37173840044996687
+  ],
+  [
+    "公理/axiom",
+    0.3708778708545743
+  ],
+  [
+    "映射/mapping",
+    0.3479300691834411
+  ],
+  [
+    "模型/Model",
+    0.33482455140746925
+  ],
+  [
+    "命题/proposition",
+    0.32731471051562994
+  ],
+  [
+    "语句/Sentence",
+    0.3243398766749693
+  ],
+  [
+    "λ-演算/lambda calculus",
+    0.3103718812475878
+  ],
+  [
+    "初始符号/initial symbols",
+    0.30732667374406253
+  ],
+  [
+    "数学分支/branch of mathematics",
+    0.2992888584772038
+  ],
+  [
+    "公理系统的构成/components of an axiomatic system",
+    0.296513111976772
+  ],
+  [
+    "理论/theory",
+    0.27690835982194273
+  ],
+  [
+    "二元运算/binary operation",
+    0.2734978273370374
+  ],
+  [
+    "谓词逻辑的公理系统/axiomatic system for predicate logic",
+    0.264740174662793
+  ],
+  [
+    "谓词/predicate",
+    0.2634605800539212
+  ],
+  [
+    "命题公式/propositional formula",
+    0.2627556659702758
+  ],
+  [
+    "群/group",
+    0.25371407255951595
+  ],
+  [
+    "命题变项/propositional variable",
+    0.25304062025988483
+  ],
+  [
+    "逻辑系统/Logic System",
+    0.24813256559416258
+  ],
+  [
+    "连通图/connected graph",
+    0.2449362857773671
+  ],
+  [
+    "解释/interpretation(logic)",
+    0.24370444692153032
+  ],
+  [
+    "顶点集/vertex set",
+    0.2418900479433869
+  ],
+  [
+    "匹配/matching",
+    0.23781132952493167
+  ],
+  [
+    "前提/premise",
+    0.23495094263511052
+  ],
+  [
+    "逻辑公式/logical formula",
+    0.23301080590319753
+  ],
+  [
+    "谓词公式的解释/interpretation of predicate formula",
+    0.22739857647279277
+  ],
+  [
+    "逻辑联结词/logical connective",
+    0.2272924331355757
+  ],
+  [
+    "真值表/truth table",
+    0.22627099993114524
+  ],
+  [
+    "自然演绎系统/natural deduction system",
+    0.22186893161414215
+  ],
+  [
+    "函数/function",
+    0.2189231836950781
+  ],
+  [
+    "有向图/directed graph",
+    0.21666909067724274
+  ],
+  [
+    "平面图/planar graph",
+    0.21567523263574434
+  ],
+  [
+    "合式公式/Well-formed formula(Wff)",
+    0.21540892562100394
+  ],
+  [
+    "证明/proof",
+    0.21142107184767622
+  ],
+  [
+    "非空集合/non-empty set",
+    0.2109742721421826
+  ],
+  [
+    "推理演算/inference calculus",
+    0.20835677971356906
+  ],
+  [
+    "定理/theorem",
+    0.20819244017442168
+  ],
+  [
+    "逻辑/logic",
+    0.20819167656052803
+  ],
+  [
+    "推理规则/inference rule",
+    0.2078030221684
+  ],
+  [
+    "等值/equivalence",
+    0.2062919053202625
+  ],
+  [
+    "推理方法/inference method",
+    0.2047422465479159
+  ],
+  [
+    "回路/Circuit",
+    0.1974880227234818
+  ],
+  [
+    "子群/subgroup",
+    0.19499970106156353
+  ],
+  [
+    "单一对象层次/Single Object Level",
+    0.1934257260237824
+  ],
+  [
+    "形式逻辑系统/formal logic system",
+    0.192445865274412
+  ],
+  [
+    "命题逻辑公理系统/Propositional Logic Axiom System",
+    0.19132714972015702
+  ],
+  [
+    "笛卡儿积/Cartesian product",
+    0.18723356565395816
+  ],
+  [
+    "推理公式/inference formula",
+    0.18525599446165225
+  ],
+  [
+    "字符表/character set",
+    0.18421037864441414
+  ],
+  [
+    "结构/Structure",
+    0.18180997423190876
+  ],
+  [
+    "交/intersection",
+    0.1814068933336346
+  ],
+  [
+    "有向连通图/directed connected graph",
+    0.17946270721996463
+  ],
+  [
+    "基本的推理公式/basic inference formula",
+    0.1786073642380391
+  ],
+  [
+    "同态/homomorphism",
+    0.17692552510261766
+  ],
+  [
+    "数学的符号化方法/mathematical symbolization method",
+    0.17538007237895947
+  ],
+  [
+    "Kripke模型/Kripke Model",
+    0.17466618666910305
+  ],
+  [
+    "形式理论Z/Formal Theory Z",
+    0.17451972999582385
+  ],
+  [
+    "并发程序理论工具/concurrent programming theoretical tool",
+    0.1740189111585461
+  ],
+  [
+    "个体域/domain of individuals",
+    0.17184615630530461
+  ],
+  [
+    "真值/truth value",
+    0.1704424558841457
+  ],
+  [
+    "正则公理/Axiom of Regularity",
+    0.1692673113740372
+  ],
+  [
+    "二元联结词/binary connective",
+    0.16747796688659075
+  ],
+  [
+    "图的运算/graph operation",
+    0.16488367182539992
+  ],
+  [
+    "析取/disjunction",
+    0.16473017434253026
+  ],
+  [
+    "谓词符号/predicate symbol",
+    0.16461539065553463
+  ],
+  [
+    "知识表示方法/knowledge representation method",
+    0.1645698726795984
+  ],
+  [
+    "并/union",
+    0.163457984081937
+  ],
+  [
+    "树/tree",
+    0.1631862433873932
+  ],
+  [
+    "推理/inference",
+    0.1620552032339662
+  ],
+  [
+    "形式系统/formal system",
+    0.15913669934463975
+  ],
+  [
+    "矛盾式/contradiction",
+    0.1555581837176912
+  ],
+  [
+    "命题形式/propositional form",
+    0.1538769321536369
+  ],
+  [
+    "量词/quantifier",
+    0.15299236044163741
+  ],
+  [
+    "相继式/sequent",
+    0.15219116296048207
+  ],
+  [
+    "双射/bijective function",
+    0.1519603404991258
+  ],
+  [
+    "数学对象/mathematical object",
+    0.14771444948286397
+  ],
+  [
+    "非标准逻辑/non-standard logic",
+    0.1466646249177758
+  ],
+  [
+    "边/edge",
+    0.1463512044451201
+  ],
+  [
+    "整数集/set of integers",
+    0.14215586531043695
+  ],
+  [
+    "极小项/minterm",
+    0.14214092214573368
+  ],
+  [
+    "命题逻辑符号/propositional logic symbol",
+    0.1417454804651375
+  ],
+  [
+    "支撑树/Spanning Tree",
+    0.14167029788623695
+  ],
+  [
+    "简单命题/simple proposition",
+    0.14146473169130044
+  ],
+  [
+    "变形规则/transformation rule",
+    0.14022932901550259
+  ],
+  [
+    "一元联结词/unary connective",
+    0.1374287174277315
+  ],
+  [
+    "个体变项/individual variable",
+    0.13739012538707193
+  ],
+  [
+    "可数集合/countable set",
+    0.1371672436670418
+  ],
+  [
+    "非负整数/non-negative integer",
+    0.13709645864440853
+  ],
+  [
+    "顶点/vertex",
+    0.1369838701538922
+  ],
+  [
+    "多值逻辑/multi-valued logic",
+    0.13503589608054212
+  ],
+  [
+    "二值逻辑/two-valued logic",
+    0.13491847269695592
+  ],
+  [
+    "语义/semantics",
+    0.1340562565977775
+  ],
+  [
+    "推理过程/inference process",
+    0.1335878464203508
+  ],
+  [
+    "有穷集合/Finite Set",
+    0.1334939093024868
+  ],
+  [
+    "无限集合/infinite set",
+    0.133008681945274
+  ],
+  [
+    "理论演算/theoretical calculus",
+    0.13271671062914397
+  ],
+  [
+    "可平面图/planar embeddable graph",
+    0.13264593171813846
+  ],
+  [
+    "道路与回路/paths and circuits",
+    0.1322686967642145
+  ],
+  [
+    "一致性/Consistency",
+    0.13127979720694738
+  ],
+  [
+    "谓词变项/predicate variable",
+    0.13099916709241113
+  ],
+  [
+    "n元运算/n-ary operation",
+    0.1308282727124223
+  ],
+  [
+    "代入规则/substitution rule",
+    0.13071472711531446
+  ],
+  [
+    "演绎规则/deduction rule",
+    0.13050433543496354
+  ],
+  [
+    "二元关系/binary relation",
+    0.12952458880302384
+  ],
+  [
+    "关联矩阵/incidence matrix",
+    0.12789217056024624
+  ],
+  [
+    "循环群/cyclic group",
+    0.12757241783792023
+  ],
+  [
+    "变项/variable",
+    0.12733090741463532
+  ],
+  [
+    "二分图/Bipartite Graph",
+    0.1262895386019872
+  ],
+  [
+    "交换群/commutative group",
+    0.12606376277896578
+  ],
+  [
+    "递归规则/recursion rule",
+    0.12585983345393265
+  ],
+  [
+    "环/ring",
+    0.12517429363414598
+  ],
+  [
+    "否定/Negation",
+    0.12451302311160777
+  ],
+  [
+    "重言式/tautology",
+    0.12420414707439932
+  ],
+  [
+    "归结法/resolution method",
+    0.12391007778268857
+  ],
+  [
+    "范式/normal form",
+    0.11913039392898567
+  ],
+  [
+    "协调/consistent",
+    0.11844467272588702
+  ],
+  [
+    "等值式/equivalence formula",
+    0.11812716987644953
+  ],
+  [
+    "基数/cardinal number",
+    0.11804399791079563
+  ],
+  [
+    "等值公式/equivalent formula",
+    0.11803510755662082
+  ],
+  [
+    "半群/semigroup",
+    0.11733546539225567
+  ],
+  [
+    "集合运算/set operation",
+    0.11726401729029032
+  ],
+  [
+    "图的着色/graph coloring",
+    0.11645694564573274
+  ],
+  [
+    "性质/property",
+    0.11636372659126666
+  ],
+  [
+    "基本关联矩阵/basic incidence matrix",
+    0.11584121903277493
+  ],
+  [
+    "赋值/Assignment",
+    0.11563501981017527
+  ],
+  [
+    "复合命题/compound proposition",
+    0.11551790655100785
+  ],
+  [
+    "回路矩阵/circuit matrix",
+    0.11514132460070663
+  ],
+  [
+    "最大流/Maximum Flow",
+    0.11431252756429097
+  ],
+  [
+    "有限域/finite domain",
+    0.11325836699479089
+  ],
+  [
+    "个体/Individual",
+    0.11258946303548217
+  ],
+  [
+    "幺群/monoid",
+    0.11230618008361443
+  ],
+  [
+    "符号逻辑/Symbolic logic",
+    0.11189471009404232
+  ],
+  [
+    "ZF 公理系统/ZF Axiom System",
+    0.11154801358049303
+  ],
+  [
+    "割集/cut set",
+    0.1115427055968598
+  ],
+  [
+    "可增广道路/augmenting path",
+    0.11001745428817936
+  ],
+  [
+    "等价关系/equivalence relation",
+    0.10980474765829466
+  ],
+  [
+    "正则性/regularity",
+    0.10934451477324805
+  ],
+  [
+    "集合关系符/set relational symbol",
+    0.10870316942520189
+  ],
+  [
+    "无限可数集合/infinite countable set",
+    0.10827968013317768
+  ],
+  [
+    "量化/Quantification",
+    0.10817742984289287
+  ],
+  [
+    "初级有向道路/elementary directed path",
+    0.10783641305989448
+  ],
+  [
+    "同构/isomorphism",
+    0.1073762239576597
+  ],
+  [
+    "字母表/alphabet",
+    0.10720516605365905
+  ],
+  [
+    "全集/universal set",
+    0.10619340345885503
+  ],
+  [
+    "实数集合/set of real numbers",
+    0.10509702646735287
+  ],
+  [
+    "合取/conjunction",
+    0.10472889122563574
+  ],
+  [
+    "开集/open set",
+    0.10467345973890488
+  ],
+  [
+    "个体常项/individual constant",
+    0.1042330196382699
+  ],
+  [
+    "子集合/Subset",
+    0.10345340345841027
+  ],
+  [
+    "双射/bijection",
+    0.10337578191094407
+  ],
+  [
+    "推理形式/inference form",
+    0.1031135828475077
+  ],
+  [
+    "双条件式/Biconditional",
+    0.10286704820539304
+  ],
+  [
+    "商群/Quotient Group",
+    0.10265109391688743
+  ],
+  [
+    "符号系统/Symbol System",
+    0.10258552128460913
+  ],
+  [
+    "π-演算/pi-calculus",
+    0.10240668707946367
+  ],
+  [
+    "χ-演算/chi-calculus",
+    0.10240668707946367
+  ],
+  [
+    "陈述句/declarative sentence",
+    0.10233887384796313
+  ],
+  [
+    "等势/equipotency",
+    0.10157270764308603
+  ],
+  [
+    "形成规则/formation rules",
+    0.10131381039458784
+  ],
+  [
+    "非逻辑公理/Non-logical Axiom",
+    0.10105385942690755
+  ],
+  [
+    "单位元/identity element",
+    0.10087934180541583
+  ],
+  [
+    "闭集/closed set",
+    0.09977608077303735
+  ],
+  [
+    "推理体系/Inference System",
+    0.09957960593606294
+  ],
+  [
+    "特殊关系/special relation",
+    0.09928795058396776
+  ],
+  [
+    "赋权图/weighted graph",
+    0.09919573560934589
+  ],
+  [
+    "逆元/inverse element",
+    0.09906027261238905
+  ],
+  [
+    "证明推理公式的方法/methods for proving inference formulas",
+    0.09815316442352917
+  ],
+  [
+    "定义/definitions",
+    0.09787480877031751
+  ],
+  [
+    "简单有向道路/simple directed path",
+    0.09762372185305258
+  ],
+  [
+    "最大匹配/Maximum Matching",
+    0.0975699000541002
+  ],
+  [
+    "基本回路矩阵/fundamental circuit matrix",
+    0.09751081780859855
+  ],
+  [
+    "有限群/finite group",
+    0.09714331585103152
+  ],
+  [
+    "唯一性/uniqueness",
+    0.09714044120627907
+  ],
+  [
+    "语法/Syntax",
+    0.09695923568681888
+  ],
+  [
+    "基本割集矩阵/fundamental cut set matrix",
+    0.09666427819552949
+  ],
+  [
+    "割集矩阵/cut-set matrix",
+    0.09638273882340674
+  ],
+  [
+    "含幺半群/semigroup with identity",
+    0.09612137802348608
+  ],
+  [
+    "变换/transformation",
+    0.096099918880735
+  ],
+  [
+    "偏序集/poset",
+    0.09602682043047062
+  ],
+  [
+    "规则/rule",
+    0.09598916522505813
+  ],
+  [
+    "蕴含/implication",
+    0.0959259182013808
+  ],
+  [
+    "哈密顿道路/Hamiltonian path",
+    0.09575932037601781
+  ],
+  [
+    "偏序关系/partial order relation",
+    0.0957095000891348
+  ],
+  [
+    "空集/empty set",
+    0.09564874056281135
+  ],
+  [
+    "全称量词/universal quantifier",
+    0.0956454473690499
+  ],
+  [
+    "存在量词/existential quantifier",
+    0.09528459246597601
+  ],
+  [
+    "普遍有效式/universally valid formula",
+    0.0952338172419106
+  ],
+  [
+    "网络流/network flow",
+    0.09520121805852873
+  ],
+  [
+    "最短路径/shortest path",
+    0.09500585024044814
+  ],
+  [
+    "集合论公理/axioms of set theory",
+    0.09498156088128477
+  ],
+  [
+    "正规子群/Normal Subgroup",
+    0.09465946168887177
+  ],
+  [
+    "满同态/epimorphism",
+    0.09438792449854058
+  ],
+  [
+    "幂集/power set",
+    0.09353385358994316
+  ],
+  [
+    "分配律/distributive law",
+    0.09347994733473736
+  ],
+  [
+    "关系矩阵/relation matrix",
+    0.09340931919309209
+  ],
+  [
+    "前束范式/Prenex Normal Form",
+    0.09326887967822155
+  ],
+  [
+    "哈密顿回路/Hamiltonian Circuit",
+    0.09238005806618424
+  ],
+  [
+    "可行流/feasible flow",
+    0.09230430078517808
+  ],
+  [
+    "形式描述/formal description",
+    0.09223333216781834
+  ],
+  [
+    "完全匹配/complete matching",
+    0.09158221044782251
+  ],
+  [
+    "一般递归规则/general recursion rule",
+    0.09119057038250028
+  ],
+  [
+    "原始递归规则/primitive recursion rule",
+    0.09119057038250028
+  ],
+  [
+    "有序对/ordered pair",
+    0.09080060560391591
+  ],
+  [
+    "语言L/Language L",
+    0.09041132632491952
+  ],
+  [
+    "演绎定理/Deduction Theorem",
+    0.08999370414343089
+  ],
+  [
+    "结合律/associative law",
+    0.089858949303748
+  ],
+  [
+    "普遍有效性/universal validity",
+    0.08981923811054418
+  ],
+  [
+    "个体词/individual term",
+    0.08967953379207472
+  ],
+  [
+    "集合基本运算/Basic set operations",
+    0.08951670921277126
+  ],
+  [
+    "表达式/expression",
+    0.08920822700699534
+  ],
+  [
+    "交集/Intersection",
+    0.08915299059223658
+  ],
+  [
+    "极大项/maximal term",
+    0.08914645035807753
+  ],
+  [
+    "自然数集/natural number set",
+    0.08910789571323793
+  ],
+  [
+    "有向道路/directed path",
+    0.08894288530588777
+  ],
+  [
+    "分离规则/rule of detachment",
+    0.08848724165133592
+  ],
+  [
+    "存在性/existence",
+    0.08840048232484331
+  ],
+  [
+    "对偶图/dual graph",
+    0.08786549823070483
+  ],
+  [
+    "析取式/disjunctive form",
+    0.0875054244592505
+  ],
+  [
+    "并集/union",
+    0.08728917963055799
+  ],
+  [
+    "简单图/simple graph",
+    0.08713796434549934
+  ],
+  [
+    "线性逻辑/linear logic",
+    0.08709312060320465
+  ],
+  [
+    "等号/equality symbol",
+    0.08704664850133506
+  ],
+  [
+    "合取式/conjunctive form",
+    0.08674867496099949
+  ],
+  [
+    "互补对/complementary pair",
+    0.08651119622872744
+  ],
+  [
+    "单一同态/monomorphism",
+    0.0857801025405264
+  ],
+  [
+    "量词对蕴涵连接词的分配律/distributive law of quantifiers over implication connective",
+    0.08542695977530067
+  ],
+  [
+    "函数符号/function symbol",
+    0.08505291655792684
+  ],
+  [
+    "极限点/Limit Point",
+    0.08491219348893571
+  ],
+  [
+    "容量/capacity",
+    0.08444298369005765
+  ],
+  [
+    "Dinic算法/Dinic's algorithm",
+    0.08431347997426278
+  ],
+  [
+    "一一变换/bijective transformation",
+    0.08410556747481732
+  ],
+  [
+    "归结/resolution",
+    0.08367862750364867
+  ],
+  [
+    "余树/co-tree",
+    0.08322209358366878
+  ],
+  [
+    "同构映射/isomorphic mapping",
+    0.08316464814463188
+  ],
+  [
+    "简单平面图/simple planar graph",
+    0.08305648824933846
+  ],
+  [
+    "恒等关系/identity relation",
+    0.08300965508657726
+  ],
+  [
+    "析取范式/disjunctive normal form",
+    0.08278894877106847
+  ],
+  [
+    "命题逻辑公式/propositional logic formula",
+    0.08275826406008184
+  ],
+  [
+    "极大平面图/maximal planar graph",
+    0.08266161818330414
+  ],
+  [
+    "交互道路/alternating path",
+    0.08257807693515548
+  ],
+  [
+    "公式等值关系/Formula Equivalence Relation",
+    0.0825459139966571
+  ],
+  [
+    "传递性/Transitivity",
+    0.08252794784952165
+  ],
+  [
+    "逻辑语言/logical language",
+    0.08252300836855478
+  ],
+  [
+    "归结推理法/resolution inference method",
+    0.08251468548661335
+  ],
+  [
+    "最大元/greatest element",
+    0.08240740740740742
+  ],
+  [
+    "传递闭包/transitive closure",
+    0.08231404345170125
+  ],
+  [
+    "相容关系/compatibility relation",
+    0.08226246666914365
+  ],
+  [
+    "对称闭包/symmetric closure",
+    0.08194444444448207
+  ],
+  [
+    "下确界/infimum",
+    0.08194444444444444
+  ],
+  [
+    "赋权连通图/weighted connected graph",
+    0.08192520715663264
+  ],
+  [
+    "近邻空间/neighborhood space",
+    0.08180332281059384
+  ],
+  [
+    "命题联结词/propositional connective",
+    0.08173838563882695
+  ],
+  [
+    "最小元素/least element",
+    0.08171296296296297
+  ],
+  [
+    "极小元/minimal element",
+    0.08171296296296297
+  ],
+  [
+    "自反闭包/reflexive closure",
+    0.08148148148151871
+  ],
+  [
+    "上确界/supremum",
+    0.08148148148148149
+  ],
+  [
+    "补集/complement set",
+    0.08125
+  ],
+  [
+    "单射/injective function",
+    0.08064333382627524
+  ],
+  [
+    "自反性/Reflexivity",
+    0.08055555555559722
+  ],
+  [
+    "关系逆/inverse relation",
+    0.08032407407415033
+  ],
+  [
+    "谓词公式/predicate formula",
+    0.0803124513228704
+  ],
+  [
+    "完全回路矩阵/complete circuit matrix",
+    0.08029518903182895
+  ],
+  [
+    "满射/surjective function",
+    0.0801940673425634
+  ],
+  [
+    "对称性/Symmetry",
+    0.08009259259263402
+  ],
+  [
+    "选择公理/Axiom of Choice",
+    0.07973664518183571
+  ],
+  [
+    "合取范式/conjunctive normal form",
+    0.07972199369844142
+  ],
+  [
+    "运算/operation",
+    0.07965001475337313
+  ],
+  [
+    "联结词的完备集/complete set of logical connectives",
+    0.0791280383135782
+  ],
+  [
+    "基本割集/fundamental cut set",
+    0.0789768438309671
+  ],
+  [
+    "完全图/complete graph",
+    0.07895747440199287
+  ],
+  [
+    "满射/surjection",
+    0.07880887414998382
+  ],
+  [
+    "最短路径问题/shortest path problem",
+    0.07866013476448182
+  ],
+  [
+    "图存储/graph storage",
+    0.07830035269586322
+  ],
+  [
+    "文字/literal",
+    0.07824686313699282
+  ],
+  [
+    "Edmonds-Karp算法/Edmonds-Karp algorithm",
+    0.07815528553723398
+  ],
+  [
+    "有条件的存在公理/Conditional Existence Axiom",
+    0.0781105362516915
+  ],
+  [
+    "完全割集矩阵/complete cut set matrix",
+    0.07800000000000001
+  ],
+  [
+    "点染色/vertex coloring",
+    0.07800000000000001
+  ],
+  [
+    "秩/rank",
+    0.07800000000000001
+  ],
+  [
+    "图的代数表示/algebraic representation of graph",
+    0.07799758662915623
+  ],
+  [
+    "计算机科学/Computer Science",
+    0.07784641178078842
+  ],
+  [
+    "集合A/set A",
+    0.07775889162299451
+  ],
+  [
+    "谓词逻辑公式/predicate logic formula",
+    0.07772360553574026
+  ],
+  [
+    "染色多项式/chromatic polynomial",
+    0.07760000000000002
+  ],
+  [
+    "陪集/coset",
+    0.07754013460863662
+  ],
+  [
+    "隶属函数/membership function",
+    0.07719170135822293
+  ],
+  [
+    "否定、析取和合取联结词集合/Set of negation,disjunction,and conjunction connectives",
+    0.07702301235366264
+  ],
+  [
+    "变换群/transformation group",
+    0.07685636669018686
+  ],
+  [
+    "特例集合/set of instances",
+    0.07680080185571835
+  ],
+  [
+    "同态象/homomorphic image",
+    0.07665365608565682
+  ],
+  [
+    "欧拉回路/Eulerian circuit",
+    0.07648980742779637
+  ],
+  [
+    "子句集/clause set",
+    0.07648225364377476
+  ],
+  [
+    "子集公理模式/Axiom Schema of Separation",
+    0.07647579094187126
+  ],
+  [
+    "最短树/Minimum Spanning Tree",
+    0.07635932037601778
+  ],
+  [
+    "染色数/chromatic number",
+    0.07600000000000001
+  ],
+  [
+    "阶/order",
+    0.07600000000000001
+  ],
+  [
+    "连通性/connectivity",
+    0.07596571563181151
+  ],
+  [
+    "实数集/real numbers",
+    0.07590968937569546
+  ],
+  [
+    "代数结构/algebraic structure",
+    0.07589305972886069
+  ],
+  [
+    "实数/real number",
+    0.07587451785035397
+  ],
+  [
+    "推理关系/inference relation",
+    0.07578934470326049
+  ],
+  [
+    "陪集乘法/Coset multiplication",
+    0.07552821370892784
+  ],
+  [
+    "单射/injection",
+    0.07535004297744859
+  ],
+  [
+    "初级道路/elementary path",
+    0.07524316675299754
+  ],
+  [
+    "闭包/closure",
+    0.07519338544994404
+  ],
+  [
+    "项/term",
+    0.07471863150844178
+  ],
+  [
+    "生成元/generator",
+    0.0744022330021271
+  ],
+  [
+    "量词转换律/quantifier conversion law",
+    0.07426399929860365
+  ],
+  [
+    "最短增流路径/shortest augmenting path",
+    0.0742426801180098
+  ],
+  [
+    "置换/permutation",
+    0.07408350338792134
+  ],
+  [
+    "表达局限性/expressive limitation",
+    0.07407328841719552
+  ],
+  [
+    "陪集分解/coset decomposition",
+    0.07405096723973831
+  ],
+  [
+    "常项/constant term",
+    0.07398412138311304
+  ],
+  [
+    "一阶形式理论/first-order formal theory",
+    0.07389664669517207
+  ],
+  [
+    "双条件词/biconditional connective",
+    0.07365906751386665
+  ],
+  [
+    "自然语句/natural language statement",
+    0.07360213522226998
+  ],
+  [
+    "自然数集合/Set of Natural Numbers",
+    0.07356932147309918
+  ],
+  [
+    "可满足式/satisfiable formula",
+    0.0734900363862986
+  ],
+  [
+    "证明论/Proof Theory",
+    0.07316970792508788
+  ],
+  [
+    "谓词常项/predicate constant",
+    0.07306509462897205
+  ],
+  [
+    "子图/subgraph",
+    0.07302301973734922
+  ],
+  [
+    "定理的推演/Derivation of Theorems",
+    0.07300627598240451
+  ],
+  [
+    "自然数/natural number",
+    0.07300341621728092
+  ],
+  [
+    "主合取范式/principal conjunctive normal form",
+    0.07294958661175707
+  ],
+  [
+    "网络流图/network flow graph",
+    0.07284267289965578
+  ],
+  [
+    "交换律/commutative law",
+    0.07275544348898656
+  ],
+  [
+    "证明方法/proof methods",
+    0.07224244365315871
+  ],
+  [
+    "子句/clause",
+    0.07211545418321325
+  ],
+  [
+    "Gentzen串形演算/Gentzen's sequent calculus",
+    0.07180756636745599
+  ],
+  [
+    "二元命题联结词/binary propositional connective",
+    0.07174041966281619
+  ],
+  [
+    "集合的基本运算/basic set operation",
+    0.07129117679222098
+  ],
+  [
+    "复杂性/complexity",
+    0.07103048457035126
+  ],
+  [
+    "表达能力/expressive power",
+    0.07103048457035126
+  ],
+  [
+    "集合论公理系统/Axiomatic Set Theory",
+    0.07094432968802869
+  ],
+  [
+    "紧致性定理/compactness theorem",
+    0.07077359611337296
+  ],
+  [
+    "差集/Set Difference",
+    0.07057103061051673
+  ],
+  [
+    "特征函数/characteristic function",
+    0.0702317011798029
+  ],
+  [
+    "主析取范式/principal disjunctive normal form",
+    0.07001164752404818
+  ],
+  [
+    "古典命题逻辑/classical propositional logic",
+    0.06978180044063803
+  ],
+  [
+    "广度优先搜索/breadth-first search",
+    0.0696633830758166
+  ],
+  [
+    "文氏图/Venn diagram",
+    0.0695322916163799
+  ],
+  [
+    "自然同态/natural homomorphism",
+    0.06939292860071004
+  ],
+  [
+    "演绎体系/deductive system",
+    0.06929903984541974
+  ],
+  [
+    "圆括号/parentheses",
+    0.0691116792667793
+  ],
+  [
+    "归结证明过程/Resolution proof process",
+    0.06910128699281917
+  ],
+  [
+    "证明论中的逻辑系统/logic systems in proof theory",
+    0.06908077686213523
+  ],
+  [
+    "域/region",
+    0.0689291737362545
+  ],
+  [
+    "真子集/proper subset",
+    0.06875877570165531
+  ],
+  [
+    "关系的合成/composition of relations",
+    0.0684550972504818
+  ],
+  [
+    "结论/conclusion",
+    0.0683136346654225
+  ],
+  [
+    "λ-项/lambda-term",
+    0.0682941743932694
+  ],
+  [
+    "替换公理模式/Axiom Schema of Replacement",
+    0.06826039719963164
+  ],
+  [
+    "简单道路/simple path",
+    0.06784986317266929
+  ],
+  [
+    "集合的基数/cardinality of a set",
+    0.0677774176138059
+  ],
+  [
+    "负长回路/negative length circuit",
+    0.06750372618798482
+  ],
+  [
+    "合取词/conjunction(logical connective)",
+    0.06746996130101907
+  ],
+  [
+    "幂集合公理/Axiom of Power Set",
+    0.06738889264554919
+  ],
+  [
+    "对称群/symmetric group",
+    0.06738158128239478
+  ],
+  [
+    "三值逻辑/three-valued logic",
+    0.06702507904600243
+  ],
+  [
+    "谓词逻辑的公理化/axiomatization of predicate logic",
+    0.06699661529069395
+  ],
+  [
+    "真/true",
+    0.0668822955956581
+  ],
+  [
+    "距离/distance",
+    0.06676480811600817
+  ],
+  [
+    "相对真理/relative truth",
+    0.06675987944361131
+  ],
+  [
+    "有穷子集合/finite subset",
+    0.06664329559117906
+  ],
+  [
+    "包含关系/containment relation",
+    0.06662115526105829
+  ],
+  [
+    "算法/algorithm",
+    0.06646624919963995
+  ],
+  [
+    "等号判断/equality predicate",
+    0.06643558101245188
+  ],
+  [
+    "恒等函数/identity function",
+    0.0662962962962963
+  ],
+  [
+    "求范式的步骤/steps for finding normal forms",
+    0.06627470789171579
+  ],
+  [
+    "逻辑合取/logical conjunction",
+    0.06626087555834319
+  ],
+  [
+    "拟序关系/strict partial order relation",
+    0.06625000676374446
+  ],
+  [
+    "不可满足性/unsatisfiability",
+    0.06620348178383041
+  ],
+  [
+    "逻辑推论/Logical Consequence",
+    0.06612796118568535
+  ],
+  [
+    "蕴涵式/implication form",
+    0.06611611866115699
+  ],
+  [
+    "上界/upper bound",
+    0.0661111111111111
+  ],
+  [
+    "下界/lower bound",
+    0.0661111111111111
+  ],
+  [
+    "无序对集合存在公理/Axiom of Pairing",
+    0.0661111111111111
+  ],
+  [
+    "假/false",
+    0.06592592592592593
+  ],
+  [
+    "右逆/right inverse",
+    0.06592592592592593
+  ],
+  [
+    "左逆/left inverse",
+    0.06592592592592593
+  ],
+  [
+    "证明过程/proof process",
+    0.06592592592592593
+  ],
+  [
+    "析取词/disjunction(logical connective)",
+    0.06574205907968514
+  ],
+  [
+    "函数复合/function composition",
+    0.06574074074074074
+  ],
+  [
+    "反对称性/antisymmetry",
+    0.06574074074074074
+  ],
+  [
+    "可判定性/decidability",
+    0.06574074074074074
+  ],
+  [
+    "极大元/maximal element",
+    0.06574074074074074
+  ],
+  [
+    "构造的集合的唯一性/Uniqueness of Constructed Set",
+    0.06574074074074074
+  ],
+  [
+    "置换规则/Replacement Rule",
+    0.06574074074074074
+  ],
+  [
+    "重言蕴涵/Tautological Implication",
+    0.06574074074074074
+  ],
+  [
+    "正权完全图/positive weighted complete graph",
+    0.06573356532246939
+  ],
+  [
+    "计算机/Computer",
+    0.06570142645769621
+  ],
+  [
+    "蕴涵关系/implication relation",
+    0.06569855137312522
+  ],
+  [
+    "归结式/resolvent",
+    0.0656525873752559
+  ],
+  [
+    "否定词/negation operator",
+    0.06555680535715747
+  ],
+  [
+    "Lowenheim-Skolem 定理/Lowenheim-Skolem Theorem",
+    0.06542431586730153
+  ],
+  [
+    "有理数集/set of rational numbers",
+    0.0654121869999415
+  ],
+  [
+    "关系闭包/relation closure",
+    0.06537037037037037
+  ],
+  [
+    "可满足性/satisfiability",
+    0.06537037037037037
+  ],
+  [
+    "真值表法/Truth Table Method",
+    0.06518518518518518
+  ],
+  [
+    "数学结构/Mathematical Structure",
+    0.06508755563639942
+  ],
+  [
+    "摩根律/De Morgan's Laws",
+    0.06504922249583478
+  ],
+  [
+    "广义交/generalized intersection",
+    0.06504377690924254
+  ],
+  [
+    "命题演算/Propositional Calculus",
+    0.065
+  ],
+  [
+    "子集关系/subset relation",
+    0.06496341112140766
+  ],
+  [
+    "计算机专业/computer science major",
+    0.0648973129512202
+  ],
+  [
+    "等值演算/equivalence calculus",
+    0.06481481481481481
+  ],
+  [
+    "划分/partition",
+    0.0643815304687208
+  ],
+  [
+    "区间/interval",
+    0.06435283505142414
+  ],
+  [
+    "树的遍历/tree traversal",
+    0.06420253051599394
+  ],
+  [
+    "谓词演算/Predicate Calculus",
+    0.06412253701059728
+  ],
+  [
+    "蕴涵词/implication operator",
+    0.0640850319381948
+  ],
+  [
+    "不存在性/non-existence",
+    0.06385662207073799
+  ],
+  [
+    "否定命题/negated proposition",
+    0.06382807555522085
+  ],
+  [
+    "循环幺群/cyclic monoid",
+    0.0637583506957712
+  ],
+  [
+    "计算机科学/computer science",
+    0.06350261987875754
+  ],
+  [
+    "表示方法/Representation method",
+    0.06344457543353352
+  ],
+  [
+    "元素/element",
+    0.06343633882357033
+  ],
+  [
+    "无穷公理/Axiom of Infinity",
+    0.0634309749175709
+  ],
+  [
+    "模糊子集/fuzzy subset",
+    0.06340120593892538
+  ],
+  [
+    "同态核/kernel of homomorphism",
+    0.06315455489968372
+  ],
+  [
+    "Kleene 逻辑/Kleene logic",
+    0.0630438577908256
+  ],
+  [
+    "商集/Quotient Set",
+    0.06255270996270525
+  ],
+  [
+    "平面嵌入/planar embedding",
+    0.06241048508687901
+  ],
+  [
+    "运算性质/operational property",
+    0.062162674951036105
+  ],
+  [
+    "初级回路/elementary circuit",
+    0.061693131499532816
+  ],
+  [
+    "基数的算术运算/cardinal arithmetic operation",
+    0.061621695820415295
+  ],
+  [
+    "交换幺群/commutative monoid",
+    0.061561459331236974
+  ],
+  [
+    "封闭性/closure property",
+    0.060984276806425805
+  ],
+  [
+    "非确定算法/Non-Deterministic Algorithm",
+    0.06095576121638082
+  ],
+  [
+    "描述集合性质的公理/Axiom Describing Set Properties",
+    0.06067682994296495
+  ],
+  [
+    "邻接矩阵/adjacency matrix",
+    0.06047202770888241
+  ],
+  [
+    "联结词集合/set of logical connectives",
+    0.06010065284720735
+  ],
+  [
+    "真值函数/truth function",
+    0.059845537992439135
+  ],
+  [
+    "Ford-Fulkerson算法/Ford-Fulkerson Algorithm",
+    0.059808755672803644
+  ],
+  [
+    "自环/self-loop",
+    0.05978820220738844
+  ],
+  [
+    "偏序结构/partially ordered structure",
+    0.05976210136828135
+  ],
+  [
+    "完全二分图/complete bipartite graph",
+    0.05966031865914588
+  ],
+  [
+    "树枝/branch",
+    0.059611474110204184
+  ],
+  [
+    "割边/cut edge",
+    0.059580020413106394
+  ],
+  [
+    "右陪集/right coset",
+    0.059399999999999994
+  ],
+  [
+    "邻接矩阵判定法/Adjacency Matrix Method",
+    0.059399999999999994
+  ],
+  [
+    "反证法/proof by contradiction",
+    0.059316869475818504
+  ],
+  [
+    "内点/interior point",
+    0.059101345944761255
+  ],
+  [
+    "商环/quotient ring",
+    0.0591
+  ],
+  [
+    "图的搜索法/graph search method",
+    0.0591
+  ],
+  [
+    "度/degree",
+    0.0591
+  ],
+  [
+    "循环子群/cyclic subgroup",
+    0.0591
+  ],
+  [
+    "核/kernel",
+    0.0591
+  ],
+  [
+    "非永恒真理/non-eternal truth",
+    0.05889657899417721
+  ],
+  [
+    "割点/cut vertex",
+    0.0588
+  ],
+  [
+    "可交换性/commutativity",
+    0.0588
+  ],
+  [
+    "导出子图/induced subgraph",
+    0.0588
+  ],
+  [
+    "左陪集/left coset",
+    0.0588
+  ],
+  [
+    "深度优先搜索/depth-first search",
+    0.0588
+  ],
+  [
+    "深探法/Depth First Search",
+    0.0588
+  ],
+  [
+    "点色数/vertex chromatic number",
+    0.0588
+  ],
+  [
+    "边列表/edge list",
+    0.0588
+  ],
+  [
+    "波兰表达式/Polish notation",
+    0.058677814341853964
+  ],
+  [
+    "逻辑连接词/Logical connectives",
+    0.058558314033736195
+  ],
+  [
+    "元素的阶/order of an element",
+    0.058499999999999996
+  ],
+  [
+    "正向表/forward star",
+    0.058499999999999996
+  ],
+  [
+    "等价类/equivalence class",
+    0.058499999999999996
+  ],
+  [
+    "边色数/edge chromatic number",
+    0.058499999999999996
+  ],
+  [
+    "连通分支/connected component",
+    0.058499999999999996
+  ],
+  [
+    "关键路径/Critical Path",
+    0.05842734409704919
+  ],
+  [
+    "半可判定性/Semi-Decidability",
+    0.05835805019592769
+  ],
+  [
+    "人工智能/Artificial Intelligence(AI)",
+    0.05827979296577967
+  ],
+  [
+    "Warshall算法/Warshall's Algorithm",
+    0.058199999999999995
+  ],
+  [
+    "四色猜想/four-color conjecture",
+    0.058199999999999995
+  ],
+  [
+    "点连通度/vertex-connectivity",
+    0.058199999999999995
+  ],
+  [
+    "理想/ideal",
+    0.058199999999999995
+  ],
+  [
+    "边连通度/edge-connectivity",
+    0.058199999999999995
+  ],
+  [
+    "图的连通性/Connectivity of Graph",
+    0.05813373935284291
+  ],
+  [
+    "置换群/permutation group",
+    0.05813373935284291
+  ],
+  [
+    "连通/connected",
+    0.05813373935284291
+  ],
+  [
+    "等值定理/Equivalence Theorem",
+    0.0581101499962352
+  ],
+  [
+    "Herbrand 方法/Herbrand's Method",
+    0.058053396909370544
+  ],
+  [
+    "集合的表示法/Representation of sets",
+    0.0579402251841947
+  ],
+  [
+    "Kruskal算法/Kruskal's algorithm",
+    0.05789999999999999
+  ],
+  [
+    "Prim算法/Prim's algorithm",
+    0.05789999999999999
+  ],
+  [
+    "量词分配等值式/quantifier distribution equivalence",
+    0.05789032556973748
+  ],
+  [
+    "最佳匹配/optimal matching",
+    0.057840216840442424
+  ],
+  [
+    "Huffman树/Huffman Tree",
+    0.05784013460863663
+  ],
+  [
+    "旅行商问题/Traveling Salesman Problem",
+    0.05784013460863663
+  ],
+  [
+    "欧拉道路/Eulerian Path",
+    0.05784013460863663
+  ],
+  [
+    "传递/transitive",
+    0.05782174596560965
+  ],
+  [
+    "逆变换/inverse transformation",
+    0.05773626668240274
+  ],
+  [
+    "模糊集合论/fuzzy set theory",
+    0.05767636103095569
+  ],
+  [
+    "导集/derived set",
+    0.057606623082312305
+  ],
+  [
+    "匈牙利算法/Hungarian algorithm",
+    0.0576
+  ],
+  [
+    "递归函数/recursive function",
+    0.05756418289047135
+  ],
+  [
+    "同态基本定理/fundamental homomorphism theorem",
+    0.05754652986443035
+  ],
+  [
+    "连续统假设/continuum hypothesis",
+    0.05740111155083828
+  ],
+  [
+    "Dijkstra算法/Dijkstra's algorithm",
+    0.0573
+  ],
+  [
+    "中国邮路/Chinese Postman Problem",
+    0.05725292512022408
+  ],
+  [
+    "图的基本概念/basic concepts of graphs",
+    0.05715468819409836
+  ],
+  [
+    "王浩算法/Wang's algorithm",
+    0.05707496887157216
+  ],
+  [
+    "层次网络/layered network",
+    0.05701926246071215
+  ],
+  [
+    "不可数集合/uncountable set",
+    0.05698888097421469
+  ],
+  [
+    "集合的图形表示法/Graphical representation of sets",
+    0.056876742428349024
+  ],
+  [
+    "置换/substitution",
+    0.05659245386652114
+  ],
+  [
+    "自反/reflexive",
+    0.0563245446409634
+  ],
+  [
+    "NP完全问题/NP-complete problem",
+    0.05618281039531929
+  ],
+  [
+    "支撑子图/spanning subgraph",
+    0.05590575812994775
+  ],
+  [
+    "串形演算系统/sequent calculus system",
+    0.05580670829080238
+  ],
+  [
+    "全序集/totally ordered set",
+    0.05565273042979437
+  ],
+  [
+    "最长路径/Longest Path",
+    0.055639190021242235
+  ],
+  [
+    "良序集/well-ordered set",
+    0.05556830317826913
+  ],
+  [
+    "计算复杂性/Computational Complexity",
+    0.0555
+  ],
+  [
+    "初始函数/initial function",
+    0.055359645551213164
+  ],
+  [
+    "特殊集合/special set",
+    0.055302540353459065
+  ],
+  [
+    "直觉主义逻辑/intuitionistic logic",
+    0.055184906527085194
+  ],
+  [
+    "子集/subset",
+    0.05511948721989133
+  ],
+  [
+    "子代数系统/subalgebraic system",
+    0.05452088620426108
+  ],
+  [
+    "Skolem 标准形/Skolem Normal Form",
+    0.054205627327210314
+  ],
+  [
+    "N元联结词/n-ary connective",
+    0.05402306216337031
+  ],
+  [
+    "林/forest",
+    0.05393257174037279
+  ],
+  [
+    "逻辑演算规律/rules of logical calculus",
+    0.05382738498799
+  ],
+  [
+    "合取命题/conjunction proposition",
+    0.05380862419716037
+  ],
+  [
+    "边权/edge weight",
+    0.05363921181716343
+  ],
+  [
+    "命题符号/propositional symbol",
+    0.05331852812227337
+  ],
+  [
+    "奇数度顶点/odd degree vertex",
+    0.053073469553835156
+  ],
+  [
+    "命题逻辑的合式公式/well-formed formula in propositional logic",
+    0.052964483428394396
+  ],
+  [
+    "Herbrand 域/Herbrand Universe",
+    0.05296094461847297
+  ],
+  [
+    "形式规则/formal rules",
+    0.05292741371191666
+  ],
+  [
+    "模糊子集的运算/operations on fuzzy subsets",
+    0.05288563446254959
+  ],
+  [
+    "外延公理/Axiom of Extensionality",
+    0.052704243033485275
+  ],
+  [
+    "对称差/Symmetric difference",
+    0.052645954370399185
+  ],
+  [
+    "哥德尔不完全性定理/Gödel's Incompleteness Theorem",
+    0.05232786323055238
+  ],
+  [
+    "逻辑蕴含/logical implication",
+    0.05220032311326959
+  ],
+  [
+    "自由出现/free occurrence",
+    0.052199148441922014
+  ],
+  [
+    "值域/range",
+    0.05213096555500071
+  ],
+  [
+    "推理演算过程/inference calculus process",
+    0.051919125414536034
+  ],
+  [
+    "覆盖/covering",
+    0.05187795985383513
+  ],
+  [
+    "基数乘法/cardinal multiplication",
+    0.05183995253495581
+  ],
+  [
+    "基数加法/cardinal addition",
+    0.05169514819826599
+  ],
+  [
+    "一元运算/unary operation",
+    0.05168474012048184
+  ],
+  [
+    "绝对补集/absolute complement",
+    0.051367907467559655
+  ],
+  [
+    "前辍表示/Prefix notation",
+    0.051210791816560755
+  ],
+  [
+    "全序关系/total order",
+    0.05117284427122367
+  ],
+  [
+    "补/complement",
+    0.051132405676109154
+  ],
+  [
+    "不等值/nonequivalent",
+    0.051056897506305765
+  ],
+  [
+    "近邻关系/neighborhood relation",
+    0.05094155298805765
+  ],
+  [
+    "链/chain",
+    0.050917694734333024
+  ],
+  [
+    "模糊集合/fuzzy set",
+    0.05082462004990124
+  ],
+  [
+    "串形演算/sequent calculus",
+    0.050655373654750535
+  ],
+  [
+    "运输网络/transportation network",
+    0.050562464213597266
+  ],
+  [
+    "奇异集合问题/Singular Set Problem",
+    0.050541214058986546
+  ],
+  [
+    "不可满足的公式/Unsatisfiable Formula",
+    0.05049096632966233
+  ],
+  [
+    "公式表示方法/formula representation method",
+    0.05046522295077348
+  ],
+  [
+    "定理证明/theorem proving",
+    0.05038266420407032
+  ],
+  [
+    "0/zero",
+    0.050350793046133456
+  ],
+  [
+    "形式化/formalization",
+    0.05032182538689609
+  ],
+  [
+    "可比/comparable",
+    0.050269455390431705
+  ],
+  [
+    "不可满足/unsatisfiable",
+    0.05024875849653416
+  ],
+  [
+    "有理数/rational number",
+    0.05019006745949946
+  ],
+  [
+    "完全性定理/completeness theorem",
+    0.050180867892815145
+  ],
+  [
+    "关系运算/operation on relations",
+    0.05000000000051714
+  ],
+  [
+    "限制条件/Constraint",
+    0.05
+  ],
+  [
+    "归结过程/resolution process",
+    0.049982820519964014
+  ],
+  [
+    "以集合为元素的集合/set of sets",
+    0.04998121548966238
+  ],
+  [
+    "整数集合/integer set",
+    0.04993933418766914
+  ],
+  [
+    "集合包含关系/set inclusion relation",
+    0.04986150693830832
+  ],
+  [
+    "恒等律/Identity Law",
+    0.04986111111111111
+  ],
+  [
+    "量词引入规则/Quantifier Introduction Rule",
+    0.04986111111111111
+  ],
+  [
+    "量词消去规则/Quantifier Elimination Rule",
+    0.04986111111111111
+  ],
+  [
+    "加法群/additive group",
+    0.04983253265193058
+  ],
+  [
+    "并集合公理/Axiom of Union",
+    0.04979128929479012
+  ],
+  [
+    "传递集合/transitive set",
+    0.04973719345046782
+  ],
+  [
+    "代入/instantiation",
+    0.04972222222222222
+  ],
+  [
+    "全称量词引入规则/Universal Quantifier Introduction Rule",
+    0.04972222222222222
+  ],
+  [
+    "反链/antichain",
+    0.04972222222222222
+  ],
+  [
+    "命题公式等值式/equivalent formula of propositional logic",
+    0.04972222222222222
+  ],
+  [
+    "存在量词引入规则/Existential Quantifier Introduction Rule",
+    0.04972222222222222
+  ],
+  [
+    "等幂律/Idempotent Law",
+    0.04972222222222222
+  ],
+  [
+    "良序化/well-ordering(process)",
+    0.04972222222222222
+  ],
+  [
+    "一般递归函数/general recursive function",
+    0.04958333333333334
+  ],
+  [
+    "中辍表示/Infix notation",
+    0.04958333333333334
+  ],
+  [
+    "典型映射/canonical mapping",
+    0.04958333333333334
+  ],
+  [
+    "可证明/Provable",
+    0.04958333333333334
+  ],
+  [
+    "后辍表示/Postfix notation",
+    0.04958333333333334
+  ],
+  [
+    "域/field",
+    0.04958333333333334
+  ],
+  [
+    "定义域/Domain(dom)",
+    0.04958333333333334
+  ],
+  [
+    "小于关系/less than relation",
+    0.04958333333333334
+  ],
+  [
+    "归结法证明/resolution proof",
+    0.04958333333333334
+  ],
+  [
+    "有理数集合/rational number set",
+    0.04958333333333334
+  ],
+  [
+    "母式/Matrix",
+    0.04958333333333334
+  ],
+  [
+    "特例/instance",
+    0.04958333333333334
+  ],
+  [
+    "等价类/Equivalence Class",
+    0.04958333333333334
+  ],
+  [
+    "谓词公式等值式/equivalent formula of predicate logic",
+    0.04958333333333334
+  ],
+  [
+    "全称量词消去规则/Universal Quantifier Elimination Rule",
+    0.04944444444444445
+  ],
+  [
+    "关系限制/relation restriction",
+    0.04944444444444445
+  ],
+  [
+    "函数F/function F",
+    0.04944444444444445
+  ],
+  [
+    "原始递归函数/primitive recursive function",
+    0.04944444444444445
+  ],
+  [
+    "后件/succedent",
+    0.04944444444444445
+  ],
+  [
+    "存在量词消去规则/Existential Quantifier Elimination Rule",
+    0.04944444444444445
+  ],
+  [
+    "定理的证明/Proof of Theorems",
+    0.04944444444444445
+  ],
+  [
+    "小于等于关系/less than or equal relation",
+    0.04944444444444445
+  ],
+  [
+    "新的集合/new set",
+    0.04944444444444445
+  ],
+  [
+    "有限基数/finite cardinality",
+    0.04944444444444445
+  ],
+  [
+    "正确的推理形式/correct inference form",
+    0.04944444444444445
+  ],
+  [
+    "空子句/empty clause",
+    0.04944444444444445
+  ],
+  [
+    "自由变元/free variable",
+    0.04944444444444445
+  ],
+  [
+    "逻辑等值/logical equivalence",
+    0.04944444444444445
+  ],
+  [
+    "Herbrand 定理/Herbrand's Theorem",
+    0.049400878686724575
+  ],
+  [
+    "公理模式/Axiom Schema",
+    0.04930555555555556
+  ],
+  [
+    "关系象/image of a relation",
+    0.04930555555555556
+  ],
+  [
+    "推演过程/Derivation Process",
+    0.04930555555555556
+  ],
+  [
+    "阿列夫零/aleph-null($\\aleph_0$)",
+    0.04930555555555556
+  ],
+  [
+    "隶属函数值/membership value",
+    0.04930555555555556
+  ],
+  [
+    "集合相等/Set Equality",
+    0.04930555555555556
+  ],
+  [
+    "广义并/generalized union",
+    0.049274844903713234
+  ],
+  [
+    "所有集合组成的集合/set of all sets",
+    0.04926250900382087
+  ],
+  [
+    "关系交运算/relation intersection",
+    0.049166666666666664
+  ],
+  [
+    "良序定理/Well-ordering Theorem",
+    0.049166666666666664
+  ],
+  [
+    "三歧性/trichotomy property",
+    0.04902777777777778
+  ],
+  [
+    "偏序集的分解定理/Decomposition Theorem for Partially Ordered Sets",
+    0.04902777777777778
+  ],
+  [
+    "集合论公理化/axiomatization of set theory",
+    0.04871593351298472
+  ],
+  [
+    "残留网络/residual network",
+    0.048482516550838684
+  ],
+  [
+    "模态逻辑/modal logic",
+    0.04833333333333334
+  ],
+  [
+    "直觉主义逻辑系统/intuitionistic logic system",
+    0.048160070642078306
+  ],
+  [
+    "状态建模/state modeling",
+    0.048078125066660295
+  ],
+  [
+    "计算机硬件电路/computer hardware circuit",
+    0.04773670649779716
+  ],
+  [
+    "谓词逻辑的等值和推理演算/predicate logic equivalence and inference calculus",
+    0.04761130645764701
+  ],
+  [
+    "自然语句的形式化/formalization of natural language statements",
+    0.0473950245095146
+  ],
+  [
+    "元素唯一性/element uniqueness",
+    0.04736782900315416
+  ],
+  [
+    "元素无序性/element disorder",
+    0.04736782900315416
+  ],
+  [
+    "成员关系不对称性/asymmetry of membership relation",
+    0.04736782900315416
+  ],
+  [
+    "无限元素/infinite elements",
+    0.04736782900315416
+  ],
+  [
+    "非自包含性/non-self-containment",
+    0.04736782900315416
+  ],
+  [
+    "语义完备性/semantic completeness",
+    0.04735167033929922
+  ],
+  [
+    "悖论/paradox",
+    0.046579904764500205
+  ],
+  [
+    "子代数/subalgebra",
+    0.0463754126653667
+  ],
+  [
+    "边子集/edge subset",
+    0.04579151125144164
+  ],
+  [
+    "比内-柯西定理/Binet-Cauchy theorem",
+    0.0452792583615747
+  ],
+  [
+    "化前束范式过程/Process of Converting to Prenex Normal Form",
+    0.044926411363065216
+  ],
+  [
+    "$\\aleph_0$(阿列夫零)/aleph-null",
+    0.04477027352057905
+  ],
+  [
+    "边集/edge set",
+    0.04452879222358215
+  ],
+  [
+    "[0,1]区间/Interval[0,1]",
+    0.04441142351507173
+  ],
+  [
+    "直觉主义串形演算系统/intuitionistic sequent calculus system",
+    0.04413045089923989
+  ],
+  [
+    "同类型的代数系统/algebraic systems of the same type",
+    0.04400469509558777
+  ],
+  [
+    "个体的个数/number of individuals",
+    0.04389890069682795
+  ],
+  [
+    "语义悖论/semantic paradox",
+    0.04381097315979349
+  ],
+  [
+    "形式理论Z1/Formal Theory Z1",
+    0.04373240270269153
+  ],
+  [
+    "简单回路/simple circuit",
+    0.04336567106522128
+  ],
+  [
+    "条件式/conditional formula",
+    0.04309480309655426
+  ],
+  [
+    "组合优化/combinatorial optimization",
+    0.04300514637001085
+  ],
+  [
+    "PERT图/PERT chart",
+    0.04291366115621304
+  ],
+  [
+    "集合定义方法/set definition methods",
+    0.04280832108794197
+  ],
+  [
+    "公式串/formula string",
+    0.042738421024412526
+  ],
+  [
+    "符号序列/sequence of symbols",
+    0.042738421024412526
+  ],
+  [
+    "除环/division ring",
+    0.04265031562632744
+  ],
+  [
+    "最优二叉树/optimal binary tree",
+    0.0426502444067492
+  ],
+  [
+    "开区间/open interval",
+    0.04263882438219823
+  ],
+  [
+    "偏序集合/partially ordered set",
+    0.0426195161118674
+  ],
+  [
+    "子集公理/axiom of subsets",
+    0.04259265762960855
+  ],
+  [
+    "Herbrand 域的子集合/subset of Herbrand domain",
+    0.04253543190701146
+  ],
+  [
+    "完备性/completeness",
+    0.042519921950145353
+  ],
+  [
+    "Bochvar 逻辑/Bochvar logic",
+    0.04230161504470498
+  ],
+  [
+    "线性映射/linear mapping",
+    0.0421153692947281
+  ],
+  [
+    "结构规则/structural rule",
+    0.041998056288336104
+  ],
+  [
+    "对偶式/dual formula",
+    0.04192224055789936
+  ],
+  [
+    "有效性/Validity",
+    0.04192224055789936
+  ],
+  [
+    "否定型等值式/negative equivalence formula",
+    0.04180546551456259
+  ],
+  [
+    "序关系/order relation",
+    0.04180546551456259
+  ],
+  [
+    "集合间的关系/relations between sets",
+    0.04180546551456259
+  ],
+  [
+    "最大流算法/maximum flow algorithm",
+    0.04171258469985606
+  ],
+  [
+    "关系图/relation graph",
+    0.04168869047122582
+  ],
+  [
+    "有单位环/ring with identity",
+    0.04168675864908349
+  ],
+  [
+    "形式推理/formal deduction",
+    0.041632596928235364
+  ],
+  [
+    "群运算/group operation",
+    0.0416002796024503
+  ],
+  [
+    "判定问题/decidability problem",
+    0.041338365341215516
+  ],
+  [
+    "闭区间/closed interval",
+    0.04130897889167477
+  ],
+  [
+    "合成/composition",
+    0.041188313927414615
+  ],
+  [
+    "树叶顶点/leaf vertex",
+    0.04118363247406808
+  ],
+  [
+    "赋权二叉树/weighted binary tree",
+    0.041102677762597024
+  ],
+  [
+    "阿贝尔群/Abelian group",
+    0.041040972887491325
+  ],
+  [
+    "摹状词/definite description",
+    0.040988040211205216
+  ],
+  [
+    "Scott 域/Scott domain",
+    0.04087126516786845
+  ],
+  [
+    "集合关系/set relation",
+    0.04074534840008538
+  ],
+  [
+    "面/face",
+    0.04073439697289012
+  ],
+  [
+    "邻接点/adjacent vertex",
+    0.04056399218828645
+  ],
+  [
+    "柯尼希定理/Kőnig's theorem",
+    0.04046410660148363
+  ],
+  [
+    "最小费用流/minimum cost flow",
+    0.0404347592729615
+  ],
+  [
+    "可行流分布/feasible flow distribution",
+    0.04041143174097618
+  ],
+  [
+    "树的表示/tree representation",
+    0.040352910501912094
+  ],
+  [
+    "平面连通图/connected planar graph",
+    0.04031300883227093
+  ],
+  [
+    "工序/Process",
+    0.04029726405720923
+  ],
+  [
+    "单调性/monotonicity",
+    0.04028075306909393
+  ],
+  [
+    "最长树/maximum spanning tree",
+    0.040151982000472056
+  ],
+  [
+    "量化公式/quantified formula",
+    0.04011770492688501
+  ],
+  [
+    "PT图/Potential Task Graph",
+    0.040117501192052055
+  ],
+  [
+    "普通子集/crisp subset",
+    0.04007623439736925
+  ],
+  [
+    "m叉树/m-ary tree",
+    0.04000000000000001
+  ],
+  [
+    "图表示法/graph representation",
+    0.04000000000000001
+  ],
+  [
+    "子加法群/additive subgroup",
+    0.04000000000000001
+  ],
+  [
+    "数据结构/data structure",
+    0.04000000000000001
+  ],
+  [
+    "染色/coloring",
+    0.04000000000000001
+  ],
+  [
+    "负权边/negative weight edge",
+    0.04000000000000001
+  ],
+  [
+    "对称/symmetric",
+    0.03986150540087505
+  ],
+  [
+    "偶数度顶点/even degree vertex",
+    0.039860140718025745
+  ],
+  [
+    "子方阵/square submatrix",
+    0.039809436694403025
+  ],
+  [
+    "最大权匹配/maximum weight matching",
+    0.03980004517106948
+  ],
+  [
+    "k度正则图/k-regular graph",
+    0.03980000000000001
+  ],
+  [
+    "n次对称群/symmetric group of degree n",
+    0.03980000000000001
+  ],
+  [
+    "互素/coprime",
+    0.03980000000000001
+  ],
+  [
+    "交换环/commutative ring",
+    0.03980000000000001
+  ],
+  [
+    "分枝顶点数/number of branch vertices",
+    0.03980000000000001
+  ],
+  [
+    "可逆映射/invertible mapping",
+    0.03980000000000001
+  ],
+  [
+    "右理想/right ideal",
+    0.03980000000000001
+  ],
+  [
+    "多源点多汇点最小费用流/multi-source multi-sink minimum cost flow",
+    0.03980000000000001
+  ],
+  [
+    "完全m叉树/complete m-ary tree",
+    0.03980000000000001
+  ],
+  [
+    "左理想/left ideal",
+    0.03980000000000001
+  ],
+  [
+    "平凡理想/trivial ideal",
+    0.03980000000000001
+  ],
+  [
+    "弦/chord",
+    0.03980000000000001
+  ],
+  [
+    "排序过程/sorting process",
+    0.03980000000000001
+  ],
+  [
+    "握手定理/Handshaking Lemma",
+    0.03980000000000001
+  ],
+  [
+    "整数环/ring of integers",
+    0.03980000000000001
+  ],
+  [
+    "最小度/minimum degree",
+    0.03980000000000001
+  ],
+  [
+    "最长初级道路/longest elementary path",
+    0.03980000000000001
+  ],
+  [
+    "桥/bridge",
+    0.03980000000000001
+  ],
+  [
+    "正则图/regular graph",
+    0.03980000000000001
+  ],
+  [
+    "正权图/positive weighted graph",
+    0.03980000000000001
+  ],
+  [
+    "点断集/vertex-cut",
+    0.03980000000000001
+  ],
+  [
+    "直接后继集/successor set",
+    0.03980000000000001
+  ],
+  [
+    "群的阶/order of a group",
+    0.03980000000000001
+  ],
+  [
+    "边断集/edge-cut",
+    0.03980000000000001
+  ],
+  [
+    "连通子图/connected subgraph",
+    0.03980000000000001
+  ],
+  [
+    "逆映射/inverse mapping",
+    0.03980000000000001
+  ],
+  [
+    "道路矩阵/Path Matrix",
+    0.03980000000000001
+  ],
+  [
+    "无条件的存在公理/Unconditional Existence Axiom",
+    0.039738032753284594
+  ],
+  [
+    "标准命题逻辑/standard propositional logic",
+    0.03965630640417204
+  ],
+  [
+    "辅助矩阵/auxiliary matrix",
+    0.03960007084219384
+  ],
+  [
+    "界值/bound value",
+    0.03960006794336383
+  ],
+  [
+    "n元置换群/n-ary permutation group",
+    0.03960000000000001
+  ],
+  [
+    "不存在有向回路/No Directed Cycle",
+    0.03960000000000001
+  ],
+  [
+    "不相交轮换/disjoint cycle",
+    0.03960000000000001
+  ],
+  [
+    "主理想/principal ideal",
+    0.03960000000000001
+  ],
+  [
+    "乘法半群/multiplicative semigroup",
+    0.03960000000000001
+  ],
+  [
+    "交错群/alternating group",
+    0.03960000000000001
+  ],
+  [
+    "偶置换/even permutation",
+    0.03960000000000001
+  ],
+  [
+    "入度/in-degree",
+    0.03960000000000001
+  ],
+  [
+    "出度/out-degree",
+    0.03960000000000001
+  ],
+  [
+    "向量/vector",
+    0.03960000000000001
+  ],
+  [
+    "四色定理/Four-Color Theorem",
+    0.03960000000000001
+  ],
+  [
+    "图的同构/graph isomorphism",
+    0.03960000000000001
+  ],
+  [
+    "块/block",
+    0.03960000000000001
+  ],
+  [
+    "基本回路/fundamental circuit",
+    0.03960000000000001
+  ],
+  [
+    "增加连通支数/increasing the number of connected components",
+    0.03960000000000001
+  ],
+  [
+    "增流过程/augmenting process",
+    0.03960000000000001
+  ],
+  [
+    "奇数度顶点个数性质/Property of Odd Degree Vertices Count",
+    0.03960000000000001
+  ],
+  [
+    "子半群/sub-semigroup",
+    0.03960000000000001
+  ],
+  [
+    "完美匹配/perfect matching",
+    0.03960000000000001
+  ],
+  [
+    "对称性/symmetry",
+    0.03960000000000001
+  ],
+  [
+    "广探法/Breadth First Search",
+    0.03960000000000001
+  ],
+  [
+    "无回路/no circuits",
+    0.03960000000000001
+  ],
+  [
+    "时间复杂性/time complexity",
+    0.03960000000000001
+  ],
+  [
+    "最早完工时间/Earliest Completion Time",
+    0.03960000000000001
+  ],
+  [
+    "权矩阵/weight matrix",
+    0.03960000000000001
+  ],
+  [
+    "极大连通子图/maximal connected subgraph",
+    0.03960000000000001
+  ],
+  [
+    "树的中心/center of a tree",
+    0.03960000000000001
+  ],
+  [
+    "欧拉公式/Euler's formula",
+    0.03960000000000001
+  ],
+  [
+    "流量/flow value",
+    0.03960000000000001
+  ],
+  [
+    "矩阵乘法/Matrix Multiplication",
+    0.03960000000000001
+  ],
+  [
+    "肯普/Alfred Kempe",
+    0.03960000000000001
+  ],
+  [
+    "自同态/endomorphism",
+    0.03960000000000001
+  ],
+  [
+    "自同构/automorphism",
+    0.03960000000000001
+  ],
+  [
+    "边染色/edge coloring",
+    0.03960000000000001
+  ],
+  [
+    "道路长度/path length",
+    0.03960000000000001
+  ],
+  [
+    "零元/zero element",
+    0.03960000000000001
+  ],
+  [
+    "零因子/zero divisor",
+    0.03960000000000001
+  ],
+  [
+    "非对称有向图的中国邮路算法/algorithm for Chinese Postman Problem in asymmetric directed graphs",
+    0.03960000000000001
+  ],
+  [
+    "非连通图/disconnected graph",
+    0.03960000000000001
+  ],
+  [
+    "饱和点/saturated vertex",
+    0.03960000000000001
+  ],
+  [
+    "原子命题/atomic proposition",
+    0.039516610260718704
+  ],
+  [
+    "行列式/determinant",
+    0.039412842593691204
+  ],
+  [
+    "圈/cycle",
+    0.03940570690897332
+  ],
+  [
+    "最小覆盖/minimum cover",
+    0.03940004471708888
+  ],
+  [
+    "m的倍数集/set of multiples of m",
+    0.039400000000000004
+  ],
+  [
+    "元素积的阶/order of a product of elements",
+    0.039400000000000004
+  ],
+  [
+    "单位边权最短路径算法/unit edge weight shortest path algorithm",
+    0.039400000000000004
+  ],
+  [
+    "可结合性/associativity",
+    0.039400000000000004
+  ],
+  [
+    "商集/quotient set",
+    0.039400000000000004
+  ],
+  [
+    "子幺群/sub-monoid",
+    0.039400000000000004
+  ],
+  [
+    "工序所需时间/Process Duration",
+    0.039400000000000004
+  ],
+  [
+    "带权路径总长/weighted path length",
+    0.039400000000000004
+  ],
+  [
+    "整环/integral domain",
+    0.039400000000000004
+  ],
+  [
+    "有向欧拉回路/directed Eulerian circuit",
+    0.039400000000000004
+  ],
+  [
+    "权/weight",
+    0.039400000000000004
+  ],
+  [
+    "标号过程/labeling process",
+    0.039400000000000004
+  ],
+  [
+    "树叶数/number of leaves",
+    0.039400000000000004
+  ],
+  [
+    "树计数/tree counting",
+    0.039400000000000004
+  ],
+  [
+    "次短树/second minimum spanning tree",
+    0.039400000000000004
+  ],
+  [
+    "直接前趋/direct predecessor",
+    0.039400000000000004
+  ],
+  [
+    "群的中心/center of a group",
+    0.039400000000000004
+  ],
+  [
+    "超发点/super source",
+    0.039400000000000004
+  ],
+  [
+    "超收点/super sink",
+    0.039400000000000004
+  ],
+  [
+    "边数/size",
+    0.039400000000000004
+  ],
+  [
+    "逻辑演算体系/logical calculus system",
+    0.03929549206502536
+  ],
+  [
+    "便宜算法/Cheapest Insertion Algorithm",
+    0.039200000000000006
+  ],
+  [
+    "单环/simple ring",
+    0.039200000000000006
+  ],
+  [
+    "哈密顿回路存在性判定/Hamiltonian circuit existence determination",
+    0.039200000000000006
+  ],
+  [
+    "拉格朗日定理/Lagrange's theorem",
+    0.039200000000000006
+  ],
+  [
+    "最小权匹配/minimum weight matching",
+    0.039200000000000006
+  ],
+  [
+    "有向边/directed edge",
+    0.039200000000000006
+  ],
+  [
+    "近似算法/Approximation Algorithm",
+    0.039200000000000006
+  ],
+  [
+    "逆向表/inverse adjacency list",
+    0.039200000000000006
+  ],
+  [
+    "邻接表/adjacency list",
+    0.039200000000000006
+  ],
+  [
+    "根树/rooted tree",
+    0.03905591109144265
+  ],
+  [
+    "最大权匹配算法/maximum weight matching algorithm",
+    0.03900020377309201
+  ],
+  [
+    "Bellman-Ford算法/Bellman-Ford algorithm",
+    0.03900000000000001
+  ],
+  [
+    "五色定理/five-color theorem",
+    0.03900000000000001
+  ],
+  [
+    "分支定界法/branch and bound method",
+    0.03900000000000001
+  ],
+  [
+    "树叶/leaf",
+    0.03900000000000001
+  ],
+  [
+    "数论函数/number theoretic function",
+    0.03897862342043751
+  ],
+  [
+    "Ford-Fulkerson方法/Ford-Fulkerson method",
+    0.038956518072354215
+  ],
+  [
+    "Tait猜想/Tait's conjecture",
+    0.03880000000000001
+  ],
+  [
+    "循环/loop",
+    0.03872094884125546
+  ],
+  [
+    "标号/label",
+    0.03872094884125546
+  ],
+  [
+    "不可数/uncountable",
+    0.03863184545284692
+  ],
+  [
+    "四色问题/Four-Color Problem",
+    0.03860000000000001
+  ],
+  [
+    "逻辑关系符/logical relational symbol",
+    0.03856515931560193
+  ],
+  [
+    "支撑树的计数/spanning tree counting",
+    0.03852734409704918
+  ],
+  [
+    "递归方法/recursive method",
+    0.03834338762907361
+  ],
+  [
+    "欧拉/Leonhard Euler",
+    0.038333739352842906
+  ],
+  [
+    "群的直积/direct product of groups",
+    0.038333739352842906
+  ],
+  [
+    "古典逻辑/classical logic",
+    0.037886764336554586
+  ],
+  [
+    "集合表达式/set expression",
+    0.03776811173106328
+  ],
+  [
+    "线性串形演算/linear sequent calculus",
+    0.037677829632273466
+  ],
+  [
+    "模糊概念/fuzzy concept",
+    0.03755934602724554
+  ],
+  [
+    "矩阵元素/matrix element",
+    0.037338557246335134
+  ],
+  [
+    "团体/team",
+    0.03706207324012008
+  ],
+  [
+    "主词/subject",
+    0.03659854625016437
+  ],
+  [
+    "真值规律/truth rules",
+    0.03650584238070327
+  ],
+  [
+    "自然用语/natural language",
+    0.03630303214525492
+  ],
+  [
+    "代数结构/Algebraic Structure",
+    0.03611200206785798
+  ],
+  [
+    "谓词演算系统/predicate calculus system",
+    0.03589548990025075
+  ],
+  [
+    "积代数/product algebra",
+    0.03572798799700652
+  ],
+  [
+    "非唯一性/non-uniqueness",
+    0.03564783224411663
+  ],
+  [
+    "哥尼斯堡七桥问题/Seven Bridges of Königsberg problem",
+    0.0355595961015375
+  ],
+  [
+    "自然语言联结词/natural language connective",
+    0.035160162639400014
+  ],
+  [
+    "自由个体变项/free individual variable",
+    0.03510323884310431
+  ],
+  [
+    "客观性质/objective property",
+    0.03501259403375108
+  ],
+  [
+    "全体模糊子集组成的集合/set of all fuzzy subsets",
+    0.03498138369254162
+  ],
+  [
+    "语义观点/semantic viewpoint",
+    0.034713792273035206
+  ],
+  [
+    "个体对象/Individual Object",
+    0.034588399532097476
+  ],
+  [
+    "否定符/negation symbol",
+    0.03458460420727389
+  ],
+  [
+    "Huffman算法/Huffman algorithm",
+    0.034495566014481595
+  ],
+  [
+    "集合恒等式/Set identities",
+    0.03448694922994488
+  ],
+  [
+    "逻辑规则/logical rule",
+    0.0344737800224602
+  ],
+  [
+    "笛卡儿积R^n/Cartesian product R^n",
+    0.03443449486226225
+  ],
+  [
+    "空集合存在公理/Axiom of Empty Set",
+    0.034430830581306145
+  ],
+  [
+    "自然数集直积/Cartesian product of natural numbers",
+    0.0343861535434115
+  ],
+  [
+    "相继后元/successor",
+    0.03432425785817618
+  ],
+  [
+    "R+/R+",
+    0.034290370385908965
+  ],
+  [
+    "原公式/Original Formula",
+    0.03427163628630461
+  ],
+  [
+    "正定理/direct theorem",
+    0.03426072654865384
+  ],
+  [
+    "逻辑规律/logical law",
+    0.03420585018630078
+  ],
+  [
+    "形式语言/Formal Language",
+    0.034186572208623776
+  ],
+  [
+    "哥德尔编码/Gödel numbering",
+    0.034172912843517714
+  ],
+  [
+    "t(R)/t(R)",
+    0.034139170614255705
+  ],
+  [
+    "Lukasiewicz 逻辑/Lukasiewicz logic",
+    0.034110833935783284
+  ],
+  [
+    "机械方法/mechanical method",
+    0.034051781145651196
+  ],
+  [
+    "全称量词规则/universal quantifier rule",
+    0.03402438731507742
+  ],
+  [
+    "存在量词规则/existential quantifier rule",
+    0.03402438731507742
+  ],
+  [
+    "普通集合/crisp set",
+    0.034016924696476006
+  ],
+  [
+    "个体常项符号/individual constant symbol",
+    0.03401191829769118
+  ],
+  [
+    "自由变元符号/free variable symbol",
+    0.03401191829769118
+  ],
+  [
+    "命题逻辑的基本概念/basic concepts of propositional logic",
+    0.033983370004687596
+  ],
+  [
+    "自然演绎/natural deduction",
+    0.033983370004687596
+  ],
+  [
+    "可计算性/Computability",
+    0.03393741598369039
+  ],
+  [
+    "排中律/law of excluded middle",
+    0.03388421086944894
+  ],
+  [
+    "点/point",
+    0.03386374996428968
+  ],
+  [
+    "蕴涵连接词/implication connective",
+    0.03379125957285051
+  ],
+  [
+    "关系R/relation R",
+    0.03378367638780223
+  ],
+  [
+    "归纳定义/inductive definition",
+    0.033724920220686294
+  ],
+  [
+    "假言推理/modus ponens",
+    0.03372175938455578
+  ],
+  [
+    "蕴涵词消去律/implication elimination law",
+    0.03372175938455578
+  ],
+  [
+    "二元组/2-tuple",
+    0.03369890586180904
+  ],
+  [
+    "推理定理/inference theorems",
+    0.03367029717378561
+  ],
+  [
+    "不相交集合/disjoint sets",
+    0.03366422546671046
+  ],
+  [
+    "连通带权图/connected weighted graph",
+    0.03360548347154692
+  ],
+  [
+    "理解/understanding",
+    0.03354329076292029
+  ],
+  [
+    "n元组/n-tuple",
+    0.033537972918027174
+  ],
+  [
+    "原始递归谓词运算定理/Primitive Recursive Predicate Operation Theorem",
+    0.033521981726341805
+  ],
+  [
+    "双重否定律/double negation law",
+    0.033481176047844084
+  ],
+  [
+    "集合表示方法/set representation method",
+    0.033463057671339225
+  ],
+  [
+    "递归定义/recursive definition",
+    0.03345948969525325
+  ],
+  [
+    "传递性保持/transitivity preservation property",
+    0.03342366253168666
+  ],
+  [
+    "势/cardinality",
+    0.033377696777536055
+  ],
+  [
+    "常项集合/Set of Constants",
+    0.033365260113595065
+  ],
+  [
+    "元素关系/element relation",
+    0.033355985319143876
+  ],
+  [
+    "概率/probability",
+    0.03335560876651011
+  ],
+  [
+    "关系的n次幂/n-th power of a relation",
+    0.03335365922825659
+  ],
+  [
+    "n元关系/n-ary relation",
+    0.03334807284500824
+  ],
+  [
+    "函数集合/set of functions",
+    0.03333336504796088
+  ],
+  [
+    "A",
+    0.03333333333333333
+  ],
+  [
+    "二元集合/Binary Set",
+    0.03333333333333333
+  ],
+  [
+    "人工智能系统/artificial intelligence system",
+    0.03333333333333333
+  ],
+  [
+    "可计算性模型/model of computability",
+    0.03333333333333333
+  ],
+  [
+    "描述语言/descriptive language",
+    0.03333333333333333
+  ],
+  [
+    "数字电路/digital circuit",
+    0.03333333333333333
+  ],
+  [
+    "知识表示/knowledge representation",
+    0.03333333333333333
+  ],
+  [
+    "非空有限集合/non-empty finite set",
+    0.03333333333333333
+  ],
+  [
+    "二元谓词/binary predicate",
+    0.03332181847696149
+  ],
+  [
+    "半可判定算法/semi-decidable algorithm",
+    0.033264178128724224
+  ],
+  [
+    "关系幂/power of a relation",
+    0.03326101017481305
+  ],
+  [
+    "一阶公式/first-order formula",
+    0.03324464697207132
+  ],
+  [
+    "函数的并集/union of functions",
+    0.033240742146364355
+  ],
+  [
+    "反对称关系/antisymmetric relation",
+    0.033240740741256436
+  ],
+  [
+    "Gamma($\\Gamma$)",
+    0.03324074074074074
+  ],
+  [
+    "ON/ON",
+    0.03324074074074074
+  ],
+  [
+    "Zorn 引理/Zorn's Lemma",
+    0.03324074074074074
+  ],
+  [
+    "传递关系/transitive relation",
+    0.03324074074074074
+  ],
+  [
+    "参数/parameter",
+    0.03324074074074074
+  ],
+  [
+    "可满足/satisfiable",
+    0.03324074074074074
+  ],
+  [
+    "可能性/possibility",
+    0.03324074074074074
+  ],
+  [
+    "合法集合/legitimate set",
+    0.03324074074074074
+  ],
+  [
+    "否定和合取联结词集合/Set of negation and conjunction connectives",
+    0.03324074074074074
+  ],
+  [
+    "否定和析取联结词集合/Set of negation and disjunction connectives",
+    0.03324074074074074
+  ],
+  [
+    "因式的集合/set of fractions",
+    0.03324074074074074
+  ],
+  [
+    "奇数/odd number",
+    0.03324074074074074
+  ],
+  [
+    "完全偏序集/complete partial order(c.p.o)",
+    0.03324074074074074
+  ],
+  [
+    "实数集不可数/Uncountability of Real Numbers",
+    0.03324074074074074
+  ],
+  [
+    "幂集的图示法/Graphical representation of power sets",
+    0.03324074074074074
+  ],
+  [
+    "必然性/necessity",
+    0.03324074074074074
+  ],
+  [
+    "所有的集合/all sets",
+    0.03324074074074074
+  ],
+  [
+    "支集/support",
+    0.03324074074074074
+  ],
+  [
+    "整数/integer(Z)",
+    0.03324074074074074
+  ],
+  [
+    "最小上界/least upper bound(l.u.b)",
+    0.03324074074074074
+  ],
+  [
+    "条件/condition",
+    0.03324074074074074
+  ],
+  [
+    "构造合法集合/constructing legitimate sets",
+    0.03324074074074074
+  ],
+  [
+    "构造所有合法的集合/constructing all legitimate sets",
+    0.03324074074074074
+  ],
+  [
+    "正整数/positive integer",
+    0.03324074074074074
+  ],
+  [
+    "盖住关系/covering relation",
+    0.03324074074074074
+  ],
+  [
+    "相容类/compatibility class",
+    0.03324074074074074
+  ],
+  [
+    "真模糊子集/true fuzzy subset",
+    0.03324074074074074
+  ],
+  [
+    "线性谓词串形演算/linear predicate sequent calculus",
+    0.03324074074074074
+  ],
+  [
+    "终止条件/termination condition",
+    0.03324074074074074
+  ],
+  [
+    "语义定义/semantic definition",
+    0.03324074074074074
+  ],
+  [
+    "连续的映射/continuous map",
+    0.03324074074074074
+  ],
+  [
+    "逻辑恒等式/logical identity",
+    0.03324074074074074
+  ],
+  [
+    "线性否定空间/linear negation space",
+    0.03315948605379907
+  ],
+  [
+    "因果关系/causal relationship",
+    0.033148306138604894
+  ],
+  [
+    "相容的函数集合/compatible set of functions",
+    0.033148151652418724
+  ],
+  [
+    "CLEAR/CLEAR",
+    0.03314814814814815
+  ],
+  [
+    "p,q,r.../p,q,r...",
+    0.03314814814814815
+  ],
+  [
+    "“有的实数是有理数”语句/statement\"some real numbers are rational numbers\"",
+    0.03314814814814815
+  ],
+  [
+    "一元谓词/unary predicate",
+    0.03314814814814815
+  ],
+  [
+    "一次完成扫描/single-pass scan",
+    0.03314814814814815
+  ],
+  [
+    "三段论/syllogism",
+    0.03314814814814815
+  ],
+  [
+    "两个集合并集/Union of Two Sets",
+    0.03314814814814815
+  ],
+  [
+    "元素/Element",
+    0.03314814814814815
+  ],
+  [
+    "公理系统中的集合/set in axiom system",
+    0.03314814814814815
+  ],
+  [
+    "关系交集/intersection of relations",
+    0.03314814814814815
+  ],
+  [
+    "关系复合/relation composition",
+    0.03314814814814815
+  ],
+  [
+    "判定集合存在性/determining set existence",
+    0.03314814814814815
+  ],
+  [
+    "前件存在规则/existential introduction of the antecedent rule",
+    0.03314814814814815
+  ],
+  [
+    "单元素集合/singleton set",
+    0.03314814814814815
+  ],
+  [
+    "变目个数/arity",
+    0.03314814814814815
+  ],
+  [
+    "合取联结词/conjunction connective",
+    0.03314814814814815
+  ],
+  [
+    "后件概括规则/generalization of the consequent rule",
+    0.03314814814814815
+  ],
+  [
+    "后继谓词S/Successor Predicate S",
+    0.03314814814814815
+  ],
+  [
+    "否定规则/negation rule",
+    0.03314814814814815
+  ],
+  [
+    "基数幂运算/cardinal exponentiation",
+    0.03314814814814815
+  ],
+  [
+    "外延表示法/Extensional representation",
+    0.03314814814814815
+  ],
+  [
+    "多元谓词/n-ary predicate",
+    0.03314814814814815
+  ],
+  [
+    "奇异集合/Singular Set",
+    0.03314814814814815
+  ],
+  [
+    "完全覆盖/complete cover",
+    0.03314814814814815
+  ],
+  [
+    "形式前提/formal premise",
+    0.03314814814814815
+  ],
+  [
+    "形式理论NT/Formal Theory NT",
+    0.03314814814814815
+  ],
+  [
+    "形式结论/formal conclusion",
+    0.03314814814814815
+  ],
+  [
+    "必然真/necessary truth",
+    0.03314814814814815
+  ],
+  [
+    "恒等式/identity formula",
+    0.03314814814814815
+  ],
+  [
+    "截集/cut set",
+    0.03314814814814815
+  ],
+  [
+    "数学归纳法/mathematical induction",
+    0.03314814814814815
+  ],
+  [
+    "整除关系/divisibility relation",
+    0.03314814814814815
+  ],
+  [
+    "无限基数/infinite cardinality",
+    0.03314814814814815
+  ],
+  [
+    "析取联结词/disjunction connective",
+    0.03314814814814815
+  ],
+  [
+    "核/core",
+    0.03314814814814815
+  ],
+  [
+    "正整数集合/positive integer set",
+    0.03314814814814815
+  ],
+  [
+    "特征函数值/characteristic function value",
+    0.03314814814814815
+  ],
+  [
+    "相继前元/predecessor",
+    0.03314814814814815
+  ],
+  [
+    "矩阵逻辑乘法/Matrix Logical Multiplication",
+    0.03314814814814815
+  ],
+  [
+    "稠密性/Density",
+    0.03314814814814815
+  ],
+  [
+    "简单命题的否定/negation of simple proposition",
+    0.03314814814814815
+  ],
+  [
+    "线性命题串形演算/linear propositional sequent calculus",
+    0.03314814814814815
+  ],
+  [
+    "能行的方法/effective method",
+    0.03314814814814815
+  ],
+  [
+    "自然数集 N/set of natural numbers N",
+    0.03314814814814815
+  ],
+  [
+    "良序关系/well-ordered relation",
+    0.03314814814814815
+  ],
+  [
+    "范式定理/normal form theorem",
+    0.03314814814814815
+  ],
+  [
+    "补余律/Complementary Law",
+    0.03314814814814815
+  ],
+  [
+    "语法定义/syntactic definition",
+    0.03314814814814815
+  ],
+  [
+    "边界/boundary",
+    0.03314814814814815
+  ],
+  [
+    "运算符/operator",
+    0.03314814814814815
+  ],
+  [
+    "连续函数的全体/set of all continuous functions",
+    0.03314814814814815
+  ],
+  [
+    "递归变元/recursive variable",
+    0.03314814814814815
+  ],
+  [
+    "逻辑推理/logical deduction",
+    0.03314814814814815
+  ],
+  [
+    "零律/Zero Law",
+    0.03314814814814815
+  ],
+  [
+    "零次幂关系/zeroth power relation",
+    0.03314814814814815
+  ],
+  [
+    "非数字系统/non-numeric system",
+    0.03314814814814815
+  ],
+  [
+    "非自反性/irreflexivity",
+    0.03314814814814815
+  ],
+  [
+    "恒等变换/identity transformation",
+    0.03311808218004975
+  ],
+  [
+    "逆否定理/contrapositive theorem",
+    0.03309603671342019
+  ],
+  [
+    "逻辑析取/logical disjunction",
+    0.03306432233523477
+  ],
+  [
+    "Ackermann函数/Ackermann function",
+    0.03305555555555555
+  ],
+  [
+    "Church-Rosser 定理/Church-Rosser Theorem",
+    0.03305555555555555
+  ],
+  [
+    "Diamond Property 定理/Diamond Property Theorem",
+    0.03305555555555555
+  ],
+  [
+    "β-归约/beta-reduction",
+    0.03305555555555555
+  ],
+  [
+    "一阶谓词逻辑/first-order predicate logic",
+    0.03305555555555555
+  ],
+  [
+    "不动点定理/Fixed Point Theorem",
+    0.03305555555555555
+  ],
+  [
+    "不正确的推理形式/incorrect inference form",
+    0.03305555555555555
+  ],
+  [
+    "交换规则/exchange rule",
+    0.03305555555555555
+  ],
+  [
+    "偶数/even number",
+    0.03305555555555555
+  ],
+  [
+    "内涵表示法/Intensional representation",
+    0.03305555555555555
+  ],
+  [
+    "前件/antecedent",
+    0.03305555555555555
+  ],
+  [
+    "孤立点/isolated point",
+    0.03305555555555555
+  ],
+  [
+    "广义哥德尔不完全性定理/Generalized Gödel's Incompleteness Theorem",
+    0.03305555555555555
+  ],
+  [
+    "无理数/irrational number",
+    0.03305555555555555
+  ],
+  [
+    "时态逻辑/temporal logic",
+    0.03305555555555555
+  ],
+  [
+    "映射 r/Mapping r",
+    0.03305555555555555
+  ],
+  [
+    "模糊逻辑/fuzzy logic",
+    0.03305555555555555
+  ],
+  [
+    "约束变元/bound variable",
+    0.03305555555555555
+  ],
+  [
+    "距离函数/distance function",
+    0.03305555555555555
+  ],
+  [
+    "部分函数/partial function",
+    0.03305555555555555
+  ],
+  [
+    "部分递归规则/partial recursion rule",
+    0.03305555555555555
+  ],
+  [
+    "函数的相容性/compatibility of functions",
+    0.032962983871124826
+  ],
+  [
+    "Cantor对角线证明/Cantor's Diagonal Argument",
+    0.032962962962962965
+  ],
+  [
+    "Gödel 完全性定理/Gödel's completeness theorem",
+    0.032962962962962965
+  ],
+  [
+    "Gödel 编码定理/Gödel encoding theorem",
+    0.032962962962962965
+  ],
+  [
+    "Russell 悖论/Russell's paradox",
+    0.032962962962962965
+  ],
+  [
+    "不可证明/unprovable",
+    0.032962962962962965
+  ],
+  [
+    "关系并运算/relation union",
+    0.032962962962962965
+  ],
+  [
+    "关系并集/union of relations",
+    0.032962962962962965
+  ],
+  [
+    "分解定理/decomposition theorem",
+    0.032962962962962965
+  ],
+  [
+    "否定词量词内移规律/negation quantifier movement rule",
+    0.032962962962962965
+  ],
+  [
+    "哈斯图/Hasse diagram",
+    0.032962962962962965
+  ],
+  [
+    "图灵机/Turing Machine",
+    0.032962962962962965
+  ],
+  [
+    "定理2.5.6/Theorem2.5.6",
+    0.032962962962962965
+  ],
+  [
+    "恒等公理/identity axiom",
+    0.032962962962962965
+  ],
+  [
+    "符号串/symbol string",
+    0.032962962962962965
+  ],
+  [
+    "辖域/Scope",
+    0.032962962962962965
+  ],
+  [
+    "逆/converse",
+    0.032962962962962965
+  ],
+  [
+    "逆波兰式/Reverse Polish notation",
+    0.032962962962962965
+  ],
+  [
+    "逻辑与/logical AND",
+    0.032962962962962965
+  ],
+  [
+    "逻辑或/logical OR",
+    0.032962962962962965
+  ],
+  [
+    "阿列夫壹/aleph-one($\\aleph_1$)",
+    0.032962962962962965
+  ],
+  [
+    "Cut 规则/cut rule",
+    0.03287037037037037
+  ],
+  [
+    "Warshall 算法/Warshall's algorithm",
+    0.03287037037037037
+  ],
+  [
+    "命题等值演算/propositional equivalence calculus",
+    0.03287037037037037
+  ],
+  [
+    "定理2.5.3/Theorem2.5.3",
+    0.03287037037037037
+  ],
+  [
+    "康托尔定理/Cantor's theorem",
+    0.03287037037037037
+  ],
+  [
+    "形式推理关系/formal inference relation",
+    0.03287037037037037
+  ],
+  [
+    "最大相容类/maximal compatibility class",
+    0.03287037037037037
+  ],
+  [
+    "计算/computation",
+    0.03287037037037037
+  ],
+  [
+    "不确定逻辑/uncertain logic",
+    0.032777777777777774
+  ],
+  [
+    "递归函数论/recursive function theory",
+    0.032685185185185185
+  ],
+  [
+    "非单调逻辑/non-monotonic logic",
+    0.032685185185185185
+  ],
+  [
+    "可能的世界/possible world",
+    0.03259259259259259
+  ],
+  [
+    "无存在量词前束范式/prenex normal form without existential quantifiers",
+    0.03101645856869776
+  ],
+  [
+    "多样化表示形式/diverse representations",
+    0.030952570930636372
+  ],
+  [
+    "形式化的理论体系/formal theoretical system",
+    0.030949538143801823
+  ],
+  [
+    "笛卡儿积/cartesian product",
+    0.03026431304515332
+  ],
+  [
+    "机械推理法/mechanical inference method",
+    0.02990539783849188
+  ],
+  [
+    "限制性/restrictive",
+    0.029784342074282218
+  ],
+  [
+    "真值集合/Truth Value Set",
+    0.029209765481500678
+  ],
+  [
+    "谓词逻辑的自然演绎系统/natural deduction system for predicate logic",
+    0.027752827514091978
+  ],
+  [
+    "非重言式/non-tautology",
+    0.027631744412240224
+  ],
+  [
+    "推理定律/laws of inference",
+    0.027440341168512346
+  ],
+  [
+    "逆函数/inverse function",
+    0.027241759628965686
+  ],
+  [
+    "基础公理/Axiom of Foundation",
+    0.027160806992759107
+  ],
+  [
+    "限制公理/Axiom of Restriction",
+    0.027160806992759107
+  ],
+  [
+    "图论建模/graph theory modeling",
+    0.027074972191746278
+  ],
+  [
+    "语义结构/semantic structure",
+    0.02702958590667061
+  ],
+  [
+    "自然数运算/natural number arithmetic",
+    0.026845384693808642
+  ],
+  [
+    "Gentzen 串形演算/Gentzen Sequent Calculus",
+    0.026532610862107446
+  ],
+  [
+    "文字完全性/literal completeness",
+    0.026354395510534208
+  ],
+  [
+    "永恒真理/eternal truth",
+    0.02616156352242586
+  ],
+  [
+    "逻辑系统差异/Logic System Differences",
+    0.026012105949098877
+  ],
+  [
+    "形式结构/formal structure",
+    0.02572730298394743
+  ],
+  [
+    "逻辑关系/logical relation",
+    0.02572730298394743
+  ],
+  [
+    "1到n的自然数集合/set of natural numbers from1to n($\\mathbb{N}_n$)",
+    0.025626557021879805
+  ],
+  [
+    "无穷模型/Infinite Model",
+    0.025327236816200464
+  ],
+  [
+    "假设/Hypothesis",
+    0.025301870187528986
+  ],
+  [
+    "偏序/Partial Order",
+    0.025301870187528986
+  ],
+  [
+    "元关系/Arity Relation",
+    0.025301870187528986
+  ],
+  [
+    "分配等值式/Distributive Equivalences",
+    0.025301870187528986
+  ],
+  [
+    "完备集/complete set",
+    0.025301870187528986
+  ],
+  [
+    "有限集合的基数/Cardinality of finite sets",
+    0.025301870187528986
+  ],
+  [
+    "标准逻辑/standard logic",
+    0.025301870187528986
+  ],
+  [
+    "谓词逻辑的归结推理法/resolution inference for predicate logic",
+    0.025301870187528986
+  ],
+  [
+    "绝对值/absolute value",
+    0.025300646479945905
+  ],
+  [
+    "普遍有效/universally valid",
+    0.025231391440488516
+  ],
+  [
+    "集合运算的性质/Properties of set operations",
+    0.025231391440488516
+  ],
+  [
+    "自然数基数/Natural number cardinality",
+    0.02495566729390726
+  ],
+  [
+    "技巧性/technical skill requirement",
+    0.024949420304877894
+  ],
+  [
+    "灵活性/flexibility",
+    0.024949420304877894
+  ],
+  [
+    "K型子图/K-type subgraph",
+    0.02488266602233629
+  ],
+  [
+    "绝对真理/absolute truth",
+    0.024799385858429297
+  ],
+  [
+    "可球面图/spherical graph",
+    0.02465300285543975
+  ],
+  [
+    "等势定义/equipotence definition",
+    0.024052706757987707
+  ],
+  [
+    "数学公理/Mathematical Axiom",
+    0.02380605494496984
+  ],
+  [
+    "缺乏公理/lack of axioms",
+    0.02362823823189462
+  ],
+  [
+    "三段/Hypothetical Syllogism(HS)",
+    0.02357527949333596
+  ],
+  [
+    "全称量词引入/Universal Generalization(UG)",
+    0.02357527949333596
+  ],
+  [
+    "全称量词消去/Universal Instantiation(UI)",
+    0.02357527949333596
+  ],
+  [
+    "分离/Modus Ponens(MP)",
+    0.02357527949333596
+  ],
+  [
+    "存在量词消去/Existential Instantiation(EI)",
+    0.02357527949333596
+  ],
+  [
+    "描述个体性质/describing individual properties",
+    0.02352120069559776
+  ],
+  [
+    "无向连通图/undirected connected graph",
+    0.023413108583629726
+  ],
+  [
+    "m X n 矩阵/m x n matrix",
+    0.023282184371813022
+  ],
+  [
+    "方阵/square matrix",
+    0.023282184371813022
+  ],
+  [
+    "联结词消除/elimination of connective",
+    0.023080363517787906
+  ],
+  [
+    "析取词真值表/disjunction truth table",
+    0.022583696958585555
+  ],
+  [
+    "构造性函数/constructive function",
+    0.022529714426510715
+  ],
+  [
+    "集合 X/set X",
+    0.02252795884808137
+  ],
+  [
+    "集合 Y/set Y",
+    0.02252795884808137
+  ],
+  [
+    "计划评审技术图/Programme Evaluation and Review Technique chart",
+    0.022509096688737202
+  ],
+  [
+    "不存在自然数基数/Absence of natural number cardinality",
+    0.022348073564196727
+  ],
+  [
+    "指代唯一性/uniqueness of reference",
+    0.022227673101332186
+  ],
+  [
+    "前束形/Prenex Form",
+    0.0219466657399968
+  ],
+  [
+    "公理系统符号/axiomatic system symbols",
+    0.021912370926888358
+  ],
+  [
+    "无负长回路/no negative-weight cycle",
+    0.021876123983761885
+  ],
+  [
+    "直线距离/straight line distance",
+    0.021847054554634208
+  ],
+  [
+    "最小割切容量/minimum cut capacity",
+    0.021802757824723164
+  ],
+  [
+    "集合运算符/set operator",
+    0.021783527056081248
+  ],
+  [
+    "正因子/positive divisor",
+    0.021529975647727826
+  ],
+  [
+    "哈密顿图/Hamiltonian graph",
+    0.021529315816428283
+  ],
+  [
+    "计算机硬件电路设计分析/computer hardware circuit design analysis",
+    0.021502269539375687
+  ],
+  [
+    "初等算术形式理论/Elementary Arithmetic Formal Theory",
+    0.021269654385503923
+  ],
+  [
+    "$\\epsilon$邻域/epsilon neighborhood",
+    0.021249519221184114
+  ],
+  [
+    "二叉树/binary tree",
+    0.0211127304373138
+  ],
+  [
+    "最大流问题/maximum flow problem",
+    0.020799670304310545
+  ],
+  [
+    "顶点与边数关系/vertex-edge count relation",
+    0.020795939197047354
+  ],
+  [
+    "个体数量/quantity of individuals",
+    0.020749884674544132
+  ],
+  [
+    "不正确性/incorrectness",
+    0.020721708280853908
+  ],
+  [
+    "正确性/correctness",
+    0.020721708280853908
+  ],
+  [
+    "重边/multiple edges",
+    0.020698682444049186
+  ],
+  [
+    "电路网络/electrical circuit network",
+    0.02068440108709041
+  ],
+  [
+    "工程任务/Engineering Task",
+    0.020444294261806942
+  ],
+  [
+    "空团体/empty clique",
+    0.02042079196294824
+  ],
+  [
+    "霍尔定理/Hall's theorem",
+    0.02037089955623763
+  ],
+  [
+    "永真式/eternally true formula",
+    0.02036667290010367
+  ],
+  [
+    "公式等值/formula equivalence",
+    0.02029516821023217
+  ],
+  [
+    "有向树/directed tree",
+    0.020156457994207472
+  ],
+  [
+    "外向树/out-arborescence",
+    0.020062583197682993
+  ],
+  [
+    "有向图的中国邮路/Chinese Postman Problem for Directed Graphs",
+    0.02000755536658615
+  ],
+  [
+    "利润矩阵/profit matrix",
+    0.02000036318447817
+  ],
+  [
+    "最小非零元/minimum non-zero element",
+    0.020000070702368297
+  ],
+  [
+    "3-正则平面图/3-regular planar graph",
+    0.020000000000000004
+  ],
+  [
+    "Ford-Fulkerson标号算法/Ford-Fulkerson labeling algorithm",
+    0.020000000000000004
+  ],
+  [
+    "n顶点路/n-vertex path",
+    0.020000000000000004
+  ],
+  [
+    "三角不等式/Triangle Inequality",
+    0.020000000000000004
+  ],
+  [
+    "不同进制编码/different base coding",
+    0.020000000000000004
+  ],
+  [
+    "不相邻顶点/non-adjacent vertices",
+    0.020000000000000004
+  ],
+  [
+    "世界近代三大数学难题/Three Great Mathematics Problems of Modern Times",
+    0.020000000000000004
+  ],
+  [
+    "二分图最大匹配/bipartite maximum matching",
+    0.020000000000000004
+  ],
+  [
+    "剩余类加群/additive group of residue classes modulo n",
+    0.020000000000000004
+  ],
+  [
+    "加法运算/addition",
+    0.020000000000000004
+  ],
+  [
+    "加边图/edge-added graph",
+    0.020000000000000004
+  ],
+  [
+    "单群/simple group",
+    0.020000000000000004
+  ],
+  [
+    "单链表/singly linked list",
+    0.020000000000000004
+  ],
+  [
+    "图论问题/graph theory problem",
+    0.020000000000000004
+  ],
+  [
+    "均衡二叉树/balanced binary tree",
+    0.020000000000000004
+  ],
+  [
+    "基本关联矩阵与其转置矩阵的乘积/product of the basic incidence matrix and its transpose",
+    0.020000000000000004
+  ],
+  [
+    "奇回路/odd cycle",
+    0.020000000000000004
+  ],
+  [
+    "定理6.1.1/theorem6.1.1",
+    0.020000000000000004
+  ],
+  [
+    "库拉图斯基定理/Kuratowski's theorem",
+    0.020000000000000004
+  ],
+  [
+    "度为1的顶点/vertex with degree1",
+    0.020000000000000004
+  ],
+  [
+    "引理/lemma",
+    0.020000000000000004
+  ],
+  [
+    "归纳法/induction",
+    0.020000000000000004
+  ],
+  [
+    "成本矩阵/cost matrix",
+    0.020000000000000004
+  ],
+  [
+    "抽象代数/abstract algebra",
+    0.020000000000000004
+  ],
+  [
+    "拓扑学/Topology",
+    0.020000000000000004
+  ],
+  [
+    "整数加群/additive group of integers",
+    0.020000000000000004
+  ],
+  [
+    "最大度/maximum degree",
+    0.020000000000000004
+  ],
+  [
+    "最小公倍数/least common multiple",
+    0.020000000000000004
+  ],
+  [
+    "最小费用流问题/minimum-cost flow problem",
+    0.020000000000000004
+  ],
+  [
+    "有限阿贝尔群/finite abelian group",
+    0.020000000000000004
+  ],
+  [
+    "枚举法/Enumeration Method",
+    0.020000000000000004
+  ],
+  [
+    "栈/stack",
+    0.020000000000000004
+  ],
+  [
+    "欧拉回路存在性判定/Eulerian circuit existence determination",
+    0.020000000000000004
+  ],
+  [
+    "独立数/independence number",
+    0.020000000000000004
+  ],
+  [
+    "生成元集/generator set",
+    0.020000000000000004
+  ],
+  [
+    "相同边权/identical edge weight",
+    0.020000000000000004
+  ],
+  [
+    "相邻顶点/adjacent vertices",
+    0.020000000000000004
+  ],
+  [
+    "矩阵B11/Matrix B11",
+    0.020000000000000004
+  ],
+  [
+    "矩阵B12/Matrix B12",
+    0.020000000000000004
+  ],
+  [
+    "矩阵Cf/Matrix Cf",
+    0.020000000000000004
+  ],
+  [
+    "稀疏图/sparse graph",
+    0.020000000000000004
+  ],
+  [
+    "稠密图/dense graph",
+    0.020000000000000004
+  ],
+  [
+    "简单有向回路/simple directed circuit",
+    0.020000000000000004
+  ],
+  [
+    "线性无关/linear independence",
+    0.020000000000000004
+  ],
+  [
+    "结构相同/same structure",
+    0.020000000000000004
+  ],
+  [
+    "表结点/list node",
+    0.020000000000000004
+  ],
+  [
+    "西尔维斯特不等式/Sylvester's rank inequality",
+    0.020000000000000004
+  ],
+  [
+    "贪心算法/greedy algorithm",
+    0.020000000000000004
+  ],
+  [
+    "费马猜想/Fermat's Conjecture",
+    0.020000000000000004
+  ],
+  [
+    "轮形图/wheel graph",
+    0.020000000000000004
+  ],
+  [
+    "边权为正/positive edge weight",
+    0.020000000000000004
+  ],
+  [
+    "静态算法/static algorithm",
+    0.020000000000000004
+  ],
+  [
+    "顶点合并图/vertex-merged graph",
+    0.020000000000000004
+  ],
+  [
+    "顶点数/number of vertices",
+    0.020000000000000004
+  ],
+  [
+    "顶点着色数/number of vertex colorings",
+    0.020000000000000004
+  ],
+  [
+    "高速数字计算机/High-speed Digital Computer",
+    0.020000000000000004
+  ],
+  [
+    "对换/transposition",
+    0.01990454082256712
+  ],
+  [
+    "2-可着色/2-colorable",
+    0.019900000000000004
+  ],
+  [
+    "4-可着色/4-colorable",
+    0.019900000000000004
+  ],
+  [
+    "H 回路/H circuit",
+    0.019900000000000004
+  ],
+  [
+    "H 道路/H path",
+    0.019900000000000004
+  ],
+  [
+    "K(1)图/K(1)graph",
+    0.019900000000000004
+  ],
+  [
+    "K(1)型图/K(1)-type graph",
+    0.019900000000000004
+  ],
+  [
+    "K(2)图/K(2)graph",
+    0.019900000000000004
+  ],
+  [
+    "K(2)型图/K(2)-type graph",
+    0.019900000000000004
+  ],
+  [
+    "Kirchhoff 电路定律/Kirchhoff's circuit laws",
+    0.019900000000000004
+  ],
+  [
+    "Klein四元群/Klein four-group",
+    0.019900000000000004
+  ],
+  [
+    "K型图/K-type graph",
+    0.019900000000000004
+  ],
+  [
+    "ab⁻¹运算封闭性/closure under ab⁻¹operation",
+    0.019900000000000004
+  ],
+  [
+    "k-方体图/k-cube graph",
+    0.019900000000000004
+  ],
+  [
+    "k边连通图/k-edge-connected graph",
+    0.019900000000000004
+  ],
+  [
+    "k连通图/k-vertex-connected graph",
+    0.019900000000000004
+  ],
+  [
+    "n个顶点n-1条边/n vertices and n-1edges",
+    0.019900000000000004
+  ],
+  [
+    "n次幂/nth power",
+    0.019900000000000004
+  ],
+  [
+    "n阶循环群/n-th order cyclic group",
+    0.019900000000000004
+  ],
+  [
+    "n阶整数方阵环/ring of n-th order integer matrices",
+    0.019900000000000004
+  ],
+  [
+    "一一变换群/bijective transformation group",
+    0.019900000000000004
+  ],
+  [
+    "一一对应映射/one-to-one correspondence",
+    0.019900000000000004
+  ],
+  [
+    "三角剖分域/triangulated faces",
+    0.019900000000000004
+  ],
+  [
+    "不包含相同元素/containing no common elements",
+    0.019900000000000004
+  ],
+  [
+    "不变子群/Invariant Subgroup",
+    0.019900000000000004
+  ],
+  [
+    "不对称图/asymmetric graph",
+    0.019900000000000004
+  ],
+  [
+    "不属于任何回路/not belonging to any cycle",
+    0.019900000000000004
+  ],
+  [
+    "中序遍历/in-order traversal",
+    0.019900000000000004
+  ],
+  [
+    "中心化子/centralizer",
+    0.019900000000000004
+  ],
+  [
+    "中间状态/intermediate state",
+    0.019900000000000004
+  ],
+  [
+    "乘法逆元/multiplicative inverse",
+    0.019900000000000004
+  ],
+  [
+    "乘积的逆元/inverse of a product",
+    0.019900000000000004
+  ],
+  [
+    "二分图匹配/bipartite matching",
+    0.019900000000000004
+  ],
+  [
+    "仅含偶数边环/only even-edge cycles",
+    0.019900000000000004
+  ],
+  [
+    "仅存在两个奇数度顶点/exactly two vertices of odd degree",
+    0.019900000000000004
+  ],
+  [
+    "代数图论/algebraic graph theory",
+    0.019900000000000004
+  ],
+  [
+    "代数表示方法/algebraic representation method",
+    0.019900000000000004
+  ],
+  [
+    "代数运算/algebraic operation",
+    0.019900000000000004
+  ],
+  [
+    "任意两顶点共回路/any two vertices share a circuit",
+    0.019900000000000004
+  ],
+  [
+    "传递性/transitivity",
+    0.019900000000000004
+  ],
+  [
+    "余树枝/cotree branch",
+    0.019900000000000004
+  ],
+  [
+    "保持运算/operation-preserving",
+    0.019900000000000004
+  ],
+  [
+    "值域/codomain",
+    0.019900000000000004
+  ],
+  [
+    "偶数长回路/even length circuit",
+    0.019900000000000004
+  ],
+  [
+    "偶顶点/even vertex",
+    0.019900000000000004
+  ],
+  [
+    "允许延误时间/Allowable Delay Time",
+    0.019900000000000004
+  ],
+  [
+    "允许弧/admissible arc",
+    0.019900000000000004
+  ],
+  [
+    "先标号先检查方法/first-labeled first-examined method",
+    0.019900000000000004
+  ],
+  [
+    "公因子群/common factor group",
+    0.019900000000000004
+  ],
+  [
+    "共轭封闭性/Closure under conjugation",
+    0.019900000000000004
+  ],
+  [
+    "内邻集/in-neighborhood",
+    0.019900000000000004
+  ],
+  [
+    "内部域/internal face",
+    0.019900000000000004
+  ],
+  [
+    "内部直积/internal direct product",
+    0.019900000000000004
+  ],
+  [
+    "凯莱定理/Cayley's theorem",
+    0.019900000000000004
+  ],
+  [
+    "分支/Branching",
+    0.019900000000000004
+  ],
+  [
+    "分枝顶点/branch vertex",
+    0.019900000000000004
+  ],
+  [
+    "初始匹配/initial matching",
+    0.019900000000000004
+  ],
+  [
+    "初级有向回路/elementary directed circuit",
+    0.019900000000000004
+  ],
+  [
+    "前序遍历/pre-order traversal",
+    0.019900000000000004
+  ],
+  [
+    "割切容量/capacity of a cut",
+    0.019900000000000004
+  ],
+  [
+    "半哈密顿图/semi-Hamiltonian graph",
+    0.019900000000000004
+  ],
+  [
+    "半欧拉图/semi-Eulerian graph",
+    0.019900000000000004
+  ],
+  [
+    "单位映射/unit mapping",
+    0.019900000000000004
+  ],
+  [
+    "单位费用/unit cost",
+    0.019900000000000004
+  ],
+  [
+    "原象/preimage",
+    0.019900000000000004
+  ],
+  [
+    "反向标号/backward labeling",
+    0.019900000000000004
+  ],
+  [
+    "变化过程/transition process",
+    0.019900000000000004
+  ],
+  [
+    "右单位元/right identity element",
+    0.019900000000000004
+  ],
+  [
+    "右可逆映射/right-invertible mapping",
+    0.019900000000000004
+  ],
+  [
+    "右零因子/right zero divisor",
+    0.019900000000000004
+  ],
+  [
+    "合并连通分量/merging connected components",
+    0.019900000000000004
+  ],
+  [
+    "同构象/isomorphic image",
+    0.019900000000000004
+  ],
+  [
+    "后序遍历/post-order traversal",
+    0.019900000000000004
+  ],
+  [
+    "向前边/forward edge",
+    0.019900000000000004
+  ],
+  [
+    "向后边/backward edge",
+    0.019900000000000004
+  ],
+  [
+    "周期/period",
+    0.019900000000000004
+  ],
+  [
+    "唯一道路/unique path",
+    0.019900000000000004
+  ],
+  [
+    "回路判断/cycle detection",
+    0.019900000000000004
+  ],
+  [
+    "图的矩阵表示/matrix representation of graph",
+    0.019900000000000004
+  ],
+  [
+    "图论算法/graph theory algorithm",
+    0.019900000000000004
+  ],
+  [
+    "基数/cardinality",
+    0.019900000000000004
+  ],
+  [
+    "堆结构/heap structure",
+    0.019900000000000004
+  ],
+  [
+    "外邻集/out-neighborhood",
+    0.019900000000000004
+  ],
+  [
+    "多重图/multigraph",
+    0.019900000000000004
+  ],
+  [
+    "奇置换/odd permutation",
+    0.019900000000000004
+  ],
+  [
+    "奇顶点/odd vertex",
+    0.019900000000000004
+  ],
+  [
+    "始点/initial vertex",
+    0.019900000000000004
+  ],
+  [
+    "子群的交集/intersection of subgroups",
+    0.019900000000000004
+  ],
+  [
+    "子群的同态象/homomorphic image of a subgroup",
+    0.019900000000000004
+  ],
+  [
+    "子路径的最短性/optimality of subpaths",
+    0.019900000000000004
+  ],
+  [
+    "存在欧拉回路/existence of Eulerian circuit",
+    0.019900000000000004
+  ],
+  [
+    "存在欧拉道路且不存在欧拉回路/path exists and circuit does not",
+    0.019900000000000004
+  ],
+  [
+    "孤立点/isolated vertex",
+    0.019900000000000004
+  ],
+  [
+    "孩子表示法/child pointer representation",
+    0.019900000000000004
+  ],
+  [
+    "完全二分图K3,3/complete bipartite graph K3,3",
+    0.019900000000000004
+  ],
+  [
+    "完全二叉树/complete binary tree",
+    0.019900000000000004
+  ],
+  [
+    "完全图K5/complete graph K5",
+    0.019900000000000004
+  ],
+  [
+    "定义域/domain",
+    0.019900000000000004
+  ],
+  [
+    "定理6.1.2/theorem6.1.2",
+    0.019900000000000004
+  ],
+  [
+    "定界/Bounding",
+    0.019900000000000004
+  ],
+  [
+    "实数集/set of real numbers",
+    0.019900000000000004
+  ],
+  [
+    "对称差/symmetric difference",
+    0.019900000000000004
+  ],
+  [
+    "左单位元/left identity element",
+    0.019900000000000004
+  ],
+  [
+    "左可逆映射/left-invertible mapping",
+    0.019900000000000004
+  ],
+  [
+    "左陪集等于右陪集/Left coset equals right coset",
+    0.019900000000000004
+  ],
+  [
+    "左零因子/left zero divisor",
+    0.019900000000000004
+  ],
+  [
+    "幂运算/power operation",
+    0.019900000000000004
+  ],
+  [
+    "平凡子图/trivial subgraph",
+    0.019900000000000004
+  ],
+  [
+    "平凡子幺群/trivial submonoid",
+    0.019900000000000004
+  ],
+  [
+    "平凡子群/Trivial Subgroup",
+    0.019900000000000004
+  ],
+  [
+    "平凡核/trivial kernel",
+    0.019900000000000004
+  ],
+  [
+    "广义结合律/generalized associative law",
+    0.019900000000000004
+  ],
+  [
+    "弧/arc",
+    0.019900000000000004
+  ],
+  [
+    "循环性/cyclicity",
+    0.019900000000000004
+  ],
+  [
+    "恒等映射/identity mapping",
+    0.019900000000000004
+  ],
+  [
+    "恒等置换/identity permutation",
+    0.019900000000000004
+  ],
+  [
+    "所有理想皆为主理想/all ideals are principal ideals",
+    0.019900000000000004
+  ],
+  [
+    "所有顶点度为偶数/all vertex degrees are even",
+    0.019900000000000004
+  ],
+  [
+    "拓扑图论/topological graph theory",
+    0.019900000000000004
+  ],
+  [
+    "指数/index",
+    0.019900000000000004
+  ],
+  [
+    "指数律/index law",
+    0.019900000000000004
+  ],
+  [
+    "推论/corollary",
+    0.019900000000000004
+  ],
+  [
+    "支撑树数目/number of spanning trees",
+    0.019900000000000004
+  ],
+  [
+    "支配顶点/dominating vertex",
+    0.019900000000000004
+  ],
+  [
+    "数据域/data field",
+    0.019900000000000004
+  ],
+  [
+    "数环/number ring",
+    0.019900000000000004
+  ],
+  [
+    "数理逻辑/mathematical logic",
+    0.019900000000000004
+  ],
+  [
+    "整数加群的商群/quotient group of the additive group of integers",
+    0.019900000000000004
+  ],
+  [
+    "断集/cut-set",
+    0.019900000000000004
+  ],
+  [
+    "无割点/no cut vertex",
+    0.019900000000000004
+  ],
+  [
+    "无割边/no cut edges",
+    0.019900000000000004
+  ],
+  [
+    "无向完全图/undirected complete graph",
+    0.019900000000000004
+  ],
+  [
+    "无向边/undirected edge",
+    0.019900000000000004
+  ],
+  [
+    "无增广路/no augmenting path",
+    0.019900000000000004
+  ],
+  [
+    "无限图/infinite graph",
+    0.019900000000000004
+  ],
+  [
+    "无限域/infinite face",
+    0.019900000000000004
+  ],
+  [
+    "无限性/infinitude",
+    0.019900000000000004
+  ],
+  [
+    "无限群/infinite group",
+    0.019900000000000004
+  ],
+  [
+    "时间依赖性中国邮路问题/Time-Dependent Chinese Postman Problem",
+    0.019900000000000004
+  ],
+  [
+    "最优化道路/optimal path",
+    0.019900000000000004
+  ],
+  [
+    "最优解/Optimal Solution",
+    0.019900000000000004
+  ],
+  [
+    "最佳匹配算法/optimal matching algorithm",
+    0.019900000000000004
+  ],
+  [
+    "最佳邮路/Optimal Postman Route",
+    0.019900000000000004
+  ],
+  [
+    "最大匹配算法/maximum matching algorithm",
+    0.019900000000000004
+  ],
+  [
+    "最大权/maximum weight",
+    0.019900000000000004
+  ],
+  [
+    "最大流最小割定理/max-flow min-cut theorem",
+    0.019900000000000004
+  ],
+  [
+    "最小成本/minimum cost",
+    0.019900000000000004
+  ],
+  [
+    "最小支配集/minimum dominating set",
+    0.019900000000000004
+  ],
+  [
+    "最少边数/minimum number of edges",
+    0.019900000000000004
+  ],
+  [
+    "最早开始时间/Earliest Start Time",
+    0.019900000000000004
+  ],
+  [
+    "最晚启动时间/Latest Start Time",
+    0.019900000000000004
+  ],
+  [
+    "最短回路/shortest circuit",
+    0.019900000000000004
+  ],
+  [
+    "最短增广路算法/shortest augmenting path algorithm",
+    0.019900000000000004
+  ],
+  [
+    "有向割集/directed cut set",
+    0.019900000000000004
+  ],
+  [
+    "有向哈密顿回路/directed Hamiltonian circuit",
+    0.019900000000000004
+  ],
+  [
+    "有向回路/directed circuit",
+    0.019900000000000004
+  ],
+  [
+    "有幺元的交换单环/commutative simple ring with unity",
+    0.019900000000000004
+  ],
+  [
+    "有限图/finite graph",
+    0.019900000000000004
+  ],
+  [
+    "有限阶元素/element of finite order",
+    0.019900000000000004
+  ],
+  [
+    "期望长度最小的二进制编码/minimum expected length binary coding",
+    0.019900000000000004
+  ],
+  [
+    "极大平面图参数定理/maximal planar graph parameter theorem",
+    0.019900000000000004
+  ],
+  [
+    "树的数目/number of trees",
+    0.019900000000000004
+  ],
+  [
+    "树结构/tree structure",
+    0.019900000000000004
+  ],
+  [
+    "根/root",
+    0.019900000000000004
+  ],
+  [
+    "模同余关系/modular congruence relation",
+    0.019900000000000004
+  ],
+  [
+    "欧拉图/Eulerian graph",
+    0.019900000000000004
+  ],
+  [
+    "正向标号/forward labeling",
+    0.019900000000000004
+  ],
+  [
+    "正负度相等/equal in-degree and out-degree",
+    0.019900000000000004
+  ],
+  [
+    "汇点/sink",
+    0.019900000000000004
+  ],
+  [
+    "流/flow",
+    0.019900000000000004
+  ],
+  [
+    "深度优先搜索过程/Depth-First Search process",
+    0.019900000000000004
+  ],
+  [
+    "深度优先策略/depth-first strategy",
+    0.019900000000000004
+  ],
+  [
+    "混合图/mixed graph",
+    0.019900000000000004
+  ],
+  [
+    "源点/source",
+    0.019900000000000004
+  ],
+  [
+    "父亲表示法/parent pointer representation",
+    0.019900000000000004
+  ],
+  [
+    "特定顶点间路径的必经点/necessary point on paths between specific vertices",
+    0.019900000000000004
+  ],
+  [
+    "瓶颈/bottleneck",
+    0.019900000000000004
+  ],
+  [
+    "生成元素/generating element",
+    0.019900000000000004
+  ],
+  [
+    "生成子图/generating subgraph",
+    0.019900000000000004
+  ],
+  [
+    "生成树/generating tree",
+    0.019900000000000004
+  ],
+  [
+    "直接前趋集/predecessor set",
+    0.019900000000000004
+  ],
+  [
+    "直接后继集合/direct successor set",
+    0.019900000000000004
+  ],
+  [
+    "相等判定条件/equality condition",
+    0.019900000000000004
+  ],
+  [
+    "相等或不相交/identical or disjoint",
+    0.019900000000000004
+  ],
+  [
+    "真子幺群/proper submonoid",
+    0.019900000000000004
+  ],
+  [
+    "真理想/proper ideal",
+    0.019900000000000004
+  ],
+  [
+    "矩阵B11的转置/transpose of matrix B11",
+    0.019900000000000004
+  ],
+  [
+    "矩阵B12的逆/inverse of matrix B12",
+    0.019900000000000004
+  ],
+  [
+    "空图/null graph",
+    0.019900000000000004
+  ],
+  [
+    "端点/endpoint",
+    0.019900000000000004
+  ],
+  [
+    "等价类族/family of equivalence classes",
+    0.019900000000000004
+  ],
+  [
+    "算法图论/algorithmic graph theory",
+    0.019900000000000004
+  ],
+  [
+    "算法收敛性/algorithm convergence",
+    0.019900000000000004
+  ],
+  [
+    "线性相关/linear dependence",
+    0.019900000000000004
+  ],
+  [
+    "终点/terminal vertex",
+    0.019900000000000004
+  ],
+  [
+    "结构保持/structure preservation",
+    0.019900000000000004
+  ],
+  [
+    "置换乘法/permutation multiplication",
+    0.019900000000000004
+  ],
+  [
+    "置换奇偶性/parity of permutation",
+    0.019900000000000004
+  ],
+  [
+    "置换的阶/order of a permutation",
+    0.019900000000000004
+  ],
+  [
+    "群元素/group element",
+    0.019900000000000004
+  ],
+  [
+    "自反性/reflexivity",
+    0.019900000000000004
+  ],
+  [
+    "行向量线性相关/linear dependence of row vectors",
+    0.019900000000000004
+  ],
+  [
+    "补图/complement graph",
+    0.019900000000000004
+  ],
+  [
+    "表示重边的局限性/limitation on representing multiple edges",
+    0.019900000000000004
+  ],
+  [
+    "表顶点/list vertex",
+    0.019900000000000004
+  ],
+  [
+    "象/image",
+    0.019900000000000004
+  ],
+  [
+    "负元/negative element",
+    0.019900000000000004
+  ],
+  [
+    "路径唯一性/path uniqueness",
+    0.019900000000000004
+  ],
+  [
+    "边不相交/non-intersecting edges",
+    0.019900000000000004
+  ],
+  [
+    "边数上限/upper bound of edges",
+    0.019900000000000004
+  ],
+  [
+    "边数目相等/equal number of edges",
+    0.019900000000000004
+  ],
+  [
+    "边添加饱和性/edge-addition saturation",
+    0.019900000000000004
+  ],
+  [
+    "边的选择过程/edge selection process",
+    0.019900000000000004
+  ],
+  [
+    "运算保持/operation preserving",
+    0.019900000000000004
+  ],
+  [
+    "近似最优解/Approximate Optimal Solution",
+    0.019900000000000004
+  ],
+  [
+    "逆元的逆元/inverse of an inverse",
+    0.019900000000000004
+  ],
+  [
+    "逆置换/inverse permutation",
+    0.019900000000000004
+  ],
+  [
+    "遍历所有顶点/traversing all vertices",
+    0.019900000000000004
+  ],
+  [
+    "邻接点域/adjacency field",
+    0.019900000000000004
+  ],
+  [
+    "邻点集/neighborhood",
+    0.019900000000000004
+  ],
+  [
+    "链域/link field",
+    0.019900000000000004
+  ],
+  [
+    "长度为1的轮换/cycle of length1",
+    0.019900000000000004
+  ],
+  [
+    "阶相等/equal order",
+    0.019900000000000004
+  ],
+  [
+    "阻塞流/blocking flow",
+    0.019900000000000004
+  ],
+  [
+    "阿贝尔群的子群/Subgroup of an Abelian group",
+    0.019900000000000004
+  ],
+  [
+    "集合论/set theory",
+    0.019900000000000004
+  ],
+  [
+    "零图/zero graph",
+    0.019900000000000004
+  ],
+  [
+    "霍尔条件/Hall's condition",
+    0.019900000000000004
+  ],
+  [
+    "非空子集/non-empty subset",
+    0.019900000000000004
+  ],
+  [
+    "非负实数/non-negative real number",
+    0.019900000000000004
+  ],
+  [
+    "顶点层次/level of a vertex",
+    0.019900000000000004
+  ],
+  [
+    "顶点度的非增序列相同/same non-increasing degree sequence",
+    0.019900000000000004
+  ],
+  [
+    "顶点数目相等/equal number of vertices",
+    0.019900000000000004
+  ],
+  [
+    "饱和边/saturated edge",
+    0.019900000000000004
+  ],
+  [
+    "首条路径为最短/first path is shortest",
+    0.019900000000000004
+  ],
+  [
+    "首条路径非最短/first path not guaranteed shortest",
+    0.019900000000000004
+  ],
+  [
+    "Cayley公式/Cayley's formula",
+    0.019800000000000005
+  ],
+  [
+    "Dénes König",
+    0.019800000000000005
+  ],
+  [
+    "Edmonds&Johnson算法/Edmonds&Johnson algorithm",
+    0.019800000000000005
+  ],
+  [
+    "Ford算法/Ford's algorithm",
+    0.019800000000000005
+  ],
+  [
+    "Tutte的反例/Tutte's counterexample",
+    0.019800000000000005
+  ],
+  [
+    "n次单位根群/group of nth roots of unity",
+    0.019800000000000005
+  ],
+  [
+    "乘法消去律/cancellation law of multiplication",
+    0.019800000000000005
+  ],
+  [
+    "割切/cut",
+    0.019800000000000005
+  ],
+  [
+    "同构图/isomorphic graph",
+    0.019800000000000005
+  ],
+  [
+    "地图着色/map coloring",
+    0.019800000000000005
+  ],
+  [
+    "域数/number of faces",
+    0.019800000000000005
+  ],
+  [
+    "域染色/face coloring",
+    0.019800000000000005
+  ],
+  [
+    "基向量/basis vector",
+    0.019800000000000005
+  ],
+  [
+    "基本关联矩阵与其转置矩阵乘积的行列式/determinant of the product of the basic incidence matrix and its transpose",
+    0.019800000000000005
+  ],
+  [
+    "复合映射/composite mapping",
+    0.019800000000000005
+  ],
+  [
+    "子群的乘积/product of subgroups",
+    0.019800000000000005
+  ],
+  [
+    "广度优先搜索算法/breadth-first search algorithm",
+    0.019800000000000005
+  ],
+  [
+    "建堆/heapify",
+    0.019800000000000005
+  ],
+  [
+    "抽象群/abstract group",
+    0.019800000000000005
+  ],
+  [
+    "搜索法/search method",
+    0.019800000000000005
+  ],
+  [
+    "支配集/dominating set",
+    0.019800000000000005
+  ],
+  [
+    "收缩顶点/vertex contraction",
+    0.019800000000000005
+  ],
+  [
+    "无向带权图/undirected weighted graph",
+    0.019800000000000005
+  ],
+  [
+    "最优二进制编码/optimal binary coding",
+    0.019800000000000005
+  ],
+  [
+    "最小权匹配算法/minimum weight matching algorithm",
+    0.019800000000000005
+  ],
+  [
+    "最短路径长度/shortest path length",
+    0.019800000000000005
+  ],
+  [
+    "最长路径算法/Longest Path Algorithm",
+    0.019800000000000005
+  ],
+  [
+    "构造法/construction method",
+    0.019800000000000005
+  ],
+  [
+    "格斯里/Francis Guthrie",
+    0.019800000000000005
+  ],
+  [
+    "欧拉函数/Euler's totient function",
+    0.019800000000000005
+  ],
+  [
+    "深度优先搜索算法/depth-first search algorithm",
+    0.019800000000000005
+  ],
+  [
+    "生成子群/generated subgroup",
+    0.019800000000000005
+  ],
+  [
+    "第二同构定理/second isomorphism theorem",
+    0.019800000000000005
+  ],
+  [
+    "素数/prime number",
+    0.019800000000000005
+  ],
+  [
+    "群论/group theory",
+    0.019800000000000005
+  ],
+  [
+    "自然映射/natural mapping",
+    0.019800000000000005
+  ],
+  [
+    "色多项式递推关系/reccurence relation for chromatic polynomial",
+    0.019800000000000005
+  ],
+  [
+    "赫伍德/Heawood",
+    0.019800000000000005
+  ],
+  [
+    "递推公式/recurrence relation",
+    0.019800000000000005
+  ],
+  [
+    "道路判定/Path Determination",
+    0.019800000000000005
+  ],
+  [
+    "邻接边数目/number of adjacent edges",
+    0.019800000000000005
+  ],
+  [
+    "顶点度/vertex degree",
+    0.019800000000000005
+  ],
+  [
+    "顶点度总和/sum of vertex degrees",
+    0.019800000000000005
+  ],
+  [
+    "构造性逻辑/constructive logic",
+    0.019763926784794182
+  ],
+  [
+    "n顶点回路/n-vertex cycle",
+    0.019700000000000002
+  ],
+  [
+    "奇偶点图上作业法/Odd-Even Point Graph Method",
+    0.019700000000000002
+  ],
+  [
+    "无限循环群/infinite cyclic group",
+    0.019700000000000002
+  ],
+  [
+    "有限循环群/finite cyclic group",
+    0.019700000000000002
+  ],
+  [
+    "矩阵Cf12/Matrix Cf12",
+    0.019700000000000002
+  ],
+  [
+    "色数递推计算/chromatic number recursive calculation",
+    0.019600000000000003
+  ],
+  [
+    "非平面图/non-planar graph",
+    0.019600000000000003
+  ],
+  [
+    "迭置规则/composition rule",
+    0.019569467901519068
+  ],
+  [
+    "覆盖性/Covering Property",
+    0.019554628728375486
+  ],
+  [
+    "数的运算/arithmetic operation",
+    0.019545925936199277
+  ],
+  [
+    "λ演算系统/Lambda Calculus System",
+    0.019441671341744418
+  ],
+  [
+    "公式普遍有效性判定问题/formula universal validity decidability problem",
+    0.019441671341744418
+  ],
+  [
+    "一阶逻辑/first-order logic",
+    0.019220825377142634
+  ],
+  [
+    "不包含双向蕴含联结词/absence of biconditional connective",
+    0.01908046316030266
+  ],
+  [
+    "不包含蕴含联结词/absence of implication connective",
+    0.01908046316030266
+  ],
+  [
+    "否定联结词直接作用于命题变项/negation connective directly on propositional variable",
+    0.01908046316030266
+  ],
+  [
+    "统一性/uniformity",
+    0.01908046316030266
+  ],
+  [
+    "统一表达形式/Unified Expression Form",
+    0.01908046316030266
+  ],
+  [
+    "无存在量词公式/Formula without Existential Quantifiers",
+    0.019058298650338514
+  ],
+  [
+    "语义的解释性论述/semantic explanatory discourse",
+    0.019047145246189192
+  ],
+  [
+    "优先权/precedence",
+    0.01901710318817564
+  ],
+  [
+    "机械性/mechanical nature",
+    0.01893319111862788
+  ],
+  [
+    "反向使用推理规则/backward application of inference rules",
+    0.018831424706753277
+  ],
+  [
+    "从左到右原则/left-to-right rule",
+    0.018708701808225675
+  ],
+  [
+    "相同主析取范式/identical principal disjunctive normal form",
+    0.018635750312071757
+  ],
+  [
+    "真值表等同性/truth table equivalence",
+    0.018635750312071757
+  ],
+  [
+    "n.f./n.f.",
+    0.01859770386157546
+  ],
+  [
+    "关系的运算/operation of relations",
+    0.018523830230852856
+  ],
+  [
+    "基数相等/equal cardinality",
+    0.018486586041088455
+  ],
+  [
+    "等价符号/equivalence symbol",
+    0.018455029478910867
+  ],
+  [
+    "形式公式/formal formula",
+    0.01839204222465003
+  ],
+  [
+    "Skolem 化/Skolemization",
+    0.018356907357642796
+  ],
+  [
+    "全称量词的省略/omission of universal quantifiers",
+    0.018356907357642796
+  ],
+  [
+    "可证明性/provability",
+    0.01829393624378999
+  ],
+  [
+    "命题定律/propositional law",
+    0.01824193358299074
+  ],
+  [
+    "语义有效性/semantic validity",
+    0.01808331795461278
+  ],
+  [
+    "一阶谓词的定理/theorems of first-order predicate logic",
+    0.01807940605402231
+  ],
+  [
+    "集合论中的悖论/paradoxes in set theory",
+    0.01807940605402231
+  ],
+  [
+    "集合论的定理/theorems of set theory",
+    0.01807940605402231
+  ],
+  [
+    "集合论的概念/concepts of set theory",
+    0.01807940605402231
+  ],
+  [
+    "分离公理/Axiom of Separation",
+    0.017851710787114807
+  ],
+  [
+    "对角线定理/diagonalization lemma",
+    0.017697156304468463
+  ],
+  [
+    "最基本/most fundamental",
+    0.01763405285927186
+  ],
+  [
+    "最重要/most important",
+    0.01763405285927186
+  ],
+  [
+    "逆定理/converse theorem",
+    0.01759019757035519
+  ],
+  [
+    "所指个体唯一性/uniqueness of referred individual",
+    0.017572790642202258
+  ],
+  [
+    "描述特定个体功能/function of describing specific individuals",
+    0.017572790642202258
+  ],
+  [
+    "提供更多信息/providing more information",
+    0.017572790642202258
+  ],
+  [
+    "带类型lambda项/typed lambda-term",
+    0.01753024327000033
+  ],
+  [
+    "非互逆性/non-reciprocality",
+    0.01749069184627081
+  ],
+  [
+    "Cut 规则的证明/proof using cut rule",
+    0.017479255264874885
+  ],
+  [
+    "交换规则的证明/proof using exchange rule",
+    0.017479255264874885
+  ],
+  [
+    "证明的近邻空间解释/neighborhood space interpretation of proof",
+    0.017479255264874885
+  ],
+  [
+    "判断非定理能力/ability to identify non-theorems",
+    0.017385114478984533
+  ],
+  [
+    "定理的机械化证明/mechanical theorem proving",
+    0.017385114478984533
+  ],
+  [
+    "不具备唯一性/lacking uniqueness",
+    0.017279910798165554
+  ],
+  [
+    "谓词设定/predicate setting",
+    0.017244792640641198
+  ],
+  [
+    "定理证明自动化系统/theorem proving automation system",
+    0.017241424916520958
+  ],
+  [
+    "可数无穷模型/Countably Infinite Model",
+    0.017205132793614467
+  ],
+  [
+    "有穷模型/Finite Model",
+    0.017205132793614467
+  ],
+  [
+    "归结法定理证明/Resolution Theorem Proving",
+    0.017164969696860433
+  ],
+  [
+    "相对补集/relative complement",
+    0.01714011432306032
+  ],
+  [
+    "带类型的 λ-演算/typed lambda calculus",
+    0.01712916744584629
+  ],
+  [
+    "程序语言的语义研究/semantics of programming languages",
+    0.01712916744584629
+  ],
+  [
+    "经典的不带类型的 λ-演算系统/classical untyped lambda calculus system",
+    0.01712916744584629
+  ],
+  [
+    "计算机语言/computer language",
+    0.01712916744584629
+  ],
+  [
+    "消除存在量词/Elimination of Existential Quantifiers",
+    0.017117289225480264
+  ],
+  [
+    "外延原理/principle of extensionality",
+    0.017109924984426872
+  ],
+  [
+    "谓词逻辑完备性证明/Predicate Logic Completeness Proof",
+    0.017106666589444177
+  ],
+  [
+    "函数代入/Function Substitution",
+    0.017089887944738584
+  ],
+  [
+    "代数式/algebraic expression",
+    0.017072207742531195
+  ],
+  [
+    "析取公式/Disjunction Formula",
+    0.017072207742531195
+  ],
+  [
+    "运算次序/Order of operations",
+    0.017067234825631335
+  ],
+  [
+    "确定算法/Deterministic Algorithm",
+    0.01706255656708608
+  ],
+  [
+    "定理机器证明/automated theorem proving",
+    0.017044420741993534
+  ],
+  [
+    "点列/Sequence of Points",
+    0.017020277753970896
+  ],
+  [
+    "编码/encoding",
+    0.016989581466301203
+  ],
+  [
+    "$2^{\\aleph_0}$(二的阿列夫零次方)/two to the power of aleph-null",
+    0.01698840633913945
+  ],
+  [
+    "线序关系/linear order relation",
+    0.016954022265660777
+  ],
+  [
+    "有界无限集/bounded infinite set",
+    0.01693187498214484
+  ],
+  [
+    "任指一个个体/arbitrary individual reference",
+    0.016923526924660995
+  ],
+  [
+    "命题为假/proposition being false",
+    0.016923526924660995
+  ],
+  [
+    "无意义/meaningless",
+    0.016923526924660995
+  ],
+  [
+    "公理系统形成规则/axiomatic system formation rules",
+    0.016916296099064938
+  ],
+  [
+    "合取符号/conjunction symbol",
+    0.016906861011770375
+  ],
+  [
+    "凝聚点/Accumulation Point",
+    0.016878833319049207
+  ],
+  [
+    "含义/meaning",
+    0.01687222256852428
+  ],
+  [
+    "重言蕴涵符号/tautological implication symbol",
+    0.016862461469008893
+  ],
+  [
+    "三元组/ordered triple",
+    0.016825589144900656
+  ],
+  [
+    "专用名词/proper noun",
+    0.016817687329255933
+  ],
+  [
+    "空交集/empty intersection",
+    0.016814384459768097
+  ],
+  [
+    "集合交集/set intersection",
+    0.01680400419660069
+  ],
+  [
+    "集合并集/set union",
+    0.01680400419660069
+  ],
+  [
+    "希尔伯特纲领/Hilbert's Program",
+    0.016795477871391892
+  ],
+  [
+    "数学/mathematics",
+    0.016795477871391892
+  ],
+  [
+    "认识论/epistemology",
+    0.016795477871391892
+  ],
+  [
+    "否定析取式/negated disjunctive form",
+    0.016790255081162067
+  ],
+  [
+    "交集与补集组合/Combination of intersection and complement",
+    0.01676530159508201
+  ],
+  [
+    "客观事件/objective event",
+    0.01675567771438196
+  ],
+  [
+    "与并集的可分配性/distributivity over union",
+    0.01671875635826815
+  ],
+  [
+    "子集保序性/subset order preservation property",
+    0.01671875635826815
+  ],
+  [
+    "幂集逆运算/inverse operation of power set",
+    0.01671875635826815
+  ],
+  [
+    "蕴含的析取否定形式/disjunctive negation form of implication",
+    0.01670748800232849
+  ],
+  [
+    "与并集的恒等式/identity over union",
+    0.016704906173418507
+  ],
+  [
+    "子集逆序性/subset order reversal property",
+    0.016704906173418507
+  ],
+  [
+    "充分条件/sufficient condition",
+    0.016692414253019875
+  ],
+  [
+    "必要条件/necessary condition",
+    0.016692414253019875
+  ],
+  [
+    "交集不变性/intersection invariance",
+    0.016689318652477206
+  ],
+  [
+    "差集为空/empty difference",
+    0.016689318652477206
+  ],
+  [
+    "并集不变性/union invariance",
+    0.016689318652477206
+  ],
+  [
+    "合一置换/unification substitution",
+    0.01667799444789305
+  ],
+  [
+    "常规理解/conventional understanding",
+    0.016675171111596214
+  ],
+  [
+    "广义论域/generalized domain of discourse",
+    0.016675171111596214
+  ],
+  [
+    "命题逻辑合取公式/propositional logic conjunction formula",
+    0.016673462240811558
+  ],
+  [
+    "推断符号/inference symbol",
+    0.01666742925747462
+  ],
+  [
+    "析取符号/disjunction symbol",
+    0.016666848116970615
+  ],
+  [
+    "命题逻辑析取公式/propositional logic disjunction formula",
+    0.016666732589085284
+  ],
+  [
+    "定义域的交集/intersection of domains",
+    0.016666677942978686
+  ],
+  [
+    "基础关系/base relation",
+    0.016666666666875756
+  ],
+  [
+    "s(R)/s(R)",
+    0.01666666666671413
+  ],
+  [
+    "r(R)/r(R)",
+    0.01666666666669762
+  ],
+  [
+    "n.n.f./n.n.f.",
+    0.016666666666666666
+  ],
+  [
+    "λ-抽象/lambda-abstraction",
+    0.016666666666666666
+  ],
+  [
+    "一阶函词/First-order Function Symbol",
+    0.016666666666666666
+  ],
+  [
+    "一阶谓词/First-order Predicate Symbol",
+    0.016666666666666666
+  ],
+  [
+    "不同理解/different interpretations",
+    0.016666666666666666
+  ],
+  [
+    "不完全知识/incomplete knowledge",
+    0.016666666666666666
+  ],
+  [
+    "不相交性/Disjointness",
+    0.016666666666666666
+  ],
+  [
+    "主观因素/subjective factor",
+    0.016666666666666666
+  ],
+  [
+    "全关系/total relation",
+    0.016666666666666666
+  ],
+  [
+    "公式否定求解/solving for formula negation",
+    0.016666666666666666
+  ],
+  [
+    "公式等值证明/proof of formula equivalence",
+    0.016666666666666666
+  ],
+  [
+    "公理4/Axiom4",
+    0.016666666666666666
+  ],
+  [
+    "函数对/Function Pair",
+    0.016666666666666666
+  ],
+  [
+    "原始递归函数运算定理/Primitive Recursive Function Operation Theorem",
+    0.016666666666666666
+  ],
+  [
+    "后项/consequent",
+    0.016666666666666666
+  ],
+  [
+    "命题公式的集合/set of propositional formulas",
+    0.016666666666666666
+  ],
+  [
+    "基式/Base Formula",
+    0.016666666666666666
+  ],
+  [
+    "基本联结词/basic logical connectives",
+    0.016666666666666666
+  ],
+  [
+    "处理难度/processing difficulty",
+    0.016666666666666666
+  ],
+  [
+    "大于关系/greater than relation",
+    0.016666666666666666
+  ],
+  [
+    "子集或相等关系/subset or equal relation",
+    0.016666666666666666
+  ],
+  [
+    "完备偏序集/Complete Partial Order",
+    0.016666666666666666
+  ],
+  [
+    "定义1/Definition1",
+    0.016666666666666666
+  ],
+  [
+    "定理3.2.1/Theorem3.2.1",
+    0.016666666666666666
+  ],
+  [
+    "定理3.2.5/Theorem3.2.5",
+    0.016666666666666666
+  ],
+  [
+    "实数集幂集基数/cardinality of power set of real numbers(card(P(R)))",
+    0.016666666666666666
+  ],
+  [
+    "实际不可计算/actually uncomputable",
+    0.016666666666666666
+  ],
+  [
+    "实际应用/practical application",
+    0.016666666666666666
+  ],
+  [
+    "小于/less than",
+    0.016666666666666666
+  ],
+  [
+    "已知集合/known set",
+    0.016666666666666666
+  ],
+  [
+    "已证明的定理/Proven Theorems",
+    0.016666666666666666
+  ],
+  [
+    "常项符号集合/Constant Symbol Set",
+    0.016666666666666666
+  ],
+  [
+    "并行算法/parallel algorithm",
+    0.016666666666666666
+  ],
+  [
+    "并集基数计算/union cardinality calculation",
+    0.016666666666666666
+  ],
+  [
+    "开区间(0,1)/open interval(0,1)",
+    0.016666666666666666
+  ],
+  [
+    "心理因素/psychological factor",
+    0.016666666666666666
+  ],
+  [
+    "推广/generalization",
+    0.016666666666666666
+  ],
+  [
+    "文艺修辞方面/literary and rhetorical aspect",
+    0.016666666666666666
+  ],
+  [
+    "方法/method",
+    0.016666666666666666
+  ],
+  [
+    "最大下界/greatest lower bound",
+    0.016666666666666666
+  ],
+  [
+    "最大完全多边形/maximal complete polygon",
+    0.016666666666666666
+  ],
+  [
+    "有界非递减函数/bounded non-decreasing function",
+    0.016666666666666666
+  ],
+  [
+    "有限个合成关系/finite composition relations",
+    0.016666666666666666
+  ],
+  [
+    "模糊知识/fuzzy knowledge",
+    0.016666666666666666
+  ],
+  [
+    "正原子命题/Positive Atomic Proposition",
+    0.016666666666666666
+  ],
+  [
+    "正实数集合/set of positive real numbers($\\mathbf{R}_{+}$)",
+    0.016666666666666666
+  ],
+  [
+    "现实世界/actual world",
+    0.016666666666666666
+  ],
+  [
+    "理想计算机/ideal computer",
+    0.016666666666666666
+  ],
+  [
+    "直觉的实际可计算/intuitive actual computability",
+    0.016666666666666666
+  ],
+  [
+    "相等关系/equality relation",
+    0.016666666666666666
+  ],
+  [
+    "真值关系/Truth Value Relationship",
+    0.016666666666666666
+  ],
+  [
+    "真子集关系/proper subset relation",
+    0.016666666666666666
+  ],
+  [
+    "矛盾命题/contradictory proposition",
+    0.016666666666666666
+  ],
+  [
+    "程序理论/program theory",
+    0.016666666666666666
+  ],
+  [
+    "程度/degree",
+    0.016666666666666666
+  ],
+  [
+    "算术乘法/arithmetic multiplication",
+    0.016666666666666666
+  ],
+  [
+    "算术加法/arithmetic addition",
+    0.016666666666666666
+  ],
+  [
+    "组合学三大存在性定理/Three Major Existence Theorems in Combinatorics",
+    0.016666666666666666
+  ],
+  [
+    "缺乏知识/lack of knowledge",
+    0.016666666666666666
+  ],
+  [
+    "自然数笛卡尔积/cartesian product of natural numbers(N\\times N)",
+    0.016666666666666666
+  ],
+  [
+    "自然数集的小于等于关系/less than or equal to relation on natural numbers",
+    0.016666666666666666
+  ],
+  [
+    "被量词量化了的变元/quantified variable",
+    0.016666666666666666
+  ],
+  [
+    "计算复杂性/computational complexity",
+    0.016666666666666666
+  ],
+  [
+    "计算机硬件设计/computer hardware design",
+    0.016666666666666666
+  ],
+  [
+    "计算机程序系统/computer program system",
+    0.016666666666666666
+  ],
+  [
+    "证明的组合/combination of proofs",
+    0.016666666666666666
+  ],
+  [
+    "转置矩阵/Transpose Matrix",
+    0.016666666666666666
+  ],
+  [
+    "递归集合/recursive set",
+    0.016666666666666666
+  ],
+  [
+    "逻辑表达式简化/logical expression simplification",
+    0.016666666666666666
+  ],
+  [
+    "闭区间[0,1]/closed interval[0,1]",
+    0.016666666666666666
+  ],
+  [
+    "随机知识/random knowledge",
+    0.016666666666666666
+  ],
+  [
+    "集合A的基数/Cardinality of Set A",
+    0.016666666666666666
+  ],
+  [
+    "集合B的基数/Cardinality of Set B",
+    0.016666666666666666
+  ],
+  [
+    "派生关系/derived relation",
+    0.01662037037040209
+  ],
+  [
+    "$\\varepsilon$邻域/Epsilon-neighborhood",
+    0.01662037037037037
+  ],
+  [
+    "1/one",
+    0.01662037037037037
+  ],
+  [
+    "3前束范式/3-Prenex Normal Form",
+    0.01662037037037037
+  ],
+  [
+    "BOSS-OF",
+    0.01662037037037037
+  ],
+  [
+    "F 系统/F system",
+    0.01662037037037037
+  ],
+  [
+    "Gentzen定理/Gentzen's theorem",
+    0.01662037037037037
+  ],
+  [
+    "Herbrand 定理证明/Herbrand's theorem proof",
+    0.01662037037037037
+  ],
+  [
+    "Kripke赋值/Kripke Assignment",
+    0.01662037037037037
+  ],
+  [
+    "LV 规则/LV rule",
+    0.01662037037037037
+  ],
+  [
+    "MANAGER",
+    0.01662037037037037
+  ],
+  [
+    "ONTABLE/ONTABLE",
+    0.01662037037037037
+  ],
+  [
+    "Prolog语言/Prolog language",
+    0.01662037037037037
+  ],
+  [
+    "RC 规则/RC rule",
+    0.01662037037037037
+  ],
+  [
+    "RX 规则/RX rule",
+    0.01662037037037037
+  ],
+  [
+    "T 系统/T system",
+    0.01662037037037037
+  ],
+  [
+    "Turing 可计算的函数/Turing computable function",
+    0.01662037037037037
+  ],
+  [
+    "WORKS-IN",
+    0.01662037037037037
+  ],
+  [
+    "ZF公理系统/Zermelo–Fraenkel set theory(ZF)",
+    0.01662037037037037
+  ],
+  [
+    "a,b,c.../a,b,c...",
+    0.01662037037037037
+  ],
+  [
+    "f,g.../f,g...",
+    0.01662037037037037
+  ],
+  [
+    "k元关系/k-ary Relation",
+    0.01662037037037037
+  ],
+  [
+    "k目函词/k-ary Function",
+    0.01662037037037037
+  ],
+  [
+    "k目谓词/k-ary Predicate",
+    0.01662037037037037
+  ],
+  [
+    "n阶笛卡儿积/n-ary cartesian product",
+    0.01662037037037037
+  ],
+  [
+    "r-置换/r-substitution",
+    0.01662037037037037
+  ],
+  [
+    "tsr复合闭包/tsr composite closure",
+    0.01662037037037037
+  ],
+  [
+    "x,y,z.../x,y,z...",
+    0.01662037037037037
+  ],
+  [
+    "β-归约公理/beta-reduction axiom",
+    0.01662037037037037
+  ],
+  [
+    "λ-推导/lambda-derivation",
+    0.01662037037037037
+  ],
+  [
+    "λ-项应用/lambda-term application",
+    0.01662037037037037
+  ],
+  [
+    "λ-项抽象/lambda-term abstraction",
+    0.01662037037037037
+  ],
+  [
+    "λ-项集合/set of lambda-terms",
+    0.01662037037037037
+  ],
+  [
+    "∀前束形/Universal Prenex Form",
+    0.01662037037037037
+  ],
+  [
+    "一元二元联结词/unary and binary logical connectives",
+    0.01662037037037037
+  ],
+  [
+    "一元谓词变项/unary predicate variable",
+    0.01662037037037037
+  ],
+  [
+    "一对一/one-to-one function",
+    0.01662037037037037
+  ],
+  [
+    "一对一映射/one-to-one correspondence",
+    0.01662037037037037
+  ],
+  [
+    "一阶谓词公理系统/first-order predicate axiom system",
+    0.01662037037037037
+  ],
+  [
+    "三元以至多元的联结词/ternary and multi-ary logical connectives",
+    0.01662037037037037
+  ],
+  [
+    "上/top element",
+    0.01662037037037037
+  ],
+  [
+    "不受量词约束/not bound by quantifier",
+    0.01662037037037037
+  ],
+  [
+    "不可判定性/undecidability",
+    0.01662037037037037
+  ],
+  [
+    "不可重复性/non-repetition",
+    0.01662037037037037
+  ],
+  [
+    "不含任何元素/containing no elements",
+    0.01662037037037037
+  ],
+  [
+    "不含联结词的性质/property of being without connectives",
+    0.01662037037037037
+  ],
+  [
+    "不存在所有集合的集合/non-existence of the set of all sets",
+    0.01662037037037037
+  ],
+  [
+    "不存在最大基数/non-existence of a largest cardinal",
+    0.01662037037037037
+  ],
+  [
+    "不确定推理/uncertain reasoning",
+    0.01662037037037037
+  ],
+  [
+    "不能用于证明/Cannot be used for proof",
+    0.01662037037037037
+  ],
+  [
+    "与逆关系相等/equal to its inverse",
+    0.01662037037037037
+  ],
+  [
+    "与门/AND gate",
+    0.01662037037037037
+  ],
+  [
+    "与非/NAND",
+    0.01662037037037037
+  ],
+  [
+    "丘奇论题/Church's thesis",
+    0.01662037037037037
+  ],
+  [
+    "严格单调递减函数/strictly monotonically decreasing function",
+    0.01662037037037037
+  ],
+  [
+    "严格单调递增函数/strictly monotonically increasing function",
+    0.01662037037037037
+  ],
+  [
+    "严谨性/rigor",
+    0.01662037037037037
+  ],
+  [
+    "个体论域/individual domain of discourse",
+    0.01662037037037037
+  ],
+  [
+    "中间结果/intermediate result",
+    0.01662037037037037
+  ],
+  [
+    "串形对应的近邻空间/sequent's corresponding neighborhood space",
+    0.01662037037037037
+  ],
+  [
+    "主定理/Hauptsatz",
+    0.01662037037037037
+  ],
+  [
+    "主范式/principal normal form",
+    0.01662037037037037
+  ],
+  [
+    "乘法关系/multiplication relation",
+    0.01662037037037037
+  ],
+  [
+    "乘积/product",
+    0.01662037037037037
+  ],
+  [
+    "二义性/ambiguity",
+    0.01662037037037037
+  ],
+  [
+    "二值值域/binary range",
+    0.01662037037037037
+  ],
+  [
+    "二阶语言/Second-order Language",
+    0.01662037037037037
+  ],
+  [
+    "互为子集/mutual subset",
+    0.01662037037037037
+  ],
+  [
+    "交换同构/commutative isomorphism",
+    0.01662037037037037
+  ],
+  [
+    "任意性/arbitrariness",
+    0.01662037037037037
+  ],
+  [
+    "任意集合的子集/subset of any set",
+    0.01662037037037037
+  ],
+  [
+    "传递律/transitivity law",
+    0.01662037037037037
+  ],
+  [
+    "传递闭包计算/transitive closure computation",
+    0.01662037037037037
+  ],
+  [
+    "作图规则/drawing rule",
+    0.01662037037037037
+  ],
+  [
+    "值域单一性/single value range",
+    0.01662037037037037
+  ],
+  [
+    "元函数/Arity Function",
+    0.01662037037037037
+  ],
+  [
+    "元素数量/number of elements",
+    0.01662037037037037
+  ],
+  [
+    "元素有序排列/ordered arrangement of elements",
+    0.01662037037037037
+  ],
+  [
+    "全体联结词的无限集合/infinite set of all logical connectives",
+    0.01662037037037037
+  ],
+  [
+    "全称量词与相等的关系/Relationship between Universal Quantifier and Equality",
+    0.01662037037037037
+  ],
+  [
+    "全称量词公式真值定义/Universal Quantifier Formula Truth Definition",
+    0.01662037037037037
+  ],
+  [
+    "全称量词符号/universal quantifier symbol(∀)",
+    0.01662037037037037
+  ],
+  [
+    "公式\"P⇒(P∨Q)\"/Formula\"P⇒(P∨Q)\"",
+    0.01662037037037037
+  ],
+  [
+    "公式有穷序列/finite sequence of formulas",
+    0.01662037037037037
+  ],
+  [
+    "公式的形成规则/formula formation rules",
+    0.01662037037037037
+  ],
+  [
+    "公式集合/set of formulas",
+    0.01662037037037037
+  ],
+  [
+    "公理串形/axiom sequent",
+    0.01662037037037037
+  ],
+  [
+    "公理独立性/Axiom Independence",
+    0.01662037037037037
+  ],
+  [
+    "关系与逆关系的交集/intersection of a relation and its inverse",
+    0.01662037037037037
+  ],
+  [
+    "其他对象/other objects",
+    0.01662037037037037
+  ],
+  [
+    "内射/injection",
+    0.01662037037037037
+  ],
+  [
+    "内部函数/inner function",
+    0.01662037037037037
+  ],
+  [
+    "减一运算/subtraction by one",
+    0.01662037037037037
+  ],
+  [
+    "函数值作为函数/function value as function",
+    0.01662037037037037
+  ],
+  [
+    "函数的可逆性/invertibility of a function",
+    0.01662037037037037
+  ],
+  [
+    "函数的集合/set of all functions",
+    0.01662037037037037
+  ],
+  [
+    "函词式程序理论/functional programming theory",
+    0.01662037037037037
+  ],
+  [
+    "分子命题/molecular proposition",
+    0.01662037037037037
+  ],
+  [
+    "划分块/partition block",
+    0.01662037037037037
+  ],
+  [
+    "列写公式/formula derivation",
+    0.01662037037037037
+  ],
+  [
+    "列写真值表/truth table construction",
+    0.01662037037037037
+  ],
+  [
+    "初始情形/base case",
+    0.01662037037037037
+  ],
+  [
+    "判定集合的合法性/determining set legitimacy",
+    0.01662037037037037
+  ],
+  [
+    "前件规则/antecedent rule",
+    0.01662037037037037
+  ],
+  [
+    "前提引入/premise introduction",
+    0.01662037037037037
+  ],
+  [
+    "前提引入规则/Premise Introduction Rule",
+    0.01662037037037037
+  ],
+  [
+    "前提真结论必真/truth-preserving",
+    0.01662037037037037
+  ],
+  [
+    "加一运算/addition by one",
+    0.01662037037037037
+  ],
+  [
+    "加法关系/addition relation",
+    0.01662037037037037
+  ],
+  [
+    "半序关系/semiorder relation",
+    0.01662037037037037
+  ],
+  [
+    "半开区间/half-open interval",
+    0.01662037037037037
+  ],
+  [
+    "半递归规则/semi-recursion rule",
+    0.01662037037037037
+  ],
+  [
+    "单值/Single-valued",
+    0.01662037037037037
+  ],
+  [
+    "单值性/single-valuedness",
+    0.01662037037037037
+  ],
+  [
+    "单调的映射/monotone map",
+    0.01662037037037037
+  ],
+  [
+    "单调递减函数/monotonically decreasing function",
+    0.01662037037037037
+  ],
+  [
+    "单调递增函数/monotonically increasing function",
+    0.01662037037037037
+  ],
+  [
+    "单调逻辑/monotonic logic",
+    0.01662037037037037
+  ],
+  [
+    "单调非递减性/monotonically non-decreasing",
+    0.01662037037037037
+  ],
+  [
+    "原始递归谓词/primitive recursive predicate",
+    0.01662037037037037
+  ],
+  [
+    "原子/atom",
+    0.01662037037037037
+  ],
+  [
+    "原子公式/atomic formula",
+    0.01662037037037037
+  ],
+  [
+    "原子语句/Atomic Sentence",
+    0.01662037037037037
+  ],
+  [
+    "原子谓词公式/atomic predicate formula",
+    0.01662037037037037
+  ],
+  [
+    "双补律/Double complement law",
+    0.01662037037037037
+  ],
+  [
+    "双重否定消除规则无效/invalidity of double negation elimination rule",
+    0.01662037037037037
+  ],
+  [
+    "反例/counterexample",
+    0.01662037037037037
+  ],
+  [
+    "反链的长度/length of antichain",
+    0.01662037037037037
+  ],
+  [
+    "取值含义/meaning of values",
+    0.01662037037037037
+  ],
+  [
+    "受量词约束/bound by quantifier",
+    0.01662037037037037
+  ],
+  [
+    "变元/variable symbol",
+    0.01662037037037037
+  ],
+  [
+    "变元易名分配等值式/Variable Renaming Distributive Equivalences",
+    0.01662037037037037
+  ],
+  [
+    "变元易名等值式/Variable Renaming Equivalence",
+    0.01662037037037037
+  ],
+  [
+    "变元组/Tuple of Variables",
+    0.01662037037037037
+  ],
+  [
+    "变量依赖性/Variable Dependency",
+    0.01662037037037037
+  ],
+  [
+    "变量约束规则/variable constraint rule",
+    0.01662037037037037
+  ],
+  [
+    "可区分性/distinguishability",
+    0.01662037037037037
+  ],
+  [
+    "可定义性/definability",
+    0.01662037037037037
+  ],
+  [
+    "可数无限集/countably infinite set",
+    0.01662037037037037
+  ],
+  [
+    "可计算语义/Computable Semantics",
+    0.01662037037037037
+  ],
+  [
+    "可靠性/soundness",
+    0.01662037037037037
+  ],
+  [
+    "右侧公式数量限制/right-hand formula limit",
+    0.01662037037037037
+  ],
+  [
+    "合取规则/conjunction rule",
+    0.01662037037037037
+  ],
+  [
+    "同一性代入原理/Principle of Indiscernibility of Identicals",
+    0.01662037037037037
+  ],
+  [
+    "同构/Isomorphism",
+    0.01662037037037037
+  ],
+  [
+    "后件规则/succedent rule",
+    0.01662037037037037
+  ],
+  [
+    "后继函数/successor function",
+    0.01662037037037037
+  ],
+  [
+    "后继集合/successor set",
+    0.01662037037037037
+  ],
+  [
+    "否定公式真值定义/Negation Formula Truth Definition",
+    0.01662037037037037
+  ],
+  [
+    "否定和蕴含联结词集合/Set of negation and implication connectives",
+    0.01662037037037037
+  ],
+  [
+    "否定联结词/negation connective",
+    0.01662037037037037
+  ],
+  [
+    "含义唯一性/uniqueness of meaning",
+    0.01662037037037037
+  ],
+  [
+    "吸收律/Absorption law",
+    0.01662037037037037
+  ],
+  [
+    "命题函数/propositional function",
+    0.01662037037037037
+  ],
+  [
+    "命题变项与个体变元的独立性/independence of propositional and individual variables",
+    0.01662037037037037
+  ],
+  [
+    "命题常项/propositional constant",
+    0.01662037037037037
+  ],
+  [
+    "命题演算的重言式/tautology of propositional calculus",
+    0.01662037037037037
+  ],
+  [
+    "命题运算规律/rules of propositional calculus",
+    0.01662037037037037
+  ],
+  [
+    "命题逻辑系统/Propositional Logic System",
+    0.01662037037037037
+  ],
+  [
+    "哥德尔第二不完全性定理/Gödel's Second Incompleteness Theorem",
+    0.01662037037037037
+  ],
+  [
+    "哲学解释/philosophical interpretation",
+    0.01662037037037037
+  ],
+  [
+    "回溯/backtracking",
+    0.01662037037037037
+  ],
+  [
+    "图论/Graph Theory",
+    0.01662037037037037
+  ],
+  [
+    "基数0/Cardinality0",
+    0.01662037037037037
+  ],
+  [
+    "基数可比较性/cardinal comparability",
+    0.01662037037037037
+  ],
+  [
+    "基数比较/cardinal number comparison",
+    0.01662037037037037
+  ],
+  [
+    "基数运算法则证明/proof of cardinal arithmetic laws",
+    0.01662037037037037
+  ],
+  [
+    "基本函数/fundamental function",
+    0.01662037037037037
+  ],
+  [
+    "基本序列/fundamental sequence",
+    0.01662037037037037
+  ],
+  [
+    "基本思想/fundamental idea",
+    0.01662037037037037
+  ],
+  [
+    "基本性质/basic properties",
+    0.01662037037037037
+  ],
+  [
+    "基本的重言蕴涵式/basic tautological implication",
+    0.01662037037037037
+  ],
+  [
+    "基本运算的基数/Cardinality of Basic Operations",
+    0.01662037037037037
+  ],
+  [
+    "基本集合/basic set",
+    0.01662037037037037
+  ],
+  [
+    "复合关系矩阵/Composition Relation Matrix",
+    0.01662037037037037
+  ],
+  [
+    "复数集合/set of complex numbers",
+    0.01662037037037037
+  ],
+  [
+    "外部函数/outer function",
+    0.01662037037037037
+  ],
+  [
+    "多个值/multiple values",
+    0.01662037037037037
+  ],
+  [
+    "多次量化公式/multiple quantified formula",
+    0.01662037037037037
+  ],
+  [
+    "大写英文字母/uppercase English letters",
+    0.01662037037037037
+  ],
+  [
+    "大小关系/ordering relation",
+    0.01662037037037037
+  ],
+  [
+    "子项/subterm",
+    0.01662037037037037
+  ],
+  [
+    "字母/letter",
+    0.01662037037037037
+  ],
+  [
+    "存储器/memory",
+    0.01662037037037037
+  ],
+  [
+    "存在量词与相等的关系/Relationship between Existential Quantifier and Equality",
+    0.01662037037037037
+  ],
+  [
+    "存在量词公式真值定义/Existential Quantifier Formula Truth Definition",
+    0.01662037037037037
+  ],
+  [
+    "存在量词符号/existential quantifier symbol(∃)",
+    0.01662037037037037
+  ],
+  [
+    "完全原象/preimage",
+    0.01662037037037037
+  ],
+  [
+    "定义中出现函数符号和变元/appearance of function symbol and variable in definition",
+    0.01662037037037037
+  ],
+  [
+    "定义域与值域互换/interchange of domain and range",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.1/Theorem6.1.1",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.2/Theorem6.1.2",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.3/Theorem6.1.3",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.4/Theorem6.1.4",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.5/Theorem6.1.5",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.6/Theorem6.1.6",
+    0.01662037037037037
+  ],
+  [
+    "定理6.1.7/Theorem6.1.7",
+    0.01662037037037037
+  ],
+  [
+    "对称关系/symmetric relation",
+    0.01662037037037037
+  ],
+  [
+    "导入规则/Introduction Rule",
+    0.01662037037037037
+  ],
+  [
+    "将来可能/possible in the future",
+    0.01662037037037037
+  ],
+  [
+    "小数表示/Decimal Representation",
+    0.01662037037037037
+  ],
+  [
+    "局限性/limitation",
+    0.01662037037037037
+  ],
+  [
+    "属于关系/element of relation",
+    0.01662037037037037
+  ],
+  [
+    "幂的周期性/periodicity of powers",
+    0.01662037037037037
+  ],
+  [
+    "幂的指数律/exponent law of powers",
+    0.01662037037037037
+  ],
+  [
+    "幂集P(A)的基数/Cardinality of Power Set P(A)",
+    0.01662037037037037
+  ],
+  [
+    "并发程序模型/concurrent programming model",
+    0.01662037037037037
+  ],
+  [
+    "并集等于全集/union equals the entire set",
+    0.01662037037037037
+  ],
+  [
+    "广义交的传递性保持/transitivity preservation property of generalized intersection",
+    0.01662037037037037
+  ],
+  [
+    "异或/exclusive or",
+    0.01662037037037037
+  ],
+  [
+    "异或符号/exclusive or symbol",
+    0.01662037037037037
+  ],
+  [
+    "弱偏序关系/weak partial order relation",
+    0.01662037037037037
+  ],
+  [
+    "弱化规则/weakening rule",
+    0.01662037037037037
+  ],
+  [
+    "强偏序关系/strong partial order relation",
+    0.01662037037037037
+  ],
+  [
+    "归约/reduction",
+    0.01662037037037037
+  ],
+  [
+    "归结操作/resolution operation",
+    0.01662037037037037
+  ],
+  [
+    "形式1/Form1",
+    0.01662037037037037
+  ],
+  [
+    "形式化讨论/formal discussion",
+    0.01662037037037037
+  ],
+  [
+    "形式语义学/formal semantics",
+    0.01662037037037037
+  ],
+  [
+    "形象直观/Visually intuitive",
+    0.01662037037037037
+  ],
+  [
+    "德摩根定律/De Morgan's Law",
+    0.01662037037037037
+  ],
+  [
+    "恒等映射/Identity Map",
+    0.01662037037037037
+  ],
+  [
+    "恰有 n 个个体具有性质 P/exactly n individuals have property P",
+    0.01662037037037037
+  ],
+  [
+    "恰有一个个体具有性质 P/exactly one individual has property P",
+    0.01662037037037037
+  ],
+  [
+    "恰有二个个体具有性质 P/exactly two individuals have property P",
+    0.01662037037037037
+  ],
+  [
+    "或门/OR gate",
+    0.01662037037037037
+  ],
+  [
+    "或非/NOR",
+    0.01662037037037037
+  ],
+  [
+    "抽象符号系统/abstract symbol system",
+    0.01662037037037037
+  ],
+  [
+    "拥有范式/has normal form",
+    0.01662037037037037
+  ],
+  [
+    "括号/parenthesis",
+    0.01662037037037037
+  ],
+  [
+    "括号和逗点/parentheses and commas",
+    0.01662037037037037
+  ],
+  [
+    "指令/instruction",
+    0.01662037037037037
+  ],
+  [
+    "推演/derivation",
+    0.01662037037037037
+  ],
+  [
+    "推理功能/inference capability",
+    0.01662037037037037
+  ],
+  [
+    "推理形式\"P→(P∨Q)\"/Inference Form\"P→(P∨Q)\"",
+    0.01662037037037037
+  ],
+  [
+    "描述集合性质/describing set properties",
+    0.01662037037037037
+  ],
+  [
+    "摹状变元/description variable",
+    0.01662037037037037
+  ],
+  [
+    "摹状词操作符/definite description operator",
+    0.01662037037037037
+  ],
+  [
+    "摹状词的辖域/scope of definite description",
+    0.01662037037037037
+  ],
+  [
+    "摹状词符号/definite description symbol",
+    0.01662037037037037
+  ],
+  [
+    "收缩规则/contraction rule",
+    0.01662037037037037
+  ],
+  [
+    "数字/number",
+    0.01662037037037037
+  ],
+  [
+    "数学分支/Branches of Mathematics",
+    0.01662037037037037
+  ],
+  [
+    "数论谓词/number-theoretic predicate",
+    0.01662037037037037
+  ],
+  [
+    "新集合的存在性判定/Assertion of New Set Existence",
+    0.01662037037037037
+  ],
+  [
+    "无序对集合/Unordered Pair Set",
+    0.01662037037037037
+  ],
+  [
+    "无次序性/unordered nature",
+    0.01662037037037037
+  ],
+  [
+    "无穷序列/Infinite Sequence",
+    0.01662037037037037
+  ],
+  [
+    "无限接近性/Infinite Approachability",
+    0.01662037037037037
+  ],
+  [
+    "无限长存储带/infinite tape",
+    0.01662037037037037
+  ],
+  [
+    "无限集合 Q/infinite set Q",
+    0.01662037037037037
+  ],
+  [
+    "无限集合 R/infinite set R",
+    0.01662037037037037
+  ],
+  [
+    "无限集合 Z/infinite set Z",
+    0.01662037037037037
+  ],
+  [
+    "易于理解/Easy to understand",
+    0.01662037037037037
+  ],
+  [
+    "易于程序实现性/Programmability",
+    0.01662037037037037
+  ],
+  [
+    "最后结论/final conclusion",
+    0.01662037037037037
+  ],
+  [
+    "最大值运算/maximum operation",
+    0.01662037037037037
+  ],
+  [
+    "最大相容类的集合/set of maximal compatibility classes",
+    0.01662037037037037
+  ],
+  [
+    "最小值运算/minimum operation",
+    0.01662037037037037
+  ],
+  [
+    "最小无限基数/smallest infinite cardinal",
+    0.01662037037037037
+  ],
+  [
+    "有向集合/directed set",
+    0.01662037037037037
+  ],
+  [
+    "有理数集极限点集合/Limit Point Set of Rational Numbers",
+    0.01662037037037037
+  ],
+  [
+    "有界性/boundedness",
+    0.01662037037037037
+  ],
+  [
+    "有穷/finite",
+    0.01662037037037037
+  ],
+  [
+    "有穷步/finite steps",
+    0.01662037037037037
+  ],
+  [
+    "有限全序集/finite totally ordered set",
+    0.01662037037037037
+  ],
+  [
+    "有限可数集合/finite countable set",
+    0.01662037037037037
+  ],
+  [
+    "条件命题的合取/conjunction of conditional propositions",
+    0.01662037037037037
+  ],
+  [
+    "条件证明规则/Conditional Proof Rule",
+    0.01662037037037037
+  ],
+  [
+    "极限/limit",
+    0.01662037037037037
+  ],
+  [
+    "构造性定义/constructive definition",
+    0.01662037037037037
+  ],
+  [
+    "析取公式真值定义/Disjunction Formula Truth Definition",
+    0.01662037037037037
+  ],
+  [
+    "析取规则/disjunction rule",
+    0.01662037037037037
+  ],
+  [
+    "概念/concept",
+    0.01662037037037037
+  ],
+  [
+    "模型论/Model Theory",
+    0.01662037037037037
+  ],
+  [
+    "模态联结词/modal connective",
+    0.01662037037037037
+  ],
+  [
+    "模糊数学/fuzzy mathematics",
+    0.01662037037037037
+  ],
+  [
+    "次序性/order property",
+    0.01662037037037037
+  ],
+  [
+    "正实数集/positive real numbers",
+    0.01662037037037037
+  ],
+  [
+    "正规模糊集/normal fuzzy set",
+    0.01662037037037037
+  ],
+  [
+    "求和运算/summation operation",
+    0.01662037037037037
+  ],
+  [
+    "求积运算/product operation",
+    0.01662037037037037
+  ],
+  [
+    "泛函/functional",
+    0.01662037037037037
+  ],
+  [
+    "消去联结词/Elimination of Connectives",
+    0.01662037037037037
+  ],
+  [
+    "消除规则/Elimination Rule",
+    0.01662037037037037
+  ],
+  [
+    "演绎推理/deductive reasoning",
+    0.01662037037037037
+  ],
+  [
+    "特殊函数/special function",
+    0.01662037037037037
+  ],
+  [
+    "独立性/independence",
+    0.01662037037037037
+  ],
+  [
+    "狭谓词逻辑/narrow predicate logic",
+    0.01662037037037037
+  ],
+  [
+    "理论基础不够严谨/Lack of rigorous theoretical basis",
+    0.01662037037037037
+  ],
+  [
+    "用于说明/Used for illustration",
+    0.01662037037037037
+  ],
+  [
+    "电子线路/electronic circuit",
+    0.01662037037037037
+  ],
+  [
+    "电子计算机/Electronic Computer",
+    0.01662037037037037
+  ],
+  [
+    "直积/direct product",
+    0.01662037037037037
+  ],
+  [
+    "直观说明/intuitive explanation",
+    0.01662037037037037
+  ],
+  [
+    "相反数/opposite number",
+    0.01662037037037037
+  ],
+  [
+    "相等性条件/equality condition",
+    0.01662037037037037
+  ],
+  [
+    "真值恒为假/always false truth value",
+    0.01662037037037037
+  ],
+  [
+    "真值恒为真/always true truth value",
+    0.01662037037037037
+  ],
+  [
+    "真值指派/Truth Assignment",
+    0.01662037037037037
+  ],
+  [
+    "真值组合/truth combination",
+    0.01662037037037037
+  ],
+  [
+    "真假值集合/set of truth values",
+    0.01662037037037037
+  ],
+  [
+    "矛盾/paradoxical",
+    0.01662037037037037
+  ],
+  [
+    "矛盾句/contradictory sentence",
+    0.01662037037037037
+  ],
+  [
+    "矛盾的公式/Contradictory Formula",
+    0.01662037037037037
+  ],
+  [
+    "确定性/determinacy",
+    0.01662037037037037
+  ],
+  [
+    "积木世界/Blocks World",
+    0.01662037037037037
+  ],
+  [
+    "空关系/empty relation",
+    0.01662037037037037
+  ],
+  [
+    "笛卡尔积的子集判定条件/subset condition for Cartesian products",
+    0.01662037037037037
+  ],
+  [
+    "符号/symbol",
+    0.01662037037037037
+  ],
+  [
+    "符号描述/Symbolic description",
+    0.01662037037037037
+  ],
+  [
+    "第一元素/first element",
+    0.01662037037037037
+  ],
+  [
+    "第二元素/second element",
+    0.01662037037037037
+  ],
+  [
+    "等价形式/Equivalent Form",
+    0.01662037037037037
+  ],
+  [
+    "等价闭包/equivalence closure",
+    0.01662037037037037
+  ],
+  [
+    "等值判断/equivalence judgment",
+    0.01662037037037037
+  ],
+  [
+    "等值式定义/definition of equivalent formula",
+    0.01662037037037037
+  ],
+  [
+    "等号的逻辑演算/Logical Calculus of Equality",
+    0.01662037037037037
+  ],
+  [
+    "等式/equation",
+    0.01662037037037037
+  ],
+  [
+    "约束个体易名规则/renaming bound variables rule",
+    0.01662037037037037
+  ],
+  [
+    "结合同构/associative isomorphism",
+    0.01662037037037037
+  ],
+  [
+    "结论引用规则/Conclusion Citation Rule",
+    0.01662037037037037
+  ],
+  [
+    "网络图/Network diagram",
+    0.01662037037037037
+  ],
+  [
+    "群结构/Group Structure",
+    0.01662037037037037
+  ],
+  [
+    "联结词优先级/connective precedence",
+    0.01662037037037037
+  ],
+  [
+    "肯定前提律/affirmation of premise law",
+    0.01662037037037037
+  ],
+  [
+    "自映射/self-mapping",
+    0.01662037037037037
+  ],
+  [
+    "自然主义推理系统/Naturalistic Inference System",
+    0.01662037037037037
+  ],
+  [
+    "自由个体/free individual",
+    0.01662037037037037
+  ],
+  [
+    "自由变元约束/free variable constraint",
+    0.01662037037037037
+  ],
+  [
+    "至多有 n 个个体具有性质 P/at most n individuals have property P",
+    0.01662037037037037
+  ],
+  [
+    "至多有一个个体具有性质 P/at most one individual has property P",
+    0.01662037037037037
+  ],
+  [
+    "至多有二个个体具有性质 P/at most two individuals have property P",
+    0.01662037037037037
+  ],
+  [
+    "范式化定理/normalization theorem",
+    0.01662037037037037
+  ],
+  [
+    "蕴涵规则/implication rule",
+    0.01662037037037037
+  ],
+  [
+    "蕴涵词引入律/implication introduction law",
+    0.01662037037037037
+  ],
+  [
+    "表格法/tableau method",
+    0.01662037037037037
+  ],
+  [
+    "被自身幂集包含/contained in its own power set",
+    0.01662037037037037
+  ],
+  [
+    "覆盖块/cover block",
+    0.01662037037037037
+  ],
+  [
+    "解释性证明/interpretive proof",
+    0.01662037037037037
+  ],
+  [
+    "解释法/interpretation method",
+    0.01662037037037037
+  ],
+  [
+    "计算的算法/computation algorithm",
+    0.01662037037037037
+  ],
+  [
+    "计算能力/computational ability",
+    0.01662037037037037
+  ],
+  [
+    "证明定理/proving theorems",
+    0.01662037037037037
+  ],
+  [
+    "证明的近邻语义/neighborhood semantics of proof",
+    0.01662037037037037
+  ],
+  [
+    "谓词形式化/predicate formalization",
+    0.01662037037037037
+  ],
+  [
+    "谓词演算公理/axioms of predicate calculus",
+    0.01662037037037037
+  ],
+  [
+    "谓词演算推理规则/inference rules of predicate calculus",
+    0.01662037037037037
+  ],
+  [
+    "谓词符号集合/Set of Predicate Symbols",
+    0.01662037037037037
+  ],
+  [
+    "谓词逻辑完备性定理/Predicate Logic Completeness Theorem",
+    0.01662037037037037
+  ],
+  [
+    "谓词逻辑的合式公式/well-formed formula in predicate logic",
+    0.01662037037037037
+  ],
+  [
+    "负整数集合/negative integer set",
+    0.01662037037037037
+  ],
+  [
+    "转换/conversion",
+    0.01662037037037037
+  ],
+  [
+    "辅助工具符号/auxiliary symbols",
+    0.01662037037037037
+  ],
+  [
+    "运算器控制器/ALU and control unit",
+    0.01662037037037037
+  ],
+  [
+    "运算表示法/Operational representation",
+    0.01662037037037037
+  ],
+  [
+    "运算规则/operation rule",
+    0.01662037037037037
+  ],
+  [
+    "近邻空间语义/neighborhood space semantics",
+    0.01662037037037037
+  ],
+  [
+    "迹/trace",
+    0.01662037037037037
+  ],
+  [
+    "逆命题/converse proposition",
+    0.01662037037037037
+  ],
+  [
+    "递归关系/recursive relation",
+    0.01662037037037037
+  ],
+  [
+    "逻辑公理/logical axiom",
+    0.01662037037037037
+  ],
+  [
+    "逻辑对称性/Logical Symmetry",
+    0.01662037037037037
+  ],
+  [
+    "逻辑表达式/logical expression",
+    0.01662037037037037
+  ],
+  [
+    "逻辑非运算/logical negation",
+    0.01662037037037037
+  ],
+  [
+    "避免重复扫描/avoid repeated scanning",
+    0.01662037037037037
+  ],
+  [
+    "重复扫描/Repeated scanning",
+    0.01662037037037037
+  ],
+  [
+    "量词作用范围限制/quantifier scope restriction",
+    0.01662037037037037
+  ],
+  [
+    "量词的消去/quantifier elimination",
+    0.01662037037037037
+  ],
+  [
+    "量词的辖域/scope of quantifier",
+    0.01662037037037037
+  ],
+  [
+    "量词符号/quantifier symbol",
+    0.01662037037037037
+  ],
+  [
+    "链的长度/length of chain",
+    0.01662037037037037
+  ],
+  [
+    "错误/error",
+    0.01662037037037037
+  ],
+  [
+    "隶属程度/degree of membership",
+    0.01662037037037037
+  ],
+  [
+    "集合 D/set D",
+    0.01662037037037037
+  ],
+  [
+    "集合化简/set simplification",
+    0.01662037037037037
+  ],
+  [
+    "集合恒等式证明/proof of set identity",
+    0.01662037037037037
+  ],
+  [
+    "集合最内层的元素/innermost element of set",
+    0.01662037037037037
+  ],
+  [
+    "集合的元素/elements of set",
+    0.01662037037037037
+  ],
+  [
+    "集合的层次/set hierarchy",
+    0.01662037037037037
+  ],
+  [
+    "集合的谓词定义/predicate definition of set",
+    0.01662037037037037
+  ],
+  [
+    "集合论的研究对象/subject of set theory",
+    0.01662037037037037
+  ],
+  [
+    "零元谓词/zero-ary predicate",
+    0.01662037037037037
+  ],
+  [
+    "非交换性/non-commutativity",
+    0.01662037037037037
+  ],
+  [
+    "非单调推理/non-monotonic reasoning",
+    0.01662037037037037
+  ],
+  [
+    "非形式描述/informal description",
+    0.01662037037037037
+  ],
+  [
+    "非正规模糊集/subnormal fuzzy set",
+    0.01662037037037037
+  ],
+  [
+    "非相等性判别原理/Principle of Discernibility of Non-Identicals",
+    0.01662037037037037
+  ],
+  [
+    "非门/NOT gate",
+    0.01662037037037037
+  ],
+  [
+    "项的形成规则/term formation rules",
+    0.01662037037037037
+  ],
+  [
+    "Curry-Howard 同构/Curry-Howard Isomorphism",
+    0.016574074074074074
+  ],
+  [
+    "False 规则/false rule",
+    0.016574074074074074
+  ],
+  [
+    "Godel不完全性定理/Gödel's incompleteness theorems",
+    0.016574074074074074
+  ],
+  [
+    "Kripke赋值法/Kripke Semantics",
+    0.016574074074074074
+  ],
+  [
+    "Left Plus 规则/left plus rule",
+    0.016574074074074074
+  ],
+  [
+    "Par 规则/par rule",
+    0.016574074074074074
+  ],
+  [
+    "Right Plus 规则/right plus rule",
+    0.016574074074074074
+  ],
+  [
+    "Times 规则/times rule",
+    0.016574074074074074
+  ],
+  [
+    "With 规则/with rule",
+    0.016574074074074074
+  ],
+  [
+    "一元运算符/unary operator",
+    0.016574074074074074
+  ],
+  [
+    "三段论推理式/syllogism inference form",
+    0.016574074074074074
+  ],
+  [
+    "不确定/undefined",
+    0.016574074074074074
+  ],
+  [
+    "不确定性度量/measure of uncertainty",
+    0.016574074074074074
+  ],
+  [
+    "不确定性描述/description of uncertainty",
+    0.016574074074074074
+  ],
+  [
+    "乘法连接词/multiplicative connective",
+    0.016574074074074074
+  ],
+  [
+    "二元运算符/binary operator",
+    0.016574074074074074
+  ],
+  [
+    "代数运算/Algebraic Operation",
+    0.016574074074074074
+  ],
+  [
+    "作图法/graphical method",
+    0.016574074074074074
+  ],
+  [
+    "充要条件/necessary and sufficient condition",
+    0.016574074074074074
+  ],
+  [
+    "全域关系/universal relation",
+    0.016574074074074074
+  ],
+  [
+    "公式证明/formula proof",
+    0.016574074074074074
+  ],
+  [
+    "公理一1/axiom one1",
+    0.016574074074074074
+  ],
+  [
+    "公理化方法/axiomatization method",
+    0.016574074074074074
+  ],
+  [
+    "内涵法/intensional definition method",
+    0.016574074074074074
+  ],
+  [
+    "分配同构/distributive isomorphism",
+    0.016574074074074074
+  ],
+  [
+    "切割消除定理/cut-elimination theorem",
+    0.016574074074074074
+  ],
+  [
+    "加法联结词/additive connective",
+    0.016574074074074074
+  ],
+  [
+    "反证律/proof by contradiction law",
+    0.016574074074074074
+  ],
+  [
+    "变元易名/Variable Renaming",
+    0.016574074074074074
+  ],
+  [
+    "可能真/possible truth",
+    0.016574074074074074
+  ],
+  [
+    "可计算的/computable",
+    0.016574074074074074
+  ],
+  [
+    "合取公式/Conjunction Formula",
+    0.016574074074074074
+  ],
+  [
+    "合取词真值表/conjunction truth table",
+    0.016574074074074074
+  ],
+  [
+    "否定和等价联结词集合/Set of negation and equivalence connectives",
+    0.016574074074074074
+  ],
+  [
+    "否定型公式/negation formula",
+    0.016574074074074074
+  ],
+  [
+    "图灵不可计算的/Turing uncomputable",
+    0.016574074074074074
+  ],
+  [
+    "域分析/domain analysis",
+    0.016574074074074074
+  ],
+  [
+    "基数算术运算/cardinal arithmetic",
+    0.016574074074074074
+  ],
+  [
+    "基本推理公式/basic inference formulas",
+    0.016574074074074074
+  ],
+  [
+    "填满命题变项法/filling propositional variables method",
+    0.016574074074074074
+  ],
+  [
+    "外延法/extensional definition method",
+    0.016574074074074074
+  ],
+  [
+    "定理2.5.1/Theorem2.5.1",
+    0.016574074074074074
+  ],
+  [
+    "定理2.5.2/Theorem2.5.2",
+    0.016574074074074074
+  ],
+  [
+    "定理2.5.4/Theorem2.5.4",
+    0.016574074074074074
+  ],
+  [
+    "定理2.5.5/Theorem2.5.5",
+    0.016574074074074074
+  ],
+  [
+    "定理5.3.1/Theorem5.3.1",
+    0.016574074074074074
+  ],
+  [
+    "小于谓词/Less Than Predicate",
+    0.016574074074074074
+  ],
+  [
+    "常函数/constant function",
+    0.016574074074074074
+  ],
+  [
+    "幂集基数/cardinality of power set",
+    0.016574074074074074
+  ],
+  [
+    "形式证明/formal proof",
+    0.016574074074074074
+  ],
+  [
+    "形式逻辑的模型/models of formal logic",
+    0.016574074074074074
+  ],
+  [
+    "推理问题/inference problem",
+    0.016574074074074074
+  ],
+  [
+    "施罗德-伯恩斯坦定理/Schroeder-Bernstein theorem",
+    0.016574074074074074
+  ],
+  [
+    "无限合取/infinite conjunction",
+    0.016574074074074074
+  ],
+  [
+    "无限析取/infinite disjunction",
+    0.016574074074074074
+  ],
+  [
+    "条件语句/conditional statement",
+    0.016574074074074074
+  ],
+  [
+    "析取和合取联结词集合/Set of disjunction and conjunction connectives",
+    0.016574074074074074
+  ],
+  [
+    "析取联结词集合/Set of disjunction connective",
+    0.016574074074074074
+  ],
+  [
+    "真假判断/truth judgment",
+    0.016574074074074074
+  ],
+  [
+    "矩阵运算/matrix operation",
+    0.016574074074074074
+  ],
+  [
+    "空集的广义交/generalized intersection of the empty set",
+    0.016574074074074074
+  ],
+  [
+    "笛卡儿积A×B的基数/Cardinality of Cartesian Product A×B",
+    0.016574074074074074
+  ],
+  [
+    "线性逻辑系统的证明/proof of linear logic system",
+    0.016574074074074074
+  ],
+  [
+    "能行算法/effective algorithm",
+    0.016574074074074074
+  ],
+  [
+    "自然语句中的\"与\"/the'and'in natural language",
+    0.016574074074074074
+  ],
+  [
+    "自然语句中的\"或\"/the'or'in natural language",
+    0.016574074074074074
+  ],
+  [
+    "蕴涵公式/Implication Formula",
+    0.016574074074074074
+  ],
+  [
+    "表达式\"A⇒B\"/Expression\"A⇒B\"",
+    0.016574074074074074
+  ],
+  [
+    "语义分析/semantic analysis",
+    0.016574074074074074
+  ],
+  [
+    "语义证明/semantic proof",
+    0.016574074074074074
+  ],
+  [
+    "语义说明/semantic explanation",
+    0.016574074074074074
+  ],
+  [
+    "运算的定义/definition of operation",
+    0.016574074074074074
+  ],
+  [
+    "连续性定义/Definition of Continuity",
+    0.016574074074074074
+  ],
+  [
+    "逆关系矩阵/Inverse Relation Matrix",
+    0.016574074074074074
+  ],
+  [
+    "量词次序排列/Quantifier Order Arrangement",
+    0.016574074074074074
+  ],
+  [
+    "非范式/non-normal form",
+    0.016574074074074074
+  ],
+  [
+    "项模型方法/term model method",
+    0.016574074074074074
+  ],
+  [
+    "不等价的逻辑描述/non-equivalent logical description",
+    0.016527777777777777
+  ],
+  [
+    "包含排斥原理/Principle of Inclusion-Exclusion",
+    0.016527777777777777
+  ],
+  [
+    "图灵可计算的/Turing computable",
+    0.016527777777777777
+  ],
+  [
+    "无限域/infinite domain",
+    0.016527777777777777
+  ],
+  [
+    "符号\"⇒\"/Symbol\"⇒\"",
+    0.016527777777777777
+  ],
+  [
+    "逻辑运算/logical operation",
+    0.016527777777777777
+  ],
+  [
+    "个体对象集合/Set of Individual Objects",
+    0.016481481481481482
+  ],
+  [
+    "定理3.2.7/Theorem3.2.7",
+    0.016481481481481482
+  ],
+  [
+    "投影/Projection",
+    0.016481481481481482
+  ],
+  [
+    "线性逻辑系统/linear logic system",
+    0.016481481481481482
+  ],
+  [
+    "对偶性/duality",
+    0.016435185185185185
+  ],
+  [
+    "形式化过程/formalization process",
+    0.016388888888888887
+  ],
+  [
+    "不确定性/uncertainty",
+    0.01611111111111111
+  ]
+]

@@ -1,0 +1,1952 @@
+{
+  "course_id": "离散数学(图论+数理逻辑与集合论)",
+  "lecture_id": "20",
+  "title": "第 20 讲",
+  "n_points": 24,
+  "class_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/class/20_0.mp4",
+  "ppt_video": "data/raw/离散数学(图论+数理逻辑与集合论)/video/ppt/20_1.mp4",
+  "duration_sec": 3209.6,
+  "segments": [
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_900_1457100",
+      "index": 1,
+      "start_sec": 0.9,
+      "end_sec": 1457.1,
+      "title": "同永真与同可满足的定义：A 与 B 同永真指 A 永真当且仅当 B 永真",
+      "summary": "同永真与同可满足的定义：A 与 B 同永真指 A 永真当且仅当 B 永真"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+      "index": 2,
+      "start_sec": 1457.9,
+      "end_sec": 1542.0,
+      "title": "文字定义为命题变项及其否定",
+      "summary": "文字定义为命题变项及其否定"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+      "index": 3,
+      "start_sec": 1543.0,
+      "end_sec": 1667.6,
+      "title": "文字是命题变元或其否定",
+      "summary": "文字是命题变元或其否定"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+      "index": 4,
+      "start_sec": 1668.7,
+      "end_sec": 1830.5,
+      "title": "合取范式形如 $A_1 \\wedge A_2 \\wedge \\ldots \\wedge A_n$，其中每…",
+      "summary": "合取范式形如 $A_1 \\wedge A_2 \\wedge \\ldots \\wedge A_n$，其中每…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1831300_1920400",
+      "index": 5,
+      "start_sec": 1831.3,
+      "end_sec": 1920.4,
+      "title": "等值演算法步骤为：先消去蕴含和等价，再将否定词深入到原子命题变量，最后根据目标范式类型进行联结词深入：求…",
+      "summary": "等值演算法步骤为：先消去蕴含和等价，再将否定词深入到原子命题变量，最后根据目标范式类型进行联结词深入：求…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1921400_1976300",
+      "index": 6,
+      "start_sec": 1921.4,
+      "end_sec": 1976.3,
+      "title": "化简时，第一步是消去蕴含词和等价词，方法为利用相应等值式",
+      "summary": "化简时，第一步是消去蕴含词和等价词，方法为利用相应等值式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+      "index": 7,
+      "start_sec": 1978.1,
+      "end_sec": 2026.1,
+      "title": "对于最外层为析取的公式，否定词需深入，利用德摩根律展开",
+      "summary": "对于最外层为析取的公式，否定词需深入，利用德摩根律展开"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2027000_2076400",
+      "index": 8,
+      "start_sec": 2027.0,
+      "end_sec": 2076.4,
+      "title": "利用分配律展开逻辑表达式，化简时消去为假的项，最终得到范式",
+      "summary": "利用分配律展开逻辑表达式，化简时消去为假的项，最终得到范式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2077300_2208100",
+      "index": 9,
+      "start_sec": 2077.3,
+      "end_sec": 2208.1,
+      "title": "判断公式A是否重言式，可求A的合取范式",
+      "summary": "判断公式A是否重言式，可求A的合取范式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2209000_2242900",
+      "index": 10,
+      "start_sec": 2209.0,
+      "end_sec": 2242.9,
+      "title": "范式不唯一，化简与否均可称为范式",
+      "summary": "范式不唯一，化简与否均可称为范式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+      "index": 11,
+      "start_sec": 2244.1,
+      "end_sec": 2597.9,
+      "title": "定义极小项（布尔积）：含 n 个命题变元的合取式，每个因子 A_i 为 P_i 或 ¬P_i，且所有变元…",
+      "summary": "定义极小项（布尔积）：含 n 个命题变元的合取式，每个因子 A_i 为 P_i 或 ¬P_i，且所有变元…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+      "index": 12,
+      "start_sec": 2598.7,
+      "end_sec": 2655.9,
+      "title": "主范式分为主析取范式和主合取范式",
+      "summary": "主范式分为主析取范式和主合取范式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+      "index": 13,
+      "start_sec": 2656.6,
+      "end_sec": 2700.1,
+      "title": "若某个简单合取式缺少某个命题变元，则需通过添加该变元及其否定来补全，使其成为主析取范式",
+      "summary": "若某个简单合取式缺少某个命题变元，则需通过添加该变元及其否定来补全，使其成为主析取范式"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2701000_2820300",
+      "index": 14,
+      "start_sec": 2701.0,
+      "end_sec": 2820.3,
+      "title": "第三种主范式的求法为部分指派法",
+      "summary": "第三种主范式的求法为部分指派法"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+      "index": 15,
+      "start_sec": 2821.2,
+      "end_sec": 2985.7,
+      "title": "极小项与极大项的编码规则：对两个变元 P、Q，共有四个极小项，编码为 m00、m01、m10、m11，其…",
+      "summary": "极小项与极大项的编码规则：对两个变元 P、Q，共有四个极小项，编码为 m00、m01、m10、m11，其…"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+      "index": 16,
+      "start_sec": 2986.5,
+      "end_sec": 3074.1,
+      "title": "P蕴含Q可化为非P或Q，其主析取范式有三个极小项，对应三个成真指派，编码为∨_{0,1,3}",
+      "summary": "P蕴含Q可化为非P或Q，其主析取范式有三个极小项，对应三个成真指派，编码为∨_{0,1,3}"
+    },
+    {
+      "id": "离散数学(图论+数理逻辑与集合论)_20_3075100_3209600",
+      "index": 17,
+      "start_sec": 3075.1,
+      "end_sec": 3209.6,
+      "title": "等值演算已讲完，接下来讲推理演算",
+      "summary": "等值演算已讲完，接下来讲推理演算"
+    }
+  ],
+  "points": [
+    {
+      "id": "公式/formula",
+      "zh": "公式",
+      "importance": 1,
+      "mention_count": 10,
+      "origin": "textbook",
+      "summary": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范…",
+      "definition": "公式是数理逻辑中，依据特定形成规则（如命题演算中的合式公式，或谓词逻辑中的由谓词、项、联结词、量词等构成的字符串）形成的符号串。它描述命题关系、逻辑结构，并可被解释为具有真值，是逻辑推理和证明的基本单元，例如通过范式（如主析取范式、主合取范式）或子句集来分析其逻辑性质，并可被计算处理。",
+      "neighbors": [
+        {
+          "subject": "公式/formula",
+          "predicate": "related_with",
+          "object": "对偶/dual",
+          "label": "相关",
+          "natural_statement": "公式同永真于对偶"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "否定包含公式"
+        },
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "析取是公式的组成部分"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "公式/formula",
+          "label": "相关",
+          "natural_statement": "否定词作用于公式"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "合取是公式的组成部分"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "合取范式是公式的一种"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "析取范式是公式的一种"
+        },
+        {
+          "subject": "重言式/tautology",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "重言式是一种公式"
+        }
+      ],
+      "rank": 1,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_900_1457100",
+          "text": "接着讲我们的对偶定理。同永真与同可满足的定义是：A 和 B 同永真，指 A 永真当且仅当 B 永真；A 和 B 同可满足，指 A 可满足当且仅当 B 可满足。要注意，同永真、同可满足不一定就是等值。 定理：以下两对公式都是同永真且同可满足的：A 与 A 的内否，¬A 与 A 的对偶。 证明时只需证明 A 与 A 的内否这一对，因为 ¬A 等于 A 的对偶的内否。设 A 的命题变元为 p1 到 pn，A 的内否就是把每个 p_i 换成 ¬p_i，所有联结词不变。若 A 可满足，取使 A 为真的一组赋值，把每个变元取值都取反，代入 A 的内否一定为真；反过来…",
+          "start_sec": 0.9,
+          "end_sec": 1457.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2077300_2208100",
+          "text": "判断A是否重言式，求A的合取范式。若每个析取式都含有互补对，即某个变元及其否定，如P和¬P，那么每个析取式都为真。因为析取式中只要有一项为真，整个析取式就为真；后面再或上其他东西，无论真假都不影响。所以每个析取式都有互补对时，整个合取范式为真，A就是重言式。判断A是否矛盾式，求A的析取范式。若每个合取式都含有互补对，那么每个合取式都为假；只要有一个合取式为假，整个析取范式就为假，所以A是矛盾式。注意，是每个合取式都要有互补对。判断A等于B，则求A和B的同一种范式，看它们是否相同。问题是：范式唯一吗？范式不唯一。也就是说，符合范式定义的、与原来A等值的范式…",
+          "start_sec": 2077.3,
+          "end_sec": 2208.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+          "text": "怎么样用最简单的方法求真值表，这个方法我下节课讲。现在好像要下课，我最好先把这个编码跟大家讲，因为这部分有作业。关于编码，我说一下，我们这本书上的编码和有些书上的不一样。我们现在只讲我们这本书上的编码。比如说 P、Q 这两个变元，一共有四个极小项。我们对这四个极小项进行编码，怎么编码呢？我们这里编码成 m00、m01、m10、m11。把有否定词出现的那个变元设为 0，另一个设为 1，所以就是 00、01、10、11。因此我们给它编号为 m0、m1、m2、m3。因为极小项用小写的 m。极大项也一样，我用大写的 M，编码方式一样。对极大项的编码，有的书上正好…",
+          "start_sec": 2821.2,
+          "end_sec": 2985.7
+        }
+      ]
+    },
+    {
+      "id": "范式/normal form",
+      "zh": "范式",
+      "importance": 0.7769772248506348,
+      "mention_count": 10,
+      "origin": "textbook",
+      "summary": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范…",
+      "definition": "范式是在数理逻辑和集合论中，将命题公式或λ-项转化为一种更规范、便于分析的标准化形式。在命题逻辑中，范式通过消去蕴含/等价、运用德摩根律及分配律，可转化为合取范式（CNF）或析取范式（DNF），有助于判断公式的等值性、重言式和矛盾式。尽管范式不唯一，但λ-演算中的范式（即不含β-归约形式的项）是唯一的，且任何项经有限步β-归约后必能终止于其唯一的范式。",
+      "neighbors": [
+        {
+          "subject": "范式/normal form",
+          "predicate": "depend_on",
+          "object": "公式等值/formula equivalence",
+          "label": "依赖",
+          "natural_statement": "范式用于判定公式等值"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "析取范式是范式的一种"
+        },
+        {
+          "subject": "逻辑表达式/logical expression",
+          "predicate": "depend_on",
+          "object": "范式/normal form",
+          "label": "依赖",
+          "natural_statement": "逻辑表达式展开得到范式"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "主范式具有范式"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "合取范式是一种范式"
+        },
+        {
+          "subject": "对偶式/dual formula",
+          "predicate": "related_with",
+          "object": "范式/normal form",
+          "label": "相关",
+          "natural_statement": "对偶式涵盖范式"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "part_of",
+          "object": "范式/normal form",
+          "label": "组成",
+          "natural_statement": "极小项构成范式"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "part_of",
+          "object": "范式/normal form",
+          "label": "组成",
+          "natural_statement": "极大项构成范式"
+        }
+      ],
+      "rank": 2,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+          "text": "与一个公式等值的公式非常多，这是比较极端的情况：即便只有一个变元 p，也可以写出 p，p∧p，p∧p∧p，……。但我们可以看到，与一个公式等值的公式是非常多的。那么如何去判定两个公式等值？当然，我们可以通过真值表、推理演算来证明两个公式等值。那么，如果我们把每个公式都写成一种范式——一种统一的语法形式——那么如果它们的范式相同，我们就可以说这两个公式是等值的。好，这就是范式的一些定义。我们先来定义一些概念。第一个定义是文字。什么是文字？就是 p、q、r 这些命题变项，以及这些命题变项的否定，就称为文字。",
+          "start_sec": 1457.9,
+          "end_sec": 1542
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2027000_2076400",
+          "text": "这里用分配律把后面展开，前面这部分就不需要写了。分配之后，有的项为假，就剩下中间这两项；上面那一项也为假，所以只剩下两对。化简就得到这个。这就是范式的求解，很容易。接下来看范式的用途。",
+          "start_sec": 2027,
+          "end_sec": 2076.4
+        }
+      ]
+    },
+    {
+      "id": "极小项/minterm",
+      "zh": "极小项",
+      "importance": 0.7674778594631344,
+      "mention_count": 16,
+      "origin": "textbook",
+      "summary": "极小项（minterm）是数理逻辑中，由n个命题变项及其否定构成的合取式，每个极小项都包含所有n个变项的文字（即$P_i$或$\\neg P_i$），且每个极小项在所有可能的解释中仅在一个解释下为真。对n个命题变项，共有$2^n$个不同的极小…",
+      "definition": "极小项（minterm）是数理逻辑中，由n个命题变项及其否定构成的合取式，每个极小项都包含所有n个变项的文字（即$P_i$或$\\neg P_i$），且每个极小项在所有可能的解释中仅在一个解释下为真。对n个命题变项，共有$2^n$个不同的极小项，它们两两不等值。极小项是构建主析取范式（Disjunctive Normal Form）的基础，任何公式都可以表示为其部分极小项的析取。",
+      "neighbors": [
+        {
+          "subject": "极小项/minterm",
+          "predicate": "part_of",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "极小项构成主析取范式"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "depend_on",
+          "object": "命题变项/propositional variable",
+          "label": "依赖",
+          "natural_statement": "极小项依赖命题变项"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "belong_to",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "极小项属于合取式"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "极小项/minterm",
+          "label": "依赖",
+          "natural_statement": "主范式要求每项为极小项"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "related_with",
+          "object": "极小项/minterm",
+          "label": "相关",
+          "natural_statement": "极大项由合取换成析取极小项"
+        },
+        {
+          "subject": "公式 A/formula A",
+          "predicate": "depend_on",
+          "object": "极小项/minterm",
+          "label": "依赖",
+          "natural_statement": "公式 A由极小项析取组成"
+        },
+        {
+          "subject": "公式/formula",
+          "predicate": "depend_on",
+          "object": "极小项/minterm",
+          "label": "依赖",
+          "natural_statement": "公式表示极小项"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "depend_on",
+          "object": "否定词/negation operator",
+          "label": "依赖",
+          "natural_statement": "极小项由否定词构成"
+        }
+      ],
+      "rank": 3,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+          "text": "极大项的情况相反，这里不再解释。主范式分为主析取范式和主合取范式：任意公式都有唯一与之等值的主析取范式和主合取范式。若公式 A 由 k 个极小项的析取组成，则其余 2^n - k 个极小项的析取就是 ¬A。同理，若公式 A 由 k 个极大项的合取组成，则其余 2^n - k 个极大项的合取就是 ¬A。求主范式最好的方法是通过真值表。",
+          "start_sec": 2598.7,
+          "end_sec": 2655.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+          "text": "怎么样用最简单的方法求真值表，这个方法我下节课讲。现在好像要下课，我最好先把这个编码跟大家讲，因为这部分有作业。关于编码，我说一下，我们这本书上的编码和有些书上的不一样。我们现在只讲我们这本书上的编码。比如说 P、Q 这两个变元，一共有四个极小项。我们对这四个极小项进行编码，怎么编码呢？我们这里编码成 m00、m01、m10、m11。把有否定词出现的那个变元设为 0，另一个设为 1，所以就是 00、01、10、11。因此我们给它编号为 m0、m1、m2、m3。因为极小项用小写的 m。极大项也一样，我用大写的 M，编码方式一样。对极大项的编码，有的书上正好…",
+          "start_sec": 2821.2,
+          "end_sec": 2985.7
+        }
+      ]
+    },
+    {
+      "id": "析取范式/disjunctive normal form",
+      "zh": "析取范式",
+      "importance": 0.6548588134515719,
+      "mention_count": 10,
+      "origin": "textbook",
+      "summary": "析取范式（Disjunctive Normal Form, DNF）是数理逻辑中一类特殊的合式公式，其结构为若干个合取式的析取。每个合取式都由文字（原子命题及其否定）通过合取连接而成，而整个析取范式则由这些合取式通过析取连接。DNF是逻辑公…",
+      "definition": "析取范式（Disjunctive Normal Form, DNF）是数理逻辑中一类特殊的合式公式，其结构为若干个合取式的析取。每个合取式都由文字（原子命题及其否定）通过合取连接而成，而整个析取范式则由这些合取式通过析取连接。DNF是逻辑公式标准化的重要形式之一，常用于等价变换和逻辑推理，例如，通过分配律 $A \\wedge (B \\lor C) = (A \\wedge B) \\vee (A \\wedge C)$ 可将合取式转化为析取式，是化简和判断公式性质（如矛盾式）的基础。",
+      "neighbors": [
+        {
+          "subject": "合取式/conjunctive form",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "合取式包含析取范式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "related_with",
+          "object": "合取范式/conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "析取范式相关合取范式"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "析取范式/disjunctive normal form",
+          "label": "属于",
+          "natural_statement": "文字可视为析取范式"
+        },
+        {
+          "subject": "基本积",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "基本积组成析取范式"
+        },
+        {
+          "subject": "求范式的步骤/steps for finding normal forms",
+          "predicate": "related_with",
+          "object": "析取范式/disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "求范式的步骤相关析取范式"
+        },
+        {
+          "subject": "真值表法/Truth Table Method",
+          "predicate": "related_with",
+          "object": "析取范式/disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表法构造析取范式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "逻辑联结词/logical connective",
+          "label": "依赖",
+          "natural_statement": "析取范式基于逻辑联结词"
+        },
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "related_with",
+          "object": "析取范式/disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "分配律相关析取范式"
+        }
+      ],
+      "rank": 4,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2077300_2208100",
+          "text": "判断A是否重言式，求A的合取范式。若每个析取式都含有互补对，即某个变元及其否定，如P和¬P，那么每个析取式都为真。因为析取式中只要有一项为真，整个析取式就为真；后面再或上其他东西，无论真假都不影响。所以每个析取式都有互补对时，整个合取范式为真，A就是重言式。判断A是否矛盾式，求A的析取范式。若每个合取式都含有互补对，那么每个合取式都为假；只要有一个合取式为假，整个析取范式就为假，所以A是矛盾式。注意，是每个合取式都要有互补对。判断A等于B，则求A和B的同一种范式，看它们是否相同。问题是：范式唯一吗？范式不唯一。也就是说，符合范式定义的、与原来A等值的范式…",
+          "start_sec": 2077.3,
+          "end_sec": 2208.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1831300_1920400",
+          "text": "所以，这就是我们关于范式的一些定义。范式的求法：第一个就是真值表法。我们通过成真指派得到析取范式，通过成假指派得到合取范式。要求一个公式的合取范式、析取范式，就先把这个公式的真值表写出来；要求析取范式，就用成真指派去写；要求合取范式，就通过成假指派写出来就可以了。这是最简单的一种。另外一种就是等值演算法：先消去蕴含和等价，因为范式里面没有蕴含和等价；然后否定词深入，因为范式中的否定词都要深入到原子命题变量，否定词一定要放到文字前面，所以否定词一定要深入到最底层。然后，如果是析取范式，就合取词深入；如果是合取范式，就析取词深入。也就是说，求合取范式时，要把…",
+          "start_sec": 1831.3,
+          "end_sec": 1920.4
+        }
+      ]
+    },
+    {
+      "id": "极大项/maximal term",
+      "zh": "极大项",
+      "importance": 0.6355074548952704,
+      "mention_count": 10,
+      "origin": "textbook",
+      "summary": "极大项（maximal term）是数理逻辑中由n个命题变项（包括其否定形式）通过析取组成的公式，每个命题变项在其中仅出现一次。它在逻辑上满足所有命题变项的真值组合，即每个极大项在一个且仅一个解释下为假。极大项的合取构成了主合取范式，任一公…",
+      "definition": "极大项（maximal term）是数理逻辑中由n个命题变项（包括其否定形式）通过析取组成的公式，每个命题变项在其中仅出现一次。它在逻辑上满足所有命题变项的真值组合，即每个极大项在一个且仅一个解释下为假。极大项的合取构成了主合取范式，任一公式皆可由若干极大项的合取表示。",
+      "neighbors": [
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "极大项/maximal term",
+          "label": "组成",
+          "natural_statement": "命题变项包含极大项"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "极大项属于析取式"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "极大项/maximal term",
+          "label": "依赖",
+          "natural_statement": "主范式要求每项为极大项"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "related_with",
+          "object": "极小项/minterm",
+          "label": "相关",
+          "natural_statement": "极大项由合取换成析取极小项"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "part_of",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "极大项构成主合取范式"
+        },
+        {
+          "subject": "公式 A/formula A",
+          "predicate": "depend_on",
+          "object": "极大项/maximal term",
+          "label": "依赖",
+          "natural_statement": "公式 A由极大项合取组成"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "极大项属于公式"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "depend_on",
+          "object": "否定词/negation operator",
+          "label": "依赖",
+          "natural_statement": "极大项由否定词构成"
+        }
+      ],
+      "rank": 5,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+          "text": "怎么样用最简单的方法求真值表，这个方法我下节课讲。现在好像要下课，我最好先把这个编码跟大家讲，因为这部分有作业。关于编码，我说一下，我们这本书上的编码和有些书上的不一样。我们现在只讲我们这本书上的编码。比如说 P、Q 这两个变元，一共有四个极小项。我们对这四个极小项进行编码，怎么编码呢？我们这里编码成 m00、m01、m10、m11。把有否定词出现的那个变元设为 0，另一个设为 1，所以就是 00、01、10、11。因此我们给它编号为 m0、m1、m2、m3。因为极小项用小写的 m。极大项也一样，我用大写的 M，编码方式一样。对极大项的编码，有的书上正好…",
+          "start_sec": 2821.2,
+          "end_sec": 2985.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_3075100_3209600",
+          "text": "就是这样。那么这就是我们今天的课。今天会布置作业。到目前为止，等值演算已经讲完，接下来要讲的是推理演算。今天主要讲等值演算、真值表、公式的书写、联结词的完备集以及对偶式与范式，共五大部分。期中考试结束了，我也约了几位同学来反映情况和讨论。大家对我这门课程有任何建议和意见，都可以找我聊，或者给我发电子邮件。上传的那本逻辑书，有，就是那本，和教材是一样的；以前图论那本不一样？不是，它也是一样的，逻辑是一样的。极大项的编码方式有点怪，跟别的不一样，所以最后还需要求补。这一套算法的合理性在哪里？为什么要求补？因为这里极大项的编码方式和我前面说的极小项编码方式不一…",
+          "start_sec": 3075.1,
+          "end_sec": 3209.6
+        }
+      ]
+    },
+    {
+      "id": "合取范式/conjunctive normal form",
+      "zh": "合取范式",
+      "importance": 0.6277824194209272,
+      "mention_count": 9,
+      "origin": "textbook",
+      "summary": "合取范式（CNF）是数理逻辑中一类特殊的命题公式，其结构为一系列析取式（子句）的逻辑“与”（合取）。每个析取式由若干文字（原子命题或其否定）通过逻辑“或”（析取）连接而成。合取范式常用于证明和公式转换，例如通过应用分配律 $A \\vee (…",
+      "definition": "合取范式（CNF）是数理逻辑中一类特殊的命题公式，其结构为一系列析取式（子句）的逻辑“与”（合取）。每个析取式由若干文字（原子命题或其否定）通过逻辑“或”（析取）连接而成。合取范式常用于证明和公式转换，例如通过应用分配律 $A \\vee (B \\wedge C) = (A \\vee B) \\wedge (A \\vee C)$，可以将其他形式的公式转换为合取范式，在推理和化简过程中发挥重要作用。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "合取范式/conjunctive normal form",
+          "label": "属于",
+          "natural_statement": "文字可视为合取范式"
+        },
+        {
+          "subject": "析取式/disjunctive form",
+          "predicate": "part_of",
+          "object": "合取范式/conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "析取式包含合取范式"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "related_with",
+          "object": "合取范式/conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "析取范式相关合取范式"
+        },
+        {
+          "subject": "基本和",
+          "predicate": "part_of",
+          "object": "合取范式/conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "基本和组成合取范式"
+        },
+        {
+          "subject": "求范式的步骤/steps for finding normal forms",
+          "predicate": "related_with",
+          "object": "合取范式/conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "求范式的步骤相关合取范式"
+        },
+        {
+          "subject": "真值表法/Truth Table Method",
+          "predicate": "related_with",
+          "object": "合取范式/conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表法构造合取范式"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "逻辑联结词/logical connective",
+          "label": "依赖",
+          "natural_statement": "合取范式基于逻辑联结词"
+        },
+        {
+          "subject": "分配律/distributive law",
+          "predicate": "related_with",
+          "object": "合取范式/conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "分配律相关合取范式"
+        }
+      ],
+      "rank": 6,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2077300_2208100",
+          "text": "判断A是否重言式，求A的合取范式。若每个析取式都含有互补对，即某个变元及其否定，如P和¬P，那么每个析取式都为真。因为析取式中只要有一项为真，整个析取式就为真；后面再或上其他东西，无论真假都不影响。所以每个析取式都有互补对时，整个合取范式为真，A就是重言式。判断A是否矛盾式，求A的析取范式。若每个合取式都含有互补对，那么每个合取式都为假；只要有一个合取式为假，整个析取范式就为假，所以A是矛盾式。注意，是每个合取式都要有互补对。判断A等于B，则求A和B的同一种范式，看它们是否相同。问题是：范式唯一吗？范式不唯一。也就是说，符合范式定义的、与原来A等值的范式…",
+          "start_sec": 2077.3,
+          "end_sec": 2208.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1831300_1920400",
+          "text": "所以，这就是我们关于范式的一些定义。范式的求法：第一个就是真值表法。我们通过成真指派得到析取范式，通过成假指派得到合取范式。要求一个公式的合取范式、析取范式，就先把这个公式的真值表写出来；要求析取范式，就用成真指派去写；要求合取范式，就通过成假指派写出来就可以了。这是最简单的一种。另外一种就是等值演算法：先消去蕴含和等价，因为范式里面没有蕴含和等价；然后否定词深入，因为范式中的否定词都要深入到原子命题变量，否定词一定要放到文字前面，所以否定词一定要深入到最底层。然后，如果是析取范式，就合取词深入；如果是合取范式，就析取词深入。也就是说，求合取范式时，要把…",
+          "start_sec": 1831.3,
+          "end_sec": 1920.4
+        }
+      ]
+    },
+    {
+      "id": "主析取范式/principal disjunctive normal form",
+      "zh": "主析取范式",
+      "importance": 0.5809897003113275,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "主析取范式（Principal Disjunctive Normal Form, PDNF）是数理逻辑中一种特殊的析取范式，其特点是仅由极小项构成。任何一个命题逻辑公式都可以通过填满合取式中的命题变项，或从其真值表导出，转化为一个与其逻辑等…",
+      "definition": "主析取范式（Principal Disjunctive Normal Form, PDNF）是数理逻辑中一种特殊的析取范式，其特点是仅由极小项构成。任何一个命题逻辑公式都可以通过填满合取式中的命题变项，或从其真值表导出，转化为一个与其逻辑等价的主析取范式。主析取范式在逻辑等价性判断和公式化简中扮演重要角色。",
+      "neighbors": [
+        {
+          "subject": "极小项/minterm",
+          "predicate": "part_of",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "极小项构成主析取范式"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表相关主析取范式"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "主范式/principal normal form",
+          "label": "属于",
+          "natural_statement": "主析取范式属于主范式"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "主析取范式属于析取式"
+        },
+        {
+          "subject": "任意公式/arbitrary formula",
+          "predicate": "related_with",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "任意公式有唯一等值的主析取范式"
+        },
+        {
+          "subject": "基本积",
+          "predicate": "part_of",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "主析取范式补全后构成简单合取式"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "析取范式/disjunctive normal form",
+          "label": "属于",
+          "natural_statement": "主析取范式是一种析取范式"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "主析取范式基于变元"
+        }
+      ],
+      "rank": 7,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+          "text": "极大项的情况相反，这里不再解释。主范式分为主析取范式和主合取范式：任意公式都有唯一与之等值的主析取范式和主合取范式。若公式 A 由 k 个极小项的析取组成，则其余 2^n - k 个极小项的析取就是 ¬A。同理，若公式 A 由 k 个极大项的合取组成，则其余 2^n - k 个极大项的合取就是 ¬A。求主范式最好的方法是通过真值表。",
+          "start_sec": 2598.7,
+          "end_sec": 2655.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "否定/Negation",
+      "zh": "否定",
+      "importance": 0.5555686639207695,
+      "mention_count": 5,
+      "origin": "textbook",
+      "summary": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于…",
+      "definition": "否定（Negation），在数理逻辑与集合论中，是一个基本的逻辑联结词，用符号 '¬' 表示。它将一个命题 P 转化为一个新的命题 ¬P，其核心功能是颠倒原命题的真值，即若 P 为真，则 ¬P 为假；若 P 为假，则 ¬P 为真。否定词用于构建真值函项，可以修饰命题的全部，例如在摩根律中，¬(P ∨ Q) 等价于 ¬P ∧ ¬Q，表明否定应用于整个析取结构。在量词逻辑中，否定常与全称量词和存在量词结合使用，用于表达逻辑等价性，如证明 (∀x)A(x) 与 ¬(∃x)¬A(x) 的等价性。",
+      "neighbors": [
+        {
+          "subject": "否定/Negation",
+          "predicate": "related_with",
+          "object": "对偶/dual",
+          "label": "相关",
+          "natural_statement": "否定同永真于对偶"
+        },
+        {
+          "subject": "内否/internal negation",
+          "predicate": "depend_on",
+          "object": "否定/Negation",
+          "label": "依赖",
+          "natural_statement": "内否基于否定"
+        },
+        {
+          "subject": "摩根律/摩根律",
+          "predicate": "related_with",
+          "object": "否定/Negation",
+          "label": "相关",
+          "natural_statement": "摩根律相关否定"
+        },
+        {
+          "subject": "否定/Negation",
+          "predicate": "belong_to",
+          "object": "公式/formula",
+          "label": "属于",
+          "natural_statement": "否定包含公式"
+        },
+        {
+          "subject": "等值公式/equivalent formula",
+          "predicate": "depend_on",
+          "object": "否定/Negation",
+          "label": "依赖",
+          "natural_statement": "等值公式依赖否定"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "belong_to",
+          "object": "否定/Negation",
+          "label": "属于",
+          "natural_statement": "否定词是否定的符号表示"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "否定/Negation",
+          "label": "依赖",
+          "natural_statement": "主析取范式基于否定"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "否定/Negation",
+          "label": "依赖",
+          "natural_statement": "主合取范式基于否定"
+        }
+      ],
+      "rank": 8,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_900_1457100",
+          "text": "接着讲我们的对偶定理。同永真与同可满足的定义是：A 和 B 同永真，指 A 永真当且仅当 B 永真；A 和 B 同可满足，指 A 可满足当且仅当 B 可满足。要注意，同永真、同可满足不一定就是等值。 定理：以下两对公式都是同永真且同可满足的：A 与 A 的内否，¬A 与 A 的对偶。 证明时只需证明 A 与 A 的内否这一对，因为 ¬A 等于 A 的对偶的内否。设 A 的命题变元为 p1 到 pn，A 的内否就是把每个 p_i 换成 ¬p_i，所有联结词不变。若 A 可满足，取使 A 为真的一组赋值，把每个变元取值都取反，代入 A 的内否一定为真；反过来…",
+          "start_sec": 0.9,
+          "end_sec": 1457.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "变元/variable symbol",
+      "zh": "变元",
+      "importance": 0.5462688641131398,
+      "mention_count": 14,
+      "origin": "textbook",
+      "summary": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "definition": "变元（Variable Symbol）是数理逻辑与集合论中的一个基本符号，表示论域中的任意元素。它由所有常项变元组成，可以指代论域内的具体对象，也可以是代表未知或任意对象的占位符，其具体指代内容在解释（Interpretation）中确定。",
+      "neighbors": [
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "主析取范式基于变元"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "主合取范式基于变元"
+        },
+        {
+          "subject": "部分指派法/partial assignment method",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "部分指派法选取变元"
+        }
+      ],
+      "rank": 9,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2701000_2820300",
+          "text": "马上就要下课了，这里就不深入了。第三种主范式的求法叫做部分指派的步骤。这里是什么意思呢？就是说，像这样一个公式，它虽然比较复杂，但只有 P、Q、R 三个变元，其实也比较简单，也就是八行，去求那个范式是比较简单的，对吧？但如果一旦一个复杂的公式，要求它的范式就比较复杂了。那我们首先把否定深入，这一步已经没有问题了，已经深入了，然后叫部分指派。比如说，像我们这个例子里，P 比较多，R 比较少。然后我们就可以先把 P 取值为真和假两种情况：先看 P 为真的时候它的取值，再看 P 为假的时候它的取值，这也叫部分指派，明白吧？具体例子这边可能没有时间了，就先跳过…",
+          "start_sec": 2701,
+          "end_sec": 2820.3
+        }
+      ]
+    },
+    {
+      "id": "编码/encoding",
+      "zh": "编码",
+      "importance": 0.5261308658170888,
+      "mention_count": 14,
+      "origin": "textbook",
+      "summary": "编码是将特定信息转化为一种约定好的符号系统表示的过程，在数理逻辑中常用于将数学对象（如公式、证明）映射为自然数。其核心在于建立一种一一对应的关系，例如哥德尔配数法将逻辑表达式或证明步骤映射为一系列整数，从而可以在算术的框架内研究这些逻辑结构…",
+      "definition": "编码是将特定信息转化为一种约定好的符号系统表示的过程，在数理逻辑中常用于将数学对象（如公式、证明）映射为自然数。其核心在于建立一种一一对应的关系，例如哥德尔配数法将逻辑表达式或证明步骤映射为一系列整数，从而可以在算术的框架内研究这些逻辑结构。",
+      "neighbors": [
+        {
+          "subject": "编码/encoding",
+          "predicate": "depend_on",
+          "object": "极小项/minterm",
+          "label": "依赖",
+          "natural_statement": "编码应用于极小项"
+        },
+        {
+          "subject": "编码/encoding",
+          "predicate": "depend_on",
+          "object": "极大项/maximal term",
+          "label": "依赖",
+          "natural_statement": "编码应用于极大项"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "编码/encoding",
+          "label": "依赖",
+          "natural_statement": "主析取范式基于编码"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "编码/encoding",
+          "label": "依赖",
+          "natural_statement": "主合取范式基于编码"
+        }
+      ],
+      "rank": 10,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+          "text": "怎么样用最简单的方法求真值表，这个方法我下节课讲。现在好像要下课，我最好先把这个编码跟大家讲，因为这部分有作业。关于编码，我说一下，我们这本书上的编码和有些书上的不一样。我们现在只讲我们这本书上的编码。比如说 P、Q 这两个变元，一共有四个极小项。我们对这四个极小项进行编码，怎么编码呢？我们这里编码成 m00、m01、m10、m11。把有否定词出现的那个变元设为 0，另一个设为 1，所以就是 00、01、10、11。因此我们给它编号为 m0、m1、m2、m3。因为极小项用小写的 m。极大项也一样，我用大写的 M，编码方式一样。对极大项的编码，有的书上正好…",
+          "start_sec": 2821.2,
+          "end_sec": 2985.7
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "合取/conjunction",
+      "zh": "合取",
+      "importance": 0.4838507195985401,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$…",
+      "definition": "合取（conjunction），在数理逻辑中，是一种二元逻辑联结词，常表示为 \"and\" 或 \"∧\"。其核心功能是当且仅当其两个命题成分（称为合取项）均为真时，整个合取命题才为真。合取可用于公式的等价转换，例如 $(A \\land B)$ 等价于 $\\neg (\\neg A \\vee \\neg B)$。它在命题逻辑和谓词逻辑中都扮演着基础角色，并且与析取（∨）、蕴含（→）、双条件（↔）等共同构成了逻辑系统的基本运算。",
+      "neighbors": [
+        {
+          "subject": "等值公式/equivalent formula",
+          "predicate": "depend_on",
+          "object": "合取/conjunction",
+          "label": "依赖",
+          "natural_statement": "等值公式依赖合取"
+        },
+        {
+          "subject": "合取/conjunction",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "合取是公式的组成部分"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "part_of",
+          "object": "合取/conjunction",
+          "label": "组成",
+          "natural_statement": "主合取范式由合取构成"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "part_of",
+          "object": "合取/conjunction",
+          "label": "组成",
+          "natural_statement": "极小项由合取构成"
+        }
+      ],
+      "rank": 11,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "主范式/principal normal form",
+      "zh": "主范式",
+      "importance": 0.4740665223977887,
+      "mention_count": 8,
+      "origin": "textbook",
+      "summary": "主范式（principal normal form）是数理逻辑中用于表示命题逻辑公式的一种标准形式，它通过一系列规范化的转换规则，将任意命题公式转化为一个唯一的、简化的表示形式。其核心在于确保同一逻辑意义的公式在主范式下具有相同的结构。它在…",
+      "definition": "主范式（principal normal form）是数理逻辑中用于表示命题逻辑公式的一种标准形式，它通过一系列规范化的转换规则，将任意命题公式转化为一个唯一的、简化的表示形式。其核心在于确保同一逻辑意义的公式在主范式下具有相同的结构。它在逻辑系统的公理化、定理证明的自动化以及逻辑表达式的简化等方面具有重要应用。",
+      "neighbors": [
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "belong_to",
+          "object": "范式/normal form",
+          "label": "属于",
+          "natural_statement": "主范式具有范式"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "极小项/minterm",
+          "label": "依赖",
+          "natural_statement": "主范式要求每项为极小项"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "极大项/maximal term",
+          "label": "依赖",
+          "natural_statement": "主范式要求每项为极大项"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "主范式/principal normal form",
+          "label": "属于",
+          "natural_statement": "主析取范式属于主范式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "主范式/principal normal form",
+          "label": "属于",
+          "natural_statement": "主合取范式属于主范式"
+        },
+        {
+          "subject": "部分指派法/partial assignment method",
+          "predicate": "related_with",
+          "object": "主范式/principal normal form",
+          "label": "相关",
+          "natural_statement": "部分指派法用于求主范式"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "主范式通过真值表求得"
+        }
+      ],
+      "rank": 12,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2209000_2242900",
+          "text": "比如说，就前面这个式子，不化简也是范式，化简了也是范式。但前面加个“主”字，它就唯一了。",
+          "start_sec": 2209,
+          "end_sec": 2242.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+          "text": "极大项的情况相反，这里不再解释。主范式分为主析取范式和主合取范式：任意公式都有唯一与之等值的主析取范式和主合取范式。若公式 A 由 k 个极小项的析取组成，则其余 2^n - k 个极小项的析取就是 ¬A。同理，若公式 A 由 k 个极大项的合取组成，则其余 2^n - k 个极大项的合取就是 ¬A。求主范式最好的方法是通过真值表。",
+          "start_sec": 2598.7,
+          "end_sec": 2655.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        }
+      ]
+    },
+    {
+      "id": "析取/disjunction",
+      "zh": "析取",
+      "importance": 0.4576214672083725,
+      "mention_count": 7,
+      "origin": "textbook",
+      "summary": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更…",
+      "definition": "析取（disjunction）是数理逻辑中一种基本的逻辑联结词，表示命题P或Q（或两者都）为真，记作 P∨Q。其真值规则为：当且仅当P和Q都为假时，析取命题为假；否则为真。析取是合取（∧）和蕴含（→）等逻辑运算的组成部分，并且可以用来表示更复杂的逻辑公式，例如将蕴含转化为只含否定、析取和合取的公式。",
+      "neighbors": [
+        {
+          "subject": "析取/disjunction",
+          "predicate": "part_of",
+          "object": "公式/formula",
+          "label": "组成",
+          "natural_statement": "析取是公式的组成部分"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "part_of",
+          "object": "析取/disjunction",
+          "label": "组成",
+          "natural_statement": "主析取范式由析取构成"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "part_of",
+          "object": "析取/disjunction",
+          "label": "组成",
+          "natural_statement": "极大项由析取构成"
+        }
+      ],
+      "rank": 13,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "否定词/negation operator",
+      "zh": "否定词",
+      "importance": 0.44214335311406566,
+      "mention_count": 4,
+      "origin": "textbook",
+      "summary": "否定词“$\\neg$”是数理逻辑中的一个一元联结词，用于构成新命题。当其作用于一个命题 P 时，产生一个新的命题，该命题的真值与 P 的真值相反。它遵循特定的逻辑规则，例如可以内移越过量词。",
+      "definition": "否定词“$\\neg$”是数理逻辑中的一个一元联结词，用于构成新命题。当其作用于一个命题 P 时，产生一个新的命题，该命题的真值与 P 的真值相反。它遵循特定的逻辑规则，例如可以内移越过量词。",
+      "neighbors": [
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "原子命题/atomic proposition",
+          "label": "相关",
+          "natural_statement": "否定词深入至原子命题"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "否定词是一种逻辑联结词"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "量词/quantifier",
+          "label": "相关",
+          "natural_statement": "否定词相关量词"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "related_with",
+          "object": "公式/formula",
+          "label": "相关",
+          "natural_statement": "否定词作用于公式"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "depend_on",
+          "object": "摩根律/摩根律",
+          "label": "依赖",
+          "natural_statement": "否定词利用摩根律"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "belong_to",
+          "object": "否定/Negation",
+          "label": "属于",
+          "natural_statement": "否定词是否定的符号表示"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "depend_on",
+          "object": "否定词/negation operator",
+          "label": "依赖",
+          "natural_statement": "极小项由否定词构成"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "depend_on",
+          "object": "否定词/negation operator",
+          "label": "依赖",
+          "natural_statement": "极大项由否定词构成"
+        }
+      ],
+      "rank": 14,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1831300_1920400",
+          "text": "所以，这就是我们关于范式的一些定义。范式的求法：第一个就是真值表法。我们通过成真指派得到析取范式，通过成假指派得到合取范式。要求一个公式的合取范式、析取范式，就先把这个公式的真值表写出来；要求析取范式，就用成真指派去写；要求合取范式，就通过成假指派写出来就可以了。这是最简单的一种。另外一种就是等值演算法：先消去蕴含和等价，因为范式里面没有蕴含和等价；然后否定词深入，因为范式中的否定词都要深入到原子命题变量，否定词一定要放到文字前面，所以否定词一定要深入到最底层。然后，如果是析取范式，就合取词深入；如果是合取范式，就析取词深入。也就是说，求合取范式时，要把…",
+          "start_sec": 1831.3,
+          "end_sec": 1920.4
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1978100_2026100",
+          "text": "我们只需要按前面的策略：因为最外层是析取，所以要把否定词深入。用德摩根律展开，得到非P且非Q且P且Q，这一部分显然为假；非P与P、非Q与Q分别矛盾，所以整个前一部分是false，可以消掉。剩下的部分就是(P∨Q)且(非P∨非Q)。但我们要求析取范式，现在最外层是合取，所以还要把合取深入，把析取移出来、合取放进去，继续进行化简。",
+          "start_sec": 1978.1,
+          "end_sec": 2026.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2821200_2985700",
+          "text": "怎么样用最简单的方法求真值表，这个方法我下节课讲。现在好像要下课，我最好先把这个编码跟大家讲，因为这部分有作业。关于编码，我说一下，我们这本书上的编码和有些书上的不一样。我们现在只讲我们这本书上的编码。比如说 P、Q 这两个变元，一共有四个极小项。我们对这四个极小项进行编码，怎么编码呢？我们这里编码成 m00、m01、m10、m11。把有否定词出现的那个变元设为 0，另一个设为 1，所以就是 00、01、10、11。因此我们给它编号为 m0、m1、m2、m3。因为极小项用小写的 m。极大项也一样，我用大写的 M，编码方式一样。对极大项的编码，有的书上正好…",
+          "start_sec": 2821.2,
+          "end_sec": 2985.7
+        }
+      ]
+    },
+    {
+      "id": "逻辑联结词/logical connective",
+      "zh": "逻辑联结词",
+      "importance": 0.4245990325848641,
+      "origin": "textbook",
+      "summary": "逻辑联结词是数理逻辑中用于连接命题构成复合命题的抽象符号，例如合取“∧”、析取“∨”、否定“¬”、蕴含“→”和双条件“↔”。它们是对自然语言中联结词的精确化和形式化，只表达客观性质，并被定义为在真值 {T, F} 上的运算，广泛用于构建和分…",
+      "definition": "逻辑联结词是数理逻辑中用于连接命题构成复合命题的抽象符号，例如合取“∧”、析取“∨”、否定“¬”、蕴含“→”和双条件“↔”。它们是对自然语言中联结词的精确化和形式化，只表达客观性质，并被定义为在真值 {T, F} 上的运算，广泛用于构建和分析逻辑公式。",
+      "neighbors": [
+        {
+          "subject": "析取词/disjunction(logical connective)",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "析取词表示逻辑联结词"
+        },
+        {
+          "subject": "合取词/conjunction(logical connective)",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "合取词属于逻辑联结词"
+        },
+        {
+          "subject": "析取范式/disjunctive normal form",
+          "predicate": "depend_on",
+          "object": "逻辑联结词/logical connective",
+          "label": "依赖",
+          "natural_statement": "析取范式基于逻辑联结词"
+        },
+        {
+          "subject": "合取范式/conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "逻辑联结词/logical connective",
+          "label": "依赖",
+          "natural_statement": "合取范式基于逻辑联结词"
+        },
+        {
+          "subject": "求范式的步骤/steps for finding normal forms",
+          "predicate": "depend_on",
+          "object": "逻辑联结词/logical connective",
+          "label": "依赖",
+          "natural_statement": "求范式的步骤基于逻辑联结词"
+        },
+        {
+          "subject": "否定词/negation operator",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "否定词是一种逻辑联结词"
+        },
+        {
+          "subject": "蕴含/implication",
+          "predicate": "belong_to",
+          "object": "逻辑联结词/logical connective",
+          "label": "属于",
+          "natural_statement": "蕴含是一种逻辑联结词"
+        }
+      ],
+      "rank": 15,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1831300_1920400",
+          "text": "所以，这就是我们关于范式的一些定义。范式的求法：第一个就是真值表法。我们通过成真指派得到析取范式，通过成假指派得到合取范式。要求一个公式的合取范式、析取范式，就先把这个公式的真值表写出来；要求析取范式，就用成真指派去写；要求合取范式，就通过成假指派写出来就可以了。这是最简单的一种。另外一种就是等值演算法：先消去蕴含和等价，因为范式里面没有蕴含和等价；然后否定词深入，因为范式中的否定词都要深入到原子命题变量，否定词一定要放到文字前面，所以否定词一定要深入到最底层。然后，如果是析取范式，就合取词深入；如果是合取范式，就析取词深入。也就是说，求合取范式时，要把…",
+          "start_sec": 1831.3,
+          "end_sec": 1920.4
+        }
+      ]
+    },
+    {
+      "id": "文字/literal",
+      "zh": "文字",
+      "importance": 0.41517978510130543,
+      "mention_count": 9,
+      "origin": "new",
+      "summary": "极大项是数理逻辑中，一个合取式，它包含布尔变量集合 $P_1, \\dots, P_n$ 中的全部 n 个文字。文字是指一个原子公式或其否定。例如，对于变量 $P_1, P_2$，一个极大项可能是 $P_1 \\land \\neg P_2$。在…",
+      "definition": "极大项是数理逻辑中，一个合取式，它包含布尔变量集合 $P_1, \\dots, P_n$ 中的全部 n 个文字。文字是指一个原子公式或其否定。例如，对于变量 $P_1, P_2$，一个极大项可能是 $P_1 \\land \\neg P_2$。在布尔函数化简中，极大项与极小项具有重要的对称性。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "命题变项/propositional variable",
+          "label": "组成",
+          "natural_statement": "文字由命题变项构成"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "合取范式/conjunctive normal form",
+          "label": "属于",
+          "natural_statement": "文字可视为合取范式"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "合取式/conjunctive form",
+          "label": "组成",
+          "natural_statement": "文字属于合取式"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "析取式/disjunctive form",
+          "label": "组成",
+          "natural_statement": "文字属于析取式"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "基本积",
+          "label": "属于",
+          "natural_statement": "文字是基本积的特例"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "基本和",
+          "label": "属于",
+          "natural_statement": "文字是基本和的特例"
+        },
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "析取范式/disjunctive normal form",
+          "label": "属于",
+          "natural_statement": "文字可视为析取范式"
+        }
+      ],
+      "rank": 16,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+          "text": "与一个公式等值的公式非常多，这是比较极端的情况：即便只有一个变元 p，也可以写出 p，p∧p，p∧p∧p，……。但我们可以看到，与一个公式等值的公式是非常多的。那么如何去判定两个公式等值？当然，我们可以通过真值表、推理演算来证明两个公式等值。那么，如果我们把每个公式都写成一种范式——一种统一的语法形式——那么如果它们的范式相同，我们就可以说这两个公式是等值的。好，这就是范式的一些定义。我们先来定义一些概念。第一个定义是文字。什么是文字？就是 p、q、r 这些命题变项，以及这些命题变项的否定，就称为文字。",
+          "start_sec": 1457.9,
+          "end_sec": 1542
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        }
+      ]
+    },
+    {
+      "id": "真值表/truth table",
+      "zh": "真值表",
+      "importance": 0.404951118660857,
+      "mention_count": 4,
+      "origin": "textbook",
+      "summary": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "definition": "真值表是数理逻辑中研究命题逻辑关系的重要工具，用于系统地表示一个复合命题的真值如何依赖于构成它的原子命题的真值。通过列出所有可能的原子命题真值组合，并根据联结词的定义推导出复合命题的真值，真值表可以用来判断公式间的等值性，以及推导主范式。",
+      "neighbors": [
+        {
+          "subject": "公式等值/formula equivalence",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "公式等值通过真值表判定"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表相关主析取范式"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "命题变项/propositional variable",
+          "label": "依赖",
+          "natural_statement": "真值表依赖命题变项"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表相关主合取范式"
+        },
+        {
+          "subject": "等值演算/equivalence calculus",
+          "predicate": "related_with",
+          "object": "真值表/truth table",
+          "label": "相关",
+          "natural_statement": "等值演算涵盖真值表"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "联结词的完备集/complete set of logical connectives",
+          "label": "相关",
+          "natural_statement": "真值表涵盖联结词的完备集"
+        },
+        {
+          "subject": "主范式/principal normal form",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "主范式通过真值表求得"
+        }
+      ],
+      "rank": 17,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+          "text": "与一个公式等值的公式非常多，这是比较极端的情况：即便只有一个变元 p，也可以写出 p，p∧p，p∧p∧p，……。但我们可以看到，与一个公式等值的公式是非常多的。那么如何去判定两个公式等值？当然，我们可以通过真值表、推理演算来证明两个公式等值。那么，如果我们把每个公式都写成一种范式——一种统一的语法形式——那么如果它们的范式相同，我们就可以说这两个公式是等值的。好，这就是范式的一些定义。我们先来定义一些概念。第一个定义是文字。什么是文字？就是 p、q、r 这些命题变项，以及这些命题变项的否定，就称为文字。",
+          "start_sec": 1457.9,
+          "end_sec": 1542
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+          "text": "极大项的情况相反，这里不再解释。主范式分为主析取范式和主合取范式：任意公式都有唯一与之等值的主析取范式和主合取范式。若公式 A 由 k 个极小项的析取组成，则其余 2^n - k 个极小项的析取就是 ¬A。同理，若公式 A 由 k 个极大项的合取组成，则其余 2^n - k 个极大项的合取就是 ¬A。求主范式最好的方法是通过真值表。",
+          "start_sec": 2598.7,
+          "end_sec": 2655.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_3075100_3209600",
+          "text": "就是这样。那么这就是我们今天的课。今天会布置作业。到目前为止，等值演算已经讲完，接下来要讲的是推理演算。今天主要讲等值演算、真值表、公式的书写、联结词的完备集以及对偶式与范式，共五大部分。期中考试结束了，我也约了几位同学来反映情况和讨论。大家对我这门课程有任何建议和意见，都可以找我聊，或者给我发电子邮件。上传的那本逻辑书，有，就是那本，和教材是一样的；以前图论那本不一样？不是，它也是一样的，逻辑是一样的。极大项的编码方式有点怪，跟别的不一样，所以最后还需要求补。这一套算法的合理性在哪里？为什么要求补？因为这里极大项的编码方式和我前面说的极小项编码方式不一…",
+          "start_sec": 3075.1,
+          "end_sec": 3209.6
+        }
+      ]
+    },
+    {
+      "id": "基本积",
+      "zh": "基本积",
+      "importance": 0.40307974760179877,
+      "mention_count": 8,
+      "origin": "new",
+      "summary": "基本积是命题逻辑中由有限个文字通过合取联结词构成的简单合取式，是析取范式的组成单元。单个文字（如¬P）既是基本积也是基本和，文字本身是基本积的特例。",
+      "definition": "基本积是命题逻辑中由有限个文字通过合取联结词构成的简单合取式，是析取范式的组成单元。单个文字（如¬P）既是基本积也是基本和，文字本身是基本积的特例。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "基本积",
+          "label": "属于",
+          "natural_statement": "文字是基本积的特例"
+        },
+        {
+          "subject": "基本积",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "基本积组成析取范式"
+        },
+        {
+          "subject": "基本积",
+          "predicate": "part_of",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "主析取范式补全后构成简单合取式"
+        }
+      ],
+      "rank": 18,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        }
+      ]
+    },
+    {
+      "id": "合取式/conjunctive form",
+      "zh": "合取式",
+      "importance": 0.3980914514544203,
+      "mention_count": 3,
+      "origin": "textbook",
+      "summary": "合取式是数理逻辑中一种由若干个文字（原子命题或其否定）通过合取联结符（AND）连接而成的公式。其核心功能是将复杂的逻辑命题分解为更小的、由原子命题组合而成的逻辑单元，用于逻辑推理和公式简化。例如，在处理命题逻辑的范式转换时，合取式是构建析取…",
+      "definition": "合取式是数理逻辑中一种由若干个文字（原子命题或其否定）通过合取联结符（AND）连接而成的公式。其核心功能是将复杂的逻辑命题分解为更小的、由原子命题组合而成的逻辑单元，用于逻辑推理和公式简化。例如，在处理命题逻辑的范式转换时，合取式是构建析取范式（DNF）或主析取范式（CNF）的基本单元，并且在公式中引入互补对（如 P 和 ¬P）是重要的逻辑操作。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "合取式/conjunctive form",
+          "label": "组成",
+          "natural_statement": "文字属于合取式"
+        },
+        {
+          "subject": "合取式/conjunctive form",
+          "predicate": "part_of",
+          "object": "析取范式/disjunctive normal form",
+          "label": "组成",
+          "natural_statement": "合取式包含析取范式"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "belong_to",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "极小项属于合取式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "主合取范式属于合取式"
+        }
+      ],
+      "rank": 19,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        }
+      ]
+    },
+    {
+      "id": "基本和",
+      "zh": "基本和",
+      "importance": 0.37346615477346057,
+      "mention_count": 7,
+      "origin": "new",
+      "summary": "基本和是命题逻辑中由有限个文字（命题变元或其否定）通过析取联结词组成的简单析取式，是合取范式的构成单元。单个文字（如 ¬P）既是基本和也是基本积，文字本身可视为基本和的特例。",
+      "definition": "基本和是命题逻辑中由有限个文字（命题变元或其否定）通过析取联结词组成的简单析取式，是合取范式的构成单元。单个文字（如 ¬P）既是基本和也是基本积，文字本身可视为基本和的特例。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "belong_to",
+          "object": "基本和",
+          "label": "属于",
+          "natural_statement": "文字是基本和的特例"
+        },
+        {
+          "subject": "基本和",
+          "predicate": "part_of",
+          "object": "合取范式/conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "基本和组成合取范式"
+        }
+      ],
+      "rank": 20,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        }
+      ]
+    },
+    {
+      "id": "析取式/disjunctive form",
+      "zh": "析取式",
+      "importance": 0.3665195571861293,
+      "mention_count": 2,
+      "origin": "textbook",
+      "summary": "析取式（Disjunctive Form），在数理逻辑中，是指由若干个文字（Literal）通过析取联结词（∨）连接而成的命题公式，也常被称为子句。它的核心逻辑是“或”，即当构成它的任一文字取真时，整个析取式就取真；仅当所有文字均取假时，析…",
+      "definition": "析取式（Disjunctive Form），在数理逻辑中，是指由若干个文字（Literal）通过析取联结词（∨）连接而成的命题公式，也常被称为子句。它的核心逻辑是“或”，即当构成它的任一文字取真时，整个析取式就取真；仅当所有文字均取假时，析取式才取假。在逻辑推演中，析取式是构成合取范式（Conjunctive Normal Form, CNF）的基本单元，其特例——仅由极小项构成的析取式，构成了主析取范式（Disjunctive Normal Form, DNF）。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "析取式/disjunctive form",
+          "label": "组成",
+          "natural_statement": "文字属于析取式"
+        },
+        {
+          "subject": "析取式/disjunctive form",
+          "predicate": "part_of",
+          "object": "合取范式/conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "析取式包含合取范式"
+        },
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "极大项属于析取式"
+        },
+        {
+          "subject": "主析取范式/principal disjunctive normal form",
+          "predicate": "belong_to",
+          "object": "析取式/disjunctive form",
+          "label": "属于",
+          "natural_statement": "主析取范式属于析取式"
+        }
+      ],
+      "rank": 21,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1543000_1667600",
+          "text": "例如，对变量表 {P, Q}，P、¬P、Q、¬Q 都是文字。另外，把 F 称为空文字，记作 NIL。好，第二个概念叫基本积，也叫简单合取式，就是把上面的文字用合取连接起来得到的公式。所有这些文字本身都是基本积的特例。这就像你们这次考试森林那道题目，树是森林的特殊形式。森林的定义是由 k 个连通分量组成，每个连通分量都是一棵树；当 k=1 时，树就是森林。你们做那道题目，可能有人对这个特例理解错了。我们这里也一样，文字本身是基本积的特例，像 P、¬P 这些文字，也可以看成基本积。基本和呢？基本积用合取连接，基本和用析取连接；同样，文字也是基本和的特例，也可…",
+          "start_sec": 1543,
+          "end_sec": 1667.6
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1668700_1830500",
+          "text": "先讲合取。合取范式在这儿，就是说 \\(A_1, A_2, \\ldots, A_n\\)，所有这些 \\(A_i\\) 都是基本和，也就是简单的析取式。析取式就是基本和。比如说，在我们的真值表里，哪个通过成真指派还是成假指派得到的是合取范式？这个……成假指派得到的是一个合取范式，是不是合取范式？这里得到的这些是不是都是基本和？也就是简单的析取式。这里面是析取，最里面的都是析取式，外围用合取，叫做合取范式。我们通过成假指派得到的就是合取范式。析取范式是一样的。析取范式是 \\(B_1 \\vee B_2 \\vee \\ldots \\vee B_n\\)，然后这些 \\(B_…",
+          "start_sec": 1668.7,
+          "end_sec": 1830.5
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        }
+      ]
+    },
+    {
+      "id": "主合取范式/principal conjunctive normal form",
+      "zh": "主合取范式",
+      "importance": 0.3620336080696775,
+      "mention_count": 3,
+      "origin": "textbook",
+      "summary": "主合取范式（Principal Conjunctive Normal Form, PCNF）是数理逻辑中命题演算的一种标准形式，其特点是仅由极大项（Maxterm）构成的合取式（Conjunction）。任何一个具有n个命题变项的命题公式…",
+      "definition": "主合取范式（Principal Conjunctive Normal Form, PCNF）是数理逻辑中命题演算的一种标准形式，其特点是仅由极大项（Maxterm）构成的合取式（Conjunction）。任何一个具有n个命题变项的命题公式，都存在唯一一个与之等价的、仅包含这n个命题变项的主合取范式。它常用于将公式转换为一种规范化的表示，并且是真值表法中推导公式的一种方式，可以与主析取范式相互转换。",
+      "neighbors": [
+        {
+          "subject": "极大项/maximal term",
+          "predicate": "part_of",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "组成",
+          "natural_statement": "极大项构成主合取范式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "主范式/principal normal form",
+          "label": "属于",
+          "natural_statement": "主合取范式属于主范式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "合取式/conjunctive form",
+          "label": "属于",
+          "natural_statement": "主合取范式属于合取式"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "related_with",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "真值表相关主合取范式"
+        },
+        {
+          "subject": "任意公式/arbitrary formula",
+          "predicate": "related_with",
+          "object": "主合取范式/principal conjunctive normal form",
+          "label": "相关",
+          "natural_statement": "任意公式有唯一等值的主合取范式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "belong_to",
+          "object": "合取范式/conjunctive normal form",
+          "label": "属于",
+          "natural_statement": "主合取范式是一种合取范式"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "变元/variable symbol",
+          "label": "依赖",
+          "natural_statement": "主合取范式基于变元"
+        },
+        {
+          "subject": "主合取范式/principal conjunctive normal form",
+          "predicate": "depend_on",
+          "object": "主析取范式/principal disjunctive normal form",
+          "label": "依赖",
+          "natural_statement": "主合取范式由主析取范式求得"
+        }
+      ],
+      "rank": 22,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2598700_2655900",
+          "text": "极大项的情况相反，这里不再解释。主范式分为主析取范式和主合取范式：任意公式都有唯一与之等值的主析取范式和主合取范式。若公式 A 由 k 个极小项的析取组成，则其余 2^n - k 个极小项的析取就是 ¬A。同理，若公式 A 由 k 个极大项的合取组成，则其余 2^n - k 个极大项的合取就是 ¬A。求主范式最好的方法是通过真值表。",
+          "start_sec": 2598.7,
+          "end_sec": 2655.9
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2656600_2700100",
+          "text": "第二种方法就是通过主范式来求。比如这个公式 P 蕴含 Q 等于非 P 或 Q，要求它的主析取范式。这是一个析取范式吧？非 P 或 Q 是析取范式，但它是主析取范式吗？不是。非 P 中只有一个 P，Q 中只有一个 Q，这里缺个 Q，这里缺个 P，然后我们就要把它补全。非 P 就用非 P 与上这个东西把它补全。补全的方式，我这里……",
+          "start_sec": 2656.6,
+          "end_sec": 2700.1
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2986500_3074100",
+          "text": "P蕴含Q可以化为非P或Q，但它的主析取范式有三个极小项。因为P蕴含Q有三个成真指派，所以它的主析取范式编码是∨_{0,1,3}。对P蕴含Q取否定，其主析取范式编码就是∨_2。一般地，若要求公式A的否定的主析取范式编码，就是全集减去A的编码。但如果要求P蕴含Q的主合取范式编码，由主析取变主合取：所有编码是\\{0,1,2,3\\}，用全集减去\\{0,1,3\\}得到\\{2\\}；2还要取补，2的补是1，因为最大值是3，3减2等于1。所以已知一个公式的主析取范式编码，求它的主合取范式编码，就是全集减去该编码后再求补；求它的否定的主析取范式编码，则是全集减去该编码即可…",
+          "start_sec": 2986.5,
+          "end_sec": 3074.1
+        }
+      ]
+    },
+    {
+      "id": "公式等值/formula equivalence",
+      "zh": "公式等值",
+      "importance": 0.3560558045837242,
+      "mention_count": 3,
+      "origin": "textbook",
+      "summary": "公式等值是数理逻辑中，指两个公式经过逻辑推理后可以相互推导，即若将公式A的一个子公式用一个逻辑等价的公式替换后，A能化为公式B，则称A与B是公式等值（A = B）。这体现了公式在逻辑结构上的等价性，是证明和化简逻辑表达式的重要概念。",
+      "definition": "公式等值是数理逻辑中，指两个公式经过逻辑推理后可以相互推导，即若将公式A的一个子公式用一个逻辑等价的公式替换后，A能化为公式B，则称A与B是公式等值（A = B）。这体现了公式在逻辑结构上的等价性，是证明和化简逻辑表达式的重要概念。",
+      "neighbors": [
+        {
+          "subject": "公式等值/formula equivalence",
+          "predicate": "depend_on",
+          "object": "真值表/truth table",
+          "label": "依赖",
+          "natural_statement": "公式等值通过真值表判定"
+        },
+        {
+          "subject": "公式等值/formula equivalence",
+          "predicate": "depend_on",
+          "object": "推理演算/inference calculus",
+          "label": "依赖",
+          "natural_statement": "公式等值通过推理演算判定"
+        },
+        {
+          "subject": "范式/normal form",
+          "predicate": "depend_on",
+          "object": "公式等值/formula equivalence",
+          "label": "依赖",
+          "natural_statement": "范式用于判定公式等值"
+        }
+      ],
+      "rank": 23,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+          "text": "与一个公式等值的公式非常多，这是比较极端的情况：即便只有一个变元 p，也可以写出 p，p∧p，p∧p∧p，……。但我们可以看到，与一个公式等值的公式是非常多的。那么如何去判定两个公式等值？当然，我们可以通过真值表、推理演算来证明两个公式等值。那么，如果我们把每个公式都写成一种范式——一种统一的语法形式——那么如果它们的范式相同，我们就可以说这两个公式是等值的。好，这就是范式的一些定义。我们先来定义一些概念。第一个定义是文字。什么是文字？就是 p、q、r 这些命题变项，以及这些命题变项的否定，就称为文字。",
+          "start_sec": 1457.9,
+          "end_sec": 1542
+        },
+        {
+          "cue_id": "__cross_cue__1_12",
+          "text": "### 第1段 对偶定理： - 同永真与同可满足的定义：A 与 B 同永真指 A 永真当且仅当 B 永真；A 与 B 同可满足指 A 可满足当且仅当 B 可满足。同永真、同可满足不一定等值。 - 定理：A 与 A 的内否同永真且同可满足；¬A 与 A 的对偶同永真且同可满足。 - 内否定义：将 A 中每个命题变元 p_i 替换为 ¬p_i，联结词不变。 - 证明思路：A 与 A 的内否同永真且同可满足；由 ¬A 等于 A 的对偶的内否，可得 ¬A 与 A 的对偶同永真且同可满足。 - 推论：A→B 与 B^*→A^* 同永真且同可满足；A↔B 与 A^*…",
+          "start_sec": 0.9,
+          "end_sec": 2655.9
+        }
+      ]
+    },
+    {
+      "id": "命题变项/propositional variable",
+      "zh": "命题变项",
+      "importance": 0.353335702860399,
+      "mention_count": 1,
+      "origin": "textbook",
+      "summary": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其…",
+      "definition": "命题变项是数理逻辑中的基本符号，用小写字母如p、q表示，用以替代具体的、有确定真值的命题。它如同初等数学中的变量，其真值不定，是构成命题逻辑合式公式的基础。与命题不同，命题变项本身即是合式公式，多个命题变项和联结词可组合成复杂的逻辑公式，其真值可根据赋值情况确定，例如n个命题变项共有2^n种取值情形。",
+      "neighbors": [
+        {
+          "subject": "文字/literal",
+          "predicate": "part_of",
+          "object": "命题变项/propositional variable",
+          "label": "组成",
+          "natural_statement": "文字由命题变项构成"
+        },
+        {
+          "subject": "命题变项/propositional variable",
+          "predicate": "part_of",
+          "object": "极大项/maximal term",
+          "label": "组成",
+          "natural_statement": "命题变项包含极大项"
+        },
+        {
+          "subject": "极小项/minterm",
+          "predicate": "depend_on",
+          "object": "命题变项/propositional variable",
+          "label": "依赖",
+          "natural_statement": "极小项依赖命题变项"
+        },
+        {
+          "subject": "真值表/truth table",
+          "predicate": "depend_on",
+          "object": "命题变项/propositional variable",
+          "label": "依赖",
+          "natural_statement": "真值表依赖命题变项"
+        }
+      ],
+      "rank": 24,
+      "asset_ids": [],
+      "evidence": [
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_1457900_1542000",
+          "text": "与一个公式等值的公式非常多，这是比较极端的情况：即便只有一个变元 p，也可以写出 p，p∧p，p∧p∧p，……。但我们可以看到，与一个公式等值的公式是非常多的。那么如何去判定两个公式等值？当然，我们可以通过真值表、推理演算来证明两个公式等值。那么，如果我们把每个公式都写成一种范式——一种统一的语法形式——那么如果它们的范式相同，我们就可以说这两个公式是等值的。好，这就是范式的一些定义。我们先来定义一些概念。第一个定义是文字。什么是文字？就是 p、q、r 这些命题变项，以及这些命题变项的否定，就称为文字。",
+          "start_sec": 1457.9,
+          "end_sec": 1542
+        },
+        {
+          "cue_id": "离散数学(图论+数理逻辑与集合论)_20_2244100_2597900",
+          "text": "在加“主”时，我们先定义一个极小项。我们前面说的基本和、基本积，现在给出一个更严格的定义，叫极小项，也叫布尔积。意思是：如果公式中有 n 个命题变元，那么在这个合取式中，每个因子 A_i 要么是 P_i，要么是 ¬P_i，并且 P_1 到 P_n 都要出现。这样的合取式就叫做极小项，也叫布尔积。例如对 P、Q 两个变元，极小项有四个：¬P∧¬Q、¬P∧Q、P∧¬Q、P∧Q。也就是说，P 和 Q 都要出现，且每个变元要么以原形式出现，要么以否定形式出现，所以只有四种极小项。相应地，我们也有极大项。极小项就是布尔积；反过来，如果把合取换成析取，就叫做极大项…",
+          "start_sec": 2244.1,
+          "end_sec": 2597.9
+        }
+      ]
+    }
+  ]
+}

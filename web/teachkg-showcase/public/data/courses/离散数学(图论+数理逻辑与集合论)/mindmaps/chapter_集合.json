@@ -1,0 +1,479 @@
+{
+  "lecture_id": "chapter:第9章 集合",
+  "root": {
+    "id": "__chapter__/第9章 集合",
+    "zh": "第1章 集合",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "集合"
+    ],
+    "children": [
+      {
+        "id": "__section__/集合基本概念",
+        "zh": "关系",
+        "importance": 0.926291,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/集合基本概念/关系",
+            "zh": "等价",
+            "importance": 0.8963795616025336,
+            "relation": "outline_concept",
+            "related": [
+              "关系"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合基本概念/运算",
+            "zh": "包含",
+            "importance": 0.926291,
+            "relation": "outline_concept",
+            "related": [
+              "运算"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合基本概念/特殊集合",
+            "zh": "真包含",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/集合运算",
+        "zh": "集合运算",
+        "importance": 0.8411637976318784,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/集合运算/并",
+            "zh": "并",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合运算/交",
+            "zh": "交",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合运算/差",
+            "zh": "差",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合运算/对称差",
+            "zh": "对称差",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "对称差"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合运算/幂集",
+            "zh": "幂集",
+            "importance": 0.8411637976318784,
+            "relation": "outline_concept",
+            "related": [
+              "幂集"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合运算/笛卡尔积",
+            "zh": "笛卡尔积",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "笛卡尔积"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/特殊集合",
+        "zh": "特殊集合",
+        "importance": 0.7450005115010194,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/特殊集合/空集",
+            "zh": "空集",
+            "importance": 0.7450005115010194,
+            "relation": "outline_concept",
+            "related": [
+              "空集"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/集合基数",
+        "zh": "集合基数",
+        "importance": 0.454656,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/集合基数/幂集基数",
+            "zh": "幂集基数",
+            "importance": 0.454656,
+            "relation": "outline_concept",
+            "related": [
+              "幂集基数"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合基数/笛卡尔积基数",
+            "zh": "笛卡尔积基数",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "笛卡尔积基数"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/集合基数/并集基数公式",
+            "zh": "并集基数公式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/ZF公理系统",
+        "zh": "ZF公理系统",
+        "importance": 1,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/ZF公理系统/外延公理",
+            "zh": "外延公理",
+            "importance": 0.5046716864961857,
+            "relation": "outline_concept",
+            "related": [
+              "外延公理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/ZF公理系统/正则公理",
+            "zh": "正则公理",
+            "importance": 1,
+            "relation": "outline_concept",
+            "related": [
+              "正则公理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/ZF公理系统/子集公理",
+            "zh": "子集公理",
+            "importance": 0.980723,
+            "relation": "outline_concept",
+            "related": [
+              "子集公理"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/ZF公理系统/罗素悖论",
+            "zh": "罗素悖论",
+            "importance": 0.4317973977929132,
+            "relation": "outline_concept",
+            "related": [
+              "罗素悖论"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第9章 集合",
+      "zh": "第1章 集合",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "集合"
+      ],
+      "children": [
+        {
+          "id": "__section__/集合基本概念",
+          "zh": "关系",
+          "importance": 0.926291,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/集合基本概念/关系",
+              "zh": "等价",
+              "importance": 0.8963795616025336,
+              "relation": "outline_concept",
+              "related": [
+                "关系"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合基本概念/运算",
+              "zh": "包含",
+              "importance": 0.926291,
+              "relation": "outline_concept",
+              "related": [
+                "运算"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合基本概念/特殊集合",
+              "zh": "真包含",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/集合运算",
+          "zh": "集合运算",
+          "importance": 0.8411637976318784,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/集合运算/并",
+              "zh": "并",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合运算/交",
+              "zh": "交",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合运算/差",
+              "zh": "差",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合运算/对称差",
+              "zh": "对称差",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "对称差"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合运算/幂集",
+              "zh": "幂集",
+              "importance": 0.8411637976318784,
+              "relation": "outline_concept",
+              "related": [
+                "幂集"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合运算/笛卡尔积",
+              "zh": "笛卡尔积",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "笛卡尔积"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/特殊集合",
+          "zh": "特殊集合",
+          "importance": 0.7450005115010194,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/特殊集合/空集",
+              "zh": "空集",
+              "importance": 0.7450005115010194,
+              "relation": "outline_concept",
+              "related": [
+                "空集"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/集合基数",
+          "zh": "集合基数",
+          "importance": 0.454656,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/集合基数/幂集基数",
+              "zh": "幂集基数",
+              "importance": 0.454656,
+              "relation": "outline_concept",
+              "related": [
+                "幂集基数"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合基数/笛卡尔积基数",
+              "zh": "笛卡尔积基数",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "笛卡尔积基数"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/集合基数/并集基数公式",
+              "zh": "并集基数公式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/ZF公理系统",
+          "zh": "ZF公理系统",
+          "importance": 1,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/ZF公理系统/外延公理",
+              "zh": "外延公理",
+              "importance": 0.5046716864961857,
+              "relation": "outline_concept",
+              "related": [
+                "外延公理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/ZF公理系统/正则公理",
+              "zh": "正则公理",
+              "importance": 1,
+              "relation": "outline_concept",
+              "related": [
+                "正则公理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/ZF公理系统/子集公理",
+              "zh": "子集公理",
+              "importance": 0.980723,
+              "relation": "outline_concept",
+              "related": [
+                "子集公理"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/ZF公理系统/罗素悖论",
+              "zh": "罗素悖论",
+              "importance": 0.4317973977929132,
+              "relation": "outline_concept",
+              "related": [
+                "罗素悖论"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 23,
+  "max_depth": 2,
+  "orphan_count": 113,
+  "meta": {
+    "chapter": "第9章 集合",
+    "root_zh": "第9章 集合",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "42"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 5,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__topic__/集合基本概念/集合的基": "__section__/集合基本概念",
+      "__topic__/特殊集合/空集与运算": "__section__/特殊集合",
+      "__topic__/特殊集合/空集与幂集": "__section__/特殊集合",
+      "__topic__/特殊集合/空集与笛卡尔积": "__section__/特殊集合",
+      "__topic__/集合基数/基数定义": "__section__/集合基数",
+      "外延公理/外延公理": "__topic__/ZF公理系统/外延公理",
+      "正则公理/正则公理": "__topic__/ZF公理系统/正则公理"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__topic__/集合基本概念/集合的基": "__section__/集合基本概念",
+    "__topic__/特殊集合/空集与运算": "__section__/特殊集合",
+    "__topic__/特殊集合/空集与幂集": "__section__/特殊集合",
+    "__topic__/特殊集合/空集与笛卡尔积": "__section__/特殊集合",
+    "__topic__/集合基数/基数定义": "__section__/集合基数",
+    "外延公理/外延公理": "__topic__/ZF公理系统/外延公理",
+    "正则公理/正则公理": "__topic__/ZF公理系统/正则公理"
+  },
+  "concept_links": []
+}

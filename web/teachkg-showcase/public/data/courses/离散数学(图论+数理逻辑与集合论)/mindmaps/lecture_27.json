@@ -1,0 +1,622 @@
+{
+  "lecture_id": "27",
+  "root": {
+    "id": "__lecture__/27",
+    "zh": "第 27 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/谓词逻辑的基本概念",
+        "zh": "第4章 谓词逻辑的基本概念",
+        "importance": 0.860609,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.860609,
+            "relation": null,
+            "related": [
+              "三段论",
+              "原子命题",
+              "命题逻辑",
+              "命题逻辑的规律"
+            ],
+            "children": [
+              {
+                "id": "论域/domain of discourse",
+                "zh": "论域",
+                "importance": 0.884419,
+                "relation": "part_of",
+                "related": [
+                  "一切事物",
+                  "个体函数",
+                  "个体变项",
+                  "个体常项",
+                  "函数中的定义域",
+                  "特定个体范围"
+                ],
+                "children": [
+                  {
+                    "id": "个体/Individual",
+                    "zh": "个体",
+                    "importance": 0.932954,
+                    "relation": "part_of",
+                    "related": [
+                      "一元谓词",
+                      "个体函数",
+                      "个体变项",
+                      "个体常项",
+                      "多元谓词",
+                      "谓词"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "变元/variable symbol",
+                    "zh": "变元",
+                    "importance": 0.026158,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "量词/quantifier",
+                "zh": "量词",
+                "importance": 0.50675,
+                "relation": "part_of",
+                "related": [],
+                "children": [
+                  {
+                    "id": "存在量词/existential quantifier",
+                    "zh": "存在量词",
+                    "importance": 0.336257,
+                    "relation": "belong_to",
+                    "related": [
+                      "命题函数"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "全称量词/universal quantifier",
+                    "zh": "全称量词",
+                    "importance": 0.232252,
+                    "relation": "belong_to",
+                    "related": [
+                      "命题函数"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.834157,
+                "relation": "part_of",
+                "related": [
+                  "个体",
+                  "个体函数",
+                  "合取",
+                  "真值",
+                  "论域"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.12527,
+                "relation": "part_of",
+                "related": [],
+                "children": [
+                  {
+                    "id": "合取/conjunction",
+                    "zh": "合取",
+                    "importance": 0.081132,
+                    "relation": "belong_to",
+                    "related": [
+                      "谓词"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "逻辑公式/logical formula",
+                "zh": "逻辑公式",
+                "importance": 0.159242,
+                "relation": "part_of",
+                "related": [],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "命题逻辑/propositional logic",
+                "zh": "命题逻辑",
+                "importance": 0.603637,
+                "relation": "belong_to",
+                "related": [
+                  "三段论",
+                  "谓词逻辑"
+                ],
+                "children": [
+                  {
+                    "id": "原子命题/atomic proposition",
+                    "zh": "原子命题",
+                    "importance": 0.31995,
+                    "relation": "part_of",
+                    "related": [
+                      "谓词逻辑"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "推理规则/inference rule",
+                    "zh": "推理规则",
+                    "importance": 0.228186,
+                    "relation": "part_of",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "映射/mapping",
+            "zh": "映射",
+            "importance": 0.759037,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "个体函数/individual function",
+                "zh": "个体函数",
+                "importance": 1.0,
+                "relation": "belong_to",
+                "related": [
+                  "个体",
+                  "个体变项",
+                  "论域",
+                  "谓词"
+                ],
+                "children": []
+              },
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.834157,
+                "relation": "part_of",
+                "related": [
+                  "个体",
+                  "个体函数",
+                  "合取",
+                  "真值",
+                  "论域"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "性质/property",
+            "zh": "性质",
+            "importance": 0.506051,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.834157,
+                "relation": "part_of",
+                "related": [
+                  "个体",
+                  "个体函数",
+                  "合取",
+                  "真值",
+                  "论域"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "关系/relation",
+            "zh": "关系",
+            "importance": 0.476006,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.834157,
+                "relation": "part_of",
+                "related": [
+                  "个体",
+                  "个体函数",
+                  "合取",
+                  "真值",
+                  "论域"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.304401,
+            "relation": null,
+            "related": [
+              "命题形式",
+              "谓词公式"
+            ],
+            "children": [
+              {
+                "id": "谓词/predicate",
+                "zh": "谓词",
+                "importance": 0.834157,
+                "relation": "part_of",
+                "related": [
+                  "个体",
+                  "个体函数",
+                  "合取",
+                  "真值",
+                  "论域"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "公式/formula",
+                "zh": "公式",
+                "importance": 0.314433,
+                "relation": "belong_to",
+                "related": [],
+                "children": [],
+                "copy": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/27",
+      "zh": "第 27 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/谓词逻辑的基本概念",
+          "zh": "第4章 谓词逻辑的基本概念",
+          "importance": 0.860609,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.860609,
+              "relation": null,
+              "related": [
+                "三段论",
+                "原子命题",
+                "命题逻辑",
+                "命题逻辑的规律"
+              ],
+              "children": [
+                {
+                  "id": "论域/domain of discourse",
+                  "zh": "论域",
+                  "importance": 0.884419,
+                  "relation": "part_of",
+                  "related": [
+                    "一切事物",
+                    "个体函数",
+                    "个体变项",
+                    "个体常项",
+                    "函数中的定义域",
+                    "特定个体范围"
+                  ],
+                  "children": [
+                    {
+                      "id": "个体/Individual",
+                      "zh": "个体",
+                      "importance": 0.932954,
+                      "relation": "part_of",
+                      "related": [
+                        "一元谓词",
+                        "个体函数",
+                        "个体变项",
+                        "个体常项",
+                        "多元谓词",
+                        "谓词"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "变元/variable symbol",
+                      "zh": "变元",
+                      "importance": 0.026158,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "量词/quantifier",
+                  "zh": "量词",
+                  "importance": 0.50675,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "存在量词/existential quantifier",
+                      "zh": "存在量词",
+                      "importance": 0.336257,
+                      "relation": "belong_to",
+                      "related": [
+                        "命题函数"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "全称量词/universal quantifier",
+                      "zh": "全称量词",
+                      "importance": 0.232252,
+                      "relation": "belong_to",
+                      "related": [
+                        "命题函数"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.834157,
+                  "relation": "part_of",
+                  "related": [
+                    "个体",
+                    "个体函数",
+                    "合取",
+                    "真值",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "联结词/connective",
+                  "zh": "联结词",
+                  "importance": 0.12527,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "合取/conjunction",
+                      "zh": "合取",
+                      "importance": 0.081132,
+                      "relation": "belong_to",
+                      "related": [
+                        "谓词"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "逻辑公式/logical formula",
+                  "zh": "逻辑公式",
+                  "importance": 0.159242,
+                  "relation": "part_of",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "命题逻辑/propositional logic",
+                  "zh": "命题逻辑",
+                  "importance": 0.603637,
+                  "relation": "belong_to",
+                  "related": [
+                    "三段论",
+                    "谓词逻辑"
+                  ],
+                  "children": [
+                    {
+                      "id": "原子命题/atomic proposition",
+                      "zh": "原子命题",
+                      "importance": 0.31995,
+                      "relation": "part_of",
+                      "related": [
+                        "谓词逻辑"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "推理规则/inference rule",
+                      "zh": "推理规则",
+                      "importance": 0.228186,
+                      "relation": "part_of",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "映射/mapping",
+              "zh": "映射",
+              "importance": 0.759037,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "个体函数/individual function",
+                  "zh": "个体函数",
+                  "importance": 1.0,
+                  "relation": "belong_to",
+                  "related": [
+                    "个体",
+                    "个体变项",
+                    "论域",
+                    "谓词"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.834157,
+                  "relation": "part_of",
+                  "related": [
+                    "个体",
+                    "个体函数",
+                    "合取",
+                    "真值",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "性质/property",
+              "zh": "性质",
+              "importance": 0.506051,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.834157,
+                  "relation": "part_of",
+                  "related": [
+                    "个体",
+                    "个体函数",
+                    "合取",
+                    "真值",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "关系/relation",
+              "zh": "关系",
+              "importance": 0.476006,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.834157,
+                  "relation": "part_of",
+                  "related": [
+                    "个体",
+                    "个体函数",
+                    "合取",
+                    "真值",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.304401,
+              "relation": null,
+              "related": [
+                "命题形式",
+                "谓词公式"
+              ],
+              "children": [
+                {
+                  "id": "谓词/predicate",
+                  "zh": "谓词",
+                  "importance": 0.834157,
+                  "relation": "part_of",
+                  "related": [
+                    "个体",
+                    "个体函数",
+                    "合取",
+                    "真值",
+                    "论域"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "公式/formula",
+                  "zh": "公式",
+                  "importance": 0.314433,
+                  "relation": "belong_to",
+                  "related": [],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 26,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第4章 谓词逻辑的基本概念",
+    "root_id": "谓词逻辑/Predicate Logic",
+    "root_zh": "第 27 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 40,
+    "n_edges_raw": 61,
+    "n_hierarchy_candidates": 43,
+    "attached_orphans": 0,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "仅调整了谓词逻辑子树的同级顺序:将量词、谓词等核心概念前移，联结词、逻辑公式、命题逻辑等后置；未增删节点，保持三层骨架。",
+    "chapters": [
+      "第4章 谓词逻辑的基本概念"
+    ],
+    "llm_tune_notes": "仅调整了谓词逻辑子树的同级顺序:将量词、谓词等核心概念前移，联结词、逻辑公式、命题逻辑等后置；未增删节点，保持三层骨架。",
+    "chapter_candidates": []
+  }
+}

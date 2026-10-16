@@ -19,7 +19,7 @@ services:
 
   mmkg-frontend:
     # 禁止回落到 base 的 mmkg-frontend:latest（缺笔记/检索等叠层）
-    image: mmkg-frontend:pr3-latest-20261016
+    image: mmkg-frontend:remove-part-label-20261016
     # 显式 preview，避免错误 commit 把 CMD 改成 build/tsc 导致重启循环
     command: ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]
     environment:
@@ -40,6 +40,8 @@ services:
       - /home/canvas/videos:/videos:ro
       # 源码/中间件跟主机 MMKG-staging，避免 recreate 丢掉 docker-cp 叠层
       - ./web/teachkg-showcase/src:/workspace/web/teachkg-showcase/src
+      # 生产构建产物落在 /home，避免 Docker 根分区空间不足时无法导出新镜像
+      - ./web/teachkg-showcase/dist:/workspace/web/teachkg-showcase/dist
       - ./web/teachkg-showcase/server:/workspace/web/teachkg-showcase/server
       - ./web/teachkg-showcase/vite.config.ts:/workspace/web/teachkg-showcase/vite.config.ts
       - ./web/teachkg-showcase/public/data:/workspace/web/teachkg-showcase/public/data

@@ -15,6 +15,45 @@ import { LatexText } from "@/components/graph/LatexText";
 import { ResourceCardFold } from "@/components/graph/LinkedResourceCards";
 import styles from "@/styles/panels.module.css";
 
+export type RelatedAssetQuery = {
+  entityId: string | null;
+  entityAliases?: string[];
+  matchMode?: "full" | "concept" | "strict";
+};
+
+function findRelatedAssetCards(
+  library: AssetsLibrary | null | undefined,
+  queries: RelatedAssetQuery[],
+  options?: {
+    lectureId?: string | null;
+    lectureOnly?: boolean;
+    kinds?: string[] | null;
+  },
+): AssetCard[] {
+  if (!library) return [];
+  const seen = new Set<string>();
+  const cards: AssetCard[] = [];
+  for (const query of queries) {
+    const ids = [query.entityId, ...(query.entityAliases || [])]
+      .map((value) => String(value || "").trim())
+      .filter(Boolean);
+    for (const id of ids) {
+      for (const card of findAssetsForEntity(library, id, {
+        lectureId: options?.lectureId,
+        lectureOnly: options?.lectureOnly,
+        llmPrinciplesOnly: true,
+        kinds: options?.kinds,
+        matchMode: query.matchMode,
+      })) {
+        if (seen.has(card.asset_id)) continue;
+        seen.add(card.asset_id);
+        cards.push(card);
+      }
+    }
+  }
+  return cards;
+}
+
 function Tex({
   text,
   block = false,
@@ -1154,6 +1193,7 @@ function AssetCardItem({ card }: { card: AssetCard }) {
 export function RelatedAssetsPanel({
   entityId,
   entityAliases = [],
+  queries = null,
   library,
   lectureId = null,
   lectureOnly = false,
@@ -1165,6 +1205,8 @@ export function RelatedAssetsPanel({
   entityId: string | null;
   /** 同一图节点的显示名等别名；嵌入图常用内部 id，资产索引使用课程实体名。 */
   entityAliases?: string[];
+  /** 父节点自底向上汇总后的查询；未传时保持单节点匹配。 */
+  queries?: RelatedAssetQuery[] | null;
   library: AssetsLibrary | null;
   lectureId?: string | null;
   /** 讲次课堂 KG：只显示本讲抽取，避免精选种子盖住新结果 */
@@ -1180,26 +1222,20 @@ export function RelatedAssetsPanel({
   emptyHint?: string | null;
 }) {
   const aliasKey = entityAliases.join("\u0000");
+  const queryKey = (queries || [])
+    .map((query) => `${query.matchMode || matchMode}\u0001${query.entityId || ""}\u0001${(query.entityAliases || []).join("\u0002")}`)
+    .join("\u0000");
   const kindKey = kinds?.join("\u0000") || "";
   const cards = useMemo(() => {
-    const ids = [entityId, ...entityAliases]
-      .map((value) => String(value || "").trim())
-      .filter(Boolean);
-    const seen = new Set<string>();
-    return ids.flatMap((id) =>
-      findAssetsForEntity(library, id, {
-        lectureId,
-        lectureOnly,
-        llmPrinciplesOnly: true,
-        kinds,
-        matchMode,
-      }).filter((card) => {
-        if (seen.has(card.asset_id)) return false;
-        seen.add(card.asset_id);
-        return true;
-      })
-    );
-  }, [entityId, aliasKey, library, lectureId, lectureOnly, kindKey, matchMode]);
+    const effectiveQueries = queries?.length
+      ? queries
+      : [{ entityId, entityAliases, matchMode }];
+    return findRelatedAssetCards(library, effectiveQueries, {
+      lectureId,
+      lectureOnly,
+      kinds,
+    });
+  }, [entityId, aliasKey, queryKey, library, lectureId, lectureOnly, kindKey, matchMode]);
   const kindCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const card of cards) {
@@ -1213,7 +1249,7 @@ export function RelatedAssetsPanel({
     if (kinds?.length && !kinds.includes(chip.key)) return false;
     return (kindCounts[chip.key] || 0) > 0;
   });
-  if (!entityId) {
+  if (!entityId && !queries?.length) {
     if (hideEmpty) return null;
     return (
       <div className={styles.sideEmpty}>
@@ -1272,26 +1308,19 @@ export function countRelatedAssets(
     lectureOnly?: boolean;
     kinds?: string[] | null;
     matchMode?: "full" | "concept" | "strict";
+    queries?: RelatedAssetQuery[] | null;
   },
 ): number {
-  const ids = [entityId, ...(options?.entityAliases || [])]
-    .map((value) => String(value || "").trim())
-    .filter(Boolean);
-  if (!ids.length || !library) return 0;
-  const seen = new Set<string>();
-  let total = 0;
-  for (const id of ids) {
-    for (const card of findAssetsForEntity(library, id, {
-      lectureId: options?.lectureId,
-      lectureOnly: options?.lectureOnly,
-      llmPrinciplesOnly: true,
-      kinds: options?.kinds || undefined,
-      matchMode: options?.matchMode,
-    })) {
-      if (seen.has(card.asset_id)) continue;
-      seen.add(card.asset_id);
-      total += 1;
-    }
-  }
-  return total;
+  const queries = options?.queries?.length
+    ? options.queries
+    : [{
+        entityId: entityId || null,
+        entityAliases: options?.entityAliases || [],
+        matchMode: options?.matchMode,
+      }];
+  return findRelatedAssetCards(library, queries, {
+    lectureId: options?.lectureId,
+    lectureOnly: options?.lectureOnly,
+    kinds: options?.kinds,
+  }).length;
 }

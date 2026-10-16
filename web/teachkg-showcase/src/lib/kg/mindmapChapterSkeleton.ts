@@ -88,7 +88,8 @@ export function parseOutlineText(
 
     const indent = raw.match(/^(\s*)/)?.[1].length || 0;
     const title = cleanOutlineLine(raw);
-    if (!title || title.length > 40) continue;
+    // text_first / 教材摘录偶发略长标题，放宽到 64
+    if (!title || title.length > 64) continue;
     if (indent >= 2 && lastSection) {
       edges.push({ parent: lastSection, child: title });
       continue;
@@ -688,6 +689,156 @@ export function buildChapterMindmapFromSkeleton(
       n_trees: 1,
       skeleton_source: skeleton.source,
       n_sections: skeleton.sections.length,
+    },
+  };
+}
+
+/**
+ * 文本优先建章导图：大纲节/主题节点始终入树（不强制对齐 KG entity id）。
+ * leafPool 仅作 enrichment：同名写入 related，弱匹配可挂为子叶。
+ */
+export function buildChapterMindmapFromOutlineText(
+  skeleton: ChapterSkeleton,
+  lectureDocs: { lectureId: string; doc: MindmapDoc }[],
+  opts: {
+    source?: MindmapSource;
+    extraLeaves?: MindmapTreeNode[];
+    maxEnrichPerNode?: number;
+  } = {}
+): MindmapDoc {
+  const maxEnrich = opts.maxEnrichPerNode ?? 3;
+  const chapterTitle = skeleton.chapter;
+  const chapterBare =
+    chapterTitle.replace(/^第\s*\d+\s*章\s*/, "").trim() || chapterTitle;
+
+  const leafPool = mergeLeafPool([
+    ...lectureDocs.map(({ doc }) => collectEntityLeaves(doc)),
+    opts.extraLeaves || [],
+  ]);
+  const usedLeaf = new Set<string>();
+  let enrichHits = 0;
+
+  const takeExact = (label: string): MindmapTreeNode | null => {
+    const hit = leafPool.find(
+      (l) => !usedLeaf.has(l.id) && sameDisplayName(l, label)
+    );
+    if (!hit) return null;
+    usedLeaf.add(hit.id);
+    enrichHits += 1;
+    return hit;
+  };
+
+  const takeEnrichKids = (label: string, skipExactId?: string) => {
+    const scored = pickLeavesForLabel(leafPool, usedLeaf, label, {
+      minScore: 7,
+      max: maxEnrich,
+      allowUmbrella: true,
+    }).filter(({ l }) => l.id !== skipExactId);
+    const kids: MindmapTreeNode[] = [];
+    for (const { l } of scored) {
+      usedLeaf.add(l.id);
+      kids.push(l);
+      enrichHits += 1;
+    }
+    return kids;
+  };
+
+  const sectionNodes: MindmapTreeNode[] = skeleton.sections.map((sec) => {
+    const thirdLabels = skeleton.edges
+      .filter((e) => e.parent === sec.bare)
+      .map((e) => e.child)
+      .filter((c) => c && c !== sec.bare);
+
+    const thirdNodes: MindmapTreeNode[] = thirdLabels.map((label) => {
+      const exact = takeExact(label);
+      const kids = takeEnrichKids(label, exact?.id);
+      return {
+        id: `__topic__/${sec.num || sec.bare}/${label}`,
+        zh: label,
+        importance: Math.max(
+          0.4,
+          exact?.importance || 0,
+          ...kids.map((k) => k.importance || 0)
+        ),
+        relation: "outline_concept",
+        related: exact ? [exact.zh || primaryZh(exact.id)] : [],
+        children: kids,
+      } satisfies MindmapTreeNode;
+    });
+
+    // 无子主题时，节本身也是概念节点；可挂 enrichment
+    let directKids: MindmapTreeNode[] = [];
+    const secExact = thirdNodes.length === 0 ? takeExact(sec.bare) : null;
+    if (thirdNodes.length === 0) {
+      directKids = takeEnrichKids(sec.bare, secExact?.id);
+    }
+
+    const children = [...thirdNodes, ...directKids];
+    return {
+      id: `__section__/${sec.title}`,
+      zh: sec.title,
+      importance: Math.max(
+        0.45,
+        secExact?.importance || 0,
+        ...children.map((c) => c.importance || 0)
+      ),
+      relation: "toc_section",
+      related: secExact ? [secExact.zh || primaryZh(secExact.id)] : [],
+      children,
+    } satisfies MindmapTreeNode;
+  });
+
+  // 若大纲解析为空，至少放一个「本章要点」占位，避免空图
+  if (!sectionNodes.length && skeleton.outline_text?.trim()) {
+    const lines = skeleton.outline_text
+      .split(/\r?\n/)
+      .map((l) => cleanOutlineLine(l))
+      .filter((t) => t && t.length <= 64)
+      .slice(0, 24);
+    for (const label of lines) {
+      const exact = takeExact(label);
+      sectionNodes.push({
+        id: `__topic__/flat/${label}`,
+        zh: label,
+        importance: Math.max(0.35, exact?.importance || 0),
+        relation: "outline_concept",
+        related: exact ? [exact.zh || primaryZh(exact.id)] : [],
+        children: [],
+      });
+    }
+  }
+
+  const root: MindmapTreeNode = {
+    id: `__chapter__/${chapterTitle}`,
+    zh: chapterTitle,
+    importance: 0.8,
+    relation: null,
+    related: [chapterBare],
+    children: sectionNodes,
+  };
+
+  const hasEnrich = enrichHits > 0;
+  const source: MindmapSource =
+    opts.source || (hasEnrich ? "outline+kg" : "outline_text");
+
+  return {
+    lecture_id: chapterNavId(chapterTitle),
+    root,
+    roots: [root],
+    n_nodes: countNodes(root),
+    max_depth: depthOf(root),
+    orphan_count: Math.max(0, leafPool.length - usedLeaf.size),
+    meta: {
+      chapter: chapterTitle,
+      root_zh: chapterTitle,
+      virtual_root: true,
+      scope: "chapter",
+      lecture_ids: lectureDocs.map((l) => l.lectureId),
+      source,
+      n_trees: 1,
+      skeleton_source: skeleton.source,
+      n_sections: skeleton.sections.length,
+      pipeline: "text_first_v1",
     },
   };
 }

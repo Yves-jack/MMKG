@@ -1,0 +1,641 @@
+{
+  "lecture_id": "1_2",
+  "root": {
+    "id": "__lecture__/1_2",
+    "zh": "第 1 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第1章 图的基本概念与表示",
+        "zh": "第1章 图的基本概念与表示",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "图的基本概念与表示"
+        ],
+        "children": [
+          {
+            "id": "__section__/图的定义",
+            "zh": "图的定义",
+            "importance": 0.792608,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__section__/子图",
+                "zh": "子图",
+                "importance": 0.463031,
+                "relation": "toc_section",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/子图/导出子图",
+                    "zh": "导出子图",
+                    "importance": 0.463031,
+                    "relation": "outline_concept",
+                    "related": [
+                      "导出子图"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/子图/支撑子图",
+                    "zh": "支撑子图",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [
+                      "支撑子图"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/子图/生成子图",
+                    "zh": "生成子图",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "__section__/基本要素",
+                "zh": "基本要素",
+                "importance": 0.45,
+                "relation": "toc_section",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/基本要素/端点",
+                    "zh": "端点",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": [
+                      {
+                        "id": "__topic__/基本要素/始点",
+                        "zh": "始点",
+                        "importance": 0.4,
+                        "relation": "outline_concept",
+                        "related": [],
+                        "children": []
+                      },
+                      {
+                        "id": "__topic__/基本要素/终点",
+                        "zh": "终点",
+                        "importance": 0.4,
+                        "relation": "outline_concept",
+                        "related": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "__topic__/基本要素/邻点",
+                    "zh": "邻点",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": [
+                      {
+                        "id": "__topic__/基本要素/后继",
+                        "zh": "后继",
+                        "importance": 0.4,
+                        "relation": "outline_concept",
+                        "related": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "__topic__/基本要素/关联",
+                    "zh": "关联",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "__section__/结点的度",
+                "zh": "结点的度",
+                "importance": 0.45,
+                "relation": "toc_section",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/结点的度/出度",
+                    "zh": "出度",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/结点的度/入度",
+                    "zh": "入度",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  },
+                  {
+                    "id": "__topic__/结点的度/握手定理",
+                    "zh": "握手定理",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "__section__/图的分类",
+            "zh": "图的分类",
+            "importance": 0.819914,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/图的分类/无向图",
+                "zh": "无向图",
+                "importance": 0.819914,
+                "relation": "outline_concept",
+                "related": [
+                  "无向图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/有向图",
+                "zh": "有向图",
+                "importance": 0.81001,
+                "relation": "outline_concept",
+                "related": [
+                  "有向图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的定义/有限图",
+                "zh": "有限图",
+                "importance": 0.792608,
+                "relation": "outline_concept",
+                "related": [
+                  "有限图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/简单图",
+                "zh": "简单图",
+                "importance": 0.750955,
+                "relation": "outline_concept",
+                "related": [
+                  "简单图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/多重图",
+                "zh": "多重图",
+                "importance": 0.438194,
+                "relation": "outline_concept",
+                "related": [
+                  "多重图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/空图",
+                "zh": "空图",
+                "importance": 0.432608,
+                "relation": "outline_concept",
+                "related": [
+                  "空图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/完全图",
+                "zh": "完全图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "完全图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的分类/赋权图",
+                "zh": "赋权图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "赋权图"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/图的运算",
+            "zh": "图的运算",
+            "importance": 0.871805,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/图的运算/对称差",
+                "zh": "对称差",
+                "importance": 0.871805,
+                "relation": "outline_concept",
+                "related": [
+                  "对称差"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的运算/补图",
+                "zh": "补图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "补图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的同构/同构图",
+                "zh": "同构图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "同构图"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/图的表示",
+            "zh": "图的表示",
+            "importance": 0.988562,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/图的表示/邻接矩阵",
+                "zh": "邻接矩阵",
+                "importance": 0.675298,
+                "relation": "outline_concept",
+                "related": [
+                  "邻接矩阵"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/1_2",
+      "zh": "第 1 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第1章 图的基本概念与表示",
+          "zh": "第1章 图的基本概念与表示",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "图的基本概念与表示"
+          ],
+          "children": [
+            {
+              "id": "__section__/图的定义",
+              "zh": "图的定义",
+              "importance": 0.792608,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__section__/子图",
+                  "zh": "子图",
+                  "importance": 0.463031,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/子图/导出子图",
+                      "zh": "导出子图",
+                      "importance": 0.463031,
+                      "relation": "outline_concept",
+                      "related": [
+                        "导出子图"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/子图/支撑子图",
+                      "zh": "支撑子图",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [
+                        "支撑子图"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/子图/生成子图",
+                      "zh": "生成子图",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "__section__/基本要素",
+                  "zh": "基本要素",
+                  "importance": 0.45,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/基本要素/端点",
+                      "zh": "端点",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": [
+                        {
+                          "id": "__topic__/基本要素/始点",
+                          "zh": "始点",
+                          "importance": 0.4,
+                          "relation": "outline_concept",
+                          "related": [],
+                          "children": []
+                        },
+                        {
+                          "id": "__topic__/基本要素/终点",
+                          "zh": "终点",
+                          "importance": 0.4,
+                          "relation": "outline_concept",
+                          "related": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "__topic__/基本要素/邻点",
+                      "zh": "邻点",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": [
+                        {
+                          "id": "__topic__/基本要素/后继",
+                          "zh": "后继",
+                          "importance": 0.4,
+                          "relation": "outline_concept",
+                          "related": [],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "__topic__/基本要素/关联",
+                      "zh": "关联",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "__section__/结点的度",
+                  "zh": "结点的度",
+                  "importance": 0.45,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/结点的度/出度",
+                      "zh": "出度",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/结点的度/入度",
+                      "zh": "入度",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    },
+                    {
+                      "id": "__topic__/结点的度/握手定理",
+                      "zh": "握手定理",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "__section__/图的分类",
+              "zh": "图的分类",
+              "importance": 0.819914,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/图的分类/无向图",
+                  "zh": "无向图",
+                  "importance": 0.819914,
+                  "relation": "outline_concept",
+                  "related": [
+                    "无向图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/有向图",
+                  "zh": "有向图",
+                  "importance": 0.81001,
+                  "relation": "outline_concept",
+                  "related": [
+                    "有向图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的定义/有限图",
+                  "zh": "有限图",
+                  "importance": 0.792608,
+                  "relation": "outline_concept",
+                  "related": [
+                    "有限图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/简单图",
+                  "zh": "简单图",
+                  "importance": 0.750955,
+                  "relation": "outline_concept",
+                  "related": [
+                    "简单图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/多重图",
+                  "zh": "多重图",
+                  "importance": 0.438194,
+                  "relation": "outline_concept",
+                  "related": [
+                    "多重图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/空图",
+                  "zh": "空图",
+                  "importance": 0.432608,
+                  "relation": "outline_concept",
+                  "related": [
+                    "空图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/完全图",
+                  "zh": "完全图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "完全图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的分类/赋权图",
+                  "zh": "赋权图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "赋权图"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/图的运算",
+              "zh": "图的运算",
+              "importance": 0.871805,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/图的运算/对称差",
+                  "zh": "对称差",
+                  "importance": 0.871805,
+                  "relation": "outline_concept",
+                  "related": [
+                    "对称差"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的运算/补图",
+                  "zh": "补图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "补图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的同构/同构图",
+                  "zh": "同构图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "同构图"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/图的表示",
+              "zh": "图的表示",
+              "importance": 0.988562,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/图的表示/邻接矩阵",
+                  "zh": "邻接矩阵",
+                  "importance": 0.675298,
+                  "relation": "outline_concept",
+                  "related": [
+                    "邻接矩阵"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 33,
+  "max_depth": 5,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 1 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "1",
+      "2"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "1_2",
+      "model": "deepseek-chat",
+      "keep_count": 32,
+      "drop_count": 0,
+      "llm_note": "本课笔记主要围绕图的基本概念与表示展开，初步匹配节点均与图论核心内容相关，故全部保留。",
+      "prelim_nodes": 33,
+      "final_nodes": 33
+    }
+  }
+}

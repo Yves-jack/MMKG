@@ -1,0 +1,172 @@
+{
+  "chapter": "第2章 道路与回路",
+  "source": "classroom_ppt",
+  "outline": [
+    "● 道路与回路:ch2(2.1, 2.3, 2.4) (2学时)",
+    "图论第2章 道路与回路",
+    "道路与回路(Path and Circuit)",
+    "道路与回路 定理1",
+    "道路与回路 定理2",
+    "道路与回路 定理3",
+    "道路与回路 定理4",
+    "道路与回路 定理5",
+    "图连通性的判定",
+    "欧拉道路与回路",
+    "分割度（Degree of Separation最短路径长度）",
+    "连通性的判定例-邻接矩阵法",
+    "找出欧拉回路与道路",
+    "欧拉道路与回路定理",
+    "欧拉回路的应用: De Bruijn循环",
+    "哈密顿回路与道路"
+  ],
+  "sections": [
+    {
+      "title": "● 道路与回路:ch2(2.1, 2.3, 2.4) (2学时)",
+      "bare": "● 道路与回路:ch2(2.1, 2.3, 2.4) (2学时)",
+      "num": null
+    },
+    {
+      "title": "图论第2章 道路与回路",
+      "bare": "图论第2章 道路与回路",
+      "num": null
+    },
+    {
+      "title": "道路与回路(Path and Circuit)",
+      "bare": "道路与回路(Path and Circuit)",
+      "num": null
+    },
+    {
+      "title": "道路与回路 定理1",
+      "bare": "道路与回路 定理1",
+      "num": null
+    },
+    {
+      "title": "道路与回路 定理2",
+      "bare": "道路与回路 定理2",
+      "num": null
+    },
+    {
+      "title": "道路与回路 定理3",
+      "bare": "道路与回路 定理3",
+      "num": null
+    },
+    {
+      "title": "道路与回路 定理4",
+      "bare": "道路与回路 定理4",
+      "num": null
+    },
+    {
+      "title": "道路与回路 定理5",
+      "bare": "道路与回路 定理5",
+      "num": null
+    },
+    {
+      "title": "图连通性的判定",
+      "bare": "图连通性的判定",
+      "num": null
+    },
+    {
+      "title": "欧拉道路与回路",
+      "bare": "欧拉道路与回路",
+      "num": null
+    },
+    {
+      "title": "分割度（Degree of Separation最短路径长度）",
+      "bare": "分割度（Degree of Separation最短路径长度）",
+      "num": null
+    },
+    {
+      "title": "连通性的判定例-邻接矩阵法",
+      "bare": "连通性的判定例-邻接矩阵法",
+      "num": null
+    },
+    {
+      "title": "找出欧拉回路与道路",
+      "bare": "找出欧拉回路与道路",
+      "num": null
+    },
+    {
+      "title": "欧拉道路与回路定理",
+      "bare": "欧拉道路与回路定理",
+      "num": null
+    },
+    {
+      "title": "欧拉回路的应用: De Bruijn循环",
+      "bare": "欧拉回路的应用: De Bruijn循环",
+      "num": null
+    },
+    {
+      "title": "哈密顿回路与道路",
+      "bare": "哈密顿回路与道路",
+      "num": null
+    }
+  ],
+  "edges": [
+    {
+      "parent": "道路与回路",
+      "child": "● 道路与回路:ch2(2.1, 2.3, 2.4) (2学时)"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "图论第2章 道路与回路"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路(Path and Circuit)"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路 定理1"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路 定理2"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路 定理3"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路 定理4"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "道路与回路 定理5"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "图连通性的判定"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "欧拉道路与回路"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "分割度（Degree of Separation最短路径长度）"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "连通性的判定例-邻接矩阵法"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "找出欧拉回路与道路"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "欧拉道路与回路定理"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "欧拉回路的应用: De Bruijn循环"
+    },
+    {
+      "parent": "道路与回路",
+      "child": "哈密顿回路与道路"
+    }
+  ],
+  "outline_text": "● 道路与回路:ch2(2.1, 2.3, 2.4) (2学时)\n图论第2章 道路与回路\n道路与回路(Path and Circuit)\n道路与回路 定理1\n道路与回路 定理2\n道路与回路 定理3\n道路与回路 定理4\n道路与回路 定理5\n图连通性的判定\n欧拉道路与回路\n分割度（Degree of Separation最短路径长度）\n连通性的判定例-邻接矩阵法\n找出欧拉回路与道路\n欧拉道路与回路定理\n欧拉回路的应用: De Bruijn循环\n哈密顿回路与道路",
+  "llm_notes": null
+}

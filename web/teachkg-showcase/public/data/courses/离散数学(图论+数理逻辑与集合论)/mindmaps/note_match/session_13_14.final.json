@@ -1,0 +1,319 @@
+{
+  "lecture_id": "13_14",
+  "root": {
+    "id": "__lecture__/13_14",
+    "zh": "第 7 次课",
+    "importance": 0.6,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/第1章 命题逻辑的基本概念",
+        "zh": "第1章 命题逻辑的基本概念",
+        "importance": 0.8,
+        "relation": null,
+        "related": [
+          "命题逻辑的基本概念"
+        ],
+        "children": [
+          {
+            "id": "__section__/命题与真值",
+            "zh": "命题与真值",
+            "importance": 0.47659247587290954,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/命题与真值/命题",
+                "zh": "命题",
+                "importance": 0.47659247587290954,
+                "relation": "outline_concept",
+                "related": [
+                  "命题"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/命题与真值/真值",
+                "zh": "真值",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "真值"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/命题联结词",
+            "zh": "命题联结词",
+            "importance": 0.7163536724573624,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/命题联结词/否定",
+                "zh": "否定",
+                "importance": 0.5555686639207695,
+                "relation": "outline_concept",
+                "related": [
+                  "否定"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/命题联结词/合取",
+                "zh": "合取",
+                "importance": 0.4838507195985401,
+                "relation": "outline_concept",
+                "related": [
+                  "合取"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/命题联结词/析取",
+                "zh": "析取",
+                "importance": 0.4576214672083725,
+                "relation": "outline_concept",
+                "related": [
+                  "析取"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/命题联结词/蕴含",
+                "zh": "蕴含",
+                "importance": 0.7163536724573624,
+                "relation": "outline_concept",
+                "related": [
+                  "蕴含"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/命题联结词/等价",
+                "zh": "等价",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [
+                  "等价"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__section__/命题公式",
+            "zh": "命题公式",
+            "importance": 1,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/命题公式/合式公式wff",
+                "zh": "合式公式wff",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__section__/公式分类",
+                "zh": "公式分类",
+                "importance": 0.5656334814416512,
+                "relation": "toc_section",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/公式分类/重言式",
+                    "zh": "重言式",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [
+                      "重言式"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/13_14",
+      "zh": "第 7 次课",
+      "importance": 0.6,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/第1章 命题逻辑的基本概念",
+          "zh": "第1章 命题逻辑的基本概念",
+          "importance": 0.8,
+          "relation": null,
+          "related": [
+            "命题逻辑的基本概念"
+          ],
+          "children": [
+            {
+              "id": "__section__/命题与真值",
+              "zh": "命题与真值",
+              "importance": 0.47659247587290954,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/命题与真值/命题",
+                  "zh": "命题",
+                  "importance": 0.47659247587290954,
+                  "relation": "outline_concept",
+                  "related": [
+                    "命题"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/命题与真值/真值",
+                  "zh": "真值",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "真值"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/命题联结词",
+              "zh": "命题联结词",
+              "importance": 0.7163536724573624,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/命题联结词/否定",
+                  "zh": "否定",
+                  "importance": 0.5555686639207695,
+                  "relation": "outline_concept",
+                  "related": [
+                    "否定"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/命题联结词/合取",
+                  "zh": "合取",
+                  "importance": 0.4838507195985401,
+                  "relation": "outline_concept",
+                  "related": [
+                    "合取"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/命题联结词/析取",
+                  "zh": "析取",
+                  "importance": 0.4576214672083725,
+                  "relation": "outline_concept",
+                  "related": [
+                    "析取"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/命题联结词/蕴含",
+                  "zh": "蕴含",
+                  "importance": 0.7163536724573624,
+                  "relation": "outline_concept",
+                  "related": [
+                    "蕴含"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/命题联结词/等价",
+                  "zh": "等价",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [
+                    "等价"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__section__/命题公式",
+              "zh": "命题公式",
+              "importance": 1,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/命题公式/合式公式wff",
+                  "zh": "合式公式wff",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__section__/公式分类",
+                  "zh": "公式分类",
+                  "importance": 0.5656334814416512,
+                  "relation": "toc_section",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/公式分类/重言式",
+                      "zh": "重言式",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [
+                        "重言式"
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 15,
+  "max_depth": 4,
+  "orphan_count": 0,
+  "meta": {
+    "root_zh": "第 7 次课",
+    "virtual_root": true,
+    "scope": "lecture",
+    "lecture_ids": [
+      "13",
+      "14"
+    ],
+    "source": "review+kg",
+    "n_trees": 1,
+    "composed_from": "chapter_slice",
+    "pipeline": "note_match_llm_v1",
+    "note_match": {
+      "stage": "final",
+      "session_id": "13_14",
+      "model": "deepseek-chat",
+      "keep_count": 14,
+      "drop_count": 2,
+      "llm_note": "保留命题逻辑基本概念的主线节点，剔除形式逻辑和真值表等次要或附属节点。",
+      "prelim_nodes": 17,
+      "final_nodes": 15
+    }
+  }
+}

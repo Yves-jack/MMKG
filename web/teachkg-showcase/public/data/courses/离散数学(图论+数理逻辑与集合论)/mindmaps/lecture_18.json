@@ -1,0 +1,847 @@
+{
+  "lecture_id": "18",
+  "root": {
+    "id": "__lecture__/18",
+    "zh": "第 18 讲",
+    "importance": 0.9,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__chapter__/命题逻辑的基本概念",
+        "zh": "第1章 命题逻辑的基本概念",
+        "importance": 0.82723,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "命题逻辑/propositional logic",
+            "zh": "命题逻辑",
+            "importance": 0.82723,
+            "relation": null,
+            "related": [
+              "联结词"
+            ],
+            "children": [
+              {
+                "id": "联结词/connective",
+                "zh": "联结词",
+                "importance": 0.957544,
+                "relation": "part_of",
+                "related": [
+                  "公式",
+                  "命题公式",
+                  "命题逻辑",
+                  "谓词逻辑",
+                  "重言式"
+                ],
+                "children": [
+                  {
+                    "id": "否定/Negation",
+                    "zh": "否定",
+                    "importance": 0.40512,
+                    "relation": "belong_to",
+                    "related": [
+                      "全称量词",
+                      "双条件词",
+                      "存在量词",
+                      "摩根律",
+                      "等值",
+                      "蕴涵词"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "合取/conjunction",
+                    "zh": "合取",
+                    "importance": 0.315974,
+                    "relation": "part_of",
+                    "related": [
+                      "全称量词",
+                      "前件",
+                      "双条件式",
+                      "后件",
+                      "存在量词",
+                      "等值公式"
+                    ],
+                    "children": [],
+                    "copy": true
+                  },
+                  {
+                    "id": "析取/disjunction",
+                    "zh": "析取",
+                    "importance": 0.506298,
+                    "relation": "belong_to",
+                    "related": [
+                      "全称量词",
+                      "公式",
+                      "前件",
+                      "双条件式",
+                      "后件",
+                      "存在量词"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "蕴含/implication",
+                    "zh": "蕴含",
+                    "importance": 0.531519,
+                    "relation": "belong_to",
+                    "related": [
+                      "双条件式",
+                      "合取",
+                      "推理演算",
+                      "析取",
+                      "逆否定理"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "等值/equivalence",
+                    "zh": "等值",
+                    "importance": 0.698883,
+                    "relation": "belong_to",
+                    "related": [
+                      "公理",
+                      "分配律",
+                      "否定",
+                      "命题公式",
+                      "命题变项",
+                      "真值"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "二元联结词/binary connective",
+                    "zh": "二元联结词",
+                    "importance": 0.389838,
+                    "relation": "belong_to",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "命题公式/propositional formula",
+                "zh": "命题公式",
+                "importance": 0.849774,
+                "relation": "belong_to",
+                "related": [
+                  "代入规则",
+                  "多值逻辑",
+                  "模糊逻辑",
+                  "等值",
+                  "等号",
+                  "置换规则"
+                ],
+                "children": [],
+                "copy": true
+              },
+              {
+                "id": "等值式/equivalence formula",
+                "zh": "等值式",
+                "importance": 0.88761,
+                "relation": "belong_to",
+                "related": [
+                  "永真式",
+                  "等值演算",
+                  "置换",
+                  "蕴涵式"
+                ],
+                "children": [
+                  {
+                    "id": "基本等值式/basic equivalence formula",
+                    "zh": "基本等值式",
+                    "importance": 0.609206,
+                    "relation": "part_of",
+                    "related": [
+                      "等值演算"
+                    ],
+                    "children": [],
+                    "copy": true
+                  }
+                ],
+                "copy": true
+              },
+              {
+                "id": "等值演算/equivalence calculus",
+                "zh": "等值演算",
+                "importance": 0.689394,
+                "relation": "part_of",
+                "related": [
+                  "交换律",
+                  "代入规则",
+                  "公式",
+                  "分配律",
+                  "基本等值式",
+                  "推理演算"
+                ],
+                "children": []
+              },
+              {
+                "id": "永真式/eternally true formula",
+                "zh": "永真式",
+                "importance": 0.530862,
+                "relation": null,
+                "related": [
+                  "代入规则",
+                  "永假式",
+                  "等值式",
+                  "补余律"
+                ],
+                "children": [
+                  {
+                    "id": "重言式/tautology",
+                    "zh": "重言式",
+                    "importance": 0.652469,
+                    "relation": null,
+                    "related": [
+                      "代入规则",
+                      "公式等值关系",
+                      "析取",
+                      "等值定理",
+                      "联结词"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "永假式/永假式",
+                "zh": "永假式",
+                "importance": 0.427656,
+                "relation": "belong_to",
+                "related": [
+                  "永真式"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "蕴涵式/implication form",
+            "zh": "蕴涵式",
+            "importance": 0.562863,
+            "relation": null,
+            "related": [
+              "充分条件",
+              "等值式",
+              "等值演算"
+            ],
+            "children": [
+              {
+                "id": "前件/antecedent",
+                "zh": "前件",
+                "importance": 0.464224,
+                "relation": "part_of",
+                "related": [
+                  "合取",
+                  "析取"
+                ],
+                "children": []
+              },
+              {
+                "id": "后件/succedent",
+                "zh": "后件",
+                "importance": 0.377602,
+                "relation": "part_of",
+                "related": [
+                  "合取",
+                  "析取"
+                ],
+                "children": []
+              },
+              {
+                "id": "逆否定理/contrapositive theorem",
+                "zh": "逆否定理",
+                "importance": 0.990606,
+                "relation": "part_of",
+                "related": [
+                  "交换律",
+                  "否定",
+                  "蕴含"
+                ],
+                "children": [],
+                "copy": true
+              }
+            ]
+          },
+          {
+            "id": "命题变项/propositional variable",
+            "zh": "命题变项",
+            "importance": 0.539754,
+            "relation": null,
+            "related": [
+              "代入规则",
+              "等值",
+              "置换"
+            ],
+            "children": []
+          },
+          {
+            "id": "二值逻辑/two-valued logic",
+            "zh": "二值逻辑",
+            "importance": 0.271986,
+            "relation": null,
+            "related": [
+              "真值"
+            ],
+            "children": []
+          },
+          {
+            "id": "命题/proposition",
+            "zh": "命题",
+            "importance": 0.108314,
+            "relation": null,
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/命题逻辑的等值和推理演算",
+        "zh": "第2章 命题逻辑的等值和推理演算",
+        "importance": 0.45,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "前提/premise",
+            "zh": "前提",
+            "importance": 0.116552,
+            "relation": null,
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/命题逻辑的公理化系统",
+        "zh": "第3章 命题逻辑的公理化系统",
+        "importance": 0.45,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "公理系统/axiomatic system",
+            "zh": "公理系统",
+            "importance": 0.141407,
+            "relation": null,
+            "related": [
+              "公理"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/谓词逻辑的基本概念",
+        "zh": "第4章 谓词逻辑的基本概念",
+        "importance": 0.45,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "谓词逻辑/Predicate Logic",
+            "zh": "谓词逻辑",
+            "importance": 0.22127,
+            "relation": null,
+            "related": [
+              "联结词"
+            ],
+            "children": []
+          },
+          {
+            "id": "关系符/relation symbol",
+            "zh": "关系符",
+            "importance": 0.057479,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "等号/equality symbol",
+                "zh": "等号",
+                "importance": 0.121085,
+                "relation": "belong_to",
+                "related": [
+                  "命题公式"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "__chapter__/关系",
+        "zh": "第10章 关系",
+        "importance": 0.612728,
+        "relation": "toc_chapter",
+        "related": [],
+        "children": [
+          {
+            "id": "关系/relation",
+            "zh": "关系",
+            "importance": 0.612728,
+            "relation": null,
+            "related": [],
+            "children": [
+              {
+                "id": "等价关系/equivalence relation",
+                "zh": "等价关系",
+                "importance": 0.42615,
+                "relation": "belong_to",
+                "related": [
+                  "传递",
+                  "对称",
+                  "自反"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__lecture__/18",
+      "zh": "第 18 讲",
+      "importance": 0.9,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__chapter__/命题逻辑的基本概念",
+          "zh": "第1章 命题逻辑的基本概念",
+          "importance": 0.82723,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "命题逻辑/propositional logic",
+              "zh": "命题逻辑",
+              "importance": 0.82723,
+              "relation": null,
+              "related": [
+                "联结词"
+              ],
+              "children": [
+                {
+                  "id": "联结词/connective",
+                  "zh": "联结词",
+                  "importance": 0.957544,
+                  "relation": "part_of",
+                  "related": [
+                    "公式",
+                    "命题公式",
+                    "命题逻辑",
+                    "谓词逻辑",
+                    "重言式"
+                  ],
+                  "children": [
+                    {
+                      "id": "否定/Negation",
+                      "zh": "否定",
+                      "importance": 0.40512,
+                      "relation": "belong_to",
+                      "related": [
+                        "全称量词",
+                        "双条件词",
+                        "存在量词",
+                        "摩根律",
+                        "等值",
+                        "蕴涵词"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "合取/conjunction",
+                      "zh": "合取",
+                      "importance": 0.315974,
+                      "relation": "part_of",
+                      "related": [
+                        "全称量词",
+                        "前件",
+                        "双条件式",
+                        "后件",
+                        "存在量词",
+                        "等值公式"
+                      ],
+                      "children": [],
+                      "copy": true
+                    },
+                    {
+                      "id": "析取/disjunction",
+                      "zh": "析取",
+                      "importance": 0.506298,
+                      "relation": "belong_to",
+                      "related": [
+                        "全称量词",
+                        "公式",
+                        "前件",
+                        "双条件式",
+                        "后件",
+                        "存在量词"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "蕴含/implication",
+                      "zh": "蕴含",
+                      "importance": 0.531519,
+                      "relation": "belong_to",
+                      "related": [
+                        "双条件式",
+                        "合取",
+                        "推理演算",
+                        "析取",
+                        "逆否定理"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "等值/equivalence",
+                      "zh": "等值",
+                      "importance": 0.698883,
+                      "relation": "belong_to",
+                      "related": [
+                        "公理",
+                        "分配律",
+                        "否定",
+                        "命题公式",
+                        "命题变项",
+                        "真值"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "二元联结词/binary connective",
+                      "zh": "二元联结词",
+                      "importance": 0.389838,
+                      "relation": "belong_to",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "命题公式/propositional formula",
+                  "zh": "命题公式",
+                  "importance": 0.849774,
+                  "relation": "belong_to",
+                  "related": [
+                    "代入规则",
+                    "多值逻辑",
+                    "模糊逻辑",
+                    "等值",
+                    "等号",
+                    "置换规则"
+                  ],
+                  "children": [],
+                  "copy": true
+                },
+                {
+                  "id": "等值式/equivalence formula",
+                  "zh": "等值式",
+                  "importance": 0.88761,
+                  "relation": "belong_to",
+                  "related": [
+                    "永真式",
+                    "等值演算",
+                    "置换",
+                    "蕴涵式"
+                  ],
+                  "children": [
+                    {
+                      "id": "基本等值式/basic equivalence formula",
+                      "zh": "基本等值式",
+                      "importance": 0.609206,
+                      "relation": "part_of",
+                      "related": [
+                        "等值演算"
+                      ],
+                      "children": [],
+                      "copy": true
+                    }
+                  ],
+                  "copy": true
+                },
+                {
+                  "id": "等值演算/equivalence calculus",
+                  "zh": "等值演算",
+                  "importance": 0.689394,
+                  "relation": "part_of",
+                  "related": [
+                    "交换律",
+                    "代入规则",
+                    "公式",
+                    "分配律",
+                    "基本等值式",
+                    "推理演算"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "永真式/eternally true formula",
+                  "zh": "永真式",
+                  "importance": 0.530862,
+                  "relation": null,
+                  "related": [
+                    "代入规则",
+                    "永假式",
+                    "等值式",
+                    "补余律"
+                  ],
+                  "children": [
+                    {
+                      "id": "重言式/tautology",
+                      "zh": "重言式",
+                      "importance": 0.652469,
+                      "relation": null,
+                      "related": [
+                        "代入规则",
+                        "公式等值关系",
+                        "析取",
+                        "等值定理",
+                        "联结词"
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "永假式/永假式",
+                  "zh": "永假式",
+                  "importance": 0.427656,
+                  "relation": "belong_to",
+                  "related": [
+                    "永真式"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "蕴涵式/implication form",
+              "zh": "蕴涵式",
+              "importance": 0.562863,
+              "relation": null,
+              "related": [
+                "充分条件",
+                "等值式",
+                "等值演算"
+              ],
+              "children": [
+                {
+                  "id": "前件/antecedent",
+                  "zh": "前件",
+                  "importance": 0.464224,
+                  "relation": "part_of",
+                  "related": [
+                    "合取",
+                    "析取"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "后件/succedent",
+                  "zh": "后件",
+                  "importance": 0.377602,
+                  "relation": "part_of",
+                  "related": [
+                    "合取",
+                    "析取"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "逆否定理/contrapositive theorem",
+                  "zh": "逆否定理",
+                  "importance": 0.990606,
+                  "relation": "part_of",
+                  "related": [
+                    "交换律",
+                    "否定",
+                    "蕴含"
+                  ],
+                  "children": [],
+                  "copy": true
+                }
+              ]
+            },
+            {
+              "id": "命题变项/propositional variable",
+              "zh": "命题变项",
+              "importance": 0.539754,
+              "relation": null,
+              "related": [
+                "代入规则",
+                "等值",
+                "置换"
+              ],
+              "children": []
+            },
+            {
+              "id": "二值逻辑/two-valued logic",
+              "zh": "二值逻辑",
+              "importance": 0.271986,
+              "relation": null,
+              "related": [
+                "真值"
+              ],
+              "children": []
+            },
+            {
+              "id": "命题/proposition",
+              "zh": "命题",
+              "importance": 0.108314,
+              "relation": null,
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/命题逻辑的等值和推理演算",
+          "zh": "第2章 命题逻辑的等值和推理演算",
+          "importance": 0.45,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "前提/premise",
+              "zh": "前提",
+              "importance": 0.116552,
+              "relation": null,
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/命题逻辑的公理化系统",
+          "zh": "第3章 命题逻辑的公理化系统",
+          "importance": 0.45,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "公理系统/axiomatic system",
+              "zh": "公理系统",
+              "importance": 0.141407,
+              "relation": null,
+              "related": [
+                "公理"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/谓词逻辑的基本概念",
+          "zh": "第4章 谓词逻辑的基本概念",
+          "importance": 0.45,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "谓词逻辑/Predicate Logic",
+              "zh": "谓词逻辑",
+              "importance": 0.22127,
+              "relation": null,
+              "related": [
+                "联结词"
+              ],
+              "children": []
+            },
+            {
+              "id": "关系符/relation symbol",
+              "zh": "关系符",
+              "importance": 0.057479,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "等号/equality symbol",
+                  "zh": "等号",
+                  "importance": 0.121085,
+                  "relation": "belong_to",
+                  "related": [
+                    "命题公式"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "__chapter__/关系",
+          "zh": "第10章 关系",
+          "importance": 0.612728,
+          "relation": "toc_chapter",
+          "related": [],
+          "children": [
+            {
+              "id": "关系/relation",
+              "zh": "关系",
+              "importance": 0.612728,
+              "relation": null,
+              "related": [],
+              "children": [
+                {
+                  "id": "等价关系/equivalence relation",
+                  "zh": "等价关系",
+                  "importance": 0.42615,
+                  "relation": "belong_to",
+                  "related": [
+                    "传递",
+                    "对称",
+                    "自反"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 35,
+  "max_depth": 4,
+  "orphan_count": 1,
+  "meta": {
+    "chapter": "第1章 命题逻辑的基本概念",
+    "root_id": "命题逻辑/propositional logic",
+    "root_zh": "第 18 讲",
+    "virtual_root": true,
+    "n_trees": 1,
+    "max_nodes": 80,
+    "max_depth_cap": 5,
+    "max_children": 10,
+    "n_entities_raw": 78,
+    "n_edges_raw": 133,
+    "n_hierarchy_candidates": 73,
+    "attached_orphans": 1,
+    "alias_merged": 0,
+    "scope": "lecture",
+    "source": "kg",
+    "pipeline": "lecture_chapter_tune",
+    "llm_tidy_notes": "仅微调了第1章内顺序:将“命题逻辑”整体前移，使核心内容靠前；其余结构未动，无新增或删除节点。",
+    "chapters": [
+      "第1章 命题逻辑的基本概念",
+      "第2章 命题逻辑的等值和推理演算",
+      "第3章 命题逻辑的公理化系统",
+      "第4章 谓词逻辑的基本概念",
+      "第10章 关系"
+    ],
+    "llm_tune_notes": "仅微调了第1章内顺序:将“命题逻辑”整体前移，使核心内容靠前；其余结构未动，无新增或删除节点。",
+    "chapter_candidates": [
+      "第1章 命题逻辑的基本概念",
+      "第2章 命题逻辑的等值和推理演算"
+    ]
+  }
+}

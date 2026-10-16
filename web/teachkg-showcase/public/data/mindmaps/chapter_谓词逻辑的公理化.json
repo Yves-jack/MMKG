@@ -1,0 +1,248 @@
+{
+  "lecture_id": "chapter:第6章 谓词逻辑的公理化",
+  "root": {
+    "id": "__chapter__/谓词逻辑的公理化",
+    "zh": "第6章 谓词逻辑的公理化",
+    "importance": 0.7,
+    "relation": null,
+    "related": [],
+    "children": [
+      {
+        "id": "__section__/```html",
+        "zh": "```html",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<html><body>",
+        "zh": "<html><body>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>命题逻辑公理系统A</h2>",
+        "zh": "<h2>命题逻辑公理系统A</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<p>命题逻辑公理系统A(续)</p>",
+        "zh": "<p>命题逻辑公理系统A(续)</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<p>变形规则(推理规则)</p>",
+        "zh": "<p>变形规则(推理规则)</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/建立定理：定理的重言证明",
+        "zh": "建立定理：定理的重言证明",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/例:定理证明",
+        "zh": "例:定理证明",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<p>公理系统的性质</p>",
+        "zh": "<p>公理系统的性质</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<ul><li>初始符号</li></ul>",
+        "zh": "<ul><li>初始符号</li></ul>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<h2>命题逻辑公理系统B(续)-公理</h2>",
+        "zh": "<h2>命题逻辑公理系统B(续)-公理</h2>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/<p>命题逻辑公理系统B(续) - 推理规则</p>",
+        "zh": "<p>命题逻辑公理系统B(续) - 推理规则</p>",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/命题逻辑公理系统B—加头定理",
+        "zh": "命题逻辑公理系统B—加头定理",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      },
+      {
+        "id": "__section__/上海交通大学",
+        "zh": "上海交通大学",
+        "importance": 0.55,
+        "relation": "ppt_section",
+        "related": [],
+        "children": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/谓词逻辑的公理化",
+      "zh": "第6章 谓词逻辑的公理化",
+      "importance": 0.7,
+      "relation": null,
+      "related": [],
+      "children": [
+        {
+          "id": "__section__/```html",
+          "zh": "```html",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<html><body>",
+          "zh": "<html><body>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>命题逻辑公理系统A</h2>",
+          "zh": "<h2>命题逻辑公理系统A</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<p>命题逻辑公理系统A(续)</p>",
+          "zh": "<p>命题逻辑公理系统A(续)</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<p>变形规则(推理规则)</p>",
+          "zh": "<p>变形规则(推理规则)</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/建立定理：定理的重言证明",
+          "zh": "建立定理：定理的重言证明",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/例:定理证明",
+          "zh": "例:定理证明",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<p>公理系统的性质</p>",
+          "zh": "<p>公理系统的性质</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<ul><li>初始符号</li></ul>",
+          "zh": "<ul><li>初始符号</li></ul>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<h2>命题逻辑公理系统B(续)-公理</h2>",
+          "zh": "<h2>命题逻辑公理系统B(续)-公理</h2>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/<p>命题逻辑公理系统B(续) - 推理规则</p>",
+          "zh": "<p>命题逻辑公理系统B(续) - 推理规则</p>",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/命题逻辑公理系统B—加头定理",
+          "zh": "命题逻辑公理系统B—加头定理",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        },
+        {
+          "id": "__section__/上海交通大学",
+          "zh": "上海交通大学",
+          "importance": 0.55,
+          "relation": "ppt_section",
+          "related": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "n_nodes": 14,
+  "max_depth": 1,
+  "orphan_count": 0,
+  "meta": {
+    "chapter": "第6章 谓词逻辑的公理化",
+    "root_zh": "谓词逻辑的公理化",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "24"
+    ],
+    "pipeline": "chapter_outline_extract",
+    "skeleton_source": "classroom_ppt",
+    "source": "summary+kg",
+    "n_trees": 1,
+    "preview": true
+  }
+}

@@ -20,7 +20,7 @@ _OFF_TOPIC = re.compile(r"(牛顿|莱布尼茨|流数|微积分|导数积分|积
 _PROGRAM_POINT = re.compile(r"([ABCD]点(谓词)?|点谓词|程序点|循环不变)")
 _SCHEMA_CUE = re.compile(
     r"(约定|记号|形式|规则|定理|公式|条件|充要|一般|任意|对所有|对任意|"
-    r"基本形式|易名|握手|完全图|补图|空图|量词|分离)"
+    r"基本形式|恒等|等式|不等式|量词|分离)"
 )
 # 例题里临时发明的英文谓词：Embrace(x)、LittleBrother(x)
 _EXAMPLE_PRED = re.compile(

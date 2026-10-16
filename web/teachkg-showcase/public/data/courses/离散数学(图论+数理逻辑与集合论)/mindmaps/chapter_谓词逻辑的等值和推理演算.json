@@ -1,0 +1,536 @@
+{
+  "lecture_id": "chapter:第5章 谓词逻辑的等值和推理演算",
+  "root": {
+    "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+    "zh": "第5章 谓词逻辑的等值和推理演算",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "谓词逻辑的等值和推理演算"
+    ],
+    "children": [
+      {
+        "id": "__section__/谓词公式等值",
+        "zh": "谓词公式等值",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/谓词公式等值/等值定理",
+            "zh": "等值定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/谓词公式等值/命题逻辑移植",
+            "zh": "命题逻辑移植",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/谓词公式等值/量词否定型",
+            "zh": "量词否定型",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/谓词公式等值/量词分配律",
+            "zh": "量词分配律",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/谓词公式等值/变元易名规则",
+            "zh": "变元易名规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/等值演算",
+        "zh": "等值演算",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/等值演算/演算方法",
+            "zh": "演算方法",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/等值演算/置换规则",
+            "zh": "置换规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/等值演算/代入规则",
+            "zh": "代入规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/范式",
+        "zh": "范式",
+        "importance": 0.6466523815516021,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/范式/前束范式",
+            "zh": "前束范式",
+            "importance": 0.6466523815516021,
+            "relation": "outline_concept",
+            "related": [
+              "前束范式"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/范式/Skolem范式",
+            "zh": "Skolem范式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "Skolem范式"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/范式/前束析取范式",
+            "zh": "前束析取范式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/范式/前束合取范式",
+            "zh": "前束合取范式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/范式/存在前束范式",
+            "zh": "存在前束范式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/推理式与推理演算",
+        "zh": "推理式与推理演算",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/推理式与推理演算/推理形式",
+            "zh": "推理形式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理式与推理演算/逻辑推论",
+            "zh": "逻辑推论",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理式与推理演算/基本推理式",
+            "zh": "基本推理式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/推理式与推理演算/推理规则",
+            "zh": "推理规则",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "推理规则"
+            ],
+            "children": [
+              {
+                "id": "__topic__/推理式与推理演算/量词推理规则",
+                "zh": "量词推理规则",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/推理式与推理演算/推理演算方法",
+            "zh": "推理演算方法",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/归结推理",
+        "zh": "归结推理",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/归结推理/归结证明法",
+            "zh": "归结证明法",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/归结推理/归结式",
+            "zh": "归结式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/归结推理/归结过程",
+            "zh": "归结过程",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [
+              "归结过程"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/归结推理/归结树",
+            "zh": "归结树",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第5章 谓词逻辑的等值和推理演算",
+      "zh": "第5章 谓词逻辑的等值和推理演算",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "谓词逻辑的等值和推理演算"
+      ],
+      "children": [
+        {
+          "id": "__section__/谓词公式等值",
+          "zh": "谓词公式等值",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/谓词公式等值/等值定理",
+              "zh": "等值定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/谓词公式等值/命题逻辑移植",
+              "zh": "命题逻辑移植",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/谓词公式等值/量词否定型",
+              "zh": "量词否定型",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/谓词公式等值/量词分配律",
+              "zh": "量词分配律",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/谓词公式等值/变元易名规则",
+              "zh": "变元易名规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/等值演算",
+          "zh": "等值演算",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/等值演算/演算方法",
+              "zh": "演算方法",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/等值演算/置换规则",
+              "zh": "置换规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/等值演算/代入规则",
+              "zh": "代入规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/范式",
+          "zh": "范式",
+          "importance": 0.6466523815516021,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/范式/前束范式",
+              "zh": "前束范式",
+              "importance": 0.6466523815516021,
+              "relation": "outline_concept",
+              "related": [
+                "前束范式"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/范式/Skolem范式",
+              "zh": "Skolem范式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "Skolem范式"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/范式/前束析取范式",
+              "zh": "前束析取范式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/范式/前束合取范式",
+              "zh": "前束合取范式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/范式/存在前束范式",
+              "zh": "存在前束范式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/推理式与推理演算",
+          "zh": "推理式与推理演算",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/推理式与推理演算/推理形式",
+              "zh": "推理形式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理式与推理演算/逻辑推论",
+              "zh": "逻辑推论",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理式与推理演算/基本推理式",
+              "zh": "基本推理式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/推理式与推理演算/推理规则",
+              "zh": "推理规则",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "推理规则"
+              ],
+              "children": [
+                {
+                  "id": "__topic__/推理式与推理演算/量词推理规则",
+                  "zh": "量词推理规则",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/推理式与推理演算/推理演算方法",
+              "zh": "推理演算方法",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/归结推理",
+          "zh": "归结推理",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/归结推理/归结证明法",
+              "zh": "归结证明法",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/归结推理/归结式",
+              "zh": "归结式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/归结推理/归结过程",
+              "zh": "归结过程",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [
+                "归结过程"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/归结推理/归结树",
+              "zh": "归结树",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 29,
+  "max_depth": 3,
+  "orphan_count": 46,
+  "meta": {
+    "chapter": "第5章 谓词逻辑的等值和推理演算",
+    "root_zh": "第5章 谓词逻辑的等值和推理演算",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "31"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 5,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__topic__/谓词公式等值/等值定义": "__section__/谓词公式等值",
+      "__topic__/等值演算/量词分配应用": "__section__/等值演算",
+      "__topic__/范式/范式转化步骤": "__section__/范式",
+      "__topic__/归结推理/合一": "__section__/归结推理",
+      "__topic__/归结推理/子句集构造": "__section__/归结推理"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__topic__/谓词公式等值/等值定义": "__section__/谓词公式等值",
+    "__topic__/等值演算/量词分配应用": "__section__/等值演算",
+    "__topic__/范式/范式转化步骤": "__section__/范式",
+    "__topic__/归结推理/合一": "__section__/归结推理",
+    "__topic__/归结推理/子句集构造": "__section__/归结推理"
+  },
+  "concept_links": []
+}

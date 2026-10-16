@@ -1,0 +1,456 @@
+{
+  "lecture_id": "chapter:第4章 平面图与图的着色",
+  "root": {
+    "id": "__chapter__/第4章 平面图与图的着色",
+    "zh": "第4章 平面图与图的着色",
+    "importance": 0.8,
+    "relation": null,
+    "related": [
+      "平面图与图的着色"
+    ],
+    "children": [
+      {
+        "id": "__section__/平面图基本概念",
+        "zh": "平面图基本概念",
+        "importance": 1,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/平面图基本概念/可平面图",
+            "zh": "可平面图",
+            "importance": 0.775744,
+            "relation": "outline_concept",
+            "related": [
+              "可平面图"
+            ],
+            "children": []
+          },
+          {
+            "id": "__topic__/平面图基本概念/平面图",
+            "zh": "平面图",
+            "importance": 0.984791,
+            "relation": "outline_concept",
+            "related": [
+              "平面图"
+            ],
+            "children": [
+              {
+                "id": "__topic__/平面图基本概念/非平面图",
+                "zh": "非平面图",
+                "importance": 1,
+                "relation": "outline_concept",
+                "related": [
+                  "非平面图"
+                ],
+                "children": []
+              },
+              {
+                "id": "__topic__/平面图基本概念/连通平面图",
+                "zh": "连通平面图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/平面图基本概念/一般平面图",
+                "zh": "一般平面图",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "__topic__/平面图基本概念/极大平面图",
+            "zh": "极大平面图",
+            "importance": 0.449206,
+            "relation": "outline_concept",
+            "related": [
+              "极大平面图"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图性质",
+        "zh": "平面图性质",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/平面图性质/欧拉公式",
+            "zh": "欧拉公式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/平面图性质/边数不等式",
+            "zh": "边数不等式",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/平面图性质/最小度结点",
+            "zh": "最小度结点",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/平面图判定定理",
+        "zh": "平面图判定定理",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/平面图判定定理/Kuratowski定理",
+            "zh": "Kuratowski定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/平面图判定定理/Wagner定理",
+            "zh": "Wagner定理",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "__section__/对偶图",
+        "zh": "对偶图",
+        "importance": 0.45,
+        "relation": "toc_section",
+        "related": [],
+        "children": [
+          {
+            "id": "__topic__/对偶图/对偶图唯一性",
+            "zh": "对偶图唯一性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/对偶图/对偶图连通性",
+            "zh": "对偶图连通性",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__topic__/对偶图/对偶图存在条件",
+            "zh": "对偶图存在条件",
+            "importance": 0.4,
+            "relation": "outline_concept",
+            "related": [],
+            "children": []
+          },
+          {
+            "id": "__section__/图的着色",
+            "zh": "图的着色",
+            "importance": 0.45,
+            "relation": "toc_section",
+            "related": [],
+            "children": [
+              {
+                "id": "__topic__/图的着色/五色定理",
+                "zh": "五色定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": []
+              },
+              {
+                "id": "__topic__/图的着色/四色定理",
+                "zh": "四色定理",
+                "importance": 0.4,
+                "relation": "outline_concept",
+                "related": [],
+                "children": [
+                  {
+                    "id": "__topic__/图的着色/Hamilton回路与四色",
+                    "zh": "Hamilton回路",
+                    "importance": 0.4,
+                    "relation": "outline_concept",
+                    "related": [],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "__chapter__/第4章 平面图与图的着色",
+      "zh": "第4章 平面图与图的着色",
+      "importance": 0.8,
+      "relation": null,
+      "related": [
+        "平面图与图的着色"
+      ],
+      "children": [
+        {
+          "id": "__section__/平面图基本概念",
+          "zh": "平面图基本概念",
+          "importance": 1,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/平面图基本概念/可平面图",
+              "zh": "可平面图",
+              "importance": 0.775744,
+              "relation": "outline_concept",
+              "related": [
+                "可平面图"
+              ],
+              "children": []
+            },
+            {
+              "id": "__topic__/平面图基本概念/平面图",
+              "zh": "平面图",
+              "importance": 0.984791,
+              "relation": "outline_concept",
+              "related": [
+                "平面图"
+              ],
+              "children": [
+                {
+                  "id": "__topic__/平面图基本概念/非平面图",
+                  "zh": "非平面图",
+                  "importance": 1,
+                  "relation": "outline_concept",
+                  "related": [
+                    "非平面图"
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/平面图基本概念/连通平面图",
+                  "zh": "连通平面图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/平面图基本概念/一般平面图",
+                  "zh": "一般平面图",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "__topic__/平面图基本概念/极大平面图",
+              "zh": "极大平面图",
+              "importance": 0.449206,
+              "relation": "outline_concept",
+              "related": [
+                "极大平面图"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图性质",
+          "zh": "平面图性质",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/平面图性质/欧拉公式",
+              "zh": "欧拉公式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/平面图性质/边数不等式",
+              "zh": "边数不等式",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/平面图性质/最小度结点",
+              "zh": "最小度结点",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/平面图判定定理",
+          "zh": "平面图判定定理",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/平面图判定定理/Kuratowski定理",
+              "zh": "Kuratowski定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/平面图判定定理/Wagner定理",
+              "zh": "Wagner定理",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "__section__/对偶图",
+          "zh": "对偶图",
+          "importance": 0.45,
+          "relation": "toc_section",
+          "related": [],
+          "children": [
+            {
+              "id": "__topic__/对偶图/对偶图唯一性",
+              "zh": "对偶图唯一性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/对偶图/对偶图连通性",
+              "zh": "对偶图连通性",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__topic__/对偶图/对偶图存在条件",
+              "zh": "对偶图存在条件",
+              "importance": 0.4,
+              "relation": "outline_concept",
+              "related": [],
+              "children": []
+            },
+            {
+              "id": "__section__/图的着色",
+              "zh": "图的着色",
+              "importance": 0.45,
+              "relation": "toc_section",
+              "related": [],
+              "children": [
+                {
+                  "id": "__topic__/图的着色/五色定理",
+                  "zh": "五色定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": []
+                },
+                {
+                  "id": "__topic__/图的着色/四色定理",
+                  "zh": "四色定理",
+                  "importance": 0.4,
+                  "relation": "outline_concept",
+                  "related": [],
+                  "children": [
+                    {
+                      "id": "__topic__/图的着色/Hamilton回路与四色",
+                      "zh": "Hamilton回路",
+                      "importance": 0.4,
+                      "relation": "outline_concept",
+                      "related": [],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "n_nodes": 23,
+  "max_depth": 4,
+  "orphan_count": 108,
+  "meta": {
+    "chapter": "第4章 平面图与图的着色",
+    "root_zh": "第4章 平面图与图的着色",
+    "virtual_root": true,
+    "scope": "chapter",
+    "lecture_ids": [
+      "1",
+      "9",
+      "10",
+      "11",
+      "12",
+      "16",
+      "17"
+    ],
+    "source": "outline+kg",
+    "n_trees": 1,
+    "skeleton_source": "manual_llm",
+    "n_sections": 6,
+    "pipeline": "text_first_v1",
+    "id_redirects": {
+      "__section__/非平面图特征": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/K5": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/K3,3": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/非平面图特征/边数条件": "__chapter__/第4章 平面图与图的着色",
+      "__topic__/平面图判定定理/K型子图": "__section__/平面图判定定理",
+      "__topic__/平面图判定定理/可收缩子图": "__section__/平面图判定定理",
+      "__topic__/对偶图/对偶图定义": "__section__/对偶图",
+      "__topic__/图的着色/四色猜想": "__section__/图的着色",
+      "__topic__/对偶图/对偶图参数关系": "__section__/对偶图"
+    }
+  },
+  "remoteLinks": [],
+  "id_redirects": {
+    "__section__/非平面图特征": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/K5": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/K3,3": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/非平面图特征/边数条件": "__chapter__/第4章 平面图与图的着色",
+    "__topic__/平面图判定定理/K型子图": "__section__/平面图判定定理",
+    "__topic__/平面图判定定理/可收缩子图": "__section__/平面图判定定理",
+    "__topic__/对偶图/对偶图定义": "__section__/对偶图",
+    "__topic__/图的着色/四色猜想": "__section__/图的着色",
+    "__topic__/对偶图/对偶图参数关系": "__section__/对偶图"
+  },
+  "concept_links": []
+}

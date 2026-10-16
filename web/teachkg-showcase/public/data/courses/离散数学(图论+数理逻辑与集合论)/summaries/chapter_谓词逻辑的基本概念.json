@@ -1,0 +1,158 @@
+{
+  "chapter": "第4章 谓词逻辑的基本概念",
+  "source": "manual_llm_text_first",
+  "outline": [
+    "基本概念",
+    "量词与辖域",
+    "公式与解释",
+    "公式分类",
+    "范式",
+    "AEIO命题"
+  ],
+  "edges": [
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "基本概念"
+    },
+    {
+      "parent": "基本概念",
+      "child": "谓词"
+    },
+    {
+      "parent": "基本概念",
+      "child": "个体"
+    },
+    {
+      "parent": "基本概念",
+      "child": "量词"
+    },
+    {
+      "parent": "基本概念",
+      "child": "个体域"
+    },
+    {
+      "parent": "基本概念",
+      "child": "论域"
+    },
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "量词与辖域"
+    },
+    {
+      "parent": "量词与辖域",
+      "child": "辖域"
+    },
+    {
+      "parent": "量词与辖域",
+      "child": "自由变元"
+    },
+    {
+      "parent": "量词与辖域",
+      "child": "约束变元"
+    },
+    {
+      "parent": "量词与辖域",
+      "child": "易名原则"
+    },
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "公式与解释"
+    },
+    {
+      "parent": "公式与解释",
+      "child": "合式公式"
+    },
+    {
+      "parent": "公式与解释",
+      "child": "解释"
+    },
+    {
+      "parent": "公式与解释",
+      "child": "指派"
+    },
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "公式分类"
+    },
+    {
+      "parent": "公式分类",
+      "child": "普遍有效式"
+    },
+    {
+      "parent": "公式分类",
+      "child": "不可满足式"
+    },
+    {
+      "parent": "公式分类",
+      "child": "可满足式"
+    },
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "范式"
+    },
+    {
+      "parent": "范式",
+      "child": "前束范式"
+    },
+    {
+      "parent": "范式",
+      "child": "Skolem范式"
+    },
+    {
+      "parent": "范式",
+      "child": "互补对合一"
+    },
+    {
+      "parent": "谓词逻辑的基本概念",
+      "child": "AEIO命题"
+    },
+    {
+      "parent": "AEIO命题",
+      "child": "全称肯定命题"
+    },
+    {
+      "parent": "AEIO命题",
+      "child": "全称否定命题"
+    },
+    {
+      "parent": "AEIO命题",
+      "child": "特称肯定命题"
+    },
+    {
+      "parent": "AEIO命题",
+      "child": "特称否定命题"
+    }
+  ],
+  "sections": [
+    {
+      "title": "基本概念",
+      "bare": "基本概念"
+    },
+    {
+      "title": "量词与辖域",
+      "bare": "量词与辖域"
+    },
+    {
+      "title": "公式与解释",
+      "bare": "公式与解释"
+    },
+    {
+      "title": "公式分类",
+      "bare": "公式分类"
+    },
+    {
+      "title": "范式",
+      "bare": "范式"
+    },
+    {
+      "title": "AEIO命题",
+      "bare": "AEIO命题"
+    }
+  ],
+  "outline_text": "基本概念\n  谓词\n  个体\n  量词\n  个体域\n  论域\n量词与辖域\n  辖域\n  自由变元\n  约束变元\n  易名原则\n公式与解释\n  合式公式\n  解释\n  指派\n公式分类\n  普遍有效式\n  不可满足式\n  可满足式\n范式\n  前束范式\n  Skolem范式\n  互补对合一\nAEIO命题\n  全称肯定命题\n  全称否定命题\n  特称肯定命题\n  特称否定命题",
+  "updatedAt": "2026-10-13T16:31:39.346Z",
+  "raw_draft": "概念辨析：谓词，个体，量词，个体域/论域，辖域，自由变元，\n约束变元，易名原则，合式公式，解释/指派，普遍有效式，不可\n满足式，可满足式，PNF/Skolem范式，互补对合一\n谓词逻辑回顾\nl AEIO 命题(来源于拉丁单词affirmo和nego的元音字母)：\nl A：全称肯定命题 : (∀x)(S(x)→P(x))\nl E：全称否定命题 : (∀x)(S(x)→¬P(x)) 或 ¬ (∃x)(S(x) ∧ P(x))\nl I：特称肯定命题 ： (∃x)(S(x)∧P(x))\nl O：特称否定命题： (∃x)(S(x)∧¬P(x)) 或 ¬(\"x) ((S(x) → P(x))\nl 有且仅有一个中国：(∃x)(China(x)∧(∀y)(China(y)→Equal(y, x)))\nl 有限论域{1, 2}下(\"x) ($ y)P(x,y) = ($ y) P(1,y) Ù ($ y)P(2,y) \nl =(P(1,1) Ú P(1,2)) Ù (P(2,1) Ú P(2,2)) \nl 前束范式与原公式等值不唯一，Skolem范式与原公式等（不）可满足",
+  "llm_notes": "抽取了谓词逻辑的核心概念，包括基本术语、量词辖域、公式分类、范式及AEIO命题类型，并归纳了隐含的范畴如'量词与辖域'和'公式分类'。",
+  "llm_model": "deepseek-chat",
+  "incremental": false
+}

@@ -133,6 +133,18 @@ function syncOneCourse(course) {
       for (const name of fs.readdirSync(mindmapDir).filter((n) => n.endsWith(".json"))) {
         fs.copyFileSync(path.join(mindmapDir, name), path.join(mindOut, name));
       }
+      // 课次导图落盘（note_match）必须一并同步，否则视频页会退化成宽章切
+      const noteMatchSrc = path.join(mindmapDir, "note_match");
+      const noteMatchOut = path.join(mindOut, "note_match");
+      if (fs.existsSync(noteMatchSrc)) {
+        fs.mkdirSync(noteMatchOut, { recursive: true });
+        for (const name of fs.readdirSync(noteMatchSrc).filter((n) => n.endsWith(".json"))) {
+          fs.copyFileSync(
+            path.join(noteMatchSrc, name),
+            path.join(noteMatchOut, name),
+          );
+        }
+      }
     }
     // 路径 A：章总结骨架（可选）
     const summariesSrc = path.join(vizDir, "summaries");
@@ -256,6 +268,12 @@ function syncOneCourse(course) {
   // —— Pipeline JSON ——
   let pipelineCount = 0;
   if (fs.existsSync(vizDir)) {
+    // kg_processed_* → public pipeline（单课/整课预计算图；缺了讲次页会空）
+    for (const name of fs
+      .readdirSync(vizDir)
+      .filter((n) => n.startsWith("kg_processed_") && n.endsWith(".json"))) {
+      fs.copyFileSync(path.join(vizDir, name), path.join(pipelineOut, name));
+    }
     for (const name of fs
       .readdirSync(vizDir)
       .filter((n) => n.startsWith("pipeline_build_") && n.endsWith(".json"))) {
@@ -492,13 +510,26 @@ function syncOneCourse(course) {
 
   fs.writeFileSync(path.join(courseOut, "manifest.json"), JSON.stringify(manifest, null, 2), "utf8");
 
-  // —— textbook entity index（课相关；目前数理逻辑教材路径固定）——
-  const textbookEntityCandidates = [
-    path.join(repoRoot, "data/textbook/CS2501-离散数学（数理逻辑与集合论）/entity_final.json"),
-    path.join(repoRoot, "data/textbook/CS2501-离散数学（数理逻辑与集合论）/entity.json"),
-  ];
+  // —— textbook entity index + entity_definitions ——
+  // 整课优先用「图论+数理逻辑」合并教材；否则回退半本
+  const textbookEntityCandidates = course.includes("图论")
+    ? [
+        path.join(
+          repoRoot,
+          "data/textbook/CS2501-离散数学（图论+数理逻辑与集合论）/entity_final.json"
+        ),
+        path.join(
+          path.resolve(repoRoot, ".."),
+          "VAT-KG/data/textbook/CS2501-离散数学（图论+数理逻辑与集合论）/entity_final.json"
+        ),
+        path.join(repoRoot, "data/textbook/CS2501-离散数学（数理逻辑与集合论）/entity_final.json"),
+      ]
+    : [
+        path.join(repoRoot, "data/textbook/CS2501-离散数学（数理逻辑与集合论）/entity_final.json"),
+        path.join(repoRoot, "data/textbook/CS2501-离散数学（数理逻辑与集合论）/entity.json"),
+      ];
   const textbookEntitySrc = textbookEntityCandidates.find((p) => fs.existsSync(p));
-  if (textbookEntitySrc && course.includes("数理逻辑")) {
+  if (textbookEntitySrc && (course.includes("数理逻辑") || course.includes("图论"))) {
     try {
       const ents = JSON.parse(fs.readFileSync(textbookEntitySrc, "utf8"));
       const list = Array.isArray(ents) ? ents : ents.entities || [];
@@ -528,6 +559,15 @@ function syncOneCourse(course) {
           if (raw.includes("/")) putEn(raw.split("/").slice(1).join("/"), name);
         }
       }
+      const definitions = {};
+      for (const e of list) {
+        const name = String(e?.name || e?.id || "").trim();
+        const defn = String(e?.definition || e?.description || "").trim();
+        if (!name || !defn) continue;
+        definitions[name] = defn;
+        const zh = name.split("/")[0].trim();
+        if (zh && !definitions[zh]) definitions[zh] = defn;
+      }
       fs.writeFileSync(
         path.join(courseOut, "textbook_entity_index.json"),
         JSON.stringify(
@@ -537,6 +577,39 @@ function syncOneCourse(course) {
         ),
         "utf8"
       );
+      // 叠加 mmkg_enrichment（课后 LLM 定义），不覆盖教材
+      const enrichPath = path.join(kgDir, "mmkg_enrichment.json");
+      if (fs.existsSync(enrichPath)) {
+        try {
+          const enrich = JSON.parse(fs.readFileSync(enrichPath, "utf8"));
+          for (const e of enrich.entities || []) {
+            const desc = String(e?.description || "").trim();
+            if (!desc) continue;
+            for (const key of [e.id, e.zh, e.en, ...(e.aliases || [])]) {
+              const k = String(key || "").trim();
+              if (k && !definitions[k]) definitions[k] = desc;
+            }
+          }
+        } catch (err) {
+          console.warn(`sync-data[${course}]: mmkg enrichment merge failed`, err.message);
+        }
+      }
+      fs.writeFileSync(
+        path.join(courseOut, "entity_definitions.json"),
+        JSON.stringify(definitions),
+        "utf8"
+      );
+      // 默认课镜像一份，便于无 courseId 路径回退
+      try {
+        fs.mkdirSync(outDir, { recursive: true });
+        fs.writeFileSync(
+          path.join(outDir, "entity_definitions.json"),
+          JSON.stringify(definitions),
+          "utf8"
+        );
+      } catch {
+        /* ignore */
+      }
     } catch (err) {
       console.warn(`sync-data[${course}]: textbook entity index failed`, err.message);
     }
