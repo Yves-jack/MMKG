@@ -297,6 +297,60 @@
   z-index: 3;
 }
 
+.resourceFold {
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--bg-elev, #1c2330) 62%, transparent);
+  overflow: hidden;
+}
+
+.resourceFoldSummary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--text, #e6edf3);
+  font-size: 12px;
+  font-weight: 650;
+  list-style: none;
+}
+
+.resourceFoldSummary::-webkit-details-marker {
+  display: none;
+}
+
+.resourceFoldSummary em {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent, #3ecf8e) 15%, transparent);
+  color: var(--muted, #8b97a8);
+  font-size: 10px;
+  font-style: normal;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.resourceFoldSummary i {
+  color: var(--muted, #8b97a8);
+  font-style: normal;
+  transition: transform 0.15s ease;
+}
+
+.resourceFold[open] > .resourceFoldSummary i {
+  transform: rotate(90deg);
+}
+
+.resourceFoldBody {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  padding: 0 8px 8px;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.08));
+}
+
 .sideJumpBar .kgChip {
   color: var(--text, #e6edf3);
   background: color-mix(in srgb, var(--accent, #3ecf8e) 14%, var(--bg, #0e1116));

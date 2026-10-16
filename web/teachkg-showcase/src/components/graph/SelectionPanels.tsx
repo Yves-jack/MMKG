@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import type { PipelineEdge, PipelineStage } from "@/lib/graph/types";
 import { isBidirectionalRelation } from "@/lib/graph/graphLogic";
@@ -12,6 +12,7 @@ import {
 } from "@/lib/kg/kgEdits";
 import { assetKindLabel, type AssetCard, type AssetsLibrary, findAssetsForEntity } from "@/lib/kg/assetsLibrary";
 import { LatexText } from "@/components/graph/LatexText";
+import { ResourceCardFold } from "@/components/graph/LinkedResourceCards";
 import styles from "@/styles/panels.module.css";
 
 function Tex({
@@ -1045,93 +1046,6 @@ export function RelatedEdges({
   );
 }
 
-function AssetCardItem({
-  card,
-}: {
-  card: AssetCard;
-  lectureId?: string | null;
-  library?: AssetsLibrary | null;
-  lectureOnly?: boolean;
-}) {
-  const [open, setOpen] = useState(true);
-  const zh = shortName(card.name);
-  const statement = (card.statement || "").trim();
-  const summary = (card.summary || "").trim();
-  const latex = (card.latex || "").trim();
-  const detail = statement || summary;
-  const showLatex = Boolean(latex) && !detail.includes(latex);
-  const steps = (card.steps || []).map((s) => String(s || "").trim()).filter(Boolean);
-  const hasBody = Boolean(detail || showLatex || steps.length);
-
-  return (
-    <div className={styles.assetCard}>
-      <div className={styles.assetHeadRow}>
-        <button
-          type="button"
-          className={styles.assetHead}
-          aria-expanded={hasBody ? open : undefined}
-          onClick={() => hasBody && setOpen((v) => !v)}
-        >
-          <span
-            className={styles.assetKind}
-            style={
-              ASSET_KIND_COLOR[String(card.kind || "")]
-                ? {
-                    ["--hl" as string]: ASSET_KIND_COLOR[String(card.kind || "")],
-                    color: ASSET_KIND_COLOR[String(card.kind || "")],
-                    borderColor: ASSET_KIND_COLOR[String(card.kind || "")],
-                    background: `color-mix(in srgb, ${ASSET_KIND_COLOR[String(card.kind || "")]} 18%, transparent)`,
-                  }
-                : undefined
-            }
-          >
-            {assetKindLabel(card.kind)}
-          </span>
-          <strong className={styles.assetTitle}>
-            <Tex text={zh} />
-          </strong>
-          {hasBody ? (
-            <span className={styles.assetChev} aria-hidden>
-              {open ? "▾" : "▸"}
-            </span>
-          ) : null}
-        </button>
-      </div>
-      {open && hasBody ? (
-        <div className={styles.assetBody}>
-          {detail || showLatex ? (
-            <div className={styles.assetField}>
-              <span className={styles.assetFieldLabel}>详细描述</span>
-              {detail ? (
-                <div className={styles.assetStatement}>
-                  <Tex text={detail} block />
-                </div>
-              ) : null}
-              {showLatex ? (
-                <div className={styles.assetStatement}>
-                  <Tex text={`$${latex}$`} block />
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-          {steps.length ? (
-            <div className={styles.assetField}>
-              <span className={styles.assetFieldLabel}>步骤</span>
-              <ol className={styles.assetSteps}>
-                {steps.map((s, i) => (
-                  <li key={i}>
-                    <Tex text={s} />
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 const ASSET_KIND_CHIPS: Array<{ key: string; label: string; color: string }> = [
   { key: "formula", label: "公式", color: "#60a5fa" },
   { key: "example", label: "例子", color: "#fbbf24" },
@@ -1144,6 +1058,98 @@ const ASSET_KIND_COLOR: Record<string, string> = Object.fromEntries(
   ASSET_KIND_CHIPS.map((c) => [c.key, c.color]),
 );
 
+function kindBadgeStyle(kind?: string): CSSProperties | undefined {
+  const color = ASSET_KIND_COLOR[String(kind || "")];
+  if (!color) return undefined;
+  return {
+    ["--hl" as string]: color,
+    color,
+    borderColor: color,
+    background: `color-mix(in srgb, ${color} 18%, transparent)`,
+  };
+}
+
+/** 侧栏相关资源卡：对齐资源库列表卡；方法卡含可折叠步骤 */
+function AssetCardItem({ card }: { card: AssetCard }) {
+  const kind = String(card.kind || "");
+  const zh = shortName(card.name);
+  const summary = (card.summary || "").trim();
+  const statement = (card.statement || "").trim();
+  const body = summary || statement;
+  const latex = (card.latex || "").trim();
+  const showLatex =
+    kind === "formula" && Boolean(latex) && !(body && body.includes(latex));
+  const steps = (card.steps || [])
+    .map((s) => String(s || "").trim())
+    .filter(Boolean);
+  const showSteps = kind === "technique" && steps.length > 0;
+  const [stepsOpen, setStepsOpen] = useState(false);
+  const concepts = card.concepts || [];
+  const techniqueColor = ASSET_KIND_COLOR.technique;
+
+  return (
+    <div className={styles.assetCard}>
+      <div className={styles.assetHead}>
+        <span className={styles.assetKind} style={kindBadgeStyle(kind)}>
+          {assetKindLabel(card.kind)}
+        </span>
+        <strong className={styles.assetTitle}>
+          <Tex text={zh} />
+        </strong>
+      </div>
+      {body ? (
+        <div className={styles.assetSummary}>
+          <Tex text={body} block />
+        </div>
+      ) : null}
+      {showLatex ? (
+        <div className={styles.assetLatex}>
+          <Tex text={`$${latex}$`} block />
+        </div>
+      ) : null}
+      {showSteps ? (
+        <div
+          className={styles.assetStepsBox}
+          style={{
+            ["--hl" as string]: techniqueColor,
+            borderColor: `color-mix(in srgb, ${techniqueColor} 45%, transparent)`,
+            background: `color-mix(in srgb, ${techniqueColor} 12%, transparent)`,
+          }}
+        >
+          <button
+            type="button"
+            className={styles.assetStepsToggle}
+            aria-expanded={stepsOpen}
+            onClick={() => setStepsOpen((v) => !v)}
+            style={{ color: techniqueColor }}
+          >
+            <span>步骤 · {steps.length}</span>
+            <span aria-hidden>{stepsOpen ? "▾" : "▸"}</span>
+          </button>
+          {stepsOpen ? (
+            <ol className={styles.assetSteps}>
+              {steps.map((s, i) => (
+                <li key={i}>
+                  <Tex text={s} />
+                </li>
+              ))}
+            </ol>
+          ) : null}
+        </div>
+      ) : null}
+      {concepts.length ? (
+        <div className={styles.assetConcepts}>
+          {concepts.map((c, i) => (
+            <span key={`${c.entity}-${i}`} className={styles.assetConceptChip}>
+              {shortName(c.entity)}
+            </span>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 /** 选中概念时展示关联的资源层卡片（公式 / 例子 / 定理·原理·方法） */
 export function RelatedAssetsPanel({
   entityId,
@@ -1153,6 +1159,8 @@ export function RelatedAssetsPanel({
   lectureOnly = false,
   kinds = null,
   hideEmpty = false,
+  matchMode = "full",
+  emptyHint = null,
 }: {
   entityId: string | null;
   /** 同一图节点的显示名等别名；嵌入图常用内部 id，资产索引使用课程实体名。 */
@@ -1166,13 +1174,13 @@ export function RelatedAssetsPanel({
   /** @deprecated 始终展示全部资产，忽略截断 */
   maxItems?: number;
   hideEmpty?: boolean;
+  /** full=含卡名；concept=概念/边（导图叶）；strict=仅索引（导图 topic） */
+  matchMode?: "full" | "concept" | "strict";
+  /** 无结果时覆盖默认空态文案（如章节不匹配） */
+  emptyHint?: string | null;
 }) {
   const aliasKey = entityAliases.join("\u0000");
   const kindKey = kinds?.join("\u0000") || "";
-  const [kindFilter, setKindFilter] = useState<string>("all");
-  useEffect(() => {
-    setKindFilter("all");
-  }, [entityId, aliasKey, kindKey]);
   const cards = useMemo(() => {
     const ids = [entityId, ...entityAliases]
       .map((value) => String(value || "").trim())
@@ -1184,13 +1192,14 @@ export function RelatedAssetsPanel({
         lectureOnly,
         llmPrinciplesOnly: true,
         kinds,
+        matchMode,
       }).filter((card) => {
         if (seen.has(card.asset_id)) return false;
         seen.add(card.asset_id);
         return true;
       })
     );
-  }, [entityId, aliasKey, library, lectureId, lectureOnly, kindKey]);
+  }, [entityId, aliasKey, library, lectureId, lectureOnly, kindKey, matchMode]);
   const kindCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const card of cards) {
@@ -1204,65 +1213,51 @@ export function RelatedAssetsPanel({
     if (kinds?.length && !kinds.includes(chip.key)) return false;
     return (kindCounts[chip.key] || 0) > 0;
   });
-  const filtered = useMemo(() => {
-    if (kindFilter === "all") return cards;
-    return cards.filter((card) => String(card.kind || "") === kindFilter);
-  }, [cards, kindFilter]);
   if (!entityId) {
     if (hideEmpty) return null;
-    return <div className={styles.sideEmpty}>选中实体后显示相关公式、例子与定理</div>;
+    return (
+      <div className={styles.sideEmpty}>
+        {emptyHint || "选中实体后显示相关公式、例子与定理"}
+      </div>
+    );
   }
   if (!library) {
     if (hideEmpty) return null;
-    return <div className={styles.sideEmpty}>资产库未加载</div>;
+    return (
+      <div className={styles.sideEmpty}>{emptyHint || "资产库未加载"}</div>
+    );
   }
   if (!cards.length) {
     if (hideEmpty) return null;
     const onlyFormula = kinds?.length === 1 && kinds[0] === "formula";
     return (
       <div className={styles.sideEmpty}>
-        {onlyFormula
+        {emptyHint
+          ? emptyHint
+          : onlyFormula
           ? "该知识节点暂无 MMKG 关联公式"
           : lectureOnly
           ? "本讲暂无挂到该实体的公式 / 例子 / 定理"
+          : matchMode === "strict"
+          ? "该主题仅精确匹配到资源；暂无同名挂载"
           : "暂无关联的公式、例子或定理·原理·方法"}
       </div>
     );
   }
   return (
     <div className={styles.assetList}>
-      {chips.length > 1 ? (
-        <div className={styles.assetKindBar} role="toolbar" aria-label="按资产类型筛选">
-          <button
-            type="button"
-            className={`${styles.assetKindChip} ${kindFilter === "all" ? styles.assetKindChipOn : ""}`}
-            onClick={() => setKindFilter("all")}
-          >
-            <i className={styles.assetKindDot} style={{ background: "#34d399" }} />
-            <span>全部</span>
-            <em>{cards.length}</em>
-          </button>
-          {chips.map((chip) => (
-            <button
-              key={chip.key}
-              type="button"
-              className={`${styles.assetKindChip} ${kindFilter === chip.key ? styles.assetKindChipOn : ""}`}
-              style={{ ["--hl" as string]: chip.color }}
-              onClick={() => setKindFilter(kindFilter === chip.key ? "all" : chip.key)}
-            >
-              <i className={styles.assetKindDot} style={{ background: chip.color }} />
-              <span>{chip.label}</span>
-              <em>{kindCounts[chip.key] || 0}</em>
-            </button>
-          ))}
-        </div>
-      ) : null}
-      {filtered.map((c) => (
-        <AssetCardItem key={c.asset_id} card={c} />
-      ))}
-      {!filtered.length ? (
-        <div className={styles.sideEmpty}>该类型下暂无相关资源</div>
-      ) : null}
+      {chips.map((chip) => {
+        const rows = cards.filter((card) => String(card.kind || "") === chip.key);
+        return (
+          <ResourceCardFold key={chip.key} title={chip.label} count={rows.length}>
+            <div className={styles.assetGroupCards}>
+              {rows.map((card) => (
+                <AssetCardItem key={card.asset_id} card={card} />
+              ))}
+            </div>
+          </ResourceCardFold>
+        );
+      })}
     </div>
   );
 }
@@ -1276,6 +1271,7 @@ export function countRelatedAssets(
     lectureId?: string | null;
     lectureOnly?: boolean;
     kinds?: string[] | null;
+    matchMode?: "full" | "concept" | "strict";
   },
 ): number {
   const ids = [entityId, ...(options?.entityAliases || [])]
@@ -1290,6 +1286,7 @@ export function countRelatedAssets(
       lectureOnly: options?.lectureOnly,
       llmPrinciplesOnly: true,
       kinds: options?.kinds || undefined,
+      matchMode: options?.matchMode,
     })) {
       if (seen.has(card.asset_id)) continue;
       seen.add(card.asset_id);

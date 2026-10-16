@@ -9,6 +9,8 @@ import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
 import { RelatedEdges, RelatedAssetsPanel, SelectionDetail, DeletedItemsPanel, relatedEdgesOf, countRelatedAssets } from "@/components/graph/SelectionPanels";
 import {
   LinkedResourceCardList,
+  LinkedResourceJumpBar,
+  ResourceCardFold,
   RESOURCE_LABELS,
   videoSegmentKey,
 } from "@/components/graph/LinkedResourceCards";
@@ -23,8 +25,11 @@ import {
   type ImportanceFilterMode,
 } from "@/lib/kg/importanceFilter";
 import { dedupeEntityMatchesByZh } from "@/lib/entitySearchDedupe";
-import { isPaperEmbedTheme } from "@/styles/embedTheme";
-import type { AssetsLibrary } from "@/lib/kg/assetsLibrary";
+import {
+  ensureAssetsLibraryIndexes,
+  RELATED_ASSET_KINDS,
+  type AssetsLibrary,
+} from "@/lib/kg/assetsLibrary";
 import {
   readSharedEntitySelection,
   SHARED_PANEL_KEYS,
@@ -95,6 +100,9 @@ import {
   deleteMmkgNode,
   emitKnowledgeResourceOpen,
   fetchLinkedKnowledgeResources,
+  matchedKnowledgePointId,
+  matchedKnowledgePointLabel,
+  resolvePracticeSeedKp,
   fetchMmkgGraph,
   mmkgCachedRole,
   mmkgLogin,
@@ -307,23 +315,6 @@ function intersectVideoResources(
   return out;
 }
 
-/** 关系侧动画：合并两端实体上的动画资源（去重） */
-function unionAnimationResources(
-  left: LinkedKnowledgeResource[],
-  right: LinkedKnowledgeResource[],
-): LinkedKnowledgeResource[] {
-  const seen = new Set<string>();
-  const out: LinkedKnowledgeResource[] = [];
-  for (const resource of [...left, ...right]) {
-    if (resource.resource_type !== "animation") continue;
-    const key = String(resource.resource_id || "").trim();
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    out.push(resource);
-  }
-  return out;
-}
-
 /** 关系侧练习：合并两端实体上的练习资源（去重） */
 function unionExerciseResources(
   left: LinkedKnowledgeResource[],
@@ -483,10 +474,7 @@ export function KgPage() {
   const [detailPanelOpen, setDetailPanelOpen] = useState(true);
   /** 选中实体/关系时仅展开「选中详情」，其余侧栏卡片默认收起 */
   const [edgesPanelOpen, setEdgesPanelOpen] = useState(false);
-  const [assetsPanelOpen, setAssetsPanelOpen] = useState(false);
-  const [videoPanelOpen, setVideoPanelOpen] = useState(false);
-  const [exercisePanelOpen, setExercisePanelOpen] = useState(false);
-  const [animationPanelOpen, setAnimationPanelOpen] = useState(false);
+  const [assetsPanelOpen, setAssetsPanelOpen] = useState(true);
   const [mediaPanelOpen, setMediaPanelOpen] = useState(false);
   const [hiddenPanelOpen, setHiddenPanelOpen] = useState(false);
   const [panelEditMode, setPanelEditMode] = useState(false);
@@ -500,7 +488,7 @@ export function KgPage() {
   const [hideRelatedWith, setHideRelatedWith] = useState(true);
   const [entityQuery, setEntityQuery] = useState("");
   const [entitySearchOpen, setEntitySearchOpen] = useState(false);
-  /** 搜索选中但当前重要性过滤未保留的节点，强制钉回画布 */
+  /** 搜索选中但当前重要性过滤未保留的节点，强制钉回画布（含一跳邻居）；再调过滤即清除 */
   const [pinnedEntityIds, setPinnedEntityIds] = useState<string[]>([]);
   const [focusNodeRequest, setFocusNodeRequest] = useState<{
     id: string;
@@ -509,6 +497,8 @@ export function KgPage() {
   const [exportingPng, setExportingPng] = useState(false);
   const entitySearchRef = useRef<HTMLDivElement>(null);
   const posCacheRef = useRef<Record<string, { x: number; y: number }>>({});
+  /** 钉回后等节点进入 displayStage 再发 focus，避免搜到过滤外实体时居中空转 */
+  const pendingFocusAfterPinRef = useRef<string | null>(null);
   /** 整课过滤累计 |Δ%|；≥5 触发重画并清零（仅 ≤500 节点软布局时） */
   const importanceDeltaAccumRef = useRef(0);
   const visibleNodeCountRef = useRef(0);
@@ -528,6 +518,9 @@ export function KgPage() {
     resources: LinkedKnowledgeResource[];
     warnings: string[];
     error: string;
+    /** AI-Teaching 匹配到的知识点 id，练习 seed 必须用这个 */
+    matchedKpId?: string;
+    matchedKpLabel?: string;
   } | null>(null);
   const [graphCtxMenu, setGraphCtxMenu] = useState<
     | {
@@ -542,6 +535,8 @@ export function KgPage() {
         resources: LinkedKnowledgeResource[];
         warnings: string[];
         error: string;
+        matchedKpId?: string;
+        matchedKpLabel?: string;
       }
     | {
         kind: "edge";
@@ -644,6 +639,8 @@ export function KgPage() {
               loading: false,
               resources: result.resources,
               warnings: result.warnings,
+              matchedKpId: matchedKnowledgePointId(result.match) || undefined,
+              matchedKpLabel: matchedKnowledgePointLabel(result.match) || undefined,
             }
           : current,
       );
@@ -750,7 +747,23 @@ export function KgPage() {
             )?.from || "",
           ).trim()
         : "";
-    const seedKp = selectedKp || edgeEndpointKp;
+    const matchedKp =
+      String(sideLinkedResources?.matchedKpId || "").trim() ||
+      (graphCtxMenu?.kind === "node"
+        ? String(graphCtxMenu.matchedKpId || "").trim()
+        : "");
+    const matchedLabel =
+      String(sideLinkedResources?.matchedKpLabel || "").trim() ||
+      (graphCtxMenu?.kind === "node"
+        ? String(graphCtxMenu.matchedKpLabel || "").trim()
+        : "") ||
+      String(selectedNode?.label || "").trim();
+    // 练习库按 AT 知识点 id 精确过滤；图谱节点 id 对不上会回落整课题，界面就像「跳错知识点」
+    const seedKp = resolvePracticeSeedKp({
+      matchedKpId: matchedKp,
+      selectedNodeId: selectedKp,
+      edgeEndpointId: edgeEndpointKp,
+    });
     const baseMeta: Record<string, unknown> = {
       ...(resource.metadata || {}),
       course_id:
@@ -769,12 +782,26 @@ export function KgPage() {
         withCourse.resource_type === "exercise")
         ? {
             ...withCourse,
+            // 练习：resource_id 用 seed KP，避免 AT 把题目 id 当成知识点
+            resource_id:
+              withCourse.resource_type === "exercise"
+                ? seedKp
+                : withCourse.resource_id,
+            knowledge_point_ids:
+              withCourse.resource_type === "exercise" ? [seedKp] : withCourse.knowledge_point_ids,
             metadata: {
               ...baseMeta,
-              knowledge_point_id: baseMeta.knowledge_point_id || seedKp,
-              seed_knowledge_point_id:
-                baseMeta.seed_knowledge_point_id || seedKp,
-              kp: baseMeta.kp || seedKp,
+              // 始终覆盖资源自带 KP，保证练习页 seed = 当前选中（匹配后）知识点
+              knowledge_point_id: seedKp,
+              seed_knowledge_point_id: seedKp,
+              seed_knowledge_point_label: matchedLabel || undefined,
+              knowledge_point_ids: [seedKp],
+              kp: seedKp,
+              practice_mode:
+                withCourse.resource_type === "exercise"
+                  ? "knowledge_point"
+                  : baseMeta.practice_mode,
+              graph_node_id: selectedKp || edgeEndpointKp || undefined,
             },
           }
         : withCourse;
@@ -898,7 +925,9 @@ export function KgPage() {
     })
       .then((r) => (r.ok ? r.json() : null))
       .then((j: AssetsLibrary | null) => {
-        setAssetsLibrary(j && Array.isArray(j.cards) ? j : null);
+        setAssetsLibrary(
+          j && Array.isArray(j.cards) ? ensureAssetsLibraryIndexes(j) : null
+        );
       })
       .catch(() => setAssetsLibrary(null));
   }, [course]);
@@ -1488,6 +1517,11 @@ export function KgPage() {
     if (v >= 100) setRevealFilteredEntities(false);
   }, [course, contextKey, scope]);
 
+  const clearSearchRevealPins = () => {
+    setPinnedEntityIds([]);
+    pendingFocusAfterPinRef.current = null;
+  };
+
   const commitImportanceKeepPercent = (next: number) => {
     const v = clampKeepPercent(next, defaultImportanceKeepForScope(scope));
     // 累计 |Δ%|≥5 整图重画：仅整课且可见节点 >500 时生效；≤500 只做软增减
@@ -1500,6 +1534,8 @@ export function KgPage() {
         setForceRelayoutToken((t) => t + 1);
       }
     }
+    // 再调过滤：搜索临时钉回失效，节点重新受筛选约束
+    if (v !== importanceKeepPercent) clearSearchRevealPins();
     setImportanceKeepPercent(v);
     setImportancePercentDraft(String(v));
     writeStoredImportanceKeep(course, contextKey, v);
@@ -2166,8 +2202,8 @@ export function KgPage() {
           : []),
       ],
       lectureId: scope === "lecture" ? lectureId : null,
-      lectureOnly: scope === "lecture",
-      kinds: isAiTeachingEmbed ? ["formula", "example", "theorem"] : undefined,
+      lectureOnly: false,
+      kinds: [...RELATED_ASSET_KINDS],
     });
   }, [
     isGraphOnlyEmbed,
@@ -2180,16 +2216,28 @@ export function KgPage() {
     lectureId,
     isAiTeachingEmbed,
   ]);
+  const selectedAnimationResources = (sideLinkedResources?.resources || []).filter(
+    (resource) => resource.resource_type === "animation",
+  );
+  const selectedResourceCount = selectedAssetCount + selectedAnimationResources.length;
   // 必须 memo：hideRelatedWith 默认 true 时 applyRelatedWithVisibility 每次 render 都会新建 stage，
   // 若直接传给 GraphCanvas 会在点选时触发 syncInPlace/全图 update，主线程卡死。
   const displayStage: PipelineStage | null = useMemo(() => {
     if (!pipelineView?.stage) return null;
     return applyGraphHides(
-      applyRelatedWithVisibility(pipelineView.stage, hideRelatedWith),
+      applyRelatedWithVisibility(pipelineView.stage, hideRelatedWith, {
+        forceKeepIds: pinnedEntityIds,
+      }),
       hiddenNodeIds,
       hiddenEdgeIds,
     );
-  }, [pipelineView?.stage, hideRelatedWith, hiddenNodeIds, hiddenEdgeIds]);
+  }, [
+    pipelineView?.stage,
+    hideRelatedWith,
+    hiddenNodeIds,
+    hiddenEdgeIds,
+    pinnedEntityIds,
+  ]);
 
   // AI-Teaching 嵌入：选中实体 → 视频/练习/动画；选中关系 → 两端共现视频片段
   useEffect(() => {
@@ -2271,13 +2319,22 @@ export function KgPage() {
             targetKey,
             mode: "edge",
             loading: false,
+            // 关系侧只要共现视频 + 练习；动画卡片仅实体选中时展示
             resources: [
               ...intersectVideoResources(left.resources, right.resources),
               ...unionExerciseResources(left.resources, right.resources),
-              ...unionAnimationResources(left.resources, right.resources),
             ],
             warnings: [...(left.warnings || []), ...(right.warnings || [])],
             error: "",
+            // 关系练习以 from 端匹配 KP 为 seed
+            matchedKpId:
+              matchedKnowledgePointId(left.match) ||
+              matchedKnowledgePointId(right.match) ||
+              undefined,
+            matchedKpLabel:
+              matchedKnowledgePointLabel(left.match) ||
+              matchedKnowledgePointLabel(right.match) ||
+              undefined,
           });
         })
         .catch((reason) => {
@@ -2335,6 +2392,8 @@ export function KgPage() {
           resources: result.resources,
           warnings: result.warnings,
           error: "",
+          matchedKpId: matchedKnowledgePointId(result.match) || undefined,
+          matchedKpLabel: matchedKnowledgePointLabel(result.match) || undefined,
         });
       })
       .catch((reason) => {
@@ -2393,7 +2452,9 @@ export function KgPage() {
     }
     const mode = payload.mode || "lecture";
     const stage = applyGraphHides(
-      applyRelatedWithVisibility(pipelineView.fullStage, hideRelatedWith),
+      applyRelatedWithVisibility(pipelineView.fullStage, hideRelatedWith, {
+        forceKeepIds: pinnedEntityIds,
+      }),
       hiddenNodeIds,
       hiddenEdgeIds
     );
@@ -2407,6 +2468,7 @@ export function KgPage() {
     hiddenNodeIds,
     hiddenEdgeIds,
     graphHideFiltered,
+    pinnedEntityIds,
   ]);
 
   const relatedWithCount = useMemo(() => {
@@ -2679,7 +2741,7 @@ export function KgPage() {
       const ok = await graphRef.current.exportPng({
         scale: 3,
         filename: name,
-        background: isPaperEmbedTheme() ? "#fcfaf6" : "#0b1220",
+        background: "transparent",
       });
       if (!ok) {
         window.alert("导出失败：当前图谱尚未就绪，请稍后重试");
@@ -2751,39 +2813,58 @@ export function KgPage() {
       pipelineView?.fullStage?.nodes?.find((x) => String(x.id) === nodeId) ||
       displayStage?.nodes?.find((x) => String(x.id) === nodeId);
     if (!n) return;
+    const id = String(n.id);
     const visible = (displayStage?.nodes || []).some(
-      (x) => String(x.id) === nodeId,
+      (x) => String(x.id) === id,
     );
+    // 过滤外：临时钉回该点（importanceFilter 会自动带一跳邻居）；覆盖旧钉，避免越搜越多
     if (!visible) {
-      setPinnedEntityIds((prev) =>
-        prev.includes(nodeId) ? prev : [...prev, nodeId],
-      );
+      setPinnedEntityIds([id]);
+      pendingFocusAfterPinRef.current = id;
+    } else {
+      pendingFocusAfterPinRef.current = null;
     }
     setSelectedEdgeId(null);
     setFocusEdgeIds(null);
     setHighlightKey(null);
     const next = {
-      id: String(n.id),
-      label: n.label || String(n.id).split("/")[0] || String(n.id),
-      title: n.title || n.label || String(n.id),
+      id,
+      label: n.label || id.split("/")[0] || id,
+      title: n.title || n.label || id,
       _kind: n.kind || "",
     };
     setSelectedNode(next);
     writeSharedEntitySelection({ id: next.id, label: next.label });
-    setFocusNodeRequest((prev) => ({
-      id: String(n.id),
-      seq: (prev?.seq || 0) + 1,
-    }));
-    setEntityQuery(n.label || String(n.id).split("/")[0] || String(n.id));
+    if (visible) {
+      setFocusNodeRequest((prev) => ({
+        id,
+        seq: (prev?.seq || 0) + 1,
+      }));
+    }
+    setEntityQuery(n.label || id.split("/")[0] || id);
     setEntitySearchOpen(false);
     setDetailCollapsed(false);
     setDetailPanelOpen(true);
   };
 
+  // 钉回完成并进入当前显示集合后再居中
+  useEffect(() => {
+    const id = pendingFocusAfterPinRef.current;
+    if (!id) return;
+    const onCanvas = (displayStage?.nodes || []).some((n) => String(n.id) === id);
+    if (!onCanvas) return;
+    pendingFocusAfterPinRef.current = null;
+    setFocusNodeRequest((prev) => ({
+      id,
+      seq: (prev?.seq || 0) + 1,
+    }));
+  }, [displayStage, pinnedEntityIds]);
+
   // 切课堂/单课后允许再次用 URL/共享选中恢复一次；清空搜索钉住
   useEffect(() => {
     focusRestoreKeyRef.current = "";
-    setPinnedEntityIds([]);
+    clearSearchRevealPins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only on context switch
   }, [contextKey]);
 
   // URL ?focus= / 导图共享选中 → 选中并居中（仅每个来源恢复一次，避免改重要性时反复高亮）
@@ -2817,32 +2898,22 @@ export function KgPage() {
       );
     if (!hit) return;
     focusRestoreKeyRef.current = sourceKey;
-    const hitId = String(hit.id);
-    const visible = (displayStage?.nodes || []).some((n) => String(n.id) === hitId);
-    if (!visible) {
-      setPinnedEntityIds((prev) =>
-        prev.includes(hitId) ? prev : [...prev, hitId],
-      );
-    }
     if (selectedNode?.id === String(hit.id)) return;
     focusEntity(String(hit.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only react to URL/graph load
   }, [focusParam, displayStage, loading]);
 
-  // 选中实体/关系时展开「选中详情」；关系优先展开动画跳转
+  // 选中实体/关系时展开右栏「选中详情」
   useEffect(() => {
     if (selectedNode?.id != null || selectedEdgeId) {
-      if (!isAiTeachingEmbed) setDetailCollapsed(false);
+      setDetailCollapsed(false);
       setDetailPanelOpen(true);
       setEdgesPanelOpen(false);
-      setAssetsPanelOpen(false);
-      setVideoPanelOpen(false);
-      setExercisePanelOpen(false);
-      setAnimationPanelOpen(Boolean(selectedEdgeId));
+      setAssetsPanelOpen(true);
       setMediaPanelOpen(false);
       setHiddenPanelOpen(false);
     }
-  }, [selectedNode?.id, selectedEdgeId, isAiTeachingEmbed]);
+  }, [selectedNode?.id, selectedEdgeId]);
 
   const importanceKeepControl = (inputId: string) => (
     <div
@@ -3089,122 +3160,6 @@ export function KgPage() {
                   >
                     查看知识导图
                   </button>
-                  {(selectedNode?.id != null || selectedEdgeId) ? (
-                    <>
-                      <button
-                        type="button"
-                        className={styles.kgChip}
-                        disabled={
-                          !!sideLinkedResources?.loading ||
-                          (
-                            !sideLinkedResources?.resources.some(
-                              (r) => r.resource_type === "exercise",
-                            )
-                            && !selectedNode?.id
-                          )
-                        }
-                        title={
-                          sideLinkedResources?.loading
-                            ? "正在匹配练习…"
-                            : selectedEdgeId
-                              ? "跳转关系相关练习"
-                              : "跳转相关练习"
-                        }
-                        onClick={() => {
-                          const row = sideLinkedResources?.resources.find(
-                            (r) => r.resource_type === "exercise",
-                          );
-                          if (row) openLinkedResource(row);
-                          else if (selectedNode?.id) {
-                            // 无匹配资源时，仍可按当前实体进入练习
-                            openLinkedResource({
-                              resource_type: "exercise",
-                              resource_id: String(selectedNode.id),
-                              course_id: resourceCourseId || course,
-                              title: "相关练习",
-                              metadata: {
-                                knowledge_point_id: String(selectedNode.id),
-                                seed_knowledge_point_id: String(selectedNode.id),
-                                course_id: resourceCourseId || course,
-                              },
-                            });
-                          }
-                        }}
-                      >
-                        {sideLinkedResources?.loading
-                          ? "匹配练习…"
-                          : "跳转相关练习"}
-                      </button>
-                      <button
-                        type="button"
-                        className={styles.kgChip}
-                        disabled={
-                          !!sideLinkedResources?.loading ||
-                          (
-                            !sideLinkedResources?.resources.some(
-                              (r) => r.resource_type === "video",
-                            )
-                            && !selectedNode?.id
-                          )
-                        }
-                        title={
-                          sideLinkedResources?.loading
-                            ? "正在匹配视频…"
-                            : selectedEdgeId
-                              ? "跳转关系共现视频"
-                              : "跳转相关视频"
-                        }
-                        onClick={() => {
-                          const row = sideLinkedResources?.resources.find(
-                            (r) => r.resource_type === "video",
-                          );
-                          if (row) openLinkedResource(row);
-                          else if (selectedNode?.id) {
-                            // 无匹配资源时，仍可按当前实体进入视频页实体列表
-                            openLinkedResource({
-                              resource_type: "video",
-                              resource_id: "kp-fallback",
-                              course_id: resourceCourseId || course,
-                              title: "相关视频",
-                              metadata: {
-                                knowledge_point_id: String(selectedNode.id),
-                                seed_knowledge_point_id: String(selectedNode.id),
-                                kp: String(selectedNode.id),
-                                course_id: resourceCourseId || course,
-                              },
-                            });
-                          }
-                        }}
-                      >
-                        {sideLinkedResources?.loading
-                          ? "匹配视频…"
-                          : "跳转相关视频"}
-                      </button>
-                      {selectedEdgeId ? (
-                        <button
-                          type="button"
-                          className={styles.kgChip}
-                          disabled={
-                            !!sideLinkedResources?.loading ||
-                            !sideLinkedResources?.resources.some(
-                              (r) => r.resource_type === "animation",
-                            )
-                          }
-                          title="跳转关系相关动画"
-                          onClick={() => {
-                            const row = sideLinkedResources?.resources.find(
-                              (r) => r.resource_type === "animation",
-                            );
-                            if (row) openLinkedResource(row);
-                          }}
-                        >
-                          {sideLinkedResources?.loading
-                            ? "匹配动画…"
-                            : "跳转相关动画"}
-                        </button>
-                      ) : null}
-                    </>
-                  ) : null}
                 </>
               ) : null}
 
@@ -3260,6 +3215,7 @@ export function KgPage() {
                 onClick={() => {
                   const next: ImportanceSource =
                     importanceSource === "pagerank" ? "classroom" : "pagerank";
+                  clearSearchRevealPins();
                   setImportanceSource(next);
                   setImportanceSourceState(next);
                 }}
@@ -3349,30 +3305,51 @@ export function KgPage() {
                 <>
                   <div className={styles.graphChrome}>
                     <div className={styles.entitySearch} ref={entitySearchRef}>
-                      <input
-                        type="search"
-                        className={styles.entitySearchInput}
-                        value={entityQuery}
-                        disabled={!hasGraph}
-                        placeholder="搜索实体…"
-                        aria-label="搜索实体"
-                        autoComplete="off"
-                        onFocus={() => setEntitySearchOpen(true)}
-                        onChange={(e) => {
-                          setEntityQuery(e.target.value);
-                          setEntitySearchOpen(true);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Escape") {
-                            setEntitySearchOpen(false);
-                            return;
-                          }
-                          if (e.key === "Enter" && entityMatches[0]) {
-                            e.preventDefault();
-                            focusEntity(entityMatches[0].id);
-                          }
-                        }}
-                      />
+                      <div className={styles.entitySearchField}>
+                        <input
+                          type="search"
+                          className={styles.entitySearchInput}
+                          value={entityQuery}
+                          disabled={!hasGraph}
+                          placeholder="搜索实体…"
+                          aria-label="搜索实体"
+                          autoComplete="off"
+                          onFocus={() => setEntitySearchOpen(true)}
+                          onChange={(e) => {
+                            setEntityQuery(e.target.value);
+                            setEntitySearchOpen(true);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") {
+                              setEntitySearchOpen(false);
+                              return;
+                            }
+                            if (e.key === "Enter" && entityMatches[0]) {
+                              e.preventDefault();
+                              focusEntity(entityMatches[0].id);
+                            }
+                          }}
+                        />
+                        {entityQuery.trim() ? (
+                          <button
+                            type="button"
+                            className={styles.entitySearchClear}
+                            aria-label="清除搜索"
+                            title="清除"
+                            disabled={!hasGraph}
+                            onClick={() => {
+                              setEntityQuery("");
+                              setEntitySearchOpen(false);
+                              setSelectedNode(null);
+                              setFocusNodeRequest(null);
+                              clearSearchRevealPins();
+                              writeSharedEntitySelection(null);
+                            }}
+                          >
+                            ×
+                          </button>
+                        ) : null}
+                      </div>
                       {entitySearchOpen && entityQuery.trim() && (
                         <div className={styles.entitySearchMenu} role="listbox">
                           {entityMatches.length === 0 ? (
@@ -3446,7 +3423,7 @@ export function KgPage() {
                         className={styles.kgExportBtn}
                         disabled={!hasGraph || exportingPng}
                         onClick={() => void exportCurrentGraphPng()}
-                        title="按当前筛选、高亮与视口导出高清 PNG"
+                        title="按当前筛选与高亮导出整图高清 PNG（含被面板遮挡的节点）"
                       >
                         {exportingPng ? "导出中…" : "导出图片"}
                       </button>
@@ -3498,7 +3475,7 @@ export function KgPage() {
                               id: String(_id),
                               label: String(meta?.label || ""),
                             });
-                            if (!isAiTeachingEmbed) setDetailCollapsed(false);
+                            setDetailCollapsed(false);
                             setDetailPanelOpen(true);
                           } else {
                             setSelectedNode(null);
@@ -3538,6 +3515,7 @@ export function KgPage() {
                                       count: relatedWithCount,
                                       onToggle: () => {
                                         setFocusNodeRequest(null);
+                                        clearSearchRevealPins();
                                         if (!hideRelatedWith && highlightKey === "e_rel") {
                                           setHighlightKey(null);
                                         }
@@ -3583,6 +3561,60 @@ export function KgPage() {
             <span aria-hidden>›</span>
           </button>
           <div className={styles.kgSideScroll}>
+          {selectedNode?.id != null && !selectedEdgeId ? (
+            <CollapsiblePanel
+              title={`相关资源 · ${selectedResourceCount}`}
+              storageKey={SHARED_PANEL_KEYS.assets}
+              defaultOpen
+              open={assetsPanelOpen}
+              onOpenChange={setAssetsPanelOpen}
+              bodyClassName={styles.sideCardBody}
+            >
+              {isAiTeachingEmbed ? (
+                <LinkedResourceJumpBar
+                  loading={!!sideLinkedResources?.loading}
+                  resources={sideLinkedResources?.resources || []}
+                  selectedNodeId={String(selectedNode.id)}
+                  selectedEdgeId={null}
+                  courseId={course}
+                  resourceCourseId={resourceCourseId || course}
+                  onOpen={openLinkedResource}
+                  showAnimation
+                />
+              ) : null}
+              <RelatedAssetsPanel
+                entityId={String(selectedNode.id)}
+                entityAliases={[
+                  String(selectedNode.label || ""),
+                  ...(Array.isArray(selectedNode.aliases)
+                    ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
+                    : []),
+                ]}
+                library={assetsLibrary}
+                lectureId={scope === "lecture" ? lectureId : null}
+                lectureOnly={false}
+                kinds={[...RELATED_ASSET_KINDS]}
+              />
+              {isAiTeachingEmbed ? (
+                <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
+                  {sideLinkedResources?.loading ? (
+                    <div className={styles.resourceMenuState}>正在查询动画…</div>
+                  ) : sideLinkedResources?.error ? (
+                    <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
+                  ) : selectedAnimationResources.length ? (
+                    <LinkedResourceCardList
+                      resources={selectedAnimationResources}
+                      kind="animation"
+                      nodeLabel={String(selectedNode.label || "")}
+                      onOpen={openLinkedResource}
+                    />
+                  ) : (
+                    <div className={pipe.sideEmpty}>暂无关联动画</div>
+                  )}
+                </ResourceCardFold>
+              ) : null}
+            </CollapsiblePanel>
+          ) : null}
           <CollapsiblePanel
             title="选中详情"
             storageKey={SHARED_PANEL_KEYS.detail}
@@ -3629,44 +3661,6 @@ export function KgPage() {
               <div className={pipe.sideEmpty}>点击图中实体或关系查看详情</div>
             )}
           </CollapsiblePanel>
-
-          {Object.keys(hiddenNodeIds).length || Object.keys(hiddenEdgeIds).length ? (
-            <CollapsiblePanel
-              title={`已隐藏 · ${Object.keys(hiddenNodeIds).length + Object.keys(hiddenEdgeIds).length}`}
-              storageKey="kg-panel-hidden-v1"
-              defaultOpen={false}
-              open={hiddenPanelOpen}
-              onOpenChange={setHiddenPanelOpen}
-              bodyClassName={styles.sideCardBody}
-            >
-              <div className={pipe.kgEditBox}>
-                {Object.entries(hiddenNodeIds).map(([id, label]) => (
-                  <div key={`hn-${id}`} className={pipe.kgDeletedRow}>
-                    <code title={id}>{label}</code>
-                    <button
-                      type="button"
-                      className={pipe.kgEditBtnGhost}
-                      onClick={() => unhideEntity(id)}
-                    >
-                      显示实体
-                    </button>
-                  </div>
-                ))}
-                {Object.entries(hiddenEdgeIds).map(([id, label]) => (
-                  <div key={`he-${id}`} className={pipe.kgDeletedRow}>
-                    <code title={id}>{label}</code>
-                    <button
-                      type="button"
-                      className={pipe.kgEditBtnGhost}
-                      onClick={() => unhideEdge(id)}
-                    >
-                      显示关系
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </CollapsiblePanel>
-          ) : null}
 
           {selectedNode?.id != null && !selectedEdgeId ? (
             <CollapsiblePanel
@@ -3720,143 +3714,42 @@ export function KgPage() {
             </CollapsiblePanel>
           ) : null}
 
-          {selectedNode?.id != null && !selectedEdgeId ? (
+          {Object.keys(hiddenNodeIds).length || Object.keys(hiddenEdgeIds).length ? (
             <CollapsiblePanel
-              title={`相关资源 · ${selectedAssetCount}`}
-              storageKey={SHARED_PANEL_KEYS.assets}
+              title={`已隐藏 · ${Object.keys(hiddenNodeIds).length + Object.keys(hiddenEdgeIds).length}`}
+              storageKey="kg-panel-hidden-v1"
               defaultOpen={false}
-              open={assetsPanelOpen}
-              onOpenChange={setAssetsPanelOpen}
+              open={hiddenPanelOpen}
+              onOpenChange={setHiddenPanelOpen}
               bodyClassName={styles.sideCardBody}
             >
-              <RelatedAssetsPanel
-                entityId={String(selectedNode.id)}
-                entityAliases={[
-                  String(selectedNode.label || ""),
-                  ...(Array.isArray(selectedNode.aliases)
-                    ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
-                    : []),
-                ]}
-                library={assetsLibrary}
-                lectureId={scope === "lecture" ? lectureId : null}
-                lectureOnly={scope === "lecture"}
-                kinds={isAiTeachingEmbed ? ["formula", "example", "theorem"] : undefined}
-              />
+              <div className={pipe.kgEditBox}>
+                {Object.entries(hiddenNodeIds).map(([id, label]) => (
+                  <div key={`hn-${id}`} className={pipe.kgDeletedRow}>
+                    <code title={id}>{label}</code>
+                    <button
+                      type="button"
+                      className={pipe.kgEditBtnGhost}
+                      onClick={() => unhideEntity(id)}
+                    >
+                      显示实体
+                    </button>
+                  </div>
+                ))}
+                {Object.entries(hiddenEdgeIds).map(([id, label]) => (
+                  <div key={`he-${id}`} className={pipe.kgDeletedRow}>
+                    <code title={id}>{label}</code>
+                    <button
+                      type="button"
+                      className={pipe.kgEditBtnGhost}
+                      onClick={() => unhideEdge(id)}
+                    >
+                      显示关系
+                    </button>
+                  </div>
+                ))}
+              </div>
             </CollapsiblePanel>
-          ) : null}
-
-          {isAiTeachingEmbed && (selectedNode?.id != null || selectedEdgeId) ? (
-            <>
-              <CollapsiblePanel
-                title={`视频跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "video")
-                    .length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.video}
-                defaultOpen={false}
-                open={videoPanelOpen}
-                onOpenChange={setVideoPanelOpen}
-                bodyClassName={styles.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={styles.resourceMenuState}>正在查询视频…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "video",
-                    );
-                    if (!rows.length) {
-                      return <div className={pipe.sideEmpty}>暂无关联视频</div>;
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="video"
-                        nodeLabel={String(selectedNode?.label || "")}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
-              <CollapsiblePanel
-                title={`练习跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "exercise")
-                    .length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.exercise}
-                defaultOpen={false}
-                open={exercisePanelOpen}
-                onOpenChange={setExercisePanelOpen}
-                bodyClassName={styles.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={styles.resourceMenuState}>正在查询练习…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "exercise",
-                    );
-                    if (!rows.length) {
-                      return <div className={pipe.sideEmpty}>暂无关联练习</div>;
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="exercise"
-                        nodeLabel={String(selectedNode?.label || "")}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
-              {/* 动画跳转面向关系；选中实体时也展示匹配到的动画（若有） */}
-              <CollapsiblePanel
-                title={`动画跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "animation")
-                    .length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.animation}
-                defaultOpen={Boolean(selectedEdgeId)}
-                open={animationPanelOpen}
-                onOpenChange={setAnimationPanelOpen}
-                bodyClassName={styles.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={styles.resourceMenuState}>正在查询动画…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "animation",
-                    );
-                    if (!rows.length) {
-                      return (
-                        <div className={pipe.sideEmpty}>
-                          {selectedEdgeId
-                            ? "该关系暂无关联动画"
-                            : "动画跳转请选中关系；当前实体暂无动画"}
-                        </div>
-                      );
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="animation"
-                        nodeLabel={String(selectedNode?.label || "")}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
-            </>
           ) : null}
 
           {embedMode !== "ai-teaching" ? (

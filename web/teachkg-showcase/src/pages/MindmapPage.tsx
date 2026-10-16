@@ -52,6 +52,7 @@ import {
 import {
   LinkedResourceCardList,
   LinkedResourceJumpBar,
+  ResourceCardFold,
 } from "@/components/graph/LinkedResourceCards";
 import {
   applyMindmapEditPatch,
@@ -503,8 +504,7 @@ export function MindmapPage() {
   const [error, setError] = useState<string | null>(null);
   const [mapKey, setMapKey] = useState(0);
   const [selected, setSelected] = useState<MindmapTreeNode | null>(null);
-  const [assetsPanelOpen, setAssetsPanelOpen] = useState(false);
-  const [animationPanelOpen, setAnimationPanelOpen] = useState(false);
+  const [assetsPanelOpen, setAssetsPanelOpen] = useState(true);
   const focusAppliedRef = useRef("");
   const [library, setLibrary] = useState<AssetsLibrary | null>(null);
   const [kgIds, setKgIds] = useState<Set<string>>(() => new Set());
@@ -1238,6 +1238,20 @@ export function MindmapPage() {
     });
   }, [selected, kgEntityId]);
 
+  const selectedAssetCount = selected && assetPolicy !== "none"
+    ? countRelatedAssets(mindmapAssetQuery.entityId, library, {
+        entityAliases: mindmapAssetQuery.aliases,
+        lectureId: lectureIdForLinks || null,
+        lectureOnly: false,
+        kinds: [...RELATED_ASSET_KINDS],
+        matchMode: assetPolicy === "strict" ? "strict" : "concept",
+      })
+    : 0;
+  const selectedAnimationResources = (sideLinkedResources?.resources || []).filter(
+    (resource) => resource.resource_type === "animation",
+  );
+  const selectedResourceCount = selectedAssetCount + selectedAnimationResources.length;
+
   const titleText = (() => {
     if (isMasteryEmbed) return studentMastery.scope === "class_average" ? "全班平均掌握思维导图" : "知识点掌握思维导图";
     if (isCourseSkeletonNavId(navId)) return "整课骨架展示";
@@ -1541,16 +1555,64 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>}
           <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
-          {isAiTeachingEmbed && selected && linkedEntityId ? (
-            <LinkedResourceJumpBar
-              className={compactMastery ? details.actions : undefined}
-              loading={!!sideLinkedResources?.loading}
-              resources={sideLinkedResources?.resources || []}
-              selectedNodeId={linkedEntityId}
-              courseId={courseId}
-              resourceCourseId={resourceCourseId || courseId}
-              onOpen={openLinkedResource}
-            />
+          {selected ? (
+            <CollapsiblePanel
+              title={`相关资源 · ${selectedResourceCount}`}
+              storageKey={SHARED_PANEL_KEYS.assets}
+              className={compactMastery ? details.resourceSection : undefined}
+              defaultOpen
+              open={assetsPanelOpen}
+              onOpenChange={setAssetsPanelOpen}
+              bodyClassName={`${kg.sideCardBody} ${compactMastery ? details.resourceBody : ""}`}
+            >
+              {isAiTeachingEmbed && linkedEntityId ? (
+                <LinkedResourceJumpBar
+                  className={compactMastery ? details.actions : undefined}
+                  loading={!!sideLinkedResources?.loading}
+                  resources={sideLinkedResources?.resources || []}
+                  selectedNodeId={linkedEntityId}
+                  courseId={courseId}
+                  resourceCourseId={resourceCourseId || courseId}
+                  onOpen={openLinkedResource}
+                  showAnimation
+                />
+              ) : null}
+              <RelatedAssetsPanel
+                entityId={mindmapAssetQuery.entityId}
+                entityAliases={mindmapAssetQuery.aliases}
+                library={assetPolicy === "none" ? null : library}
+                lectureId={lectureIdForLinks || null}
+                lectureOnly={false}
+                kinds={[...RELATED_ASSET_KINDS]}
+                maxItems={12}
+                matchMode={assetPolicy === "strict" ? "strict" : "concept"}
+                emptyHint={
+                  compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
+                    ? "章节节点不匹配资源"
+                    : assetPolicy === "strict"
+                    ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
+                    : null
+                }
+              />
+              {isAiTeachingEmbed && linkedEntityId ? (
+                <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
+                  {sideLinkedResources?.loading ? (
+                    <div className={kg.resourceMenuState}>正在查询动画…</div>
+                  ) : sideLinkedResources?.error ? (
+                    <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
+                  ) : selectedAnimationResources.length ? (
+                    <LinkedResourceCardList
+                      resources={selectedAnimationResources}
+                      kind="animation"
+                      nodeLabel={selected.zh || ""}
+                      onOpen={openLinkedResource}
+                    />
+                  ) : (
+                    <div className={pipe.sideEmpty}>暂无关联动画</div>
+                  )}
+                </ResourceCardFold>
+              ) : null}
+            </CollapsiblePanel>
           ) : null}
           {canEditMindmap && chapterForOutline ? (
             <CollapsiblePanel
@@ -1569,85 +1631,6 @@ export function MindmapPage() {
             </CollapsiblePanel>
           ) : null}
 
-          {selected ? (
-            <CollapsiblePanel
-              title={`相关资源 · ${
-                assetPolicy === "none"
-                  ? 0
-                  : countRelatedAssets(mindmapAssetQuery.entityId, library, {
-                      entityAliases: mindmapAssetQuery.aliases,
-                      lectureId: lectureIdForLinks || null,
-                      lectureOnly: false,
-                      kinds: [...RELATED_ASSET_KINDS],
-                      matchMode:
-                        assetPolicy === "strict" ? "strict" : "concept",
-                    })
-              }`}
-              storageKey={SHARED_PANEL_KEYS.assets}
-              className={compactMastery ? details.resourceSection : undefined}
-              defaultOpen={false}
-              open={assetsPanelOpen}
-              onOpenChange={setAssetsPanelOpen}
-              bodyClassName={`${kg.sideCardBody} ${compactMastery ? details.resourceBody : ""}`}
-            >
-              <RelatedAssetsPanel
-                entityId={mindmapAssetQuery.entityId}
-                entityAliases={mindmapAssetQuery.aliases}
-                library={assetPolicy === "none" ? null : library}
-                lectureId={lectureIdForLinks || null}
-                lectureOnly={false}
-                kinds={[...RELATED_ASSET_KINDS]}
-                maxItems={12}
-                matchMode={assetPolicy === "strict" ? "strict" : "concept"}
-                emptyHint={
-                  compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
-                    ? "章节节点不匹配资源"
-                    : assetPolicy === "strict"
-                    ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
-                    : null
-                }
-              />
-            </CollapsiblePanel>
-          ) : null}
-
-          {selected && linkedEntityId && (!compactMastery || sideLinkedResources?.loading || sideLinkedResources?.error || sideLinkedResources?.resources.some((r) => r.resource_type === "animation")) ? (
-            <>
-              <CollapsiblePanel
-                title={`动画跳转 · ${
-                  sideLinkedResources?.resources.filter((r) => r.resource_type === "animation").length || 0
-                }`}
-                storageKey={SHARED_PANEL_KEYS.animation}
-                className={compactMastery ? details.resourceSection : undefined}
-                defaultOpen={false}
-                open={animationPanelOpen}
-                onOpenChange={setAnimationPanelOpen}
-                bodyClassName={kg.sideCardBody}
-              >
-                {sideLinkedResources?.loading ? (
-                  <div className={kg.resourceMenuState}>正在查询动画…</div>
-                ) : sideLinkedResources?.error ? (
-                  <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
-                ) : (
-                  (() => {
-                    const rows = (sideLinkedResources?.resources || []).filter(
-                      (r) => r.resource_type === "animation"
-                    );
-                    if (!rows.length) {
-                      return <div className={pipe.sideEmpty}>暂无关联动画</div>;
-                    }
-                    return (
-                      <LinkedResourceCardList
-                        resources={rows}
-                        kind="animation"
-                        nodeLabel={selected.zh || ""}
-                        onOpen={openLinkedResource}
-                      />
-                    );
-                  })()
-                )}
-              </CollapsiblePanel>
-            </>
-          ) : null}
           </div>
         </aside>
         )

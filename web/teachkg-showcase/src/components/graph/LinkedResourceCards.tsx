@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { LinkedKnowledgeResource } from "@/lib/integration/knowledgeResources";
 import styles from "@/pages/KgPage.module.css";
 
@@ -206,15 +207,15 @@ export function LinkedResourceJumpBar({
             : !hasExercise
               ? "题库暂无对应练习"
               : selectedEdgeId
-                ? "跳转关系相关练习"
-                : "跳转相关练习"
+                ? "关系相关练习"
+                : "相关练习"
         }
         onClick={() => {
           const row = resources.find((r) => r.resource_type === "exercise");
           if (row) onOpen(row);
         }}
       >
-        {loading ? "匹配练习…" : hasExercise ? "跳转相关练习" : "暂无对应练习"}
+        {loading ? "匹配练习…" : hasExercise ? "相关练习" : "暂无对应练习"}
       </button>
       <button
         type="button"
@@ -224,28 +225,52 @@ export function LinkedResourceJumpBar({
           loading
             ? "正在匹配视频…"
             : selectedEdgeId
-              ? "跳转关系共现视频"
-              : "跳转相关视频"
+              ? "关系共现视频"
+              : "相关视频"
         }
         onClick={openVideoOrFallback}
       >
-        {loading ? "匹配视频…" : "跳转相关视频"}
+        {loading ? "匹配视频…" : "相关视频"}
       </button>
       {showAnimation ? (
         <button
           type="button"
           className={styles.kgChip}
           disabled={!!loading || !hasAnimation}
-          title="跳转相关动画"
+          title="相关动画"
           onClick={() => {
             const row = resources.find((r) => r.resource_type === "animation");
             if (row) onOpen(row);
           }}
         >
-          {loading ? "匹配动画…" : "跳转相关动画"}
+          {loading ? "匹配动画…" : "相关动画"}
         </button>
       ) : null}
     </div>
+  );
+}
+
+/** 相关资源内的二级折叠组；标题始终显示去重后的卡片数量。 */
+export function ResourceCardFold({
+  title,
+  count,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  count: number;
+  children: ReactNode;
+  defaultOpen?: boolean;
+}) {
+  return (
+    <details className={styles.resourceFold} open={defaultOpen || undefined}>
+      <summary className={styles.resourceFoldSummary}>
+        <span>{title}</span>
+        <em>{count}</em>
+        <i aria-hidden>›</i>
+      </summary>
+      <div className={styles.resourceFoldBody}>{children}</div>
+    </details>
   );
 }
 
