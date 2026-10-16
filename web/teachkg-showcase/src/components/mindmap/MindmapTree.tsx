@@ -33,6 +33,7 @@ import { remapSetTheoryChapterLabelsInDoc } from "@/lib/kg/mindmapTypes";
 import { collectSubtreeIds, retargetIdentity, type ConceptLink } from "@/lib/review/conceptIdentity";
 import { withBase } from "@/lib/withBase";
 import styles from "./MindmapTree.module.css";
+import { CourseBranchColumn } from "./CourseBranchColumn";
 
 export type MindmapTreeNode = {
   id: string;
@@ -792,6 +793,7 @@ function MapBranch({
   series = 1,
   growDir = "ltr",
   balanceRoot = true,
+  compactCourseBranches = false,
 }: {
   node: MindmapTreeNode;
   path: number[];
@@ -833,6 +835,7 @@ function MapBranch({
   /** ltr=向右生长，rtl=向左生长（handoff 左右反向） */
   growDir?: "ltr" | "rtl";
   balanceRoot?: boolean;
+  compactCourseBranches?: boolean;
 }) {
   const shouldForceOpen =
     !!forceOpenPath &&
@@ -1189,18 +1192,12 @@ function MapBranch({
       data-split-root={splitRoot ? "1" : undefined}
     >
       {showLeft ? (
-        <div
-          className={styles.childCol}
-          data-mind-child-col="1"
-          data-dir="rtl"
-          data-open={open ? "1" : "0"}
-          hidden={!open}
-          aria-hidden={!open}
-        >
+        <CourseBranchColumn dir="rtl" open={open}
+          compact={splitRoot && compactCourseBranches} onLayout={onLayout}>
           {leftKids.map((item, j) =>
             renderChildRow(item.node, item.index, j, leftKids.length, "rtl")
           )}
-        </div>
+        </CourseBranchColumn>
       ) : null}
 
       <div className={styles.branchMain} data-mind-branch-main="1">
@@ -1214,14 +1211,8 @@ function MapBranch({
       </div>
 
       {showRight ? (
-        <div
-          className={styles.childCol}
-          data-mind-child-col="1"
-          data-dir={splitRoot ? "ltr" : growDir}
-          data-open={open ? "1" : "0"}
-          hidden={!open}
-          aria-hidden={!open}
-        >
+        <CourseBranchColumn dir={splitRoot ? "ltr" : growDir} open={open}
+          compact={splitRoot && compactCourseBranches} onLayout={onLayout}>
           {splitRoot
             ? rightKids.map((item, j) =>
                 renderChildRow(item.node, item.index, j, rightKids.length, "ltr")
@@ -1229,7 +1220,7 @@ function MapBranch({
             : kids.map((c, j) =>
                 renderChildRow(c, j, j, kids.length, growDir)
               )}
-        </div>
+        </CourseBranchColumn>
       ) : null}
     </div>
   );
@@ -1379,6 +1370,7 @@ type MindmapTreeProps = {
   lectureId?: string;
   /** 课次导图可关闭左右平衡，使所有分支向右展开。 */
   balanceRoot?: boolean;
+  compactCourseBranches?: boolean;
   onDocChange?: (doc: MindmapDoc) => void;
   /** 清除本地编辑后回调（父级应重新拉取原始导图） */
   onResetEdits?: () => void;
@@ -1484,6 +1476,7 @@ export function MindmapTree({
   courseId,
   lectureId,
   balanceRoot = true,
+  compactCourseBranches = false,
   onDocChange,
   onResetEdits,
   onHistoryChange,
@@ -1562,7 +1555,7 @@ export function MindmapTree({
 
   const trees = useMemo(() => docTrees(doc), [doc]);
   const maxImp = useMemo(() => collectForestMaxImp(trees), [trees]);
-  const remoteLinks = doc.remoteLinks || [];
+  const remoteLinks = useMemo(() => doc.remoteLinks || [], [doc.remoteLinks]);
   const remoteLinkedIds = useMemo(() => {
     const s = new Set<string>();
     for (const l of remoteLinks) {
@@ -3037,6 +3030,7 @@ export function MindmapTree({
                 series={(i % 6) + 1}
                 growDir="ltr"
                 balanceRoot={balanceRoot}
+                compactCourseBranches={compactCourseBranches}
               />
             </DraggableTree>
           ))}
