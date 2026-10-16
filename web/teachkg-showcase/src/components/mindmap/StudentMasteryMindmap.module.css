@@ -500,7 +500,17 @@
   outline-offset: 3px;
 }
 .freeLayout .node {
+  --node-font-size: 30px;
   cursor: grab;
+}
+.freeLayout .nodeRoot {
+  --node-font-size: 48px;
+}
+.freeLayout .nodeDomain {
+  --node-font-size: 47px;
+}
+.freeLayout .nodeChapter {
+  --node-font-size: 38px;
 }
 .freeLayout .node:active {
   cursor: grabbing;

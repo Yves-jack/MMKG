@@ -1,3 +1,13 @@
+export const freeMasteryGeometry: {
+  readonly badgeScale: number;
+  readonly badgeY: number;
+  readonly labelTop: number;
+  readonly fontScale: number;
+  readonly leafWidth: number;
+  readonly branchWidth: number;
+  readonly toggleOffset: number;
+};
+
 export function mindmapMarkerPositions(node: {
   height: number;
   width: number;

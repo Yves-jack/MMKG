@@ -1,4 +1,4 @@
-import { mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
+import { freeMasteryGeometry, mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
 
 /** Old dashboard physics: repulsion + edge springs + centre gravity, with the current tree identities. */
 export function createMasteryForce(input, previous = new Map()) {
@@ -6,17 +6,19 @@ export function createMasteryForce(input, previous = new Map()) {
   input.records.forEach((record, i) => {
     const root = record.depth === 0;
     const compact = !!record.spec.compact;
+    const fontSize = root ? record.spec.fontSize : Math.round(record.spec.fontSize * freeMasteryGeometry.fontScale);
+    const textWidth = root ? record.spec.textWidth : record.spec.textWidth * freeMasteryGeometry.fontScale;
     const width = root
       ? record.spec.w
       : Math.max(
-          compact ? 64 : record.spec.textWidth + 24,
-          record.node.__hasChildren ? 128 : 64,
+          compact ? freeMasteryGeometry.leafWidth : textWidth + 28,
+          record.node.__hasChildren ? freeMasteryGeometry.branchWidth : freeMasteryGeometry.leafWidth,
         );
     const height = root
       ? record.spec.h
       : compact
-        ? 64
-        : record.spec.lines.length * (record.spec.fontSize + 9) + 82;
+        ? 88
+        : freeMasteryGeometry.labelTop + record.spec.lines.length * (fontSize + 9);
     const old = previous.get(record.key);
     const angle = i * 2.399963229728653;
     const radius = 150 + Math.sqrt(i) * 110;
@@ -26,8 +28,8 @@ export function createMasteryForce(input, previous = new Map()) {
       compact,
       width,
       height,
-      fontSize: record.spec.fontSize,
-      textWidth: record.spec.textWidth,
+      fontSize,
+      textWidth,
       lines: record.spec.lines,
       extra: 0,
       side: 1,

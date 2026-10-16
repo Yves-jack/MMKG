@@ -17,7 +17,10 @@ import {
   masteryLearningPath,
   visibleLearningPath,
 } from "@/lib/kg/masteryLearningPath.mjs";
-import { mindmapMarkerPositions } from "@/lib/kg/mindmapMarkerPositions.mjs";
+import {
+  freeMasteryGeometry,
+  mindmapMarkerPositions,
+} from "@/lib/kg/mindmapMarkerPositions.mjs";
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
 import { useMasteryForceLayout } from "@/lib/kg/useMasteryForceLayout";
@@ -428,7 +431,8 @@ export function StudentMasteryMindmap({
             const { start, badgeX, toggleX, middleY } =
               mindmapMarkerPositions(placed);
             const marker = score == null ? "?" : score.toFixed(1);
-            const ringRadius = visual.radius + 3;
+            const badgeRadius = visual.radius * (placed.free ? freeMasteryGeometry.badgeScale : 1);
+            const ringRadius = badgeRadius + 3;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -509,7 +513,7 @@ export function StudentMasteryMindmap({
                       key={lineIndex}
                       x={start}
                       y={
-                        (placed.free && placed.depth > 0 ? 72 : 0) +
+                        (placed.free && placed.depth > 0 ? freeMasteryGeometry.labelTop : 0) +
                         placed.fontSize +
                         lineIndex * (placed.fontSize + 9)
                       }
@@ -527,7 +531,7 @@ export function StudentMasteryMindmap({
                     <g transform={`translate(${badgeX} ${middleY})`}>
                       <circle
                         className={styles.masteryBadge}
-                        r={visual.radius}
+                        r={badgeRadius}
                       />
                       <circle className={styles.masteryTrack} r={ringRadius} />
                       {score != null && score > 0 ? (
@@ -541,7 +545,7 @@ export function StudentMasteryMindmap({
                       <text
                         className={styles.masteryText}
                         style={{
-                          fontSize: "20px",
+                          fontSize: placed.free ? "24px" : "20px",
                         }}
                         textAnchor="middle"
                         dominantBaseline="middle"
