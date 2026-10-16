@@ -6,7 +6,7 @@ import { LatexText } from "@/components/graph/LatexText";
 import { ResizableShell } from "@/components/graph/ResizableShell";
 import { ResizableSplit } from "@/components/graph/ResizableSplit";
 import { CollapsiblePanel } from "@/components/graph/CollapsiblePanel";
-import { RelatedEdges, RelatedAssetsPanel, SelectionDetail, DeletedItemsPanel, relatedEdgesOf, countRelatedAssets } from "@/components/graph/SelectionPanels";
+import { RelatedEdges, RelatedAssetsPanel, SelectionDetail, DeletedItemsPanel, relatedEdgesOf } from "@/components/graph/SelectionPanels";
 import {
   LinkedResourceCardList,
   LinkedResourceJumpBar,
@@ -2192,34 +2192,9 @@ export function KgPage() {
   ]);
 
   const payload: PipelinePayload | null = pipelineView?.payload || null;
-  const selectedAssetCount = useMemo(() => {
-    if (isGraphOnlyEmbed || !selectedNode?.id || selectedEdgeId) return 0;
-    return countRelatedAssets(String(selectedNode.id), assetsLibrary, {
-      entityAliases: [
-        String(selectedNode.label || ""),
-        ...(Array.isArray(selectedNode.aliases)
-          ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
-          : []),
-      ],
-      lectureId: scope === "lecture" ? lectureId : null,
-      lectureOnly: false,
-      kinds: [...RELATED_ASSET_KINDS],
-    });
-  }, [
-    isGraphOnlyEmbed,
-    selectedNode?.id,
-    selectedNode?.label,
-    selectedNode?.aliases,
-    selectedEdgeId,
-    assetsLibrary,
-    scope,
-    lectureId,
-    isAiTeachingEmbed,
-  ]);
   const selectedAnimationResources = (sideLinkedResources?.resources || []).filter(
     (resource) => resource.resource_type === "animation",
   );
-  const selectedResourceCount = selectedAssetCount + selectedAnimationResources.length;
   // 必须 memo：hideRelatedWith 默认 true 时 applyRelatedWithVisibility 每次 render 都会新建 stage，
   // 若直接传给 GraphCanvas 会在点选时触发 syncInPlace/全图 update，主线程卡死。
   const displayStage: PipelineStage | null = useMemo(() => {
@@ -3563,12 +3538,13 @@ export function KgPage() {
           <div className={styles.kgSideScroll}>
           {selectedNode?.id != null && !selectedEdgeId ? (
             <CollapsiblePanel
-              title={`相关资源 · ${selectedResourceCount}`}
+              title="相关资源"
               storageKey={SHARED_PANEL_KEYS.assets}
               defaultOpen
               open={assetsPanelOpen}
               onOpenChange={setAssetsPanelOpen}
               bodyClassName={styles.sideCardBody}
+              resizable
             >
               {isAiTeachingEmbed ? (
                 <LinkedResourceJumpBar
@@ -3579,40 +3555,41 @@ export function KgPage() {
                   courseId={course}
                   resourceCourseId={resourceCourseId || course}
                   onOpen={openLinkedResource}
-                  showAnimation
                 />
               ) : null}
-              <RelatedAssetsPanel
-                entityId={String(selectedNode.id)}
-                entityAliases={[
-                  String(selectedNode.label || ""),
-                  ...(Array.isArray(selectedNode.aliases)
-                    ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
-                    : []),
-                ]}
-                library={assetsLibrary}
-                lectureId={scope === "lecture" ? lectureId : null}
-                lectureOnly={false}
-                kinds={[...RELATED_ASSET_KINDS]}
-              />
-              {isAiTeachingEmbed ? (
-                <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
-                  {sideLinkedResources?.loading ? (
-                    <div className={styles.resourceMenuState}>正在查询动画…</div>
-                  ) : sideLinkedResources?.error ? (
-                    <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
-                  ) : selectedAnimationResources.length ? (
-                    <LinkedResourceCardList
-                      resources={selectedAnimationResources}
-                      kind="animation"
-                      nodeLabel={String(selectedNode.label || "")}
-                      onOpen={openLinkedResource}
-                    />
-                  ) : (
-                    <div className={pipe.sideEmpty}>暂无关联动画</div>
-                  )}
-                </ResourceCardFold>
-              ) : null}
+              <div className={styles.resourceGroupStack}>
+                <RelatedAssetsPanel
+                  entityId={String(selectedNode.id)}
+                  entityAliases={[
+                    String(selectedNode.label || ""),
+                    ...(Array.isArray(selectedNode.aliases)
+                      ? selectedNode.aliases.map((v) => String(v || "").trim()).filter(Boolean)
+                      : []),
+                  ]}
+                  library={assetsLibrary}
+                  lectureId={scope === "lecture" ? lectureId : null}
+                  lectureOnly={false}
+                  kinds={[...RELATED_ASSET_KINDS]}
+                />
+                {isAiTeachingEmbed ? (
+                  <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
+                    {sideLinkedResources?.loading ? (
+                      <div className={styles.resourceMenuState}>正在查询动画…</div>
+                    ) : sideLinkedResources?.error ? (
+                      <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
+                    ) : selectedAnimationResources.length ? (
+                      <LinkedResourceCardList
+                        resources={selectedAnimationResources}
+                        kind="animation"
+                        nodeLabel={String(selectedNode.label || "")}
+                        onOpen={openLinkedResource}
+                      />
+                    ) : (
+                      <div className={pipe.sideEmpty}>暂无关联动画</div>
+                    )}
+                  </ResourceCardFold>
+                ) : null}
+              </div>
             </CollapsiblePanel>
           ) : null}
           <CollapsiblePanel
@@ -3622,6 +3599,7 @@ export function KgPage() {
             open={detailPanelOpen}
             onOpenChange={setDetailPanelOpen}
             bodyClassName={styles.sideCardBody}
+            resizable
           >
             {displayStage ? (
               <>
@@ -3677,6 +3655,7 @@ export function KgPage() {
               open={edgesPanelOpen}
               onOpenChange={setEdgesPanelOpen}
               bodyClassName={styles.sideCardBody}
+              resizable
             >
               {displayStage ? (
                 <RelatedEdges
@@ -3722,6 +3701,7 @@ export function KgPage() {
               open={hiddenPanelOpen}
               onOpenChange={setHiddenPanelOpen}
               bodyClassName={styles.sideCardBody}
+              resizable
             >
               <div className={pipe.kgEditBox}>
                 {Object.entries(hiddenNodeIds).map(([id, label]) => (
@@ -3760,6 +3740,7 @@ export function KgPage() {
               open={mediaPanelOpen}
               onOpenChange={setMediaPanelOpen}
               bodyClassName={styles.sideCardBody}
+              resizable
             >
             <div className={pipe.mm}>
               <div>

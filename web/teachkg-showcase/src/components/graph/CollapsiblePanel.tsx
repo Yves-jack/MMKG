@@ -11,6 +11,8 @@ type Props = {
   className?: string;
   /** 内容区额外 class（如超高时出滚动条） */
   bodyClassName?: string;
+  /** 允许用户拖动内容区底边调整卡片高度 */
+  resizable?: boolean;
   /** 受控展开；传入后由父组件决定开合 */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -23,6 +25,7 @@ export function CollapsiblePanel({
   storageKey,
   className,
   bodyClassName,
+  resizable = false,
   open: openControlled,
   onOpenChange,
 }: Props) {
@@ -71,7 +74,11 @@ export function CollapsiblePanel({
         </span>
       </button>
       {open ? (
-        <div className={`${styles.panelBody} ${bodyClassName || ""}`.trim()}>{children}</div>
+        <div
+          className={`${styles.panelBody} ${resizable ? styles.panelBodyResizable : ""} ${bodyClassName || ""}`.trim()}
+        >
+          {children}
+        </div>
       ) : null}
     </div>
   );

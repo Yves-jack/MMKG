@@ -381,6 +381,14 @@
   min-width: 0;
 }
 
+.panelBodyResizable {
+  min-height: 72px;
+  max-height: min(70vh, 720px) !important;
+  resize: vertical;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* 非折叠面板（若仍有手写 h3） */
 .panel > h3 {
   margin: 0 0 8px;

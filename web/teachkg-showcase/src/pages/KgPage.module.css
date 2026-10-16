@@ -188,6 +188,12 @@
   padding-right: 2px;
 }
 
+.resourceGroupStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .sideCardBody::-webkit-scrollbar {
   width: 6px;
 }
@@ -477,8 +483,8 @@
   display: inline-flex;
   align-items: center;
   height: 22px;
-  /* 给上方悬浮百分数留出空间，避免被父级裁切 */
-  margin-top: 14px;
+  margin-top: 0;
+  transform: translateY(-1px);
   overflow: visible;
 }
 

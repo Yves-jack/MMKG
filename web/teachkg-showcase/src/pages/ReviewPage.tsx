@@ -377,9 +377,6 @@ export function ReviewPage() {
   const [entitySearchDraft, setEntitySearchDraft] = useState(() =>
     String(searchParams.get("q") || searchParams.get("kp") || "").trim(),
   );
-  const [practiceScope, setPracticeScope] = useState<"lecture" | "knowledge_point">(
-    "knowledge_point",
-  );
   const [seekToSec, setSeekToSec] = useState<number | null>(null);
   const [seekToken, setSeekToken] = useState(0);
   const [activePart, setActivePart] = useState<string>("");
@@ -1300,25 +1297,8 @@ export function ReviewPage() {
     setSeekToken((n) => n + 1);
   };
 
-  const openPractice = async (scope: "lecture" | "knowledge_point" = practiceScope) => {
+  const openPractice = async () => {
     const resourceCourse = canvasCourseId || courseId;
-    if (scope === "lecture") {
-      const lectureId = String(activePart || sessionId || "").trim();
-      if (!lectureId) return;
-      const resource: LinkedKnowledgeResource = {
-        resource_type: "exercise",
-        resource_id: lectureId,
-        course_id: resourceCourse,
-        title: "按当前课次练习",
-        metadata: {
-          course_id: resourceCourse,
-          lecture_id: lectureId,
-          practice_mode: "lecture",
-        },
-      };
-      emitKnowledgeResourceOpen(resource, parentOrigin || "*");
-      return;
-    }
     const context = resolveVideoPracticeContext({
       selected: practiceSelectionRef.current,
       search: entitySearchDraft,
@@ -1517,24 +1497,9 @@ export function ReviewPage() {
         {error ? <p className={styles.workspaceHint}>{error}</p> : null}
       </div>
       <div className={styles.workspaceRight}>
-        <div className={styles.practiceGroup}>
-          <button type="button" className={styles.jump} disabled={practiceOpening} onClick={() => void openPractice(practiceScope)}>
-            {practiceOpening ? "匹配知识点…" : "练习"}
-          </button>
-          <select
-            className={styles.practiceSelect}
-            value={practiceScope}
-            aria-label="练习范围"
-            onChange={(e) =>
-              setPracticeScope(
-                e.target.value === "knowledge_point" ? "knowledge_point" : "lecture",
-              )
-            }
-          >
-            <option value="lecture">按当前课次</option>
-            <option value="knowledge_point">按当前知识点</option>
-          </select>
-        </div>
+        <button type="button" className={styles.jump} disabled={practiceOpening} onClick={() => void openPractice()}>
+          {practiceOpening ? "匹配知识点…" : "相关练习"}
+        </button>
         {anyClassVideo ? (
           <button
             type="button"
