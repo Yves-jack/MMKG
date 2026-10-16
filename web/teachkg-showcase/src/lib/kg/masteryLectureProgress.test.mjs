@@ -77,3 +77,18 @@ test("same-name concepts in future chapters do not acquire earlier chapter evide
   const result = filterMindmapByLectureProgress(doc, [{ lecture_id: "1", chapter_names: ["第1章 已讲"], nodes: [{ id: "公理/axiom" }] }], 1);
   assert.deepEqual(ids(result), ["__course__/course", "__chapter__/early", "__topic__/early/公理"]);
 });
+
+test("completed graph lectures do not show introductory set or logic branches", async () => {
+  const root = node("__course__/course", [
+    node("__part__/graph", [node("__chapter__/graph", [node("graph-concept")], "第1章 图的基本概念")]),
+    node("__part__/set", [node("__chapter__/set", [node("set-concept")], "第9章 集合")]),
+  ]);
+  const result = await loadPersonalMasteryProgress({ root }, 1, async (path) => {
+    if (path.startsWith("pipeline/")) return { lecture_id: "1", nodes: [{ id: "graph-concept" }, { id: "set-concept" }] };
+    return { lecture_id: "1", root: node("__lecture__/1", [
+      node("__chapter__/graph", [node("graph-concept")], "第1章 图的基本概念"),
+      node("__chapter__/set", [node("set-concept")], "第9章 集合"),
+    ]) };
+  }, "离散数学(图论+数理逻辑与集合论)");
+  assert.deepEqual(ids(result), ["__course__/course", "__part__/graph", "__chapter__/graph", "graph-concept"]);
+});

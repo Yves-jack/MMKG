@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -24,6 +25,8 @@ import {
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
 import { useMasteryForceLayout } from "@/lib/kg/useMasteryForceLayout";
+import type { LinkedKnowledgeResource } from "@/lib/integration/knowledgeResources";
+import { MasteryResourceBranches } from "./MasteryResourceBranches";
 import styles from "./StudentMasteryMindmap.module.css";
 
 type ViewNode = MindmapTreeNode & {
@@ -73,6 +76,10 @@ export function StudentMasteryMindmap({
   selectedPath,
   onSelect,
   onClearSelect,
+  resources = [],
+  resourcesLoading = false,
+  resourcesError = "",
+  onOpenResource,
   message,
   scope = "personal",
   compact = false,
@@ -83,6 +90,10 @@ export function StudentMasteryMindmap({
   selectedPath?: readonly number[] | null;
   onSelect?: (node: MindmapTreeNode) => void;
   onClearSelect?: () => void;
+  resources?: LinkedKnowledgeResource[];
+  resourcesLoading?: boolean;
+  resourcesError?: string;
+  onOpenResource?: (resource: LinkedKnowledgeResource) => void;
   message?: string;
   scope?: "personal" | "class_average";
   compact?: boolean;
@@ -96,6 +107,15 @@ export function StudentMasteryMindmap({
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    const element = canvasRef.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => setCanvasSize({ width: element.clientWidth, height: element.clientHeight }));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
   const pointer = useRef<{
     id: number;
     startX: number;
@@ -148,6 +168,22 @@ export function StudentMasteryMindmap({
     width: layout.bounds.width / zoom,
     height: layout.bounds.height / zoom,
   };
+  const selectedPlaced = selectedId ? layout.nodes.find((placed) => {
+    const node = placed.node as ViewNode;
+    return selectedPath
+      ? node.__sourcePath?.join(".") === selectedPath.join(".")
+      : node.id === selectedId;
+  }) : null;
+  const resourceAnchor = selectedPlaced && canvasSize.width && canvasSize.height ? (() => {
+    const marker = mindmapMarkerPositions(selectedPlaced);
+    const worldX = selectedPlaced.left + (selectedPlaced.depth > 0 ? marker.badgeX : selectedPlaced.width / 2);
+    const worldY = selectedPlaced.top + (selectedPlaced.depth > 0 ? marker.middleY : selectedPlaced.height / 2);
+    const scale = Math.min(canvasSize.width / fitted.width, canvasSize.height / fitted.height);
+    return {
+      x: (worldX - fitted.x) * scale + (canvasSize.width - fitted.width * scale) / 2,
+      y: (worldY - fitted.y) * scale + (canvasSize.height - fitted.height * scale) / 2,
+    };
+  })() : null;
   const setRequestedPercent = (value: number) =>
     setPercent(Math.max(0, Math.min(100, Math.round(value))));
   const resetViewport = () => {
@@ -353,7 +389,7 @@ export function StudentMasteryMindmap({
             : packed.error || "正在按子树轮廓优化布局…"}
         </p>
       ) : null}
-      <div className={styles.canvas}>
+      <div className={styles.canvas} ref={canvasRef}>
         {message ? (
           <p className={styles.notice} role="status">
             {message}
@@ -592,6 +628,17 @@ export function StudentMasteryMindmap({
             ))}
           </g>
         </svg>
+        {resourceAnchor && onOpenResource ? (
+          <MasteryResourceBranches
+            anchor={resourceAnchor}
+            canvas={canvasSize}
+            resources={resources}
+            loading={resourcesLoading}
+            error={resourcesError}
+            onOpen={onOpenResource}
+            onClose={() => onClearSelect?.()}
+          />
+        ) : null}
       </div>
     </div>
   );

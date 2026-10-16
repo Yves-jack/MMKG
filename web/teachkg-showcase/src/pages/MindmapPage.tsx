@@ -9,7 +9,6 @@ import {
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
 import { bindMasteryToMindmap, masteryScore, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
-import { MasteryNodeSummary } from "@/components/mindmap/MasteryNodeSummary";
 import details from "@/components/mindmap/MasteryNodeDetails.module.css";
 import { loadPersonalMasteryProgress, personalMasteryLectureLimit, type LectureKnowledgeSource } from "@/lib/kg/masteryLectureProgress.mjs";
 import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
@@ -1120,6 +1119,7 @@ export function MindmapPage() {
               return response.ok ? await response.json() as LectureKnowledgeSource : null;
             } catch { return null; }
           },
+          courseId,
         );
         if (cancelled) return;
         if (isMasteryEmbed) {
@@ -1421,6 +1421,10 @@ export function MindmapPage() {
                 selectedPath={(selected as (MindmapTreeNode & { __sourcePath?: number[] }) | null)?.__sourcePath}
                 onSelect={selectMindmapNode}
                 onClearSelect={() => selectMindmapNode(null)}
+                resources={sideLinkedResources?.nodeId === linkedEntityId ? sideLinkedResources.resources : []}
+                resourcesLoading={Boolean(linkedEntityId && (sideLinkedResources?.nodeId !== linkedEntityId || sideLinkedResources.loading))}
+                resourcesError={sideLinkedResources?.nodeId === linkedEntityId ? sideLinkedResources.error : ""}
+                onOpenResource={openLinkedResource}
                 message={masteryMessage}
                 scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")}
                 compact={compactMastery}
@@ -1458,7 +1462,7 @@ export function MindmapPage() {
           )}
         </main>
       }
-      detail={compactMastery && (detailCollapsed || !selected) ? undefined :
+      detail={isMasteryEmbed ? undefined :
         detailCollapsed ? (
           <aside className={kg.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -1484,7 +1488,6 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>}
           <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
-          {isMasteryEmbed && selected ? <MasteryNodeSummary courseId={courseId} node={selected} label={selected.zh} score={masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)} scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")} onClose={() => setDetailCollapsed(true)} /> : null}
           {isAiTeachingEmbed && selected && linkedEntityId ? (
             <LinkedResourceJumpBar
               className={compactMastery ? details.actions : undefined}

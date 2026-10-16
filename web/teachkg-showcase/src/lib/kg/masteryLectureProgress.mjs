@@ -2,10 +2,10 @@ import { isStructuralMindmapNode } from "./mindmapResourceIdentity.mjs";
 
 // Course progress is independent of chapter numbers and paired classroom sessions.
 const completedLectures = Object.freeze({
-  "离散数学(图论+数理逻辑与集合论)": 10,
+  "离散数学(图论+数理逻辑与集合论)": { through: 10, parts: ["__part__/graph"] },
 });
 export function personalMasteryLectureLimit(courseId) {
-  return completedLectures[courseId] ?? null;
+  return completedLectures[courseId]?.through ?? null;
 }
 const key = (value) => typeof value === "string"
   ? value.normalize("NFKC").trim().replace(/\s+/g, " ") : "";
@@ -37,7 +37,7 @@ function sourceNodes(source) {
 }
 
 /** Keep exact taught concepts and their ancestors, never all descendants of a taught parent. */
-export function filterMindmapByLectureProgress(doc, sources, throughLecture) {
+export function filterMindmapByLectureProgress(doc, sources, throughLecture, allowedPartIds = null) {
   if (!Number.isInteger(throughLecture) || throughLecture < 1)
     throw new Error("已完成讲次必须为正整数");
   const taught = new Set();
@@ -65,6 +65,8 @@ export function filterMindmapByLectureProgress(doc, sources, throughLecture) {
   let nNodes = 0, maxDepth = 0, nChapters = 0, nParts = 0;
   const retainedIds = new Set();
   const prune = (node, depth, isRoot = false, chapter = "") => {
+    if (allowedPartIds && String(node.id).startsWith("__part__/") && !allowedPartIds.includes(node.id))
+      return null;
     const context = String(node.id).startsWith("__chapter__/") ? chapterKey(node.zh) : chapter;
     const children = (node.children || []).map((child) => prune(child, depth + 1, false, context)).filter(Boolean);
     const matched = !isStructuralMindmapNode(node) && names(node).some((name) => taught.has(name) || taughtByChapter.get(context)?.has(name));
@@ -91,7 +93,7 @@ export function filterMindmapByLectureProgress(doc, sources, throughLecture) {
 }
 
 /** Use uncapped classroom KG nodes; older deployments may fall back to their lecture mindmaps. */
-export async function loadPersonalMasteryProgress(doc, throughLecture, loadJson) {
+export async function loadPersonalMasteryProgress(doc, throughLecture, loadJson, courseId = "") {
   const sources = await Promise.all(Array.from({ length: throughLecture }, async (_, i) => {
     const lecture = String(i + 1);
     const [processed, mindmap] = await Promise.all([
@@ -105,5 +107,7 @@ export async function loadPersonalMasteryProgress(doc, throughLecture, loadJson)
     if (sourceNodes(source).length) return { ...source, chapter_names: lectureChapters(mindmap) };
     throw new Error(`缺少第 ${lecture} 讲知识点数据，无法限定已学范围`);
   }));
-  return filterMindmapByLectureProgress(doc, sources, throughLecture);
+  const progress = completedLectures[courseId];
+  const allowedParts = progress && throughLecture <= progress.through ? progress.parts : null;
+  return filterMindmapByLectureProgress(doc, sources, throughLecture, allowedParts);
 }
