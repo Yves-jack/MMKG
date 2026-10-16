@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -17,10 +18,15 @@ import {
   masteryLearningPath,
   visibleLearningPath,
 } from "@/lib/kg/masteryLearningPath.mjs";
-import { mindmapMarkerPositions } from "@/lib/kg/mindmapMarkerPositions.mjs";
+import {
+  freeMasteryGeometry,
+  mindmapMarkerPositions,
+} from "@/lib/kg/mindmapMarkerPositions.mjs";
 import { preparePackedMindmap } from "@/lib/kg/packedMindmapLayout.mjs";
 import { usePackedMindmapLayout } from "@/lib/kg/usePackedMindmapLayout";
 import { useMasteryForceLayout } from "@/lib/kg/useMasteryForceLayout";
+import type { LinkedKnowledgeResource } from "@/lib/integration/knowledgeResources";
+import { MasteryResourceBranches } from "./MasteryResourceBranches";
 import styles from "./StudentMasteryMindmap.module.css";
 
 type ViewNode = MindmapTreeNode & {
@@ -30,6 +36,7 @@ type ViewNode = MindmapTreeNode & {
 };
 
 type Bounds = { x: number; y: number; width: number; height: number };
+const FREE_LABEL_SCALE = 1.5;
 const FONT_FAMILY =
   '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 let measurementContext: CanvasRenderingContext2D | null = null;
@@ -69,6 +76,10 @@ export function StudentMasteryMindmap({
   selectedPath,
   onSelect,
   onClearSelect,
+  resources = [],
+  resourcesLoading = false,
+  resourcesError = "",
+  onOpenResource,
   message,
   scope = "personal",
   compact = false,
@@ -79,6 +90,10 @@ export function StudentMasteryMindmap({
   selectedPath?: readonly number[] | null;
   onSelect?: (node: MindmapTreeNode) => void;
   onClearSelect?: () => void;
+  resources?: LinkedKnowledgeResource[];
+  resourcesLoading?: boolean;
+  resourcesError?: string;
+  onOpenResource?: (resource: LinkedKnowledgeResource) => void;
   message?: string;
   scope?: "personal" | "class_average";
   compact?: boolean;
@@ -92,6 +107,15 @@ export function StudentMasteryMindmap({
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    const element = canvasRef.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => setCanvasSize({ width: element.clientWidth, height: element.clientHeight }));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
   const pointer = useRef<{
     id: number;
     startX: number;
@@ -144,6 +168,22 @@ export function StudentMasteryMindmap({
     width: layout.bounds.width / zoom,
     height: layout.bounds.height / zoom,
   };
+  const selectedPlaced = selectedId ? layout.nodes.find((placed) => {
+    const node = placed.node as ViewNode;
+    return selectedPath
+      ? node.__sourcePath?.join(".") === selectedPath.join(".")
+      : node.id === selectedId;
+  }) : null;
+  const resourceAnchor = selectedPlaced && canvasSize.width && canvasSize.height ? (() => {
+    const marker = mindmapMarkerPositions(selectedPlaced);
+    const worldX = selectedPlaced.left + (selectedPlaced.depth > 0 ? marker.badgeX : selectedPlaced.width / 2);
+    const worldY = selectedPlaced.top + (selectedPlaced.depth > 0 ? marker.middleY : selectedPlaced.height / 2);
+    const scale = Math.min(canvasSize.width / fitted.width, canvasSize.height / fitted.height);
+    return {
+      x: (worldX - fitted.x) * scale + (canvasSize.width - fitted.width * scale) / 2,
+      y: (worldY - fitted.y) * scale + (canvasSize.height - fitted.height * scale) / 2,
+    };
+  })() : null;
   const setRequestedPercent = (value: number) =>
     setPercent(Math.max(0, Math.min(100, Math.round(value))));
   const resetViewport = () => {
@@ -334,6 +374,12 @@ export function StudentMasteryMindmap({
             />
             <span>显示节点文字</span>
           </label>
+          {scope === "personal" ? (
+            <span className={styles.learningLegend} title="沿紫色箭头，按章节顺序补强掌握度低于 50% 的知识点">
+              <span className={styles.learningLegendArrow} aria-hidden="true">⟶</span>
+              学习路径
+            </span>
+          ) : null}
         </div>
       </div>
       {!activeLayout ? (
@@ -343,7 +389,7 @@ export function StudentMasteryMindmap({
             : packed.error || "正在按子树轮廓优化布局…"}
         </p>
       ) : null}
-      <div className={styles.canvas}>
+      <div className={styles.canvas} ref={canvasRef}>
         {message ? (
           <p className={styles.notice} role="status">
             {message}
@@ -371,11 +417,11 @@ export function StudentMasteryMindmap({
               refX="9"
               refY="5"
               markerUnits="strokeWidth"
-              markerWidth="5"
-              markerHeight="5"
+              markerWidth="3.5"
+              markerHeight="3.5"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6045cc" />
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6440cf" />
             </marker>
           </defs>
           {layout.edges.map((edge) => {
@@ -388,18 +434,6 @@ export function StudentMasteryMindmap({
               />
             );
           })}
-          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 2.5 分">
-            {learningEdges.map((edge) => (
-              <path
-                key={`${edge.from}:${edge.to}`}
-                data-learning-from={edge.from}
-                data-learning-to={edge.to}
-                d={edge.path}
-                className={styles.learningEdge}
-                markerEnd="url(#mastery-learning-arrow)"
-              />
-            ))}
-          </g>
           {layout.nodes.map((placed, index) => {
             const node = placed.node as ViewNode;
             const score = masteryScore(node, mastery);
@@ -419,8 +453,12 @@ export function StudentMasteryMindmap({
                     : "";
             const { start, badgeX, toggleX, middleY } =
               mindmapMarkerPositions(placed);
-            const marker = score == null ? "?" : score.toFixed(1);
-            const ringRadius = visual.radius + 3;
+            const marker = score == null ? "?" : `${Math.round(score * 20)}%`;
+            const badgeRadius = visual.radius * (placed.free ? freeMasteryGeometry.badgeScale : 1);
+            const ringRadius = badgeRadius + 3;
+            const labelScale = placed.free && placed.depth > 0 ? FREE_LABEL_SCALE : 1;
+            const labelTop = placed.free && placed.depth > 0
+              ? middleY + (ringRadius + 2.5) * freeMasteryGeometry.badgeVisualScale + 12 : 0;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -499,11 +537,12 @@ export function StudentMasteryMindmap({
                       className={styles.nodeLabel}
                       data-node-label=""
                       key={lineIndex}
-                      x={start}
+                      x={placed.free && placed.depth > 0 ? badgeX : start}
+                      textAnchor={placed.free && placed.depth > 0 ? "middle" : undefined}
                       y={
-                        (placed.free && placed.depth > 0 ? 72 : 0) +
-                        placed.fontSize +
-                        lineIndex * (placed.fontSize + 9)
+                        labelTop +
+                        placed.fontSize * labelScale +
+                        lineIndex * (placed.fontSize * labelScale + 9)
                       }
                     >
                       {line}
@@ -517,23 +556,25 @@ export function StudentMasteryMindmap({
                   ) : null}
                   {placed.depth > 0 ? (
                     <g transform={`translate(${badgeX} ${middleY})`}>
-                      <circle
-                        className={styles.masteryBadge}
-                        r={visual.radius}
-                      />
-                      <circle className={styles.masteryTrack} r={ringRadius} />
-                      {score != null && score > 0 ? (
+                      <g transform={`scale(${placed.free ? freeMasteryGeometry.badgeVisualScale : 1})`}>
                         <circle
-                          className={styles.masteryArc}
-                          r={ringRadius}
-                          strokeDasharray={`${(2 * Math.PI * ringRadius * score) / 5} ${2 * Math.PI * ringRadius}`}
-                          transform="rotate(-90)"
+                          className={styles.masteryBadge}
+                          r={badgeRadius}
                         />
-                      ) : null}
+                        <circle className={styles.masteryTrack} r={ringRadius} />
+                        {score != null && score > 0 ? (
+                          <circle
+                            className={styles.masteryArc}
+                            r={ringRadius}
+                            strokeDasharray={`${(2 * Math.PI * ringRadius * score) / 5} ${2 * Math.PI * ringRadius}`}
+                            transform="rotate(-90)"
+                          />
+                        ) : null}
+                      </g>
                       <text
                         className={styles.masteryText}
                         style={{
-                          fontSize: "20px",
+                          fontSize: placed.free ? "28.5px" : "14px",
                         }}
                         textAnchor="middle"
                         dominantBaseline="middle"
@@ -572,7 +613,32 @@ export function StudentMasteryMindmap({
               </g>
             );
           })}
+          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 50%">
+            {learningEdges.map((edge) => (
+              <g key={`${edge.from}:${edge.to}`}>
+                <path d={edge.path} className={styles.learningEdgeHalo} />
+                <path
+                  data-learning-from={edge.from}
+                  data-learning-to={edge.to}
+                  d={edge.path}
+                  className={styles.learningEdge}
+                  markerEnd="url(#mastery-learning-arrow)"
+                />
+              </g>
+            ))}
+          </g>
         </svg>
+        {resourceAnchor && onOpenResource ? (
+          <MasteryResourceBranches
+            anchor={resourceAnchor}
+            canvas={canvasSize}
+            resources={resources}
+            loading={resourcesLoading}
+            error={resourcesError}
+            onOpen={onOpenResource}
+            onClose={() => onClearSelect?.()}
+          />
+        ) : null}
       </div>
     </div>
   );

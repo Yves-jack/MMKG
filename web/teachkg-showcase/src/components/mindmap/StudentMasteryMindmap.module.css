@@ -141,6 +141,7 @@
 .edge {
   fill: none;
   stroke: var(--branch-ink);
+  opacity: 0.26;
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
@@ -148,14 +149,17 @@
 
 .edgeTrunk {
   stroke-width: 11px;
+  stroke-dasharray: 16 20;
 }
 
 .edgeMajor {
   stroke-width: 6px;
+  stroke-dasharray: 9 13;
 }
 
 .edgeBranch {
   stroke-width: 2.8px;
+  stroke-dasharray: 4 7;
 }
 
 .node {
@@ -226,7 +230,8 @@
 }
 
 .masteryTrack {
-  stroke: #dde2e5;
+  stroke: var(--mastery-color, #608f7b);
+  opacity: 0.65;
 }
 
 .masteryArc {
@@ -239,21 +244,17 @@
 }
 
 .masteryBadge {
-  fill: var(--mastery-color, #9da7ae);
-  stroke: #dce1e4;
-  stroke-width: 1px;
+  fill: color-mix(in srgb, var(--mastery-color, #9da7ae) 14%, white);
+  stroke: none;
 }
 
 .node .masteryText {
-  fill: #fff;
+  fill: color-mix(in srgb, var(--mastery-color, #608f7b) 78%, #25352e);
   font-size: 18px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
-.masteryUnseen .masteryText {
-  fill: var(--map-muted);
-}
 
 .caption {
   padding: 6px 16px 12px;
@@ -332,34 +333,51 @@
   fill: var(--map-bg);
   pointer-events: none;
 }
-.learningEdge {
+.learningEdge,
+.learningEdgeHalo {
   fill: none;
-  stroke: #6045cc;
-  stroke-width: 4;
-  stroke-dasharray: 12 8;
-  opacity: 0.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   pointer-events: none;
 }
+.learningEdgeHalo {
+  stroke: var(--map-bg);
+  stroke-width: 14;
+  opacity: 0.95;
+}
+.learningEdge {
+  stroke: #6440cf;
+  stroke-width: 7;
+}
+.learningLegend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  color: #6440cf;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.root .learningLegend,
+.root .learningLegendArrow {
+  color: #6440cf;
+}
+.learningLegendArrow {
+  font-size: 25px;
+  line-height: 1;
+}
 .masteryBadge {
-  stroke: #fff;
-  stroke-width: 2;
-  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 25%));
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 12%));
 }
 .masteryTrack {
-  stroke: #d2d8e3;
-  stroke-width: 5;
+  stroke-width: 4;
 }
 .masteryArc {
-  stroke-width: 5;
+  stroke-width: 4;
 }
 .node .masteryText {
-  font-weight: 800;
-  paint-order: stroke;
-  stroke: rgb(0 0 0 / 22%);
-  stroke-width: 1;
-}
-.node[data-score="0"] .masteryBadge {
-  stroke: #8b2525;
+  font-weight: 700;
 }
 .notice {
   position: absolute;
@@ -470,7 +488,17 @@
   outline-offset: 3px;
 }
 .freeLayout .node {
+  --node-font-size: 45px;
   cursor: grab;
+}
+.freeLayout .nodeRoot {
+  --node-font-size: 48px;
+}
+.freeLayout .nodeDomain {
+  --node-font-size: 70.5px;
+}
+.freeLayout .nodeChapter {
+  --node-font-size: 57px;
 }
 .freeLayout .node:active {
   cursor: grabbing;

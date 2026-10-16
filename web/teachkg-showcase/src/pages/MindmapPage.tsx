@@ -9,8 +9,8 @@ import {
   type MindmapTreeNode,
 } from "@/components/mindmap/MindmapTree";
 import { bindMasteryToMindmap, masteryScore, type MasteryPayload } from "@/lib/kg/mindmapMasteryBinding.mjs";
-import { MasteryNodeSummary } from "@/components/mindmap/MasteryNodeSummary";
 import details from "@/components/mindmap/MasteryNodeDetails.module.css";
+import { loadPersonalMasteryProgress, personalMasteryLectureLimit, type LectureKnowledgeSource } from "@/lib/kg/masteryLectureProgress.mjs";
 import { StudentMasteryMindmap } from "@/components/mindmap/StudentMasteryMindmap";
 import {
   ensureAssetsLibraryIndexes,
@@ -555,6 +555,8 @@ export function MindmapPage() {
   const isMasteryEmbed = isAiTeachingEmbed && sp.get("mastery_view") === "1" &&
     ["student", "studentenrollment", "ta", "taenrollment", "teacher", "teacherenrollment"].includes(verifiedRole.toLowerCase().trim());
   const compactMastery = isMasteryEmbed && sp.get("compact") === "1";
+  const completedMasteryLecture = isMasteryEmbed && ["student", "studentenrollment"].includes(verifiedRole.toLowerCase().trim())
+    ? personalMasteryLectureLimit(courseId) : null;
   const navId = isMasteryEmbed ? "course" : requestedNavId;
   const canEditMindmap = useMemo(
     () =>
@@ -1160,7 +1162,16 @@ export function MindmapPage() {
       }
       return loadMindmapDoc(courseId, navId, index.items, catalog, lectureVariant);
     })()
-      .then((d) => {
+      .then(async (loaded) => {
+        const d = completedMasteryLecture == null ? loaded : await loadPersonalMasteryProgress(
+          loaded, completedMasteryLecture, async (path) => {
+            try {
+              const response = await fetch(courseDataUrl(courseId, path), { cache: "no-store" });
+              return response.ok ? await response.json() as LectureKnowledgeSource : null;
+            } catch { return null; }
+          },
+          courseId,
+        );
         if (cancelled) return;
         if (isMasteryEmbed) {
           setDoc(d);
@@ -1201,7 +1212,7 @@ export function MindmapPage() {
     return () => {
       cancelled = true;
     };
-  }, [courseId, navId, index, catalog, lectureVariant, isMasteryEmbed]);
+  }, [courseId, navId, index, catalog, lectureVariant, isMasteryEmbed, completedMasteryLecture]);
 
   // URL ?focus= / 图谱共享选中 → 选中同名导图节点并展开右栏
   useEffect(() => {
@@ -1461,6 +1472,10 @@ export function MindmapPage() {
                 selectedPath={(selected as (MindmapTreeNode & { __sourcePath?: number[] }) | null)?.__sourcePath}
                 onSelect={selectMindmapNode}
                 onClearSelect={() => selectMindmapNode(null)}
+                resources={sideLinkedResources?.nodeId === linkedEntityId ? sideLinkedResources.resources : []}
+                resourcesLoading={Boolean(linkedEntityId && (sideLinkedResources?.nodeId !== linkedEntityId || sideLinkedResources.loading))}
+                resourcesError={sideLinkedResources?.nodeId === linkedEntityId ? sideLinkedResources.error : ""}
+                onOpenResource={openLinkedResource}
                 message={masteryMessage}
                 scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")}
                 compact={compactMastery}
@@ -1500,7 +1515,7 @@ export function MindmapPage() {
           )}
         </main>
       }
-      detail={compactMastery && (detailCollapsed || !selected) ? undefined :
+      detail={isMasteryEmbed ? undefined :
         detailCollapsed ? (
           <aside className={kg.kgSideRail} aria-label="详情栏（已收起）">
             <button
@@ -1526,7 +1541,6 @@ export function MindmapPage() {
             <span aria-hidden>›</span>
           </button>}
           <div className={`${kg.kgSideScroll} ${compactMastery ? details.scroll : ""}`}>
-          {isMasteryEmbed && selected ? <MasteryNodeSummary courseId={courseId} node={selected} label={selected.zh} score={masteryScore(selected, studentMastery.identity === masteryIdentity ? studentMastery.scores : EMPTY_MASTERY)} scope={studentMastery.scope || (verifiedRole.toLowerCase().includes("student") ? "personal" : "class_average")} onClose={() => setDetailCollapsed(true)} /> : null}
           {isAiTeachingEmbed && selected && linkedEntityId ? (
             <LinkedResourceJumpBar
               className={compactMastery ? details.actions : undefined}

@@ -8,7 +8,8 @@ import {
   renderMasteryForce,
 } from "./masteryForceLayout.mjs";
 import { preparePackedMindmap } from "./packedMindmapLayout.mjs";
-import { collapseMindmap } from "./mindmapMasteryBinding.mjs";
+import { collapseMindmap, masteryVisual } from "./mindmapMasteryBinding.mjs";
+import { freeMasteryGeometry, mindmapMarkerPositions } from "./mindmapMarkerPositions.mjs";
 import { filterMindmapByMastery } from "./mindmapMasteryFilter.mjs";
 import {
   masteryLearningPath,
@@ -78,6 +79,24 @@ test("dragging pins only the requested occurrence and updates its edges and pers
   advanceMasteryForce(sim);
   assert.equal(sim.bodies.get(keys[0]).x, original.x + 180);
   assert.equal(sim.bodies.get(keys[0]).fixed, true);
+});
+test("larger free-layout badges and labels fit the physics footprint", () => {
+  const input = preparePackedMindmap(collapseMindmap(doc, 3), measure);
+  const nodes = renderMasteryForce(createMasteryForce(input)).nodes;
+  const largestOuterRadius = masteryVisual(0).radius * freeMasteryGeometry.badgeScale + 5.5;
+  for (const node of nodes.filter((entry) => entry.depth > 0)) {
+    const marker = mindmapMarkerPositions(node);
+    const source = input.records.find((record) => record.key === node.key);
+    assert.ok(node.fontSize > source.spec.fontSize);
+    assert.ok(node.width / 2 >= largestOuterRadius);
+    assert.ok(marker.middleY >= largestOuterRadius);
+    assert.ok(node.height - marker.middleY >= largestOuterRadius);
+    if (node.node.__hasChildren)
+      assert.ok(
+        marker.toggleX - 16 >= marker.badgeX + largestOuterRadius * 3 + 8,
+      );
+    if (node.lines.length) assert.ok(freeMasteryGeometry.labelTop > marker.middleY + largestOuterRadius);
+  }
 });
 test("percent, folds, hidden label footprint and course title are shared by both modes", () => {
   const filtered = filterMindmapByMastery(doc, {}, 35, {

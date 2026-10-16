@@ -1,0 +1,117 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.links {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.link {
+  fill: none;
+  stroke: #aa4562;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.82;
+}
+
+.origin {
+  fill: #aa4562;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid #d6d6d8;
+  border-left: 4px solid #aa4562;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 0 6px 18px rgb(32 33 38 / 13%);
+  pointer-events: auto;
+}
+
+.video { border-left-color: #377a9b; }
+.exercise { border-left-color: #b44e46; }
+.animation { border-left-color: #8570b4; }
+.formula { border-left-color: #4e8871; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #eeeeef;
+  color: #27282d;
+  font-size: 13px;
+}
+
+.header strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count {
+  color: #666970;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.close {
+  order: 2;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #606168;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover { background: #eeeeef; }
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 6px 8px;
+  color: #555860;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.resourceButton {
+  display: block;
+  width: 100%;
+  margin: 0 0 3px;
+  padding: 3px 5px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #234e68;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.resourceButton:hover, .resourceButton:focus-visible {
+  background: #edf3f5;
+  outline: none;
+}
+
+.formulaItem + .formulaItem { border-top: 1px solid #e5e9e6; }
+.formulaItem { padding: 4px 0; color: #263c33; }

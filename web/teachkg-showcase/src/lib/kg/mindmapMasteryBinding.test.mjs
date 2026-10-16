@@ -19,6 +19,9 @@ test("higher mastery reduces marker size and changes color; missing differs from
   assert.equal(masteryVisual(0).status,"unlearned");
   assert.equal(masteryVisual(undefined).status,"unrecorded");
   assert.equal(masteryVisual(4.25).status,"mastered");
+  assert.equal(masteryVisual(0).label,"未学习 · 0%");
+  assert.equal(masteryVisual(4.25).label,"已掌握 · 85%");
+  assert.equal(masteryVisual(5).label,"已掌握 · 100%");
 });
 test("collapse preserves descendants and per-occurrence state across reopen", () => {
   const leaf = {id:"leaf",zh:"叶",children:[],__sourcePath:[0,0,0]};
