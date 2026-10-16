@@ -519,53 +519,53 @@ export function LectureReviewGraph({
   return (
     <div className={styles.wrap}>
       <div className={styles.head}>
-        <div className={styles.headActions}>
-          <div className={styles.entitySearch} ref={entitySearchRef}>
-            <input
-              type="search"
-              className={styles.entitySearchInput}
-              value={entityQuery}
-              placeholder="搜索实体…"
-              aria-label="搜索实体"
-              autoComplete="off"
-              disabled={!filtered.nodes.length}
-              onFocus={() => setEntitySearchOpen(true)}
-              onChange={(e) => {
-                setEntityQuery(e.target.value);
-                setEntitySearchOpen(true);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") {
-                  setEntitySearchOpen(false);
-                  return;
-                }
-                if (e.key === "Enter" && entityMatches[0]) {
-                  e.preventDefault();
-                  focusEntity(entityMatches[0].id);
-                }
-              }}
-            />
-            {entitySearchOpen && entityQuery.trim() ? (
-              <div className={styles.entitySearchMenu} role="listbox">
-                {entityMatches.length === 0 ? (
-                  <div className={styles.entitySearchEmpty}>无匹配实体</div>
-                ) : (
-                  entityMatches.map((m) => (
-                    <button
-                      key={m.id}
-                      type="button"
-                      role="option"
-                      className={styles.entitySearchItem}
-                      onClick={() => focusEntity(m.id)}
-                      title={m.id}
-                    >
-                      <span>{m.label}</span>
-                    </button>
-                  ))
-                )}
-              </div>
-            ) : null}
-          </div>
+        <div className={styles.entitySearch} ref={entitySearchRef}>
+          <input
+            type="search"
+            className={styles.entitySearchInput}
+            value={entityQuery}
+            placeholder="搜索实体…"
+            aria-label="搜索实体"
+            autoComplete="off"
+            disabled={!filtered.nodes.length}
+            onFocus={() => setEntitySearchOpen(true)}
+            onChange={(e) => {
+              setEntityQuery(e.target.value);
+              setEntitySearchOpen(true);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setEntitySearchOpen(false);
+                return;
+              }
+              if (e.key === "Enter" && entityMatches[0]) {
+                e.preventDefault();
+                focusEntity(entityMatches[0].id);
+              }
+            }}
+          />
+          {entitySearchOpen && entityQuery.trim() ? (
+            <div className={styles.entitySearchMenu} role="listbox">
+              {entityMatches.length === 0 ? (
+                <div className={styles.entitySearchEmpty}>无匹配实体</div>
+              ) : (
+                entityMatches.map((m) => (
+                  <button
+                    key={m.id}
+                    type="button"
+                    role="option"
+                    className={styles.entitySearchItem}
+                    onClick={() => focusEntity(m.id)}
+                    title={m.id}
+                  >
+                    <span>{m.label}</span>
+                  </button>
+                ))
+              )}
+            </div>
+          ) : null}
+        </div>
+        <div className={styles.headEnd}>
           <button
             type="button"
             className={`${kgStyles.kgChip} ${

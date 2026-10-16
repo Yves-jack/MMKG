@@ -7,6 +7,7 @@ import { reviewNotesMiddleware } from "./server/reviewNotes.mjs";
 import { kgEditsMiddleware } from "./server/kgEdits.mjs";
 import { mindmapOutlineMiddleware } from "./server/mindmapOutline.mjs";
 import { knowledgeResourcesMiddleware } from "./server/knowledgeResources.mjs";
+import { studentMasteryMiddleware } from "./server/studentMastery.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "../..");
@@ -103,10 +104,11 @@ function serveRepoData() {
       server.middlewares.use("/repo-data", (req: any, res: any, next: any) => {
         serveFileFromRoot(dataRoot, req.url || "", req, res, next);
       });
-      // 覆盖 Vite/sirv 对 %2B 不解码的问题，确保含 `+` 的课程目录可命中
+      // stripBase 后 /data/* 不再带 /staging/kg 前缀，sirv 找不到 dist 文件。
+      // 统一从 public/data 提供（含 courses.json 与 courses/ 课内目录）。
       server.middlewares.use((req: any, res: any, next: any) => {
         const url = String(req.url || "");
-        if (url.startsWith("/data/courses/") || url.startsWith("/data/textbook_kg/")) {
+        if (url.startsWith("/data/")) {
           const rel = url.slice("/data/".length);
           serveFileFromRoot(publicDataRoot, rel, req, res, next);
           return;
@@ -120,7 +122,7 @@ function serveRepoData() {
       });
       server.middlewares.use((req: any, res: any, next: any) => {
         const url = String(req.url || "");
-        if (url.startsWith("/data/courses/") || url.startsWith("/data/textbook_kg/")) {
+        if (url.startsWith("/data/")) {
           const rel = url.slice("/data/".length);
           serveFileFromRoot(publicDataRoot, rel, req, res, next);
           return;
@@ -162,7 +164,9 @@ function showcaseApiPlugin(env: Record<string, string>) {
   const notesMw = reviewNotesMiddleware(runtimeEnv);
   const kgEditsMw = kgEditsMiddleware(runtimeEnv());
   const outlineMw = mindmapOutlineMiddleware(runtimeEnv());
-  const resourcesMw = knowledgeResourcesMiddleware(runtimeEnv());
+  // 与笔记中间件一致：按请求读 process.env，避免启动时空 AI_TEACHING_API_URL 被冻死
+  const resourcesMw = knowledgeResourcesMiddleware(runtimeEnv);
+  const masteryMw = studentMasteryMiddleware(runtimeEnv);
   return {
     name: "showcase-api",
     configureServer(server: any) {
@@ -170,12 +174,14 @@ function showcaseApiPlugin(env: Record<string, string>) {
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
+      server.middlewares.use(masteryMw);
     },
     configurePreviewServer(server: any) {
       server.middlewares.use(notesMw);
       server.middlewares.use(kgEditsMw);
       server.middlewares.use(outlineMw);
       server.middlewares.use(resourcesMw);
+      server.middlewares.use(masteryMw);
     },
   };
 }

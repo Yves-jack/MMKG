@@ -1,8 +1,10 @@
 .wrap {
   height: 100%;
   min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background: rgba(10, 12, 16, 0.55);
   border-left: 1px solid var(--line, rgba(255, 255, 255, 0.08));
 }
@@ -11,15 +13,16 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
-  padding: 10px 12px 8px;
+  padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
   border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.08));
   overflow: visible;
   position: relative;
-  z-index: 2;
+  z-index: 6;
+  min-width: 0;
 }
 
 .head em {
@@ -29,13 +32,12 @@
   color: var(--muted);
 }
 
-.headActions {
+.headEnd {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 8px;
-  max-width: min(100%, 920px);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .mapViewChips {
@@ -47,8 +49,9 @@
 
 .entitySearch {
   position: relative;
-  min-width: 140px;
-  width: min(200px, 28vw);
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 260px;
 }
 
 .entitySearchInput {

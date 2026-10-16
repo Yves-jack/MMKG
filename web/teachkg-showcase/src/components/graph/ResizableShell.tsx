@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import shell from "@/styles/shell.module.css";
+import { ResizableDetailOverlay } from "./ResizableDetailOverlay";
 import { ResizableSplit } from "./ResizableSplit";
 
 type Props = {
@@ -8,6 +9,8 @@ type Props = {
   main: ReactNode;
   /** 有 detail 时为三栏或两栏（主区 | 详情） */
   detail?: ReactNode;
+  /** Float details over a full-width canvas in compact embeds. */
+  detailOverlay?: boolean;
   /** localStorage 前缀，如 shell-pipeline */
   storagePrefix: string;
   /** 右侧详情栏初始宽度（px） */
@@ -29,6 +32,7 @@ export function ResizableShell({
   nav,
   main,
   detail,
+  detailOverlay = false,
   storagePrefix,
   detailInitialRightPx = 340,
   detailMinRightPx = 220,
@@ -44,6 +48,26 @@ export function ResizableShell({
   const leftInitial = navFixedLeftPx ?? navInitialLeftPx;
   const leftMin = navFixedLeftPx ?? 160;
 
+  if (detailOverlay && !nav) {
+    return (
+      <div
+        className={`${shell.shell} ${shell.shellSolo}`}
+        style={{ position: "relative" }}
+      >
+        {main}
+        {detail ? (
+          <ResizableDetailOverlay
+            storageKey={`${storagePrefix}-overlay-width`}
+            initialWidth={detailInitialRightPx}
+            minWidth={detailMinRightPx}
+          >
+            {detail}
+          </ResizableDetailOverlay>
+        ) : null}
+      </div>
+    );
+  }
+
   if (!nav && !detail) {
     return <div className={`${rootClass} ${shell.shellSolo}`}>{main}</div>;
   }
@@ -52,7 +76,9 @@ export function ResizableShell({
     return (
       <ResizableSplit
         className={rootClass}
-        storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
+        storageKey={
+          rightFixed != null ? undefined : `${storagePrefix}-detail-r`
+        }
         sizedPane="right"
         initialRightPx={rightInitial}
         initialRightRatio={0.34}
@@ -98,9 +124,10 @@ export function ResizableShell({
       left={nav}
       right={
         <ResizableSplit
-          key={rightFixed != null ? "detail-rail" : "detail-panel"}
           className={shell.shellInner}
-          storageKey={rightFixed != null ? undefined : `${storagePrefix}-detail-r`}
+          storageKey={
+            rightFixed != null ? undefined : `${storagePrefix}-detail-r`
+          }
           sizedPane="right"
           initialRightPx={rightInitial}
           initialRightRatio={0.32}

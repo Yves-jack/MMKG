@@ -166,10 +166,9 @@
   z-index: 4;
 }
 
-.hoverTip {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  transform: translateX(-50%);
+.hoverTipPortal {
+  position: fixed;
+  transform: translate(-50%, -100%);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -177,24 +176,25 @@
   max-width: min(320px, 70vw);
   padding: 7px 9px;
   border-radius: 8px;
-  background: rgba(12, 14, 18, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  color: #222;
   font-size: 11px;
   pointer-events: none;
-  z-index: 5;
+  z-index: 10050;
   white-space: normal;
 }
 
-.hoverTip > span {
+.hoverTipPortal > span {
   font-variant-numeric: tabular-nums;
-  color: #ffb3c9;
+  color: #d94877;
   font-weight: 600;
 }
 
-.hoverTip em {
+.hoverTipPortal em {
   font-style: normal;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(34, 34, 34, 0.88);
   line-height: 1.45;
   display: -webkit-box;
   -webkit-line-clamp: 4;

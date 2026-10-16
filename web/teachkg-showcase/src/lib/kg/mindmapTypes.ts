@@ -2,7 +2,14 @@
 
 export type MindmapScope = "course" | "chapter" | "lecture";
 
-export type MindmapSource = "kg" | "summary+kg" | "review+kg";
+export type MindmapSource =
+  | "kg"
+  | "summary+kg"
+  | "review+kg"
+  /** 右栏大纲文本优先建树（可不依赖 KG entity id） */
+  | "outline_text"
+  /** 大纲文本建树 + 命中的 KG/复习叶 enrichment */
+  | "outline+kg";
 
 export type MindmapIndexItem = {
   /** 导航键：course | chapter:<title> | 讲次 id */
@@ -45,6 +52,8 @@ export type MindmapDocMeta = {
   skeleton_source?: string;
   outline_key?: string;
   composed_from?: string;
+  pipeline?: string;
+  n_sections?: number;
 };
 
 export function chapterNavId(chapter: string): string {

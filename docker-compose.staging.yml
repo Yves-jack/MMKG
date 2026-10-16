@@ -19,6 +19,7 @@ services:
 
   mmkg-frontend:
     environment:
+      AI_TEACHING_API_URL: http://staging_backend_main:5001
       VIDEO_SEARCH_API_URL: http://staging-video-search-api:8000
     container_name: staging-mmkg-frontend
     build:

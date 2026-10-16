@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { captionAt, type AsrCaption } from "@/lib/review/asrCaptions";
 import styles from "./VideoChapterPlayer.module.css";
 
@@ -24,6 +25,8 @@ type Props = {
   /** 在可拉伸容器内铺满剩余高度 */
   fill?: boolean;
   captions?: AsrCaption[];
+  /** 元数据就绪（可 seek / 知时长），供页面延后侧栏重请求 */
+  onReady?: () => void;
 };
 
 function fmtTime(sec: number): string {
@@ -35,12 +38,56 @@ function fmtTime(sec: number): string {
   return `${m}:${String(r).padStart(2, "0")}`;
 }
 
-/** 展示用文案：优先摘要，否则标题 */
+/** 展示用文案：实质摘要；套话/占位返回空（悬停可只显示时间） */
 export function segmentCaption(seg: VideoSegment | null | undefined): string {
   if (!seg) return "";
-  const s = String(seg.summary || "").trim();
-  if (s) return s;
-  return String(seg.title || "").trim();
+  const pick = (raw: string) => {
+    const s = String(raw || "").trim();
+    if (!s) return "";
+    if (/^片段\s*\d+$/.test(s)) return "";
+    if (/本段无有效|本段无实质|开场与导入|^开场$|^过渡$|过渡片段/.test(s)) return "";
+    if (/^(好[，,]?)?(那?我们)?上课(了|啦)?[。！!]?$/.test(s)) return "";
+    if (s.length < 8) return "";
+    return s;
+  };
+  return pick(seg.summary || "") || pick(seg.title || "");
+}
+
+/** 按时间落段：含多段重叠时取时长最短的一段（避免超长段盖住后面） */
+export function segmentAtTime(
+  ordered: VideoSegment[],
+  sec: number,
+  gapSnapSec = 2
+): VideoSegment | null {
+  if (!ordered.length || !Number.isFinite(sec)) return null;
+  const containing = ordered.filter(
+    (s) => sec >= s.start_sec && sec < s.end_sec
+  );
+  if (containing.length) {
+    return containing.reduce((best, s) => {
+      const bd = best.end_sec - best.start_sec;
+      const sd = s.end_sec - s.start_sec;
+      if (sd < bd - 1e-6) return s;
+      if (Math.abs(sd - bd) <= 1e-6 && s.start_sec > best.start_sec) return s;
+      return best;
+    });
+  }
+  let best: VideoSegment | null = null;
+  let bestDist = Infinity;
+  for (const s of ordered) {
+    const dist =
+      sec < s.start_sec
+        ? s.start_sec - sec
+        : sec >= s.end_sec
+          ? sec - s.end_sec
+          : 0;
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = s;
+    }
+  }
+  if (best && bestDist <= gapSnapSec) return best;
+  return null;
 }
 
 function isFsActive() {
@@ -75,6 +122,7 @@ export function VideoChapterPlayer({
   onTime,
   fill = false,
   captions = [],
+  onReady,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -87,6 +135,9 @@ export function VideoChapterPlayer({
   const [duration, setDuration] = useState(Math.max(0, Number(durationHint) || 0));
   const [playing, setPlaying] = useState(false);
   const [hoverSec, setHoverSec] = useState<number | null>(null);
+  const [hoverTipPos, setHoverTipPos] = useState<{ x: number; y: number } | null>(
+    null,
+  );
   const [fullscreen, setFullscreen] = useState(false);
   const [showCaptions, setShowCaptions] = useState(true);
   const [liveCaption, setLiveCaption] = useState<AsrCaption | null>(null);
@@ -114,10 +165,7 @@ export function VideoChapterPlayer({
 
   const hoverSeg = useMemo(() => {
     if (hoverSec == null || !ordered.length) return null;
-    return (
-      ordered.find((s) => hoverSec >= s.start_sec && hoverSec < s.end_sec) ||
-      ordered[ordered.length - 1]
-    );
+    return segmentAtTime(ordered, hoverSec);
   }, [hoverSec, ordered]);
 
   const updateDuration = useCallback((d: number) => {
@@ -164,11 +212,26 @@ export function VideoChapterPlayer({
   }, []);
 
   useEffect(() => {
+    if (Number(durationHint) > 0) updateDuration(Number(durationHint));
+  }, [durationHint, updateDuration]);
+
+  useEffect(() => {
     setCurrent(0);
     setPlaying(false);
     pendingSeekRef.current = null;
-    if (Number(durationHint) > 0) updateDuration(Number(durationHint));
-  }, [src, durationHint, updateDuration]);
+    const v = videoRef.current;
+    return () => {
+      // 仅换片源时释放缓冲；勿把 durationHint 放进依赖，否则会误拆掉正在播的 video
+      if (!v) return;
+      try {
+        v.pause();
+        v.removeAttribute("src");
+        v.load();
+      } catch {
+        /* ignore */
+      }
+    };
+  }, [src]);
 
   useEffect(() => {
     if (!src) return;
@@ -249,6 +312,22 @@ export function VideoChapterPlayer({
     [total]
   );
 
+  const updateHoverFromClient = useCallback(
+    (clientX: number, clientY: number) => {
+      const t = secFromClientX(clientX);
+      setHoverSec(t);
+      const el = trackRef.current;
+      if (!el) {
+        setHoverTipPos({ x: clientX, y: clientY - 12 });
+        return;
+      }
+      const rect = el.getBoundingClientRect();
+      const x = Math.min(rect.right - 8, Math.max(rect.left + 8, clientX));
+      setHoverTipPos({ x, y: rect.top - 10 });
+    },
+    [secFromClientX],
+  );
+
   const onTrackPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -258,15 +337,13 @@ export function VideoChapterPlayer({
     } catch {
       /* ignore */
     }
-    const t = secFromClientX(e.clientX);
-    setHoverSec(t);
-    seek(t);
+    updateHoverFromClient(e.clientX, e.clientY);
+    seek(secFromClientX(e.clientX));
   };
 
   const onTrackPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const t = secFromClientX(e.clientX);
-    setHoverSec(t);
-    if (draggingRef.current) seek(t);
+    updateHoverFromClient(e.clientX, e.clientY);
+    if (draggingRef.current) seek(secFromClientX(e.clientX));
   };
 
   const onTrackPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -326,7 +403,8 @@ export function VideoChapterPlayer({
             key={src}
             className={styles.player}
             src={src}
-            preload="auto"
+            // auto 会把整段 ~GB 级课堂片提前拉满；连点课次时多路下载占满连接，下一次切换会卡很久
+            preload="metadata"
             playsInline
             onClick={togglePlay}
             onTimeUpdate={(e) => {
@@ -341,8 +419,12 @@ export function VideoChapterPlayer({
             }}
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
-            onLoadedMetadata={(e) => updateDuration(e.currentTarget.duration)}
+            onLoadedMetadata={(e) => {
+              updateDuration(e.currentTarget.duration);
+              onReady?.();
+            }}
             onDurationChange={(e) => updateDuration(e.currentTarget.duration)}
+            onCanPlay={() => onReady?.()}
           />
           {liveCaption ? (
             <div className={styles.caption} aria-live="polite">
@@ -385,7 +467,10 @@ export function VideoChapterPlayer({
                 if (!draggingRef.current) seek(secFromClientX(e.clientX));
               }}
               onMouseLeave={() => {
-                if (!draggingRef.current) setHoverSec(null);
+                if (!draggingRef.current) {
+                  setHoverSec(null);
+                  setHoverTipPos(null);
+                }
               }}
             >
               <div className={styles.progressBg} />
@@ -405,20 +490,25 @@ export function VideoChapterPlayer({
               })}
 
               <div className={styles.scrubber} style={{ left: `${playedPct}%` }} />
-
-              {hoverSec != null && (
+            </div>
+          </div>
+          {hoverSec != null &&
+          hoverTipPos &&
+          typeof document !== "undefined"
+            ? createPortal(
                 <div
-                  className={styles.hoverTip}
+                  className={styles.hoverTipPortal}
                   style={{
-                    left: `${Math.min(96, Math.max(4, (hoverSec / Math.max(total, 0.001)) * 100))}%`,
+                    left: hoverTipPos.x,
+                    top: hoverTipPos.y,
                   }}
                 >
                   <span>{fmtTime(hoverSec)}</span>
                   {hoverCaption ? <em>{hoverCaption}</em> : null}
-                </div>
-              )}
-            </div>
-          </div>
+                </div>,
+                document.body,
+              )
+            : null}
 
           <div className={styles.toolbar}>
             <button

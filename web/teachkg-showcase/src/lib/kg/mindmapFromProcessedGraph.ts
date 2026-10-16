@@ -538,7 +538,7 @@ export type BuildMindmapOpts = {
   chapter?: string | null;
   /** 复习浓缩中的实体顺序（id 或 zh），用于根/子排序约束 */
   reviewOrder?: string[] | null;
-  source?: "kg" | "summary+kg" | "review+kg";
+  source?: "kg" | "summary+kg" | "review+kg" | "outline_text" | "outline+kg";
   scope?: "course" | "chapter" | "lecture";
 };
 

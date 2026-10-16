@@ -123,6 +123,77 @@
   color: rgba(232, 234, 237, 0.92);
 }
 
+.outline {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.outlineLabel {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(157, 236, 196, 0.85);
+}
+
+.outline ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.outline li {
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(232, 234, 237, 0.9);
+}
+
+.outlineLink {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.outlineLink:hover {
+  color: #9decc4;
+}
+
+.partBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.partBody p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(232, 234, 237, 0.92);
+}
+
+.partSummary {
+  margin: 0 0 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(157, 236, 196, 0.88);
+  font-style: italic;
+}
+
+.section[data-kind="part"] {
+  background: rgba(14, 18, 24, 0.5);
+}
+
 .meta {
   margin: 0;
   font-size: 11px;
@@ -351,8 +422,8 @@
 
 .block {
   display: grid;
-  grid-template-columns: 42px 1fr;
-  gap: 8px;
+  grid-template-columns: auto 1fr;
+  gap: 4px 6px;
   align-items: start;
   padding: 8px 10px;
   border-radius: 8px;
@@ -363,10 +434,11 @@
 .blockLabel {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: rgba(157, 236, 196, 0.88);
   padding-top: 2px;
+  white-space: nowrap;
 }
 
 .blockText {
@@ -534,6 +606,19 @@
   color: var(--accent, #97242d);
   border-color: color-mix(in srgb, var(--accent, #97242d) 35%, transparent);
   background: var(--accent-dim, rgba(151, 36, 45, 0.08));
+}
+
+:global(html[data-embed="ai-teaching"]) .outline {
+  background: color-mix(in srgb, var(--accent, #97242d) 4%, #faf8f5);
+  border-color: var(--line, #e8e1d7);
+}
+
+:global(html[data-embed="ai-teaching"]) .outlineLabel {
+  color: var(--accent, #97242d);
+}
+
+:global(html[data-embed="ai-teaching"]) .outlineLink:hover {
+  color: var(--accent, #97242d);
 }
 
 :global(html[data-embed="ai-teaching"]) .block,

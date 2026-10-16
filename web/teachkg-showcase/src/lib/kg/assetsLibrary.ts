@@ -200,6 +200,14 @@ export function assetKindLabel(kind?: string): string {
   return KIND_LABEL[String(kind || "")] || String(kind || "资产");
 }
 
+/** 图谱/导图「相关资源」展示类型（暂不含原理：抽取质量不稳） */
+export const RELATED_ASSET_KINDS = [
+  "formula",
+  "example",
+  "theorem",
+  "technique",
+] as const;
+
 export function assetRoleLabel(role?: string): string {
   const r = String(role || "about");
   return ROLE_LABEL[r] || r;
@@ -207,6 +215,59 @@ export function assetRoleLabel(role?: string): string {
 
 function zhPart(name: string): string {
   return (name || "").split("/")[0].trim();
+}
+
+/** 实体键规范化：全名小写 + 中文主名小写，便于跨图谱/导图匹配 */
+export function normalizeEntityKeys(raw: string): string[] {
+  const id = String(raw || "").trim();
+  if (!id) return [];
+  const zh = zhPart(id);
+  const out = new Set<string>();
+  out.add(id);
+  out.add(id.toLowerCase());
+  if (zh) {
+    out.add(zh);
+    out.add(zh.toLowerCase());
+  }
+  return [...out];
+}
+
+/** 从 cards 重建 index_by_entity / index_by_chapter（静态 JSON 常缺索引） */
+export function ensureAssetsLibraryIndexes(
+  library: AssetsLibrary | null | undefined
+): AssetsLibrary | null {
+  if (!library || !Array.isArray(library.cards)) return library ?? null;
+  const byEntity: Record<string, string[]> = {};
+  const byChapter: Record<string, string[]> = {};
+  const addEnt = (key: string, aid: string) => {
+    for (const k of normalizeEntityKeys(key)) {
+      (byEntity[k] ||= []).push(aid);
+    }
+  };
+  for (const card of library.cards) {
+    const aid = String(card?.asset_id || "").trim();
+    if (!aid) continue;
+    for (const link of card.concepts || []) addEnt(String(link?.entity || ""), aid);
+    for (const edge of card.edges || []) {
+      addEnt(String(edge?.subject || ""), aid);
+      addEnt(String(edge?.object || ""), aid);
+    }
+    for (const name of assetChapterNames(card)) {
+      (byChapter[name] ||= []).push(aid);
+    }
+  }
+  const uniq = (m: Record<string, string[]>) =>
+    Object.fromEntries(
+      Object.keys(m)
+        .sort()
+        .map((k) => [k, [...new Set(m[k])].sort()])
+    );
+  return {
+    ...library,
+    card_count: library.cards.length,
+    index_by_entity: uniq(byEntity),
+    index_by_chapter: uniq(byChapter),
+  };
 }
 
 const CUE_MS_SPAN = /_(\d+)_(\d+)$/;
@@ -246,30 +307,29 @@ export function assetReviewSeek(
 }
 
 /** 实体全名或中文主名是否与卡片概念/边端点匹配 */
-export function entityMatchesAsset(entityId: string, card: AssetCard): boolean {
+export function entityMatchesAsset(
+  entityId: string,
+  card: AssetCard,
+  options?: { includeCardNames?: boolean }
+): boolean {
   const id = String(entityId || "").trim();
   if (!id) return false;
-  const idZh = zhPart(id).toLowerCase();
-  const keys = new Set<string>();
-  keys.add(id);
-  keys.add(idZh);
+  const keys = new Set(normalizeEntityKeys(id));
+  const hit = (raw?: string | null) => {
+    const t = String(raw || "").trim();
+    if (!t) return false;
+    return normalizeEntityKeys(t).some((k) => keys.has(k));
+  };
   for (const link of card.concepts || []) {
-    const e = String(link.entity || "").trim();
-    if (!e) continue;
-    if (keys.has(e) || keys.has(zhPart(e).toLowerCase())) return true;
+    if (hit(link.entity)) return true;
   }
   for (const edge of card.edges || []) {
-    for (const e of [edge.subject, edge.object]) {
-      const t = String(e || "").trim();
-      if (!t) continue;
-      if (keys.has(t) || keys.has(zhPart(t).toLowerCase())) return true;
-    }
+    if (hit(edge.subject) || hit(edge.object)) return true;
   }
-  const names = [card.name, ...(card.aliases || [])];
-  for (const n of names) {
-    const full = String(n || "").trim();
-    if (!full) continue;
-    if (full === id || zhPart(full).toLowerCase() === idZh) return true;
+  if (options?.includeCardNames !== false) {
+    for (const n of [card.name, ...(card.aliases || [])]) {
+      if (hit(n)) return true;
+    }
   }
   return false;
 }
@@ -282,7 +342,38 @@ export type FindAssetsOptions = {
   /** 原理仅展示大模型抽取（默认 true） */
   llmPrinciplesOnly?: boolean;
   kinds?: Array<AssetKind | string> | null;
+  /**
+   * full：索引 + 概念/边/卡名（图谱默认）。
+   * concept：索引 + 概念/边挂载，不含卡名乱撞（导图叶节点）。
+   * strict：仅索引精确键（导图 topic）。
+   */
+  matchMode?: "full" | "concept" | "strict";
 };
+
+/** 导图节点 → 资源匹配：章节无；topic 严格；叶/实体用 concept（尽量但不乱） */
+export type MindmapAssetPolicy = "none" | "strict" | "leaf";
+
+export function mindmapNodeAssetPolicy(nodeId: string): MindmapAssetPolicy {
+  const id = String(nodeId || "").trim();
+  if (
+    id.startsWith("__course__/") ||
+    id.startsWith("__part__/") ||
+    id.startsWith("__chapter__/") ||
+    id.startsWith("__lecture__/") ||
+    id.startsWith("chapter:") ||
+    id.startsWith("part:")
+  ) {
+    return "none";
+  }
+  if (
+    id.startsWith("__section__/") ||
+    id.startsWith("__topic__/") ||
+    id.startsWith("__salvage__/")
+  ) {
+    return "strict";
+  }
+  return "leaf";
+}
 
 function sourceRank(card: AssetCard): number {
   if (card.source === "llm" || (card.evidence || "").trim()) return 0;
@@ -320,16 +411,17 @@ export function findAssetsForEntity(
   const id = String(entityId).trim();
   const idZh = zhPart(id);
   const index = library.index_by_entity || {};
-  const ids = new Set<string>([
-    ...(index[id] || []),
-    ...(index[idZh] || []),
-  ]);
+  const ids = new Set<string>();
+  for (const key of normalizeEntityKeys(id)) {
+    for (const aid of index[key] || []) ids.add(aid);
+  }
   const lectureId =
     options?.lectureId != null && String(options.lectureId) !== ""
       ? String(options.lectureId)
       : null;
   const lectureOnly = Boolean(options?.lectureOnly && lectureId);
   const llmPrinciplesOnly = options?.llmPrinciplesOnly !== false;
+  const mode = options?.matchMode || "full";
   const kindAllow = options?.kinds?.length
     ? new Set(options.kinds.map(String))
     : null;
@@ -338,25 +430,33 @@ export function findAssetsForEntity(
   const seen = new Set<string>();
   for (const card of library.cards) {
     if (kindAllow && !kindAllow.has(String(card.kind))) continue;
-    const hit =
-      ids.has(card.asset_id) || entityMatchesAsset(id, card);
+    let hit = ids.has(card.asset_id);
+    if (!hit && mode === "full") {
+      hit = entityMatchesAsset(id, card, { includeCardNames: true });
+    } else if (!hit && mode === "concept") {
+      hit = entityMatchesAsset(id, card, { includeCardNames: false });
+    }
+    // strict：仅索引键
     if (!hit || seen.has(card.asset_id)) continue;
     if (llmPrinciplesOnly && card.kind === "principle" && card.source !== "llm") {
       continue;
     }
     const gLec = card.grounding?.lecture_id;
+    // 仅 lectureOnly 时硬过滤讲次；否则保留全部，排序时本讲优先
     if (lectureOnly) {
       if (card.source !== "llm") continue;
       if (String(gLec || "") !== lectureId) continue;
-    } else if (lectureId && gLec != null && String(gLec) !== "" && String(gLec) !== lectureId) {
-      continue;
     }
     seen.add(card.asset_id);
     out.push(card);
   }
+  const lecturePrefer = (card: AssetCard) =>
+    lectureId && String(card.grounding?.lecture_id || "") === lectureId ? 0 : 1;
   out.sort(
     (a, b) =>
-      sourceRank(a) - sourceRank(b) || compareAssetsByAppearance(a, b)
+      lecturePrefer(a) - lecturePrefer(b) ||
+      sourceRank(a) - sourceRank(b) ||
+      compareAssetsByAppearance(a, b)
   );
   return out;
 }
@@ -364,10 +464,7 @@ export function findAssetsForEntity(
 function cardEntityKeys(card: AssetCard): Set<string> {
   const keys = new Set<string>();
   const add = (raw?: string | null) => {
-    const t = String(raw || "").trim();
-    if (!t) return;
-    keys.add(t);
-    keys.add(zhPart(t).toLowerCase());
+    for (const k of normalizeEntityKeys(String(raw || ""))) keys.add(k);
   };
   for (const link of card.concepts || []) add(link.entity);
   for (const edge of card.edges || []) {
@@ -409,8 +506,6 @@ export function findPeerAssets(
     if (lectureOnly) {
       if (other.source !== "llm") continue;
       if (String(gLec || "") !== lectureId) continue;
-    } else if (lectureId && gLec != null && String(gLec) !== "" && String(gLec) !== lectureId) {
-      continue;
     }
     const otherKeys = cardEntityKeys(other);
     let shared = 0;
@@ -422,8 +517,11 @@ export function findPeerAssets(
       diffKind: String(other.kind) !== String(card.kind),
     });
   }
+  const lecturePrefer = (peer: AssetCard) =>
+    lectureId && String(peer.grounding?.lecture_id || "") === lectureId ? 0 : 1;
   hits.sort(
     (a, b) =>
+      lecturePrefer(a.peer) - lecturePrefer(b.peer) ||
       Number(b.diffKind) - Number(a.diffKind) ||
       b.shared - a.shared ||
       sourceRank(a.peer) - sourceRank(b.peer) ||

@@ -86,7 +86,13 @@ export function toMediaUrl(raw?: string | null): string | null {
   if (!p) return null;
   const encoded = p
     .split("/")
-    .map((seg) => encodeURIComponent(decodeURIComponent(seg)))
+    .map((seg) => {
+      try {
+        return encodeURIComponent(decodeURIComponent(seg));
+      } catch {
+        return encodeURIComponent(seg);
+      }
+    })
     .join("/");
   return withBase(`/repo-data/${encoded}`);
 }

@@ -98,6 +98,8 @@ export async function callLlm(env, messages, opts = {}) {
   const apiKey =
     env.SJTU_LLM_API_KEY ||
     env.LLM_API_KEY ||
+    env.SJTU_LLM_API_KEY ||
+    env.MMKG_LLM_API_KEY ||
     env.OPENAI_API_KEY ||
     env.VITE_LLM_API_KEY ||
     env.VITE_OPENAI_API_KEY ||

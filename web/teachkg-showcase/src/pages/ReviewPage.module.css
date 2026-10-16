@@ -144,8 +144,9 @@
   width: 100%;
   text-align: left;
   display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
@@ -164,9 +165,11 @@
 }
 
 .videoBadge {
+  align-self: flex-start;
   flex-shrink: 0;
   font-size: 11px;
-  padding: 4px 8px;
+  line-height: 1.35;
+  padding: 3px 8px;
   border-radius: 6px;
   background: rgba(91, 141, 239, 0.15);
   color: #9ecbff;
@@ -177,6 +180,7 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  width: 100%;
 }
 
 .clearFilter {
@@ -307,9 +311,11 @@
 .pointsBlock {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   border-top: 1px solid var(--line, rgba(255, 255, 255, 0.08));
 }
 
@@ -352,11 +358,12 @@
 .graphHost {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* 允许重要性滑条悬浮百分数冒出，画布区自行裁剪 */
-  overflow: visible;
+  /* 先缩检索框，再由容器裁切右侧控件（对齐导图 chrome） */
+  overflow: hidden;
 }
 
 .mapToolbar {
@@ -409,13 +416,19 @@
 .mindmapHost {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   height: 100%;
+  overflow: hidden;
+  /* 与独立导图页 / MindmapTree --mm-bg 一致 */
+  background: #fafafa;
 }
 
 .mapStack {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .mapPane {
@@ -424,6 +437,8 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .mapPane[data-hidden="1"] {
@@ -820,18 +835,56 @@
   flex-shrink: 0;
 }
 
+.entitySearchField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+}
+
 .entitySearchInput {
   min-width: 0;
+  width: 100%;
   flex: 1;
   max-width: none;
   height: 32px;
-  padding: 0 10px;
+  padding: 0 28px 0 10px;
   border-radius: 8px;
   border: 1px solid var(--line, #e8e1d7);
   background: var(--bg-elev, #fff);
   color: var(--text, #2b2724);
   font: inherit;
   font-size: 12px;
+}
+
+/* 隐藏浏览器自带清除钮，统一用自定义 × */
+.entitySearchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.entitySearchClear {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted, #9aa3ad);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.entitySearchClear:hover {
+  background: color-mix(in srgb, var(--line, #e8e1d7) 55%, transparent);
+  color: var(--text, #2b2724);
 }
 
 .workspaceHint {
@@ -864,6 +917,7 @@
 :global(html[data-embed="ai-teaching"]) .mapViewChips,
 :global(html[data-embed="ai-teaching"]) .entitySearchMenu,
 :global(html[data-embed="ai-teaching"]) .entitySearchInput,
+:global(html[data-embed="ai-teaching"]) .entitySearchClear,
 :global(html[data-embed="ai-teaching"]) .practiceSelect,
 :global(html[data-embed="ai-teaching"]) .navCollapseBtn,
 :global(html[data-embed="ai-teaching"]) .notesCollapseBtn,
@@ -885,7 +939,6 @@
 :global(html[data-embed="ai-teaching"]) .mapStack,
 :global(html[data-embed="ai-teaching"]) .mapPane,
 :global(html[data-embed="ai-teaching"]) .graphHost,
-:global(html[data-embed="ai-teaching"]) .mindmapHost,
 :global(html[data-embed="ai-teaching"]) .detailPane,
 :global(html[data-embed="ai-teaching"]) .notesSide,
 :global(html[data-embed="ai-teaching"]) .navSide,
@@ -893,6 +946,13 @@
 :global(html[data-embed="ai-teaching"]) .statChips,
 :global(html[data-embed="ai-teaching"]) .emptyPage {
   background: var(--bg-elev, #fff);
+  border-color: var(--line, #e8e1d7);
+  color: var(--text, #111);
+}
+
+/* 视频页导图底色与独立导图页一致，不被 embed 浅色主题盖成白/奶油色 */
+:global(html[data-embed="ai-teaching"]) .mindmapHost {
+  background: #fafafa;
   border-color: var(--line, #e8e1d7);
   color: var(--text, #111);
 }

@@ -375,17 +375,21 @@ function makeChapterCourseNode(
     maxNodesPerChapter?: number;
     maxDepthPerChapter?: number;
     shallow?: boolean;
-    /** 仅章→节层级，不含实体细节 */
+    /**
+     * 骨架：章为最外层叶（无节/主题子节点）。
+     * 完整课图勿开此项。
+     */
     hierarchyOnly?: boolean;
   }
 ): MindmapTreeNode {
   const trees = docForest(doc);
   const chRoot =
     trees.find((t) => t.id.startsWith("__chapter__/")) || trees[0];
+  // 骨架视图：分册 → 章（章不再挂下级）
   const topics = !chRoot
     ? []
     : opts.hierarchyOnly
-      ? chapterHierarchyOnly(chRoot, opts.maxTopicsPerChapter ?? 24)
+      ? []
       : opts.shallow
         ? chapterShallowTopics(chRoot, opts.maxTopicsPerChapter ?? 8)
         : chapterBodyForCourse(chRoot, {
@@ -402,7 +406,56 @@ function makeChapterCourseNode(
   };
 }
 
-/** 课总图：各章拼接；多册时在课名与章之间插入分册层 */
+/** 去掉「第 N 章」前缀后的章名，用于去重 */
+export function chapterBareTitle(name: string): string {
+  const s = String(name || "").trim();
+  return s.replace(/^第\s*\d+\s*章\s*/, "").trim() || s;
+}
+
+/**
+ * 按目录顺序挑章：只保留 catalog 中的章（去掉分册重映射重复项 / 索引脏项），
+ * 无 catalog 时按裸章名去重（保留先出现的）。
+ */
+export function preferCatalogChapters<T extends { chapter: string }>(
+  loaded: T[],
+  catalogOrder?: string[] | null
+): T[] {
+  if (!loaded.length) return [];
+  const byExact = new Map(
+    loaded.map((c) => [String(c.chapter || "").trim(), c] as const)
+  );
+  const byBare = new Map<string, T>();
+  for (const c of loaded) {
+    const bare = chapterBareTitle(c.chapter);
+    if (!bare || byBare.has(bare)) continue;
+    byBare.set(bare, c);
+  }
+  const order = (catalogOrder || []).map((n) => String(n || "").trim()).filter(Boolean);
+  if (order.length) {
+    const out: T[] = [];
+    const used = new Set<string>();
+    for (const name of order) {
+      const hit = byExact.get(name) || byBare.get(chapterBareTitle(name));
+      if (!hit) continue;
+      const key = String(hit.chapter || "").trim();
+      if (used.has(key)) continue;
+      used.add(key);
+      out.push({ ...hit, chapter: name } as T);
+    }
+    return out.length ? out : loaded;
+  }
+  const out: T[] = [];
+  const seenBare = new Set<string>();
+  for (const c of loaded) {
+    const bare = chapterBareTitle(c.chapter);
+    if (seenBare.has(bare)) continue;
+    seenBare.add(bare);
+    out.push(c);
+  }
+  return out;
+}
+
+/** 课总图：各章拼接；默认保留分册层（≥2 册时）；flattenParts=true 时章直挂课根 */
 export function buildCourseMindmapFromChapters(
   courseTitle: string,
   chapters: { chapter: string; doc: MindmapDoc }[],
@@ -413,8 +466,10 @@ export function buildCourseMindmapFromChapters(
     shallow?: boolean;
     hierarchyOnly?: boolean;
     source?: MindmapSource;
-    /** 分册目录：有 ≥2 册时插入 __part__ 层 */
+    /** 分册目录：有 ≥2 册且未 flatten 时插入 __part__ 层 */
     parts?: CoursePartInfo[] | null;
+    /** true：章直接挂课根；默认 false 保留分册 */
+    flattenParts?: boolean;
     lectureId?: string;
   } = {}
 ): MindmapDoc {
@@ -424,7 +479,8 @@ export function buildCourseMindmapFromChapters(
   );
 
   const parts = (opts.parts || []).filter((p) => (p.chapters || []).length);
-  const useParts = parts.length >= 2;
+  const flatten = Boolean(opts.flattenParts);
+  const useParts = !flatten && parts.length >= 2;
 
   let children: MindmapTreeNode[];
   if (useParts) {
@@ -510,6 +566,151 @@ export function extractLectureBranches(
   return branches.map((b) => cloneNode(b));
 }
 
+function normMatchKey(s: string): string {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/[（(].*?[）)]/g, "")
+    .replace(/[/\-·•,_，、]/g, "");
+}
+
+/** 课次复习点 / 片段标题 → 匹配键 */
+export function collectLectureMatchKeys(terms: Iterable<string>): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const raw of terms) {
+    const k = normMatchKey(raw);
+    if (!k || k.length < 2) continue;
+    if (/^片段\d*$/.test(k) || /好那么刚才|无有效口播/.test(k)) continue;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(k);
+  }
+  return out;
+}
+
+function nodeMatchScore(
+  node: MindmapTreeNode,
+  keys: string[],
+  noteCorpusNorm?: string
+): number {
+  const zh = normMatchKey(node.zh || "");
+  const idTail = normMatchKey(
+    String(node.id || "")
+      .split("/")
+      .filter(Boolean)
+      .slice(-1)[0] || ""
+  );
+  if (!zh && !idTail) return 0;
+  let best = 0;
+  // 笔记正文命中：节点名出现在 definition/summary/课次笔记里
+  if (noteCorpusNorm && zh.length >= 2 && noteCorpusNorm.includes(zh)) {
+    best = Math.max(best, zh.length >= 4 ? 9 : 7);
+  }
+  for (const k of keys) {
+    if (!k) continue;
+    if (zh === k || idTail === k) best = Math.max(best, 10);
+    else if (zh.includes(k) || k.includes(zh)) {
+      const shorter = Math.min(zh.length, k.length);
+      const longer = Math.max(zh.length || 1, k.length);
+      if (shorter >= 2 && shorter / longer >= 0.45) {
+        best = Math.max(best, shorter >= 4 ? 8 : 6);
+      }
+    } else if (idTail && (idTail.includes(k) || k.includes(idTail))) {
+      best = Math.max(best, 5);
+    }
+  }
+  return best;
+}
+
+/**
+ * 按课次关键词 / 笔记正文从章树抽出相关子树（含祖先路径）。
+ * 部分子节点未命中时保留命中枝，父节点标 weak（残缺子树）。
+ */
+export function extractMatchingSubtree(
+  root: MindmapTreeNode,
+  matchTerms: Iterable<string>,
+  opts: { minScore?: number; noteCorpus?: string } = {}
+): MindmapTreeNode | null {
+  const keys = collectLectureMatchKeys(matchTerms);
+  const noteCorpusNorm = opts.noteCorpus
+    ? normMatchKey(opts.noteCorpus)
+    : "";
+  if (!keys.length && !noteCorpusNorm) return null;
+  const minScore = opts.minScore ?? 6;
+
+  const walk = (
+    node: MindmapTreeNode
+  ): { node: MindmapTreeNode; hit: boolean; childTotal: number } | null => {
+    const kids = node.children || [];
+    const kept: MindmapTreeNode[] = [];
+    let childHits = 0;
+    for (const c of kids) {
+      const sub = walk(c);
+      if (!sub) continue;
+      kept.push(sub.node);
+      if (sub.hit) childHits += 1;
+    }
+    const selfScore = nodeMatchScore(node, keys, noteCorpusNorm);
+    const selfHit = selfScore >= minScore;
+    const isVirtual = String(node.id || "").startsWith("__");
+    // 虚根/章根：仅当有子命中时保留
+    if (isVirtual && String(node.id).startsWith("__chapter__/")) {
+      if (!kept.length) return null;
+      return {
+        node: {
+          ...cloneNode(node),
+          children: kept,
+          weak: kept.length < kids.length ? true : node.weak,
+        },
+        hit: true,
+        childTotal: kids.length,
+      };
+    }
+    if (!selfHit && !kept.length) return null;
+    const incomplete = kids.length > 0 && kept.length > 0 && kept.length < kids.length;
+    // 自身命中但子级全未命中：保留为叶（残缺：丢掉未讲细节）
+    const children =
+      selfHit && !kept.length
+        ? []
+        : kept;
+    return {
+      node: {
+        ...cloneNode(node),
+        children,
+        weak: incomplete || (selfHit && kids.length > 0 && !kept.length) || node.weak,
+      },
+      hit: selfHit || childHits > 0,
+      childTotal: kids.length,
+    };
+  };
+
+  const result = walk(root);
+  return result?.node || null;
+}
+
+/** 章树相对课次关键词 / 笔记正文的覆盖分（用于无 lecture_ids 时选章） */
+export function scoreChapterAgainstTerms(
+  doc: MindmapDoc,
+  matchTerms: Iterable<string>,
+  opts: { noteCorpus?: string } = {}
+): number {
+  const keys = collectLectureMatchKeys(matchTerms);
+  const noteCorpusNorm = opts.noteCorpus
+    ? normMatchKey(opts.noteCorpus)
+    : "";
+  if (!keys.length && !noteCorpusNorm) return 0;
+  const root = docForest(doc)[0];
+  if (!root) return 0;
+  let score = 0;
+  const walk = (n: MindmapTreeNode) => {
+    score += nodeMatchScore(n, keys, noteCorpusNorm);
+    for (const c of n.children || []) walk(c);
+  };
+  walk(root);
+  return score;
+}
+
 /**
  * 按实体 id 集合裁剪树：保留命中结点及其祖先；虚节点若仍有子则保留。
  * keepIds 为空时原样克隆。
@@ -535,14 +736,19 @@ export function pruneTreeByEntityIds(
 /**
  * 堂次 / 讲次：从章导图裁剪。
  * 1) 优先保留对应 `__lecture__/k` 枝
- * 2) 若给了 entityIds，再按相关性剪枝
- * 3) 多章时挂到虚根下
+ * 2) 有 matchTerms（课次复习点/片段）时，按相关/残缺子树抽取（text_first 主路径）
+ * 3) 否则若给了 entityIds，按实体剪枝；仍无信号则整章（兼容旧数据）
+ * 4) 多章时挂到虚根下
  */
 export function sliceChaptersForLectures(
   chapters: { chapter: string; doc: MindmapDoc }[],
   lectureIds: string[],
   opts: {
     entityIds?: Iterable<string>;
+    /** 课次内容关键词（review points / 片段标题 / 大纲信号） */
+    matchTerms?: Iterable<string>;
+    /** 笔记正文语料（definition/summary/课次笔记） */
+    noteCorpus?: string;
     sessionId?: string;
     source?: MindmapSource;
     minNodes?: number;
@@ -556,7 +762,11 @@ export function sliceChaptersForLectures(
       if (s) keep.add(s);
     }
   }
+  const matchKeys = collectLectureMatchKeys(opts.matchTerms || []);
+  const noteCorpus = String(opts.noteCorpus || "").trim();
+  const hasMatchSignal = matchKeys.length > 0 || noteCorpus.length > 0;
   const minNodes = opts.minNodes ?? 4;
+  const matchOpts = { noteCorpus: noteCorpus || undefined };
 
   const pieces: MindmapTreeNode[] = [];
   for (const { chapter, doc } of chapters) {
@@ -571,8 +781,12 @@ export function sliceChaptersForLectures(
         related: [],
         children: branches,
       };
-      // 已按讲枝裁过；实体过滤仅作二次收紧（堂次图过大时）
-      if (keep.size && countNodes(chRoot) > 48) {
+      if (hasMatchSignal) {
+        piece =
+          extractMatchingSubtree(chRoot, matchKeys, matchOpts) ||
+          (keep.size ? pruneTreeByEntityIds(chRoot, keep) : null) ||
+          chRoot;
+      } else if (keep.size && countNodes(chRoot) > 48) {
         piece = pruneTreeByEntityIds(chRoot, keep) || chRoot;
       } else {
         piece = chRoot;
@@ -580,12 +794,52 @@ export function sliceChaptersForLectures(
     } else {
       const root = docForest(doc)[0];
       if (!root) continue;
-      const pruned = keep.size
-        ? pruneTreeByEntityIds(root, keep)
-        : cloneNode(root);
-      piece = pruned;
+      const isOutline =
+        doc.meta?.pipeline === "text_first_v1" ||
+        doc.meta?.source === "outline_text" ||
+        doc.meta?.source === "outline+kg";
+
+      if (hasMatchSignal) {
+        const matched = extractMatchingSubtree(root, matchKeys, matchOpts);
+        if (matched && countNodes(matched) >= 2) {
+          piece = matched;
+        } else if (keep.size) {
+          piece = pruneTreeByEntityIds(root, keep);
+        }
+        // text_first：匹配过稀时不回整章，宁可跳过该章
+        if (!piece && !isOutline) piece = cloneNode(root);
+      } else if (!keep.size) {
+        piece = cloneNode(root);
+      } else {
+        let pruned = pruneTreeByEntityIds(root, keep);
+        if (
+          isOutline &&
+          (!pruned || countNodes(pruned) < Math.min(minNodes, 4))
+        ) {
+          pruned = cloneNode(root);
+        }
+        piece = pruned;
+      }
     }
     if (piece && (piece.children?.length || !piece.id.startsWith("__"))) {
+      // 统一章包装，便于多章拼接
+      if (!String(piece.id || "").startsWith("__chapter__/")) {
+        piece = {
+          id: `__chapter__/${chapter}`,
+          zh: chapter,
+          importance: 0.7,
+          relation: "toc_chapter",
+          related: [],
+          children: piece.children?.length
+            ? piece.children
+            : piece.id.startsWith("__")
+              ? []
+              : [piece],
+          weak: piece.weak,
+        };
+      } else {
+        piece = { ...piece, zh: chapter };
+      }
       pieces.push(piece);
     }
   }
@@ -598,28 +852,15 @@ export function sliceChaptersForLectures(
   const sessIdx = Math.ceil(Math.min(...lids.map(Number).filter((n) => n > 0)) / 2) || 1;
   const label = `第 ${sessIdx} 次课`;
 
-  let root: MindmapTreeNode;
-  if (pieces.length === 1 && pieces[0].id.startsWith("__chapter__/")) {
-    root = pieces[0];
-  } else if (pieces.length === 1) {
-    root = {
-      id: `__lecture__/${sessionId}`,
-      zh: label,
-      importance: 0.6,
-      relation: null,
-      related: [],
-      children: pieces[0].children?.length ? pieces[0].children : [pieces[0]],
-    };
-  } else {
-    root = {
-      id: `__lecture__/${sessionId}`,
-      zh: label,
-      importance: 0.6,
-      relation: null,
-      related: [],
-      children: pieces,
-    };
-  }
+  // 单章/多章均保留 __chapter__ 壳，树上可见章节名称
+  const root: MindmapTreeNode = {
+    id: `__lecture__/${sessionId}`,
+    zh: label,
+    importance: 0.6,
+    relation: null,
+    related: [],
+    children: pieces,
+  };
 
   const stats = forestStats([root]);
   if (stats.n_nodes < minNodes) return null;
@@ -630,7 +871,7 @@ export function sliceChaptersForLectures(
     virtual_root: true,
     scope: "lecture",
     lecture_ids: lids,
-    source: opts.source || "kg",
+    source: opts.source || (hasMatchSignal ? "review+kg" : "kg"),
     n_trees: 1,
     composed_from: "chapter_slice",
   });
@@ -699,10 +940,63 @@ export function mergeMindmapIndexWithChapters(
   const existingChapters = items.filter(
     (i) => i.scope === "chapter" || String(i.lecture_id).startsWith("chapter:")
   );
-  const chapters =
-    existingChapters.length > 0
-      ? existingChapters
-      : aggregateChapterIndexItems(lectures);
+  // 已有部分章条目时仍与讲次聚合结果并集，避免 index 只登记 2 章导致侧栏「章节」缺失
+  const aggregated = aggregateChapterIndexItems(lectures);
+  const chapterByKey = new Map<string, MindmapIndexItem>();
+  const putChapter = (it: MindmapIndexItem) => {
+    const key =
+      String(it.chapter || it.root_zh || "").trim() ||
+      String(it.lecture_id || "").trim();
+    if (!key) return;
+    const prev = chapterByKey.get(key);
+    if (!prev) {
+      chapterByKey.set(key, { ...it, scope: "chapter" });
+      return;
+    }
+    const lids = [
+      ...new Set([...(prev.lecture_ids || []), ...(it.lecture_ids || [])].map(String)),
+    ].sort((a, b) => Number(a) - Number(b) || a.localeCompare(b));
+    chapterByKey.set(key, {
+      ...prev,
+      ...it,
+      scope: "chapter",
+      lecture_ids: lids.length ? lids : prev.lecture_ids,
+      n_nodes: Math.max(Number(prev.n_nodes) || 0, Number(it.n_nodes) || 0),
+      path: prev.path || it.path,
+    });
+  };
+  for (const it of existingChapters) putChapter(it);
+  for (const it of aggregated) putChapter(it);
+  // catalog 章序：补全尚无索引行的章名（占位，path 按约定）
+  for (const name of opts.chapterOrder || []) {
+    const ch = String(name || "").trim();
+    if (!ch || chapterByKey.has(ch)) continue;
+    const slug = chapterFileSlug(ch);
+    putChapter({
+      lecture_id: chapterNavId(ch),
+      chapter: ch,
+      chapter_id: ch,
+      root_zh: ch.replace(/^第\s*\d+\s*章\s*/, "").trim() || ch,
+      n_nodes: 2,
+      max_depth: 1,
+      orphan_count: 0,
+      path: `mindmaps/chapter_${slug}.json`,
+      scope: "chapter",
+      lecture_ids: [],
+      source: "kg",
+    });
+  }
+  const chapters = [...chapterByKey.values()].sort((a, b) => {
+    const order = opts.chapterOrder || [];
+    const ia = order.indexOf(String(a.chapter || ""));
+    const ib = order.indexOf(String(b.chapter || ""));
+    if (ia >= 0 || ib >= 0) {
+      if (ia < 0) return 1;
+      if (ib < 0) return -1;
+      return ia - ib;
+    }
+    return String(a.chapter || "").localeCompare(String(b.chapter || ""), "zh");
+  });
 
   const normalizeLecture = (it: MindmapIndexItem): MindmapIndexItem => ({
     ...it,

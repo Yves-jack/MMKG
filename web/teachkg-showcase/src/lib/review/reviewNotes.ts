@@ -1,8 +1,8 @@
 import type { AppReviewPoint } from "@/lib/review/data";
 import { withBase } from "@/lib/withBase";
 
-/** 笔记结构版本：v6 主题 blocks（脉络/定义/性质/例子/易错/自测），不再附技巧/自测清单节 */
-export const LECTURE_NOTES_VERSION = 6;
+/** 笔记结构版本：v10 课次一篇（大纲 + 多部分讲义） */
+export const LECTURE_NOTES_VERSION = 11;
 
 export type NoteSectionKind =
   | "theme"
@@ -11,7 +11,8 @@ export type NoteSectionKind =
   | "checklist"
   | "overview"
   | "concept"
-  | "structure";
+  | "structure"
+  | "part";
 
 export type NoteBlockType =
   | "hook"
@@ -25,18 +26,15 @@ export type NoteBlock = {
   type: NoteBlockType;
   label?: string;
   text: string;
-  /** cue 专用：简短参考答（可折叠展示） */
   answer?: string;
 };
 
+/** @deprecated v9 起不再使用主题簇；保留字段以兼容旧缓存解析 */
 export type LectureTheme = {
   id: string;
   title: string;
-  /** 一眼看懂的一句话 */
   oneLiner: string;
-  /** 该主题下的关键词/概念 */
   keyPoints: string[];
-  /** 聚合时挂上的图谱实体 id（精确匹配，不bump版本） */
   entityIds?: string[];
 };
 
@@ -49,8 +47,8 @@ export type LectureNoteSection = {
   bullets: string[];
   related: string[];
   tips: string[];
-  /** v4：像课堂笔记的分块 */
   blocks?: NoteBlock[];
+  entityIds?: string[];
 };
 
 export type LectureNotesDoc = {
@@ -58,6 +56,9 @@ export type LectureNotesDoc = {
   title: string;
   subtitle: string;
   overview: string;
+  /** 大纲条目，与各 part 标题对应 */
+  outline?: string[];
+  /** 固定为空；旧字段保留 */
   themes: LectureTheme[];
   sections: LectureNoteSection[];
   model?: string;
@@ -94,59 +95,72 @@ function packPoint(p: AppReviewPoint) {
   };
 }
 
-function neighborNames(p: AppReviewPoint): string[] {
-  const names = new Set<string>();
-  for (const n of p.neighbors || []) {
-    names.add(zh(n.subject));
-    names.add(zh(n.object));
-  }
-  names.delete(p.zh);
-  return [...names];
+function polishOverview(text: string): string {
+  return String(text || "")
+    .replace(/本次课为单课复习[，,]?\s*/g, "本次课")
+    .replace(/本次课\s*聚焦/g, "本次课聚焦")
+    .trim();
 }
 
-/** 按重要性种子 + 邻接 overlap，把知识点分成若干主题簇 */
-function clusterThemes(points: AppReviewPoint[], maxThemes = 8) {
-  const ranked = [...points].sort((a, b) => b.importance - a.importance);
-  if (!ranked.length) return [] as { seed: AppReviewPoint; members: AppReviewPoint[] }[];
-
-  const nThemes = Math.min(maxThemes, Math.max(2, Math.ceil(ranked.length / 5)));
-  const seeds = ranked.slice(0, nThemes);
-  const used = new Set(seeds.map((s) => s.id));
-  const clusters = seeds.map((seed) => ({ seed, members: [seed] as AppReviewPoint[] }));
-
-  for (const p of ranked) {
-    if (used.has(p.id)) continue;
-    const pNames = new Set([p.zh, ...neighborNames(p)]);
-    let best = 0;
-    let bestScore = -1;
-    clusters.forEach((c, i) => {
-      const cNames = new Set([
-        c.seed.zh,
-        ...c.members.flatMap((m) => [m.zh, ...neighborNames(m)]),
-      ]);
-      let overlap = 0;
-      for (const n of pNames) if (cNames.has(n)) overlap += 1;
-      const score = overlap * 10 + (p.importance || 0);
-      if (score > bestScore) {
-        bestScore = score;
-        best = i;
+function normalizeBlocks(raw: unknown): NoteBlock[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((b) => {
+      const type = String((b as NoteBlock)?.type || "").trim() as NoteBlockType;
+      if (!BLOCK_TYPES.has(type)) return null;
+      // 定义已写入正文，不再单独出定义卡片
+      if (type === "def" || type === "hook" || type === "cue") return null;
+      const text = String((b as NoteBlock)?.text || "").trim();
+      if (!text) return null;
+      let label = String((b as NoteBlock)?.label || "").trim();
+      if (type === "fact" && !label) label = "性质";
+      if (type === "example" && (!label || label === "课堂" || label === "例")) {
+        label = "例";
       }
-    });
-    clusters[best].members.push(p);
-    used.add(p.id);
-  }
-  return clusters;
+      if (type === "pitfall" && !label) label = "注";
+      return label ? { type, label, text } : { type, text };
+    })
+    .filter(Boolean)
+    .slice(0, 12) as NoteBlock[];
 }
 
-export function isThemeNotes(doc: LectureNotesDoc | null | undefined): doc is LectureNotesDoc {
+/** 只保留课次讲义部分（part）；旧 concept/theme 亦归一为 part */
+export function conceptSections(sections: LectureNoteSection[]): LectureNoteSection[] {
+  return (sections || [])
+    .filter(
+      (s) =>
+        s.kind === "part" ||
+        s.kind === "concept" ||
+        s.kind === "structure" ||
+        s.kind === "theme" ||
+        s.kind === "overview",
+    )
+    .map((s) => ({
+      ...s,
+      kind: "part" as const,
+      tips: [],
+      body: String(s.body || "").trim(),
+      blocks: normalizeBlocks(s.blocks),
+    }));
+}
+
+/** @deprecated 使用 conceptSections */
+export function themeOnlySections(sections: LectureNoteSection[]): LectureNoteSection[] {
+  return conceptSections(sections);
+}
+
+export function isLectureNotes(doc: LectureNotesDoc | null | undefined): doc is LectureNotesDoc {
   return Boolean(
     doc &&
       doc.version === LECTURE_NOTES_VERSION &&
-      Array.isArray(doc.themes) &&
-      doc.themes.length > 0 &&
       Array.isArray(doc.sections) &&
-      doc.sections.length > 0
+      doc.sections.length > 0,
   );
+}
+
+/** @deprecated */
+export function isThemeNotes(doc: LectureNotesDoc | null | undefined): doc is LectureNotesDoc {
+  return isLectureNotes(doc);
 }
 
 function nameKeys(raw: string): string[] {
@@ -190,234 +204,337 @@ function resolveNames(names: string[], index: Map<string, string[]>): string[] {
   return ids;
 }
 
-/** 把主题标题/关键词解析成图谱实体 id；已有 entityIds 则并入 */
-export function attachThemeEntities(
+/** 把小节标题 / related 解析成图谱实体 id */
+export function attachSectionEntities(
   doc: LectureNotesDoc,
-  points: AppReviewPoint[]
+  points: AppReviewPoint[],
 ): LectureNotesDoc {
-  if (!points.length || !doc.themes?.length) return doc;
+  if (!points.length || !doc.sections?.length) return doc;
   const index = buildNameIndex(points);
-  const themes = doc.themes.map((t) => {
-    const sec = doc.sections.find((s) => s.id === t.id);
-    const names = [
-      t.title,
-      ...(t.keyPoints || []),
-      ...(sec?.related || []),
-      sec?.title || "",
-    ];
+  const sections = doc.sections.map((s) => {
+    const names = [s.title, ...(s.related || [])];
     const resolved = resolveNames(names, index);
     const merged: string[] = [];
     const seen = new Set<string>();
-    for (const id of [...(t.entityIds || []), ...resolved]) {
+    for (const id of [...(s.entityIds || []), ...resolved]) {
       if (!id || seen.has(id)) continue;
       seen.add(id);
       merged.push(id);
     }
-    return merged.length ? { ...t, entityIds: merged } : t;
+    return merged.length ? { ...s, entityIds: merged } : s;
   });
-  return { ...doc, themes };
+  return { ...doc, sections, themes: [] };
 }
 
-export function themeMatchesFocus(
-  theme: LectureTheme,
+/** @deprecated */
+export function attachThemeEntities(
+  doc: LectureNotesDoc,
+  points: AppReviewPoint[],
+): LectureNotesDoc {
+  return attachSectionEntities(doc, points);
+}
+
+export function sectionMatchesFocus(
+  sec: LectureNoteSection,
   focusId?: string | null,
-  focusZh?: string | null
+  focusZh?: string | null,
 ): boolean {
   const id = String(focusId || "").trim();
   const label = String(focusZh || "").trim();
-  if (id && (theme.entityIds || []).includes(id)) return true;
+  if (id && (sec.entityIds || []).includes(id)) return true;
   if (id) {
     const idZh = zh(id);
-    if ((theme.entityIds || []).some((eid) => eid === id || zh(eid) === idZh)) {
-      return true;
-    }
+    if ((sec.entityIds || []).some((eid) => eid === id || zh(eid) === idZh)) return true;
+    if ((sec.related || []).some((r) => r === id || zh(r) === idZh)) return true;
   }
   if (!label) return false;
-  if (theme.title === label) return true;
-  if ((theme.keyPoints || []).some((k) => k === label || zh(k) === label)) return true;
-  return (theme.entityIds || []).some((eid) => zh(eid) === label);
+  if (sec.title === label || zh(sec.title) === label) return true;
+  return (sec.related || []).some((r) => r === label || zh(r) === label);
 }
 
-export function pickThemeForFocus(
+/** @deprecated */
+export function themeMatchesFocus(
+  theme: LectureTheme,
+  focusId?: string | null,
+  focusZh?: string | null,
+): boolean {
+  const fake: LectureNoteSection = {
+    id: theme.id,
+    kind: "concept",
+    title: theme.title,
+    summary: theme.oneLiner,
+    body: "",
+    bullets: [],
+    related: theme.keyPoints || [],
+    tips: [],
+    entityIds: theme.entityIds,
+  };
+  return sectionMatchesFocus(fake, focusId, focusZh);
+}
+
+export function pickSectionForFocus(
   doc: LectureNotesDoc,
   focusId?: string | null,
-  focusZh?: string | null
-): LectureTheme | null {
-  const hits = doc.themes.filter((t) => themeMatchesFocus(t, focusId, focusZh));
+  focusZh?: string | null,
+): LectureNoteSection | null {
+  const hits = doc.sections.filter((s) => sectionMatchesFocus(s, focusId, focusZh));
   if (!hits.length) return null;
-  hits.sort(
-    (a, b) => (a.entityIds?.length || 99) - (b.entityIds?.length || 99)
-  );
+  hits.sort((a, b) => (a.entityIds?.length || 99) - (b.entityIds?.length || 99));
   return hits[0];
 }
 
-function normalizeBlocks(raw: unknown): NoteBlock[] {
-  if (!Array.isArray(raw)) return [];
-  return raw
-    .map((b) => {
-      const type = String((b as NoteBlock)?.type || "").trim() as NoteBlockType;
-      if (!BLOCK_TYPES.has(type)) return null;
-      const text = String((b as NoteBlock)?.text || "").trim();
-      if (!text) return null;
-      let label = String((b as NoteBlock)?.label || "").trim();
-      // 旧稿「课堂」统一成「例子」
-      if (label === "课堂" || (type === "example" && !label)) label = "例子";
-      const answer = String((b as NoteBlock)?.answer || "").trim();
-      const out: NoteBlock = label ? { type, label, text } : { type, text };
-      if (type === "cue" && answer) out.answer = answer;
-      return out;
-    })
-    .filter(Boolean)
-    .slice(0, 16) as NoteBlock[];
+/** @deprecated */
+export function pickThemeForFocus(
+  doc: LectureNotesDoc,
+  focusId?: string | null,
+  focusZh?: string | null,
+): LectureTheme | null {
+  const sec = pickSectionForFocus(doc, focusId, focusZh);
+  if (!sec) return null;
+  return {
+    id: sec.id,
+    title: sec.title,
+    oneLiner: sec.summary,
+    keyPoints: sec.related || [],
+    entityIds: sec.entityIds,
+  };
 }
 
-/** 只保留主题类小节；去掉技巧 / checklist 等尾部栏 */
-export function themeOnlySections(sections: LectureNoteSection[]): LectureNoteSection[] {
-  return (sections || [])
-    .filter((s) => s.kind === "theme" || s.kind === "concept" || s.kind === "structure")
-    .map((s) => ({
-      ...s,
-      tips: [],
-      blocks: normalizeBlocks(s.blocks),
-    }));
-}
-
-function localBlocksForCluster(
-  seed: AppReviewPoint,
-  members: AppReviewPoint[]
-): NoteBlock[] {
-  const top = [...members].sort((a, b) => b.importance - a.importance);
+function localBlocksForPoint(p: AppReviewPoint): NoteBlock[] {
   const blocks: NoteBlock[] = [];
-  const hookBits = [
-    `这一块围绕「${seed.zh}」展开`,
-    top
-      .slice(0, 4)
-      .map((m) => m.zh)
-      .join("、"),
-  ];
-  blocks.push({
-    type: "hook",
-    label: "脉络",
-    text: `${hookBits[0]}，连带 ${hookBits[1]}。复习时先能讲清「${seed.zh}」在整堂课里扮演什么角色。`,
-  });
-
-  for (const m of top.slice(0, 4)) {
-    const def = (m.definition || m.summary || "").trim();
-    if (!def) continue;
+  const def = String(p.definition || "").trim();
+  const summary = String(p.summary || "").trim();
+  if (summary && summary !== def) {
     blocks.push({
-      type: "def",
-      label: "定义",
-      text: `${m.zh} — ${def.slice(0, 160)}${def.length > 160 ? "…" : ""}`,
+      type: "fact",
+      label: "性质",
+      text: summary.slice(0, 280) + (summary.length > 280 ? "…" : ""),
     });
   }
 
-  const facts: string[] = [];
-  for (const m of top.slice(0, 5)) {
-    for (const n of (m.neighbors || []).slice(0, 2)) {
-      const stmt =
-        n.natural_statement ||
-        `${zh(n.subject)} —${n.label || n.predicate}→ ${zh(n.object)}`;
-      if (stmt) facts.push(stmt);
-    }
-  }
-  for (const f of [...new Set(facts)].slice(0, 3)) {
-    blocks.push({ type: "fact", label: "关系", text: f });
+  const neighbors = (p.neighbors || [])
+    .map((n) => zh(n.object) || zh(n.subject))
+    .filter((name) => name && name !== p.zh)
+    .slice(0, 4);
+  if (neighbors.length) {
+    blocks.push({
+      type: "fact",
+      label: "相关",
+      text: `与 ${neighbors.join("、")} 等相关；边关系见知识图谱。`,
+    });
   }
 
-  const ev = (seed.evidence || [])
+  const ev = (p.evidence || [])
     .map((e) => String(e.text || "").trim())
     .filter(Boolean);
   if (ev[0]) {
     blocks.push({
       type: "example",
-      label: "例子",
-      text: ev[0].slice(0, 180) + (ev[0].length > 180 ? "…" : ""),
-    });
-  } else if (top[1]) {
-    blocks.push({
-      type: "example",
-      label: "例子",
-      text: `把「${seed.zh}」和「${top[1].zh}」放在一起对照：先写出各自定义，再看材料里的关系边。`,
+      label: "例",
+      text: ev[0].slice(0, 260) + (ev[0].length > 260 ? "…" : ""),
     });
   }
 
-  if (top.length >= 2) {
-    blocks.push({
-      type: "pitfall",
-      label: "易混",
-      text: `别把「${seed.zh}」和「${top[1].zh}」当成同一层级：先分清定义，再谈谁依赖谁。`,
-    });
-  }
-
-  blocks.push({
-    type: "cue",
-    label: "自测",
-    text: `合上材料：用一句话说清「${seed.zh}」是什么，并举一个和它相关的概念。`,
-    answer: `${seed.zh}：${(seed.summary || seed.definition || "见课堂定义")
-      .trim()
-      .slice(0, 120)}；相关可提 ${top
-      .slice(1, 3)
-      .map((m) => m.zh)
-      .join("、") || "同主题其他概念"}。`,
-  });
-
-  return blocks.slice(0, 14);
+  return blocks.slice(0, 8);
 }
 
-/** 无 LLM 时：按主题簇拼一份「有笔记感」的本地稿 */
+function sessionNoteTitle(lectureId: string, title?: string): {
+  title: string;
+  subtitle: string;
+} {
+  const id = String(lectureId || "").trim();
+  const m = id.match(/^(\d+)_(\d+)$/);
+  if (m) {
+    const idx = Math.ceil(Number(m[1]) / 2);
+    return {
+      title: title?.trim() || `第 ${idx} 次课 · 笔记`,
+      subtitle: `第 ${m[1]}–${m[2]} 讲`,
+    };
+  }
+  return {
+    title: title?.trim() || `第 ${id || "?"} 讲 · 笔记`,
+    subtitle: "单讲课次",
+  };
+}
+
+/** 无 LLM：把知识点粗分成若干部分，拼成一篇本地讲义 */
 export function buildLocalLectureNotes(input: {
   courseId: string;
   lectureId: string;
   title?: string;
   points: AppReviewPoint[];
 }): LectureNotesDoc {
-  const clusters = clusterThemes(input.points, 8);
-
-  const themes: LectureTheme[] = clusters.map((c, i) => ({
-    id: `theme-${i + 1}`,
-    title: c.seed.zh,
-    oneLiner: (c.seed.summary || c.seed.definition || `围绕「${c.seed.zh}」及相关概念`).slice(
-      0,
-      80
-    ),
-    keyPoints: c.members.slice(0, 6).map((m) => m.zh),
-    entityIds: c.members.map((m) => m.id),
-  }));
-
-  const themeSections: LectureNoteSection[] = clusters.map((c, i) => {
-    const blocks = localBlocksForCluster(c.seed, c.members);
-    return {
-      id: `theme-${i + 1}`,
-      kind: "theme" as const,
-      title: c.seed.zh,
-      summary: `「${c.seed.zh}」这一线串起 ${c.members.length} 个相关概念；先抓住定义，再看关系与例子。`,
-      body: "",
-      blocks,
+  const ranked = [...input.points].sort((a, b) => b.importance - a.importance);
+  const take = ranked.slice(0, 18);
+  const partCount = Math.min(4, Math.max(2, Math.ceil(take.length / 5)));
+  const chunkSize = Math.ceil(take.length / partCount) || 1;
+  const sections: LectureNoteSection[] = [];
+  for (let i = 0; i < partCount; i++) {
+    const chunk = take.slice(i * chunkSize, (i + 1) * chunkSize);
+    if (!chunk.length) continue;
+    const names = chunk.map((p) => p.zh);
+    const body = chunk
+      .map((p) => {
+        const def = String(p.definition || p.summary || "").trim();
+        return def
+          ? `关于「${p.zh}」：${def.slice(0, 220)}${def.length > 220 ? "…" : ""}`
+          : `本部分涉及「${p.zh}」，请结合图谱节点与课堂录像复习。`;
+      })
+      .join("\n\n");
+    sections.push({
+      id: `part-${i + 1}`,
+      kind: "part",
+      title: `${["一", "二", "三", "四"][i] || String(i + 1)}、${names[0]}${names.length > 1 ? "等" : ""}`,
+      summary: `覆盖：${names.slice(0, 4).join("、")}${names.length > 4 ? " 等" : ""}`,
+      body,
+      blocks: chunk.slice(0, 2).flatMap((p) => localBlocksForPoint(p).slice(0, 2)),
       bullets: [],
-      related: c.members.map((m) => m.zh),
+      related: names.slice(0, 10),
       tips: [],
-    };
-  });
+      entityIds: chunk.map((p) => p.id),
+    });
+  }
 
-  return attachThemeEntities(
+  const head = sessionNoteTitle(input.lectureId, input.title);
+  const outline = sections.map((s) => s.title);
+  const names = take.map((p) => p.zh).slice(0, 8);
+  return attachSectionEntities(
     {
       version: LECTURE_NOTES_VERSION,
-      title:
-        input.title ||
-        (/^\d+_\d+$/.test(String(input.lectureId))
-          ? `第 ${String(input.lectureId).replace("_", "–")} 讲 · 笔记`
-          : `第 ${input.lectureId} 讲 · 笔记`),
-      subtitle: "本地整理 · 分主题（脉络 / 定义 / 例子 / 易错 / 自测）",
-      overview: `本堂课收成 ${themes.length} 个主题：${themes
-        .map((t) => t.title)
-        .join("、")}。按主题展开：脉络 → 定义 → 性质 → 例子 → 自测。`,
-      themes,
-      sections: themeSections,
+      title: head.title,
+      subtitle: `${head.subtitle} · 本地整理`,
+      overview: polishOverview(
+        names.length
+          ? `本次课聚焦：${names.join("、")}${take.length > names.length ? " 等" : ""}。下文按部分串讲，便于整堂复习。`
+          : "本次课暂无足够材料生成讲义。",
+      ),
+      outline,
+      themes: [],
+      sections,
       source: "local",
       generatedAt: Date.now(),
     },
-    input.points
+    input.points,
   );
+}
+
+function neighborNamesSafe(p: AppReviewPoint): string[] {
+  const names = new Set<string>();
+  for (const n of p.neighbors || []) {
+    names.add(zh(n.subject));
+    names.add(zh(n.object));
+  }
+  names.delete(p.zh);
+  return [...names];
+}
+
+function docFromApiPayload(
+  data: Record<string, unknown>,
+  input: { lectureId: string; points: AppReviewPoint[] },
+): LectureNotesDoc | null {
+  const sections: LectureNoteSection[] = conceptSections(
+    Array.isArray(data.sections)
+      ? (data.sections as LectureNoteSection[]).map((s, i) => ({
+          id: String(s.id || `part-${i + 1}`),
+          kind: (s.kind || "part") as NoteSectionKind,
+          title: String(s.title || ""),
+          summary: String(s.summary || ""),
+          body: String(s.body || ""),
+          bullets: Array.isArray(s.bullets) ? s.bullets.map(String) : [],
+          related: Array.isArray(s.related) ? s.related.map(String) : [],
+          tips: [],
+          blocks: normalizeBlocks(s.blocks),
+          entityIds: Array.isArray(s.entityIds) ? s.entityIds.map(String) : [],
+        }))
+      : [],
+  );
+  if (!sections.length) return null;
+
+  const fromDisk = Boolean(data.cachedFromDisk);
+  const subtitle = String(data.subtitle || "");
+
+  const outlineRaw = Array.isArray(data.outline)
+    ? data.outline.map((x) => String(x || "").trim()).filter(Boolean)
+    : [];
+  const outline = outlineRaw.length
+    ? outlineRaw.slice(0, 8)
+    : sections.map((s) => s.title);
+
+  const head = sessionNoteTitle(input.lectureId);
+  return attachSectionEntities(
+    {
+      version: LECTURE_NOTES_VERSION,
+      title: String(data.title || head.title),
+      subtitle,
+      overview: polishOverview(String(data.overview || "")),
+      outline,
+      themes: [],
+      sections,
+      model: data.model ? String(data.model) : undefined,
+      source: fromDisk ? "disk" : "llm",
+      generatedAt: Number(data.generatedAt) || Date.now(),
+    },
+    input.points,
+  );
+}
+
+async function pollLectureNotes(input: {
+  courseId: string;
+  lectureId: string;
+  points: AppReviewPoint[];
+  /** total wait budget */
+  maxWaitMs?: number;
+}): Promise<LectureNotesDoc | null> {
+  const maxWaitMs = input.maxWaitMs ?? 180_000;
+  const started = Date.now();
+  const url =
+    withBase("/api/review-notes") +
+    `?courseId=${encodeURIComponent(input.courseId)}&lectureId=${encodeURIComponent(input.lectureId)}`;
+
+  while (Date.now() - started < maxWaitMs) {
+    await new Promise((r) => setTimeout(r, 2000));
+    try {
+      const r = await fetch(url, { method: "GET" });
+      const data = await r.json().catch(() => ({}));
+      if (r.status === 200) {
+        const doc = docFromApiPayload(data, input);
+        if (doc) return doc;
+      }
+      if (r.status === 202 || data?.status === "generating") {
+        continue;
+      }
+      if (r.status === 502 || data?.status === "failed") {
+        return null;
+      }
+      // 404 NOT_CACHED: job may not have written status yet
+      if (r.status === 404) continue;
+    } catch {
+      /* network blip — keep polling */
+    }
+  }
+  return null;
+}
+
+/** 只读已落盘缓存，不触发 LLM 生成（课次连点切换用） */
+export async function peekLectureNotesCache(input: {
+  courseId: string;
+  lectureId: string;
+  points: AppReviewPoint[];
+}): Promise<LectureNotesDoc | null> {
+  const url =
+    withBase("/api/review-notes") +
+    `?courseId=${encodeURIComponent(input.courseId)}&lectureId=${encodeURIComponent(input.lectureId)}`;
+  try {
+    const r = await fetch(url, { method: "GET" });
+    if (r.status !== 200) return null;
+    const data = await r.json().catch(() => ({}));
+    return docFromApiPayload(
+      { ...data, cachedFromDisk: true },
+      { lectureId: input.lectureId, points: input.points },
+    );
+  } catch {
+    return null;
+  }
 }
 
 export async function fetchLectureNotes(input: {
@@ -425,7 +542,6 @@ export async function fetchLectureNotes(input: {
   lectureId: string;
   title?: string;
   points: AppReviewPoint[];
-  /** true 时跳过服务端磁盘缓存，强制重新生成 */
   force?: boolean;
 }): Promise<LectureNotesDoc> {
   const payload = {
@@ -433,6 +549,8 @@ export async function fetchLectureNotes(input: {
     lectureId: input.lectureId,
     title: input.title,
     force: Boolean(input.force),
+    /** 避开前置网关 60s 超时：服务端后台生成，前端轮询 */
+    async: true,
     points: input.points.map(packPoint),
   };
   let r: Response | null = null;
@@ -458,10 +576,28 @@ export async function fetchLectureNotes(input: {
     const why = String((lastFetchErr as Error)?.message || lastFetchErr || "fetch failed");
     return {
       ...local,
-      subtitle: `本地整理（生成失败：${why}；请确认图谱服务与宿主机 LLM 代理 :18765 可用）`,
+      subtitle: `本地整理（生成失败：${why}；请确认图谱服务与 LLM 可用）`,
     };
   }
+
   const data = await r.json().catch(() => ({}));
+
+  // 异步已启动：轮询直到落盘
+  if (r.status === 202 || data?.status === "generating") {
+    const polled = await pollLectureNotes({
+      courseId: input.courseId,
+      lectureId: input.lectureId,
+      points: input.points,
+      maxWaitMs: 180_000,
+    });
+    if (polled) return polled;
+    const local = buildLocalLectureNotes(input);
+    return {
+      ...local,
+      subtitle: "本地整理（生成超时：可稍后刷新，服务端可能仍在写缓存）",
+    };
+  }
+
   if (!r.ok) {
     const local = buildLocalLectureNotes(input);
     return {
@@ -473,69 +609,7 @@ export async function fetchLectureNotes(input: {
     };
   }
 
-  const themes: LectureTheme[] = Array.isArray(data.themes)
-    ? data.themes.map((t: LectureTheme, i: number) => ({
-        id: String(t.id || `theme-${i + 1}`),
-        title: String(t.title || `主题 ${i + 1}`),
-        oneLiner: String(t.oneLiner || ""),
-        keyPoints: Array.isArray(t.keyPoints) ? t.keyPoints.map(String) : [],
-        entityIds: Array.isArray(t.entityIds) ? t.entityIds.map(String) : [],
-      }))
-    : [];
-
-  const sections: LectureNoteSection[] = themeOnlySections(
-    Array.isArray(data.sections)
-      ? data.sections.map((s: LectureNoteSection, i: number) => ({
-          id: String(s.id || `sec-${i + 1}`),
-          kind: (s.kind || "theme") as NoteSectionKind,
-          title: String(s.title || ""),
-          summary: String(s.summary || ""),
-          body: String(s.body || ""),
-          bullets: Array.isArray(s.bullets) ? s.bullets.map(String) : [],
-          related: Array.isArray(s.related) ? s.related.map(String) : [],
-          tips: [],
-          blocks: normalizeBlocks(s.blocks),
-        }))
-      : [],
-  );
-
-  const filledThemes =
-    themes.length > 0
-      ? themes
-      : sections
-          .filter((s) => s.kind === "theme" || s.kind === "concept")
-          .map((s, i) => ({
-            id: s.id || `theme-${i + 1}`,
-            title: s.title,
-            oneLiner: s.summary.slice(0, 80),
-            keyPoints: (s.related || []).slice(0, 6),
-            entityIds: [] as string[],
-          }));
-
-  if (!filledThemes.length) {
-    return buildLocalLectureNotes(input);
-  }
-
-  const fromDisk = Boolean(data.cachedFromDisk);
-  const baseSubtitle = String(data.subtitle || "");
-  const subtitle = fromDisk
-    ? baseSubtitle
-      ? `${baseSubtitle} · 服务端缓存`
-      : "服务端缓存"
-    : baseSubtitle;
-
-  return attachThemeEntities(
-    {
-      version: LECTURE_NOTES_VERSION,
-      title: String(data.title || `第 ${input.lectureId} 讲 · 课堂笔记`),
-      subtitle,
-      overview: String(data.overview || ""),
-      themes: filledThemes,
-      sections,
-      model: data.model,
-      source: fromDisk ? "disk" : "llm",
-      generatedAt: Number(data.generatedAt) || Date.now(),
-    },
-    input.points
-  );
+  const doc = docFromApiPayload(data, input);
+  if (!doc) return buildLocalLectureNotes(input);
+  return doc;
 }
