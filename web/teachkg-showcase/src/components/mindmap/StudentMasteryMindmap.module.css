@@ -332,13 +332,39 @@
   fill: var(--map-bg);
   pointer-events: none;
 }
-.learningEdge {
+.learningEdge,
+.learningEdgeHalo {
   fill: none;
-  stroke: #6045cc;
-  stroke-width: 4;
-  stroke-dasharray: 12 8;
-  opacity: 0.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   pointer-events: none;
+}
+.learningEdgeHalo {
+  stroke: var(--map-bg);
+  stroke-width: 14;
+  opacity: 0.95;
+}
+.learningEdge {
+  stroke: #6440cf;
+  stroke-width: 7;
+}
+.learningLegend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  color: #6440cf;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.root .learningLegend,
+.root .learningLegendArrow {
+  color: #6440cf;
+}
+.learningLegendArrow {
+  font-size: 25px;
+  line-height: 1;
 }
 .masteryBadge {
   stroke: #fff;

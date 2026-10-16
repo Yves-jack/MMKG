@@ -334,6 +334,12 @@ export function StudentMasteryMindmap({
             />
             <span>显示节点文字</span>
           </label>
+          {scope === "personal" ? (
+            <span className={styles.learningLegend} title="沿紫色箭头，按章节顺序补强掌握度低于 2.5 分的知识点">
+              <span className={styles.learningLegendArrow} aria-hidden="true">⟶</span>
+              学习路径
+            </span>
+          ) : null}
         </div>
       </div>
       {!activeLayout ? (
@@ -371,11 +377,11 @@ export function StudentMasteryMindmap({
               refX="9"
               refY="5"
               markerUnits="strokeWidth"
-              markerWidth="5"
-              markerHeight="5"
+              markerWidth="3.5"
+              markerHeight="3.5"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6045cc" />
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#6440cf" />
             </marker>
           </defs>
           {layout.edges.map((edge) => {
@@ -390,14 +396,16 @@ export function StudentMasteryMindmap({
           })}
           <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 2.5 分">
             {learningEdges.map((edge) => (
-              <path
-                key={`${edge.from}:${edge.to}`}
-                data-learning-from={edge.from}
-                data-learning-to={edge.to}
-                d={edge.path}
-                className={styles.learningEdge}
-                markerEnd="url(#mastery-learning-arrow)"
-              />
+              <g key={`${edge.from}:${edge.to}`}>
+                <path d={edge.path} className={styles.learningEdgeHalo} />
+                <path
+                  data-learning-from={edge.from}
+                  data-learning-to={edge.to}
+                  d={edge.path}
+                  className={styles.learningEdge}
+                  markerEnd="url(#mastery-learning-arrow)"
+                />
+              </g>
             ))}
           </g>
           {layout.nodes.map((placed, index) => {
