@@ -1,5 +1,6 @@
 export const freeMasteryGeometry: {
   readonly badgeScale: number;
+  readonly badgeVisualScale: number;
   readonly badgeY: number;
   readonly labelTop: number;
   readonly fontScale: number;

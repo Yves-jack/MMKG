@@ -34,7 +34,6 @@ type ViewNode = MindmapTreeNode & {
 
 type Bounds = { x: number; y: number; width: number; height: number };
 const FREE_LABEL_SCALE = 1.5;
-const FREE_BADGE_SCALE = 3;
 const FONT_FAMILY =
   '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 let measurementContext: CanvasRenderingContext2D | null = null;
@@ -399,20 +398,6 @@ export function StudentMasteryMindmap({
               />
             );
           })}
-          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 50%">
-            {learningEdges.map((edge) => (
-              <g key={`${edge.from}:${edge.to}`}>
-                <path d={edge.path} className={styles.learningEdgeHalo} />
-                <path
-                  data-learning-from={edge.from}
-                  data-learning-to={edge.to}
-                  d={edge.path}
-                  className={styles.learningEdge}
-                  markerEnd="url(#mastery-learning-arrow)"
-                />
-              </g>
-            ))}
-          </g>
           {layout.nodes.map((placed, index) => {
             const node = placed.node as ViewNode;
             const score = masteryScore(node, mastery);
@@ -437,7 +422,7 @@ export function StudentMasteryMindmap({
             const ringRadius = badgeRadius + 3;
             const labelScale = placed.free && placed.depth > 0 ? FREE_LABEL_SCALE : 1;
             const labelTop = placed.free && placed.depth > 0
-              ? middleY + (ringRadius + 2.5) * FREE_BADGE_SCALE + 12 : 0;
+              ? middleY + (ringRadius + 2.5) * freeMasteryGeometry.badgeVisualScale + 12 : 0;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -535,7 +520,7 @@ export function StudentMasteryMindmap({
                   ) : null}
                   {placed.depth > 0 ? (
                     <g transform={`translate(${badgeX} ${middleY})`}>
-                      <g transform={`scale(${placed.free ? FREE_BADGE_SCALE : 1})`}>
+                      <g transform={`scale(${placed.free ? freeMasteryGeometry.badgeVisualScale : 1})`}>
                         <circle
                           className={styles.masteryBadge}
                           r={badgeRadius}
@@ -592,6 +577,20 @@ export function StudentMasteryMindmap({
               </g>
             );
           })}
+          <g aria-label="个性化学习路径：按章节顺序，章内从根到叶，掌握度低于 50%">
+            {learningEdges.map((edge) => (
+              <g key={`${edge.from}:${edge.to}`}>
+                <path d={edge.path} className={styles.learningEdgeHalo} />
+                <path
+                  data-learning-from={edge.from}
+                  data-learning-to={edge.to}
+                  d={edge.path}
+                  className={styles.learningEdge}
+                  markerEnd="url(#mastery-learning-arrow)"
+                />
+              </g>
+            ))}
+          </g>
         </svg>
       </div>
     </div>

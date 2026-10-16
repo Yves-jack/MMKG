@@ -1,6 +1,7 @@
 /** Shared geometry for mastery badges, fold controls and learning-path anchors. */
 export const freeMasteryGeometry = {
   badgeScale: 1.3,
+  badgeVisualScale: 3,
   badgeY: 44,
   labelTop: 92,
   fontScale: 1.12,

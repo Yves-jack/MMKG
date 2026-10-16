@@ -100,3 +100,29 @@ test("hidden-label learning paths follow compact circle positions rather than ol
   assert.ok(numbers[0] > 32 && numbers[0] < 80);
   assert.ok(numbers.at(-2) > 280 && numbers.at(-2) < 332);
 });
+
+test("free-layout arrows end beyond the enlarged badge and still connect close nodes", () => {
+  const sequence = [
+    { key: "a", score: 0 },
+    { key: "b", score: 1 },
+  ];
+  const nodes = [0, 300].map((left, index) => ({
+    key: sequence[index].key,
+    free: true,
+    depth: 3,
+    left,
+    top: 0,
+    width: 100,
+    height: 100,
+    textWidth: 0,
+  }));
+  const [distant] = visibleLearningPath(sequence, nodes);
+  const targetX = Number(distant.path.match(/([-\d.]+) ([-\d.]+)$/)[1]);
+  assert.ok(targetX < 350 - (23.8 * 1.3 + 5) * 3);
+
+  nodes[1].left = 180;
+  const [close] = visibleLearningPath(sequence, nodes);
+  assert.equal(close.from, "a");
+  assert.equal(close.to, "b");
+  assert.match(close.path, / C /);
+});
