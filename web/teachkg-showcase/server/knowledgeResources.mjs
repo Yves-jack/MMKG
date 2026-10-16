@@ -174,6 +174,54 @@ export async function loadKnowledgeResources(
     warnings.push("MMKG API or access token is not configured");
   }
 
+  const searchName = meaningfulText(nodeName).split("/")[0].trim();
+  if (
+    videoSearchBase &&
+    searchName.length >= 2 &&
+    !/^(基本概念|定义|性质|例子|应用|方法|定理)$/.test(searchName) &&
+    !resources.some((item) => item.resource_type === "video")
+  ) {
+    try {
+      const query = new URLSearchParams({
+        q: searchName,
+        course_id: courseId,
+        strategy: "keyword",
+        limit: "30",
+      });
+      const response = await fetchImpl(`${videoSearchBase}/api/v1/segments/search?${query}`);
+      const payload = await responseJson(response, "VideoSearch keyword matches");
+      const needle = searchName.toLocaleLowerCase();
+      const matches = (Array.isArray(payload.items) ? payload.items : [])
+        .filter((segment) => meaningfulText(segment.summary).toLocaleLowerCase().includes(needle))
+        .slice(0, 5);
+      for (const segment of matches) {
+        const videoId = String(segment.video_id || segment.lesson_id || "").trim();
+        const segmentId = String(segment.id || "").trim();
+        const startSec = Number(segment.start_sec);
+        if (!videoId || !segmentId || !Number.isFinite(startSec)) continue;
+        const endSec = Number(segment.end_sec);
+        resources.push({
+          resource_type: "video",
+          resource_id: segmentId,
+          course_id: courseId,
+          title: `视频 ${videoId}`,
+          content: meaningfulText(segment.summary),
+          start_sec: startSec,
+          end_sec: Number.isFinite(endSec) ? endSec : startSec,
+          metadata: {
+            video_id: videoId,
+            knowledge_point_id: knowledgePointId,
+            kp: knowledgePointId,
+            source: "video-search-keyword",
+          },
+          path: `/video?course_id=${encodedCourse}&video_id=${encodeURIComponent(videoId)}&start_sec=${encodeURIComponent(startSec)}`,
+        });
+      }
+    } catch (error) {
+      warnings.push(error instanceof Error ? error.message : String(error));
+    }
+  }
+
   const seen = new Set();
   const unique = resources.filter((item) => {
     const seek = item?.start_sec == null ? "" : String(item.start_sec);

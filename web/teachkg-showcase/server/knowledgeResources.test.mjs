@@ -109,6 +109,53 @@ test("returns partial results and warnings when one dependency fails", async () 
   assert.match(result.warnings[0], /AI-Teaching resources HTTP 503/);
 });
 
+test("uses verified VideoSearch clips when MMKG has no video relation", async () => {
+  const calls = [];
+  const result = await loadKnowledgeResources(
+    {
+      courseId: "92311",
+      knowledgePointId: "图的定义/graph definition",
+      nodeName: "图的定义",
+      kgToken: "launch-token",
+      accessToken: "mmkg-access",
+    },
+    {
+      AI_TEACHING_API_URL: "http://ai:5001",
+      MMKG_API_URL: "http://mmkg:8000/api",
+      VIDEO_SEARCH_API_URL: "http://video:8000",
+    },
+    async (url) => {
+      calls.push(String(url));
+      if (String(url).includes("video-segments")) return response({ video_refs: [] });
+      if (String(url).includes("segments/search")) return response({ items: [
+        { id: "unrelated", video_id: "9", start_sec: 3, summary: "平面图的性质" },
+        { id: "matching", video_id: "2", start_sec: 343.1, end_sec: 390, summary: "接着介绍图的定义" },
+      ] });
+      return response({ resources: [] });
+    },
+  );
+
+  assert.deepEqual(result.resources.map((item) => item.resource_id), ["matching"]);
+  assert.equal(result.resources[0].metadata.video_id, "2");
+  assert.equal(result.resources[0].metadata.knowledge_point_id, "图的定义/graph definition");
+  assert.equal(result.resources[0].start_sec, 343.1);
+  assert.match(calls[2], /segments\/search\?q=%E5%9B%BE%E7%9A%84%E5%AE%9A%E4%B9%89/);
+});
+
+test("does not infer videos from generic node names", async () => {
+  const calls = [];
+  const result = await loadKnowledgeResources(
+    { courseId: "92311", knowledgePointId: "topic-1", nodeName: "基本概念", kgToken: "token", accessToken: "access" },
+    { MMKG_API_URL: "http://mmkg:8000/api", VIDEO_SEARCH_API_URL: "http://video:8000" },
+    async (url) => {
+      calls.push(String(url));
+      return response({ video_refs: [] });
+    },
+  );
+  assert.deepEqual(result.resources, []);
+  assert.equal(calls.length, 1);
+});
+
 test("drops video relations without the complete course/video/start contract", async () => {
   const result = await loadKnowledgeResources(
     {
