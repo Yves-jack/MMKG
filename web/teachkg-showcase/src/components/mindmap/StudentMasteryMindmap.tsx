@@ -33,6 +33,7 @@ type ViewNode = MindmapTreeNode & {
 };
 
 type Bounds = { x: number; y: number; width: number; height: number };
+const FREE_VISUAL_SCALE = 3;
 const FONT_FAMILY =
   '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 let measurementContext: CanvasRenderingContext2D | null = null;
@@ -433,6 +434,9 @@ export function StudentMasteryMindmap({
             const marker = score == null ? "?" : score.toFixed(1);
             const badgeRadius = visual.radius * (placed.free ? freeMasteryGeometry.badgeScale : 1);
             const ringRadius = badgeRadius + 3;
+            const labelScale = placed.free && placed.depth > 0 ? FREE_VISUAL_SCALE : 1;
+            const labelTop = placed.free && placed.depth > 0
+              ? middleY + (ringRadius + 2.5) * FREE_VISUAL_SCALE + 12 : 0;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -511,11 +515,12 @@ export function StudentMasteryMindmap({
                       className={styles.nodeLabel}
                       data-node-label=""
                       key={lineIndex}
-                      x={start}
+                      x={placed.free && placed.depth > 0 ? badgeX : start}
+                      textAnchor={placed.free && placed.depth > 0 ? "middle" : undefined}
                       y={
-                        (placed.free && placed.depth > 0 ? freeMasteryGeometry.labelTop : 0) +
-                        placed.fontSize +
-                        lineIndex * (placed.fontSize + 9)
+                        labelTop +
+                        placed.fontSize * labelScale +
+                        lineIndex * (placed.fontSize * labelScale + 9)
                       }
                     >
                       {line}
@@ -528,7 +533,7 @@ export function StudentMasteryMindmap({
                     />
                   ) : null}
                   {placed.depth > 0 ? (
-                    <g transform={`translate(${badgeX} ${middleY})`}>
+                    <g transform={`translate(${badgeX} ${middleY}) scale(${placed.free ? FREE_VISUAL_SCALE : 1})`}>
                       <circle
                         className={styles.masteryBadge}
                         r={badgeRadius}

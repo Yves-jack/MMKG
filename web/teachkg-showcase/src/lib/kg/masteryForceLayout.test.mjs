@@ -91,7 +91,10 @@ test("larger free-layout badges and labels fit the physics footprint", () => {
     assert.ok(node.width / 2 >= largestOuterRadius);
     assert.ok(marker.middleY >= largestOuterRadius);
     assert.ok(node.height - marker.middleY >= largestOuterRadius);
-    if (node.node.__hasChildren) assert.ok(marker.toggleX + 16 <= node.width);
+    if (node.node.__hasChildren)
+      assert.ok(
+        marker.toggleX - 16 >= marker.badgeX + largestOuterRadius * 3 + 8,
+      );
     if (node.lines.length) assert.ok(freeMasteryGeometry.labelTop > marker.middleY + largestOuterRadius);
   }
 });
