@@ -149,14 +149,17 @@
 
 .edgeTrunk {
   stroke-width: 11px;
+  stroke-dasharray: 16 20;
 }
 
 .edgeMajor {
   stroke-width: 6px;
+  stroke-dasharray: 9 13;
 }
 
 .edgeBranch {
   stroke-width: 2.8px;
+  stroke-dasharray: 4 7;
 }
 
 .node {
