@@ -141,6 +141,7 @@
 .edge {
   fill: none;
   stroke: var(--branch-ink);
+  opacity: 0.26;
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
