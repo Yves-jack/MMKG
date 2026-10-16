@@ -6,7 +6,7 @@ export const freeMasteryGeometry = {
   fontScale: 1.12,
   leafWidth: 88,
   branchWidth: 148,
-  toggleOffset: 90,
+  toggleOffset: 140,
 };
 
 export function mindmapMarkerPositions(node) {

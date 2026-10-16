@@ -33,7 +33,8 @@ type ViewNode = MindmapTreeNode & {
 };
 
 type Bounds = { x: number; y: number; width: number; height: number };
-const FREE_VISUAL_SCALE = 1.5;
+const FREE_LABEL_SCALE = 1.5;
+const FREE_BADGE_SCALE = 3;
 const FONT_FAMILY =
   '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
 let measurementContext: CanvasRenderingContext2D | null = null;
@@ -434,9 +435,9 @@ export function StudentMasteryMindmap({
             const marker = score == null ? "?" : `${Math.round(score * 20)}%`;
             const badgeRadius = visual.radius * (placed.free ? freeMasteryGeometry.badgeScale : 1);
             const ringRadius = badgeRadius + 3;
-            const labelScale = placed.free && placed.depth > 0 ? FREE_VISUAL_SCALE : 1;
+            const labelScale = placed.free && placed.depth > 0 ? FREE_LABEL_SCALE : 1;
             const labelTop = placed.free && placed.depth > 0
-              ? middleY + (ringRadius + 2.5) * FREE_VISUAL_SCALE + 12 : 0;
+              ? middleY + (ringRadius + 2.5) * FREE_BADGE_SCALE + 12 : 0;
             return (
               <g
                 key={sourcePath?.join(".") || `${node.id}-${index}`}
@@ -533,24 +534,26 @@ export function StudentMasteryMindmap({
                     />
                   ) : null}
                   {placed.depth > 0 ? (
-                    <g transform={`translate(${badgeX} ${middleY}) scale(${placed.free ? FREE_VISUAL_SCALE : 1})`}>
-                      <circle
-                        className={styles.masteryBadge}
-                        r={badgeRadius}
-                      />
-                      <circle className={styles.masteryTrack} r={ringRadius} />
-                      {score != null && score > 0 ? (
+                    <g transform={`translate(${badgeX} ${middleY})`}>
+                      <g transform={`scale(${placed.free ? FREE_BADGE_SCALE : 1})`}>
                         <circle
-                          className={styles.masteryArc}
-                          r={ringRadius}
-                          strokeDasharray={`${(2 * Math.PI * ringRadius * score) / 5} ${2 * Math.PI * ringRadius}`}
-                          transform="rotate(-90)"
+                          className={styles.masteryBadge}
+                          r={badgeRadius}
                         />
-                      ) : null}
+                        <circle className={styles.masteryTrack} r={ringRadius} />
+                        {score != null && score > 0 ? (
+                          <circle
+                            className={styles.masteryArc}
+                            r={ringRadius}
+                            strokeDasharray={`${(2 * Math.PI * ringRadius * score) / 5} ${2 * Math.PI * ringRadius}`}
+                            transform="rotate(-90)"
+                          />
+                        ) : null}
+                      </g>
                       <text
                         className={styles.masteryText}
                         style={{
-                          fontSize: placed.free ? "19px" : "14px",
+                          fontSize: placed.free ? "28.5px" : "14px",
                         }}
                         textAnchor="middle"
                         dominantBaseline="middle"
