@@ -1645,6 +1645,7 @@ export function MindmapPage() {
               open={assetsPanelOpen}
               onOpenChange={setAssetsPanelOpen}
               bodyClassName={`${kg.sideCardBody} ${compactMastery ? details.resourceBody : ""}`}
+              resizable={!compactMastery}
             >
               {isAiTeachingEmbed && linkedEntityId ? (
                 <LinkedResourceJumpBar
@@ -1657,44 +1658,43 @@ export function MindmapPage() {
                   onOpen={openLinkedResource}
                 />
               ) : null}
-              <RelatedAssetsPanel
-                entityId={mindmapAssetQuery.entityId}
-                entityAliases={mindmapAssetQuery.aliases}
-                queries={selectedAssetQueries}
-                library={library}
-                lectureId={lectureIdForLinks || null}
-                lectureOnly={false}
-                kinds={[...RELATED_ASSET_KINDS]}
-                maxItems={12}
-                matchMode={assetPolicy === "strict" ? "strict" : "concept"}
-                emptyHint={
-                  selected.children?.length
-                    ? "该节点及其子节点暂无相关资源"
-                    : compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
-                    ? "章节节点不匹配资源"
-                    : assetPolicy === "strict"
-                    ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
-                    : null
-                }
-              />
-              {isAiTeachingEmbed && linkedEntityId ? (
+              <div className={kg.resourceGroupStack}>
+                <RelatedAssetsPanel
+                  entityId={mindmapAssetQuery.entityId}
+                  entityAliases={mindmapAssetQuery.aliases}
+                  queries={selectedAssetQueries}
+                  library={library}
+                  lectureId={lectureIdForLinks || null}
+                  lectureOnly={false}
+                  kinds={[...RELATED_ASSET_KINDS]}
+                  maxItems={12}
+                  matchMode={assetPolicy === "strict" ? "strict" : "concept"}
+                  emptyHint={
+                    selected.children?.length
+                      ? "该节点及其子节点暂无相关资源"
+                      : compactMastery ? (assetPolicy === "none" ? "选择具体知识点查看学习资源" : "暂无相关资源，可先查看相关练习或视频。") : assetPolicy === "none"
+                      ? "章节节点不匹配资源"
+                      : assetPolicy === "strict"
+                      ? "主题节点仅按标题精确匹配资源；暂无同名挂载"
+                      : null
+                  }
+                />
+              {isAiTeachingEmbed && linkedEntityId &&
+              (sideLinkedResources?.loading || selectedAnimationResources.length > 0) ? (
                 <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
                   {sideLinkedResources?.loading ? (
                     <div className={kg.resourceMenuState}>正在查询动画…</div>
-                  ) : sideLinkedResources?.error ? (
-                    <div className={kg.resourceMenuError}>{sideLinkedResources.error}</div>
-                  ) : selectedAnimationResources.length ? (
+                  ) : (
                     <LinkedResourceCardList
                       resources={selectedAnimationResources}
                       kind="animation"
                       nodeLabel={selected.zh || ""}
                       onOpen={openLinkedResource}
                     />
-                  ) : (
-                    <div className={pipe.sideEmpty}>暂无关联动画</div>
                   )}
                 </ResourceCardFold>
               ) : null}
+              </div>
             </CollapsiblePanel>
           ) : null}
           {canEditMindmap && chapterForOutline ? (
@@ -1703,6 +1703,7 @@ export function MindmapPage() {
               storageKey="mindmap-panel-outline-v2"
               defaultOpen
               bodyClassName={kg.sideCardBody}
+              resizable
             >
               <ChapterOutlinePanel
                 courseId={courseId}

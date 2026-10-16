@@ -3571,21 +3571,18 @@ export function KgPage() {
                   lectureOnly={false}
                   kinds={[...RELATED_ASSET_KINDS]}
                 />
-                {isAiTeachingEmbed ? (
+                {isAiTeachingEmbed &&
+                (sideLinkedResources?.loading || selectedAnimationResources.length > 0) ? (
                   <ResourceCardFold title="动画" count={selectedAnimationResources.length}>
                     {sideLinkedResources?.loading ? (
                       <div className={styles.resourceMenuState}>正在查询动画…</div>
-                    ) : sideLinkedResources?.error ? (
-                      <div className={styles.resourceMenuError}>{sideLinkedResources.error}</div>
-                    ) : selectedAnimationResources.length ? (
+                    ) : (
                       <LinkedResourceCardList
                         resources={selectedAnimationResources}
                         kind="animation"
                         nodeLabel={String(selectedNode.label || "")}
                         onOpen={openLinkedResource}
                       />
-                    ) : (
-                      <div className={pipe.sideEmpty}>暂无关联动画</div>
                     )}
                   </ResourceCardFold>
                 ) : null}
