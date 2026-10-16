@@ -1562,7 +1562,7 @@ export function MindmapTree({
 
   const trees = useMemo(() => docTrees(doc), [doc]);
   const maxImp = useMemo(() => collectForestMaxImp(trees), [trees]);
-  const remoteLinks = doc.remoteLinks || [];
+  const remoteLinks = useMemo(() => doc.remoteLinks || [], [doc.remoteLinks]);
   const remoteLinkedIds = useMemo(() => {
     const s = new Set<string>();
     for (const l of remoteLinks) {

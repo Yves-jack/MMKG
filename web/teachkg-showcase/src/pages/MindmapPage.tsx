@@ -1481,7 +1481,8 @@ export function MindmapPage() {
                       ? "course"
                       : "full"
                 }
-                expandStorageKey={`teachkg.mindmap.expand.v4:${courseId}:${encodeURIComponent(navId || "none")}${
+                // 整课废弃旧展开记录，首次恢复章的下一层，之后仍记住手动调整。
+                expandStorageKey={`teachkg.mindmap.expand.${isCourseNavId(navId) ? "v5" : "v4"}:${courseId}:${encodeURIComponent(navId || "none")}${
                   lectureVariant === "deep" ? ":deep" : ""
                 }`}
                 courseId={courseId}
