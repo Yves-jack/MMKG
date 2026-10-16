@@ -791,6 +791,7 @@ function MapBranch({
   forceOpenPath,
   series = 1,
   growDir = "ltr",
+  balanceRoot = true,
 }: {
   node: MindmapTreeNode;
   path: number[];
@@ -831,6 +832,7 @@ function MapBranch({
   series?: number;
   /** ltr=向右生长，rtl=向左生长（handoff 左右反向） */
   growDir?: "ltr" | "rtl";
+  balanceRoot?: boolean;
 }) {
   const shouldForceOpen =
     !!forceOpenPath &&
@@ -966,7 +968,7 @@ function MapBranch({
   const lectureLike = node.id.startsWith("__lecture__/");
   const kids = node.children || [];
   /** 根：按子树体量均衡分到左右（非简单对半切） */
-  const splitRoot = depth === 0 && kids.length > 1;
+  const splitRoot = balanceRoot && depth === 0 && kids.length > 1;
   const rootSplit = splitRoot ? balanceRootSplit(kids) : null;
   const leftKids = rootSplit?.left ?? [];
   const rightKids = rootSplit?.right ?? [];
@@ -1375,6 +1377,8 @@ type MindmapTreeProps = {
   editEnabled?: boolean;
   courseId?: string;
   lectureId?: string;
+  /** 课次导图可关闭左右平衡，使所有分支向右展开。 */
+  balanceRoot?: boolean;
   onDocChange?: (doc: MindmapDoc) => void;
   /** 清除本地编辑后回调（父级应重新拉取原始导图） */
   onResetEdits?: () => void;
@@ -1479,6 +1483,7 @@ export function MindmapTree({
   editEnabled = false,
   courseId,
   lectureId,
+  balanceRoot = true,
   onDocChange,
   onResetEdits,
   onHistoryChange,
@@ -3031,6 +3036,7 @@ export function MindmapTree({
                 forceOpenPath={forceOpenPath}
                 series={(i % 6) + 1}
                 growDir="ltr"
+                balanceRoot={balanceRoot}
               />
             </DraggableTree>
           ))}

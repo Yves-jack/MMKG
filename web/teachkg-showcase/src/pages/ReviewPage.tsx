@@ -1909,6 +1909,7 @@ export function ReviewPage() {
                         <MindmapTree
                           className={styles.mindmapHost}
                           doc={mindmap}
+                          balanceRoot={false}
                           resetKey={mapKey}
                           selectedId={selectedId}
                           onSelect={onMindmapSelect}

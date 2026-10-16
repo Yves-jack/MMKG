@@ -1467,6 +1467,7 @@ export function MindmapPage() {
               /> : <MindmapTree
                 key={`mm-expand:${courseId}:${navId || "none"}:${doc.lecture_id || ""}:${lectureVariant || ""}:${mapKey}`}
                 doc={doc}
+                balanceRoot={isAnyCourseNavId(navId) || Boolean(parseChapterNavId(navId))}
                 resetKey={mapKey}
                 selectedId={selected?.id || null}
                 onSelect={(node) => selectMindmapNode(node)}
